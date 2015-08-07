@@ -1,0 +1,7 @@
+include "base.dbd"
+include "asyn.dbd"
+include "mcaSupport.dbd"
+include "NDPluginSupport.dbd"
+include "busySupport.dbd"
+include "FFTRecords.dbd"
+include "BPMSupport.dbd"

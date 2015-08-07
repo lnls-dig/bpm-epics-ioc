@@ -1,0 +1,7 @@
+record(AveDev, "$(user):AveDev:$(no)")
+{
+	field(INP, "$(user):wf:FLOAT:$(no)")
+	field(NELM,"$(nelm)")
+	field(CUT, "1")
+	field(PREC,"3")
+}

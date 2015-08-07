@@ -1,0 +1,111 @@
+recordtype(AveDev) {
+	include "dbCommon.dbd" 
+	field(VAL,DBF_DOUBLE){
+		prompt("Average of Input") 
+        	asl(ASL0)
+	        pp(TRUE)
+	}
+	field(PREC,DBF_SHORT) {
+		prompt("Display Precision")	interest(1)
+	}
+	field(EGU,DBF_STRING) {
+		prompt("Engineering Units")	interest(1)	size(16)
+	}
+	field(HOPR,DBF_FLOAT) {
+		prompt("High Operating Range")	interest(1)
+	}
+	field(LOPR,DBF_FLOAT) {
+		prompt("Low Operating Range")	interest(1)
+	}
+	field(HIHI,DBF_FLOAT) {
+		prompt("Hihi Alarm Limit")	pp(TRUE) 	interest(1)
+	}
+	field(LOLO,DBF_FLOAT) {
+		prompt("Lolo Alarm Limit")	pp(TRUE)	interest(1)
+	}
+	field(HIGH,DBF_FLOAT) {
+		prompt("High Alarm Limit")	pp(TRUE)	interest(1)
+	}
+	field(LOW,DBF_FLOAT) {
+		prompt("Low Alarm Limit")	pp(TRUE)	interest(1)
+	}
+	field(HHSV,DBF_MENU) {
+		prompt("Hihi Severity")		menu(menuAlarmSevr)
+		pp(TRUE)	interest(1)
+	}
+	field(LLSV,DBF_MENU) {
+		prompt("Lolo Severity")		menu(menuAlarmSevr)
+		pp(TRUE)	interest(1)	
+	}
+	field(HSV,DBF_MENU) {
+		prompt("High Severity")		menu(menuAlarmSevr)
+		pp(TRUE)	interest(1)
+	}
+	field(LSV,DBF_MENU) {
+		prompt("Low Severity")		menu(menuAlarmSevr)
+		pp(TRUE)	interest(1)
+	}
+	field(HYST,DBF_DOUBLE) {
+		prompt("Alarm Deadband")	interest(1)
+	}
+	field(ADEL,DBF_DOUBLE) {
+		prompt("Archive Deadband")	interest(1)
+	}
+	field(MDEL,DBF_DOUBLE) {
+		prompt("Monitor Deadband")	interest(1)
+	}
+	field(LALM,DBF_DOUBLE) {
+		prompt("Last Value Alarmed")
+		special(SPC_NOMOD)	interest(3)
+	}
+	field(ALST,DBF_DOUBLE) {
+		prompt("Last Value Archived")
+		special(SPC_NOMOD)	interest(3)
+	}
+	field(MLST,DBF_DOUBLE) {
+		prompt("Last Val Monitored")
+		special(SPC_NOMOD)	interest(3)
+	}
+	field(INP, DBF_INLINK) {
+		prompt("Input Link")	interest(1)
+	}
+	field(BPTR,DBF_NOACCESS) {
+		prompt("Buffer for Input")
+		special(SPC_NOMOD) size(8) 	extra("double *bptr")
+	}
+	field(IVAL,DBF_NOACCESS){
+		prompt("Input Value")
+		asl(ASL0)
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *	ival")
+	}
+	field(NELM, DBF_ULONG) {
+		prompt("Maximum Number of Elements") interest(1)
+		special(SPC_NOMOD)	initial("1")
+	}
+	field(NORD, DBF_ULONG) {
+		special(SPC_NOMOD)
+		prompt("Current Number of elements") initial("1")
+	}
+	field(CUT,DBF_DOUBLE) {
+		prompt("cut ")
+		interest(1)
+                initial("0")	
+	}
+	field(DEV,DBF_DOUBLE) {
+		prompt("deviation ")
+		special(SPC_NOMOD)	interest(1)
+                initial("0")	
+	}
+	field(AVE0,DBF_DOUBLE) {
+		prompt("average before cut ")
+		special(SPC_NOMOD)	interest(1)
+                initial("0")	
+	}
+	field(DEV0,DBF_DOUBLE) {
+		prompt("average before cut ")
+		special(SPC_NOMOD)	interest(1)
+                initial("0")	
+	}
+}

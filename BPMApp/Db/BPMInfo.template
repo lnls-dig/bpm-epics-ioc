@@ -1,0 +1,44 @@
+#
+# BPM database file
+#
+# Authors: Juliano Murari
+#          Lucas Russo
+#
+# Created Aug. 03, 2015
+#
+
+#########################
+# General Board information parameters
+#########################
+
+record(longin,"$(P):BPM$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get accelerator harmonic number")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
+}
+
+record(longin,"$(P):BPM$(BPM_NUMBER):INFO:TBTRate_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get TBT rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
+}
+
+record(longin,"$(P):BPM$(BPM_NUMBER):INFO:FOFBRate_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get FOFB rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
+}
+
+record(longin,"$(P):BPM$(BPM_NUMBER):INFO:MONITRate_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get MONIT rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
+}

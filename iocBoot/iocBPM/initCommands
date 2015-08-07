@@ -1,0 +1,29 @@
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADC_A:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADC_B:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADC_C:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADC_D:EnableCallbacks" 1
+
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADCSWAP_A:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADCSWAP_B:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADCSWAP_C:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):ADCSWAP_D:EnableCallbacks" 1
+
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_A:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_B:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_C:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_D:EnableCallbacks" 1
+
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_A:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_B:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_C:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_D:EnableCallbacks" 1
+
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_X:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_Y:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_Q:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):TBT_SUM:EnableCallbacks" 1
+
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_X:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_Y:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_Q:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}:BPM$(BPM_NUMBER):FOFB_SUM:EnableCallbacks" 1

@@ -1,0 +1,239 @@
+record(bo,"$(P)$(R)EraseAll") {
+  field(DTYP, "asynInt32")
+  field(OUT,  "@asyn($(PORT),0)MCA_ERASE")
+  field(ZNAM, "Done")
+  field(ONAM, "Erase")
+  field(VAL,  "1")
+  field(FLNK, "$(P)$(R)ReadAllOnce")
+}
+
+record(bo,"$(P)$(R)EraseStart") {
+  field(DTYP, "asynInt32")
+  field(OUT,  "@asyn($(PORT),0)MCA_ERASE")
+  field(ZNAM, "Done")
+  field(ONAM, "Erase")
+  field(VAL,  "1")
+  field(FLNK, "$(P)$(R)StartAll.PROC")
+}
+
+record(bo,"$(P)$(R)StartAll") {
+  field(DTYP, "asynInt32")
+  field(OUT,  "@asyn($(PORT),0)MCA_START_ACQUIRE")
+  field(ZNAM, "Done")
+  field(ONAM, "Start")
+  field(VAL,  "1")
+  field(FLNK, "$(P)$(R)SetAcquiring.PROC")
+}
+
+record(bo,"$(P)$(R)SetAcquiring") {
+  field(OUT,  "$(P)$(R)Acquiring PP MS")
+  field(ZNAM, "Done")
+  field(ONAM, "Set")
+  field(VAL,  "1")
+  field(FLNK, "$(P)$(R)SetClientWait.PROC")
+}
+
+record(bo,"$(P)$(R)StopAll") {
+  field(DTYP, "asynInt32")
+  field(OUT,  "@asyn($(PORT),0)MCA_STOP_ACQUIRE")
+  field(ZNAM, "Done")
+  field(ONAM, "Stop")
+  field(VAL,  "1")
+}
+
+record(ao,"$(P)$(R)PresetReal") {
+  field(PINI, "YES")
+  field(DTYP, "asynFloat64")
+  field(OUT,  "@asyn($(PORT),0)MCA_PRESET_REAL")
+  field(VAL,  "0.0")
+  field(PREC, "2")
+}
+
+record(bi,"$(P)$(R)HardwareAcquiring") {
+  field(DTYP, "asynInt32")
+  field(INP,  "@asyn($(PORT),0)MCA_ACQUIRING")
+  field(ZNAM, "Done")
+  field(ONAM, "Acquiring")
+  field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P)$(R)ElapsedReal") {
+  field(DTYP, "asynFloat64")
+  field(INP,  "@asyn($(PORT),0)MCA_ELAPSED_REAL")
+  field(PREC, "2")
+  field(SCAN, "I/O Intr")
+}
+
+record(bo,"$(P)$(R)ReadAll") {
+  field(SCAN, "1 second")
+  field(DISV, "0")
+  field(SDIS, "$(P)$(R)Acquiring NPP NMS")
+  field(ZNAM, "Done")
+  field(ONAM, "Read")
+  field(FLNK, "$(P)$(R)ReadAllOnce")
+}
+
+record(bo,"$(P)$(R)ReadAllOnce") {
+  field(VAL,  "1")
+  field(OUT,  "$(P)$(R)DoReadAll.VAL PP MS")
+}
+
+record(bo,"$(P)$(R)DoReadAll") {
+  field(ZNAM, "Done")
+  field(ONAM, "Read")
+}
+
+
+record(longout,"$(P)$(R)NuseAll") {
+  field(PINI, "YES")
+  field(DTYP, "asynInt32")
+  field(VAL,  "$(NUM_TS)")
+  field(OUT,  "@asyn($(PORT),0)MCA_NUM_CHANNELS")
+}
+
+record(longin,"$(P)$(R)CurrentChannel") {
+  field(DTYP, "asynInt32")
+  field(INP,  "@asyn($(PORT),0)FAST_SWEEP_CURRENT_CHANNEL")
+  field(SCAN, "I/O Intr")
+}
+
+record(longin,"$(P)$(R)MaxChannels") {
+  field(PINI, "YES")
+  field(DTYP, "asynInt32")
+  field(INP,  "@asyn($(PORT),0)FAST_SWEEP_MAX_CHANNELS")
+}
+
+record(ao,"$(P)$(R)Dwell") {
+  field(PINI, "YES")
+  field(DTYP, "asynFloat64")
+  field(OUT,  "@asyn($(PORT),0)MCA_DWELL_TIME")
+  field(VAL,  "0.1")
+  field(PREC, "3")
+}
+
+record(ai,"$(P)$(R)Dwell_RBV") {
+  field(DTYP, "asynFloat64")
+  field(INP,  "@asyn($(PORT),0)MCA_DWELL_TIME")
+  field(PREC, "3")
+  field(SCAN, "I/O Intr")
+}
+
+record(ao,"$(P)$(R)PresetReal") {
+  field(PINI, "YES")
+  field(DTYP, "asynFloat64")
+  field(OUT,  "@asyn($(PORT),0)MCA_PRESET_REAL")
+  field(VAL,  "0")
+  field(PREC, "3")
+}
+
+record(bo,"$(P)$(R)AutoRestartTS")
+{
+    field(DESC, "Auto restart time series")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(waveform,"$(P)$(R)X")
+{
+    field(DESC, "Current 1")
+    field(DTYP, "asynInt32ArrayIn")
+    field(PINI, "YES")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "LONG")
+    field(INP,  "@asyn($(PORT) 0)MCA_DATA")
+}
+
+record(waveform,"$(P)$(R)Y")
+{
+    field(DESC, "Current 2")
+    field(DTYP, "asynInt32ArrayIn")
+    field(PINI, "YES")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "LONG")
+    field(INP,  "@asyn($(PORT) 1)MCA_DATA")
+}
+
+record(waveform,"$(P)$(R)Q")
+{
+    field(DESC, "Current 3")
+    field(DTYP, "asynInt32ArrayIn")
+    field(PINI, "YES")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "LONG")
+    field(INP,  "@asyn($(PORT) 2)MCA_DATA")
+}
+
+record(waveform,"$(P)$(R)Sum")
+{
+    field(DESC, "Current 4")
+    field(DTYP, "asynInt32ArrayIn")
+    field(PINI, "YES")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "LONG")
+    field(INP,  "@asyn($(PORT) 3)MCA_DATA")
+}
+
+record(waveform,"$(P)$(R)TimeAxis")
+{
+    field(DESC, "Time axis data")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "FLOAT")
+    field(PREC, "3")
+}
+
+# FFT records
+record(bo,"$(P)$(R)ComputeFFT")
+{
+    field(DESC, "Compute FFTs")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(waveform,"$(P)$(R)XFFT")
+{
+    field(DESC, "X FFT")
+    field(NELM, "$(NUM_FREQ)")
+    field(FTVL, "FLOAT")
+}
+
+record(waveform,"$(P)$(R)YFFT")
+{
+    field(DESC, "Y FFT")
+    field(NELM, "$(NUM_FREQ)")
+    field(FTVL, "FLOAT")
+}
+
+record(waveform,"$(P)$(R)QFFT")
+{
+    field(DESC, "Q FFT")
+    field(NELM, "$(NUM_FREQ)")
+    field(FTVL, "FLOAT")
+}
+
+record(waveform,"$(P)$(R)SumFFT")
+{
+    field(DESC, "Sum FFT")
+    field(NELM, "$(NUM_FREQ)")
+    field(FTVL, "FLOAT")
+}
+
+record(waveform,"$(P)$(R)FreqAxis")
+{
+    field(DESC, "Frequency axis data")
+    field(NELM, "$(NUM_TS)")
+    field(FTVL, "FLOAT")
+    field(PREC, "3")
+}
+
+record(bo,"$(P)$(R)SetClientWait") {
+  field(DISV, "0")
+  field(SDIS, "$(P)$(R)EnableClientWait NPP NMS")
+  field(OMSL, "closed_loop")
+  field(DOL,  "1")
+  field(OUT,  "$(P)$(R)ClientWait PP MS")
+  field(ONAM, "SetClientWait")
+  field(ZNAM, "Done")
+}
+
+record(busy,"$(P)$(R)ClientWait") {
+}

@@ -1,0 +1,68 @@
+record(RFFT,"$(user):RFFT:$(no)")
+{
+	field(INP, "$(user):wf:FLOAT:$(no)")
+	field(NELM,"$(nelm)")
+	field(SPAN,"512")
+	field(PREC,"3")
+}
+
+record(CFFT,"$(user):CFFT:$(no)")
+{
+	field(INP, "$(user):wf:FLOAT:$(no)")
+	field(INPQ, "$(user):wf:FLOAT:Q$(no)")
+	field(NELM,"$(nelm)")
+	field(SPAN,"1024")
+	field(PREC,"3")
+	field(CDFT,"Sequential")
+	field(CDFT,"Interleaved")
+}
+
+
+record(waveform, "$(user):wf:FLOAT:$(no)")
+{
+	field(DTYP,"Test Inst")
+	field(INP, " @0.1732 0.0")
+	field(SCAN,"2 second")
+	field(PINI,"YES")
+	field(DESC, "Waveform f-type:$(ftvl),No. $(no)")
+	field(NELM,"$(nelm)")
+	field(FTVL,"FLOAT")
+
+}
+
+record(waveform, "$(user):wf:FLOAT:Q$(no)")
+{
+	field(DTYP,"Test Inst")
+	field(INP, " @0.1732 0.5")
+	field(SCAN,"2 second")
+	field(PINI,"YES")
+	field(DESC, "Waveform f-type:$(ftvl),No. $(no)")
+	field(NELM,"$(nelm)")
+	field(FTVL,"FLOAT")
+
+}
+
+record(waveform, "$(user):wf:SHORT:$(no)")
+{
+	field(DTYP,"Test Inst")
+	field(INP, " @0.1732 0.0")
+	field(SCAN,"2 second")
+	field(PINI,"YES")
+	field(DESC, "Waveform f-type:$(ftvl),No. $(no)")
+	field(NELM,"$(nelm)")
+	field(FTVL,"SHORT")
+
+}
+
+record(waveform, "$(user):wf:USHORT:$(no)")
+{
+	field(DTYP,"Test Inst")
+	field(INP, " @0.1732 0.0")
+	field(SCAN,"2 second")
+	field(PINI,"YES")
+	field(DESC, "Waveform f-type:$(ftvl),No. $(no)")
+	field(NELM,"$(nelm)")
+	field(FTVL,"USHORT")
+
+}
+

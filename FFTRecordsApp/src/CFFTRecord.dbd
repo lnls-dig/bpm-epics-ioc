@@ -1,0 +1,179 @@
+menu(WindowFunctionMenu){
+	choice(WFM_Square,"Square")
+	choice(WFM_Hanning,"Hanning")
+	choice(WFM_Parzen,"Parzen")
+	choice(WFM_Welch,"Welch")
+	choice(WFM_QuadW,"QuadW")
+}
+
+menu(FFT_Conversion_Direction_Menu){
+	choice(FCD_Forward,"Forward")
+	choice(FCD_Backward,"Backward")
+}
+
+menu(FFT_Average_Subtraction_Menu){
+	choice(FAS_Default,"No Subtraction")
+	choice(FAS_AverageSubtraction,"Average")
+	choice(FAS_LinearSubtraction,"Linear")
+}
+
+menu(ComplexDataFormatMenu){
+	choice(CDF_Default,"Separated")
+	choice(CDF_Interleved,"Interleaved")
+	choice(CDF_Sequential,"Sequential")
+}
+
+recordtype(CFFT) {
+	include "dbCommon.dbd" 
+	field(VAL,DBF_NOACCESS){
+		prompt("power spectrum density") asl(ASL0) 	pp(TRUE)
+		special(SPC_DBADDR) size(8) extra("void * val")
+	}
+	field(SIGI,DBF_NOACCESS){
+		prompt("power spectrum density") asl(ASL0) 	pp(TRUE)
+		special(SPC_DBADDR) size(8) extra("void * sigi")
+	}
+	field(SIGQ,DBF_NOACCESS){
+		prompt("power spectrum density") asl(ASL0) 	pp(TRUE)
+		special(SPC_DBADDR) size(8) extra("void * sigq")
+	}
+	field(CDFT,DBF_MENU) {
+		prompt("Complex data format")
+		menu(ComplexDataFormatMenu)
+		special(SPC_NOMOD) interest(1)
+	}
+	field(PREC,DBF_SHORT) {
+		prompt("Display Precision") interest(1)
+	}
+	field(EGU,DBF_STRING) {
+		prompt("Engineering Units") interest(1)	size(16)
+	}
+	field(HOPR,DBF_FLOAT) {
+		prompt("High Operating Range") interest(1)
+	}
+	field(LOPR,DBF_FLOAT) {
+		prompt("Low Operating Range") interest(1)
+	}
+	field(HIHI,DBF_FLOAT) {
+		prompt("Hihi Alarm Limit") pp(TRUE) interest(1)
+	}
+	field(LOLO,DBF_FLOAT) {
+		prompt("Lolo Alarm Limit") pp(TRUE) interest(1)
+	}
+	field(HIGH,DBF_FLOAT) {
+		prompt("High Alarm Limit") pp(TRUE) interest(1)
+	}
+	field(LOW,DBF_FLOAT) {
+		prompt("Low Alarm Limit") pp(TRUE) interest(1)
+	}
+	field(HHSV,DBF_MENU) {
+		prompt("Hihi Severity")	menu(menuAlarmSevr)
+		pp(TRUE) interest(1)
+	}
+	field(LLSV,DBF_MENU) {
+		prompt("Lolo Severity")	menu(menuAlarmSevr)
+		pp(TRUE) interest(1)	
+	}
+	field(HSV,DBF_MENU) {
+		prompt("High Severity")	menu(menuAlarmSevr)
+		pp(TRUE) interest(1)
+	}
+	field(LSV,DBF_MENU) {
+		prompt("Low Severity")	menu(menuAlarmSevr)
+		pp(TRUE) interest(1)
+	}
+	field(HYST,DBF_DOUBLE) {
+		prompt("Alarm Deadband") interest(1)
+	}
+	field(ADEL,DBF_DOUBLE) {
+		prompt("Archive Deadband") interest(1)
+	}
+	field(MDEL,DBF_DOUBLE) {
+		prompt("Monitor Deadband") interest(1)
+	}
+	field(LALM,DBF_DOUBLE) {
+		prompt("Last Value Alarmed")
+		special(SPC_NOMOD) interest(3)
+	}
+	field(ALST,DBF_DOUBLE) {
+		prompt("Last Value Archived")
+		special(SPC_NOMOD) interest(3)
+	}
+	field(MLST,DBF_DOUBLE) {
+		prompt("Last Val Monitored")
+		special(SPC_NOMOD) interest(3)
+	}
+	field(INP, DBF_INLINK) {
+		prompt("Input Link for I or Combined")	interest(1)}
+	field(INPQ, DBF_INLINK) {
+		prompt("Input Link for Q signal") interest(1)}
+	field(AMP, DBF_NOACCESS){
+		prompt("amplitude of spectrum")
+		special(SPC_DBADDR) size(8) extra("void * amp")	
+	}
+	field(PHA, DBF_NOACCESS){
+	        prompt("phase of spectrum")
+		special(SPC_DBADDR) size(8) extra("void * pha")	
+	}
+	field(WAVN, DBF_NOACCESS){
+	        prompt("wave number ")
+		special(SPC_DBADDR) size(8) extra("void * wavn")	
+	}
+	field(BPTR, DBF_NOACCESS) {
+		prompt("Buffer for Input")	
+		special(SPC_NOMOD)  size(8) extra("double *bptr")
+	}
+	field(IPTR, DBF_NOACCESS) {
+		prompt("Buffer for Input")
+		special(SPC_NOMOD) size(8) extra("double *iptr")
+	}
+	field(QPTR, DBF_NOACCESS) {
+		prompt("Buffer for Input")	
+		special(SPC_NOMOD) size(8) extra("double *qptr")
+	}
+	field(BAMP, DBF_NOACCESS) {
+		prompt("Buffer for AMP")	
+		special(SPC_NOMOD) size(8) extra("double *bamp")
+	}
+	field(BPHA, DBF_NOACCESS) {
+		prompt("Buffer for PHASE")	
+		special(SPC_NOMOD) size(8) extra("double *bpha")
+	}
+	field(BWVN,DBF_NOACCESS) {
+		prompt("Buffer for WAVN")	
+		special(SPC_NOMOD) size(8) extra("double *bwvn")
+	}
+	field(WSAV, DBF_NOACCESS){
+		prompt("Pointer to the Working area ")	
+		special(SPC_NOMOD) size(8) extra("double *wsav")
+	}
+	field(NELM, DBF_ULONG) {
+		prompt("(Max) Number of Elements") interest(1)
+		special(SPC_NOMOD) initial("1")
+	}
+	field(NORD, DBF_ULONG) {
+		special(SPC_NOMOD)
+		prompt("Current Number elements") initial("1")
+	}
+	field(SPAN, DBF_ULONG){
+		prompt("FFT width") initial("1")
+	}
+	field(INDX, DBF_ULONG){
+		prompt("index") initial("0")
+	}
+	field(MXIX, DBF_ULONG){
+		prompt("max index") initial("0")
+	}
+	field(WIND,DBF_MENU){
+		prompt("select windowing function")
+		menu(WindowFunctionMenu)
+	}
+	field(CDIR,DBF_MENU){
+		prompt("FFT conversion direction")
+		menu(FFT_Conversion_Direction_Menu)	 
+	}
+	field(ASUB,DBF_MENU){
+		prompt("Average Subtraction")
+		menu(FFT_Average_Subtraction_Menu)	 
+	}
+}
