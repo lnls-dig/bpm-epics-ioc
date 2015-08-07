@@ -19,7 +19,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${EPICS_HOSTNAME}:$(BPM_NAME)$(BPM_N
 
 < waveformPlugins.cmd
 < waveformFFTRecords.cmd
-#< statsPlugins.cmd
+< statsPlugins.cmd
 
 # initFastSweep(portName, inputName, maxSignals, maxPoints)
 #  portName = asyn port name for this new port (string)
