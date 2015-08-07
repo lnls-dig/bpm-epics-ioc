@@ -9,7 +9,6 @@
   <height>1200</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
-    <HOSTNAME>LERWYSPC</HOSTNAME>
     <BPM>BPM17</BPM>
     <MODULE>FOFB</MODULE>
   </macros>

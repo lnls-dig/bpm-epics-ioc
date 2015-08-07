@@ -8,7 +8,7 @@
   <scripts />
   <height>600</height>
   <macros>
-    <include_parent_macros>true</include_parent_macros>
+    <include_parent_macros>false</include_parent_macros>
     <HOSTNAME1>LERWYSPC</HOSTNAME1>
     <HOSTNAME>LERWYSPC</HOSTNAME>
   </macros>
