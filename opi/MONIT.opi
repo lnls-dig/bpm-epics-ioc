@@ -9,7 +9,6 @@
   <height>1500</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
-    <BPM>BPM17</BPM>
     <MODULE>MONIT</MODULE>
   </macros>
   <boy_version>4.0.103.201506301920</boy_version>
@@ -90,7 +89,7 @@ $(trace_0_y_pv_value)</tooltip>
     <title>$(BPM) Monitoring Amplitude</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>B</trace_1_name>
-    <trace_3_anti_alias>true</trace_3_anti_alias>
+    <trace_3_anti_alias>false</trace_3_anti_alias>
     <trace_1_y_pv_value />
     <show_legend>true</show_legend>
     <trace_3_visible>true</trace_3_visible>
@@ -278,10 +277,10 @@ pvs[3].setValue(scan)
 pvs[4].setValue(scan)
 ]]></scriptText>
         <pv trig="true">loc://MonitScan("1 second")</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:D.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:A.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:B.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:C.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:D.SCAN</pv>
       </path>
     </scripts>
     <border_alarm_sensitive>true</border_alarm_sensitive>
@@ -389,10 +388,10 @@ pvs[2].setValue(scan)
 pvs[3].setValue(scan)
 pvs[4].setValue(scan)]]></scriptText>
         <pv trig="true">loc://StopScan</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:D.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:A.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:B.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:C.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:D.SCAN</pv>
       </path>
     </scripts>
     <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -456,10 +455,10 @@ pvs[2].setValue(scan)
 pvs[3].setValue(scan)
 pvs[4].setValue(scan)]]></scriptText>
         <pv trig="false">loc://MonitScan</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME):BPM17:MONIT:D.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:A.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:B.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:C.SCAN</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):MONIT:D.SCAN</pv>
         <pv trig="true">loc://StartScan</pv>
       </path>
     </scripts>

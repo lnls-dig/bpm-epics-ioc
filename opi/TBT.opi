@@ -9,7 +9,6 @@
   <height>1200</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
-    <BPM>BPM17</BPM>
     <MODULE>TBT</MODULE>
   </macros>
   <boy_version>4.0.103.201506301920</boy_version>
@@ -2673,7 +2672,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_B_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_B_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2765,7 +2764,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_C_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_C_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2857,7 +2856,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_D_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_D_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2949,7 +2948,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_A_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_A_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3252,7 +3251,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_B_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_B_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3344,7 +3343,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_C_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_C_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3436,7 +3435,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_D_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_D_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3528,7 +3527,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_A_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_A_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3620,7 +3619,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_B_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_B_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3712,7 +3711,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_C_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_C_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3804,7 +3803,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_D_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_D_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3896,7 +3895,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_A_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_A_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3988,7 +3987,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_B_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_B_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4080,7 +4079,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_C_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_C_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4172,7 +4171,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_D_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_D_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4264,7 +4263,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_A_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_A_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4413,7 +4412,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Y_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Y_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4505,7 +4504,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Q_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Q_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4597,7 +4596,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_SUM_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_SUM_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4689,7 +4688,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_X_STATS:MinValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_X_STATS:MinValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4992,7 +4991,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Y_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Y_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5084,7 +5083,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Q_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Q_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5176,7 +5175,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_SUM_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_SUM_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5268,7 +5267,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_X_STATS:MaxValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_X_STATS:MaxValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5360,7 +5359,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Y_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Y_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5452,7 +5451,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Q_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Q_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5544,7 +5543,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_SUM_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_SUM_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5636,7 +5635,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_X_STATS:MeanValue_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_X_STATS:MeanValue_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5728,7 +5727,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Y_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Y_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5820,7 +5819,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_Q_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_Q_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5912,7 +5911,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_SUM_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_SUM_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6004,7 +6003,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME):BPM17:$(MODULE)_X_STATS:Sigma_RBV</pv_name>
+    <pv_name>$(HOSTNAME):$(BPM):$(MODULE)_X_STATS:Sigma_RBV</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
