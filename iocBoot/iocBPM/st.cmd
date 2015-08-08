@@ -7,7 +7,7 @@ epicsEnvSet(STARTUP,$(TOP)/iocBoot/$(IOC))
 dbLoadDatabase("${TOP}/dbd/BPM.dbd")
 BPM_registerRecordDeviceDriver (pdbbase)
 
-drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOSE)")
+drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOSE)", "$(BPM_TIMEOUT)")
 
 ## Load record instances
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${EPICS_HOSTNAME}, PORT=$(BPM_NAME), ADDR=0, BPM_NUMBER=$(BPM_NUMBER), TIMEOUT=1")
