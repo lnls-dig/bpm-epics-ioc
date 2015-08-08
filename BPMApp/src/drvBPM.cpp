@@ -136,7 +136,7 @@ void acqTask(void *drvPvt);
  * \param[in] endpoint The device address string ]
  * */
 drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-        int verbose)
+        int verbose, uint32_t timeout)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     (int)NUM_PARAMS,
@@ -165,6 +165,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     this->bpmNumber = bpmNumber;
     this->verbose = verbose;
+    this->timeout = timeout;
     this->acquiring = 0;
     this->readingActive = 0;
 
@@ -387,7 +388,7 @@ asynStatus drvBPM::bpmClientConnect(void)
     const char *bpmLogFile = "stdout";
     const char *functionName = "bpmClientConnect";
 
-    bpmClient = bpm_client_new (endpoint, verbose, bpmLogFile);
+    bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
     if (bpmClient == NULL) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s bpmClientConnect failure to create bpm_client instance\n",
@@ -1387,9 +1388,9 @@ extern "C" {
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
     int drvBPMConfigure(const char *portName, const char *endpoint, int bpmNumber,
-            int verbose)
+            int verbose, uint32_t timeout)
     {
-        new drvBPM(portName, endpoint, bpmNumber, verbose);
+        new drvBPM(portName, endpoint, bpmNumber, verbose, timeout);
         return(asynSuccess);
     }
 
@@ -1398,15 +1399,17 @@ extern "C" {
     static const iocshArg initArg1 = { "endpoint", iocshArgString};
     static const iocshArg initArg2 = { "bpmNumber", iocshArgInt};
     static const iocshArg initArg3 = { "verbose", iocshArgInt};
+    static const iocshArg initArg4 = { "timeout", iocshArgInt};
     static const iocshArg * const initArgs[] = {&initArg0,
         &initArg1,
         &initArg2,
-        &initArg3};
-    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",4,initArgs};
+        &initArg3,
+        &initArg4};
+    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",5,initArgs};
     static void initCallFunc(const iocshArgBuf *args)
     {
         drvBPMConfigure(args[0].sval, args[1].sval, args[2].ival,
-                args[3].ival);
+                args[3].ival, args[4].ival);
     }
 
     void drvBPMRegister(void)

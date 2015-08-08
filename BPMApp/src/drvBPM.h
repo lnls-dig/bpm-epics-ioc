@@ -250,7 +250,7 @@ typedef enum {
 class drvBPM : public asynNDArrayDriver {
     public:
         drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-                int verbose);
+                int verbose, uint32_t timeout);
         ~drvBPM();
 
         /* These are the methods that we override from asynPortDriver */
@@ -329,6 +329,7 @@ class drvBPM : public asynNDArrayDriver {
         char *endpoint;
         int bpmNumber;
         int verbose;
+        uint32_t timeout;
         char *bpmPortName;
         int acquiring;
         int readingActive;
