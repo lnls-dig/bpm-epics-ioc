@@ -170,11 +170,18 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     this->readingActive = 0;
 
     /* Create events for signalling acquisition thread */
-    singleAcqEventId = epicsEventCreate(epicsEventEmpty);
-    if (!singleAcqEventId) {
+    this->startAcqEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->startAcqEventId) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s epicsEventCreate failure for start event\n",
                 driverName, functionName);
+        return;
+    }
+
+    this->stopAcqEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->stopAcqEventId) {
+        printf("%s:%s: epicsEventCreate failure for stop event\n",
+            driverName, functionName);
         return;
     }
 
@@ -185,6 +192,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
     createParam(P_CompMethodString, asynParamInt32,                 &P_CompMethod);
+    createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
     createParam(P_RffeAtt1String,   asynParamFloat64,               &P_RffeAtt1);
     createParam(P_RffeAtt2String,   asynParamFloat64,               &P_RffeAtt2);
     createParam(P_RffeTemp1String,  asynParamFloat64,               &P_RffeTemp1);
@@ -216,6 +224,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_SamplesString,    asynParamUInt32Digital,         &P_Samples);
     createParam(P_ChannelString,    asynParamInt32,                 &P_Channel);
     createParam(P_TriggerString,    asynParamInt32,                 &P_Trigger);
+    createParam(P_UpdateTimeString, asynParamFloat64,               &P_UpdateTime);
     createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
     createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
@@ -260,6 +269,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_Samples,      1000,               0xFFFFFFFF);
     setIntegerParam(P_Channel,                              CH_ADC);
     setIntegerParam(P_Trigger,                              0);
+    setDoubleParam(P_UpdateTime,                            1.0);
     setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
@@ -437,11 +447,16 @@ void drvBPM::acqTask(void)
     epicsUInt32 samples;
     int channel;
     int trigger;
+    double updateTime;
+    double delay;
     int hwAmpChannel = 0;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
     NDDataType_t NDType = NDInt32;
+    epicsTimeStamp startTime;
+    epicsTimeStamp endTime;
+    double elapsedTime;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
     static const char *functionName = "acqTask";
@@ -465,7 +480,12 @@ void drvBPM::acqTask(void)
         if (acquiring == 0) {
             readingActive = 0;
             unlock();
-            epicsEventWait(singleAcqEventId);
+            setIntegerParam(P_BPMStatus, BPMStatusIdle);
+            callParamCallbacks();
+            /* Release the lock while we wait for an event that says acquire has started, then lock again */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: waiting for acquire to start\n", driverName, functionName);
+            epicsEventWait(startAcqEventId);
             readingActive = 1;
             lock();
         }
@@ -474,16 +494,24 @@ void drvBPM::acqTask(void)
         getUIntDigitalParam(addr, P_acqMode , &acqMode, 0xFFFFFFFF);
         /* This is for oscilloscope mode */
         if (acqMode == oscilloscope) {
-            epicsEventWaitWithTimeout(singleAcqEventId, updateTime);
+            epicsEventWaitWithTimeout(startAcqEventId, updateTime);
         }
         else {
-            (void) epicsEventWait(singleAcqEventId);
+            (void) epicsEventWait(startAcqEventId);
         }
 #endif
+
+        /* We are acquiring. Get the current time */
+        epicsTimeGetCurrent(&startTime);
+
         /* Set the parameter in the parameter library. */
         getIntegerParam(P_Trigger, &trigger);
         getUIntDigitalParam(P_Samples, &samples, 0xFFFFFFFF);
         getIntegerParam(P_Channel, &channel);
+        getDoubleParam(P_UpdateTime, &updateTime);
+
+        setIntegerParam(P_BPMStatus, BPMStatusAcquire);
+        callParamCallbacks();
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -519,8 +547,6 @@ void drvBPM::acqTask(void)
         }
 
         pArrayAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
-        //size_t dimsTest[2] = {4, 10000};
-        //pArrayAllChannels = pNDArrayPool->alloc(2, dimsTest, NDInt16, 0, NULL);
         if (pArrayAllChannels == NULL) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayAllChannels\n",
@@ -563,6 +589,24 @@ void drvBPM::acqTask(void)
                     "%s:%s: unable to acquire waveform\n",
                     driverName, functionName);
             continue;
+        }
+
+        /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
+        if (trigger == TRIG_ACQ_REPETITIVE) {
+            epicsTimeGetCurrent(&endTime);
+            elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
+            delay = updateTime - elapsedTime;
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                     "%s:%s: delay=%f\n",
+                      driverName, functionName, delay);
+            if (delay >= 0.0) {
+                /* We set the status to indicate we are in the period delay */
+                setIntegerParam(P_BPMStatus, BPMStatusWaiting);
+                callParamCallbacks();
+                this->unlock();
+                epicsEventWaitWithTimeout(this->stopAcqEventId, delay);
+                this->lock();
+            }
         }
     }
 }
@@ -761,17 +805,20 @@ asynStatus drvBPM::setAcquire()
     if (value == TRIG_ACQ_STOP) { /* Trigger == Stop */
         /* Setting this flag tells the read thread to stop */
         acquiring = 0;
+        /* Send the stop event */
+        epicsEventSignal(this->stopAcqEventId);
         /* Release the lock and wait for the read thread to stop */
         unlock();
+        /* Wait for thread to stop acquisition */
         while (readingActive) {
             epicsThreadSleep(0.1);
         }
         lock();
     }
     else {
-        if (value == TRIG_ACQ_NOW) {
+        if (value == TRIG_ACQ_NOW || value == TRIG_ACQ_REPETITIVE) {
             /* Signal acq thread to start acquisition with the current parameters */
-            epicsEventSignal(singleAcqEventId);
+            epicsEventSignal(startAcqEventId);
             acquiring = 1;
         }
         /* Insert other trigger types here */

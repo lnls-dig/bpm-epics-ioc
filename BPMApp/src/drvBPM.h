@@ -20,6 +20,13 @@
 #define MAX_ARRAY_POINTS            1000000
 #define BPM_TIMEOUT                 1.0
 
+/* BPM acquisition status */
+typedef enum {
+    BPMStatusIdle = 0,
+    BPMStatusWaiting,
+    BPMStatusAcquire,
+} bpm_status_types;
+
 /* Waveform IDs */
 typedef enum {
     WVF_ADC_A = 0,
@@ -198,6 +205,7 @@ typedef struct {
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
+#define P_BPMStatusString           "INFO_STATUS"           /* asynInt32,              r/o */
 #define P_RffeSwString              "RFFE_SW"               /* asynUInt32Digital,      r/w */
 #define P_RffeAtt1String            "RFFE_ATT1"             /* asynFloat64,            r/w */
 #define P_RffeAtt2String            "RFFE_ATT2"             /* asynFloat64,            r/w */
@@ -228,8 +236,9 @@ typedef struct {
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_SamplesString             "ACQ_SAMPLES"           /* asynUInt32Digital,      r/w */
-#define P_ChannelString             "ACQ_CHANNEL"           /* asynUInt32Digital,      r/w */
+#define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
 #define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
+#define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
@@ -242,6 +251,7 @@ typedef struct {
 typedef enum {
     TRIG_ACQ_STOP = 0,
     TRIG_ACQ_NOW,
+    TRIG_ACQ_REPETITIVE,
     TRIG_ACQ_HW,
     TRIG_ACQ_SW,
     TRIG_ACQ_DATA
@@ -281,6 +291,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
+        int P_BPMStatus;
         int P_CompMethod;
         int P_RffeSw;
         int P_RffeAtt1;
@@ -313,6 +324,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_Samples;
         int P_Channel;
         int P_Trigger;
+        int P_UpdateTime;
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
@@ -333,7 +345,8 @@ class drvBPM : public asynNDArrayDriver {
         char *bpmPortName;
         int acquiring;
         int readingActive;
-        epicsEventId singleAcqEventId;
+        epicsEventId startAcqEventId;
+        epicsEventId stopAcqEventId;
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
