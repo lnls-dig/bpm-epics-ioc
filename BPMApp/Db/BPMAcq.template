@@ -4,23 +4,43 @@
 
 record(longout,"$(P):BPM$(BPM_NUMBER):ACQ:samples"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Number of samples for waveforms")
+    field(DESC,"Set number of samples for waveforms")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES")
+    field(FLNK,"$(P):BPM$(BPM_NUMBER):ACQ:samples_RBV")
 }
 
-#record(longout,"$(P):BPM$(BPM_NUMBER):ACQ:channel"){
-#    field(DTYP,"asynUInt32Digital")
-#    field(DESC,"Channel number for waveforms")
-#    field(SCAN,"Passive")
-#    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CHANNEL")
-#}
+record(longin,"$(P):BPM$(BPM_NUMBER):ACQ:samples_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get number of samples for waveforms")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES")
+}
 
 record(mbbo, "$(P):BPM$(BPM_NUMBER):ACQ:channel"){
 	field(DTYP, "asynInt32")
-	field(DESC, "Acquisition's channel")
+	field(DESC, "Set acquisition's channel")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_CHANNEL")
 	field(SCAN,"Passive")
+	field(NOBT,"2")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(TWVL,"2")
+	field(THVL,"3")
+	field(ZRST,"ADC")
+	field(ONST,"ADCSWAP")
+	field(TWST,"TBT")
+	field(THST,"FOFB")
+    field(FLNK,"$(P):BPM$(BPM_NUMBER):ACQ:channel_RBV")
+}
+
+record(mbbi, "$(P):BPM$(BPM_NUMBER):ACQ:channel_RBV"){
+	field(DTYP, "asynInt32")
+	field(DESC, "Get acquisition's channel")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_CHANNEL")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
 	field(NOBT,"2")
 	field(ZRVL,"0")
 	field(ONVL,"1")
@@ -34,8 +54,9 @@ record(mbbo, "$(P):BPM$(BPM_NUMBER):ACQ:channel"){
 
 record(mbbo, "$(P):BPM$(BPM_NUMBER):ACQ:trigger"){
 	field(DTYP, "asynInt32")
-	field(DESC, "Acquisition's trigger")
+	field(DESC, "Set acquisition's trigger")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_TRIGGER")
+    field(PINI,"YES")
 	field(SCAN,"Passive")
 	field(NOBT,"3")
 	field(ZRVL,"0")
@@ -43,9 +64,61 @@ record(mbbo, "$(P):BPM$(BPM_NUMBER):ACQ:trigger"){
 	field(TWVL,"2")
 	field(THVL,"3")
 	field(FRVL,"4")
+	field(FVVL,"5")
 	field(ZRST,"stop")
 	field(ONST,"now")
-	field(TWST,"hw")
-	field(THST,"sw")
-	field(FRST,"data")
+	field(TWST,"repetitive")
+	field(THST,"hw")
+	field(FRST,"sw")
+	field(FVST,"data")
+}
+
+record(mbbi, "$(P):BPM$(BPM_NUMBER):ACQ:trigger_RBV"){
+	field(DTYP, "asynInt32")
+	field(DESC, "Get acquisition's trigger")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_TRIGGER")
+    field(SCAN,"I/O Intr")
+	field(NOBT,"3")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(TWVL,"2")
+	field(THVL,"3")
+	field(FRVL,"4")
+	field(FVVL,"5")
+	field(ZRST,"stop")
+	field(ONST,"now")
+	field(TWST,"repetitive")
+	field(THST,"hw")
+	field(FRST,"sw")
+	field(FVST,"data")
+}
+
+record(mbbi, "$(P):BPM$(BPM_NUMBER):ACQ:status_RBV"){
+	field(DTYP, "asynInt32")
+	field(DESC, "Get acquisition's status")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_STATUS")
+    field(SCAN,"I/O Intr")
+	field(NOBT,"2")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(TWVL,"2")
+	field(ZRST,"idle")
+	field(ONST,"waiting")
+	field(TWST,"acquire")
+}
+
+record(ao, "$(P):BPM$(BPM_NUMBER):ACQ:updateTime"){
+	field(DTYP, "asynFloat64")
+	field(DESC, "Set repetitive mode update time")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
+    field(SCAN,"Passive")
+    field(FLNK,"$(P):BPM$(BPM_NUMBER):ACQ:updateTime_RBV")
+}
+
+record(ai, "$(P):BPM$(BPM_NUMBER):ACQ:updateTime_RBV"){
+	field(DTYP, "asynFloat64")
+	field(DESC, "Get repetitive mode update time")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
 }
