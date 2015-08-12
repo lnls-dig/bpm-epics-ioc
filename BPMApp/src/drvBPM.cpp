@@ -26,6 +26,8 @@
 #include "convert.h"
 #include <epicsExport.h>
 
+#define BPM_WAIT_TIME                   0                   /* No wait */
+
 #define PI                              3.14159265
 #define FREQ_SAMPLE                     100.00              /* Hz */
 #define FREQ                            1.00                /* Hz */
@@ -166,8 +168,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     this->bpmNumber = bpmNumber;
     this->verbose = verbose;
     this->timeout = timeout;
-    this->acquiring = 0;
     this->readingActive = 0;
+    this->repetitiveTrigger = 0;
 
     /* Create events for signalling acquisition thread */
     this->startAcqEventId = epicsEventCreate(epicsEventEmpty);
@@ -442,7 +444,7 @@ void acqTask(void *drvPvt)
 */
 void drvBPM::acqTask(void)
 {
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     asynUser *pasynUser = NULL;
     epicsUInt32 samples;
     int channel;
@@ -477,29 +479,21 @@ void drvBPM::acqTask(void)
     /* Loop forever */
     lock ();
     while (1) {
-        if (acquiring == 0) {
+        /* Check if we received a stop event */
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_WAIT_TIME);
+        if (status == epicsEventWaitOK || !repetitiveTrigger) {
+            /* We got a stop event, abort acquisition */
             readingActive = 0;
             unlock();
             setIntegerParam(P_BPMStatus, BPMStatusIdle);
             callParamCallbacks();
             /* Release the lock while we wait for an event that says acquire has started, then lock again */
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: waiting for acquire to start\n", driverName, functionName);
+                    "%s:%s: waiting for acquire to start\n", driverName, functionName);
             epicsEventWait(startAcqEventId);
-            readingActive = 1;
             lock();
+            readingActive = 1;
         }
-#if 0
-        getUIntDigitalParam(addr, P_updateTime, &updateTime, 0xFFFFFFFF);
-        getUIntDigitalParam(addr, P_acqMode , &acqMode, 0xFFFFFFFF);
-        /* This is for oscilloscope mode */
-        if (acqMode == oscilloscope) {
-            epicsEventWaitWithTimeout(startAcqEventId, updateTime);
-        }
-        else {
-            (void) epicsEventWait(startAcqEventId);
-        }
-#endif
 
         /* We are acquiring. Get the current time */
         epicsTimeGetCurrent(&startTime);
@@ -520,11 +514,6 @@ void drvBPM::acqTask(void)
                     "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
                     driverName, functionName, hwAmpChannel);
             continue;
-        }
-
-        /* FIXME: Assume all trigger modes as single */
-        if (trigger == TRIG_ACQ_NOW) {
-            acquiring = 0;
         }
 
         /* Our waveform will have "samples" samples in each
@@ -592,7 +581,7 @@ void drvBPM::acqTask(void)
         }
 
         /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
-        if (trigger == TRIG_ACQ_REPETITIVE) {
+        if (repetitiveTrigger) {
             epicsTimeGetCurrent(&endTime);
             elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
             delay = updateTime - elapsedTime;
@@ -802,33 +791,47 @@ asynStatus drvBPM::setAcquire()
     /* Set the parameter in the parameter library. */
     getIntegerParam(P_Trigger, &value);
 
+    /* Stop acquisition if we are in repetitive mode and if we are currently
+     * acquiring. Otherwise, we don't need to do anything, as the acquisition
+     * task will stop after the current acquisition */
     if (value == TRIG_ACQ_STOP) { /* Trigger == Stop */
-        /* Setting this flag tells the read thread to stop */
-        acquiring = 0;
-        /* Send the stop event */
-        epicsEventSignal(this->stopAcqEventId);
-        /* Release the lock and wait for the read thread to stop */
-        unlock();
-        /* Wait for thread to stop acquisition */
-        while (readingActive) {
-            epicsThreadSleep(0.1);
-        }
-        lock();
-    }
-    else {
-        if (value == TRIG_ACQ_NOW || value == TRIG_ACQ_REPETITIVE) {
-            /* Signal acq thread to start acquisition with the current parameters */
-            epicsEventSignal(startAcqEventId);
-            acquiring = 1;
-        }
-        /* Insert other trigger types here */
-        else {
+        if (readingActive && repetitiveTrigger) {
+            repetitiveTrigger = 0;
+            /* Send the stop event */
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: Trigger type not implemented yet\n",
+                    "%s:%s: trigger ACQ_STOP called\n",
                     driverName, functionName);
-            status = asynError;
-            goto trig_unimplemented_err;
+            epicsEventSignal(this->stopAcqEventId);
         }
+    }
+    else if (value == TRIG_ACQ_NOW) {
+        if (!readingActive && !repetitiveTrigger) {
+            repetitiveTrigger = 0;
+            /* Signal acq thread to start acquisition with the current parameters */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: trigger ACQ_NOW called\n",
+                    driverName, functionName);
+            epicsEventSignal(startAcqEventId);
+
+        }
+    }
+    else if (value == TRIG_ACQ_REPETITIVE) {
+        if (!repetitiveTrigger) {
+            repetitiveTrigger = 1;
+            /* Signal acq thread to start acquisition with the current parameters */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: trigger ACQ_REPETITIVE called\n",
+                    driverName, functionName);
+            epicsEventSignal(startAcqEventId);
+        }
+    }
+    /* Insert other trigger types here */
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger type not implemented yet\n",
+                driverName, functionName);
+        status = asynError;
+        goto trig_unimplemented_err;
     }
 
 trig_unimplemented_err:

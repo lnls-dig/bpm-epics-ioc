@@ -205,7 +205,6 @@ typedef struct {
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
-#define P_BPMStatusString           "INFO_STATUS"           /* asynInt32,              r/o */
 #define P_RffeSwString              "RFFE_SW"               /* asynUInt32Digital,      r/w */
 #define P_RffeAtt1String            "RFFE_ATT1"             /* asynFloat64,            r/w */
 #define P_RffeAtt2String            "RFFE_ATT2"             /* asynFloat64,            r/w */
@@ -238,6 +237,7 @@ typedef struct {
 #define P_SamplesString             "ACQ_SAMPLES"           /* asynUInt32Digital,      r/w */
 #define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
 #define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
+#define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
@@ -343,8 +343,8 @@ class drvBPM : public asynNDArrayDriver {
         int verbose;
         uint32_t timeout;
         char *bpmPortName;
-        int acquiring;
         int readingActive;
+        int repetitiveTrigger;
         epicsEventId startAcqEventId;
         epicsEventId stopAcqEventId;
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
