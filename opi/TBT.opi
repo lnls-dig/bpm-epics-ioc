@@ -33,86 +33,6 @@
     <color red="192" green="192" blue="192" />
   </foreground_color>
   <actions hook="false" hook_all="false" />
-  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
-    <toggle_button>false</toggle_button>
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <push_action_index>0</push_action_index>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>78d1cc8a:14efdfd14cc:-7eaa</wuid>
-    <pv_value />
-    <text>Acquire</text>
-    <scripts>
-      <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
-        <scriptName>Acquire</scriptName>
-        <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
-#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
-
-n = PVUtil.getDouble(pvs[5])
-updateTime = PVUtil.getDouble(pvs[6])
-trigger = PVUtil.getString(pvs[7])
-
-#ConsoleUtil.writeInfo("n: "+str(n))
-pvs[1].setValue(n)
-pvs[2].setValue("TBT")
-pvs[3].setValue(updateTime)
-pvs[4].setValue(trigger)
-
-for i in range(4):
-    display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), n);
-    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n);
-    display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), n);
-    display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), n);
-]]></scriptText>
-        <pv trig="true">loc://$(HOSTNAME):$(BPM):$(MODULE):Acquire</pv>
-        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:samples</pv>
-        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:channel</pv>
-        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:updateTime</pv>
-        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:trigger</pv>
-        <pv trig="true">loc://$(HOSTNAME):$(BPM):$(MODULE):N</pv>
-        <pv trig="false">loc://$(HOSTNAME):$(BPM):$(MODULE):updateTime</pv>
-        <pv trig="false">loc://$(HOSTNAME):$(BPM):$(MODULE):trigger</pv>
-      </path>
-    </scripts>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>33</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <image></image>
-    <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):Acquire(1)</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Action Button</widget_type>
-    <width>128</width>
-    <x>1440</x>
-    <name>Action Button</name>
-    <y>1045</y>
-    <style>1</style>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false">
-      <action type="WRITE_PV">
-        <pv_name>$(pv_name)</pv_name>
-        <value>1</value>
-        <timeout>1</timeout>
-        <confirm_message></confirm_message>
-        <description>Acquire now</description>
-      </action>
-    </actions>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-  </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.xyGraph" version="1.0.0">
     <axis_1_scale_format></axis_1_scale_format>
     <trace_2_x_axis_index>0</trace_2_x_axis_index>
@@ -1241,46 +1161,6 @@ $(pv_value)</tooltip>
     <x>1610</x>
     <name>Label_7</name>
     <y>228</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>5baac38b:14f02d40895:-77f3</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>Samples:</text>
-    <scripts />
-    <height>31</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>63</width>
-    <x>1360</x>
-    <name>Label</name>
-    <y>983</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -5905,24 +5785,18 @@ $(pv_value)</tooltip>
       <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
     </font>
   </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.ThumbWheel" version="1.0.0">
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-783f483f:14f1ceac51e:-69af</wuid>
-    <integerDigits>6</integerDigits>
-    <pv_value />
-    <internalFrameSize>1</internalFrameSize>
+    <wuid>-7262b605:14f27dc1f65:-54d6</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Samples:</text>
     <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>68</height>
-    <focusedFrameColor>
-      <color red="0" green="0" blue="255" />
-    </focusedFrameColor>
+    <height>31</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -5930,78 +5804,23 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):N(10000)</pv_name>
+    <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
-    <widget_type>Thumb Wheel</widget_type>
-    <internalFrameColor>
-      <color red="0" green="0" blue="0" />
-    </internalFrameColor>
-    <show_buttons>true</show_buttons>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <limits_from_pv>false</limits_from_pv>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
     <background_color>
-      <color red="240" green="240" blue="240" />
+      <color red="255" green="255" blue="255" />
     </background_color>
-    <width>150</width>
-    <x>1429</x>
-    <name>Thumb Wheel</name>
-    <y>965</y>
-    <maximum>100000.0</maximum>
-    <decimalDigits>0</decimalDigits>
+    <width>63</width>
+    <x>1127</x>
+    <name>Label_53</name>
+    <y>961</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
-    <minimum>2.0</minimum>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-477946e9:14f21f44065:-7af5</wuid>
-    <pv_value />
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>31</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>false</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <items_from_pv>false</items_from_pv>
-    <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):trigger("stop")</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Combo</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>128</width>
-    <x>1216</x>
-    <name>Combo_1</name>
-    <y>982</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="true" hook_all="false" />
-    <items>
-      <s>stop</s>
-      <s>now</s>
-      <s>repetitive</s>
-    </items>
     <font>
       <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
     </font>
@@ -6025,18 +5844,18 @@ $(pv_value)</tooltip>
     <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):updateTime(1.0)</pv_name>
     <selector_type>0</selector_type>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color name="Text_ForeGround" red="0" green="0" blue="0" />
     </border_color>
     <precision_from_pv>true</precision_from_pv>
     <widget_type>Text Input</widget_type>
     <confirm_message></confirm_message>
-    <name>Text Update_46</name>
+    <name>Text Update_47</name>
     <style>0</style>
     <actions hook="false" hook_all="false" />
-    <border_style>0</border_style>
+    <border_style>1</border_style>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <enabled>true</enabled>
-    <wuid>-477946e9:14f21f44065:-7a0a</wuid>
+    <wuid>-7262b605:14f27dc1f65:-54d5</wuid>
     <transparent>false</transparent>
     <scripts />
     <border_alarm_sensitive>true</border_alarm_sensitive>
@@ -6051,14 +5870,14 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>121</width>
-    <x>1219</x>
-    <y>1047</y>
-    <maximum>1.7976931348623157E308</maximum>
+    <width>133</width>
+    <x>1210</x>
+    <y>994</y>
+    <maximum>10000.0</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <minimum>-1.7976931348623157E308</minimum>
+    <minimum>0.01</minimum>
     <font>
       <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
     </font>
@@ -6069,47 +5888,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-477946e9:14f21f44065:-79fd</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>Trigger Type:</text>
-    <scripts />
-    <height>31</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>87</width>
-    <x>1124</x>
-    <name>Label_51</name>
-    <y>981</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-477946e9:14f21f44065:-79f3</wuid>
+    <wuid>-7262b605:14f27dc1f65:-54d4</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>Update Time:</text>
@@ -6132,9 +5911,272 @@ $(pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>93</width>
-    <x>1121</x>
-    <name>Label_52</name>
-    <y>1046</y>
+    <x>1112</x>
+    <name>Label_55</name>
+    <y>993</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <alarm_pulsing>false</alarm_pulsing>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <show_units>true</show_units>
+    <height>30</height>
+    <multiline_input>false</multiline_input>
+    <border_width>1</border_width>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):N(10000)</pv_name>
+    <selector_type>0</selector_type>
+    <border_color>
+      <color name="Text_ForeGround" red="0" green="0" blue="0" />
+    </border_color>
+    <precision_from_pv>false</precision_from_pv>
+    <widget_type>Text Input</widget_type>
+    <confirm_message></confirm_message>
+    <name>Text Update_48</name>
+    <style>0</style>
+    <actions hook="false" hook_all="false" />
+    <border_style>1</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:-54d3</wuid>
+    <transparent>false</transparent>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <format_type>1</format_type>
+    <limits_from_pv>false</limits_from_pv>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>133</width>
+    <x>1210</x>
+    <y>960</y>
+    <maximum>100000.0</maximum>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <minimum>10.0</minimum>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <toggle_button>false</toggle_button>
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <push_action_index>0</push_action_index>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:-54d2</wuid>
+    <pv_value />
+    <text>Update/Acquire</text>
+    <scripts>
+      <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Acquire</scriptName>
+        <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
+#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
+
+n = PVUtil.getDouble(pvs[5])
+updateTime = PVUtil.getDouble(pvs[6])
+trigger = PVUtil.getString(pvs[7])
+
+#ConsoleUtil.writeInfo("n: "+str(n))
+pvs[1].setValue(n)
+pvs[2].setValue("TBT")
+pvs[3].setValue(updateTime)
+pvs[4].setValue(trigger)
+
+for i in range(4):
+    display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), n);
+    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n);
+    display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), n);
+    display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), n);]]></scriptText>
+        <pv trig="true">loc://$(HOSTNAME):$(BPM):$(MODULE):Acquire</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:samples</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:channel</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:updateTime</pv>
+        <pv trig="false">$(HOSTNAME):$(BPM):ACQ:trigger</pv>
+        <pv trig="false">loc://$(HOSTNAME):$(BPM):$(MODULE):N</pv>
+        <pv trig="false">loc://$(HOSTNAME):$(BPM):$(MODULE):updateTime</pv>
+        <pv trig="false">loc://$(HOSTNAME):$(BPM):$(MODULE):trigger</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <image></image>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):Acquire(1)</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Action Button</widget_type>
+    <width>134</width>
+    <x>1444</x>
+    <name>Action Button</name>
+    <y>994</y>
+    <style>1</style>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="WRITE_PV">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <timeout>1</timeout>
+        <confirm_message></confirm_message>
+        <description>Acquire now</description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:-54d1</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Trigger Type:</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>1352</x>
+    <name>Label_51</name>
+    <y>958</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:-54d0</wuid>
+    <pv_value />
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <items_from_pv>false</items_from_pv>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME):$(BPM):$(MODULE):trigger("stop")</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Combo</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>133</width>
+    <x>1444</x>
+    <name>Combo_1</name>
+    <y>956</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="true" hook_all="false" />
+    <items>
+      <s>stop</s>
+      <s>now</s>
+      <s>repetitive</s>
+    </items>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:-54cf</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Action:</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>1352</x>
+    <name>Label_57</name>
+    <y>992</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
