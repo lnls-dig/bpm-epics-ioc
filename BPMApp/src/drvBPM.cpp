@@ -484,9 +484,9 @@ void drvBPM::acqTask(void)
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
             /* We got a stop event, abort acquisition */
             readingActive = 0;
-            unlock();
             setIntegerParam(P_BPMStatus, BPMStatusIdle);
             callParamCallbacks();
+            unlock();
             /* Release the lock while we wait for an event that says acquire has started, then lock again */
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: waiting for acquire to start\n", driverName, functionName);
