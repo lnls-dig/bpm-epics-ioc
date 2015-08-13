@@ -3131,7 +3131,7 @@ pvs[2].setValue("ADCSWAP")
 pvs[3].setValue(updateTime)
 pvs[4].setValue(trigger)
 
-for i in range(2):
+for i in range(4):
     display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), n);
     display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n);]]></scriptText>
         <pv trig="true">loc://$(HOSTNAME):$(BPM):$(MODULE):Acquire</pv>
