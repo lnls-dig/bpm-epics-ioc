@@ -71,8 +71,14 @@ static const boardMap_t boardMap[MAX_BPMS] = {
     /* 19 */ {10, 1},
     /* 20 */ {11, 0},
     /* 21 */ {11, 1},
+    #if 0
     /* 22 */ {12, 0},
+    #endif
+    /* 22 */ {48350, 0},
+    #if 0
     /* 23 */ {12, 1}
+    #endif
+    /* 23 */ {48350, 1}
 };
 
 static const channelMap_t channelMap[CH_END] = {
@@ -385,6 +391,8 @@ drvBPM::~drvBPM()
 
     free (this->endpoint);
     this->endpoint = NULL;
+    free (this->bpmPortName);
+    this->bpmPortName = NULL;
 }
 
 #if 0
@@ -428,6 +436,9 @@ asynStatus drvBPM::disconnect(asynUser* pasynUser)
 
 asynStatus drvBPM::bpmClientDisconnect(void)
 {
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s: calling bpmClientDisconnect\n",
+            driverName);
     asynStatus status = asynSuccess;
     bpm_client_destroy (&bpmClient);
     pasynManager->exceptionDisconnect(this->pasynUserSelf);
