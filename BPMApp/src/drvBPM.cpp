@@ -780,6 +780,14 @@ void drvBPM::computePositions(NDArray *pArrayAllChannels, int channel)
     ABCDtoXYQS(abcdRow, xyqsRow, &kFactors, &posOffsets,
             arraySingleElements);
 
+    /* Do callbacks on the full waveform (all channels interleaved) */
+    unlock();
+    /* We must do the callbacks with mutex unlocked ad the plugin
+     * can call us and a deadlock would occur */
+    doCallbacksGenericPointer(pArrayPosAllChannels, NDArrayData,
+            channelMap[channel].NDArrayPos[WVF_POS_ALL]);
+    lock();
+
     /* Copy data to arrays for each type of data, do callbacks on that */
     deinterleaveNDArray(pArrayPosAllChannels, channelMap[channel].NDArrayPos,
             MAX_WVF_POS_SINGLE, arrayCounter, timeStamp);
