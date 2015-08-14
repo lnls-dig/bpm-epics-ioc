@@ -5828,4 +5828,134 @@ pvs[1].setValue("stop")]]></scriptText>
       </font>
     </widget>
   </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.MenuButton" version="1.0.0">
+    <border_style>6</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <actions_from_pv>false</actions_from_pv>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:4da7</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>25</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label>File Saving</label>
+    <widget_type>Menu Button</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>103</width>
+    <x>468</x>
+    <name>PluginsFileButton</name>
+    <y>14</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>NDFileNetCDF.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <R>$(BPM):$(MODULE)_ABCD_NETCDF:</R>
+          <P>$(HOSTNAME):</P>
+        </macros>
+        <replace>0</replace>
+        <description>ADC A File Saving netCDF</description>
+      </action>
+      <action type="OPEN_DISPLAY">
+        <path>NDFileHDF5.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <R>$(BPM):$(MODULE)_ABCD_HDF5:</R>
+          <P>$(HOSTNAME):</P>
+        </macros>
+        <replace>0</replace>
+        <description>ADC A File Saving HDF5</description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.MenuButton" version="1.0.0">
+    <border_style>6</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <actions_from_pv>false</actions_from_pv>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-7262b605:14f27dc1f65:4da8</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>25</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label>File Saving</label>
+    <widget_type>Menu Button</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>103</width>
+    <x>468</x>
+    <name>PluginsFileButton_1</name>
+    <y>478</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>NDFileNetCDF.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <R>$(BPM):$(MODULE)_XYQS_NETCDF:</R>
+          <P>$(HOSTNAME):</P>
+        </macros>
+        <replace>0</replace>
+        <description>ADC A File Saving netCDF</description>
+      </action>
+      <action type="OPEN_DISPLAY">
+        <path>NDFileHDF5.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <R>$(BPM):$(MODULE)_XYQS_HDF5:</R>
+          <P>$(HOSTNAME):</P>
+        </macros>
+        <replace>0</replace>
+        <description>ADC A File Saving HDF5</description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
 </display>
