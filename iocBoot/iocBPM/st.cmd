@@ -18,6 +18,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMRffe.template", "P=${EPICS_HOSTNAME}, PORT=$(
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=asyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < waveformPlugins.cmd
+< waveformFilePlugins.cmd
 < waveformFFTRecords.cmd
 < statsPlugins.cmd
 
