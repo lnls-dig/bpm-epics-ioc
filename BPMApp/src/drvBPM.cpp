@@ -71,14 +71,8 @@ static const boardMap_t boardMap[MAX_BPMS] = {
     /* 19 */ {10, 1},
     /* 20 */ {11, 0},
     /* 21 */ {11, 1},
-    #if 0
     /* 22 */ {12, 0},
-    #endif
-    /* 22 */ {48350, 0},
-    #if 0
     /* 23 */ {12, 1}
-    #endif
-    /* 23 */ {48350, 1}
 };
 
 static const channelMap_t channelMap[CH_END] = {
