@@ -86,7 +86,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(BPM) Monitoring Amplitude</title>
+    <title>$(HOSTNAME)-$(BPM) Monitoring Amplitude</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>B</trace_1_name>
     <trace_3_anti_alias>false</trace_3_anti_alias>
@@ -899,7 +899,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(BPM) Monitoring Position</title>
+    <title>$(HOSTNAME)-$(BPM) Monitoring Position</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Y</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>

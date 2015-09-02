@@ -86,7 +86,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) Data</title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>VB</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -654,7 +654,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>true</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) FFT Data </title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) FFT Data </title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Fvb</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>

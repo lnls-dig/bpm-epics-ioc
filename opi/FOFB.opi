@@ -86,7 +86,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) Amplitude Data</title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) Amplitude Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>B</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -654,7 +654,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>true</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) Amplitude FFT Data </title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) Amplitude FFT Data </title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Fb</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -1222,7 +1222,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) Position Data</title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) Position Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Y</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -1790,7 +1790,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>true</axis_1_log_scale>
-    <title>$(BPM) $(MODULE) Position FFT Data</title>
+    <title>$(HOSTNAME)-$(BPM) $(MODULE) Position FFT Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Fy</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
