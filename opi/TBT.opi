@@ -5872,8 +5872,8 @@ $(pv_value)</tooltip>
         <path>NDFileNetCDF.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(BPM):$(MODULE)_ABCD_NETCDF:</R>
-          <P>$(HOSTNAME):</P>
+          <R>$(MODULE)_ABCD_NETCDF:</R>
+          <P>$(HOSTNAME)-$(BPM):</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving netCDF</description>
@@ -5882,8 +5882,8 @@ $(pv_value)</tooltip>
         <path>NDFileHDF5.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(BPM):$(MODULE)_ABCD_HDF5:</R>
-          <P>$(HOSTNAME):</P>
+          <R>$(MODULE)_ABCD_HDF5:</R>
+          <P>$(HOSTNAME)-$(BPM):</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving HDF5</description>
@@ -5937,8 +5937,8 @@ $(pv_value)</tooltip>
         <path>NDFileNetCDF.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(BPM):$(MODULE)_XYQS_NETCDF:</R>
-          <P>$(HOSTNAME):</P>
+          <R>$(MODULE)_XYQS_NETCDF:</R>
+          <P>$(HOSTNAME)-$(BPM):</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving netCDF</description>
@@ -5947,8 +5947,8 @@ $(pv_value)</tooltip>
         <path>NDFileHDF5.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(BPM):$(MODULE)_XYQS_HDF5:</R>
-          <P>$(HOSTNAME):</P>
+          <R>$(MODULE)_XYQS_HDF5:</R>
+          <P>$(HOSTNAME)-$(BPM):</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving HDF5</description>
