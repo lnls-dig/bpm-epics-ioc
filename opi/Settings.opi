@@ -47,8 +47,8 @@ $(pv_value)</tooltip>
     <transparent>false</transparent>
     <points>
       <point x="200" y="50" />
-      <point x="200" y="290" />
-      <point x="200" y="549" />
+      <point x="200" y="289" />
+      <point x="200" y="569" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -56,7 +56,7 @@ $(pv_value)</tooltip>
     <rotation_angle>0.0</rotation_angle>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>500</height>
+    <height>520</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -105,7 +105,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="650" y="50" />
       <point x="650" y="290" />
-      <point x="650" y="549" />
+      <point x="650" y="569" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -113,7 +113,7 @@ $(pv_value)</tooltip>
     <rotation_angle>0.0</rotation_angle>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>500</height>
+    <height>520</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -160,9 +160,9 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5577</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="650" y="549" />
-      <point x="407" y="550" />
-      <point x="200" y="550" />
+      <point x="650" y="569" />
+      <point x="407" y="569" />
+      <point x="200" y="569" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -170,7 +170,7 @@ $(pv_value)</tooltip>
     <rotation_angle>90.0</rotation_angle>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>2</height>
+    <height>1</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -193,7 +193,7 @@ $(pv_value)</tooltip>
     <width>451</width>
     <x>200</x>
     <name>Polyline_2</name>
-    <y>549</y>
+    <y>569</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -371,9 +371,9 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5572</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="650" y="400" />
-      <point x="407" y="400" />
-      <point x="200" y="400" />
+      <point x="650" y="419" />
+      <point x="407" y="419" />
+      <point x="200" y="419" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -404,7 +404,7 @@ $(pv_value)</tooltip>
     <width>451</width>
     <x>200</x>
     <name>Polyline_5</name>
-    <y>400</y>
+    <y>419</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -2290,7 +2290,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>200</x>
     <name>Label_15</name>
-    <y>415</y>
+    <y>434</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2346,7 +2346,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>269</x>
-    <y>415</y>
+    <y>434</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2399,7 +2399,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>344</x>
     <name>Text Update_27</name>
-    <y>415</y>
+    <y>434</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2439,7 +2439,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>200</x>
     <name>Label_16</name>
-    <y>452</y>
+    <y>471</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2495,7 +2495,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>269</x>
-    <y>452</y>
+    <y>471</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2548,7 +2548,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>344</x>
     <name>Text Update_29</name>
-    <y>452</y>
+    <y>471</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2588,7 +2588,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>200</x>
     <name>Label_17</name>
-    <y>485</y>
+    <y>504</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2644,7 +2644,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>269</x>
-    <y>485</y>
+    <y>504</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2697,7 +2697,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>344</x>
     <name>Text Update_31</name>
-    <y>485</y>
+    <y>504</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2737,7 +2737,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>200</x>
     <name>Label_19</name>
-    <y>519</y>
+    <y>538</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2793,7 +2793,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>269</x>
-    <y>519</y>
+    <y>538</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2846,7 +2846,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>344</x>
     <name>Text Update_35</name>
-    <y>519</y>
+    <y>538</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2886,7 +2886,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>423</x>
     <name>Label_20</name>
-    <y>415</y>
+    <y>434</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2942,7 +2942,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>492</x>
-    <y>415</y>
+    <y>434</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2995,7 +2995,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>567</x>
     <name>Text Update_37</name>
-    <y>415</y>
+    <y>434</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3035,7 +3035,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>423</x>
     <name>Label_21</name>
-    <y>452</y>
+    <y>471</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3091,7 +3091,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>492</x>
-    <y>452</y>
+    <y>471</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -3144,7 +3144,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>567</x>
     <name>Text Update_39</name>
-    <y>452</y>
+    <y>471</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3184,7 +3184,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>423</x>
     <name>Label_22</name>
-    <y>485</y>
+    <y>504</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3240,7 +3240,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>492</x>
-    <y>485</y>
+    <y>504</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -3293,7 +3293,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>567</x>
     <name>Text Update_41</name>
-    <y>485</y>
+    <y>504</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3333,7 +3333,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>423</x>
     <name>Label_23</name>
-    <y>519</y>
+    <y>538</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3389,7 +3389,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>70</width>
     <x>492</x>
-    <y>519</y>
+    <y>538</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -3442,7 +3442,7 @@ $(pv_value)</tooltip>
     <width>70</width>
     <x>567</x>
     <name>Text Update_43</name>
-    <y>519</y>
+    <y>538</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3634,9 +3634,9 @@ $(pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>70</width>
-    <x>200</x>
+    <x>429</x>
     <name>Label_25</name>
-    <y>354</y>
+    <y>355</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3691,8 +3691,8 @@ $(pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>70</width>
-    <x>269</x>
-    <y>354</y>
+    <x>498</x>
+    <y>355</y>
     <maximum>1.7976931348623157E308</maximum>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -3743,9 +3743,307 @@ $(pv_value)</tooltip>
       <color red="240" green="240" blue="240" />
     </background_color>
     <width>70</width>
-    <x>344</x>
+    <x>573</x>
     <name>Text Update_47</name>
-    <y>354</y>
+    <y>355</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5de4</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>RFFE att1</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>70</width>
+    <x>200</x>
+    <name>Label_26</name>
+    <y>355</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <alarm_pulsing>false</alarm_pulsing>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <show_units>true</show_units>
+    <height>20</height>
+    <multiline_input>false</multiline_input>
+    <border_width>1</border_width>
+    <visible>true</visible>
+    <pv_name>$(HOSTNAME):$(BPM):RFFE:att1</pv_name>
+    <selector_type>0</selector_type>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Input</widget_type>
+    <confirm_message></confirm_message>
+    <name>Text Update_48</name>
+    <style>0</style>
+    <actions hook="false" hook_all="false" />
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5de3</wuid>
+    <transparent>false</transparent>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <format_type>0</format_type>
+    <limits_from_pv>false</limits_from_pv>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>70</width>
+    <x>269</x>
+    <y>355</y>
+    <maximum>1.7976931348623157E308</maximum>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <minimum>-1.7976931348623157E308</minimum>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5de2</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <show_units>true</show_units>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>$(HOSTNAME):$(BPM):RFFE:att1_RBV</pv_name>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Update</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <wrap_words>false</wrap_words>
+    <format_type>0</format_type>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>70</width>
+    <x>344</x>
+    <name>Text Update_49</name>
+    <y>355</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5de1</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>RFFE att2</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>70</width>
+    <x>200</x>
+    <name>Label_27</name>
+    <y>390</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <alarm_pulsing>false</alarm_pulsing>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <show_units>true</show_units>
+    <height>20</height>
+    <multiline_input>false</multiline_input>
+    <border_width>1</border_width>
+    <visible>true</visible>
+    <pv_name>$(HOSTNAME):$(BPM):RFFE:att2</pv_name>
+    <selector_type>0</selector_type>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Input</widget_type>
+    <confirm_message></confirm_message>
+    <name>Text Update_50</name>
+    <style>0</style>
+    <actions hook="false" hook_all="false" />
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5de0</wuid>
+    <transparent>false</transparent>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <format_type>0</format_type>
+    <limits_from_pv>false</limits_from_pv>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>70</width>
+    <x>269</x>
+    <y>390</y>
+    <maximum>1.7976931348623157E308</maximum>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <minimum>-1.7976931348623157E308</minimum>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>b910999:14f8dc426f5:-5ddf</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <show_units>true</show_units>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>$(HOSTNAME):$(BPM):RFFE:att2_RBV</pv_name>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Update</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <wrap_words>false</wrap_words>
+    <format_type>0</format_type>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>70</width>
+    <x>344</x>
+    <name>Text Update_51</name>
+    <y>390</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
