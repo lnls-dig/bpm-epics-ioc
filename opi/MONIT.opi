@@ -276,7 +276,7 @@ pvs[2].setValue(scan)
 pvs[3].setValue(scan)
 pvs[4].setValue(scan)
 ]]></scriptText>
-        <pv trig="true">loc://MonitScan("1 second")</pv>
+        <pv trig="true">loc://(HOSTNAME)-$(BPM):$(MODULE):MonitScan("1 second")</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:A.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:B.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:C.SCAN</pv>
@@ -293,7 +293,7 @@ pvs[4].setValue(scan)
     </scale_options>
     <items_from_pv>false</items_from_pv>
     <visible>true</visible>
-    <pv_name>loc://MonitScan(".2 second")</pv_name>
+    <pv_name>loc://(HOSTNAME)-$(BPM):$(MODULE):Scan(".2 second")</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -387,7 +387,7 @@ pvs[1].setValue(scan)
 pvs[2].setValue(scan)
 pvs[3].setValue(scan)
 pvs[4].setValue(scan)]]></scriptText>
-        <pv trig="true">loc://StopScan</pv>
+        <pv trig="true">loc://(HOSTNAME)-$(BPM):$(MODULE):StopScan</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:A.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:B.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:C.SCAN</pv>
@@ -404,7 +404,7 @@ pvs[4].setValue(scan)]]></scriptText>
     </scale_options>
     <image></image>
     <visible>true</visible>
-    <pv_name>loc://StopScan(1)</pv_name>
+    <pv_name>loc://(HOSTNAME)-$(BPM):$(MODULE):StopScan(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -454,12 +454,12 @@ pvs[1].setValue(scan)
 pvs[2].setValue(scan)
 pvs[3].setValue(scan)
 pvs[4].setValue(scan)]]></scriptText>
-        <pv trig="false">loc://MonitScan</pv>
+        <pv trig="false">loc://(HOSTNAME)-$(BPM):$(MODULE):MonitScan</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:A.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:B.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:C.SCAN</pv>
         <pv trig="false">$(HOSTNAME)-$(BPM):MONIT:D.SCAN</pv>
-        <pv trig="true">loc://StartScan</pv>
+        <pv trig="true">loc://(HOSTNAME)-$(BPM):$(MODULE):StartScan</pv>
       </path>
     </scripts>
     <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -472,7 +472,7 @@ pvs[4].setValue(scan)]]></scriptText>
     </scale_options>
     <image></image>
     <visible>true</visible>
-    <pv_name>loc://StartScan(1)</pv_name>
+    <pv_name>loc://(HOSTNAME)-$(BPM):$(MODULE):StartScan(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
