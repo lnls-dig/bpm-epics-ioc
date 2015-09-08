@@ -20,7 +20,7 @@ save_restoreSet_SeqPeriodInSeconds(300)
 #save_restoreSet_NFSHost("oxygen", "164.54.52.4")
 
 # specify where save files should be
-set_savefile_path(startup, "autosave")
+set_savefile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
 
 # specify what save files should be restored.  Note these files must be
 # in the directory specified in set_savefile_path(), or, if that function
@@ -30,17 +30,13 @@ set_savefile_path(startup, "autosave")
 # 'auto_settings.req'.  These files are the standard way to use autosave in
 # synApps.
 set_pass0_restoreFile("auto_settings.sav")
-
-# Save files associated with the request files 'info_positions.req' and
-# 'info_settings.req'.  These .req files are written by the autosave function
-# makeAutosaveFiles().
-#set_pass0_restoreFile("info_positions.sav")
-#set_pass0_restoreFile("info_settings.sav")
-#set_pass1_restoreFile("info_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
 
 # specify directories in which to to search for included request files
-set_requestfile_path(startup, "")
-set_requestfile_path(startup, "autosave")
-set_requestfile_path(autosave, "BPMApp/Db")
+set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "")
+set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
+set_requestfile_path("$(TOP)", "BPMApp/Db")
+set_requestfile_path("$(AREA_DETECTOR)", "ADApp/Db")
+set_requestfile_path("$(AUTOSAVE)", "asApp/Db")
 
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${EPICS_HOSTNAME}-$(BPM_NUMBER):")
