@@ -42,6 +42,7 @@ BPM_LIBS += BPMSupport
 BPM_LIBS += asyn
 BPM_LIBS += mca
 BPM_LIBS += pv
+BPM_LIBS += autosave
 BPM_LIBS += FFTRecords
 
 # Link to the EPICS Base libraries
