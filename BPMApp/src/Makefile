@@ -4,26 +4,16 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
-# Foreign folder location
-FOREIGN=foreign
+
 PYTHON=python
 
 LIBRARY_IOC += BPMSupport
-#BPMSupport_SRCS += foreign/convert.cpp
-#BPMSupport_SRCS += foreign/cordic.cpp
-#BPMSupport_SRCS += foreign/numeric.cpp
 BPMSupport_SRCS += convert.cpp
 BPMSupport_SRCS += cordic.cpp
 BPMSupport_SRCS += numeric.cpp
 BPMSupport_SRCS += drvBPM.cpp
 BPMSupport_LIBS += asyn
 BPMSupport_LIBS += ADBase
-#BPMSupport_LIBS += bpmclient
-#BPMSupport_LIBS += errhand
-#BPMSupport_LIBS += hutils
-#BPMSupport_LIBS += mlm
-#BPMSupport_LIBS += czmq
-#BPMSupport_LIBS += zmq
 BPMSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #=============================
@@ -74,7 +64,6 @@ BPM_SYS_LIBS += gcc
 
 # System header files
 BPM_INCLUDES += -I/usr/include
-#BPM_INCLUDES += -Iforeign
 
 # CXX Compiler flags
 USR_CXXFLAGS = -std=gnu++0x
@@ -88,11 +77,8 @@ include $(TOP)/configure/RULES
 #  ADD RULES AFTER THIS LINE
 
 # The numeric module uses a pre-built lookup table.
-#$(FOREIGN)/numeric.o: numeric-lookup.h
 numeric.o: numeric-lookup.h
 
-#%.h: ../$(FOREIGN)/%.py
-#	$(PYTHON) $< > $@
 %.h: ../%.py
 	$(PYTHON) $< > $@
 
