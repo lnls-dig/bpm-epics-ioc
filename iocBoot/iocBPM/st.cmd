@@ -45,4 +45,4 @@ iocInit()
 < initCommands
 
 # save things every thirty seconds
-create_monitor_set("auto_settings.req", 30,"P={EPICS_HOSTNAME}-$(BPM_NUMBER):")
+create_monitor_set("auto_settings.req", 30,"P=${EPICS_HOSTNAME}-$(BPM_NUMBER):")
