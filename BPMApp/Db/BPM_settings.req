@@ -1,0 +1,6 @@
+file "BPMAcq_settings.req",    P=$(P),  R=FOFB_XYQS_HDF5:
+file "BPMAdc_settings.req",    P=$(P),  R=FOFB_XYQS_HDF5:
+file "BPMDsp_settings.req",    P=$(P),  R=FOFB_XYQS_HDF5:
+file "BPMFFT_settings.req",    P=$(P),  R=FOFB_XYQS_HDF5:
+file "BPMInfo_settings.req",   P=$(P),  R=FOFB_XYQS_HDF5:
+file "BPMRffe_settings.req",   P=$(P),  R=FOFB_XYQS_HDF5:

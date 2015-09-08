@@ -1,0 +1,3 @@
+$(P)-$(BPM_NUMBER):RFFE:att1
+$(P)-$(BPM_NUMBER):RFFE:att2
+$(P)-$(BPM_NUMBER):RFFE:sw

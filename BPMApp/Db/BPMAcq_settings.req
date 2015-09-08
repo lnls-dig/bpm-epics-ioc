@@ -1,0 +1,4 @@
+$(P)-$(BPM_NUMBER):ACQ:samples
+$(P)-$(BPM_NUMBER):ACQ:channel
+$(P)-$(BPM_NUMBER):ACQ:trigger
+$(P)-$(BPM_NUMBER):ACQ:updateTime

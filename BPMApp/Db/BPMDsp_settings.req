@@ -1,0 +1,7 @@
+$(P)-$(BPM_NUMBER):DSP:Kx
+$(P)-$(BPM_NUMBER):DSP:Ky
+$(P)-$(BPM_NUMBER):DSP:Kq
+$(P)-$(BPM_NUMBER):DSP:KSum
+$(P)-$(BPM_NUMBER):DSP:XOffset
+$(P)-$(BPM_NUMBER):DSP:YOffset
+$(P)-$(BPM_NUMBER):DSP:QOffset

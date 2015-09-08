@@ -1,0 +1,14 @@
+$(P)-$(BPM_NUMBER):ADC:gainAA
+$(P)-$(BPM_NUMBER):ADC:gainBB
+$(P)-$(BPM_NUMBER):ADC:gainCC
+$(P)-$(BPM_NUMBER):ADC:gainDD
+$(P)-$(BPM_NUMBER):ADC:gainAC
+$(P)-$(BPM_NUMBER):ADC:gainCA
+$(P)-$(BPM_NUMBER):ADC:gainBD
+$(P)-$(BPM_NUMBER):ADC:gainDB
+$(P)-$(BPM_NUMBER):ADC:sw
+$(P)-$(BPM_NUMBER):ADC:swDly
+$(P)-$(BPM_NUMBER):ADC:swDivClk
+$(P)-$(BPM_NUMBER):ADC:swEn
+$(P)-$(BPM_NUMBER):ADC:wdw
+$(P)-$(BPM_NUMBER):ADC:wdwDly
