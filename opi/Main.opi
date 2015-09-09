@@ -29,15 +29,15 @@
     <SECTOR-18>SIDI-BPM-18</SECTOR-18>
     <SECTOR-19>SIDI-BPM-19</SECTOR-19>
     <SECTOR-20>SIDI-BPM-20</SECTOR-20>
-    <BPM-01>01</BPM-01>
-    <BPM-02>02</BPM-02>
-    <BPM-03>03</BPM-03>
-    <BPM-04>04</BPM-04>
-    <BPM-05>05</BPM-05>
-    <BPM-06>06</BPM-06>
-    <BPM-07>07</BPM-07>
-    <BPM-08>08</BPM-08>
-    <BPM-09>09</BPM-09>
+    <BPM-01>1</BPM-01>
+    <BPM-02>2</BPM-02>
+    <BPM-03>3</BPM-03>
+    <BPM-04>4</BPM-04>
+    <BPM-05>5</BPM-05>
+    <BPM-06>6</BPM-06>
+    <BPM-07>7</BPM-07>
+    <BPM-08>8</BPM-08>
+    <BPM-09>9</BPM-09>
     <BPM-10>10</BPM-10>
     <BPM-11>11</BPM-11>
     <BPM-12>12</BPM-12>
