@@ -29,8 +29,8 @@ set_savefile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
 # Save files associated with the request files 'auto_positions.req' and
 # 'auto_settings.req'.  These files are the standard way to use autosave in
 # synApps.
-set_pass0_restoreFile("auto_settings.sav")
-set_pass1_restoreFile("auto_settings.sav")
+set_pass0_restoreFile("auto_settings_${EPICS_HOSTNAME}-$(BPM_NUMBER).sav")
+set_pass1_restoreFile("auto_settings_${EPICS_HOSTNAME}-$(BPM_NUMBER).sav")
 
 # specify directories in which to to search for included request files
 set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "")
