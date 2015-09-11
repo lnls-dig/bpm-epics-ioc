@@ -16,6 +16,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ADC:compMethod"){
 	field(DESC, "Amplitude and phase compensation method")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_COMPMETHOD")
 	field(SCAN,"Passive")
+    field(PINI,"YES")
 	field(NOBT,"2")
 	field(ZRVL,"0")
 	field(ONVL,"1")
@@ -30,6 +31,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ADC:compMethod"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainAA"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (direct A)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINAA")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainAA_RBV")
@@ -46,6 +48,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainAA_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainBB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (direct B)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINBB")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainBB_RBV")
@@ -62,6 +65,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainBB_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainCC"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (direct C)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINCC")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainCC_RBV")
@@ -78,6 +82,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainCC_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainDD"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set DC static gain (direct D)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINDD")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainDD_RBV")
@@ -94,6 +99,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainDD_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainAC"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (crossed A-C)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINAC")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainAC_RBV")
@@ -110,6 +116,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainAC_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainCA"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (crossed C-A)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINCA")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainCA_RBV")
@@ -126,6 +133,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainCA_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainBD"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (crossed B-D)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINBD")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainBD_RBV")
@@ -142,6 +150,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainBD_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainDB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC static gain (crossed D-B)")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINDB")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:gainDB_RBV")
@@ -158,6 +167,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainDB_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:sw"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:sw_RBV")
@@ -174,6 +184,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:sw_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:swDly"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching delay")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWDLY")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:swDly_RBV")
@@ -190,6 +201,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:swDly_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:swDivClk"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching divider clock")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW_DIVCLK")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:swDivClk_RBV")
@@ -206,6 +218,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:swDivClk_RBV"){
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:swEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set switching status")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWEN")
     field(NOBT,"1")
@@ -248,6 +261,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:swEn_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:wdw"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC windowing status")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDW")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:wdw_RBV")
@@ -264,6 +278,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:wdw_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):ADC:wdwDly"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC windowing delay")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDWDLY")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:wdwDly_RBV")

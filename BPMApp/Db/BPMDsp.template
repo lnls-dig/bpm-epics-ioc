@@ -14,6 +14,7 @@
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Kx"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kx")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KX")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Kx_RBV")
@@ -30,6 +31,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Kx_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Ky"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ky")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KY")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Ky_RBV")
@@ -46,6 +48,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Ky_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Kq"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kq")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KQ")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Kq_RBV")
@@ -62,6 +65,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Kq_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Ksum"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ksum")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KSUM")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Ksum_RBV")
@@ -78,6 +82,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Ksum_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:XOffset"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set X offset")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_XOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:XOffset_RBV")
@@ -94,6 +99,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:XOffset_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:YOffset"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Y offset")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_YOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:YOffset_RBV")
@@ -110,6 +116,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:YOffset_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):DSP:QOffset"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Q offset")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:QOffset_RBV")

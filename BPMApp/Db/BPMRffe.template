@@ -14,6 +14,7 @@
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:att1"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE attenuator 1")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV")
@@ -30,6 +31,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE attenuator 2")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV")
@@ -78,6 +80,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):RFFE:sw"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set switching")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV")

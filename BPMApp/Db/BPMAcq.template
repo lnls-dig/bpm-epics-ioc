@@ -5,6 +5,7 @@
 record(longout,"$(P)-$(BPM_NUMBER):ACQ:samples"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of samples for waveforms")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES")
     field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:samples_RBV")
@@ -21,6 +22,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:samples_RBV"){
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:channel"){
 	field(DTYP, "asynInt32")
 	field(DESC, "Set acquisition's channel")
+    field(PINI,"YES")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_CHANNEL")
 	field(SCAN,"Passive")
 	field(NOBT,"2")
@@ -55,6 +57,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:channel_RBV"){
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
 	field(DTYP, "asynInt32")
 	field(DESC, "Set acquisition's trigger")
+    field(PINI,"YES")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_TRIGGER")
     field(PINI,"YES")
 	field(SCAN,"Passive")
@@ -110,6 +113,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
 record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
 	field(DTYP, "asynFloat64")
 	field(DESC, "Set repetitive mode update time")
+    field(PINI,"YES")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
     field(SCAN,"Passive")
     field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:updateTime_RBV")
