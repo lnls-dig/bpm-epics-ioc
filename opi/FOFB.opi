@@ -5791,7 +5791,9 @@ pvs[15].setValue(n)
 #Resize Graphs
 for i in range(4):
     display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), n);
-    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n/2);]]></scriptText>
+    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n);
+    display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), n/2);
+    display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), n/2);]]></scriptText>
           <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samples</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:channel</pv>
