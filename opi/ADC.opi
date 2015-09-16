@@ -1431,9 +1431,16 @@ pvs[2].setValue("ADC")
 pvs[3].setValue(updateTime)
 pvs[4].setValue(trigger)
 
+# Set FFT SPAN
+pvs[8].setValue(n)
+pvs[9].setValue(n)
+pvs[10].setValue(n)
+pvs[11].setValue(n)
+
+#Resize Graphs
 for i in range(4):
     display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), n);
-    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n);]]></scriptText>
+    display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), n/2);]]></scriptText>
           <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samples</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:channel</pv>
@@ -1442,6 +1449,10 @@ for i in range(4):
           <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):N</pv>
           <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):updateTime</pv>
           <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):trigger</pv>
+          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_A:FFTData.SPAN</pv>
+          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_B:FFTData.SPAN</pv>
+          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_C:FFTData.SPAN</pv>
+          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_D:FFTData.SPAN</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
