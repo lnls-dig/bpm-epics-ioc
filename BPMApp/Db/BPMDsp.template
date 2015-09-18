@@ -130,83 +130,113 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:QOffset_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
 }
 
+record(longout,"$(P)-$(BPM_NUMBER):MONIT:Updt"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Update MONIT AMP/POS")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDT")
+    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Updt_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):MONIT:Updt_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get MONIT AMP/POS update status")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDT")
+    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:X")
+}
+
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:A"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude A")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_A")
-    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:B")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:B"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude B")
     field(PINI,"YES")
-#    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_B")
-    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:C")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:C"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude C")
     field(PINI,"YES")
-#    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_C")
-    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:D")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:D"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude D")
     field(PINI,"YES")
-#    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_D")
-    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:X")
+}
+
+# This keeps the MONIT/AMP records synched
+record(ai,"$(P)-$(BPM_NUMBER):MONIT:UpdtAll"){
+    field(PINI,"YES")
+    field(SCAN,".2 second")
+    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Updt 1")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:X"){
+    field(PINI,"YES")
+    field(MDEL, "-1")
+    field(SCAN,"Passive")
     field(CALC,"a*((b-c-d+e)/(b+c+d+e))-f")
-    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kx.VAL")
-    field(INPB,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
-    field(INPC,"$(P)-$(BPM_NUMBER):MONIT:B.VAL")
-    field(INPD,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
-    field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
-    field(INPF,"$(P)-$(BPM_NUMBER):DSP:XOffset.VAL")
+    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kx.VAL PP")
+    field(INPB,"$(P)-$(BPM_NUMBER):MONIT:A.VAL PP")
+    field(INPC,"$(P)-$(BPM_NUMBER):MONIT:B.VAL PP")
+    field(INPD,"$(P)-$(BPM_NUMBER):MONIT:C.VAL PP")
+    field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL PP")
+    field(INPF,"$(P)-$(BPM_NUMBER):DSP:XOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Y")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
+    field(MDEL, "-1")
+    field(SCAN,"Passive")
     field(CALC,"a*((b+c-d-e)/(b+c+d+e))-f")
-    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Ky.VAL")
+    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Ky.VAL PP")
     field(INPB,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
     field(INPC,"$(P)-$(BPM_NUMBER):MONIT:B.VAL")
     field(INPD,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
     field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
-    field(INPF,"$(P)-$(BPM_NUMBER):DSP:YOffset.VAL")
+    field(INPF,"$(P)-$(BPM_NUMBER):DSP:YOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Q")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Q"){
+    field(MDEL, "-1")
+    field(SCAN,"Passive")
     field(CALC,"a*((b-c+d-e)/(b+c+d+e))-f")
-    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kq.VAL")
+    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kq.VAL PP")
     field(INPB,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
     field(INPC,"$(P)-$(BPM_NUMBER):MONIT:B.VAL")
     field(INPD,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
     field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
-    field(INPF,"$(P)-$(BPM_NUMBER):DSP:QOffset.VAL")
+    field(INPF,"$(P)-$(BPM_NUMBER):DSP:QOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:SUM")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:SUM"){
+    field(MDEL, "-1")
+    field(SCAN,"Passive")
     field(CALC,"(a+b+c+d)")
     field(INPA,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
     field(INPB,"$(P)-$(BPM_NUMBER):MONIT:B.VAL")
