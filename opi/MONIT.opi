@@ -263,26 +263,7 @@ $(pv_value)</tooltip>
     <enabled>true</enabled>
     <wuid>4b176946:14ef51d6cd0:-128a</wuid>
     <pv_value />
-    <scripts>
-      <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
-        <scriptName>syncScanTime</scriptName>
-        <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
-#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
-
-scan = PVUtil.getString(pvs[0])
-#ConsoleUtil.writeInfo("Scan: "+str(scan))
-pvs[1].setValue(scan)
-pvs[2].setValue(scan)
-pvs[3].setValue(scan)
-pvs[4].setValue(scan)
-]]></scriptText>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):Scan("1 second")</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):D.SCAN</pv>
-      </path>
-    </scripts>
+    <scripts />
     <border_alarm_sensitive>true</border_alarm_sensitive>
     <height>31</height>
     <border_width>1</border_width>
@@ -384,14 +365,9 @@ $(pv_value)</tooltip>
 scan = "Passive"
 #ConsoleUtil.writeInfo("Scan: "+str(scan))
 pvs[1].setValue(scan)
-pvs[2].setValue(scan)
-pvs[3].setValue(scan)
-pvs[4].setValue(scan)]]></scriptText>
+]]></scriptText>
         <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):StopScan</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):D.SCAN</pv>
+        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):UpdtAll.SCAN</pv>
       </path>
     </scripts>
     <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -450,15 +426,9 @@ $(pv_value)</tooltip>
 
 scan = PVUtil.getString(pvs[0])
 #ConsoleUtil.writeInfo("Scan: "+str(scan))
-pvs[1].setValue(scan)
-pvs[2].setValue(scan)
-pvs[3].setValue(scan)
-pvs[4].setValue(scan)]]></scriptText>
+pvs[1].setValue(scan)]]></scriptText>
         <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):Scan</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):A.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):B.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):C.SCAN</pv>
-        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):D.SCAN</pv>
+        <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE):UpdtAll.SCAN</pv>
         <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):StartScan</pv>
       </path>
     </scripts>
