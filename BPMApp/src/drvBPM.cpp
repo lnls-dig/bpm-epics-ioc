@@ -103,6 +103,7 @@ static const functionsInt32_t bpmSetGetMonitAmpAFunc = {"DSP", bpm_set_monit_amp
 static const functionsInt32_t bpmSetGetMonitAmpBFunc = {"DSP", bpm_set_monit_amp_ch1, bpm_get_monit_amp_ch1};
 static const functionsInt32_t bpmSetGetMonitAmpCFunc = {"DSP", bpm_set_monit_amp_ch2, bpm_get_monit_amp_ch2};
 static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", bpm_set_monit_amp_ch3, bpm_get_monit_amp_ch3};
+static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", bpm_set_monit_updt, bpm_get_monit_updt};
 static const functionsInt32_t bpmSetGetRffeSwFunc = {"RFFE", bpm_set_rffe_sw, bpm_get_rffe_sw};
 static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", bpm_set_sw, bpm_get_sw};
 static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", bpm_set_sw_dly, bpm_get_sw_dly};
@@ -231,7 +232,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-
+    createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
 
     /* Set the initial values of some parameters */
     setUIntDigitalParam(P_HarmonicNumber,
@@ -280,6 +281,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitPosB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitPosC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitPosD,    0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks();
@@ -304,6 +306,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
     bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
+    bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
     bpmHwInt32Func[P_RffeSw] = bpmSetGetRffeSwFunc;
 
     /* BPM HW 2 Int32 Functions mapping. Functions not mapped here are just written
@@ -860,6 +863,7 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
     char service[50];
     bool newAcq = true;
     int timeout = 50000;
+    uint32_t trig = 0;
     acq_trans_t acq_trans;
     acq_req_t req;
     acq_block_t block;
@@ -876,9 +880,24 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    req =   {samples, (uint32_t) hwChannel};
-    block = { 0, (uint32_t *)pArrayAllChannels->pData,
-        (uint32_t)pArrayAllChannels->dataSize, 0};
+    /* Set to skip trigger*/
+    err = bpm_set_acq_trig (bpmClient, service, trig);
+    if (err != BPM_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to set trigger to  %u\n",
+                driverName, functionName, trig);
+        status = asynError;
+        goto bpm_set_acq_trig_err;
+    }
+
+    req.num_samples_pre  = samples;
+    req.num_samples_post = 0;
+    req.num_shots = 1;
+    req.chan = (uint32_t) hwChannel;
+    block.idx = 0;
+    block.data = (uint32_t *)pArrayAllChannels->pData;
+    block.data_size = (uint32_t)pArrayAllChannels->dataSize;
+    block.bytes_read = 0;
 
     /* Fill BPM acquisition transaction structure */
     acq_trans = {req, block};
@@ -911,6 +930,7 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
     asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR, "\n");
 #endif
 
+bpm_set_acq_trig_err:
 bpm_acq_err:
 bpm_samples_sel_err:
     return status;

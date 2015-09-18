@@ -247,6 +247,7 @@ typedef struct {
 #define P_MonitPosBString           "MONITPOS_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitPosCString           "MONITPOS_C"            /* asynUInt32Digital,      r/o */
 #define P_MonitPosDString           "MONITPOS_D"            /* asynUInt32Digital,      r/o */
+#define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 
 typedef enum {
     TRIG_ACQ_STOP = 0,
@@ -333,7 +334,8 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosB;
         int P_MonitPosC;
         int P_MonitPosD;
-#define LAST_COMMAND P_MonitPosD
+        int P_MonitUpdt;
+#define LAST_COMMAND P_MonitUpdt
 
     private:
         /* Our data */
