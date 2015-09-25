@@ -154,6 +154,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:A"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_A")
 }
 
@@ -163,6 +164,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:B"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_B")
 }
 
@@ -172,6 +174,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:C"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_C")
 }
 
@@ -181,6 +184,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:D"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_D")
 }
 
@@ -194,6 +198,7 @@ record(ai,"$(P)-$(BPM_NUMBER):MONIT:UpdtAll"){
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:X"){
     field(PINI,"YES")
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(SCAN,"Passive")
     field(CALC,"a*((b-c-d+e)/(b+c+d+e))-f")
     field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kx.VAL PP")
@@ -208,6 +213,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:X"){
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(SCAN,"Passive")
     field(CALC,"a*((b+c-d-e)/(b+c+d+e))-f")
     field(INPA,"$(P)-$(BPM_NUMBER):DSP:Ky.VAL PP")
@@ -222,6 +228,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Q"){
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(SCAN,"Passive")
     field(CALC,"a*((b-c+d-e)/(b+c+d+e))-f")
     field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kq.VAL PP")
@@ -236,6 +243,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Q"){
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:SUM"){
     field(MDEL, "-1")
+    field(ADEL, "-1")
     field(SCAN,"Passive")
     field(CALC,"(a+b+c+d)")
     field(INPA,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
