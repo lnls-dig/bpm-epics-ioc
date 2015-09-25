@@ -26,7 +26,8 @@
 #include "convert.h"
 #include <epicsExport.h>
 
-#define BPM_WAIT_TIME                   0                   /* No wait */
+/** The polling interval when checking to see if acquisition is complete */
+#define BPM_POLL_TIME                   .1
 
 #define PI                              3.14159265
 #define FREQ_SAMPLE                     100.00              /* Hz */
@@ -111,6 +112,12 @@ static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", bpm_set_sw_en, bpm
 static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", bpm_set_div_clk, bpm_get_div_clk};
 static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", bpm_set_wdw, bpm_get_wdw};
 static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", bpm_set_wdw_dly, bpm_get_wdw_dly};
+static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", bpm_set_acq_trig, bpm_get_acq_trig};
+static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", bpm_set_acq_data_trig_thres, bpm_get_acq_data_trig_thres};
+static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", bpm_set_acq_data_trig_pol, bpm_get_acq_data_trig_pol};
+static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", bpm_set_acq_data_trig_sel, bpm_get_acq_data_trig_sel};
+static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", bpm_set_acq_data_trig_filt, bpm_get_acq_data_trig_filt};
+static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", bpm_set_acq_hw_trig_dly, bpm_get_acq_hw_trig_dly};
 
 /* 2 Int32 functions mapping */
 static const functions2Int32_t bpmSetGetAdcGainAAFunc = {"SWAP", bpm_set_gain_a, bpm_get_gain_a, 1};
@@ -132,6 +139,12 @@ static const functionsFloat64_t bpmSetGetRffeTemp4Func = {"RFFE", NULL, bpm_get_
 
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
+
+static void exitHandlerC(void *pPvt)
+{
+    drvBPM *pdrvBPM = (drvBPM *)pPvt;
+    pdrvBPM->~drvBPM();
+}
 
 /** Constructor for the drvBPM class.
  * Calls constructor for the asynPortDriver base class.
@@ -224,10 +237,23 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
     createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
-    createParam(P_SamplesString,    asynParamUInt32Digital,         &P_Samples);
+    createParam(P_SamplesPreString, asynParamUInt32Digital,         &P_SamplesPre);
+    createParam(P_SamplesPostString,
+                                    asynParamUInt32Digital,         &P_SamplesPost);
+    createParam(P_NumShotsString,   asynParamUInt32Digital,         &P_NumShots);
     createParam(P_ChannelString,    asynParamInt32,                 &P_Channel);
-    createParam(P_TriggerString,    asynParamInt32,                 &P_Trigger);
     createParam(P_UpdateTimeString, asynParamFloat64,               &P_UpdateTime);
+    createParam(P_TriggerString,    asynParamUInt32Digital,         &P_Trigger);
+    createParam(P_TriggerDataThresString,
+                                    asynParamUInt32Digital,         &P_TriggerDataThres);
+    createParam(P_TriggerDataPolString,
+                                    asynParamUInt32Digital,         &P_TriggerDataPol);
+    createParam(P_TriggerDataSelString,
+                                    asynParamUInt32Digital,         &P_TriggerDataSel);
+    createParam(P_TriggerDataFiltString,
+                                    asynParamUInt32Digital,         &P_TriggerDataFilt);
+    createParam(P_TriggerHwDlyString,
+                                    asynParamUInt32Digital,         &P_TriggerHwDly);
     createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
     createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
@@ -269,10 +295,22 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_Samples,      1000,               0xFFFFFFFF);
+    setUIntDigitalParam(P_SamplesPre,   1000,               0xFFFFFFFF);
+    setUIntDigitalParam(P_SamplesPost,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_NumShots,     1,                  0xFFFFFFFF);
     setIntegerParam(P_Channel,                              CH_ADC);
-    setIntegerParam(P_Trigger,                              0);
     setDoubleParam(P_UpdateTime,                            1.0);
+    setUIntDigitalParam(P_Trigger,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerDataThres,
+                                        100,                0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerDataPol,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerDataSel,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerDataFilt,
+                                        1,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerHwDly,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
@@ -308,6 +346,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
     bpmHwInt32Func[P_RffeSw] = bpmSetGetRffeSwFunc;
+    bpmHwInt32Func[P_Trigger] = bpmSetGetAcqTriggerFunc;
+    bpmHwInt32Func[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
+    bpmHwInt32Func[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
+    bpmHwInt32Func[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
+    bpmHwInt32Func[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
+    bpmHwInt32Func[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
 
     /* BPM HW 2 Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -365,6 +409,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         pasynManager->exceptionConnect(pasynUser);
     }
 #endif
+
+    epicsAtExit(exitHandlerC, this);
 
 endpoint_dup_err:
     return;
@@ -454,12 +500,15 @@ void drvBPM::acqTask(void)
 {
     int status = asynSuccess;
     asynUser *pasynUser = NULL;
-    epicsUInt32 samples;
+    epicsUInt32 num_samples_pre;
+    epicsUInt32 num_samples_post;
+    epicsUInt32 num_shots;
     int channel;
-    int trigger;
+    epicsUInt32 trigger;
     double updateTime;
     double delay;
     int hwAmpChannel = 0;
+    int acqCompleted = 0;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
@@ -482,13 +531,14 @@ void drvBPM::acqTask(void)
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: connectDevice failed, status=%d\n",
             driverName, functionName, status);
+        return;
     }
 
     /* Loop forever */
     lock ();
     while (1) {
         /* Check if we received a stop event */
-        status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_WAIT_TIME);
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_POLL_TIME);
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
             /* We got a stop event, abort acquisition */
             readingActive = 0;
@@ -507,8 +557,10 @@ void drvBPM::acqTask(void)
         epicsTimeGetCurrent(&startTime);
 
         /* Set the parameter in the parameter library. */
-        getIntegerParam(P_Trigger, &trigger);
-        getUIntDigitalParam(P_Samples, &samples, 0xFFFFFFFF);
+        getUIntDigitalParam(P_Trigger, &trigger, 0xFFFFFFFF);
+        getUIntDigitalParam(P_SamplesPre, &num_samples_pre, 0xFFFFFFFF);
+        getUIntDigitalParam(P_SamplesPost, &num_samples_post, 0xFFFFFFFF);
+        getUIntDigitalParam(P_NumShots, &num_shots, 0xFFFFFFFF);
         getIntegerParam(P_Channel, &channel);
         getDoubleParam(P_UpdateTime, &updateTime);
 
@@ -524,10 +576,10 @@ void drvBPM::acqTask(void)
             continue;
         }
 
-        /* Our waveform will have "samples" samples in each
-         * dimension */
+        /* Our waveform will have "num_samples_pres + num_samples_post"
+         * samples in each dimension */
         dims[0] = POINTS_PER_SAMPLE;
-        dims[1] = samples;
+        dims[1] = num_samples_pre + num_samples_post;
 
         /* Waveform statistics */
         epicsTimeGetCurrent(&now);
@@ -557,11 +609,48 @@ void drvBPM::acqTask(void)
         /* Do acquisition */
         unlock();
         pasynManager->lockPort(pasynUser);
-        status = getCurve(pArrayAllChannels, hwAmpChannel, samples);
+        status = startAcq(hwAmpChannel, num_samples_pre, num_samples_post,
+                num_shots);
         pasynManager->unlockPort(pasynUser);
         lock();
 
         if (status == asynSuccess) {
+            /* FIXME: Improve BPMStatus trigger waiting. The information
+             * about waiting for trigger is not totally accurate here.
+             * Although, we will for SW or HW trigger in a short time,
+             * we are not actually there yet ...
+             */
+            if (trigger == TRIG_ACQ_EXT_HW) {
+                setIntegerParam(P_BPMStatus, BPMStatusTriggerHwExtWaiting);
+            }
+            else if (trigger == TRIG_ACQ_EXT_DATA) {
+                setIntegerParam(P_BPMStatus, BPMStatusTriggerHwDataWaiting);
+            }
+            else if (trigger == TRIG_ACQ_SW) {
+                setIntegerParam(P_BPMStatus, BPMStatusTriggerSwWaiting);
+            }
+
+            /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+            while (1) {
+                this->unlock();
+                status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_POLL_TIME);
+                this->lock();
+                if (status == epicsEventWaitOK) {
+                    /* TODO. We got a stop event, abort acquisition */
+                    //this->pExpSetup->Stop();
+                    readingActive = 0;
+                    acqCompleted = 1;
+                } else {
+                    acqCompleted = checkAcqCompletion();
+                }
+
+                if (acqCompleted == 1) {
+                    /* Get curve */
+                    getAcqCurve(pArrayAllChannels, hwAmpChannel, num_samples_pre,
+                            num_samples_post, num_shots);
+                    break;
+                }
+            }
             /* Do callbacks on the full waveform (all channels interleaved) */
             unlock();
             /* We must do the callbacks with mutex unlocked ad the plugin
@@ -802,76 +891,84 @@ asynStatus drvBPM::setAcquire()
 {
     asynStatus status = asynSuccess;
     const char* functionName = "setAcquire";
-    int value = 0;
+    epicsUInt32 trigger_type = 0;
 
     /* Set the parameter in the parameter library. */
-    getIntegerParam(P_Trigger, &value);
+    getUIntDigitalParam(P_Trigger, &trigger_type, 0xFFFFFFFF);
 
-    /* Stop acquisition if we are in repetitive mode and if we are currently
-     * acquiring. Otherwise, we don't need to do anything, as the acquisition
-     * task will stop after the current acquisition */
-    if (value == TRIG_ACQ_STOP) { /* Trigger == Stop */
-        if (readingActive && repetitiveTrigger) {
-            repetitiveTrigger = 0;
-            /* Send the stop event */
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: trigger ACQ_STOP called\n",
-                    driverName, functionName);
-            epicsEventSignal(this->stopAcqEventId);
-        }
+    /* Set the trigger if it matches the HW */
+    if (trigger_type < TRIG_ACQ_STOP) {
+        setParam32 (P_Trigger, 0xFFFFFFFF);
     }
-    else if (value == TRIG_ACQ_NOW) {
-        if (!readingActive && !repetitiveTrigger) {
-            repetitiveTrigger = 0;
-            /* Signal acq thread to start acquisition with the current parameters */
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: trigger ACQ_NOW called\n",
-                    driverName, functionName);
-            epicsEventSignal(startAcqEventId);
 
-        }
-    }
-    else if (value == TRIG_ACQ_REPETITIVE) {
-        if (!repetitiveTrigger) {
-            repetitiveTrigger = 1;
-            /* Signal acq thread to start acquisition with the current parameters */
+    switch (trigger_type) {
+        case TRIG_ACQ_NOW:
+        case TRIG_ACQ_EXT_HW:
+        case TRIG_ACQ_EXT_DATA:
+        case TRIG_ACQ_SW:
+            if (!readingActive && !repetitiveTrigger) {
+                repetitiveTrigger = 0;
+                /* Signal acq thread to start acquisition with the current parameters */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger ACQ_NOW or HW/SW called\n",
+                        driverName, functionName);
+                epicsEventSignal(startAcqEventId);
+            }
+            break;
+
+        /* Stop acquisition if we are in repetitive mode and if we are currently
+         * acquiring. Otherwise, we don't need to do anything, as the acquisition
+         * task will stop after the current acquisition */
+        case TRIG_ACQ_STOP: /* Trigger == Stop */
+            if (readingActive && repetitiveTrigger) {
+                repetitiveTrigger = 0;
+                /* Send the stop event */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger ACQ_STOP called\n",
+                        driverName, functionName);
+                epicsEventSignal(this->stopAcqEventId);
+            }
+            break;
+
+        case TRIG_ACQ_REPETITIVE:
+            if (!repetitiveTrigger) {
+                repetitiveTrigger = 1;
+                /* Signal acq thread to start acquisition with the current parameters */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger ACQ_REPETITIVE called\n",
+                        driverName, functionName);
+                epicsEventSignal(startAcqEventId);
+            }
+            break;
+
+        default:
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: trigger ACQ_REPETITIVE called\n",
+                    "%s:%s: trigger type not implemented yet\n",
                     driverName, functionName);
-            epicsEventSignal(startAcqEventId);
-        }
-    }
-    /* Insert other trigger types here */
-    else {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: trigger type not implemented yet\n",
-                driverName, functionName);
-        status = asynError;
-        goto trig_unimplemented_err;
+            status = asynError;
+            goto trig_unimplemented_err;
     }
 
 trig_unimplemented_err:
     return status;
 }
 
-asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
-        epicsUInt32 samples)
+asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
+        epicsUInt32 num_samples_post, epicsUInt32 num_shots)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
-    const char* functionName = "getCurve";
+    const char* functionName = "startAcq";
     char service[50];
-    bool newAcq = true;
-    int timeout = 50000;
-    uint32_t trig = 0;
     acq_trans_t acq_trans;
     acq_req_t req;
     acq_block_t block;
 
-    if (samples > MAX_ARRAY_POINTS) {
+    if (num_samples_pre + num_samples_post > MAX_ARRAY_POINTS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to select %u samples for acquisition\n",
-                driverName, functionName, samples);
+                "%s:%s: unable to select %u pre-trigger samples and\n"
+                "%u post-trigger samples for acquisition\n",
+                driverName, functionName, num_samples_pre, num_samples_post);
         status = asynError;
         goto bpm_samples_sel_err;
     }
@@ -880,24 +977,16 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    /* Set to skip trigger*/
-    err = bpm_set_acq_trig (bpmClient, service, trig);
-    if (err != BPM_CLIENT_SUCCESS) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to set trigger to  %u\n",
-                driverName, functionName, trig);
-        status = asynError;
-        goto bpm_set_acq_trig_err;
-    }
-
-    req.num_samples_pre  = samples;
-    req.num_samples_post = 0;
-    req.num_shots = 1;
+    req.num_samples_pre  = num_samples_pre;
+    req.num_samples_post = num_samples_post;
+    req.num_shots = num_shots;
     req.chan = (uint32_t) hwChannel;
+    #if 0
     block.idx = 0;
     block.data = (uint32_t *)pArrayAllChannels->pData;
     block.data_size = (uint32_t)pArrayAllChannels->dataSize;
     block.bytes_read = 0;
+    #endif
 
     /* Fill BPM acquisition transaction structure */
     acq_trans = {req, block};
@@ -909,11 +998,16 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
+#if 0
     err = bpm_get_curve (bpmClient, service, &acq_trans, timeout, newAcq);
+    #endif
+    err = bpm_acq_start (bpmClient, service, &req);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to acquire waveform on hwChannel %d, with %u samples\n",
-                driverName, functionName, hwChannel, samples);
+                "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
+                "\tpre-trigger samples and %u post-trigger samples\n",
+                driverName, functionName, hwChannel, num_samples_pre,
+                num_samples_post);
         status = asynError;
         goto bpm_acq_err;
     }
@@ -930,9 +1024,82 @@ asynStatus drvBPM::getCurve(NDArray *pArrayAllChannels, int hwChannel,
     asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR, "\n");
 #endif
 
-bpm_set_acq_trig_err:
 bpm_acq_err:
 bpm_samples_sel_err:
+    return status;
+}
+
+int drvBPM::checkAcqCompletion()
+{
+    int status = 0;
+    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    const char* functionName = "checkAcqCompletion";
+    char service[50];
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    err = bpm_acq_check (bpmClient, service);
+    if (err != BPM_CLIENT_SUCCESS) {
+#if 0
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
+                "\tpre-trigger samples and %u post-trigger samples\n",
+                driverName, functionName, hwChannel, num_samples_pre,
+                num_samples_post);
+#endif
+        status = 0;
+        goto bpm_acq_not_finished;
+    }
+
+    status = 1;
+
+bpm_acq_not_finished:
+    return status;
+}
+
+asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
+        epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
+        epicsUInt32 num_shots)
+{
+    asynStatus status = asynSuccess;
+    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    const char* functionName = "getAcqCurve";
+    char service[50];
+    acq_trans_t acq_trans;
+    acq_req_t req;
+    acq_block_t block;
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    req.num_samples_pre  = num_samples_pre;
+    req.num_samples_post = num_samples_post;
+    req.num_shots = num_shots;
+    req.chan = (uint32_t) hwChannel;
+    block.idx = 0;
+    block.data = (uint32_t *)pArrayAllChannels->pData;
+    block.data_size = (uint32_t)pArrayAllChannels->dataSize;
+    block.bytes_read = 0;
+
+    /* Fill BPM acquisition transaction structure */
+    acq_trans = {req, block};
+
+    /* This just reads the data from memory */
+    err = bpm_acq_get_curve (bpmClient, service, &acq_trans);
+    if (err != BPM_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
+                "\tpre-trigger samples and %u post-trigger samples\n",
+                driverName, functionName, hwChannel, num_samples_pre,
+                num_samples_post);
+        status = asynError;
+        goto bpm_acq_err;
+    }
+
+bpm_acq_err:
     return status;
 }
 
@@ -978,8 +1145,15 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParam32(function, mask);
+    /* Some operations need some special handling*/
+    if (function == P_Trigger) {
+        /* If run was set then wake up the simulation task */
+        setAcquire();
+    }
+    else {
+        /* Do operation on HW. Some functions do not set anything on hardware */
+        status = setParam32(function, mask);
+    }
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks();
@@ -1244,12 +1418,8 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Do operation on HW. Some functions do not set anything on hardware, but need
-     * some special handling*/
-    if (function == P_Trigger) {
-        /* If run was set then wake up the simulation task */
-        setAcquire();
-    }
+    /* Call base class */
+    status = asynNDArrayDriver::writeInt32(pasynUser, value);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks();
@@ -1470,8 +1640,8 @@ extern "C" {
     /** EPICS iocsh callable function to call constructor for the drvBPM class.
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
-    int drvBPMConfigure(const char *portName, const char *endpoint, int bpmNumber,
-            int verbose, uint32_t timeout)
+    int drvBPMConfigure(const char *portName, const char *endpoint,
+            int bpmNumber, int verbose, uint32_t timeout)
     {
         new drvBPM(portName, endpoint, bpmNumber, verbose, timeout);
         return(asynSuccess);

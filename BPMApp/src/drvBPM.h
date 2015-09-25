@@ -8,6 +8,7 @@
  */
 
 #include "asynNDArrayDriver.h"
+#include <epicsExit.h>
 #include <NDArray.h>
 #include <epicsMutex.h>
 #include <epicsRingBytes.h>
@@ -17,13 +18,16 @@
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
-#define MAX_ARRAY_POINTS            1000000
+#define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
 
 /* BPM acquisition status */
 typedef enum {
     BPMStatusIdle = 0,
     BPMStatusWaiting,
+    BPMStatusTriggerHwExtWaiting,
+    BPMStatusTriggerHwDataWaiting,
+    BPMStatusTriggerSwWaiting,
     BPMStatusAcquire,
 } bpm_status_types;
 
@@ -234,11 +238,18 @@ typedef struct {
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
-#define P_SamplesString             "ACQ_SAMPLES"           /* asynUInt32Digital,      r/w */
+#define P_SamplesPreString          "ACQ_SAMPLES_PRE"       /* asynUInt32Digital,      r/w */
+#define P_SamplesPostString         "ACQ_SAMPLES_POST"      /* asynUInt32Digital,      r/w */
+#define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
 #define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
 #define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
 #define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
+#define P_TriggerDataThresString    "ACQ_TRIGGER_THRES"     /* asynInt32,              r/w */
+#define P_TriggerDataPolString      "ACQ_TRIGGER_POL"       /* asynInt32,              r/w */
+#define P_TriggerDataSelString      "ACQ_TRIGGER_SEL"       /* asynInt32,              r/w */
+#define P_TriggerDataFiltString     "ACQ_TRIGGER_FILT"      /* asynInt32,              r/w */
+#define P_TriggerHwDlyString        "ACQ_TRIGGER_HWDLY"     /* asynInt32,              r/w */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
@@ -250,18 +261,22 @@ typedef struct {
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 
 typedef enum {
-    TRIG_ACQ_STOP = 0,
-    TRIG_ACQ_NOW,
-    TRIG_ACQ_REPETITIVE,
-    TRIG_ACQ_HW,
+    /* These trigger types matches the HW */
+    TRIG_ACQ_NOW = 0,
+    TRIG_ACQ_EXT_HW,
+    TRIG_ACQ_EXT_DATA,
     TRIG_ACQ_SW,
-    TRIG_ACQ_DATA
+    /* These trigger types do not exist in HW */
+    /* FIXME: TRIG_ACQ_STOP must be after the valid HW
+     * triggers */
+    TRIG_ACQ_STOP,
+    TRIG_ACQ_REPETITIVE
 } trigEnum_t;
 
 class drvBPM : public asynNDArrayDriver {
     public:
-        drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-                int verbose, uint32_t timeout);
+        drvBPM(const char *portName, const char *endpoint,
+                int bpmNumber, int verbose, uint32_t timeout);
         ~drvBPM();
 
         /* These are the methods that we override from asynPortDriver */
@@ -322,10 +337,17 @@ class drvBPM : public asynNDArrayDriver {
         int P_XOffset;
         int P_YOffset;
         int P_QOffset;
-        int P_Samples;
+        int P_SamplesPre;
+        int P_SamplesPost;
+        int P_NumShots;
         int P_Channel;
-        int P_Trigger;
         int P_UpdateTime;
+        int P_Trigger;
+        int P_TriggerDataThres;
+        int P_TriggerDataPol;
+        int P_TriggerDataSel;
+        int P_TriggerDataFilt;
+        int P_TriggerHwDly;
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
@@ -363,8 +385,12 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param);
         asynStatus setAcquire();
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
-        asynStatus getCurve(NDArray *pArrayAllChannels, int hwChannel,
-                epicsUInt32 samples);
+        asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
+                epicsUInt32 num_samples_post, epicsUInt32 num_shots);
+        int checkAcqCompletion();
+        asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
+                epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
+                epicsUInt32 num_shots);
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
         void computePositions(NDArray *pArrayAllChannels, int channel);
