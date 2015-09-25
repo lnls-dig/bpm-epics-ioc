@@ -2,21 +2,55 @@
 # Waveform Acquisition parameters
 #########################
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:samples"){
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPre"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set number of samples for waveforms")
+    field(DESC,"Set number of pre samples for waveforms")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES")
-    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:samples_RBV")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:samplesPre_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:samples_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPre_RBV"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get number of samples for waveforms")
+    field(DESC,"Get number of pre samples for waveforms")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPost"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set number of post samples for waveforms")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:samplesPost_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPost_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get number of post samples for waveforms")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:shots"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set number of shots for waveforms")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:shots_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:shots_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get number of shots for waveforms")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
 }
 
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:channel"){
@@ -55,10 +89,10 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:channel_RBV"){
 }
 
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
-	field(DTYP, "asynInt32")
+	field(DTYP, "asynUInt32Digital")
 	field(DESC, "Set acquisition's trigger")
     field(PINI,"YES")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_TRIGGER")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
     field(PINI,"YES")
 	field(SCAN,"Passive")
 	field(NOBT,"3")
@@ -68,18 +102,18 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
 	field(THVL,"3")
 	field(FRVL,"4")
 	field(FVVL,"5")
-	field(ZRST,"stop")
-	field(ONST,"now")
-	field(TWST,"repetitive")
-	field(THST,"hw")
-	field(FRST,"sw")
-	field(FVST,"data")
+	field(ZRST,"now")
+	field(ONST,"external")
+	field(TWST,"data")
+	field(THST,"sw")
+	field(FRST,"stop")
+	field(FVST,"repetitive")
 }
 
 record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
-	field(DTYP, "asynInt32")
+	field(DTYP, "asynUInt32Digital")
 	field(DESC, "Get acquisition's trigger")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_TRIGGER")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
     field(SCAN,"I/O Intr")
 	field(NOBT,"3")
 	field(ZRVL,"0")
@@ -88,12 +122,97 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
 	field(THVL,"3")
 	field(FRVL,"4")
 	field(FVVL,"5")
-	field(ZRST,"stop")
-	field(ONST,"now")
-	field(TWST,"repetitive")
-	field(THST,"hw")
-	field(FRST,"sw")
-	field(FVST,"data")
+	field(ZRST,"now")
+	field(ONST,"external")
+	field(TWST,"data")
+	field(THST,"sw")
+	field(FRST,"stop")
+	field(FVST,"repetitive")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set data trigger threshold")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get data trigger threshold")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set data trigger polarity")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get data trigger polarity")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set data trigger selection")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get data trigger selection")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set data trigger hysteresis")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_FILT")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get data trigger hysteresis")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_FILT")
+}
+
+record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set trigger delay")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get trigger delay")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
 }
 
 record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
@@ -101,13 +220,19 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
 	field(DESC, "Get acquisition's status")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_STATUS")
     field(SCAN,"I/O Intr")
-	field(NOBT,"2")
+	field(NOBT,"3")
 	field(ZRVL,"0")
 	field(ONVL,"1")
 	field(TWVL,"2")
-	field(ZRST,"idle")
-	field(ONST,"waiting")
-	field(TWST,"acquire")
+	field(THVL,"3")
+	field(FRVL,"4")
+	field(FVVL,"5")
+	field(ZRST,"Idle")
+	field(ONST,"Waiting")
+	field(TWST,"External Trig")
+	field(THST,"Data Trig")
+	field(FRST,"Software Trig")
+	field(FVST,"Acquire")
 }
 
 record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
