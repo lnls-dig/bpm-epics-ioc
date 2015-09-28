@@ -630,6 +630,8 @@ void drvBPM::acqTask(void)
                 setIntegerParam(P_BPMStatus, BPMStatusTriggerSwWaiting);
             }
 
+            callParamCallbacks();
+
             /* Wait for acquisition to complete, but allow acquire stop events to be handled */
             while (1) {
                 this->unlock();
