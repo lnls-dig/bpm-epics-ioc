@@ -981,12 +981,6 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
     req.num_samples_post = num_samples_post;
     req.num_shots = num_shots;
     req.chan = (uint32_t) hwChannel;
-    #if 0
-    block.idx = 0;
-    block.data = (uint32_t *)pArrayAllChannels->pData;
-    block.data_size = (uint32_t)pArrayAllChannels->dataSize;
-    block.bytes_read = 0;
-    #endif
 
     /* Fill BPM acquisition transaction structure */
     acq_trans = {req, block};
@@ -998,9 +992,6 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-#if 0
-    err = bpm_get_curve (bpmClient, service, &acq_trans, timeout, newAcq);
-    #endif
     err = bpm_acq_start (bpmClient, service, &req);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1011,17 +1002,6 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         status = asynError;
         goto bpm_acq_err;
     }
-#endif
-
-#if 0
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: waveform acquired is:\n",
-            driverName, functionName);
-    for (int i = 0; i < 100; ++i) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%d ", ((epicsInt16 *)pArrays[addr][channel]->pData)[i]);
-    }
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR, "\n");
 #endif
 
 bpm_acq_err:
@@ -1042,13 +1022,6 @@ int drvBPM::checkAcqCompletion()
 
     err = bpm_acq_check (bpmClient, service);
     if (err != BPM_CLIENT_SUCCESS) {
-#if 0
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
-                "\tpre-trigger samples and %u post-trigger samples\n",
-                driverName, functionName, hwChannel, num_samples_pre,
-                num_samples_post);
-#endif
         status = 0;
         goto bpm_acq_not_finished;
     }
