@@ -588,7 +588,7 @@ void drvBPM::acqTask(void)
         /* Our waveform will have "num_samples_pres + num_samples_post"
          * samples in each dimension */
         dims[0] = POINTS_PER_SAMPLE;
-        dims[1] = num_samples_pre + num_samples_post;
+        dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
         /* Waveform statistics */
         epicsTimeGetCurrent(&now);
