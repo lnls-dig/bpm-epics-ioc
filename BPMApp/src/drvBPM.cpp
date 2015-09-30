@@ -36,6 +36,7 @@
 
 /* FIXME: This should be read from hardware */
 #define HARMONIC_NUMBER                 864
+#define ADC_CLK_FREQ_UVX_DFLT           113040445           /* Hz */
 #define ADC_RATE_FACTOR                 1
 #define TBT_RATE_FACTOR                 35
 #define FOFB_RATE_FACTOR                980
@@ -204,6 +205,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create parameters */
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
+    createParam(P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
@@ -263,6 +265,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Set the initial values of some parameters */
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcClkFreq, ADC_CLK_FREQ_UVX_DFLT,
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
