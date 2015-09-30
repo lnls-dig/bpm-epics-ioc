@@ -30,6 +30,7 @@ typedef enum {
     BPMStatusTriggerSwWaiting,
     BPMStatusAcquire,
     BPMStatusErrAcq,
+    BPMStatusAborted,
 } bpm_status_types;
 
 /* Waveform IDs */
@@ -246,6 +247,7 @@ typedef struct {
 #define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
 #define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
 #define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
+#define P_AcqControlString          "ACQ_CONTROL"           /* asynInt32,              r/w */
 #define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
 #define P_TriggerDataThresString    "ACQ_TRIGGER_THRES"     /* asynInt32,              r/w */
 #define P_TriggerDataPolString      "ACQ_TRIGGER_POL"       /* asynInt32,              r/w */
@@ -344,6 +346,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_SamplesPost;
         int P_NumShots;
         int P_Channel;
+        int P_AcqControl;
         int P_UpdateTime;
         int P_Trigger;
         int P_TriggerDataThres;
@@ -395,6 +398,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
         asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
+        asynStatus stopAcq();
         int checkAcqCompletion();
         asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,

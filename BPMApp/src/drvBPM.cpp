@@ -113,6 +113,7 @@ static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", bpm_set_sw_en, bpm
 static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", bpm_set_div_clk, bpm_get_div_clk};
 static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", bpm_set_wdw, bpm_get_wdw};
 static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", bpm_set_wdw_dly, bpm_get_wdw_dly};
+static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", bpm_set_acq_fsm_stop, bpm_get_acq_fsm_stop};
 static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", bpm_set_acq_trig, bpm_get_acq_trig};
 static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", bpm_set_acq_data_trig_thres, bpm_get_acq_data_trig_thres};
 static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", bpm_set_acq_data_trig_pol, bpm_get_acq_data_trig_pol};
@@ -244,6 +245,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_SamplesPost);
     createParam(P_NumShotsString,   asynParamUInt32Digital,         &P_NumShots);
     createParam(P_ChannelString,    asynParamInt32,                 &P_Channel);
+    createParam(P_AcqControlString, asynParamUInt32Digital,         &P_AcqControl);
     createParam(P_UpdateTimeString, asynParamFloat64,               &P_UpdateTime);
     createParam(P_TriggerString,    asynParamUInt32Digital,         &P_Trigger);
     createParam(P_TriggerDataThresString,
@@ -303,6 +305,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_SamplesPost,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_NumShots,     1,                  0xFFFFFFFF);
     setIntegerParam(P_Channel,                              CH_ADC);
+    setUIntDigitalParam(P_AcqControl,   0,                  0xFFFFFFFF);
     setDoubleParam(P_UpdateTime,                            1.0);
     setUIntDigitalParam(P_Trigger,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_TriggerDataThres,
@@ -350,6 +353,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
     bpmHwInt32Func[P_RffeSw] = bpmSetGetRffeSwFunc;
+    bpmHwInt32Func[P_AcqControl] = bpmSetGetAcqControlFunc;
     bpmHwInt32Func[P_Trigger] = bpmSetGetAcqTriggerFunc;
     bpmHwInt32Func[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
     bpmHwInt32Func[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
@@ -549,7 +553,7 @@ void drvBPM::acqTask(void)
             readingActive = 0;
             /* Only change state to IDLE if we are not in a error state */
             getIntegerParam(P_BPMStatus, &bpmStatus);
-            if (bpmStatus != BPMStatusErrAcq) {
+            if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
                 setIntegerParam(P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks();
             }
@@ -648,10 +652,13 @@ void drvBPM::acqTask(void)
                 lock();
                 if (status == epicsEventWaitOK) {
                     /* TODO. We got a stop event, abort acquisition */
-                    //this->pExpSetup->Stop();
                     readingActive = 0;
-                    acqCompleted = 1;
-                } else {
+                    stopAcq();
+                    setIntegerParam(P_BPMStatus, BPMStatusAborted);
+                    callParamCallbacks();
+                    break;
+                }
+                else {
                     acqCompleted = checkAcqCompletion();
                 }
 
@@ -934,7 +941,7 @@ asynStatus drvBPM::setAcquire()
          * acquiring. Otherwise, we don't need to do anything, as the acquisition
          * task will stop after the current acquisition */
         case TRIG_ACQ_STOP: /* Trigger == Stop */
-            if (readingActive && repetitiveTrigger) {
+            if (readingActive) {
                 repetitiveTrigger = 0;
                 /* Send the stop event */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -1020,6 +1027,28 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
 
 bpm_acq_err:
 bpm_samples_sel_err:
+    return status;
+}
+
+asynStatus drvBPM::stopAcq()
+{
+    asynStatus status = asynSuccess;
+    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    const char* functionName = "stopAcq";
+    char service[50];
+    uint32_t fsm_stop = 1;
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    err = bpm_set_acq_fsm_stop (bpmClient, service, fsm_stop);
+    if (err != BPM_CLIENT_SUCCESS) {
+        status = asynError;
+        goto bpm_acq_stop_err;
+    }
+
+bpm_acq_stop_err:
     return status;
 }
 
