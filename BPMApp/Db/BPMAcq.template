@@ -108,6 +108,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
 	field(THST,"sw")
 	field(FRST,"stop")
 	field(FVST,"repetitive")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:trigger_RBV")
 }
 
 record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
@@ -128,6 +129,32 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
 	field(THST,"sw")
 	field(FRST,"stop")
 	field(FVST,"repetitive")
+}
+
+record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:control"){
+	field(DTYP, "asynUInt32Digital")
+	field(DESC, "Set acquisition control")
+    field(PINI,"YES")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
+	field(SCAN,"Passive")
+	field(NOBT,"1")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(ZRST,"unchanged")
+	field(ONST,"abort")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:control_RBV")
+}
+
+record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:control_RBV"){
+	field(DTYP, "asynUInt32Digital")
+	field(DESC, "Get acquisition control")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
+    field(SCAN,"I/O Intr")
+	field(NOBT,"1")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(ZRST,"unchanged")
+	field(ONST,"abort")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres"){
@@ -228,6 +255,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
 	field(FRVL,"4")
 	field(FVVL,"5")
 	field(SXVL,"6")
+	field(SVVL,"7")
 	field(ZRST,"Idle")
 	field(ONST,"Waiting")
 	field(TWST,"External Trig")
@@ -235,6 +263,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
 	field(FRST,"Software Trig")
 	field(FVST,"Acquire")
 	field(SXST,"Error")
+	field(SVST,"Aborted")
 }
 
 record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
