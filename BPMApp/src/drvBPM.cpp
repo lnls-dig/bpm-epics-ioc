@@ -513,6 +513,7 @@ void drvBPM::acqTask(void)
     double delay;
     int hwAmpChannel = 0;
     int acqCompleted = 0;
+    int bpmStatus = 0;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
@@ -546,8 +547,12 @@ void drvBPM::acqTask(void)
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
             /* We got a stop event, abort acquisition */
             readingActive = 0;
-            setIntegerParam(P_BPMStatus, BPMStatusIdle);
-            callParamCallbacks();
+            /* Only change state to IDLE if we are not in a error state */
+            getIntegerParam(P_BPMStatus, &bpmStatus);
+            if (bpmStatus != BPMStatusErrAcq) {
+                setIntegerParam(P_BPMStatus, BPMStatusIdle);
+                callParamCallbacks();
+            }
             unlock();
             /* Release the lock while we wait for an event that says acquire has started, then lock again */
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -680,6 +685,9 @@ void drvBPM::acqTask(void)
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to acquire waveform\n",
                     driverName, functionName);
+            /* Could not start acquisition. Invalid parameters */
+            setIntegerParam(P_BPMStatus, BPMStatusErrAcq);
+            callParamCallbacks();
             continue;
         }
 

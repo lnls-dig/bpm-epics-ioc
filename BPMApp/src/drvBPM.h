@@ -29,6 +29,7 @@ typedef enum {
     BPMStatusTriggerHwDataWaiting,
     BPMStatusTriggerSwWaiting,
     BPMStatusAcquire,
+    BPMStatusErrAcq,
 } bpm_status_types;
 
 /* Waveform IDs */
@@ -206,6 +207,7 @@ typedef struct {
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
+#define P_AdcClkFreqString          "INFO_ADCCLKFREQ"          /* asynUInt32Digital,      r/o */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
@@ -304,6 +306,7 @@ class drvBPM : public asynNDArrayDriver {
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
         int P_HarmonicNumber;
 #define FIRST_COMMAND P_HarmonicNumber
+        int P_AdcClkFreq;
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
