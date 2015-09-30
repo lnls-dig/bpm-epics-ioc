@@ -19,6 +19,22 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
+record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC clock frequency")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(FLNK,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV")
+}
+
+record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC clock frequency")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+}
+
 record(longin,"$(P)-$(BPM_NUMBER):INFO:TBTRate_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get TBT rate factor")
