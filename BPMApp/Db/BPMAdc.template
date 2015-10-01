@@ -291,3 +291,57 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:wdwDly_RBV"){
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDWDLY")
 }
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:trigDir"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC trigger direction")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGDIR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"output")
+    field(ONST,"input")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:trigDir_RBV")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:trigDir_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC trigger direction")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGDIR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"output")
+    field(ONST,"input")
+}
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:trigTerm"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC trigger 50ohm termination")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGTERM")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:trigTerm_RBV")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:trigTerm_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC trigger 50ogm termination")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGTERM")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
