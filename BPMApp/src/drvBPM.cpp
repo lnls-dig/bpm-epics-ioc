@@ -113,6 +113,8 @@ static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", bpm_set_sw_en, bpm
 static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", bpm_set_div_clk, bpm_get_div_clk};
 static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", bpm_set_wdw, bpm_get_wdw};
 static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", bpm_set_wdw_dly, bpm_get_wdw_dly};
+static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC130M_4CH", bpm_set_trig_dir, bpm_get_trig_dir};
+static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC130M_4CH", bpm_set_trig_term, bpm_get_trig_term};
 static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", bpm_set_acq_fsm_stop, bpm_get_acq_fsm_stop};
 static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", bpm_set_acq_trig, bpm_get_acq_trig};
 static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", bpm_set_acq_data_trig_thres, bpm_get_acq_data_trig_thres};
@@ -233,6 +235,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_GainCAString,     asynParamUInt32Digital,         &P_GainCA);
     createParam(P_GainBDString,     asynParamUInt32Digital,         &P_GainBD);
     createParam(P_GainDBString,     asynParamUInt32Digital,         &P_GainDB);
+    createParam(P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
+    createParam(P_AdcTrigTermString,
+                                    asynParamUInt32Digital,         &P_AdcTrigTerm);
     createParam(P_KxString,         asynParamUInt32Digital,         &P_Kx);
     createParam(P_KyString,         asynParamUInt32Digital,         &P_Ky);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
@@ -294,6 +299,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_GainCA,       ADC_DFLT_GAIN,      0xFFFFFFFF);
     setUIntDigitalParam(P_GainBD,       ADC_DFLT_GAIN,      0xFFFFFFFF);
     setUIntDigitalParam(P_GainDB,       ADC_DFLT_GAIN,      0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcTrigTerm,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kx,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ky,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
@@ -347,6 +354,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
     bpmHwInt32Func[P_Wdw] = bpmSetGetAdcWdwFunc;
     bpmHwInt32Func[P_WdwDly] = bpmSetGetAdcWdwDlyFunc;
+    bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
+    bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
     bpmHwInt32Func[P_MonitAmpA] = bpmSetGetMonitAmpAFunc;
     bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
     bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;

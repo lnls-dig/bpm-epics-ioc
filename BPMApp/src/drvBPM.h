@@ -234,6 +234,8 @@ typedef struct {
 #define P_GainCAString              "ADC_GAINCA"            /* asynUInt32Digital,      r/w */
 #define P_GainBDString              "ADC_GAINBD"            /* asynUInt32Digital,      r/w */
 #define P_GainDBString              "ADC_GAINDB"            /* asynUInt32Digital,      r/w */
+#define P_AdcTrigDirString          "ADC_TRIGDIR"           /* asynUInt32Digital,      r/w */
+#define P_AdcTrigTermString         "ADC_TRIGTERM"          /* asynUInt32Digital,      r/w */
 #define P_KxString                  "DSP_KX"                /* asynUInt32Digital,      r/w */
 #define P_KyString                  "DSP_KY"                /* asynUInt32Digital,      r/w */
 #define P_KqString                  "DSP_KQ"                /* asynUInt32Digital,      r/w */
@@ -335,6 +337,8 @@ class drvBPM : public asynNDArrayDriver {
         int P_GainCA;
         int P_GainBD;
         int P_GainDB;
+        int P_AdcTrigDir;
+        int P_AdcTrigTerm;
         int P_Kx;
         int P_Ky;
         int P_Kq;
