@@ -164,21 +164,39 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:gainDB_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_GAINDB")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ADC:sw"){
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:sw"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:sw_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC:sw_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:sw_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):ADC:swDly"){
@@ -242,37 +260,31 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:swEn_RBV"){
     field(ONST,"enable")
 }
 
-#record(longout,"$(P)-$(BPM_NUMBER):ADC:swEn"){
-#    field(DTYP,"asynUInt32Digital")
-#    field(DESC,"set switching status")
-#    field(SCAN,"Passive")
-#    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWEN")
-#    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:swEn_RBV")
-#}
-#
-#record(longin,"$(P)-$(BPM_NUMBER):ADC:swEn_RBV"){
-#    field(DTYP,"asynUInt32Digital")
-#    field(DESC,"get switching status")
-#    field(PINI,"YES")
-#    field(SCAN,"Passive")
-#    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWEN")
-#}
-
-record(longout,"$(P)-$(BPM_NUMBER):ADC:wdw"){
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:wdwEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC windowing status")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDW")
-    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:wdw_RBV")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:wdwEn_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC:wdw_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:wdwEn_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC windowing status")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDW")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):ADC:wdwDly"){

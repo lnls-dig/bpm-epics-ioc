@@ -77,19 +77,37 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP4")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):RFFE:sw"){
+record(mbbo,"$(P)-$(BPM_NUMBER):RFFE:sw"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set switching")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get switching")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
 }
