@@ -3155,7 +3155,7 @@ $(pv_value)</tooltip>
       <actions hook="true" hook_all="false" />
       <items>
         <s>now</s>
-        <s>ext</s>
+        <s>external</s>
         <s>data</s>
         <s>sw</s>
         <s>repetitive</s>
