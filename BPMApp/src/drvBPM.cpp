@@ -660,7 +660,7 @@ void drvBPM::acqTask(void)
                 status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_POLL_TIME);
                 lock();
                 if (status == epicsEventWaitOK) {
-                    /* TODO. We got a stop event, abort acquisition */
+                    /* We got a stop event, abort acquisition */
                     readingActive = 0;
                     stopAcq();
                     setIntegerParam(P_BPMStatus, BPMStatusAborted);
@@ -678,20 +678,25 @@ void drvBPM::acqTask(void)
                     break;
                 }
             }
-            /* Do callbacks on the full waveform (all channels interleaved) */
-            unlock();
-            /* We must do the callbacks with mutex unlocked ad the plugin
-             * can call us and a deadlock would occur */
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayAmp[WVF_AMP_ALL]);
-            lock();
 
-            /* Copy AMP data to arrays for each type of data, do callbacks on that */
-            deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp,
-                MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+            /* Only do callbacks and calculate position if we could acquire some
+             * data */
+            if (acqCompleted == 1) {
+                /* Do callbacks on the full waveform (all channels interleaved) */
+                unlock();
+                /* We must do the callbacks with mutex unlocked ad the plugin
+                 * can call us and a deadlock would occur */
+                doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                        channelMap[channel].NDArrayAmp[WVF_AMP_ALL]);
+                lock();
 
-            /* Calculate positions and call callbacks */
-            computePositions(pArrayAllChannels, channel);
+                /* Copy AMP data to arrays for each type of data, do callbacks on that */
+                deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp,
+                        MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+
+                /* Calculate positions and call callbacks */
+                computePositions(pArrayAllChannels, channel);
+            }
 
             /* Release buffer */
             pArrayAllChannels->release();
