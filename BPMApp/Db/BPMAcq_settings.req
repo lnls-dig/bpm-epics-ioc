@@ -2,3 +2,8 @@ $(P)ACQ:samples
 $(P)ACQ:channel
 $(P)ACQ:trigger
 $(P)ACQ:updateTime
+$(P)ACQ:triggerDataThres
+$(P)ACQ:triggerDataPol
+$(P)ACQ:triggerDataSel
+$(P)ACQ:triggerDataHyst
+$(P)ACQ:triggerHwDly
