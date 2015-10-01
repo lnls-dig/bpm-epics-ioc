@@ -1,0 +1,6 @@
+*.swp
+*.swap
+*.bak
+*.orig
+*~
+autosave/
