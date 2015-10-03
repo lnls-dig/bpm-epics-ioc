@@ -156,7 +156,7 @@ static void exitHandlerC(void *pPvt)
  * \param[in] endpoint The device address string ]
  * */
 drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-        int verbose, uint32_t timeout)
+        int verbose, int timeout)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     (int)NUM_PARAMS,
@@ -1703,7 +1703,7 @@ extern "C" {
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
     int drvBPMConfigure(const char *portName, const char *endpoint,
-            int bpmNumber, int verbose, uint32_t timeout)
+            int bpmNumber, int verbose, int timeout)
     {
         new drvBPM(portName, endpoint, bpmNumber, verbose, timeout);
         return(asynSuccess);
