@@ -115,6 +115,24 @@ static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", bpm_set_wdw, bpm_ge
 static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", bpm_set_wdw_dly, bpm_get_wdw_dly};
 static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC130M_4CH", bpm_set_trig_dir, bpm_get_trig_dir};
 static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC130M_4CH", bpm_set_trig_term, bpm_get_trig_term};
+static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", bpm_set_adc_rand, bpm_get_adc_rand};
+static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", bpm_set_adc_dith, bpm_get_adc_dith};
+static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", bpm_set_adc_shdn, bpm_get_adc_shdn};
+static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", bpm_set_adc_pga, bpm_get_adc_pga};
+static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC130M_4CH", bpm_set_fmc_clk_sel, bpm_get_fmc_clk_sel};
+static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC130M_4CH", bpm_set_adc_test_data_en, bpm_get_adc_test_data_en};
+static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC130M_4CH", bpm_set_ad9510_defaults, NULL};
+static const functionsInt32_t bpmSetGetAdcAD9510PllFunctionFunc = {"FMC130M_4CH", bpm_set_fmc_pll_function, bpm_get_fmc_pll_function};
+static const functionsInt32_t bpmSetGetAdcAD9510PllStatusFunc = {"FMC130M_4CH", bpm_set_fmc_pll_status, bpm_get_fmc_pll_status};
+static const functionsInt32_t bpmSetGetAdcAD9510ClkSelFunc = {"FMC130M_4CH", bpm_set_ad9510_pll_clk_sel, bpm_get_ad9510_pll_clk_sel};
+static const functionsInt32_t bpmSetGetAdcAD9510ADivFunc = {"FMC130M_4CH", bpm_set_ad9510_pll_a_div, bpm_get_ad9510_pll_a_div};
+static const functionsInt32_t bpmSetGetAdcAD9510BDivFunc = {"FMC130M_4CH", bpm_set_ad9510_pll_b_div, bpm_get_ad9510_pll_b_div};
+static const functionsInt32_t bpmSetGetAdcAD9510PrescalerFunc = {"FMC130M_4CH", bpm_set_ad9510_pll_prescaler, bpm_get_ad9510_pll_prescaler};
+static const functionsInt32_t bpmSetGetAdcAD9510RDivFunc = {"FMC130M_4CH", bpm_set_ad9510_r_div, bpm_get_ad9510_r_div};
+static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC130M_4CH", bpm_set_ad9510_pll_pdown, bpm_get_ad9510_pll_pdown};
+static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC130M_4CH", bpm_set_ad9510_mux_status, bpm_get_ad9510_mux_status};
+static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC130M_4CH", bpm_set_ad9510_cp_current, bpm_get_ad9510_cp_current};
+static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC130M_4CH", bpm_set_ad9510_outputs, bpm_get_ad9510_outputs};
 static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", bpm_set_acq_fsm_stop, bpm_get_acq_fsm_stop};
 static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", bpm_set_acq_trig, bpm_get_acq_trig};
 static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", bpm_set_acq_data_trig_thres, bpm_get_acq_data_trig_thres};
@@ -238,6 +256,37 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
     createParam(P_AdcTrigTermString,
                                     asynParamUInt32Digital,         &P_AdcTrigTerm);
+    createParam(P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
+    createParam(P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
+    createParam(P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
+    createParam(P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
+    createParam(P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
+    createParam(P_AdcTestDataString,
+                                    asynParamUInt32Digital,         &P_AdcTestData);
+    createParam(P_AdcAD9510DfltString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510Dflt);
+    createParam(P_AdcAD9510PllFuncString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
+    createParam(P_AdcAD9510PllStatusString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
+    createParam(P_AdcAD9510ClkSelString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
+    createParam(P_AdcAD9510ADivString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510ADiv);
+    createParam(P_AdcAD9510BDivString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510BDiv);
+    createParam(P_AdcAD9510PrescalerString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
+    createParam(P_AdcAD9510RDivString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510RDiv);
+    createParam(P_AdcAD9510PllPDownString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
+    createParam(P_AdcAD9510MuxStatusString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
+    createParam(P_AdcAD9510CpCurrentString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
+    createParam(P_AdcAD9510OutputsString,
+                                    asynParamUInt32Digital,         &P_AdcAD9510Outputs);
     createParam(P_KxString,         asynParamUInt32Digital,         &P_Kx);
     createParam(P_KyString,         asynParamUInt32Digital,         &P_Ky);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
@@ -301,6 +350,36 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_GainDB,       ADC_DFLT_GAIN,      0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigTerm,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcRand,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcDith,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcShdn,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcPga,       0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcClkSel,    0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510Dflt,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510PllFunc,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510PllStatus,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510ClkSel,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510ADiv,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510BDiv,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510Prescaler,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510RDiv,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510PllPDown,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510MuxStatus,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510CpCurrent,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcAD9510Outputs,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kx,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ky,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
@@ -356,6 +435,24 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_WdwDly] = bpmSetGetAdcWdwDlyFunc;
     bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
     bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
+    bpmHwInt32Func[P_AdcRand] = bpmSetGetAdcRandFunc;
+    bpmHwInt32Func[P_AdcDith] = bpmSetGetAdcDithFunc;
+    bpmHwInt32Func[P_AdcShdn] = bpmSetGetAdcShdnFunc;
+    bpmHwInt32Func[P_AdcPga] = bpmSetGetAdcPgaFunc;
+    bpmHwInt32Func[P_AdcTestData] = bpmSetGetAdcTestDataFunc;
+    bpmHwInt32Func[P_AdcClkSel] = bpmSetGetAdcClkSelFunc;
+    bpmHwInt32Func[P_AdcAD9510Dflt] = bpmSetGetAdcAD9510DefaultsFunc;
+    bpmHwInt32Func[P_AdcAD9510PllFunc] = bpmSetGetAdcAD9510PllFunctionFunc;
+    bpmHwInt32Func[P_AdcAD9510PllStatus] = bpmSetGetAdcAD9510PllStatusFunc;
+    bpmHwInt32Func[P_AdcAD9510ClkSel] = bpmSetGetAdcAD9510ClkSelFunc;
+    bpmHwInt32Func[P_AdcAD9510ADiv] = bpmSetGetAdcAD9510ADivFunc;
+    bpmHwInt32Func[P_AdcAD9510BDiv] = bpmSetGetAdcAD9510BDivFunc;
+    bpmHwInt32Func[P_AdcAD9510Prescaler] = bpmSetGetAdcAD9510PrescalerFunc;
+    bpmHwInt32Func[P_AdcAD9510RDiv] = bpmSetGetAdcAD9510RDivFunc;
+    bpmHwInt32Func[P_AdcAD9510PllPDown] = bpmSetGetAdcAD9510PllPDownFunc;
+    bpmHwInt32Func[P_AdcAD9510MuxStatus] = bpmSetGetAdcAD9510MuxStatusFunc;
+    bpmHwInt32Func[P_AdcAD9510CpCurrent] = bpmSetGetAdcAD9510CPCurrentFunc;
+    bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
     bpmHwInt32Func[P_MonitAmpA] = bpmSetGetMonitAmpAFunc;
     bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
     bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
@@ -1366,6 +1463,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     /* Lookup function */
     func = bpmHwInt32Func.find (functionId);
     if (func != bpmHwInt32Func.end()) {
+        *param = 0;
         /* Get correct service name*/
         snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
@@ -1396,6 +1494,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     /* Lookup function */
     func2 = bpmHw2Int32Func.find (functionId);
     if (func2 != bpmHw2Int32Func.end()) {
+        *param = 0;
         /* Get correct service name*/
         snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func2->second.serviceName,
@@ -1631,6 +1730,7 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param)
     /* Lookup function */
     func = bpmHwFloat64Func.find (functionId);
     if (func != bpmHwFloat64Func.end()) {
+        *param = 0;
         /* Get correct service name*/
         snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,

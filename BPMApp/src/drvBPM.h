@@ -236,6 +236,24 @@ typedef struct {
 #define P_GainDBString              "ADC_GAINDB"            /* asynUInt32Digital,      r/w */
 #define P_AdcTrigDirString          "ADC_TRIGDIR"           /* asynUInt32Digital,      r/w */
 #define P_AdcTrigTermString         "ADC_TRIGTERM"          /* asynUInt32Digital,      r/w */
+#define P_AdcRandString             "ADC_RAND"              /* asynUInt32Digital,      r/w */
+#define P_AdcDithString             "ADC_DITH"              /* asynUInt32Digital,      r/w */
+#define P_AdcShdnString             "ADC_SHDN"              /* asynUInt32Digital,      r/w */
+#define P_AdcPgaString              "ADC_PGA"               /* asynUInt32Digital,      r/w */
+#define P_AdcTestDataString         "ADC_TESTDATA"          /* asynUInt32Digital,      r/w */
+#define P_AdcClkSelString           "ADC_CLKSEL"            /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510DfltString       "ADC_AD9510DFLT"        /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510PllFuncString    "ADC_AD9510PLLFUNC"     /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510PllStatusString  "ADC_AD9510PLLSTATUS"   /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510ClkSelString     "ADC_AD9510CLKSEL"      /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510ADivString       "ADC_AD9510ADIV"        /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510BDivString       "ADC_AD9510BDIV"        /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510PrescalerString  "ADC_AD9510PRESCALER"   /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510RDivString       "ADC_AD9510RDIV"        /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510PllPDownString   "ADC_AD9510PLLPDOWN"    /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510MuxStatusString  "ADC_AD9510MUXSTATUS"   /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510CpCurrentString  "ADC_AD9510CPCURRENT"   /* asynUInt32Digital,      r/w */
+#define P_AdcAD9510OutputsString    "ADC_AD9510OUTPUTS"     /* asynUInt32Digital,      r/w */
 #define P_KxString                  "DSP_KX"                /* asynUInt32Digital,      r/w */
 #define P_KyString                  "DSP_KY"                /* asynUInt32Digital,      r/w */
 #define P_KqString                  "DSP_KQ"                /* asynUInt32Digital,      r/w */
@@ -339,6 +357,24 @@ class drvBPM : public asynNDArrayDriver {
         int P_GainDB;
         int P_AdcTrigDir;
         int P_AdcTrigTerm;
+        int P_AdcRand;
+        int P_AdcDith;
+        int P_AdcShdn;
+        int P_AdcPga;
+        int P_AdcTestData;
+        int P_AdcClkSel;
+        int P_AdcAD9510Dflt;
+        int P_AdcAD9510PllFunc;
+        int P_AdcAD9510PllStatus;
+        int P_AdcAD9510ClkSel;
+        int P_AdcAD9510ADiv;
+        int P_AdcAD9510BDiv;
+        int P_AdcAD9510Prescaler;
+        int P_AdcAD9510RDiv;
+        int P_AdcAD9510PllPDown;
+        int P_AdcAD9510MuxStatus;
+        int P_AdcAD9510CpCurrent;
+        int P_AdcAD9510Outputs;
         int P_Kx;
         int P_Ky;
         int P_Kq;
