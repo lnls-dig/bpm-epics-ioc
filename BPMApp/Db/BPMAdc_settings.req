@@ -10,7 +10,7 @@ $(P)ADC:sw
 $(P)ADC:swDly
 $(P)ADC:swDivClk
 $(P)ADC:swEn
-$(P)ADC:wdw
+$(P)ADC:wdwEn
 $(P)ADC:wdwDly
 $(P)ADC:trigDir
 $(P)ADC:trigTerm

@@ -1,4 +1,6 @@
-$(P)ACQ:samples
+$(P)ACQ:samplesPre
+$(P)ACQ:samplesPost
+$(P)ACQ:shots
 $(P)ACQ:channel
 $(P)ACQ:trigger
 $(P)ACQ:updateTime
