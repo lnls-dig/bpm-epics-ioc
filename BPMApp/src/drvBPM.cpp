@@ -491,10 +491,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     status = bpmClientConnect();
     unlock();
 
+    /* If we correct connect for this first time, libbpmclient
+     * will ensure the reconnection to server if necessary, but we
+     * must succeed here or we must abort completely */
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling bpmClientConnect, status=%d\n",
             driverName, functionName, status);
+        exit(1);
     }
 
     /* Create the thread that computes the waveforms in the background */
@@ -552,12 +556,10 @@ drvBPM::~drvBPM()
     this->bpmPortName = NULL;
 }
 
-#if 0
 asynStatus drvBPM::connect(asynUser* pasynUser)
 {
     return bpmClientConnect();
 }
-#endif
 
 asynStatus drvBPM::bpmClientConnect(void)
 {
@@ -565,6 +567,15 @@ asynStatus drvBPM::bpmClientConnect(void)
     const char *bpmLogFile = "stdout";
     const char *functionName = "bpmClientConnect";
 
+    /* Check if BPM is already connected */
+    if (bpmClient != NULL) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: BPM client already connected\n",
+                driverName, functionName);
+        return status;
+    }
+
+    /* Connect BPM */
     bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
     if (bpmClient == NULL) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
@@ -584,21 +595,21 @@ create_bpm_client_err:
     return status;
 }
 
-#if 0
 asynStatus drvBPM::disconnect(asynUser* pasynUser)
 {
     return bpmClientDisconnect();
 }
-#endif
 
 asynStatus drvBPM::bpmClientDisconnect(void)
 {
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
             "%s: calling bpmClientDisconnect\n",
             driverName);
     asynStatus status = asynSuccess;
-    bpm_client_destroy (&bpmClient);
-    pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    if (bpmClient != NULL) {
+        bpm_client_destroy (&bpmClient);
+        pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    }
     return status;
 }
 

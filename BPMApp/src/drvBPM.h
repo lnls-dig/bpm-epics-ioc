@@ -315,11 +315,11 @@ class drvBPM : public asynNDArrayDriver {
 #if 0
         virtual asynStatus readInt16Array(asynUser *pasynUser, epicsInt16 *value,
                 size_t nElements, size_t *nIn);
+#endif
 
         /* These methods are overwritten from asynPortDriver */
         virtual asynStatus connect(asynUser* pasynUser);
         virtual asynStatus disconnect(asynUser* pasynUser);
-#endif
 
         /* These are the methods that are new to this class */
         void acqTask(void);
