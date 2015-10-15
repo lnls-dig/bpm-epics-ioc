@@ -1,5 +1,7 @@
 < envPaths
-epicsEnvSet(STARTUP,$(TOP)/iocBoot/$(IOC))
+
+# Override default TOP variable
+epicsEnvSet("TOP","../..")
 
 < BPM.config
 
