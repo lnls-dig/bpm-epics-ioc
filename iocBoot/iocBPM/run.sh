@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 : ${EPICS_HOST_ARCH:?"Environment variable needs to be set"}
 
