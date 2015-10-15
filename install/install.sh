@@ -23,15 +23,15 @@ for dir in bin lib db dbd; do
 done
 
 # Copy DB files
-for dir in BPMApp/Db; do
-    mkdir -p "$INSTALL_DIR/$dir"
-    cp -r "$TOP_DIR/$dir" "$INSTALL_DIR/$dir"
+for dir in Db; do
+    mkdir -p "$INSTALL_DIR/BPMApp"
+    cp -r "$TOP_DIR/BPMApp/$dir" "$INSTALL_DIR/BPMApp"
 done
 
 # Copy iocBoot files
-for dir in iocBoot/iocBPM; do
-    mkdir -p "$INSTALL_DIR/$dir"
-    cp -r "$TOP_DIR/$dir" "$INSTALL_DIR/$dir"
+for dir in iocBPM; do
+    mkdir -p "$INSTALL_DIR/iocBoot"
+    cp -r "$TOP_DIR/iocBoot/$dir" "$INSTALL_DIR/iocBoot"
 done
 
 echo BPM EPICS IOC installed in "$INSTALL_DIR"
