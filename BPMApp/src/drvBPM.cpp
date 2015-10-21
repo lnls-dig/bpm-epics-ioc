@@ -1708,7 +1708,13 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     getParamName(function, &paramName);
 
     /* Get double param, possibly from HW */
-    status = getParamDouble_r(function, value);
+    if (function >= FIRST_COMMAND) {
+        status = getParamDouble_r(function, value);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::readFloat64(pasynUser, value);
+    }
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
