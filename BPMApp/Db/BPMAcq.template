@@ -242,6 +242,41 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
 }
 
+record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set data-driven trigger channel")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"ADC")
+    field(ONST,"ADCSWAP")
+    field(TWST,"TBT")
+    field(THST,"FOFB")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan_RBV")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get data-driven trigger channel")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"ADC")
+    field(ONST,"ADCSWAP")
+    field(TWST,"TBT")
+    field(THST,"FOFB")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
+}
+
 record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
 	field(DTYP, "asynInt32")
 	field(DESC, "Get acquisition's status")
