@@ -668,6 +668,7 @@ void drvBPM::acqTask(void)
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
             /* We got a stop event, abort acquisition */
             readingActive = 0;
+            stopAcq();
             /* Only change state to IDLE if we are not in a error state */
             getIntegerParam(P_BPMStatus, &bpmStatus);
             if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
