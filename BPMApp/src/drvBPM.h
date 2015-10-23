@@ -84,13 +84,23 @@ typedef enum {
 /* Channel IDs */
 typedef enum {
     CH_ADC = 0,
-    CH_ADCSWAP,
-    CH_TBT,
-    CH_FOFB,
+    CH_ADCSWAP = 1,
+    CH_TBT = 2,
+    CH_FOFB = 3,
     CH_END
 } ch_types;
 
 #define MAX_CHANNELS                CH_END
+
+typedef enum {
+    CH_HW_ADC = 0,
+    CH_HW_ADCSWAP = 1,
+    CH_HW_TBT = 6,
+    CH_HW_FOFB = 11,
+    CH_HW_END
+} ch_hw_types;
+
+#define MAX_HW_CHANNELS             CH_HW_END
 
 /* Waveform AMP types IDs */
 typedef enum {
@@ -159,6 +169,12 @@ typedef struct {
     int NDArrayPhase[MAX_WVF_PHA_TYPES];
     int NDArrayPos[MAX_WVF_POS_TYPES];
 } channelMap_t;
+
+/* BPM Reverse channel mapping structure */
+typedef struct {
+    /* EPICS channel. -1 means not available */
+    int epicsChannel;
+} channelRevMap_t;
 
 /* Write 32-bit function pointer */
 typedef bpm_client_err_e (*writeInt32Fp)(bpm_client_t *self, char *service,
@@ -274,6 +290,7 @@ typedef struct {
 #define P_TriggerDataSelString      "ACQ_TRIGGER_SEL"       /* asynInt32,              r/w */
 #define P_TriggerDataFiltString     "ACQ_TRIGGER_FILT"      /* asynInt32,              r/w */
 #define P_TriggerHwDlyString        "ACQ_TRIGGER_HWDLY"     /* asynInt32,              r/w */
+#define P_DataTrigChanString        "ACQ_DATA_TRIG_CHAN"    /* asynuint32digital,      r/w */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
@@ -394,6 +411,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TriggerDataSel;
         int P_TriggerDataFilt;
         int P_TriggerHwDly;
+        int P_DataTrigChan;
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
@@ -449,6 +467,8 @@ class drvBPM : public asynNDArrayDriver {
         template <typename epicsType>
             asynStatus doReadArray(asynUser *pasynUser, epicsType *value,
                     size_t nElements, size_t *nIn, epicsType *pValue);
+        asynStatus setDataTrigChan (epicsUInt32 mask);
+        asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

@@ -78,23 +78,40 @@ static const boardMap_t boardMap[MAX_BPMS] = {
 };
 
 static const channelMap_t channelMap[CH_END] = {
-         /* Amp, Phase, Pos, AmpA, AmpB, AmpC, AmpD, AmpALL */
-    /* 0 = ADC      */  {0, -1, -1, 0,
-                                        {WVF_ADC_A, WVF_ADC_B, WVF_ADC_C, WVF_ADC_D, WVF_ADC_ALL},
-                                        {-1, -1, -1, -1, -1},
-                                        {-1, -1, -1, -1, -1}},
-    /* 1 = ADCSWAP  */  {1, -1, -1, 0,
-                                        {WVF_ADCSWAP_A, WVF_ADCSWAP_B, WVF_ADCSWAP_C, WVF_ADCSWAP_D, WVF_ADCSWAP_ALL},
-                                        {-1, -1, -1, -1, -1},
-                                        {-1, -1, -1, -1, -1}},
-    /* 2 = TBT      */  {6, -1, -1, 1,
-                                        {WVF_TBTAMP_A, WVF_TBTAMP_B, WVF_TBTAMP_C, WVF_TBTAMP_D, WVF_TBTAMP_ALL},
-                                        {WVF_TBTPHASE_A, WVF_TBTPHASE_B, WVF_TBTPHASE_C, WVF_TBTPHASE_D, WVF_TBTPHASE_ALL},
-                                        {WVF_TBTPOS_A, WVF_TBTPOS_B, WVF_TBTPOS_C, WVF_TBTPOS_D, WVF_TBTPOS_ALL}},
-    /* 3 = FOFB     */  {11, -1, -1, 1,
-                                        {WVF_FOFBAMP_A, WVF_FOFBAMP_B, WVF_FOFBAMP_C, WVF_FOFBAMP_D, WVF_FOFBAMP_ALL},
-                                        {WVF_FOFBPHASE_A, WVF_FOFBPHASE_B, WVF_FOFBPHASE_C, WVF_FOFBPHASE_D, WVF_FOFBPHASE_ALL},
-                                        {WVF_FOFBPOS_A, WVF_FOFBPOS_B, WVF_FOFBPOS_C, WVF_FOFBPOS_D, WVF_FOFBPOS_ALL}},
+                        /* Amp, Phase, Pos, AmpA, AmpB, AmpC, AmpD, AmpALL */
+    [CH_ADC] =          {CH_HW_ADC, -1, -1, 0,
+                        {WVF_ADC_A, WVF_ADC_B, WVF_ADC_C, WVF_ADC_D, WVF_ADC_ALL},
+                        {-1, -1, -1, -1, -1},
+                        {-1, -1, -1, -1, -1}},
+    [CH_ADCSWAP] =      {CH_HW_ADCSWAP, -1, -1, 0,
+                        {WVF_ADCSWAP_A, WVF_ADCSWAP_B, WVF_ADCSWAP_C, WVF_ADCSWAP_D, WVF_ADCSWAP_ALL},
+                        {-1, -1, -1, -1, -1},
+                        {-1, -1, -1, -1, -1}},
+    [CH_TBT] =          {CH_HW_TBT, -1, -1, 1,
+                        {WVF_TBTAMP_A, WVF_TBTAMP_B, WVF_TBTAMP_C, WVF_TBTAMP_D, WVF_TBTAMP_ALL},
+                        {WVF_TBTPHASE_A, WVF_TBTPHASE_B, WVF_TBTPHASE_C, WVF_TBTPHASE_D, WVF_TBTPHASE_ALL},
+                        {WVF_TBTPOS_A, WVF_TBTPOS_B, WVF_TBTPOS_C, WVF_TBTPOS_D, WVF_TBTPOS_ALL}},
+    [CH_FOFB] =         {CH_HW_FOFB, -1, -1, 1,
+                        {WVF_FOFBAMP_A, WVF_FOFBAMP_B, WVF_FOFBAMP_C, WVF_FOFBAMP_D, WVF_FOFBAMP_ALL},
+                        {WVF_FOFBPHASE_A, WVF_FOFBPHASE_B, WVF_FOFBPHASE_C, WVF_FOFBPHASE_D, WVF_FOFBPHASE_ALL},
+                        {WVF_FOFBPOS_A, WVF_FOFBPOS_B, WVF_FOFBPOS_C, WVF_FOFBPOS_D, WVF_FOFBPOS_ALL}},
+};
+
+/* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
+static const channelRevMap_t channelRevMap[CH_HW_END] = {
+                        /* EPICS channel */
+     [CH_HW_ADC] =              {CH_ADC},
+     [CH_HW_ADCSWAP] =          {CH_ADCSWAP},
+     /* 2 = Unavailable     */  {-1},
+     /* 3 = Unavailable     */  {-1},
+     /* 4 = Unavailable     */  {-1},
+     /* 5 = Unavailable     */  {-1},
+     [CH_HW_TBT] =              {CH_TBT},
+     /* 7 = Unavailable     */  {-1},
+     /* 8 = Unavailable     */  {-1},
+     /* 9 = Unavailable     */  {-1},
+     /* 10 = Unavailable    */  {-1},
+     [CH_HW_FOFB] =             {CH_FOFB}
 };
 
 /* Int32 functions mapping */
@@ -140,6 +157,7 @@ static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", bpm_set_acq_
 static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", bpm_set_acq_data_trig_sel, bpm_get_acq_data_trig_sel};
 static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", bpm_set_acq_data_trig_filt, bpm_get_acq_data_trig_filt};
 static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", bpm_set_acq_hw_trig_dly, bpm_get_acq_hw_trig_dly};
+static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", bpm_set_acq_data_trig_chan, bpm_get_acq_data_trig_chan};
 
 /* 2 Int32 functions mapping */
 static const functions2Int32_t bpmSetGetAdcGainAAFunc = {"SWAP", bpm_set_gain_a, bpm_get_gain_a, 1};
@@ -312,6 +330,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_TriggerDataFilt);
     createParam(P_TriggerHwDlyString,
                                     asynParamUInt32Digital,         &P_TriggerHwDly);
+    createParam(P_DataTrigChanString,
+                                    asynParamUInt32Digital,         &P_DataTrigChan);
     createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
     createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
@@ -404,6 +424,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                         1,                  0xFFFFFFFF);
     setUIntDigitalParam(P_TriggerHwDly,
                                         0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_DataTrigChan,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
@@ -466,6 +488,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
     bpmHwInt32Func[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
     bpmHwInt32Func[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
+    bpmHwInt32Func[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
     /* BPM HW 2 Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1289,6 +1312,10 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* If run was set then wake up the simulation task */
         setAcquire();
     }
+    else if (function == P_DataTrigChan) {
+        /* Ah... FIXME: ugly static mapping! */
+        setDataTrigChan(mask);
+    }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
         status = setParam32_r(function, mask);
@@ -1435,8 +1462,13 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Get parameter, possibly from HW */
-    status = getParam32_r(function, value, mask);
+    if (function == P_DataTrigChan) {
+        status = getDataTrigChan(value, mask);
+    }
+    else {
+        /* Get parameter, possibly from HW */
+        status = getParam32_r(function, value, mask);
+    }
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -1812,6 +1844,92 @@ asynStatus drvBPM::doReadArray(asynUser *pasynUser, epicsType *value,
               "%s:%s: function=%d\n",
               driverName, functionName, function);
     return (asynStatus)status;
+}
+
+asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
+{
+    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    char service[50];
+    asynStatus status = asynSuccess;
+    const char* functionName = "setDataTrigChan";
+    epicsUInt32 dataTrigChan = 0;
+    int hwAmpChannel = 0;
+
+    /* Set the parameter in the parameter library. */
+    getUIntDigitalParam(P_DataTrigChan, &dataTrigChan, mask);
+
+    /* Convert user channel into hw channel */
+    hwAmpChannel = channelMap[dataTrigChan].HwAmpChannel;
+    if(hwAmpChannel < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto bpm_inv_channel;
+    }
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    err = bpm_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
+    if (err != BPM_CLIENT_SUCCESS) {
+        status = asynError;
+        goto bpm_set_data_trig_chan_err;
+    }
+
+bpm_set_data_trig_chan_err:
+bpm_inv_channel:
+    return status;
+}
+
+asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
+{
+    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    char service[50];
+    asynStatus status = asynSuccess;
+    const char* functionName = "getDataTrigChan";
+    epicsUInt32 dataTrigChan = 0;
+    epicsUInt32 hwAmpChannel = 0;
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    /* Clear parameter in case of an error occurs */
+    *channel = 0;
+
+    err = bpm_get_acq_data_trig_chan (bpmClient, service, &hwAmpChannel);
+    if (err != BPM_CLIENT_SUCCESS) {
+        status = asynError;
+        goto bpm_get_data_trig_chan_err;
+    }
+
+    if (hwAmpChannel > CH_HW_END-1) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelRevMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto bpm_inv_hw_channel;
+    }
+
+    /* Convert user channel into hw channel */
+    dataTrigChan = channelRevMap[hwAmpChannel].epicsChannel;
+    if(dataTrigChan < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid channel channelRevMap for channel %d\n",
+                driverName, functionName, dataTrigChan);
+        status = asynError;
+        goto bpm_inv_channel;
+    }
+
+    /* Mask parameter according to the received mask */
+    dataTrigChan &= mask;
+    *channel = dataTrigChan;
+
+bpm_inv_channel:
+bpm_inv_hw_channel:
+bpm_get_data_trig_chan_err:
+    return status;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
