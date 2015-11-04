@@ -173,20 +173,30 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol"){
+record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger polarity")
     field(PINI,"YES")
     field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"positive")
+    field(ONST,"negative")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
     field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger polarity")
     field(PINI,"YES")
     field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"positive")
+    field(ONST,"negative")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
 }
 
