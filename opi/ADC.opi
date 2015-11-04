@@ -1728,63 +1728,6 @@ $(pv_value)</tooltip>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>
     </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
-      <alarm_pulsing>false</alarm_pulsing>
-      <precision>0</precision>
-      <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-      <horizontal_alignment>1</horizontal_alignment>
-      <rules />
-      <pv_value />
-      <auto_size>false</auto_size>
-      <text>######</text>
-      <rotation_angle>0.0</rotation_angle>
-      <show_units>true</show_units>
-      <height>30</height>
-      <multiline_input>false</multiline_input>
-      <border_width>1</border_width>
-      <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataPol</pv_name>
-      <selector_type>0</selector_type>
-      <border_color>
-        <color name="Text_ForeGround" red="0" green="0" blue="0" />
-      </border_color>
-      <precision_from_pv>false</precision_from_pv>
-      <widget_type>Text Input</widget_type>
-      <confirm_message></confirm_message>
-      <name>Text Update_48</name>
-      <style>0</style>
-      <actions hook="false" hook_all="false" />
-      <border_style>1</border_style>
-      <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-      <enabled>true</enabled>
-      <wuid>4431ad07:14fff5394e2:-7cfa</wuid>
-      <transparent>false</transparent>
-      <scripts />
-      <border_alarm_sensitive>true</border_alarm_sensitive>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-      <format_type>1</format_type>
-      <limits_from_pv>false</limits_from_pv>
-      <background_color>
-        <color red="255" green="255" blue="255" />
-      </background_color>
-      <width>133</width>
-      <x>108</x>
-      <y>190</y>
-      <maximum>1.0</maximum>
-      <foreground_color>
-        <color red="0" green="0" blue="0" />
-      </foreground_color>
-      <minimum>0.0</minimum>
-      <font>
-        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-      </font>
-    </widget>
     <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
       <border_style>0</border_style>
       <tooltip></tooltip>
@@ -2530,6 +2473,48 @@ $(pv_value)</tooltip>
       <x>108</x>
       <name>Combo_1</name>
       <y>115</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="true" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+      <border_style>0</border_style>
+      <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+      <alarm_pulsing>false</alarm_pulsing>
+      <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>-7ebbdaee:150d3ef3a09:-75ce</wuid>
+      <pv_value />
+      <scripts />
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+      <height>29</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>false</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <items_from_pv>true</items_from_pv>
+      <visible>true</visible>
+      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataPol</pv_name>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Combo</widget_type>
+      <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+      <background_color>
+        <color red="255" green="255" blue="255" />
+      </background_color>
+      <width>133</width>
+      <x>108</x>
+      <name>Combo_1</name>
+      <y>190</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
