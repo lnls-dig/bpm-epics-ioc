@@ -3010,7 +3010,7 @@ trigger = PVUtil.getString(pvs[8])
 #ConsoleUtil.writeInfo("samplesPre: "+str(samplesPre))
 #ConsoleUtil.writeInfo("samplesPost: "+str(samplesPost))
 #ConsoleUtil.writeInfo("shots "+str(shots))
-pvs[4].setValue("ADCSWAP")
+pvs[4].setValue("adcswap")
 pvs[5].setValue(updateTime)
 pvs[6].setValue(trigger)
 
