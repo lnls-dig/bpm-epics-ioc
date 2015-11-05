@@ -64,10 +64,10 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:channel"){
 	field(ONVL,"1")
 	field(TWVL,"2")
 	field(THVL,"3")
-	field(ZRST,"ADC")
-	field(ONST,"ADCSWAP")
-	field(TWST,"TBT")
-	field(THST,"FOFB")
+	field(ZRST,"adc")
+	field(ONST,"adcswap")
+	field(TWST,"tbt")
+	field(THST,"fofb")
     field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:channel_RBV")
 }
 
@@ -82,10 +82,10 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:channel_RBV"){
 	field(ONVL,"1")
 	field(TWVL,"2")
 	field(THVL,"3")
-	field(ZRST,"ADC")
-	field(ONST,"ADCSWAP")
-	field(TWST,"TBT")
-	field(THST,"FOFB")
+	field(ZRST,"adc")
+	field(ONST,"adcswap")
+	field(TWST,"tbt")
+	field(THST,"fofb")
 }
 
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
