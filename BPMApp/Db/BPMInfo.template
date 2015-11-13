@@ -22,8 +22,9 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
 record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC clock frequency")
+    field(PINI,"YES")
     field(SCAN,"Passive")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
     field(FLNK,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV")
 }
 
