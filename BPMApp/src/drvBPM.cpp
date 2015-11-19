@@ -79,19 +79,19 @@ static const boardMap_t boardMap[MAX_BPMS] = {
 
 static const channelMap_t channelMap[CH_END] = {
                         /* Amp, Phase, Pos, AmpA, AmpB, AmpC, AmpD, AmpALL */
-    [CH_ADC] =          {CH_HW_ADC, -1, -1, 0,
+    /* [CH_ADC] =     */ {CH_HW_ADC, -1, -1, 0,
                         {WVF_ADC_A, WVF_ADC_B, WVF_ADC_C, WVF_ADC_D, WVF_ADC_ALL},
                         {-1, -1, -1, -1, -1},
                         {-1, -1, -1, -1, -1}},
-    [CH_ADCSWAP] =      {CH_HW_ADCSWAP, -1, -1, 0,
+    /* [CH_ADCSWAP] = */ {CH_HW_ADCSWAP, -1, -1, 0,
                         {WVF_ADCSWAP_A, WVF_ADCSWAP_B, WVF_ADCSWAP_C, WVF_ADCSWAP_D, WVF_ADCSWAP_ALL},
                         {-1, -1, -1, -1, -1},
                         {-1, -1, -1, -1, -1}},
-    [CH_TBT] =          {CH_HW_TBT, -1, -1, 1,
+    /* [CH_TBT] =     */ {CH_HW_TBT, -1, -1, 1,
                         {WVF_TBTAMP_A, WVF_TBTAMP_B, WVF_TBTAMP_C, WVF_TBTAMP_D, WVF_TBTAMP_ALL},
                         {WVF_TBTPHASE_A, WVF_TBTPHASE_B, WVF_TBTPHASE_C, WVF_TBTPHASE_D, WVF_TBTPHASE_ALL},
                         {WVF_TBTPOS_A, WVF_TBTPOS_B, WVF_TBTPOS_C, WVF_TBTPOS_D, WVF_TBTPOS_ALL}},
-    [CH_FOFB] =         {CH_HW_FOFB, -1, -1, 1,
+    /* [CH_FOFB] =    */ {CH_HW_FOFB, -1, -1, 1,
                         {WVF_FOFBAMP_A, WVF_FOFBAMP_B, WVF_FOFBAMP_C, WVF_FOFBAMP_D, WVF_FOFBAMP_ALL},
                         {WVF_FOFBPHASE_A, WVF_FOFBPHASE_B, WVF_FOFBPHASE_C, WVF_FOFBPHASE_D, WVF_FOFBPHASE_ALL},
                         {WVF_FOFBPOS_A, WVF_FOFBPOS_B, WVF_FOFBPOS_C, WVF_FOFBPOS_D, WVF_FOFBPOS_ALL}},
@@ -100,18 +100,18 @@ static const channelMap_t channelMap[CH_END] = {
 /* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
-     [CH_HW_ADC] =              {CH_ADC},
-     [CH_HW_ADCSWAP] =          {CH_ADCSWAP},
+     /* [CH_HW_ADC] =       */  {CH_ADC},
+     /* [CH_HW_ADCSWAP] =   */  {CH_ADCSWAP},
      /* 2 = Unavailable     */  {-1},
      /* 3 = Unavailable     */  {-1},
      /* 4 = Unavailable     */  {-1},
      /* 5 = Unavailable     */  {-1},
-     [CH_HW_TBT] =              {CH_TBT},
+     /* [CH_HW_TBT] =       */  {CH_TBT},
      /* 7 = Unavailable     */  {-1},
      /* 8 = Unavailable     */  {-1},
      /* 9 = Unavailable     */  {-1},
      /* 10 = Unavailable    */  {-1},
-     [CH_HW_FOFB] =             {CH_FOFB}
+     /* [CH_HW_FOFB] =      */  {CH_FOFB}
 };
 
 /* Int32 functions mapping */
