@@ -83,3 +83,5 @@ numeric.o: numeric-lookup.h
 %.h: ../%.py
 	$(PYTHON) $< > $@
 
+install:
+	$(TOP)/install/install.sh /opt/epics/startup/ioc/bpm-epics-ioc $(TOP)
