@@ -442,11 +442,6 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus setParam32(int functionId, epicsUInt32 mask);
-        asynStatus getParam32(int functionId, epicsUInt32 *param,
-                epicsUInt32 mask);
-        asynStatus setParamDouble(int functionId);
-        asynStatus getParamDouble(int functionId, epicsFloat64 *param);
         asynStatus setAcquire();
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
         asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
@@ -459,6 +454,11 @@ class drvBPM : public asynNDArrayDriver {
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
         void computePositions(NDArray *pArrayAllChannels, int channel);
+        asynStatus setParam32(int functionId, epicsUInt32 mask);
+        asynStatus getParam32(int functionId, epicsUInt32 *param,
+                epicsUInt32 mask);
+        asynStatus setParamDouble(int functionId);
+        asynStatus getParamDouble(int functionId, epicsFloat64 *param);
         asynStatus setDataTrigChan (epicsUInt32 mask);
         asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
 };
