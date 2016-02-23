@@ -590,22 +590,28 @@ asynStatus drvBPM::bpmClientConnect(void)
     const char *bpmLogFile = "stdout";
     const char *functionName = "bpmClientConnect";
 
-    /* Check if BPM is already connected */
-    if (bpmClient != NULL) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: BPM client already connected\n",
-                driverName, functionName);
-        return status;
+    /* Connect BPM */
+    if (bpmClient == NULL) {
+        bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        if (bpmClient == NULL) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create bpmClient instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_bpm_client_err;
+        }
     }
 
-    /* Connect BPM */
-    bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
-    if (bpmClient == NULL) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s bpmClientConnect failure to create bpm_client instance\n",
-                driverName, functionName);
-        status = asynError;
-        goto create_bpm_client_err;
+    /* Connect ACQ BPM */
+    if (bpmClientAcq == NULL) {
+        bpmClientAcq = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        if (bpmClientAcq == NULL) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create bpmClientAcq instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_bpm_client_acq_err;
+        }
     }
 
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -614,6 +620,10 @@ asynStatus drvBPM::bpmClientConnect(void)
 
     pasynManager->exceptionConnect(this->pasynUserSelf);
 
+    return status;
+
+create_bpm_client_acq_err:
+    bpm_client_destroy (&bpmClient);
 create_bpm_client_err:
     return status;
 }
@@ -629,10 +639,16 @@ asynStatus drvBPM::bpmClientDisconnect(void)
             "%s: calling bpmClientDisconnect\n",
             driverName);
     asynStatus status = asynSuccess;
+
     if (bpmClient != NULL) {
         bpm_client_destroy (&bpmClient);
-        pasynManager->exceptionDisconnect(this->pasynUserSelf);
     }
+
+    if (bpmClientAcq != NULL) {
+        bpm_client_destroy (&bpmClientAcq);
+    }
+
+    pasynManager->exceptionDisconnect(this->pasynUserSelf);
     return status;
 }
 
@@ -1167,7 +1183,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = bpm_acq_start (bpmClient, service, &req);
+    err = bpm_acq_start (bpmClientAcq, service, &req);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1196,7 +1212,7 @@ asynStatus drvBPM::stopAcq()
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_set_acq_fsm_stop (bpmClient, service, fsm_stop);
+    err = bpm_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
     if (err != BPM_CLIENT_SUCCESS) {
         status = asynError;
         goto bpm_acq_stop_err;
@@ -1217,7 +1233,7 @@ int drvBPM::checkAcqCompletion()
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_acq_check (bpmClient, service);
+    err = bpm_acq_check (bpmClientAcq, service);
     if (err != BPM_CLIENT_SUCCESS) {
         status = 0;
         goto bpm_acq_not_finished;
@@ -1258,7 +1274,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = bpm_acq_get_curve (bpmClient, service, &acq_trans);
+    err = bpm_acq_get_curve (bpmClientAcq, service, &acq_trans);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"

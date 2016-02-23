@@ -422,6 +422,7 @@ class drvBPM : public asynNDArrayDriver {
     private:
         /* Our data */
         bpm_client_t *bpmClient;
+        bpm_client_t *bpmClientAcq;
         char *endpoint;
         int bpmNumber;
         int verbose;
