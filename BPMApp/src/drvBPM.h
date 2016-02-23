@@ -459,9 +459,6 @@ class drvBPM : public asynNDArrayDriver {
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
         void computePositions(NDArray *pArrayAllChannels, int channel);
-        template <typename epicsType>
-            asynStatus doReadArray(asynUser *pasynUser, epicsType *value,
-                    size_t nElements, size_t *nIn, epicsType *pValue);
         asynStatus setDataTrigChan (epicsUInt32 mask);
         asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
 };

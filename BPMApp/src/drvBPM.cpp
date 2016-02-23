@@ -1787,33 +1787,6 @@ get_param_err:
     return status;
 }
 
-template <typename epicsType>
-asynStatus drvBPM::doReadArray(asynUser *pasynUser, epicsType *value,
-                               size_t nElements, size_t *nIn, epicsType *pValue)
-{
-    int function = pasynUser->reason;
-    size_t ncopy = MAX_ARRAY_POINTS;
-    int status = asynSuccess;
-    const char *functionName = "doReadArray";
-
-    if (ncopy > nElements) {
-        ncopy = nElements;
-    }
-
-    memcpy(value, pValue, ncopy*sizeof(epicsType));
-    *nIn = ncopy;
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                  "%s:%s: status=%d, function=%d",
-                  driverName, functionName, status, function);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-              "%s:%s: function=%d\n",
-              driverName, functionName, function);
-    return (asynStatus)status;
-}
-
 asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
 {
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
