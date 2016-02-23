@@ -1065,7 +1065,7 @@ asynStatus drvBPM::setAcquire()
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
-        setParam32_r (P_Trigger, 0xFFFFFFFF);
+        setParam32 (P_Trigger, 0xFFFFFFFF);
     }
 
     switch (trigger_type) {
@@ -1318,7 +1318,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParam32_r(function, mask);
+        status = setParam32(function, mask);
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -1439,14 +1439,6 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::setParam32_r(int functionId, epicsUInt32 mask)
-{
-    lock();
-    asynStatus status = setParam32(functionId, mask);
-    unlock();
-    return status;
-}
-
 /** Called when asyn clients call pasynUInt32Digital->read().
  * For all parameters it gets the value in the parameter library..
  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
@@ -1467,7 +1459,7 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     }
     else {
         /* Get parameter, possibly from HW */
-        status = getParam32_r(function, value, mask);
+        status = getParam32(function, value, mask);
     }
 
     if (status)
@@ -1582,14 +1574,6 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::getParam32_r(int functionId, epicsUInt32 *param, epicsUInt32 mask)
-{
-    lock();
-    asynStatus status = getParam32(functionId, param, mask);
-    unlock();
-    return status;
-}
-
 /** Called when asyn clients call pasynInt32->write().
   * For all parameters it sets the value in the parameter library and calls any
   * registered callbacks..
@@ -1654,7 +1638,7 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     getParamName(function, &paramName);
 
     /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParamDouble_r(function);
+    status = setParamDouble(function);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks();
@@ -1719,14 +1703,6 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::setParamDouble_r(int functionId)
-{
-    lock();
-    asynStatus status = setParamDouble(functionId);
-    unlock();
-    return status;
-}
-
 /** Called when asyn clients call pasynFloat64->read().
   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
   * \param[in] value Value to read */
@@ -1742,7 +1718,7 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 
     /* Get double param, possibly from HW */
     if (function >= FIRST_COMMAND) {
-        status = getParamDouble_r(function, value);
+        status = getParamDouble(function, value);
     }
     else {
         /* Call base class */
@@ -1808,14 +1784,6 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param)
 bpm_get_func_param_err:
 no_registered_read_func:
 get_param_err:
-    return status;
-}
-
-asynStatus drvBPM::getParamDouble_r(int functionId, epicsFloat64 *param)
-{
-    lock();
-    asynStatus status = getParamDouble(functionId, param);
-    unlock();
     return status;
 }
 
