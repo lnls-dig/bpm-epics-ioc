@@ -329,10 +329,6 @@ class drvBPM : public asynNDArrayDriver {
         virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
         virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
         virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
-#if 0
-        virtual asynStatus readInt16Array(asynUser *pasynUser, epicsInt16 *value,
-                size_t nElements, size_t *nIn);
-#endif
 
         /* These methods are overwritten from asynPortDriver */
         virtual asynStatus connect(asynUser* pasynUser);
