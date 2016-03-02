@@ -24,8 +24,6 @@ asynSetTraceIOMask("$(BPM_NAME)",0,0x2)
 
 iocInit()
 
-< initCommands
-
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=${EPICS_HOSTNAME}-$(BPM_NUMBER):")
 set_savefile_name("auto_settings.req", "auto_settings_${EPICS_HOSTNAME}-$(BPM_NUMBER).sav")
