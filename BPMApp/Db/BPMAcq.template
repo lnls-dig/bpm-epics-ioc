@@ -92,7 +92,6 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
 	field(DTYP, "asynUInt32Digital")
 	field(DESC, "Set acquisition's trigger")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
-    field(PINI,"YES")
 	field(SCAN,"Passive")
 	field(NOBT,"3")
 	field(ZRVL,"0")

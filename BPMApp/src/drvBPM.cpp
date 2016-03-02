@@ -590,22 +590,28 @@ asynStatus drvBPM::bpmClientConnect(void)
     const char *bpmLogFile = "stdout";
     const char *functionName = "bpmClientConnect";
 
-    /* Check if BPM is already connected */
-    if (bpmClient != NULL) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: BPM client already connected\n",
-                driverName, functionName);
-        return status;
+    /* Connect BPM */
+    if (bpmClient == NULL) {
+        bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        if (bpmClient == NULL) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create bpmClient instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_bpm_client_err;
+        }
     }
 
-    /* Connect BPM */
-    bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
-    if (bpmClient == NULL) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s bpmClientConnect failure to create bpm_client instance\n",
-                driverName, functionName);
-        status = asynError;
-        goto create_bpm_client_err;
+    /* Connect ACQ BPM */
+    if (bpmClientAcq == NULL) {
+        bpmClientAcq = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        if (bpmClientAcq == NULL) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create bpmClientAcq instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_bpm_client_acq_err;
+        }
     }
 
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -614,6 +620,10 @@ asynStatus drvBPM::bpmClientConnect(void)
 
     pasynManager->exceptionConnect(this->pasynUserSelf);
 
+    return status;
+
+create_bpm_client_acq_err:
+    bpm_client_destroy (&bpmClient);
 create_bpm_client_err:
     return status;
 }
@@ -629,10 +639,16 @@ asynStatus drvBPM::bpmClientDisconnect(void)
             "%s: calling bpmClientDisconnect\n",
             driverName);
     asynStatus status = asynSuccess;
+
     if (bpmClient != NULL) {
         bpm_client_destroy (&bpmClient);
-        pasynManager->exceptionDisconnect(this->pasynUserSelf);
     }
+
+    if (bpmClientAcq != NULL) {
+        bpm_client_destroy (&bpmClientAcq);
+    }
+
+    pasynManager->exceptionDisconnect(this->pasynUserSelf);
     return status;
 }
 
@@ -641,6 +657,14 @@ void acqTask(void *drvPvt)
     drvBPM *pPvt = (drvBPM *)drvPvt;
     pPvt->acqTask();
 }
+
+/********************************************************************/
+/******************* BPM Acquisition functions **********************/
+/********************************************************************/
+
+/*
+ * BPM acquisition functions
+ */
 
 /** Acquisition task that runs as a separate thread.
 */
@@ -1065,7 +1089,7 @@ asynStatus drvBPM::setAcquire()
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
-        setParam32_r (P_Trigger, 0xFFFFFFFF);
+        setParam32 (P_Trigger, 0xFFFFFFFF);
     }
 
     switch (trigger_type) {
@@ -1159,7 +1183,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = bpm_acq_start (bpmClient, service, &req);
+    err = bpm_acq_start (bpmClientAcq, service, &req);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1188,7 +1212,7 @@ asynStatus drvBPM::stopAcq()
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_set_acq_fsm_stop (bpmClient, service, fsm_stop);
+    err = bpm_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
     if (err != BPM_CLIENT_SUCCESS) {
         status = asynError;
         goto bpm_acq_stop_err;
@@ -1209,7 +1233,7 @@ int drvBPM::checkAcqCompletion()
     snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_acq_check (bpmClient, service);
+    err = bpm_acq_check (bpmClientAcq, service);
     if (err != BPM_CLIENT_SUCCESS) {
         status = 0;
         goto bpm_acq_not_finished;
@@ -1250,7 +1274,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = bpm_acq_get_curve (bpmClient, service, &acq_trans);
+    err = bpm_acq_get_curve (bpmClientAcq, service, &acq_trans);
     if (err != BPM_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
@@ -1290,6 +1314,14 @@ get_ndarray_type_err:
     return status;
 }
 
+/********************************************************************/
+/********************* Asyn overrided methods  **********************/
+/********************************************************************/
+
+/*
+ * Asyn overrided methods that are called by higher layers
+ */
+
 /** Called when asyn clients call pasynUInt32Digital->write().
  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
@@ -1318,7 +1350,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParam32_r(function, mask);
+        status = setParam32(function, mask);
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -1334,6 +1366,164 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
                 driverName, functionName, function, paramName, value);
     return status;
 }
+
+/** Called when asyn clients call pasynUInt32Digital->read().
+ * For all parameters it gets the value in the parameter library..
+ * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ * \param[out] value Value to read. */
+asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
+        epicsUInt32 mask)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *functionName = "readUInt32Digital";
+    const char *paramName;
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+
+    if (function == P_DataTrigChan) {
+        status = getDataTrigChan(value, mask);
+    }
+    else {
+        /* Get parameter, possibly from HW */
+        status = getParam32(function, value, mask);
+    }
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s\n",
+                driverName, functionName, function, paramName);
+
+    return status;
+}
+
+/** Called when asyn clients call pasynInt32->write().
+  * For all parameters it sets the value in the parameter library and calls any
+  * registered callbacks..
+  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+  * \param[in] value Value to write. */
+asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    const char* functionName = "writeInt32";
+
+    /* Set the parameter in the parameter library. */
+    setIntegerParam(function, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+
+    /* Call base class */
+    status = asynNDArrayDriver::writeInt32(pasynUser, value);
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks();
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s, value=%d\n",
+                driverName, functionName, function, paramName, value);
+    return status;
+}
+
+/** Called when asyn clients call pasynInt32->read().
+ * This does nothing for now and just call the base implementation. If needed,
+ * add processing before calling the base class implementation
+  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+  * \param[in] value Value to read */
+asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
+{
+    asynStatus status = asynSuccess;
+
+    /* Call base class */
+    status = asynNDArrayDriver::readInt32(pasynUser, value);
+    return status;
+}
+
+/** Called when asyn clients call pasynFloat64->write().
+  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+  * \param[in] value Value to read */
+asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    const char* functionName = "writeFloat64";
+
+    /* Set the parameter in the parameter library. */
+    setDoubleParam(function, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+
+    /* Do operation on HW. Some functions do not set anything on hardware */
+    status = setParamDouble(function);
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks();
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%f",
+                driverName, functionName, status, function, paramName, value);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s, value=%f\n",
+                driverName, functionName, function, paramName, value);
+    return status;
+}
+
+/** Called when asyn clients call pasynFloat64->read().
+  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+  * \param[in] value Value to read */
+asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    const char* functionName = "readFloat64";
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+
+    /* Get double param, possibly from HW */
+    if (function >= FIRST_COMMAND) {
+        status = getParamDouble(function, value);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::readFloat64(pasynUser, value);
+    }
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s\n",
+                driverName, functionName, function, paramName);
+    return status;
+}
+
+/********************************************************************/
+/*************** Generic 32-bit/Double BPM Operations ***************/
+/********************************************************************/
+
+/*
+ * 32-bit/Double generic BPM operations. These will map to real
+ * functions defined in the structures. e.g., functionsInt32_t
+ * and functionsFloat64_t
+ */
 
 asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
 {
@@ -1439,49 +1629,6 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::setParam32_r(int functionId, epicsUInt32 mask)
-{
-    lock();
-    asynStatus status = setParam32(functionId, mask);
-    unlock();
-    return status;
-}
-
-/** Called when asyn clients call pasynUInt32Digital->read().
- * For all parameters it gets the value in the parameter library..
- * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- * \param[out] value Value to read. */
-asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
-        epicsUInt32 mask)
-{
-    int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    const char *functionName = "readUInt32Digital";
-    const char *paramName;
-
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
-
-    if (function == P_DataTrigChan) {
-        status = getDataTrigChan(value, mask);
-    }
-    else {
-        /* Get parameter, possibly from HW */
-        status = getParam32_r(function, value, mask);
-    }
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s",
-                driverName, functionName, status, function, paramName);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-                "%s:%s: function=%d, name=%s\n",
-                driverName, functionName, function, paramName);
-
-    return status;
-}
-
 asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         epicsUInt32 mask)
 {
@@ -1582,94 +1729,6 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::getParam32_r(int functionId, epicsUInt32 *param, epicsUInt32 mask)
-{
-    lock();
-    asynStatus status = getParam32(functionId, param, mask);
-    unlock();
-    return status;
-}
-
-/** Called when asyn clients call pasynInt32->write().
-  * For all parameters it sets the value in the parameter library and calls any
-  * registered callbacks..
-  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
-  * \param[in] value Value to write. */
-asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
-{
-    int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    const char *paramName;
-    const char* functionName = "writeInt32";
-
-    /* Set the parameter in the parameter library. */
-    setIntegerParam(function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
-
-    /* Call base class */
-    status = asynNDArrayDriver::writeInt32(pasynUser, value);
-
-    /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%d",
-                driverName, functionName, status, function, paramName, value);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-                "%s:%s: function=%d, name=%s, value=%d\n",
-                driverName, functionName, function, paramName, value);
-    return status;
-}
-
-/** Called when asyn clients call pasynInt32->read().
- * This does nothing for now and just call the base implementation. If needed,
- * add processing before calling the base class implementation
-  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
-  * \param[in] value Value to read */
-asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
-{
-    asynStatus status = asynSuccess;
-
-    /* Call base class */
-    status = asynNDArrayDriver::readInt32(pasynUser, value);
-    return status;
-}
-
-/** Called when asyn clients call pasynFloat64->write().
-  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
-  * \param[in] value Value to read */
-asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
-{
-    int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    const char *paramName;
-    const char* functionName = "writeFloat64";
-
-    /* Set the parameter in the parameter library. */
-    setDoubleParam(function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
-
-    /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParamDouble_r(function);
-
-    /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%f",
-                driverName, functionName, status, function, paramName, value);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-                "%s:%s: function=%d, name=%s, value=%f\n",
-                driverName, functionName, function, paramName, value);
-    return status;
-}
-
 asynStatus drvBPM::setParamDouble(int functionId)
 {
     asynStatus status = asynSuccess;
@@ -1716,47 +1775,6 @@ asynStatus drvBPM::setParamDouble(int functionId)
 bpm_set_func_param_err:
 no_registered_write_func:
 get_param_err:
-    return status;
-}
-
-asynStatus drvBPM::setParamDouble_r(int functionId)
-{
-    lock();
-    asynStatus status = setParamDouble(functionId);
-    unlock();
-    return status;
-}
-
-/** Called when asyn clients call pasynFloat64->read().
-  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
-  * \param[in] value Value to read */
-asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
-{
-    int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    const char *paramName;
-    const char* functionName = "readFloat64";
-
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
-
-    /* Get double param, possibly from HW */
-    if (function >= FIRST_COMMAND) {
-        status = getParamDouble_r(function, value);
-    }
-    else {
-        /* Call base class */
-        status = asynNDArrayDriver::readFloat64(pasynUser, value);
-    }
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s",
-                driverName, functionName, status, function, paramName);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-                "%s:%s: function=%d, name=%s\n",
-                driverName, functionName, function, paramName);
     return status;
 }
 
@@ -1811,40 +1829,14 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::getParamDouble_r(int functionId, epicsFloat64 *param)
-{
-    lock();
-    asynStatus status = getParamDouble(functionId, param);
-    unlock();
-    return status;
-}
+/********************************************************************/
+/*********************** Misc BPM Operations ************************/
+/********************************************************************/
 
-template <typename epicsType>
-asynStatus drvBPM::doReadArray(asynUser *pasynUser, epicsType *value,
-                               size_t nElements, size_t *nIn, epicsType *pValue)
-{
-    int function = pasynUser->reason;
-    size_t ncopy = MAX_ARRAY_POINTS;
-    int status = asynSuccess;
-    const char *functionName = "doReadArray";
-
-    if (ncopy > nElements) {
-        ncopy = nElements;
-    }
-
-    memcpy(value, pValue, ncopy*sizeof(epicsType));
-    *nIn = ncopy;
-
-    if (status)
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                  "%s:%s: status=%d, function=%d",
-                  driverName, functionName, status, function);
-    else
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-              "%s:%s: function=%d\n",
-              driverName, functionName, function);
-    return (asynStatus)status;
-}
+/*
+ * Miscellaneous functions that don't map easily
+ * to our generic handlers get/setParam[32/Double]
+ */
 
 asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
 {
