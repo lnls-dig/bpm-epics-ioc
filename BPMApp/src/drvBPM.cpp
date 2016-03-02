@@ -123,7 +123,6 @@ static const functionsInt32_t bpmSetGetMonitAmpBFunc = {"DSP", bpm_set_monit_amp
 static const functionsInt32_t bpmSetGetMonitAmpCFunc = {"DSP", bpm_set_monit_amp_ch2, bpm_get_monit_amp_ch2};
 static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", bpm_set_monit_amp_ch3, bpm_get_monit_amp_ch3};
 static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", bpm_set_monit_updt, bpm_get_monit_updt};
-static const functionsInt32_t bpmSetGetRffeSwFunc = {"RFFE", bpm_set_rffe_sw, bpm_get_rffe_sw};
 static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", bpm_set_sw, bpm_get_sw};
 static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", bpm_set_sw_dly, bpm_get_sw_dly};
 static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", bpm_set_sw_en, bpm_get_sw_en};
@@ -168,14 +167,6 @@ static const functions2Int32_t bpmSetGetAdcGainACFunc = {"SWAP", bpm_set_gain_a,
 static const functions2Int32_t bpmSetGetAdcGainCAFunc = {"SWAP", bpm_set_gain_c, bpm_get_gain_c, 2};
 static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", bpm_set_gain_b, bpm_get_gain_b, 2};
 static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", bpm_set_gain_d, bpm_get_gain_d, 2};
-
-/* Double functions mapping */
-static const functionsFloat64_t bpmSetGetRffeAtt1Func = {"RFFE", bpm_set_rffe_att1, bpm_get_rffe_att1};
-static const functionsFloat64_t bpmSetGetRffeAtt2Func = {"RFFE", bpm_set_rffe_att2, bpm_get_rffe_att2};
-static const functionsFloat64_t bpmSetGetRffeTemp1Func = {"RFFE", NULL, bpm_get_rffe_temp1};
-static const functionsFloat64_t bpmSetGetRffeTemp2Func = {"RFFE", NULL, bpm_get_rffe_temp2};
-static const functionsFloat64_t bpmSetGetRffeTemp3Func = {"RFFE", NULL, bpm_get_rffe_temp3};
-static const functionsFloat64_t bpmSetGetRffeTemp4Func = {"RFFE", NULL, bpm_get_rffe_temp4};
 
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
@@ -250,13 +241,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
     createParam(P_CompMethodString, asynParamInt32,                 &P_CompMethod);
     createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
-    createParam(P_RffeAtt1String,   asynParamFloat64,               &P_RffeAtt1);
-    createParam(P_RffeAtt2String,   asynParamFloat64,               &P_RffeAtt2);
-    createParam(P_RffeTemp1String,  asynParamFloat64,               &P_RffeTemp1);
-    createParam(P_RffeTemp2String,  asynParamFloat64,               &P_RffeTemp2);
-    createParam(P_RffeTemp3String,  asynParamFloat64,               &P_RffeTemp3);
-    createParam(P_RffeTemp4String,  asynParamFloat64,               &P_RffeTemp4);
-    createParam(P_RffeSwString,     asynParamUInt32Digital,         &P_RffeSw);
     createParam(P_SwString,         asynParamUInt32Digital,         &P_Sw);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
     createParam(P_SwEnString,       asynParamUInt32Digital,         &P_SwEn);
@@ -347,13 +331,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
     setIntegerParam(P_CompMethod,                           0);
-    setUIntDigitalParam(P_RffeSw,       0x1,                0xFFFFFFFF);
-    setDoubleParam(P_RffeAtt1,                              31.5);
-    setDoubleParam(P_RffeAtt2,                              31.5);
-    setDoubleParam(P_RffeTemp1,                             0.0);
-    setDoubleParam(P_RffeTemp2,                             0.0);
-    setDoubleParam(P_RffeTemp3,                             0.0);
-    setDoubleParam(P_RffeTemp4,                             0.0);
     setUIntDigitalParam(P_Sw,           0x1,                0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwEn,         0x0,                0xFFFFFFFF);
@@ -480,7 +457,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
-    bpmHwInt32Func[P_RffeSw] = bpmSetGetRffeSwFunc;
     bpmHwInt32Func[P_AcqControl] = bpmSetGetAcqControlFunc;
     bpmHwInt32Func[P_Trigger] = bpmSetGetAcqTriggerFunc;
     bpmHwInt32Func[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
@@ -500,15 +476,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHw2Int32Func[P_GainCA] = bpmSetGetAdcGainCAFunc;
     bpmHw2Int32Func[P_GainBD] = bpmSetGetAdcGainBDFunc;
     bpmHw2Int32Func[P_GainDB] = bpmSetGetAdcGainDBFunc;
-
-    /* BPM Float64 Functions mapping. Functions not mapped here are just written
-     * to the parameter library */
-    bpmHwFloat64Func[P_RffeAtt1] = bpmSetGetRffeAtt1Func;
-    bpmHwFloat64Func[P_RffeAtt2] = bpmSetGetRffeAtt2Func;
-    bpmHwFloat64Func[P_RffeTemp1] = bpmSetGetRffeTemp1Func;
-    bpmHwFloat64Func[P_RffeTemp2] = bpmSetGetRffeTemp2Func;
-    bpmHwFloat64Func[P_RffeTemp3] = bpmSetGetRffeTemp3Func;
-    bpmHwFloat64Func[P_RffeTemp4] = bpmSetGetRffeTemp4Func;
 
     lock();
     status = bpmClientConnect();
