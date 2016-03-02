@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -u
+set -e
 
 INSTALL_DIR=$1
 TOP_DIR=$2
@@ -18,10 +20,6 @@ if [ -z "$TOP_DIR" ]; then
     usage
     exit 1
 fi
-
-# Remove everything from INSTALL_DIR
-rm -rf "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR"
 
 # Copy generated EPICS files
 for dir in bin lib db dbd; do
