@@ -1,6 +1,8 @@
 TOP = ..
 include $(TOP)/configure/CONFIG
 
+all:
+
 install:
 	$(TOP)/install/install.sh /opt/epics/startup/ioc/bpm-epics-ioc $(TOP)
 
