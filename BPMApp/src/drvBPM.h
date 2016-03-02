@@ -228,13 +228,6 @@ typedef struct {
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
-#define P_RffeSwString              "RFFE_SW"               /* asynUInt32Digital,      r/w */
-#define P_RffeAtt1String            "RFFE_ATT1"             /* asynFloat64,            r/w */
-#define P_RffeAtt2String            "RFFE_ATT2"             /* asynFloat64,            r/w */
-#define P_RffeTemp1String           "RFFE_TEMP1"            /* asynfloat64             r/w */
-#define P_RffeTemp2String           "RFFE_TEMP2"            /* asynfloat64             r/w */
-#define P_RffeTemp3String           "RFFE_TEMP3"            /* asynfloat64             r/w */
-#define P_RffeTemp4String           "RFFE_TEMP4"            /* asynfloat64             r/w */
 #define P_SwString                  "ADC_SW"                /* asynUInt32Digital,      r/w */
 #define P_SwDlyString               "ADC_SWDLY"             /* asynUInt32Digital,      r/w */
 #define P_SwDivClkString            "ADC_SW_DIVCLK"         /* asynUInt32Digital,      r/w */
@@ -347,13 +340,6 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitRate;
         int P_BPMStatus;
         int P_CompMethod;
-        int P_RffeSw;
-        int P_RffeAtt1;
-        int P_RffeAtt2;
-        int P_RffeTemp1;
-        int P_RffeTemp2;
-        int P_RffeTemp3;
-        int P_RffeTemp4;
         int P_Sw;
         int P_SwDly;
         int P_SwEn;
