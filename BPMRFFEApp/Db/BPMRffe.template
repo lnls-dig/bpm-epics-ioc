@@ -1,0 +1,113 @@
+#
+# BPM database file
+#
+# Authors: Juliano Murari
+#          Lucas Russo
+#
+# Created Aug. 03, 2015
+#
+
+#########################
+# RFFE parameters
+#########################
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:att1"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE attenuator 1")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
+    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE attenuator 1")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE attenuator 2")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
+    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE attenuator 2")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp1_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE temperature 1")
+    field(PINI,"YES")
+    field(SCAN,"5 second")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP1")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp2_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE temperature 2")
+    field(PINI,"YES")
+    field(SCAN,"5 second")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP2")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp3_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE temperature 3")
+    field(PINI,"YES")
+    field(SCAN,"5 second")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP3")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE temperature 4")
+    field(PINI,"YES")
+    field(SCAN,"5 second")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP4")
+}
+
+record(mbbo,"$(P)-$(BPM_NUMBER):RFFE:sw"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set switching")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
+    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get switching")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"matched")
+    field(ONST,"direct")
+    field(TWST,"inverted")
+    field(THST,"switching")
+}
