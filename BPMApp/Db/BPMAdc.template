@@ -12,20 +12,20 @@
 #######################################
 
 record(mbbo, "$(P)-$(BPM_NUMBER):ADC:compMethod"){
-	field(DTYP, "asynInt32")
-	field(DESC, "Amplitude and phase compensation method")
+    field(DTYP, "asynInt32")
+    field(DESC, "Amplitude and phase compensation method")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_COMPMETHOD")
-	field(SCAN,"Passive")
+    field(SCAN,"Passive")
     field(PINI,"YES")
-	field(NOBT,"2")
-	field(ZRVL,"0")
-	field(ONVL,"1")
-	field(TWVL,"2")
-	field(THVL,"3")
-	field(ZRST,"disable")
-	field(ONST,"static")
-	field(TWST,"automatic")
-	field(THST,"last_automatic")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(THVL,"3")
+    field(ZRST,"disable")
+    field(ONST,"static")
+    field(TWST,"automatic")
+    field(THST,"last_automatic")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):ADC:gainAA"){

@@ -1,7 +1,7 @@
 record(RFFT,"$(P)-$(BPM_NUMBER):$(ARRAY_NAME):FFTData")
 {
-	field(INP, "$(P)-$(BPM_NUMBER):$(ARRAY_NAME):ArrayData.VAL CP MS")
-	field(NELM,"$(NELEMENTS)")
-	field(SPAN,"$(NELEMENTS)")
-	field(PREC,"3")
+    field(INP, "$(P)-$(BPM_NUMBER):$(ARRAY_NAME):ArrayData.VAL CP MS")
+    field(NELM,"$(NELEMENTS)")
+    field(SPAN,"$(NELEMENTS)")
+    field(PREC,"3")
 }
