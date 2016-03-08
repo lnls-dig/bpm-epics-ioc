@@ -536,7 +536,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510PllFunc"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 PLL function")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLFUNC")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510PllFunc_RBV")
 }
@@ -553,7 +553,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510PllStatus"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 PLL Status")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLSTATUS")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510PllStatus_RBV")
 }
@@ -570,7 +570,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:AD9510ClkSel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 reference clock")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CLKSEL")
     field(NOBT,"1")
     field(ZRVL,"1")
@@ -597,7 +597,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510ADiv"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 A divider")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510ADIV")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510ADiv_RBV")
 }
@@ -614,7 +614,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510BDiv"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 B divider")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510BDIV")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510BDiv_RBV")
 }
@@ -631,7 +631,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510Prescaler"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 prescaler")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PRESCALER")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510Prescaler_RBV")
 }
@@ -648,7 +648,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510RDiv"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 R divider")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510RDIV")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510RDiv_RBV")
 }
@@ -665,7 +665,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:AD9510PllPDown"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 PLL power down")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLPDOWN")
     field(NOBT,"2")
     field(ZRVL,"0")
@@ -700,7 +700,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510MuxStatus"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 mux status")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510MuxStatus_RBV")
 }
@@ -717,7 +717,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510CpCurrent"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 CP current")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CPCURRENT")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510CpCurrent_RBV")
 }
@@ -734,7 +734,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510Outputs"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 outputs")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510OUTPUTS")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:AD9510Outputs_RBV")
 }
