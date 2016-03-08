@@ -21,6 +21,9 @@ if [ -z "$TOP_DIR" ]; then
     exit 1
 fi
 
+# Create INSTALL_DIR
+mkdir -p "$INSTALL_DIR"
+
 # Copy generated EPICS files
 for dir in bin lib db dbd; do
     cp -r "$TOP_DIR/$dir" "$INSTALL_DIR"

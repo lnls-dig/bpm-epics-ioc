@@ -23,6 +23,5 @@ fi
 
 # Remove everything from INSTALL_DIR
 rm -rf "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR"
 
 echo BPM EPICS IOC uninstalled from "$INSTALL_DIR"
