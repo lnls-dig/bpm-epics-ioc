@@ -19,6 +19,9 @@
 #define MAX_BPM_PER_SLOT            2
 #define MAX_BPMS                    (MAX_SLOTS*MAX_BPM_PER_SLOT)
 
+#define BPM_NUMBER_MIN              1
+#define BPM_NUMBER_MAX              MAX_BPMS
+
 #define MAX_ADDR                    1
 
 /* BPM Mappping structure */

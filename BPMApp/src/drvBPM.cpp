@@ -211,6 +211,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         goto endpoint_dup_err;
     }
 
+    if (bpmNumber < BPM_NUMBER_MIN || bpmNumber > BPM_NUMBER_MAX) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s drvBPM invalid bpmNumber\n",
+                driverName, functionName);
+        status = asynError;
+        goto invalid_bpm_number_err;
+    }
+
     this->bpmNumber = bpmNumber;
     this->verbose = verbose;
     this->timeout = timeout;
@@ -521,6 +529,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     epicsAtExit(exitHandlerC, this);
 
+invalid_bpm_number_err:
+    free (this->endpoint);
 endpoint_dup_err:
     return;
 }
