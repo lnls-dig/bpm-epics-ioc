@@ -24,7 +24,7 @@
 #include "drvBPMRFFE.h"
 #include <epicsExport.h>
 
-static const boardMap_t boardMap[MAX_BPMS] = {
+static const boardMap_t boardMap[MAX_BPMS+1] = {
          /* board, bpm*/
     /* 0 (INVALID)  */ {-1, -1},
     /* 1            */ {1,   0},

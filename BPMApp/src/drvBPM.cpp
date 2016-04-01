@@ -49,7 +49,7 @@
                                             ADC_DFLT_MIN_GAIN) + 1) / 2)
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
 
-static const boardMap_t boardMap[MAX_BPMS] = {
+static const boardMap_t boardMap[MAX_BPMS+1] = {
          /* board, bpm*/
     /* 0 (INVALID)  */ {-1, -1},
     /* 1            */ {1,   0},
