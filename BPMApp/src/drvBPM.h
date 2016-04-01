@@ -254,6 +254,7 @@ typedef struct {
 #define P_AdcPgaString              "ADC_PGA"               /* asynUInt32Digital,      r/w */
 #define P_AdcTestDataString         "ADC_TESTDATA"          /* asynUInt32Digital,      r/w */
 #define P_AdcClkSelString           "ADC_CLKSEL"            /* asynUInt32Digital,      r/w */
+#define P_AdcSi57xFreqString        "ADC_SI57XFREQ"         /* asynUInt32Digital,      w/o */
 #define P_AdcAD9510DfltString       "ADC_AD9510DFLT"        /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllFuncString    "ADC_AD9510PLLFUNC"     /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllStatusString  "ADC_AD9510PLLSTATUS"   /* asynUInt32Digital,      r/w */
@@ -365,6 +366,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcPga;
         int P_AdcTestData;
         int P_AdcClkSel;
+        int P_AdcSi57xFreq;
         int P_AdcAD9510Dflt;
         int P_AdcAD9510PllFunc;
         int P_AdcAD9510PllStatus;

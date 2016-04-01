@@ -14,3 +14,4 @@ $(P)ADC:wdwEn
 $(P)ADC:wdwDly
 $(P)ADC:trigDir
 $(P)ADC:trigTerm
+$(P)ADC:si57xFreq

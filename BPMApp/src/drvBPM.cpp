@@ -169,6 +169,9 @@ static const functions2Int32_t bpmSetGetAdcGainCAFunc = {"SWAP", bpm_set_gain_c,
 static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", bpm_set_gain_b, bpm_get_gain_b, 2};
 static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", bpm_set_gain_d, bpm_get_gain_d, 2};
 
+/* Double functions mapping */
+static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC130M_4CH", bpm_set_si571_set_freq, NULL};
+
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
 
@@ -272,6 +275,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
     createParam(P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
     createParam(P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
+    createParam(P_AdcSi57xFreqString,
+                                    asynParamFloat64,               &P_AdcSi57xFreq);
     createParam(P_AdcTestDataString,
                                     asynParamUInt32Digital,         &P_AdcTestData);
     createParam(P_AdcAD9510DfltString,
@@ -362,6 +367,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcPga,       0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkSel,    0,                  0xFFFFFFFF);
+    setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510PllFunc,
@@ -485,6 +491,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHw2Int32Func[P_GainCA] = bpmSetGetAdcGainCAFunc;
     bpmHw2Int32Func[P_GainBD] = bpmSetGetAdcGainBDFunc;
     bpmHw2Int32Func[P_GainDB] = bpmSetGetAdcGainDBFunc;
+
+    /* BPM HW Double Functions mapping. Functions not mapped here are just written
+     * to the parameter library */
+    bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
 
     lock();
     status = bpmClientConnect();

@@ -520,6 +520,25 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:clkSel_RBV"){
     field(ONST,"fmc_conn")
 }
 
+record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set si57x frequency")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SI57XFREQ")
+#    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV")
+}
+
+# Not implemented on bpm-sw
+#
+# record(ai,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV"){
+#     field(DTYP,"asynFloat64")
+#     field(DESC,"get si57x frequency")
+#     field(PINI,"YES")
+#     field(SCAN,"Passive")
+#     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADDC_SI57XFREQ")
+# }
+
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:AD9510Defaults"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 to BPM default values")
