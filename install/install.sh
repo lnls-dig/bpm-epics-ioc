@@ -57,4 +57,9 @@ for dir in iocBPMRFFE; do
     cp -r "$TOP_DIR/iocBoot/$dir" "$INSTALL_DIR/iocBoot"
 done
 
+# Install integration service files and environment files
+cp --preserve=mode ../cfg/bpm-sw-be-ioc@.service /etc/systemd/system
+cp --preserve=mode ../cfg/bpm-sw-fe-ioc@.service /etc/systemd/system
+cp --preserve=mode ../cfg/bpm-epics-ioc /etc/sysconfig
+
 echo BPM EPICS IOC installed in "$INSTALL_DIR"
