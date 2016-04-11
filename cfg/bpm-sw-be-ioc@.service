@@ -1,6 +1,7 @@
 [Unit]
 Description=BPM BE IOC %p%I
 After=rc-local.service
+Wants=bpm-sw@%i.service
 
 [Service]
 # May not work with systems using SElinux
@@ -18,3 +19,6 @@ WorkingDirectory=${BPM_BE_IOC_STARTUP}
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
 Environment="BPM_ENDPOINT=tcp://127.0.0.1:8978" BPM_NUMBER=%i
 ExecStart=/usr/local/bin/procServ -f -i ^C^D -c /var/run/procServ/%p%i ${PROCSERV_BE_PORT_PREFIX}%i /usr/local/bin/${EPICS_HOST_ARCH}/BPM ${BPM_BE_IOC_STARTUP}/st.cmd -n %p%i
+
+[Install]
+WantedBy=multi-user.target
