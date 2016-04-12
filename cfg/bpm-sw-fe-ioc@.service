@@ -1,7 +1,8 @@
 [Unit]
 Description=BPM FE IOC %p%I
 After=rc-local.service
-Wants=bpm-sw@%i.service
+BindsTo=bpm-sw@%i.service
+After=bpm-sw@%i.service
 
 [Service]
 # May not work with systems using SElinux
