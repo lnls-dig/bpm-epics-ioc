@@ -1,7 +1,7 @@
 [Unit]
 Description=BPM BE IOC %p%I
 After=rc-local.service
-BindsTo=bpm-sw@%i.service
+Requires=bpm-sw@%i.service
 After=bpm-sw@%i.service
 
 [Service]
@@ -14,7 +14,4 @@ ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM
 # Run procServ with user ioc
-ExecStart=/usr/local/bin/procServ -f -i ^C^D -c /var/run/procServ/%p%i ${PROCSERV_BE_PORT_PREFIX}%i /usr/local/bin/${EPICS_HOST_ARCH}/BPM ${BPM_BE_IOC_STARTUP}/st.cmd -n %p%i
-
-[Install]
-WantedBy=multi-user.target
+ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_BE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
