@@ -5,20 +5,15 @@ BindsTo=bpm-sw@%i.service
 After=bpm-sw@%i.service
 
 [Service]
-# May not work with systems using SElinux
-User=ioc
-# Only execute IOC if st.cmd exists
-AssertPathExists=${BPM_FE_IOC_STARTUP}/st.cmd
+# Source environment
+EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
+Environment="BPM_ENDPOINT=tcp://127.0.0.1:8978" BPM_NUMBER=%i
 # Execute pre with root
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
-ExecStartPre=/bin/chown -R ioc:ioc /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
-ExecStartPre=/bin/chown -R ioc:ioc /var/run/procServ/%p%i
-WorkingDirectory=${BPM_FE_IOC_STARTUP}
+WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 # Run procServ with user ioc
-EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
-Environment="BPM_ENDPOINT=tcp://127.0.0.1:8978" BPM_NUMBER=%i
 ExecStart=/usr/local/bin/procServ -f -i ^C^D -c /var/run/procServ/%p%i ${PROCSERV_FE_PORT_PREFIX}%i /usr/local/bin/${EPICS_HOST_ARCH}/BPMRFFE ${BPM_FE_IOC_STARTUP}/st.cmd -n %p%i
 
 [Install]
