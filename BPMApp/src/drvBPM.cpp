@@ -170,7 +170,7 @@ static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", bpm_set_gain_b,
 static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", bpm_set_gain_d, bpm_get_gain_d, 2};
 
 /* Double functions mapping */
-static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", bpm_set_si571_set_freq, NULL};
+static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", bpm_set_si571_freq, bpm_get_si571_freq};
 
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
