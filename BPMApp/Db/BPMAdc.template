@@ -515,6 +515,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:clkSel_RBV"){
 record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
     field(DTYP,"asynFloat64")
     field(DESC,"set si57x frequency")
+    field(PREC, "3")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
@@ -526,6 +527,7 @@ record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
 # record(ai,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV"){
 #     field(DTYP,"asynFloat64")
 #     field(DESC,"get si57x frequency")
+#     field(PREC, "3")
 #     field(PINI,"YES")
 #     field(SCAN,"Passive")
 #     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADDC_SI57XFREQ")
