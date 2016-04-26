@@ -361,7 +361,6 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:trigTerm_RBV"){
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:randEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC RAND")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RAND")
     field(NOBT,"1")
@@ -375,7 +374,6 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:randEn"){
 record(mbbi,"$(P)-$(BPM_NUMBER):ADC:randEn_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC RAND")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RAND")
     field(NOBT,"1")
@@ -388,7 +386,6 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:randEn_RBV"){
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:dithEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC DITH")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_DITH")
     field(NOBT,"1")
@@ -402,7 +399,6 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:dithEn"){
 record(mbbi,"$(P)-$(BPM_NUMBER):ADC:dithEn_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC DITH")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_DITH")
     field(NOBT,"1")
@@ -415,7 +411,6 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:dithEn_RBV"){
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:shdnEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC SHDN")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SHDN")
     field(NOBT,"1")
@@ -429,7 +424,6 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:shdnEn"){
 record(mbbi,"$(P)-$(BPM_NUMBER):ADC:shdnEn_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC SHDN")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SHDN")
     field(NOBT,"1")
@@ -442,7 +436,6 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:shdnEn_RBV"){
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:pgaEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC PGA")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_PGA")
     field(NOBT,"1")
@@ -456,7 +449,6 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:pgaEn"){
 record(mbbi,"$(P)-$(BPM_NUMBER):ADC:pgaEn_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC PGA")
-    field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_PGA")
     field(NOBT,"1")
@@ -525,7 +517,7 @@ record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
     field(DESC,"set si57x frequency")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SI57XFREQ")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
 #    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV")
 }
 
@@ -536,7 +528,7 @@ record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
 #     field(DESC,"get si57x frequency")
 #     field(PINI,"YES")
 #     field(SCAN,"Passive")
-#     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADDC_SI57XFREQ")
+#     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADDC_SI57XFREQ")
 # }
 
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:AD9510Defaults"){
