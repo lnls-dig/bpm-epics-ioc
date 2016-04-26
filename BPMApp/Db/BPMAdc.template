@@ -515,21 +515,21 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:clkSel_RBV"){
 record(ao,"$(P)-$(BPM_NUMBER):ADC:si57xFreq"){
     field(DTYP,"asynFloat64")
     field(DESC,"set si57x frequency")
+    field(PINI,"YES")
     field(PREC, "3")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
-#    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV")
+    field(FLNK,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV")
 }
 
-# Not implemented on bpm-sw
-#
-# record(ai,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV"){
-#     field(DTYP,"asynFloat64")
-#     field(DESC,"get si57x frequency")
-#     field(PREC, "3")
-#     field(SCAN,"Passive")
-#     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADDC_SI57XFREQ")
-# }
+record(ai,"$(P)-$(BPM_NUMBER):ADC:si57xFreq_RBV"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get si57x frequency")
+    field(PINI,"YES")
+    field(PREC, "3")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
+}
 
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:AD9510Defaults"){
     field(DTYP,"asynUInt32Digital")
