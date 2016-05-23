@@ -26,6 +26,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
     field(FLNK,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV")
+    field(EGU, "Hz")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
@@ -34,6 +35,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(EGU, "Hz")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):INFO:TBTRate_RBV"){

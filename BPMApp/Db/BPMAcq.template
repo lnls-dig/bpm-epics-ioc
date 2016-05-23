@@ -316,6 +316,7 @@ record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
     field(SCAN,"Passive")
     field(FLNK,"$(P)-$(BPM_NUMBER):ACQ:updateTime_RBV")
+    field(EGU, "s")
 }
 
 record(ai, "$(P)-$(BPM_NUMBER):ACQ:updateTime_RBV"){
@@ -324,4 +325,5 @@ record(ai, "$(P)-$(BPM_NUMBER):ACQ:updateTime_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
+    field(EGU, "s")
 }

@@ -206,6 +206,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:swDly"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWDLY")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:swDly_RBV")
+    field(EGU, "clks")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):ADC:swDly_RBV"){
@@ -214,6 +215,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:swDly_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWDLY")
+    field(EGU, "clks")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):ADC:swDivClk"){
@@ -294,6 +296,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:wdwDly"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDWDLY")
     field(FLNK,"$(P)-$(BPM_NUMBER):ADC:wdwDly_RBV")
+    field(EGU, "clks")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):ADC:wdwDly_RBV"){
@@ -302,6 +305,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:wdwDly_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_WDWDLY")
+    field(EGU, "clks")
 }
 
 record(mbbo,"$(P)-$(BPM_NUMBER):ADC:trigDir"){

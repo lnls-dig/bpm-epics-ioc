@@ -18,6 +18,7 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:att1"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV")
+    field(EGU, "dB")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
@@ -26,6 +27,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
+    field(EGU, "dB")
 }
 
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
@@ -35,6 +37,7 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
     field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV")
+    field(EGU, "dB")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV"){
@@ -43,6 +46,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
+    field(EGU, "dB")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp1_RBV"){
@@ -51,6 +55,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp1_RBV"){
     field(PINI,"YES")
     field(SCAN,"5 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP1")
+    field(EGU, "oC")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp2_RBV"){
@@ -59,6 +64,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp2_RBV"){
     field(PINI,"YES")
     field(SCAN,"5 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP2")
+    field(EGU, "oC")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp3_RBV"){
@@ -67,6 +73,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp3_RBV"){
     field(PINI,"YES")
     field(SCAN,"5 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP3")
+    field(EGU, "oC")
 }
 
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
@@ -75,6 +82,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
     field(PINI,"YES")
     field(SCAN,"5 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP4")
+    field(EGU, "oC")
 }
 
 record(mbbo,"$(P)-$(BPM_NUMBER):RFFE:sw"){

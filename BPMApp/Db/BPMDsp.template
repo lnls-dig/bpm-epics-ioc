@@ -18,6 +18,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:Kx"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KX")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Kx_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:Kx_RBV"){
@@ -26,6 +27,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Kx_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KX")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Ky"){
@@ -35,6 +37,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:Ky"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KY")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Ky_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:Ky_RBV"){
@@ -43,6 +46,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Ky_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KY")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Kq"){
@@ -52,6 +56,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:Kq"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KQ")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:Kq_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:Kq_RBV"){
@@ -60,6 +65,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:Kq_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KQ")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):DSP:Ksum"){
@@ -86,6 +92,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:XOffset"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_XOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:XOffset_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:XOffset_RBV"){
@@ -94,6 +101,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:XOffset_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_XOFFSET")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):DSP:YOffset"){
@@ -103,6 +111,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:YOffset"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_YOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:YOffset_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:YOffset_RBV"){
@@ -111,6 +120,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:YOffset_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_YOFFSET")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):DSP:QOffset"){
@@ -120,6 +130,7 @@ record(longout,"$(P)-$(BPM_NUMBER):DSP:QOffset"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
     field(FLNK,"$(P)-$(BPM_NUMBER):DSP:QOffset_RBV")
+    field(EGU, "nm")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):DSP:QOffset_RBV"){
@@ -128,6 +139,7 @@ record(longin,"$(P)-$(BPM_NUMBER):DSP:QOffset_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
+    field(EGU, "nm")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):MONIT:Updt"){
@@ -156,6 +168,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:A"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_A")
+    field(EGU, "au")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:B"){
@@ -166,6 +179,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:B"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_B")
+    field(EGU, "au")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:C"){
@@ -176,6 +190,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:C"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_C")
+    field(EGU, "au")
 }
 
 record(longin,"$(P)-$(BPM_NUMBER):MONIT:D"){
@@ -186,6 +201,7 @@ record(longin,"$(P)-$(BPM_NUMBER):MONIT:D"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_D")
+    field(EGU, "au")
 }
 
 # This keeps the MONIT/AMP records synched
@@ -209,6 +225,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:X"){
     field(INPF,"$(P)-$(BPM_NUMBER):DSP:XOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Y")
+    field(EGU, "nm")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
@@ -224,6 +241,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
     field(INPF,"$(P)-$(BPM_NUMBER):DSP:YOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Q")
+    field(EGU, "nm")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Q"){
@@ -239,6 +257,7 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Q"){
     field(INPF,"$(P)-$(BPM_NUMBER):DSP:QOffset.VAL PP")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:SUM")
+    field(EGU, "nm")
 }
 
 record(calcout,"$(P)-$(BPM_NUMBER):MONIT:SUM"){
@@ -251,4 +270,5 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:SUM"){
     field(INPC,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
     field(INPD,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
     field(OUT, "0")
+    field(EGU, "au")
 }
