@@ -224,6 +224,20 @@ typedef struct {
     readFloat64Fp read;
 } functionsFloat64_t;
 
+/* Write 32-bit function pointer with channel selection */
+typedef bpm_client_err_e (*writeInt32ChanFp)(bpm_client_t *self, char *service,
+	uint32_t chan, uint32_t param);
+/* Read 32-bit function pointer with channel selection */
+typedef bpm_client_err_e (*readInt32ChanFp)(bpm_client_t *self, char *service,
+	uint32_t chan, uint32_t *param);
+
+/* BPM command dispatch table */
+typedef struct {
+    const char *serviceName;
+    writeInt32ChanFp write;
+    readInt32ChanFp read;
+} functionsInt32Chan_t;
+
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
@@ -297,6 +311,19 @@ typedef struct {
 #define P_MonitPosCString           "MONITPOS_C"            /* asynUInt32Digital,      r/o */
 #define P_MonitPosDString           "MONITPOS_D"            /* asynUInt32Digital,      r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
+#define P_TriggerChanString         "TRIGGER_CHAN"          /* asynUInt32Digital,      r/w */
+#define P_TriggerDirString          "TRIGGER_DIR"           /* asynUInt32Digital,      r/w */
+#define P_TriggerDirPolString       "TRIGGER_DIR_POL"       /* asynUInt32Digital,      r/w */
+#define P_TriggerRcvCntRstString    "TRIGGER_RCV_CNT_RST"   /* asynUInt32Digital,      r/w */
+#define P_TriggerTrnCntRstString    "TRIGGER_TRN_CNT_RST"   /* asynUInt32Digital,      r/w */
+#define P_TriggerRcvLenString       "TRIGGER_RCV_LEN"       /* asynUInt32Digital,      r/w */
+#define P_TriggerTrnLenString       "TRIGGER_TRN_LEN"       /* asynUInt32Digital,      r/w */
+#define P_TriggerCntRcvString       "TRIGGER_CNT_RCV"       /* asynUInt32Digital,      r/w */
+#define P_TriggerCntTrnString       "TRIGGER_CNT_TRN"       /* asynUInt32Digital,      r/w */
+#define P_TriggerRcvSrcString       "TRIGGER_RCV_SRC"       /* asynUInt32Digital,      r/w */
+#define P_TriggerTrnSrcString       "TRIGGER_TRN_SRC"       /* asynUInt32Digital,      r/w */
+#define P_TriggerRcvInSelString     "TRIGGER_RCV_IN_SEL"    /* asynUInt32Digital,      r/w */
+#define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
 
 typedef enum {
     /* These trigger types matches the HW */
@@ -408,7 +435,20 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosC;
         int P_MonitPosD;
         int P_MonitUpdt;
-#define LAST_COMMAND P_MonitUpdt
+        int P_TriggerChan;
+        int P_TriggerDir;
+        int P_TriggerDirPol;
+        int P_TriggerRcvCntRst;
+        int P_TriggerTrnCntRst;
+        int P_TriggerRcvLen;
+        int P_TriggerTrnLen;
+        int P_TriggerCntRcv;
+        int P_TriggerCntTrn;
+        int P_TriggerRcvSrc;
+        int P_TriggerTrnSrc;
+        int P_TriggerRcvInSel;
+        int P_TriggerTrnOutSel;
+#define LAST_COMMAND P_TriggerTrnOutSel
 
     private:
         /* Our data */
@@ -426,6 +466,7 @@ class drvBPM : public asynNDArrayDriver {
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
+        std::unordered_map<int, functionsInt32Chan_t> bpmHwInt32ChanFunc;
 
         /* Our private methods */
         asynStatus bpmClientConnect(void);

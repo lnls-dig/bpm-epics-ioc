@@ -49,6 +49,8 @@
                                             ADC_DFLT_MIN_GAIN) + 1) / 2)
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
 
+#define CH_DFLT_TRIGGER_CHAN              0
+
 static const boardMap_t boardMap[MAX_BPMS+1] = {
          /* board, bpm*/
     /* 0 (INVALID)  */ {-1, -1},
@@ -171,6 +173,21 @@ static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", bpm_set_gain_d,
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", bpm_set_si571_freq, bpm_get_si571_freq};
+
+/* Int32 with channel selection functions mapping */
+static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", bpm_set_trigger_dir, bpm_get_trigger_dir};
+static const functionsInt32Chan_t bpmSetGetTrigDirPolFunc = {"TRIGGER_IFACE", bpm_set_trigger_dir_pol, bpm_get_trigger_dir_pol};
+static const functionsInt32Chan_t bpmSetGetTrigRcvCntRstFunc = {"TRIGGER_IFACE", bpm_set_trigger_rcv_count_rst, bpm_get_trigger_rcv_count_rst};
+static const functionsInt32Chan_t bpmSetGetTrigTrnCntRstFunc = {"TRIGGER_IFACE", bpm_set_trigger_transm_count_rst, bpm_get_trigger_transm_count_rst};
+static const functionsInt32Chan_t bpmSetGetTrigRcvLenFunc = {"TRIGGER_IFACE", bpm_set_trigger_rcv_len, bpm_get_trigger_rcv_len};
+static const functionsInt32Chan_t bpmSetGetTrigTrnLenFunc = {"TRIGGER_IFACE", bpm_set_trigger_transm_len, bpm_get_trigger_transm_len};
+static const functionsInt32Chan_t bpmSetGetTrigCntRcvFunc = {"TRIGGER_IFACE", bpm_set_trigger_count_rcv, bpm_get_trigger_count_rcv};
+static const functionsInt32Chan_t bpmSetGetTrigCntTrnFunc = {"TRIGGER_IFACE", bpm_set_trigger_count_transm, bpm_get_trigger_count_transm};
+
+static const functionsInt32Chan_t bpmSetGetTrigRcvSrcFunc = {"TRIGGER_MUX", bpm_set_trigger_rcv_src, bpm_get_trigger_rcv_src};
+static const functionsInt32Chan_t bpmSetGetTrigTrnSrcFunc = {"TRIGGER_MUX", bpm_set_trigger_transm_src, bpm_get_trigger_transm_src};
+static const functionsInt32Chan_t bpmSetGetTrigRcvSelFunc = {"TRIGGER_MUX", bpm_set_trigger_rcv_in_sel, bpm_get_trigger_rcv_in_sel};
+static const functionsInt32Chan_t bpmSetGetTrigTrnSelFunc = {"TRIGGER_MUX", bpm_set_trigger_transm_out_sel, bpm_get_trigger_transm_out_sel};
 
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
@@ -336,6 +353,20 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
     createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
 
+    createParam(P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
+    createParam(P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
+    createParam(P_TriggerDirPolString,    asynParamUInt32Digital,   &P_TriggerDirPol);
+    createParam(P_TriggerRcvCntRstString, asynParamUInt32Digital,   &P_TriggerRcvCntRst);
+    createParam(P_TriggerTrnCntRstString, asynParamUInt32Digital,   &P_TriggerTrnCntRst);
+    createParam(P_TriggerRcvLenString,    asynParamUInt32Digital,   &P_TriggerRcvLen);
+    createParam(P_TriggerTrnLenString,    asynParamUInt32Digital,   &P_TriggerTrnLen);
+    createParam(P_TriggerCntRcvString,    asynParamUInt32Digital,   &P_TriggerCntRcv);
+    createParam(P_TriggerCntTrnString,    asynParamUInt32Digital,   &P_TriggerCntTrn);
+    createParam(P_TriggerRcvSrcString,    asynParamUInt32Digital,   &P_TriggerRcvSrc);
+    createParam(P_TriggerTrnSrcString,    asynParamUInt32Digital,   &P_TriggerTrnSrc);
+    createParam(P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
+    createParam(P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
+
     /* Set the initial values of some parameters */
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
@@ -427,6 +458,22 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitPosC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitPosD,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
+
+    setIntegerParam(P_TriggerChan,                          CH_DFLT_TRIGGER_CHAN);
+    setUIntDigitalParam(P_MonitUpdt,        0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+    setUIntDigitalParam(P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+    setUIntDigitalParam(P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerCntRcv,    0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerCntTrn,    0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerRcvLen,    1,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerTrnLen,    1,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerRcvSrc,    0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerRcvInSel,  0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks();
@@ -495,6 +542,21 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
+
+    /* BPM HW Int32 with channel selection. Functions not mapped here are just written
+     * to the parameter library */
+    bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
+    bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvCntRst] = bpmSetGetTrigRcvCntRstFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnCntRst] = bpmSetGetTrigTrnCntRstFunc;
+    bpmHwInt32ChanFunc[P_TriggerCntRcv] = bpmSetGetTrigCntRcvFunc;
+    bpmHwInt32ChanFunc[P_TriggerCntTrn] = bpmSetGetTrigCntTrnFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvLen] = bpmSetGetTrigRcvLenFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnLen] = bpmSetGetTrigTrnLenFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvSrc] = bpmSetGetTrigRcvSrcFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnSrc] = bpmSetGetTrigTrnSrcFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvInSel] = bpmSetGetTrigRcvSelFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnOutSel] = bpmSetGetTrigTrnSelFunc;
 
     lock();
     status = bpmClientConnect();
@@ -1515,17 +1577,21 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 
 asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
 {
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramLib = 0;
+    epicsUInt32 triggerChan = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "setParam32";
     char service[50];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
+    std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
     status = getUIntDigitalParam(functionId, &paramLib, mask);
+    /* Get trigger channel for possible use */
+    status |= getUIntDigitalParam(P_TriggerChan, &triggerChan, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -1556,7 +1622,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
             goto bpm_set_func1_param_err;
         }
         /* We've done our job here. No need to check other maps */
-        return status;
+        return (asynStatus)status;
     }
 
     /* Lookup function on 2 32-bit map */
@@ -1604,9 +1670,45 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
             goto bpm_set_func2_param_err;
         }
         /* We've done our job here. No need to check other maps */
-        return status;
+        return (asynStatus)status;
     }
 
+    /* Lookup function on 32-bit with channel selection map */
+    funcChan = bpmHwInt32ChanFunc.find (functionId);
+    if (funcChan != bpmHwInt32ChanFunc.end()) {
+        /* Get correct service name. If we are dealing with TRIGGER_IFACE
+         * service, the correct index for it is always 0, as it's the same
+         * for both BPMs */
+        if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
+            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s0",
+                    boardMap[this->bpmNumber].board, funcChan->second.serviceName);
+        }
+        else {
+            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+                    boardMap[this->bpmNumber].board, funcChan->second.serviceName,
+                    boardMap[this->bpmNumber].bpm);
+        }
+
+        /* Silently exit if no function is registered */
+        if(!funcChan->second.write) {
+            goto no_registered_write_func_chan;
+        }
+
+        /* Function found. Execute it */
+        err = funcChan->second.write(bpmClient, service, triggerChan, paramLib);
+        if (err != BPM_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcChan->second.write() failure\n",
+                    driverName, functionName);
+            status = asynError;
+            goto bpm_set_func_chan_param_err;
+        }
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+bpm_set_func_chan_param_err:
+no_registered_write_func_chan:
 bpm_set_func2_param_err:
 no_registered_write_func2:
 bpm_get_func2_param_err:
@@ -1614,24 +1716,28 @@ no_registered_read_func2:
 bpm_set_func1_param_err:
 no_registered_write_func:
 get_param_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         epicsUInt32 mask)
 {
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramHw = 0;
+    epicsUInt32 triggerChan = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "getParam32";
     char service[50];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
+    std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(functionId, param, mask);
+    /* Get trigger channel for possible use */
+    status |= getUIntDigitalParam(P_TriggerChan, &triggerChan, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
@@ -1667,7 +1773,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         paramHw &= mask;
         *param = paramHw;
         /* We've done our job here. No need to check other maps */
-        return status;
+        return (asynStatus)status;
     }
 
     /* Lookup function */
@@ -1706,15 +1812,56 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         paramHw &= mask;
         *param = paramHw;
         /* We've done our job here. No need to check other maps */
-        return status;
+        return (asynStatus)status;
     }
 
+    /* Lookup function */
+    funcChan = bpmHwInt32ChanFunc.find (functionId);
+    if (funcChan != bpmHwInt32ChanFunc.end()) {
+        *param = 0;
+        /* Get correct service name. If we are dealing with TRIGGER_IFACE
+         * service, the correct index for it is always 0, as it's the same
+         * for both BPMs */
+        if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
+            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s0",
+                    boardMap[this->bpmNumber].board, funcChan->second.serviceName);
+        }
+        else {
+            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+                    boardMap[this->bpmNumber].board, funcChan->second.serviceName,
+                    boardMap[this->bpmNumber].bpm);
+        }
+
+        /* Silently exit if no function is registered */
+        if(!funcChan->second.read) {
+            goto no_registered_read_func_chan;
+        }
+
+        /* Function found. Execute it */
+        err = funcChan->second.read(bpmClient, service, triggerChan, &paramHw);
+        if (err != BPM_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcChan->second.read() failure\n",
+                    driverName, functionName);
+            status = asynError;
+            goto bpm_get_func_chan_param_err;
+        }
+
+        /* Mask parameter according to the received mask */
+        paramHw &= mask;
+        *param = paramHw;
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+bpm_get_func_chan_param_err:
+no_registered_read_func_chan:
 bpm_get_func2_param_err:
 no_registered_read_func2:
 bpm_get_func1_param_err:
 no_registered_read_func:
 get_param_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::setParamDouble(int functionId)
