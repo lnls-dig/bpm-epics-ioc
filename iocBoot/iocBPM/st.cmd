@@ -16,6 +16,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${EPICS_HOSTNAME}, PORT=$(B
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAdc.template", "P=${EPICS_HOSTNAME}, PORT=$(BPM_NAME), ADDR=0, BPM_NUMBER=$(BPM_NUMBER), TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${EPICS_HOSTNAME}, PORT=$(BPM_NAME), ADDR=0, BPM_NUMBER=$(BPM_NUMBER), TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${EPICS_HOSTNAME}, PORT=$(BPM_NAME), ADDR=0, BPM_NUMBER=$(BPM_NUMBER), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMTrigger.template", "P=${EPICS_HOSTNAME}, PORT=$(BPM_NAME), ADDR=0, BPM_NUMBER=$(BPM_NUMBER), TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=asyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < waveformPlugins.cmd
