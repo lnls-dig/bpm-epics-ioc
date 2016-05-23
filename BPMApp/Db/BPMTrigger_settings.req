@@ -1,0 +1,11 @@
+$(P)TRIGGER:chan
+$(P)TRIGGER:dir
+$(P)TRIGGER:dirPol
+$(P)TRIGGER:rcvLen
+$(P)TRIGGER:trnLen
+$(P)TRIGGER:rcvCnt
+$(P)TRIGGER:trnCnt
+$(P)TRIGGER:rcvSrc
+$(P)TRIGGER:trnSrc
+$(P)TRIGGER:rcvInSel
+$(P)TRIGGER:trnOutSel
