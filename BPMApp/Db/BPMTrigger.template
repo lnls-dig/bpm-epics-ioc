@@ -198,6 +198,11 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc_RBV"){
     field(DESC,"Get trigger transmit source")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(zrst,"ext")
+    field(onst,"int")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
 }
 
