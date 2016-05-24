@@ -1139,7 +1139,7 @@ asynStatus drvBPM::setAcquire()
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
-        setParam32 (P_Trigger, 0xFFFFFFFF);
+        setParam32 (P_Trigger, 0xFFFFFFFF, 0);
     }
 
     switch (trigger_type) {
@@ -1381,6 +1381,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "writeUInt32Digital";
 
@@ -1388,6 +1389,14 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     setUIntDigitalParam(function, value, mask);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+         return status;
+     }
 
     /* Some operations need some special handling*/
     if (function == P_Trigger) {
@@ -1400,7 +1409,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParam32(function, mask);
+        status = setParam32(function, mask, addr);
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -1426,18 +1435,27 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *functionName = "readUInt32Digital";
     const char *paramName;
 
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+         return status;
+     }
 
     if (function == P_DataTrigChan) {
         status = getDataTrigChan(value, mask);
     }
     else {
         /* Get parameter, possibly from HW */
-        status = getParam32(function, value, mask);
+        status = getParam32(function, value, mask, addr);
     }
 
     if (status)
@@ -1598,12 +1616,11 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
  * and functionsFloat64_t
  */
 
-asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
+asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramLib = 0;
-    epicsInt32 addr = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "setParam32";
@@ -1613,8 +1630,6 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
     status = getUIntDigitalParam(functionId, &paramLib, mask);
-    /* Get trigger channel for possible use */
-    status |= getAddress(pasynUserSelf, &addr);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -1743,12 +1758,11 @@ get_param_err:
 }
 
 asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
-        epicsUInt32 mask)
+        epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramHw = 0;
-    epicsInt32 addr = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "getParam32";
@@ -1759,8 +1773,6 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(functionId, param, mask);
-    /* Get trigger channel for possible use */
-    status |= getAddress(pasynUserSelf, &addr);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
