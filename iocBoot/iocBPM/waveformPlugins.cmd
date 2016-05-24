@@ -37,7 +37,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTN
 ##################### TBT AMP Waveforms ##########################
 
 NDStdArraysConfigure("TBT_A_Array", $(QSIZE), 0, "$(PORT)", 10)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_A:,PORT=TBT_A_Array,ADDR=5,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=10")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_A:,PORT=TBT_A_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=10")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_A:,PORT=TBT_A_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 NDStdArraysConfigure("TBT_B_Array", $(QSIZE), 0, "$(PORT)", 11)
@@ -55,7 +55,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTN
 ##################### TBT POS Waveforms ##########################
 
 NDStdArraysConfigure("TBT_X_Array", $(QSIZE), 0, "$(PORT)", 15)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_X:,PORT=TBT_X_Array,ADDR=5,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=15")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_X:,PORT=TBT_X_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=15")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=TBT_X:,PORT=TBT_X_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 NDStdArraysConfigure("TBT_Y_Array", $(QSIZE), 0, "$(PORT)", 16)
@@ -73,7 +73,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTN
 ##################### FOFB AMP Waveforms ##########################
 
 NDStdArraysConfigure("FOFB_A_Array", $(QSIZE), 0, "$(PORT)", 25)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_A:,PORT=FOFB_A_Array,ADDR=5,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=25")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_A:,PORT=FOFB_A_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=25")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_A:,PORT=FOFB_A_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 NDStdArraysConfigure("FOFB_B_Array", $(QSIZE), 0, "$(PORT)", 26)
@@ -91,7 +91,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTN
 ##################### FOFB POS Waveforms ##########################
 
 NDStdArraysConfigure("FOFB_X_Array", $(QSIZE), 0, "$(PORT)", 30)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_X:,PORT=FOFB_X_Array,ADDR=5,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=30")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_X:,PORT=FOFB_X_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=30")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=FOFB_X:,PORT=FOFB_X_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 NDStdArraysConfigure("FOFB_Y_Array", $(QSIZE), 0, "$(PORT)", 31)
