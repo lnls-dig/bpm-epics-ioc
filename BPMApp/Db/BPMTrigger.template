@@ -123,7 +123,7 @@ record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt"){
     field(DESC,"Set trigger receive counter")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt_RBV")
 }
 
@@ -132,7 +132,7 @@ record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt_RBV"){
     field(DESC,"Get trigger receive counter")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt"){
@@ -140,7 +140,7 @@ record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt"){
     field(DESC,"Set trigger transmit counter")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt_RBV")
 }
 
@@ -149,7 +149,7 @@ record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt_RBV"){
     field(DESC,"Get trigger transmit counter")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc"){
