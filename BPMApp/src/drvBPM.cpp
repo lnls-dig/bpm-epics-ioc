@@ -1580,7 +1580,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
     int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramLib = 0;
-    epicsUInt32 triggerChan = 0;
+    epicsUInt32 addr = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "setParam32";
@@ -1591,7 +1591,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
 
     status = getUIntDigitalParam(functionId, &paramLib, mask);
     /* Get trigger channel for possible use */
-    status |= getUIntDigitalParam(P_TriggerChan, &triggerChan, mask);
+    status |= getAddress(pasynUserSelf, &addr);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -1695,7 +1695,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
         }
 
         /* Function found. Execute it */
-        err = funcChan->second.write(bpmClient, service, triggerChan, paramLib);
+        err = funcChan->second.write(bpmClient, service, addr, paramLib);
         if (err != BPM_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.write() failure\n",
@@ -1725,7 +1725,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramHw = 0;
-    epicsUInt32 triggerChan = 0;
+    epicsInt32 addr = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "getParam32";
@@ -1737,7 +1737,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(functionId, param, mask);
     /* Get trigger channel for possible use */
-    status |= getUIntDigitalParam(P_TriggerChan, &triggerChan, mask);
+    status |= getAddress(pasynUserSelf, &addr);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
@@ -1838,7 +1838,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         }
 
         /* Function found. Execute it */
-        err = funcChan->second.read(bpmClient, service, triggerChan, &paramHw);
+        err = funcChan->second.read(bpmClient, service, addr, &paramHw);
         if (err != BPM_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.read() failure\n",

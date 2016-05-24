@@ -78,7 +78,16 @@ typedef enum {
     WVF_END
 } wvf_types;
 
+/* FIXME: This number must be at least the number of triggers
+ * available on the FPGA. Although this is used to alloc the number
+ * of waveforms, it's not used by getAddress () by the NDArray plugins,
+ * as this function returns the address that is declared on plugin startup
+ * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
+ * of the addresses that are set by the database.
+ * In summary, we use the different addresses to call different trigger channel
+ * functions */
 #define MAX_WAVEFORMS               WVF_END
+#define MAX_TRIGGERS                WVF_END
 #define MAX_ADDR                    MAX_WAVEFORMS
 
 /* Channel IDs */
