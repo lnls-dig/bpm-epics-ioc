@@ -48,7 +48,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="200" y="50" />
       <point x="200" y="290" />
-      <point x="200" y="538" />
+      <point x="199" y="586" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -56,7 +56,7 @@ $(pv_value)</tooltip>
     <rotation_angle>0.0</rotation_angle>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>489</height>
+    <height>537</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -76,8 +76,8 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="0" green="0" blue="0" />
     </background_color>
-    <width>1</width>
-    <x>200</x>
+    <width>2</width>
+    <x>199</x>
     <name>Polyline</name>
     <y>50</y>
     <fill_level>0.0</fill_level>
@@ -105,7 +105,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="600" y="50" />
       <point x="600" y="290" />
-      <point x="600" y="538" />
+      <point x="599" y="586" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -113,7 +113,7 @@ $(pv_value)</tooltip>
     <rotation_angle>0.0</rotation_angle>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>489</height>
+    <height>537</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -133,8 +133,8 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="0" green="0" blue="0" />
     </background_color>
-    <width>1</width>
-    <x>600</x>
+    <width>2</width>
+    <x>599</x>
     <name>Polyline_1</name>
     <y>50</y>
     <fill_level>0.0</fill_level>
@@ -1970,9 +1970,9 @@ $(pv_value)</tooltip>
     <wuid>27b83a4d:154ded0131c:-7fa4</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="600" y="538" />
-      <point x="407" y="538" />
-      <point x="200" y="538" />
+      <point x="599" y="586" />
+      <point x="406" y="586" />
+      <point x="199" y="586" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -2001,9 +2001,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>401</width>
-    <x>200</x>
+    <x>199</x>
     <name>Polyline_7</name>
-    <y>538</y>
+    <y>586</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -2024,7 +2024,7 @@ $(pv_value)</tooltip>
     <enabled>true</enabled>
     <wuid>27b83a4d:154ded0131c:-7f9b</wuid>
     <pv_value />
-    <text>Trigger 0-11</text>
+    <text>Logical Trigger 0-11</text>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
     <height>40</height>
@@ -2044,7 +2044,107 @@ $(pv_value)</tooltip>
     <width>180</width>
     <x>210</x>
     <name>Action Button_7</name>
-    <y>481</y>
+    <y>538</y>
+    <style>1</style>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>LogicalTrigger0_11.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+        </macros>
+        <replace>0</replace>
+        <description></description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <toggle_button>false</toggle_button>
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <push_action_index>0</push_action_index>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>27b83a4d:154ded0131c:-6594</wuid>
+    <pv_value />
+    <text>Logical Trigger 12-23</text>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>40</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <image></image>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Action Button</widget_type>
+    <width>180</width>
+    <x>406</x>
+    <name>Action Button_8</name>
+    <y>538</y>
+    <style>1</style>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>LogicalTrigger12_23.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+        </macros>
+        <replace>0</replace>
+        <description></description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <toggle_button>false</toggle_button>
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <push_action_index>0</push_action_index>
+    <rules />
+    <enabled>false</enabled>
+    <wuid>-776a6faf:154e4480072:-554b</wuid>
+    <pv_value />
+    <text>Physical Trigger 0-11</text>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>40</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <image></image>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Action Button</widget_type>
+    <width>180</width>
+    <x>210</x>
+    <name>Action Button_9</name>
+    <y>476</y>
     <style>1</style>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -2071,10 +2171,10 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <push_action_index>0</push_action_index>
     <rules />
-    <enabled>true</enabled>
-    <wuid>27b83a4d:154ded0131c:-6594</wuid>
+    <enabled>false</enabled>
+    <wuid>-776a6faf:154e4480072:-554a</wuid>
     <pv_value />
-    <text>Trigger 12-23</text>
+    <text>Physical Trigger 12-23</text>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
     <height>40</height>
@@ -2093,8 +2193,8 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>180</width>
     <x>406</x>
-    <name>Action Button_8</name>
-    <y>481</y>
+    <name>Action Button_10</name>
+    <y>476</y>
     <style>1</style>
     <foreground_color>
       <color red="0" green="0" blue="0" />
