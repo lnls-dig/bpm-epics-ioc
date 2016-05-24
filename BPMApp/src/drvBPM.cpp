@@ -1580,7 +1580,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask)
     int status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
     epicsUInt32 paramLib = 0;
-    epicsUInt32 addr = 0;
+    epicsInt32 addr = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
     const char *functionName = "setParam32";
