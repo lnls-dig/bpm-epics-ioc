@@ -160,8 +160,8 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"external")
-    field(ONST,"internal")
+    field(zrst,"ext")
+    field(onst,"int")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc_RBV")
 }
@@ -174,8 +174,8 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc_RBV"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"external")
-    field(ONST,"internal")
+    field(zrst,"ext")
+    field(onst,"int")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
 }
 
@@ -187,8 +187,8 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"external")
-    field(ONST,"internal")
+    field(zrst,"ext")
+    field(onst,"int")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc_RBV")
 }
