@@ -1493,10 +1493,33 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
   * \param[in] value Value to read */
 asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
+    int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    const char *paramName;
+    const char* functionName = "readInt32";
 
-    /* Call base class */
-    status = asynNDArrayDriver::readInt32(pasynUser, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+    /* Get parameter in library, as some parameters are not written in HW */
+    status = getIntegerParam(function, value);
+
+    if (function >= FIRST_COMMAND) {
+        /* Does nothibng for now. This is here, if we need to write Integer
+         *  values on HW in the future */
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::readInt32(pasynUser, value);
+    }
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s\n",
+                driverName, functionName, function, paramName);
     return status;
 }
 
