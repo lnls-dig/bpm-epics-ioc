@@ -85,6 +85,7 @@ record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCntRst_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT_RST")
+    field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt_RBV")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCntRst"){
@@ -102,6 +103,7 @@ record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCntRst_RBV"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT_RST")
+    field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt_RBV")
 }
 
 record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvLen"){
