@@ -16,37 +16,57 @@ record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):chan_RBV"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir"){
+record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction")
     field(PINI,"YES")
     field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"trn")
+    field(ONST,"rcv")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"trn")
+    field(ONST,"rcv")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol"){
+record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction polarity")
     field(PINI,"YES")
     field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"same")
+    field(ONST,"rev")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
     field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol_RBV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction polarity")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"same")
+    field(ONST,"rev")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
 }
 
