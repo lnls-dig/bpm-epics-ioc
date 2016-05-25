@@ -17,7 +17,6 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:att1"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
-    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV")
     field(EGU, "dB")
 }
 
@@ -25,7 +24,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE attenuator 1")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
     field(EGU, "dB")
 }
@@ -36,7 +35,6 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
-    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV")
     field(EGU, "dB")
 }
 
@@ -44,7 +42,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE attenuator 2")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
     field(EGU, "dB")
 }
@@ -100,14 +98,13 @@ record(mbbo,"$(P)-$(BPM_NUMBER):RFFE:sw"){
     field(ONST,"direct")
     field(TWST,"inverted")
     field(THST,"switching")
-    field(FLNK,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV")
 }
 
 record(mbbi,"$(P)-$(BPM_NUMBER):RFFE:sw_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get switching")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_SW")
     field(NOBT,"2")
     field(ZRVL,"0")

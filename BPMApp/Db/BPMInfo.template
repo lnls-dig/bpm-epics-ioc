@@ -15,7 +15,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get accelerator harmonic number")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
@@ -25,7 +25,6 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
-    field(FLNK,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV")
     field(EGU, "Hz")
 }
 
@@ -33,7 +32,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC clock frequency")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
     field(EGU, "Hz")
 }
@@ -42,7 +41,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:TBTRate_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get TBT rate factor")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
 }
 
@@ -50,7 +49,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:FOFBRate_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FOFB rate factor")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
 }
 
@@ -58,6 +57,6 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:MONITRate_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get MONIT rate factor")
     field(PINI,"YES")
-    field(SCAN,"Passive")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
 }
