@@ -135,8 +135,10 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     setDoubleParam(P_RffeTemp3,                             0.0);
     setDoubleParam(P_RffeTemp4,                             0.0);
 
-    /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        callParamCallbacks(i);
+    }
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -267,6 +269,7 @@ asynStatus drvBPMRFFE::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "writeUInt32Digital";
 
@@ -274,12 +277,20 @@ asynStatus drvBPMRFFE::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value
     setUIntDigitalParam(function, value, mask);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParam32(function, mask);
 
     /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    callParamCallbacks(addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -329,6 +340,7 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "writeFloat64";
 
@@ -336,12 +348,20 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     setDoubleParam(function, value);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParamDouble(function);
 
     /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    callParamCallbacks(addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,

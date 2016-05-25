@@ -475,8 +475,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TriggerRcvInSel,  0,              0xFFFFFFFF);
     setUIntDigitalParam(P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
 
-    /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        callParamCallbacks(i);
+    }
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1395,8 +1397,8 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
                 "%s:%s: status=%d, function=%d, name=%s, value=%d",
                 driverName, functionName, status, function, paramName, value);
-         return status;
-     }
+        return status;
+    }
 
     /* Some operations need some special handling*/
     if (function == P_Trigger) {
@@ -1413,7 +1415,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     }
 
     /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    callParamCallbacks(addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -1479,6 +1481,7 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "writeInt32";
 
@@ -1486,12 +1489,20 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     setIntegerParam(function, value);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
 
     /* Call base class */
     status = asynNDArrayDriver::writeInt32(pasynUser, value);
 
     /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    callParamCallbacks(addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -1548,6 +1559,7 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "writeFloat64";
 
@@ -1555,12 +1567,20 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     setDoubleParam(function, value);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParamDouble(function);
 
     /* Do callbacks so higher layers see any changes */
-    callParamCallbacks();
+    callParamCallbacks(addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
