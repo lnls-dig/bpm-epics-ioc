@@ -353,19 +353,21 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
     createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
 
-    createParam(P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
-    createParam(P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
-    createParam(P_TriggerDirPolString,    asynParamUInt32Digital,   &P_TriggerDirPol);
-    createParam(P_TriggerRcvCntRstString, asynParamUInt32Digital,   &P_TriggerRcvCntRst);
-    createParam(P_TriggerTrnCntRstString, asynParamUInt32Digital,   &P_TriggerTrnCntRst);
-    createParam(P_TriggerRcvLenString,    asynParamUInt32Digital,   &P_TriggerRcvLen);
-    createParam(P_TriggerTrnLenString,    asynParamUInt32Digital,   &P_TriggerTrnLen);
-    createParam(P_TriggerCntRcvString,    asynParamUInt32Digital,   &P_TriggerCntRcv);
-    createParam(P_TriggerCntTrnString,    asynParamUInt32Digital,   &P_TriggerCntTrn);
-    createParam(P_TriggerRcvSrcString,    asynParamUInt32Digital,   &P_TriggerRcvSrc);
-    createParam(P_TriggerTrnSrcString,    asynParamUInt32Digital,   &P_TriggerTrnSrc);
-    createParam(P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
-    createParam(P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        createParam(i, P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
+        createParam(i, P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
+        createParam(i, P_TriggerDirPolString,    asynParamUInt32Digital,   &P_TriggerDirPol);
+        createParam(i, P_TriggerRcvCntRstString, asynParamUInt32Digital,   &P_TriggerRcvCntRst);
+        createParam(i, P_TriggerTrnCntRstString, asynParamUInt32Digital,   &P_TriggerTrnCntRst);
+        createParam(i, P_TriggerRcvLenString,    asynParamUInt32Digital,   &P_TriggerRcvLen);
+        createParam(i, P_TriggerTrnLenString,    asynParamUInt32Digital,   &P_TriggerTrnLen);
+        createParam(i, P_TriggerCntRcvString,    asynParamUInt32Digital,   &P_TriggerCntRcv);
+        createParam(i, P_TriggerCntTrnString,    asynParamUInt32Digital,   &P_TriggerCntTrn);
+        createParam(i, P_TriggerRcvSrcString,    asynParamUInt32Digital,   &P_TriggerRcvSrc);
+        createParam(i, P_TriggerTrnSrcString,    asynParamUInt32Digital,   &P_TriggerTrnSrc);
+        createParam(i, P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
+        createParam(i, P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
+    }
 
     /* Set the initial values of some parameters */
     setUIntDigitalParam(P_HarmonicNumber,
@@ -460,20 +462,22 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
 
-    setIntegerParam(P_TriggerChan,                          CH_DFLT_TRIGGER_CHAN);
-    setUIntDigitalParam(P_MonitUpdt,        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
-    setUIntDigitalParam(P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
-    setUIntDigitalParam(P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerCntRcv,    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerCntTrn,    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerRcvLen,    1,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerTrnLen,    1,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerRcvSrc,    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerTrnSrc,    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerRcvInSel,  0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        setIntegerParam(i, P_TriggerChan,                          CH_DFLT_TRIGGER_CHAN);
+        setUIntDigitalParam(i, P_MonitUpdt,        0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+        setUIntDigitalParam(i, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+        setUIntDigitalParam(i, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerCntRcv,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerCntTrn,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerRcvLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerTrnLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerRcvSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerRcvInSel,  0,              0xFFFFFFFF);
+        setUIntDigitalParam(i, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    }
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
@@ -1387,10 +1391,6 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     const char *paramName;
     const char* functionName = "writeUInt32Digital";
 
-    /* Set the parameter in the parameter library. */
-    setUIntDigitalParam(function, value, mask);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -1399,6 +1399,10 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
+    /* Set the parameter in the parameter library. */
+    setUIntDigitalParam(addr, function, value, mask);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     /* Some operations need some special handling*/
     if (function == P_Trigger) {
@@ -1441,16 +1445,16 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     const char *functionName = "readUInt32Digital";
     const char *paramName;
 
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%d",
-                driverName, functionName, status, function, paramName, value);
-         return status;
-     }
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     if (function == P_DataTrigChan) {
         status = getDataTrigChan(value, mask);
@@ -1485,10 +1489,6 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     const char *paramName;
     const char* functionName = "writeInt32";
 
-    /* Set the parameter in the parameter library. */
-    setIntegerParam(function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -1497,6 +1497,10 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
+    /* Set the parameter in the parameter library. */
+    setIntegerParam(addr, function, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     /* Call base class */
     status = asynNDArrayDriver::writeInt32(pasynUser, value);
@@ -1524,13 +1528,22 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "readInt32";
 
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
     /* Get parameter in library, as some parameters are not written in HW */
-    status = getIntegerParam(function, value);
+    status = getIntegerParam(addr, function, value);
 
     if (function >= FIRST_COMMAND) {
         /* Does nothibng for now. This is here, if we need to write Integer
@@ -1563,21 +1576,21 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     const char *paramName;
     const char* functionName = "writeFloat64";
 
-    /* Set the parameter in the parameter library. */
-    setDoubleParam(function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                "%s:%s: status=%d, function=%d, name=%s, value=%f",
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
+    /* Set the parameter in the parameter library. */
+    setDoubleParam(addr, function, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParamDouble(function);
+    status = setParamDouble(function, addr);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -1600,15 +1613,24 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "readFloat64";
 
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
     /* Get double param, possibly from HW */
     if (function >= FIRST_COMMAND) {
-        status = getParamDouble(function, value);
+        status = getParamDouble(function, value, addr);
     }
     else {
         /* Call base class */
@@ -1649,7 +1671,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
-    status = getUIntDigitalParam(functionId, &paramLib, mask);
+    status = getUIntDigitalParam(addr, functionId, &paramLib, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -1792,7 +1814,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
     /* Get parameter in library, as some parameters are not written in HW */
-    status = getUIntDigitalParam(functionId, param, mask);
+    status = getUIntDigitalParam(addr, functionId, param, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
@@ -1919,7 +1941,7 @@ get_param_err:
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::setParamDouble(int functionId)
+asynStatus drvBPM::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -1928,7 +1950,7 @@ asynStatus drvBPM::setParamDouble(int functionId)
     char service[50];
     std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
-    status = getDoubleParam(functionId, &paramLib);
+    status = getDoubleParam(addr, functionId, &paramLib);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -1968,7 +1990,7 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param)
+asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -1977,7 +1999,7 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param)
     std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
-    status = getDoubleParam(functionId, param);
+    status = getDoubleParam(addr, functionId, param);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",

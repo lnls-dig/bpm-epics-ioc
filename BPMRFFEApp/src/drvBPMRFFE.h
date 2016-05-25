@@ -112,11 +112,11 @@ class drvBPMRFFE : public asynPortDriver {
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus setParam32(int functionId, epicsUInt32 mask);
+        asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
-                epicsUInt32 mask);
-        asynStatus setParamDouble(int functionId);
-        asynStatus getParamDouble(int functionId, epicsFloat64 *param);
+                epicsUInt32 mask, int addr);
+        asynStatus setParamDouble(int functionId, int addr);
+        asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

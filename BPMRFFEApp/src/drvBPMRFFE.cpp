@@ -273,21 +273,21 @@ asynStatus drvBPMRFFE::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value
     const char *paramName;
     const char* functionName = "writeUInt32Digital";
 
-    /* Set the parameter in the parameter library. */
-    setUIntDigitalParam(function, value, mask);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                "%s:%s: status=%d, function=%d, name=%s, value=%u",
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
+    /* Set the parameter in the parameter library. */
+    setUIntDigitalParam(function, value, mask);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParam32(function, mask);
+    status = setParam32(function, mask, addr);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -312,14 +312,23 @@ asynStatus drvBPMRFFE::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *functionName = "readUInt32Digital";
     const char *paramName;
 
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
     /* Get parameter, possibly from HW */
-    status = getParam32(function, value, mask);
+    status = getParam32(function, value, mask, addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -344,21 +353,21 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     const char *paramName;
     const char* functionName = "writeFloat64";
 
-    /* Set the parameter in the parameter library. */
-    setDoubleParam(function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
-                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                "%s:%s: status=%d, function=%d, name=%s, value=%f",
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
+    /* Set the parameter in the parameter library. */
+    setDoubleParam(addr, function, value);
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
 
     /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParamDouble(function);
+    status = setParamDouble(function, addr);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -381,14 +390,23 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 {
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
+    int addr = 0;
     const char *paramName;
     const char* functionName = "readFloat64";
 
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
     /* Get double param, possibly from HW */
-    status = getParamDouble(function, value);
+    status = getParamDouble(function, value, addr);
 
     if (status)
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
@@ -411,7 +429,7 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
  * and functionsFloat64_t
  */
 
-asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask)
+asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -420,7 +438,7 @@ asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask)
     char service[50];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
 
-    status = getUIntDigitalParam(functionId, &paramLib, mask);
+    status = getUIntDigitalParam(addr, functionId, &paramLib, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -461,7 +479,7 @@ get_param_err:
 }
 
 asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
-        epicsUInt32 mask)
+        epicsUInt32 mask, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -471,7 +489,7 @@ asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
-    status = getUIntDigitalParam(functionId, param, mask);
+    status = getUIntDigitalParam(addr, functionId, param, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
@@ -516,7 +534,7 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPMRFFE::setParamDouble(int functionId)
+asynStatus drvBPMRFFE::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -525,7 +543,7 @@ asynStatus drvBPMRFFE::setParamDouble(int functionId)
     char service[50];
     std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
-    status = getDoubleParam(functionId, &paramLib);
+    status = getDoubleParam(addr, functionId, &paramLib);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -565,7 +583,7 @@ get_param_err:
     return status;
 }
 
-asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param)
+asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
@@ -574,7 +592,7 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param)
     std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
-    status = getDoubleParam(functionId, param);
+    status = getDoubleParam(addr, functionId, param);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
