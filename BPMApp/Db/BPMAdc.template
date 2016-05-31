@@ -692,7 +692,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:AD9510MuxStatus_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 mux status")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
 }
 
