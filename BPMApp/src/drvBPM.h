@@ -344,6 +344,7 @@ typedef enum {
     /* FIXME: TRIG_ACQ_STOP must be after the valid HW
      * triggers */
     TRIG_ACQ_STOP,
+    TRIG_ACQ_ABORT,
     TRIG_ACQ_REPETITIVE
 } trigEnum_t;
 
@@ -472,6 +473,7 @@ class drvBPM : public asynNDArrayDriver {
         int repetitiveTrigger;
         epicsEventId startAcqEventId;
         epicsEventId stopAcqEventId;
+        epicsEventId abortAcqEventId;
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;

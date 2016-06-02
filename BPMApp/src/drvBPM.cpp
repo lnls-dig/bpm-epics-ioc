@@ -261,6 +261,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         return;
     }
 
+    this->abortAcqEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->abortAcqEventId) {
+        printf("%s:%s: epicsEventCreate failure for abort event\n",
+            driverName, functionName);
+        return;
+    }
+
     /* Create parameters */
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
@@ -769,9 +776,8 @@ void drvBPM::acqTask(void)
         /* Check if we received a stop event */
         status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_POLL_TIME);
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
-            /* We got a stop event, abort acquisition */
+            /* We got a stop event, stop repetitive acquisition */
             readingActive = 0;
-            abortAcq();
             /* Only change state to IDLE if we are not in a error state */
             getIntegerParam(P_BPMStatus, &bpmStatus);
             if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
@@ -869,7 +875,7 @@ void drvBPM::acqTask(void)
             /* Wait for acquisition to complete, but allow acquire stop events to be handled */
             while (1) {
                 unlock();
-                status = epicsEventWaitWithTimeout(this->stopAcqEventId, BPM_POLL_TIME);
+                status = epicsEventWaitWithTimeout(this->abortAcqEventId, BPM_POLL_TIME);
                 lock();
                 if (status == epicsEventWaitOK) {
                     /* We got a stop event, abort acquisition */
@@ -1175,6 +1181,15 @@ asynStatus drvBPM::setAcquire()
                         driverName, functionName);
                 epicsEventSignal(this->stopAcqEventId);
             }
+            break;
+
+        case TRIG_ACQ_ABORT: /* Trigger == Abort */
+            /* Send the abort event unconditionally. If we want to stop a
+             * repetitive trigger, we must send a stop event */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: trigger ACQ_ABORT called\n",
+                    driverName, functionName);
+            epicsEventSignal(this->abortAcqEventId);
             break;
 
         case TRIG_ACQ_REPETITIVE:
