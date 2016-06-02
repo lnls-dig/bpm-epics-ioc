@@ -879,7 +879,6 @@ void drvBPM::acqTask(void)
                 lock();
                 if (status == epicsEventWaitOK) {
                     /* We got a stop event, abort acquisition */
-                    readingActive = 0;
                     abortAcq();
                     setIntegerParam(P_BPMStatus, BPMStatusAborted);
                     callParamCallbacks();
