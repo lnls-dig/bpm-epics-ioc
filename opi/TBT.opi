@@ -5823,9 +5823,9 @@ pvs[1].setValue("stop")]]></scriptText>
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>431</x>
+      <x>433</x>
       <name>Action Button</name>
-      <y>228</y>
+      <y>189</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -5872,9 +5872,9 @@ pvs[1].setValue("stop")]]></scriptText>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>250</x>
+      <x>252</x>
       <name>Label_57</name>
-      <y>227</y>
+      <y>188</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -6685,9 +6685,9 @@ for i in range(4):
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>360</x>
+      <x>362</x>
       <name>Action Button</name>
-      <y>228</y>
+      <y>189</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -6825,6 +6825,105 @@ $(pv_value)</tooltip>
         <color red="0" green="0" blue="0" />
       </foreground_color>
       <actions hook="true" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+      <border_style>0</border_style>
+      <tooltip></tooltip>
+      <horizontal_alignment>1</horizontal_alignment>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>1bd4a94e:15512f45ce4:-7bef</wuid>
+      <transparent>true</transparent>
+      <auto_size>false</auto_size>
+      <text>Abort:</text>
+      <scripts />
+      <height>31</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <visible>true</visible>
+      <vertical_alignment>1</vertical_alignment>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Label</widget_type>
+      <wrap_words>false</wrap_words>
+      <background_color>
+        <color red="255" green="255" blue="255" />
+      </background_color>
+      <width>105</width>
+      <x>252</x>
+      <name>Label_57</name>
+      <y>227</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="false" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+      <toggle_button>false</toggle_button>
+      <border_style>0</border_style>
+      <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+      <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+      <push_action_index>0</push_action_index>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>1bd4a94e:15512f45ce4:-7bee</wuid>
+      <pv_value />
+      <text>Abort</text>
+      <scripts>
+        <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+          <scriptName>AcquireAbort</scriptName>
+          <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
+#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
+
+pvs[1].setValue("abort")]]></scriptText>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort</pv>
+          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
+        </path>
+      </scripts>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+      <height>30</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <image></image>
+      <visible>true</visible>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(1)</pv_name>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Action Button</widget_type>
+      <width>62</width>
+      <x>362</x>
+      <name>Action Button</name>
+      <y>228</y>
+      <style>1</style>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="false" hook_all="false">
+        <action type="WRITE_PV">
+          <pv_name>$(pv_name)</pv_name>
+          <value>1</value>
+          <timeout>1</timeout>
+          <confirm_message></confirm_message>
+          <description>Acquire now</description>
+        </action>
+      </actions>
       <font>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>
