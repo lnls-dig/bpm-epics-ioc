@@ -771,7 +771,7 @@ void drvBPM::acqTask(void)
         if (status == epicsEventWaitOK || !repetitiveTrigger) {
             /* We got a stop event, abort acquisition */
             readingActive = 0;
-            stopAcq();
+            abortAcq();
             /* Only change state to IDLE if we are not in a error state */
             getIntegerParam(P_BPMStatus, &bpmStatus);
             if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
@@ -874,7 +874,7 @@ void drvBPM::acqTask(void)
                 if (status == epicsEventWaitOK) {
                     /* We got a stop event, abort acquisition */
                     readingActive = 0;
-                    stopAcq();
+                    abortAcq();
                     setIntegerParam(P_BPMStatus, BPMStatusAborted);
                     callParamCallbacks();
                     break;
@@ -1256,11 +1256,11 @@ bpm_samples_sel_err:
     return status;
 }
 
-asynStatus drvBPM::stopAcq()
+asynStatus drvBPM::abortAcq()
 {
     asynStatus status = asynSuccess;
     bpm_client_err_e err = BPM_CLIENT_SUCCESS;
-    const char* functionName = "stopAcq";
+    const char* functionName = "abortAcq";
     char service[50];
     uint32_t fsm_stop = 1;
 

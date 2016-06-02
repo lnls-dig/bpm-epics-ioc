@@ -484,7 +484,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
         asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
-        asynStatus stopAcq();
+        asynStatus abortAcq();
         int checkAcqCompletion();
         asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
