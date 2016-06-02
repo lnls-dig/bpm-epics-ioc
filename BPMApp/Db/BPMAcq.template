@@ -101,7 +101,8 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
     field(TWST,"data")
     field(THST,"sw")
     field(FRST,"stop")
-    field(FVST,"repetitive")
+    field(FVST,"abort")
+    field(SXST,"repetitive")
 }
 
 record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
@@ -121,7 +122,8 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
     field(TWST,"data")
     field(THST,"sw")
     field(FRST,"stop")
-    field(FVST,"repetitive")
+    field(FVST,"abort")
+    field(SXST,"repetitive")
 }
 
 record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:control"){
