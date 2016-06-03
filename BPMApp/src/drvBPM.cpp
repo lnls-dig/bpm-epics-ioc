@@ -1186,13 +1186,16 @@ asynStatus drvBPM::setAcquire()
             }
             break;
 
+        /* Send the abort event if we are reading (repetitive or regular).
+         *  If we want to stop a repetitive trigger, we must send a stop 
+         *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
-            /* Send the abort event unconditionally. If we want to stop a
-             * repetitive trigger, we must send a stop event */
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: trigger ACQ_ABORT called\n",
-                    driverName, functionName);
-            epicsEventSignal(this->abortAcqEventId);
+            if (readingActive) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger ACQ_ABORT called\n",
+                        driverName, functionName);
+                epicsEventSignal(this->abortAcqEventId);
+            }
             break;
 
         case TRIG_ACQ_REPETITIVE:
