@@ -913,6 +913,10 @@ void drvBPM::acqTask(void)
 
                 /* Calculate positions and call callbacks */
                 computePositions(pArrayAllChannels, channel);
+                /* We have consumed our data. This is important if we abort the next 
+                 * acquisition, as we can detect that the current acquisition is completed,
+                 * which would be wrong */
+                acqCompleted = 0;
             }
 
             /* Release buffer */
