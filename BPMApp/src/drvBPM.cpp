@@ -863,6 +863,8 @@ void drvBPM::acqTask(void)
         pArrayAllChannels->timeStamp = timeStamp;
         getAttributes(pArrayAllChannels->pAttributeList);
 
+        dimsFreq[0] = (num_samples_pre + num_samples_post)*num_shots;
+
         /* Alloc array for frequency axis */
         pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
         if (pArrayChannelFreq == NULL) {
