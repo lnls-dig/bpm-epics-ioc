@@ -1023,7 +1023,7 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
     numPoints = (num_samples_pre + num_samples_post)*num_shots;
     freqStep = adcFreq/numPoints;
 
-    for (int i = 0; i < dims[0]; ++i) {
+    for (size_t i = 0; i < dims[0]; ++i) {
         pFreqData[i] = freqStep*i;
     }
 
