@@ -1010,7 +1010,7 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
         return;
     }
 
-    dims[0] = arrayInfo.ySize;
+    dims[0] = arrayInfo.xSize;
     NDType = pArrayChannelFreq->dataType;
     if (NDType != NDFloat64) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
