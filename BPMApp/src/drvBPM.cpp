@@ -949,7 +949,7 @@ void drvBPM::acqTask(void)
 
                 /* Calculate positions and call callbacks */
                 computePositions(pArrayAllChannels, channel);
-                /* We have consumed our data. This is important if we abort the next 
+                /* We have consumed our data. This is important if we abort the next
                  * acquisition, as we can detect that the current acquisition is completed,
                  * which would be wrong */
                 acqCompleted = 0;
@@ -1028,18 +1028,23 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
     }
 
     /* Do callbacks on amplitude and position frequency arrays */
-    unlock();
-    /* We must do the callbacks with mutex unlocked ad the plugin
-     * can call us and a deadlock would occur */
     if (channelMap[channel].NDArrayAmpFreq != -1) {
+        unlock();
+        /* We must do the callbacks with mutex unlocked ad the plugin
+         * can call us and a deadlock would occur */
         doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
                 channelMap[channel].NDArrayAmpFreq);
+        lock();
     }
     if (channelMap[channel].NDArrayPosFreq != -1) {
+        unlock();
+        /* We must do the callbacks with mutex unlocked ad the plugin
+         * can call us and a deadlock would occur */
         doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
                 channelMap[channel].NDArrayPosFreq);
+        lock();
     }
-    lock();
+    pArrayChannelFreq->release();
 }
 
 void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
@@ -1276,7 +1281,7 @@ asynStatus drvBPM::setAcquire()
             break;
 
         /* Send the abort event if we are reading (repetitive or regular).
-         *  If we want to stop a repetitive trigger, we must send a stop 
+         *  If we want to stop a repetitive trigger, we must send a stop
          *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
             if (readingActive) {
