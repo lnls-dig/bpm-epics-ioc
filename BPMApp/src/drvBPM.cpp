@@ -84,20 +84,32 @@ static const channelMap_t channelMap[CH_END] = {
                         /* Amp, Phase, Pos, AmpA, AmpB, AmpC, AmpD, AmpALL */
     /* [CH_ADC] =     */ {CH_HW_ADC, -1, -1, 0,
                         {WVF_ADC_A, WVF_ADC_B, WVF_ADC_C, WVF_ADC_D, WVF_ADC_ALL},
+                        WVF_ADC_FREQ,
                         {-1, -1, -1, -1, -1},
-                        {-1, -1, -1, -1, -1}},
+                        -1,
+                        {-1, -1, -1, -1, -1},
+                        -1},
     /* [CH_ADCSWAP] = */ {CH_HW_ADCSWAP, -1, -1, 0,
                         {WVF_ADCSWAP_A, WVF_ADCSWAP_B, WVF_ADCSWAP_C, WVF_ADCSWAP_D, WVF_ADCSWAP_ALL},
+                        WVF_ADCSWAP_FREQ,
                         {-1, -1, -1, -1, -1},
-                        {-1, -1, -1, -1, -1}},
+                        -1,
+                        {-1, -1, -1, -1, -1},
+                        -1},
     /* [CH_TBT] =     */ {CH_HW_TBT, -1, -1, 1,
                         {WVF_TBTAMP_A, WVF_TBTAMP_B, WVF_TBTAMP_C, WVF_TBTAMP_D, WVF_TBTAMP_ALL},
+                        WVF_TBTAMP_FREQ,
                         {WVF_TBTPHASE_A, WVF_TBTPHASE_B, WVF_TBTPHASE_C, WVF_TBTPHASE_D, WVF_TBTPHASE_ALL},
-                        {WVF_TBTPOS_A, WVF_TBTPOS_B, WVF_TBTPOS_C, WVF_TBTPOS_D, WVF_TBTPOS_ALL}},
+                        WVF_TBTPHASE_FREQ,
+                        {WVF_TBTPOS_A, WVF_TBTPOS_B, WVF_TBTPOS_C, WVF_TBTPOS_D, WVF_TBTPOS_ALL},
+                        WVF_TBTPOS_FREQ},
     /* [CH_FOFB] =    */ {CH_HW_FOFB, -1, -1, 1,
                         {WVF_FOFBAMP_A, WVF_FOFBAMP_B, WVF_FOFBAMP_C, WVF_FOFBAMP_D, WVF_FOFBAMP_ALL},
+                        WVF_FOFBAMP_FREQ,
                         {WVF_FOFBPHASE_A, WVF_FOFBPHASE_B, WVF_FOFBPHASE_C, WVF_FOFBPHASE_D, WVF_FOFBPHASE_ALL},
-                        {WVF_FOFBPOS_A, WVF_FOFBPOS_B, WVF_FOFBPOS_C, WVF_FOFBPOS_D, WVF_FOFBPOS_ALL}},
+                        WVF_FOFBPHASE_FREQ,
+                        {WVF_FOFBPOS_A, WVF_FOFBPOS_B, WVF_FOFBPOS_C, WVF_FOFBPOS_D, WVF_FOFBPOS_ALL},
+                        WVF_FOFBPOS_FREQ},
 };
 
 /* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
@@ -748,12 +760,16 @@ void drvBPM::acqTask(void)
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
+    NDArray *pArrayChannelFreq;
     NDDataType_t NDType = NDInt32;
+    NDDataType_t NDTypeFreq = NDFloat64;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
     double elapsedTime;
+    double adcFreq;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
+    size_t dimsFreq[1];
     static const char *functionName = "acqTask";
 
     /* Create an asynUser. FIXME: we should probably create a callback
@@ -803,6 +819,7 @@ void drvBPM::acqTask(void)
         getUIntDigitalParam(P_NumShots, &num_shots, 0xFFFFFFFF);
         getIntegerParam(P_Channel, &channel);
         getDoubleParam(P_UpdateTime, &updateTime);
+        getDoubleParam(P_AdcSi57xFreq, &adcFreq);
 
         setIntegerParam(P_BPMStatus, BPMStatusAcquire);
         callParamCallbacks();
@@ -845,6 +862,18 @@ void drvBPM::acqTask(void)
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
         getAttributes(pArrayAllChannels->pAttributeList);
+
+        /* Alloc array for frequency axis */
+        pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
+        if (pArrayChannelFreq == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayChannelFreq\n",
+                driverName, functionName);
+        }
+        pArrayChannelFreq->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayChannelFreq->timeStamp = timeStamp;
+        getAttributes(pArrayChannelFreq->pAttributeList);
 
         /* Do acquisition */
         unlock();
@@ -907,6 +936,11 @@ void drvBPM::acqTask(void)
                         channelMap[channel].NDArrayAmp[WVF_AMP_ALL]);
                 lock();
 
+                /* Compute frequency arrays for amplitude, positions and do
+                 * callbacks on that */
+                computeFreqArray(pArrayChannelFreq, channel, adcFreq,
+                        num_samples_pre, num_samples_post, num_shots);
+
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp,
                         MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
@@ -951,6 +985,59 @@ void drvBPM::acqTask(void)
             }
         }
     }
+}
+
+void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
+        epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
+        epicsUInt32 num_samples_post, epicsUInt32 num_shots)
+{
+    int status = 0;
+    size_t dims[1];
+    NDArrayInfo_t arrayInfo;
+    NDDataType_t NDType;
+    epicsFloat64 *pFreqData;
+    epicsFloat64 freqStep;
+    epicsUInt32 numPoints;
+    static const char *functionName = "computeFreqArray";
+
+    status = pArrayChannelFreq->getInfo(&arrayInfo);
+    if (status != 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to get information about pArrayChannelFreq\n",
+                driverName, functionName);
+        return;
+    }
+
+    dims[0] = arrayInfo.ySize;
+    NDType = pArrayChannelFreq->dataType;
+    if (NDType != NDFloat64) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: wrong array type for frequency vector\n",
+                driverName, functionName);
+        return;
+    }
+
+    pFreqData = (epicsFloat64 *)pArrayChannelFreq->pData;
+    numPoints = (num_samples_pre + num_samples_post)*num_shots;
+    freqStep = adcFreq/numPoints;
+
+    for (int i = 0; i < dims[0]; ++i) {
+        pFreqData[i] = freqStep*i;
+    }
+
+    /* Do callbacks on amplitude and position frequency arrays */
+    unlock();
+    /* We must do the callbacks with mutex unlocked ad the plugin
+     * can call us and a deadlock would occur */
+    if (channelMap[channel].NDArrayAmpFreq != -1) {
+        doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
+                channelMap[channel].NDArrayAmpFreq);
+    }
+    if (channelMap[channel].NDArrayPosFreq != -1) {
+        doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
+                channelMap[channel].NDArrayPosFreq);
+    }
+    lock();
 }
 
 void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,

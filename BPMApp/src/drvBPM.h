@@ -40,41 +40,49 @@ typedef enum {
     WVF_ADC_C,
     WVF_ADC_D,
     WVF_ADC_ALL,
+    WVF_ADC_FREQ,
     WVF_ADCSWAP_A,
     WVF_ADCSWAP_B,
     WVF_ADCSWAP_C,
     WVF_ADCSWAP_D,
     WVF_ADCSWAP_ALL,
+    WVF_ADCSWAP_FREQ,
     WVF_TBTAMP_A,
     WVF_TBTAMP_B,
     WVF_TBTAMP_C,
     WVF_TBTAMP_D,
     WVF_TBTAMP_ALL,
+    WVF_TBTAMP_FREQ,
     WVF_TBTPOS_A,
     WVF_TBTPOS_B,
     WVF_TBTPOS_C,
     WVF_TBTPOS_D,
     WVF_TBTPOS_ALL,
+    WVF_TBTPOS_FREQ,
     WVF_TBTPHASE_A,
     WVF_TBTPHASE_B,
     WVF_TBTPHASE_C,
     WVF_TBTPHASE_D,
     WVF_TBTPHASE_ALL,
+    WVF_TBTPHASE_FREQ,
     WVF_FOFBAMP_A,
     WVF_FOFBAMP_B,
     WVF_FOFBAMP_C,
     WVF_FOFBAMP_D,
     WVF_FOFBAMP_ALL,
+    WVF_FOFBAMP_FREQ,
     WVF_FOFBPOS_A,
     WVF_FOFBPOS_B,
     WVF_FOFBPOS_C,
     WVF_FOFBPOS_D,
     WVF_FOFBPOS_ALL,
+    WVF_FOFBPOS_FREQ,
     WVF_FOFBPHASE_A,
     WVF_FOFBPHASE_B,
     WVF_FOFBPHASE_C,
     WVF_FOFBPHASE_D,
     WVF_FOFBPHASE_ALL,
+    WVF_FOFBPHASE_FREQ,
     WVF_END
 } wvf_types;
 
@@ -178,8 +186,11 @@ typedef struct {
     int CalcPos;
     /* NDArray addresses mapping */
     int NDArrayAmp[MAX_WVF_AMP_TYPES];
+    int NDArrayAmpFreq;
     int NDArrayPhase[MAX_WVF_PHA_TYPES];
+    int NDArrayPhaseFreq;
     int NDArrayPos[MAX_WVF_POS_TYPES];
+    int NDArrayPosFreq;
 } channelMap_t;
 
 /* BPM Reverse channel mapping structure */
@@ -491,6 +502,9 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
                 epicsUInt32 num_shots);
+        void computeFreqArray(NDArray *pArrayChannelFreq, int channel,
+                epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
+                epicsUInt32 num_samples_post, epicsUInt32 num_shots);
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
         void computePositions(NDArray *pArrayAllChannels, int channel);
