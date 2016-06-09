@@ -618,7 +618,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fa</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv></trace_1_x_pv>
+    <trace_1_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_1_x_pv>
     <wuid>2dce1549:14effa31136:-7c43</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -676,7 +676,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv></trace_3_x_pv>
+    <trace_3_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -783,7 +783,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv></trace_0_x_pv>
+    <trace_0_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -816,7 +816,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv></trace_2_x_pv>
+    <trace_2_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
@@ -1754,7 +1754,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fx</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv></trace_1_x_pv>
+    <trace_1_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_1_x_pv>
     <wuid>5baac38b:14f02d40895:-6f69</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -1812,7 +1812,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv></trace_3_x_pv>
+    <trace_3_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -1919,7 +1919,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv></trace_0_x_pv>
+    <trace_0_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -1952,7 +1952,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv></trace_2_x_pv>
+    <trace_2_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
