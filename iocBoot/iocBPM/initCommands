@@ -40,7 +40,7 @@ dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y:EnableCallbacks" 1
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q:EnableCallbacks" 1
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM:EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFBAMP_Freq:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFBPOS_Freq:EnableCallbacks" 1
 
 # File Saving Plugin
 
