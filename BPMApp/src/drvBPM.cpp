@@ -1000,6 +1000,9 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
     epicsFloat64 *pFreqData;
     epicsFloat64 freqStep;
     epicsUInt32 numPoints;
+    epicsUInt32 harmNumber = 1;
+    epicsUInt32 tbtRate = 1;
+    epicsUInt32 fofbRate = 1;
     static const char *functionName = "computeFreqArray";
 
     status = pArrayChannelFreq->getInfo(&arrayInfo);
@@ -1022,6 +1025,29 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
     pFreqData = (epicsFloat64 *)pArrayChannelFreq->pData;
     numPoints = (num_samples_pre + num_samples_post)*num_shots;
     freqStep = adcFreq/numPoints;
+
+    /* Get rate/harmonic parameters */
+    getUIntDigitalParam(P_HarmonicNumber, &harmNumber, 0xFFFFFFFF);
+    getUIntDigitalParam(P_TbtRate, &tbtRate, 0xFFFFFFFF);
+    getUIntDigitalParam(P_FofbRate, &fofbRate, 0xFFFFFFFF);
+
+    switch (channel) {
+        case CH_ADC:
+            /* nothing to be done for ADC case */
+            break;
+
+        case CH_ADCSWAP:
+            /* nothing to be done for ADCSWAP case */
+            break;
+
+        case CH_TBT:
+            freqStep /= P_TbtRate;
+            break;
+
+        case CH_FOFB:
+            freqStep /= P_FofbRate;
+            break;
+    }
 
     for (size_t i = 0; i < dims[0]; ++i) {
         pFreqData[i] = freqStep*i;
