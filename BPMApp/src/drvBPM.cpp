@@ -1041,11 +1041,11 @@ void drvBPM::computeFreqArray(NDArray *pArrayChannelFreq, int channel,
             break;
 
         case CH_TBT:
-            freqStep /= P_TbtRate;
+            freqStep /= tbtRate;
             break;
 
         case CH_FOFB:
-            freqStep /= P_FofbRate;
+            freqStep /= fofbRate;
             break;
     }
 
