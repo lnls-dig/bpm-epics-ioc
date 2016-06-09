@@ -1,1 +1,6 @@
 # Nothing needs to be saved here
+$(P)INFO:HarmonicNumber
+$(P)INFO:ADCClkFreq
+$(P)INFO:TBTRate
+$(P)INFO:FOFBRate
+$(P)INFO:MONITRate
