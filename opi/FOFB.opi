@@ -196,13 +196,13 @@ $(trace_0_y_pv_value)</tooltip>
     <pv_name></pv_name>
     <name>XY Graph_1</name>
     <trace_1_trace_type>0</trace_1_trace_type>
-    <axis_0_auto_scale>true</axis_0_auto_scale>
+    <axis_0_auto_scale>false</axis_0_auto_scale>
     <axis_0_minimum>0.0</axis_0_minimum>
     <trace_2_y_axis_index>1</trace_2_y_axis_index>
     <trace_1_update_delay>100</trace_1_update_delay>
     <axis_1_axis_title>Counts</axis_1_axis_title>
     <trace_2_x_pv_value />
-    <axis_1_auto_scale>true</axis_1_auto_scale>
+    <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
     <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_C:ArrayData</trace_2_y_pv>
@@ -764,13 +764,13 @@ $(trace_0_y_pv_value)</tooltip>
     <pv_name></pv_name>
     <name>XY Graph_3</name>
     <trace_1_trace_type>0</trace_1_trace_type>
-    <axis_0_auto_scale>true</axis_0_auto_scale>
+    <axis_0_auto_scale>false</axis_0_auto_scale>
     <axis_0_minimum>0.0</axis_0_minimum>
     <trace_2_y_axis_index>1</trace_2_y_axis_index>
     <trace_1_update_delay>100</trace_1_update_delay>
     <axis_1_axis_title>Amplitude</axis_1_axis_title>
     <trace_2_x_pv_value />
-    <axis_1_auto_scale>true</axis_1_auto_scale>
+    <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
     <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_C:FFTData.AMP</trace_2_y_pv>
@@ -1332,13 +1332,13 @@ $(trace_0_y_pv_value)</tooltip>
     <pv_name></pv_name>
     <name>XY Graph_2</name>
     <trace_1_trace_type>0</trace_1_trace_type>
-    <axis_0_auto_scale>true</axis_0_auto_scale>
+    <axis_0_auto_scale>false</axis_0_auto_scale>
     <axis_0_minimum>0.0</axis_0_minimum>
     <trace_2_y_axis_index>1</trace_2_y_axis_index>
     <trace_1_update_delay>100</trace_1_update_delay>
     <axis_1_axis_title>Displacement [nm]</axis_1_axis_title>
     <trace_2_x_pv_value />
-    <axis_1_auto_scale>true</axis_1_auto_scale>
+    <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
     <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Q:ArrayData</trace_2_y_pv>
@@ -1900,13 +1900,13 @@ $(trace_0_y_pv_value)</tooltip>
     <pv_name></pv_name>
     <name>XY Graph_4</name>
     <trace_1_trace_type>0</trace_1_trace_type>
-    <axis_0_auto_scale>true</axis_0_auto_scale>
+    <axis_0_auto_scale>false</axis_0_auto_scale>
     <axis_0_minimum>0.0</axis_0_minimum>
     <trace_2_y_axis_index>1</trace_2_y_axis_index>
     <trace_1_update_delay>100</trace_1_update_delay>
     <axis_1_axis_title>Amplitude</axis_1_axis_title>
     <trace_2_x_pv_value />
-    <axis_1_auto_scale>true</axis_1_auto_scale>
+    <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
     <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Q:FFTData.AMP</trace_2_y_pv>
