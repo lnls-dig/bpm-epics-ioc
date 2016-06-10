@@ -240,7 +240,14 @@ $(trace_0_y_pv_value)</tooltip>
     <visible>true</visible>
     <trace_1_buffer_size>10000</trace_1_buffer_size>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <scripts />
+    <scripts>
+      <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
+        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASX(1)</pv>
+      </path>
+      <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
+        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASY(1)</pv>
+      </path>
+    </scripts>
     <trace_0_point_size>4</trace_0_point_size>
     <trace_0_trace_color>
       <color red="21" green="21" blue="196" />
@@ -808,7 +815,14 @@ $(trace_0_y_pv_value)</tooltip>
     <visible>true</visible>
     <trace_1_buffer_size>10000</trace_1_buffer_size>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <scripts />
+    <scripts>
+      <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
+        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTX(1)</pv>
+      </path>
+      <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
+        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTY(1)</pv>
+      </path>
+    </scripts>
     <trace_0_point_size>4</trace_0_point_size>
     <trace_0_trace_color>
       <color red="21" green="21" blue="196" />
@@ -4200,5 +4214,353 @@ pvs[1].setValue("abort")]]></scriptText>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>
     </widget>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <bit>0</bit>
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7797</wuid>
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASX(1)</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label></label>
+    <widget_type>Check Box</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>22</width>
+    <x>639</x>
+    <name>Check Box_8</name>
+    <y>423</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7796</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Autoscale X</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>660</x>
+    <name>Label_8</name>
+    <y>423</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <bit>0</bit>
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7795</wuid>
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASY(1)</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label></label>
+    <widget_type>Check Box</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>22</width>
+    <x>639</x>
+    <name>Check Box_9</name>
+    <y>453</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7794</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Autoscale Y</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>660</x>
+    <name>Label_9</name>
+    <y>453</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <bit>0</bit>
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7793</wuid>
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTX(1)</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label></label>
+    <widget_type>Check Box</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>22</width>
+    <x>1467</x>
+    <name>Check Box_10</name>
+    <y>422</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7792</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Autoscale X</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>1488</x>
+    <name>Label_10</name>
+    <y>422</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <bit>0</bit>
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7791</wuid>
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTY(1)</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label></label>
+    <widget_type>Check Box</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>22</width>
+    <x>1467</x>
+    <name>Check Box_11</name>
+    <y>452</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-36f86fc:1553b75c9b7:-7790</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Autoscale Y</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>87</width>
+    <x>1488</x>
+    <name>Label_11</name>
+    <y>452</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
   </widget>
 </display>
