@@ -30,20 +30,6 @@ typedef struct {
     int bpm;
 } boardMap_t;
 
-/* Write 32-bit function pointer */
-typedef bpm_client_err_e (*writeInt32Fp)(bpm_client_t *self, char *service,
-	uint32_t param);
-/* Read 32-bit function pointer */
-typedef bpm_client_err_e (*readInt32Fp)(bpm_client_t *self, char *service,
-	uint32_t *param);
-
-/* BPM command dispatch table */
-typedef struct {
-    const char *serviceName;
-    writeInt32Fp write;
-    readInt32Fp read;
-} functionsInt32_t;
-
 /* Write 64-bit float function pointer */
 typedef bpm_client_err_e (*writeFloat64Fp)(bpm_client_t *self, char *service,
 	double param);
@@ -60,7 +46,6 @@ typedef struct {
 
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
-#define P_RffeSwString              "RFFE_SW"               /* asynUInt32Digital,      r/w */
 #define P_RffeAtt1String            "RFFE_ATT1"             /* asynFloat64,            r/w */
 #define P_RffeAtt2String            "RFFE_ATT2"             /* asynFloat64,            r/w */
 #define P_RffeTemp1String           "RFFE_TEMP1"            /* asynfloat64             r/w */
@@ -75,10 +60,6 @@ class drvBPMRFFE : public asynPortDriver {
         ~drvBPMRFFE();
 
         /* These are the methods that we override from asynPortDriver */
-        virtual asynStatus writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
-                epicsUInt32 mask);
-        virtual asynStatus readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
-                epicsUInt32 mask);
         virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
         virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
 
@@ -88,9 +69,8 @@ class drvBPMRFFE : public asynPortDriver {
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
-        int P_RffeSw;
-#define FIRST_COMMAND P_RffeSw
         int P_RffeAtt1;
+#define FIRST_COMMAND P_RffeAtt1
         int P_RffeAtt2;
         int P_RffeTemp1;
         int P_RffeTemp2;
@@ -106,15 +86,11 @@ class drvBPMRFFE : public asynPortDriver {
         int verbose;
         int timeout;
         char *bpmPortName;
-        std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
 
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
-        asynStatus getParam32(int functionId, epicsUInt32 *param,
-                epicsUInt32 mask, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 };
