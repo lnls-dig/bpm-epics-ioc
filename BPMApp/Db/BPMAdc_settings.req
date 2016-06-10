@@ -15,3 +15,13 @@ $(P)ADC:wdwDly
 $(P)ADC:trigDir
 $(P)ADC:trigTerm
 $(P)ADC:si57xFreq
+$(P)ADC:AD9510PllFunc
+$(P)ADC:AD9510ClkSel
+$(P)ADC:AD9510ADiv
+$(P)ADC:AD9510BDiv
+$(P)ADC:AD9510Prescaler
+$(P)ADC:AD9510RDiv
+$(P)ADC:AD9510PllPDown
+$(P)AD9510MuxStatus
+$(P)ADC:AD9510CpCurrent
+$(P)ADC:AD9510Outputs
