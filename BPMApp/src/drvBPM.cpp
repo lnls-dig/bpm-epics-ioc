@@ -35,7 +35,7 @@
 #define TEST_LENGTH                     4092
 
 /* FIXME: This should be read from hardware */
-#define HARMONIC_NUMBER                 864
+#define HARMONIC_NUMBER                 148
 #define ADC_CLK_FREQ_UVX_DFLT           113040445           /* Hz */
 #define ADC_RATE_FACTOR                 1
 #define TBT_RATE_FACTOR                 35
