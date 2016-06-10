@@ -55,7 +55,6 @@ static const boardMap_t boardMap[MAX_BPMS+1] = {
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetRffeAtt1Func = {"RFFE", bpm_set_rffe_att1, bpm_get_rffe_att1};
-static const functionsFloat64_t bpmSetGetRffeAtt2Func = {"RFFE", bpm_set_rffe_att2, bpm_get_rffe_att2};
 static const functionsFloat64_t bpmSetGetRffeTemp1Func = {"RFFE", NULL, bpm_get_rffe_temp1};
 static const functionsFloat64_t bpmSetGetRffeTemp2Func = {"RFFE", NULL, bpm_get_rffe_temp2};
 static const functionsFloat64_t bpmSetGetRffeTemp3Func = {"RFFE", NULL, bpm_get_rffe_temp3};
@@ -116,7 +115,6 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
 
     /* Create parameters */
     createParam(P_RffeAtt1String,   asynParamFloat64,               &P_RffeAtt1);
-    createParam(P_RffeAtt2String,   asynParamFloat64,               &P_RffeAtt2);
     createParam(P_RffeTemp1String,  asynParamFloat64,               &P_RffeTemp1);
     createParam(P_RffeTemp2String,  asynParamFloat64,               &P_RffeTemp2);
     createParam(P_RffeTemp3String,  asynParamFloat64,               &P_RffeTemp3);
@@ -124,7 +122,6 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
 
     /* Set the initial values of some parameters */
     setDoubleParam(P_RffeAtt1,                              31.5);
-    setDoubleParam(P_RffeAtt2,                              31.5);
     setDoubleParam(P_RffeTemp1,                             0.0);
     setDoubleParam(P_RffeTemp2,                             0.0);
     setDoubleParam(P_RffeTemp3,                             0.0);
@@ -138,7 +135,6 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     /* BPM Float64 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFloat64Func[P_RffeAtt1] = bpmSetGetRffeAtt1Func;
-    bpmHwFloat64Func[P_RffeAtt2] = bpmSetGetRffeAtt2Func;
     bpmHwFloat64Func[P_RffeTemp1] = bpmSetGetRffeTemp1Func;
     bpmHwFloat64Func[P_RffeTemp2] = bpmSetGetRffeTemp2Func;
     bpmHwFloat64Func[P_RffeTemp3] = bpmSetGetRffeTemp3Func;

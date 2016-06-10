@@ -47,7 +47,6 @@ typedef struct {
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_RffeAtt1String            "RFFE_ATT1"             /* asynFloat64,            r/w */
-#define P_RffeAtt2String            "RFFE_ATT2"             /* asynFloat64,            r/w */
 #define P_RffeTemp1String           "RFFE_TEMP1"            /* asynfloat64             r/w */
 #define P_RffeTemp2String           "RFFE_TEMP2"            /* asynfloat64             r/w */
 #define P_RffeTemp3String           "RFFE_TEMP3"            /* asynfloat64             r/w */
@@ -71,7 +70,6 @@ class drvBPMRFFE : public asynPortDriver {
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
         int P_RffeAtt1;
 #define FIRST_COMMAND P_RffeAtt1
-        int P_RffeAtt2;
         int P_RffeTemp1;
         int P_RffeTemp2;
         int P_RffeTemp3;
