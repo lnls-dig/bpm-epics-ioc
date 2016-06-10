@@ -29,24 +29,6 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
     field(EGU, "dB")
 }
 
-record(ao,"$(P)-$(BPM_NUMBER):RFFE:att2"){
-    field(DTYP, "asynFloat64")
-    field(DESC,"set RFFE attenuator 2")
-    field(PINI,"YES")
-    field(SCAN,"Passive")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
-    field(EGU, "dB")
-}
-
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:att2_RBV"){
-    field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE attenuator 2")
-    field(PINI,"YES")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT2")
-    field(EGU, "dB")
-}
-
 record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp1_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE temperature 1")
