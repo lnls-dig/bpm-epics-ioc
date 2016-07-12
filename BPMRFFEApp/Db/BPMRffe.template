@@ -11,56 +11,248 @@
 # RFFE parameters
 #########################
 
-record(ao,"$(P)-$(BPM_NUMBER):RFFE:att1"){
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:att"){
     field(DTYP, "asynFloat64")
-    field(DESC,"set RFFE attenuator 1")
+    field(DESC,"set RFFE attenuator")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT")
     field(EGU, "dB")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:att1_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:att_RBV"){
     field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE attenuator 1")
+    field(DESC,"get RFFE attenuator")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT1")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_ATT")
     field(EGU, "dB")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp1_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:tempAC_RBV"){
     field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE temperature 1")
+    field(DESC,"get RFFE temperature AC")
     field(PINI,"YES")
     field(SCAN,"5 second")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP1")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP_AC")
     field(EGU, "oC")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp2_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:tempBD_RBV"){
     field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE temperature 2")
+    field(DESC,"get RFFE temperature BD")
     field(PINI,"YES")
     field(SCAN,"5 second")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP_BD")
     field(EGU, "oC")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp3_RBV"){
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointAC"){
     field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE temperature 3")
+    field(DESC,"set RFFE AC setpoint")
     field(PINI,"YES")
-    field(SCAN,"5 second")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP3")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_SET_POINT_AC")
     field(EGU, "oC")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:temp4_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:setPointAC_RBV"){
     field(DTYP, "asynFloat64")
-    field(DESC,"get RFFE temperature 4")
+    field(DESC,"get RFFE AC setpoint")
     field(PINI,"YES")
-    field(SCAN,"5 second")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_TEMP4")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_SET_POINT_AC")
     field(EGU, "oC")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointBD"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE BD setpoint")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_SET_POINT_BD")
+    field(EGU, "oC")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:setPointBD_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE BD setpoint")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_SET_POINT_BD")
+    field(EGU, "oC")
+}
+
+record(bo,"$(P)-$(BPM_NUMBER):RFFE:tempCtl"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set RFFE temperature control")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(VAL, "0")
+    field(ZNAM,"off")
+    field(ONAM,"on")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_TEMP_CTL")
+}
+
+record(bi,"$(P)-$(BPM_NUMBER):RFFE:tempCtl_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get RFFE temperature control")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(ZNAM,"off")
+    field(ONAM,"on")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_TEMP_CTL")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:heaterAC"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE AC heater")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_AC")
+    field(EGU, "V")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:heaterAC_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE AC heater")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_AC")
+    field(EGU, "V")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:heaterBD"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE BD heater")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_BD")
+    field(EGU, "V")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:heaterBD_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE BD heater")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_BD")
+    field(EGU, "V")
+}
+
+record(bo,"$(P)-$(BPM_NUMBER):RFFE:rst"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"reset RFFE")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(VAL, "0")
+    field(ZNAM,"off")
+    field(ONAM,"on")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_RST")
+}
+
+record(bi,"$(P)-$(BPM_NUMBER):RFFE:rst_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get RFFE reset status")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(ZNAM,"off")
+    field(ONAM,"on")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_RST")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACKp"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE AC PID Kp")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_KP")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidACKp_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE AC PID Kp")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_KP")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACTi"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE AC PID Ti")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TI")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidACTi_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE AC PID Ti")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TI")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACTd"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE AC PID Td")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TD")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidACTd_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE AC PID Td")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TD")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidBDKp"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE BD PID Kp")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_KP")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidBDKp_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE BD PID Kp")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_KP")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidBDTi"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE BD PID Ti")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_TI")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidBDTi_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE BD PID Ti")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_TI")
+}
+
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidBDTd"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"set RFFE BD PID Td")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_TD")
+}
+
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidBDTd_RBV"){
+    field(DTYP, "asynFloat64")
+    field(DESC,"get RFFE BD PID Td")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_TD")
 }
