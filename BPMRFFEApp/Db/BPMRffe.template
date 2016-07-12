@@ -117,7 +117,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:heaterAC_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE AC heater")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"1 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_AC")
     field(EGU, "V")
 }
@@ -135,7 +135,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:heaterBD_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE BD heater")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"1 second")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_HEATER_BD")
     field(EGU, "V")
 }
