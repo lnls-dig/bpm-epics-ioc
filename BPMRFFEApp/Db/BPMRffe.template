@@ -47,7 +47,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:tempBD_RBV"){
     field(EGU, "oC")
 }
 
-record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointAC"){
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidSpAC"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC setpoint")
     field(PINI,"YES")
@@ -56,7 +56,7 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointAC"){
     field(EGU, "oC")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:setPointAC_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidSpAC_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE AC setpoint")
     field(PINI,"YES")
@@ -65,7 +65,7 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:setPointAC_RBV"){
     field(EGU, "oC")
 }
 
-record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointBD"){
+record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidSpBD"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD setpoint")
     field(PINI,"YES")
@@ -74,7 +74,7 @@ record(ao,"$(P)-$(BPM_NUMBER):RFFE:setPointBD"){
     field(EGU, "oC")
 }
 
-record(ai,"$(P)-$(BPM_NUMBER):RFFE:setPointBD_RBV"){
+record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidSpBD_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE BD setpoint")
     field(PINI,"YES")
