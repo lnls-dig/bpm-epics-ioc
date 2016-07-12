@@ -47,6 +47,12 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:tempBD_RBV"){
     field(EGU, "oC")
 }
 
+record(dfanout, "$(P)-$(BPM_NUMBER):RFFE:pidSp") {
+    field(OMSL, "supervisory")
+    field(OUTA, "$(P)-$(BPM_NUMBER):RFFE:pidSpAC PP")
+    field(OUTB, "$(P)-$(BPM_NUMBER):RFFE:pidSpBD PP")
+}
+
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidSpAC"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC setpoint")
@@ -102,6 +108,12 @@ record(bi,"$(P)-$(BPM_NUMBER):RFFE:tempCtl_RBV"){
     field(ZNAM,"off")
     field(ONAM,"on")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_TEMP_CTL")
+}
+
+record(dfanout, "$(P)-$(BPM_NUMBER):RFFE:heater") {
+    field(OMSL, "supervisory")
+    field(OUTA, "$(P)-$(BPM_NUMBER):RFFE:heaterAC PP")
+    field(OUTB, "$(P)-$(BPM_NUMBER):RFFE:heaterBD PP")
 }
 
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:heaterAC"){
@@ -161,6 +173,12 @@ record(bi,"$(P)-$(BPM_NUMBER):RFFE:rst_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_RST")
 }
 
+record(dfanout, "$(P)-$(BPM_NUMBER):RFFE:pidKp") {
+    field(OMSL, "supervisory")
+    field(OUTA, "$(P)-$(BPM_NUMBER):RFFE:pidACKp PP")
+    field(OUTB, "$(P)-$(BPM_NUMBER):RFFE:pidBDKp PP")
+}
+
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACKp"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC PID Kp")
@@ -177,6 +195,12 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidACKp_RBV"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_KP")
 }
 
+record(dfanout, "$(P)-$(BPM_NUMBER):RFFE:pidTi") {
+    field(OMSL, "supervisory")
+    field(OUTA, "$(P)-$(BPM_NUMBER):RFFE:pidACTi PP")
+    field(OUTB, "$(P)-$(BPM_NUMBER):RFFE:pidBDTi PP")
+}
+
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACTi"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC PID Ti")
@@ -191,6 +215,12 @@ record(ai,"$(P)-$(BPM_NUMBER):RFFE:pidACTi_RBV"){
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TI")
+}
+
+record(dfanout, "$(P)-$(BPM_NUMBER):RFFE:pidTd") {
+    field(OMSL, "supervisory")
+    field(OUTA, "$(P)-$(BPM_NUMBER):RFFE:pidACTd PP")
+    field(OUTB, "$(P)-$(BPM_NUMBER):RFFE:pidBDTd PP")
 }
 
 record(ao,"$(P)-$(BPM_NUMBER):RFFE:pidACTd"){
