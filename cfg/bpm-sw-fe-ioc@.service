@@ -1,8 +1,8 @@
 [Unit]
 Description=BPM FE IOC %p%I
 After=rc-local.service
-Requires=bpm-sw@%i.service
-After=bpm-sw@%i.service
+Requires=bpm-sw-be@%i.service
+After=bpm-sw-be@%i.service
 
 [Service]
 # Source environment
@@ -15,3 +15,6 @@ ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 # Run procServ with user ioc
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
+
+[Install]
+RequiredBy=bpm-sw-ioc@%i.service

@@ -1,0 +1,10 @@
+[Unit]
+Description=BPM IOC %p%I
+After=rc-local.service
+Requires=bpm-sw-be-ioc@%i.service
+After=bpm-sw-be-ioc@%i.service
+Requires=bpm-sw-fe-ioc@%i.service
+After=bpm-sw-fe-ioc@%i.service
+
+[Service]
+ExecStart=/bin/true
