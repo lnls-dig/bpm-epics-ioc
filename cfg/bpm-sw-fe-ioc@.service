@@ -1,8 +1,8 @@
 [Unit]
 Description=BPM FE IOC %p%I
 After=rc-local.service
-Requires=bpm-sw-be@%i.service
-After=bpm-sw-be@%i.service
+Requires=bpm-sw-fe@%i.service
+After=bpm-sw-fe@%i.service
 
 [Service]
 # Source environment
