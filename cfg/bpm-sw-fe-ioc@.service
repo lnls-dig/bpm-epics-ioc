@@ -18,4 +18,4 @@ WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
 
 [Install]
-WantedBy=bpm-sw-ioc@%i.service
+WantedBy=bpm-sw-ioc@%i.target

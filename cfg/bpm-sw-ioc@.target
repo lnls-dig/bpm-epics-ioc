@@ -5,7 +5,3 @@ Wants=bpm-sw-be-ioc@%i.service
 After=bpm-sw-be-ioc@%i.service
 Wants=bpm-sw-fe-ioc@%i.service
 After=bpm-sw-fe-ioc@%i.service
-
-[Service]
-ExecStart=/bin/true
-RemainAfterExit=true
