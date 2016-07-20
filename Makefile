@@ -9,7 +9,7 @@ DIRS += FFTRecordsApp
 DIRS += BPMApp
 DIRS += BPMRFFEApp
 DIRS += install
-DIRS += cfg
+DIRS += scripts
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
 
 define DIR_template
