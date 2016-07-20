@@ -24,10 +24,4 @@ fi
 # Remove everything from INSTALL_DIR
 rm -rf "$INSTALL_DIR"
 
-# Remove systemd files
-rm -f /etc/systemd/system/bpm-sw-be-ioc@.service
-rm -f /etc/systemd/system/bpm-sw-fe-ioc@.service
-rm -f /etc/systemd/system/bpm-sw-ioc@.service
-rm -f /etc/sysconfig/bpm-epics-ioc
-
 echo BPM EPICS IOC uninstalled from "$INSTALL_DIR"
