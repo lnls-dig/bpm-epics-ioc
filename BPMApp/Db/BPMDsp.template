@@ -217,6 +217,21 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:X"){
     field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL PP")
     field(INPF,"$(P)-$(BPM_NUMBER):DSP:XOffset.VAL PP")
     field(OUT, "0")
+    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:XFake")
+    field(EGU, "nm")
+}
+
+record(calcout,"$(P)-$(BPM_NUMBER):MONIT:XFake"){
+    field(PINI,"YES")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(SCAN,"Passive")
+    field(CALC,"a*((b-c)/(b+c))-d")               
+    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Kx.VAL")
+    field(INPB,"$(P)-$(BPM_NUMBER):MONIT:A.VAL")
+    field(INPC,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
+    field(INPD,"$(P)-$(BPM_NUMBER):DSP:XOffset.VAL")
+    field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Y")
     field(EGU, "nm")
 }
@@ -232,6 +247,20 @@ record(calcout,"$(P)-$(BPM_NUMBER):MONIT:Y"){
     field(INPD,"$(P)-$(BPM_NUMBER):MONIT:C.VAL")
     field(INPE,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
     field(INPF,"$(P)-$(BPM_NUMBER):DSP:YOffset.VAL PP")
+    field(OUT, "0")
+    field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:YFake")
+    field(EGU, "nm")
+}
+
+record(calcout,"$(P)-$(BPM_NUMBER):MONIT:YFake"){
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(SCAN,"Passive")
+    field(CALC,"a*((b-c)/(b+c))-d")               
+    field(INPA,"$(P)-$(BPM_NUMBER):DSP:Ky.VAL")
+    field(INPB,"$(P)-$(BPM_NUMBER):MONIT:B.VAL")
+    field(INPC,"$(P)-$(BPM_NUMBER):MONIT:D.VAL")
+    field(INPD,"$(P)-$(BPM_NUMBER):DSP:YOffset.VAL")
     field(OUT, "0")
     field(FLNK,"$(P)-$(BPM_NUMBER):MONIT:Q")
     field(EGU, "nm")
