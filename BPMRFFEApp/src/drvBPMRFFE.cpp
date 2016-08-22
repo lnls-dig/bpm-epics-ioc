@@ -507,7 +507,7 @@ asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
     func = bpmHwInt32Func.find (functionId);
     if (func != bpmHwInt32Func.end()) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -559,7 +559,7 @@ asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
     if (func != bpmHwInt32Func.end()) {
         *param = 0;
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -612,7 +612,7 @@ asynStatus drvBPMRFFE::setParamDouble(int functionId, int addr)
     func = bpmHwFloat64Func.find (functionId);
     if (func != bpmHwFloat64Func.end()) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -662,7 +662,7 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
     if (func != bpmHwFloat64Func.end()) {
         *param = 0;
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 

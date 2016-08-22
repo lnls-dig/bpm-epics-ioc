@@ -1362,7 +1362,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
     }
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     req.num_samples_pre  = num_samples_pre;
@@ -1406,7 +1406,7 @@ asynStatus drvBPM::abortAcq()
     uint32_t fsm_stop = 1;
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     err = bpm_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
@@ -1427,7 +1427,7 @@ int drvBPM::checkAcqCompletion()
     char service[50];
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     err = bpm_acq_check (bpmClientAcq, service);
@@ -1455,7 +1455,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
     acq_block_t block;
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     req.num_samples_pre  = num_samples_pre;
@@ -1824,7 +1824,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     func = bpmHwInt32Func.find (functionId);
     if (func != bpmHwInt32Func.end()) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -1850,7 +1850,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     func2 = bpmHw2Int32Func.find (functionId);
     if (func2 != bpmHw2Int32Func.end()) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func2->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -1901,11 +1901,11 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
          * service, the correct index for it is always 0, as it's the same
          * for both BPMs */
         if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
-            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s0",
+            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s0",
                     boardMap[this->bpmNumber].board, funcChan->second.serviceName);
         }
         else {
-            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                     boardMap[this->bpmNumber].board, funcChan->second.serviceName,
                     boardMap[this->bpmNumber].bpm);
         }
@@ -1968,7 +1968,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     if (func != bpmHwInt32Func.end()) {
         *param = 0;
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -1999,7 +1999,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     if (func2 != bpmHw2Int32Func.end()) {
         *param = 0;
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func2->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -2041,11 +2041,11 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
          * service, the correct index for it is always 0, as it's the same
          * for both BPMs */
         if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
-            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s0",
+            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s0",
                     boardMap[this->bpmNumber].board, funcChan->second.serviceName);
         }
         else {
-            snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                     boardMap[this->bpmNumber].board, funcChan->second.serviceName,
                     boardMap[this->bpmNumber].bpm);
         }
@@ -2103,7 +2103,7 @@ asynStatus drvBPM::setParamDouble(int functionId, int addr)
     func = bpmHwFloat64Func.find (functionId);
     if (func != bpmHwFloat64Func.end()) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -2153,7 +2153,7 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
     if (func != bpmHwFloat64Func.end()) {
         *param = 0;
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "BPM%d:DEVIO:%s%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
                 boardMap[this->bpmNumber].board, func->second.serviceName,
                 boardMap[this->bpmNumber].bpm);
 
@@ -2213,7 +2213,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
         goto bpm_inv_channel;
     }
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     err = bpm_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
@@ -2237,7 +2237,7 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
     epicsUInt32 hwAmpChannel = 0;
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "BPM%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     /* Clear parameter in case of an error occurs */
