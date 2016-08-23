@@ -130,76 +130,76 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
 };
 
 /* Int32 functions mapping */
-static const functionsInt32_t bpmSetGetKxFunc = {"DSP", bpm_set_kx, bpm_get_kx};
-static const functionsInt32_t bpmSetGetKyFunc = {"DSP", bpm_set_ky, bpm_get_ky};
-static const functionsInt32_t bpmSetGetKsumFunc = {"DSP", bpm_set_ksum, bpm_get_ksum};
-static const functionsInt32_t bpmSetGetMonitAmpAFunc = {"DSP", bpm_set_monit_amp_ch0, bpm_get_monit_amp_ch0};
-static const functionsInt32_t bpmSetGetMonitAmpBFunc = {"DSP", bpm_set_monit_amp_ch1, bpm_get_monit_amp_ch1};
-static const functionsInt32_t bpmSetGetMonitAmpCFunc = {"DSP", bpm_set_monit_amp_ch2, bpm_get_monit_amp_ch2};
-static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", bpm_set_monit_amp_ch3, bpm_get_monit_amp_ch3};
-static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", bpm_set_monit_updt, bpm_get_monit_updt};
-static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", bpm_set_sw, bpm_get_sw};
-static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", bpm_set_sw_dly, bpm_get_sw_dly};
-static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", bpm_set_sw_en, bpm_get_sw_en};
-static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", bpm_set_div_clk, bpm_get_div_clk};
-static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", bpm_set_wdw, bpm_get_wdw};
-static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", bpm_set_wdw_dly, bpm_get_wdw_dly};
-static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC_ADC_COMMON", bpm_set_trig_dir, bpm_get_trig_dir};
-static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC_ADC_COMMON", bpm_set_trig_term, bpm_get_trig_term};
-static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", bpm_set_adc_rand, bpm_get_adc_rand};
-static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", bpm_set_adc_dith, bpm_get_adc_dith};
-static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", bpm_set_adc_shdn, bpm_get_adc_shdn};
-static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", bpm_set_adc_pga, bpm_get_adc_pga};
-static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", bpm_set_adc_test_data_en, bpm_get_adc_test_data_en};
-static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", bpm_set_fmc_clk_sel, bpm_get_fmc_clk_sel};
-static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_defaults, NULL};
-static const functionsInt32_t bpmSetGetAdcAD9510PllFunctionFunc = {"FMC_ACTIVE_CLK", bpm_set_fmc_pll_function, bpm_get_fmc_pll_function};
-static const functionsInt32_t bpmSetGetAdcAD9510PllStatusFunc = {"FMC_ACTIVE_CLK", bpm_set_fmc_pll_status, bpm_get_fmc_pll_status};
-static const functionsInt32_t bpmSetGetAdcAD9510ClkSelFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_pll_clk_sel, bpm_get_ad9510_pll_clk_sel};
-static const functionsInt32_t bpmSetGetAdcAD9510ADivFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_pll_a_div, bpm_get_ad9510_pll_a_div};
-static const functionsInt32_t bpmSetGetAdcAD9510BDivFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_pll_b_div, bpm_get_ad9510_pll_b_div};
-static const functionsInt32_t bpmSetGetAdcAD9510PrescalerFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_pll_prescaler, bpm_get_ad9510_pll_prescaler};
-static const functionsInt32_t bpmSetGetAdcAD9510RDivFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_r_div, bpm_get_ad9510_r_div};
-static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_pll_pdown, bpm_get_ad9510_pll_pdown};
-static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_mux_status, bpm_get_ad9510_mux_status};
-static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_cp_current, bpm_get_ad9510_cp_current};
-static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", bpm_set_ad9510_outputs, bpm_get_ad9510_outputs};
-static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", bpm_set_acq_fsm_stop, bpm_get_acq_fsm_stop};
-static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", bpm_set_acq_trig, bpm_get_acq_trig};
-static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", bpm_set_acq_data_trig_thres, bpm_get_acq_data_trig_thres};
-static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", bpm_set_acq_data_trig_pol, bpm_get_acq_data_trig_pol};
-static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", bpm_set_acq_data_trig_sel, bpm_get_acq_data_trig_sel};
-static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", bpm_set_acq_data_trig_filt, bpm_get_acq_data_trig_filt};
-static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", bpm_set_acq_hw_trig_dly, bpm_get_acq_hw_trig_dly};
-static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", bpm_set_acq_data_trig_chan, bpm_get_acq_data_trig_chan};
+static const functionsInt32_t bpmSetGetKxFunc = {"DSP", halcs_set_kx, halcs_get_kx};
+static const functionsInt32_t bpmSetGetKyFunc = {"DSP", halcs_set_ky, halcs_get_ky};
+static const functionsInt32_t bpmSetGetKsumFunc = {"DSP", halcs_set_ksum, halcs_get_ksum};
+static const functionsInt32_t bpmSetGetMonitAmpAFunc = {"DSP", halcs_set_monit_amp_ch0, halcs_get_monit_amp_ch0};
+static const functionsInt32_t bpmSetGetMonitAmpBFunc = {"DSP", halcs_set_monit_amp_ch1, halcs_get_monit_amp_ch1};
+static const functionsInt32_t bpmSetGetMonitAmpCFunc = {"DSP", halcs_set_monit_amp_ch2, halcs_get_monit_amp_ch2};
+static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", halcs_set_monit_amp_ch3, halcs_get_monit_amp_ch3};
+static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", halcs_set_monit_updt, halcs_get_monit_updt};
+static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", halcs_set_sw, halcs_get_sw};
+static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", halcs_set_sw_dly, halcs_get_sw_dly};
+static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", halcs_set_sw_en, halcs_get_sw_en};
+static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", halcs_set_div_clk, halcs_get_div_clk};
+static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", halcs_set_wdw, halcs_get_wdw};
+static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", halcs_set_wdw_dly, halcs_get_wdw_dly};
+static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir};
+static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term};
+static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand};
+static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith};
+static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn};
+static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga};
+static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en};
+static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel};
+static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, NULL};
+static const functionsInt32_t bpmSetGetAdcAD9510PllFunctionFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function};
+static const functionsInt32_t bpmSetGetAdcAD9510PllStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status};
+static const functionsInt32_t bpmSetGetAdcAD9510ClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel};
+static const functionsInt32_t bpmSetGetAdcAD9510ADivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_a_div, halcs_get_ad9510_pll_a_div};
+static const functionsInt32_t bpmSetGetAdcAD9510BDivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_b_div, halcs_get_ad9510_pll_b_div};
+static const functionsInt32_t bpmSetGetAdcAD9510PrescalerFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_prescaler, halcs_get_ad9510_pll_prescaler};
+static const functionsInt32_t bpmSetGetAdcAD9510RDivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_r_div, halcs_get_ad9510_r_div};
+static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_pdown, halcs_get_ad9510_pll_pdown};
+static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status};
+static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
+static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
+static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", halcs_set_acq_fsm_stop, halcs_get_acq_fsm_stop};
+static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", halcs_set_acq_trig, halcs_get_acq_trig};
+static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", halcs_set_acq_data_trig_thres, halcs_get_acq_data_trig_thres};
+static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", halcs_set_acq_data_trig_pol, halcs_get_acq_data_trig_pol};
+static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", halcs_set_acq_data_trig_sel, halcs_get_acq_data_trig_sel};
+static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", halcs_set_acq_data_trig_filt, halcs_get_acq_data_trig_filt};
+static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", halcs_set_acq_hw_trig_dly, halcs_get_acq_hw_trig_dly};
+static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", halcs_set_acq_data_trig_chan, halcs_get_acq_data_trig_chan};
 
 /* 2 Int32 functions mapping */
-static const functions2Int32_t bpmSetGetAdcGainAAFunc = {"SWAP", bpm_set_gain_a, bpm_get_gain_a, 1};
-static const functions2Int32_t bpmSetGetAdcGainBBFunc = {"SWAP", bpm_set_gain_b, bpm_get_gain_b, 1};
-static const functions2Int32_t bpmSetGetAdcGainCCFunc = {"SWAP", bpm_set_gain_c, bpm_get_gain_c, 1};
-static const functions2Int32_t bpmSetGetAdcGainDDFunc = {"SWAP", bpm_set_gain_d, bpm_get_gain_d, 1};
-static const functions2Int32_t bpmSetGetAdcGainACFunc = {"SWAP", bpm_set_gain_a, bpm_get_gain_a, 2};
-static const functions2Int32_t bpmSetGetAdcGainCAFunc = {"SWAP", bpm_set_gain_c, bpm_get_gain_c, 2};
-static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", bpm_set_gain_b, bpm_get_gain_b, 2};
-static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", bpm_set_gain_d, bpm_get_gain_d, 2};
+static const functions2Int32_t bpmSetGetAdcGainAAFunc = {"SWAP", halcs_set_gain_a, halcs_get_gain_a, 1};
+static const functions2Int32_t bpmSetGetAdcGainBBFunc = {"SWAP", halcs_set_gain_b, halcs_get_gain_b, 1};
+static const functions2Int32_t bpmSetGetAdcGainCCFunc = {"SWAP", halcs_set_gain_c, halcs_get_gain_c, 1};
+static const functions2Int32_t bpmSetGetAdcGainDDFunc = {"SWAP", halcs_set_gain_d, halcs_get_gain_d, 1};
+static const functions2Int32_t bpmSetGetAdcGainACFunc = {"SWAP", halcs_set_gain_a, halcs_get_gain_a, 2};
+static const functions2Int32_t bpmSetGetAdcGainCAFunc = {"SWAP", halcs_set_gain_c, halcs_get_gain_c, 2};
+static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", halcs_set_gain_b, halcs_get_gain_b, 2};
+static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", halcs_set_gain_d, halcs_get_gain_d, 2};
 
 /* Double functions mapping */
-static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", bpm_set_si571_freq, bpm_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
 
 /* Int32 with channel selection functions mapping */
-static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", bpm_set_trigger_dir, bpm_get_trigger_dir};
-static const functionsInt32Chan_t bpmSetGetTrigDirPolFunc = {"TRIGGER_IFACE", bpm_set_trigger_dir_pol, bpm_get_trigger_dir_pol};
-static const functionsInt32Chan_t bpmSetGetTrigRcvCntRstFunc = {"TRIGGER_IFACE", bpm_set_trigger_rcv_count_rst, bpm_get_trigger_rcv_count_rst};
-static const functionsInt32Chan_t bpmSetGetTrigTrnCntRstFunc = {"TRIGGER_IFACE", bpm_set_trigger_transm_count_rst, bpm_get_trigger_transm_count_rst};
-static const functionsInt32Chan_t bpmSetGetTrigRcvLenFunc = {"TRIGGER_IFACE", bpm_set_trigger_rcv_len, bpm_get_trigger_rcv_len};
-static const functionsInt32Chan_t bpmSetGetTrigTrnLenFunc = {"TRIGGER_IFACE", bpm_set_trigger_transm_len, bpm_get_trigger_transm_len};
-static const functionsInt32Chan_t bpmSetGetTrigCntRcvFunc = {"TRIGGER_IFACE", bpm_set_trigger_count_rcv, bpm_get_trigger_count_rcv};
-static const functionsInt32Chan_t bpmSetGetTrigCntTrnFunc = {"TRIGGER_IFACE", bpm_set_trigger_count_transm, bpm_get_trigger_count_transm};
+static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir};
+static const functionsInt32Chan_t bpmSetGetTrigDirPolFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir_pol, halcs_get_trigger_dir_pol};
+static const functionsInt32Chan_t bpmSetGetTrigRcvCntRstFunc = {"TRIGGER_IFACE", halcs_set_trigger_rcv_count_rst, halcs_get_trigger_rcv_count_rst};
+static const functionsInt32Chan_t bpmSetGetTrigTrnCntRstFunc = {"TRIGGER_IFACE", halcs_set_trigger_transm_count_rst, halcs_get_trigger_transm_count_rst};
+static const functionsInt32Chan_t bpmSetGetTrigRcvLenFunc = {"TRIGGER_IFACE", halcs_set_trigger_rcv_len, halcs_get_trigger_rcv_len};
+static const functionsInt32Chan_t bpmSetGetTrigTrnLenFunc = {"TRIGGER_IFACE", halcs_set_trigger_transm_len, halcs_get_trigger_transm_len};
+static const functionsInt32Chan_t bpmSetGetTrigCntRcvFunc = {"TRIGGER_IFACE", halcs_set_trigger_count_rcv, halcs_get_trigger_count_rcv};
+static const functionsInt32Chan_t bpmSetGetTrigCntTrnFunc = {"TRIGGER_IFACE", halcs_set_trigger_count_transm, halcs_get_trigger_count_transm};
 
-static const functionsInt32Chan_t bpmSetGetTrigRcvSrcFunc = {"TRIGGER_MUX", bpm_set_trigger_rcv_src, bpm_get_trigger_rcv_src};
-static const functionsInt32Chan_t bpmSetGetTrigTrnSrcFunc = {"TRIGGER_MUX", bpm_set_trigger_transm_src, bpm_get_trigger_transm_src};
-static const functionsInt32Chan_t bpmSetGetTrigRcvSelFunc = {"TRIGGER_MUX", bpm_set_trigger_rcv_in_sel, bpm_get_trigger_rcv_in_sel};
-static const functionsInt32Chan_t bpmSetGetTrigTrnSelFunc = {"TRIGGER_MUX", bpm_set_trigger_transm_out_sel, bpm_get_trigger_transm_out_sel};
+static const functionsInt32Chan_t bpmSetGetTrigRcvSrcFunc = {"TRIGGER_MUX", halcs_set_trigger_rcv_src, halcs_get_trigger_rcv_src};
+static const functionsInt32Chan_t bpmSetGetTrigTrnSrcFunc = {"TRIGGER_MUX", halcs_set_trigger_transm_src, halcs_get_trigger_transm_src};
+static const functionsInt32Chan_t bpmSetGetTrigRcvSelFunc = {"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel};
+static const functionsInt32Chan_t bpmSetGetTrigTrnSelFunc = {"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel};
 
 static const char *driverName="drvBPM";
 void acqTask(void *drvPvt);
@@ -667,25 +667,25 @@ asynStatus drvBPM::bpmClientConnect(void)
 
     /* Connect BPM */
     if (bpmClient == NULL) {
-        bpmClient = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        bpmClient = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClient == NULL) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClient instance\n",
                     driverName, functionName);
             status = asynError;
-            goto create_bpm_client_err;
+            goto create_halcs_client_err;
         }
     }
 
     /* Connect ACQ BPM */
     if (bpmClientAcq == NULL) {
-        bpmClientAcq = bpm_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        bpmClientAcq = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClientAcq == NULL) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClientAcq instance\n",
                     driverName, functionName);
             status = asynError;
-            goto create_bpm_client_acq_err;
+            goto create_halcs_client_acq_err;
         }
     }
 
@@ -697,9 +697,9 @@ asynStatus drvBPM::bpmClientConnect(void)
 
     return status;
 
-create_bpm_client_acq_err:
-    bpm_client_destroy (&bpmClient);
-create_bpm_client_err:
+create_halcs_client_acq_err:
+    halcs_client_destroy (&bpmClient);
+create_halcs_client_err:
     return status;
 }
 
@@ -716,11 +716,11 @@ asynStatus drvBPM::bpmClientDisconnect(void)
     asynStatus status = asynSuccess;
 
     if (bpmClient != NULL) {
-        bpm_client_destroy (&bpmClient);
+        halcs_client_destroy (&bpmClient);
     }
 
     if (bpmClientAcq != NULL) {
-        bpm_client_destroy (&bpmClientAcq);
+        halcs_client_destroy (&bpmClientAcq);
     }
 
     pasynManager->exceptionDisconnect(this->pasynUserSelf);
@@ -1345,7 +1345,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         epicsUInt32 num_samples_post, epicsUInt32 num_shots)
 {
     asynStatus status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     const char* functionName = "startAcq";
     char service[50];
     acq_trans_t acq_trans;
@@ -1381,7 +1381,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
     }
 #else
     err = bpm_acq_start (bpmClientAcq, service, &req);
-    if (err != BPM_CLIENT_SUCCESS) {
+    if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
                 "\tpre-trigger samples and %u post-trigger samples\n",
@@ -1400,7 +1400,7 @@ bpm_samples_sel_err:
 asynStatus drvBPM::abortAcq()
 {
     asynStatus status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     const char* functionName = "abortAcq";
     char service[50];
     uint32_t fsm_stop = 1;
@@ -1409,8 +1409,8 @@ asynStatus drvBPM::abortAcq()
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
-    if (err != BPM_CLIENT_SUCCESS) {
+    err = halcs_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
+    if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto bpm_acq_stop_err;
     }
@@ -1422,7 +1422,7 @@ bpm_acq_stop_err:
 int drvBPM::checkAcqCompletion()
 {
     int status = 0;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     const char* functionName = "checkAcqCompletion";
     char service[50];
 
@@ -1431,7 +1431,7 @@ int drvBPM::checkAcqCompletion()
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     err = bpm_acq_check (bpmClientAcq, service);
-    if (err != BPM_CLIENT_SUCCESS) {
+    if (err != HALCS_CLIENT_SUCCESS) {
         status = 0;
         goto bpm_acq_not_finished;
     }
@@ -1447,7 +1447,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
         epicsUInt32 num_shots)
 {
     asynStatus status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     const char* functionName = "getAcqCurve";
     char service[50];
     acq_trans_t acq_trans;
@@ -1472,7 +1472,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
 
     /* This just reads the data from memory */
     err = bpm_acq_get_curve (bpmClientAcq, service, &acq_trans);
-    if (err != BPM_CLIENT_SUCCESS) {
+    if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
                 "\tpre-trigger samples and %u post-trigger samples\n",
@@ -1802,7 +1802,7 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     epicsUInt32 paramLib = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
@@ -1835,12 +1835,12 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 
         /* Function found. Execute it */
         err = func->second.write(bpmClient, service, paramLib);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func->second.write() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_set_func1_param_err;
+            goto halcs_set_func1_param_err;
         }
         /* We've done our job here. No need to check other maps */
         return (asynStatus)status;
@@ -1862,12 +1862,12 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
         /* Function found. Read the HW values first as we need to update
            only one of the parameters */
         err = func2->second.read(bpmClient, service, &param1, &param2);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func2->second.read() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_get_func2_param_err;
+            goto halcs_get_func2_param_err;
         }
 
         /* Silently exit if no function is registered */
@@ -1883,12 +1883,12 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
             err = func2->second.write(bpmClient, service, param1, paramLib);
         }
 
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func2->second.write() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_set_func2_param_err;
+            goto halcs_set_func2_param_err;
         }
         /* We've done our job here. No need to check other maps */
         return (asynStatus)status;
@@ -1917,24 +1917,24 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 
         /* Function found. Execute it */
         err = funcChan->second.write(bpmClient, service, addr, paramLib);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.write() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_set_func_chan_param_err;
+            goto halcs_set_func_chan_param_err;
         }
         /* We've done our job here. No need to check other maps */
         return (asynStatus)status;
     }
 
-bpm_set_func_chan_param_err:
+halcs_set_func_chan_param_err:
 no_registered_write_func_chan:
-bpm_set_func2_param_err:
+halcs_set_func2_param_err:
 no_registered_write_func2:
-bpm_get_func2_param_err:
+halcs_get_func2_param_err:
 no_registered_read_func2:
-bpm_set_func1_param_err:
+halcs_set_func1_param_err:
 no_registered_write_func:
 get_param_err:
     return (asynStatus)status;
@@ -1944,7 +1944,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     epicsUInt32 paramHw = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
@@ -1979,12 +1979,12 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
 
         /* Function found. Execute it */
         err = func->second.read(bpmClient, service, &paramHw);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func->second.read() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_get_func1_param_err;
+            goto halcs_get_func1_param_err;
         }
 
         /* Mask parameter according to the received mask */
@@ -2010,12 +2010,12 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
 
         /* Function found. Execute it */
         err = func2->second.read(bpmClient, service, &param1, &param2);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func2->second.read() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_get_func2_param_err;
+            goto halcs_get_func2_param_err;
         }
 
         /* Determine if we want to read the first or second parameter in HW */
@@ -2057,12 +2057,12 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
 
         /* Function found. Execute it */
         err = funcChan->second.read(bpmClient, service, addr, &paramHw);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.read() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_get_func_chan_param_err;
+            goto halcs_get_func_chan_param_err;
         }
 
         /* Mask parameter according to the received mask */
@@ -2072,11 +2072,11 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         return (asynStatus)status;
     }
 
-bpm_get_func_chan_param_err:
+halcs_get_func_chan_param_err:
 no_registered_read_func_chan:
-bpm_get_func2_param_err:
+halcs_get_func2_param_err:
 no_registered_read_func2:
-bpm_get_func1_param_err:
+halcs_get_func1_param_err:
 no_registered_read_func:
 get_param_err:
     return (asynStatus)status;
@@ -2085,7 +2085,7 @@ get_param_err:
 asynStatus drvBPM::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     epicsFloat64 paramLib = 0;
     const char *functionName = "setParamDouble";
     char service[50];
@@ -2114,18 +2114,18 @@ asynStatus drvBPM::setParamDouble(int functionId, int addr)
 
         /* Function found. Execute it */
         err = func->second.write(bpmClient, service, paramLib);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func->second.write() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_set_func_param_err;
+            goto halcs_set_func_param_err;
         }
         /* We've done our job here. No need to check other maps */
         return status;
     }
 
-bpm_set_func_param_err:
+halcs_set_func_param_err:
 no_registered_write_func:
 get_param_err:
     return status;
@@ -2134,7 +2134,7 @@ get_param_err:
 asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 {
     asynStatus status = asynSuccess;
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     const char *functionName = "getParamDouble";
     char service[50];
     std::unordered_map<int,functionsFloat64_t>::const_iterator func;
@@ -2164,19 +2164,19 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 
         /* Function found. Execute it */
         err = func->second.read(bpmClient, service, param);
-        if (err != BPM_CLIENT_SUCCESS) {
+        if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: func->second.read() failure\n",
                     driverName, functionName);
             status = asynError;
-            goto bpm_get_func_param_err;
+            goto halcs_get_func_param_err;
         }
 
         /* We've done our job here. No need to check other maps */
         return status;
     }
 
-bpm_get_func_param_err:
+halcs_get_func_param_err:
 no_registered_read_func:
 get_param_err:
     return status;
@@ -2193,7 +2193,7 @@ get_param_err:
 
 asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
 {
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[50];
     asynStatus status = asynSuccess;
     const char* functionName = "setDataTrigChan";
@@ -2216,20 +2216,20 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
-    if (err != BPM_CLIENT_SUCCESS) {
+    err = halcs_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
+    if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
-        goto bpm_set_data_trig_chan_err;
+        goto halcs_set_data_trig_chan_err;
     }
 
-bpm_set_data_trig_chan_err:
+halcs_set_data_trig_chan_err:
 bpm_inv_channel:
     return status;
 }
 
 asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
 {
-    bpm_client_err_e err = BPM_CLIENT_SUCCESS;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[50];
     asynStatus status = asynSuccess;
     const char* functionName = "getDataTrigChan";
@@ -2243,10 +2243,10 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
     /* Clear parameter in case of an error occurs */
     *channel = 0;
 
-    err = bpm_get_acq_data_trig_chan (bpmClient, service, &hwAmpChannel);
-    if (err != BPM_CLIENT_SUCCESS) {
+    err = halcs_get_acq_data_trig_chan (bpmClient, service, &hwAmpChannel);
+    if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
-        goto bpm_get_data_trig_chan_err;
+        goto halcs_get_data_trig_chan_err;
     }
 
     if (hwAmpChannel > CH_HW_END-1) {
@@ -2273,7 +2273,7 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
 
 bpm_inv_channel:
 bpm_inv_hw_channel:
-bpm_get_data_trig_chan_err:
+halcs_get_data_trig_chan_err:
     return status;
 }
 
