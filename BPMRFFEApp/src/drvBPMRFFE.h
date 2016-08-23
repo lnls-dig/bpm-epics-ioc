@@ -11,7 +11,7 @@
 #include <epicsMutex.h>
 /* Third-party libraries */
 #include <unordered_map>
-#include <bpm_client.h>
+#include <halcs_client.h>
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 
@@ -31,10 +31,10 @@ typedef struct {
 } boardMap_t;
 
 /* Write 64-bit float function pointer */
-typedef bpm_client_err_e (*writeFloat64Fp)(bpm_client_t *self, char *service,
+typedef halcs_client_err_e (*writeFloat64Fp)(halcs_client_t *self, char *service,
 	double param);
 /* Read 32-bit function pointer */
-typedef bpm_client_err_e (*readFloat64Fp)(bpm_client_t *self, char *service,
+typedef halcs_client_err_e (*readFloat64Fp)(halcs_client_t *self, char *service,
 	double *param);
 
 /* BPM command dispatch table */
@@ -45,10 +45,10 @@ typedef struct {
 } functionsFloat64_t;
 
 /* Write 32-bit function pointer */
-typedef bpm_client_err_e (*writeInt32Fp)(bpm_client_t *self, char *service,
+typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
 	uint32_t param);
 /* Read 32-bit function pointer */
-typedef bpm_client_err_e (*readInt32Fp)(bpm_client_t *self, char *service,
+typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
 	uint32_t *param);
 
 /* BPM command dispatch table */
@@ -127,7 +127,7 @@ class drvBPMRFFE : public asynPortDriver {
 
     private:
         /* Our data */
-        bpm_client_t *bpmClientRFFE;
+        halcs_client_t *bpmClientRFFE;
         char *endpoint;
         int bpmNumber;
         int verbose;

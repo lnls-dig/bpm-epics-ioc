@@ -40,7 +40,7 @@ BPMRFFE_LIBS += FFTRecords
 BPMRFFE_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # Link to system libraries
-BPMRFFE_SYS_LIBS += bpmclient
+BPMRFFE_SYS_LIBS += halcsclient
 BPMRFFE_SYS_LIBS += errhand
 BPMRFFE_SYS_LIBS += hutils
 BPMRFFE_SYS_LIBS += mlm
