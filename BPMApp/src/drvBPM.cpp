@@ -1358,7 +1358,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
                 "%u post-trigger samples for acquisition\n",
                 driverName, functionName, num_samples_pre, num_samples_post);
         status = asynError;
-        goto bpm_samples_sel_err;
+        goto halcs_samples_sel_err;
     }
 
     /* Get correct service name*/
@@ -1380,7 +1380,7 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = bpm_acq_start (bpmClientAcq, service, &req);
+    err = halcs_acq_start (bpmClientAcq, service, &req);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1388,12 +1388,12 @@ asynStatus drvBPM::startAcq(int hwChannel, epicsUInt32 num_samples_pre,
                 driverName, functionName, hwChannel, num_samples_pre,
                 num_samples_post);
         status = asynError;
-        goto bpm_acq_err;
+        goto halcs_acq_err;
     }
 #endif
 
-bpm_acq_err:
-bpm_samples_sel_err:
+halcs_acq_err:
+halcs_samples_sel_err:
     return status;
 }
 
@@ -1412,10 +1412,10 @@ asynStatus drvBPM::abortAcq()
     err = halcs_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
-        goto bpm_acq_stop_err;
+        goto halcs_acq_stop_err;
     }
 
-bpm_acq_stop_err:
+halcs_acq_stop_err:
     return status;
 }
 
@@ -1430,15 +1430,15 @@ int drvBPM::checkAcqCompletion()
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = bpm_acq_check (bpmClientAcq, service);
+    err = halcs_acq_check (bpmClientAcq, service);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = 0;
-        goto bpm_acq_not_finished;
+        goto halcs_acq_not_finished;
     }
 
     status = 1;
 
-bpm_acq_not_finished:
+halcs_acq_not_finished:
     return status;
 }
 
@@ -1471,7 +1471,7 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = bpm_acq_get_curve (bpmClientAcq, service, &acq_trans);
+    err = halcs_acq_get_curve (bpmClientAcq, service, &acq_trans);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
@@ -1479,10 +1479,10 @@ asynStatus drvBPM::getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
                 driverName, functionName, hwChannel, num_samples_pre,
                 num_samples_post);
         status = asynError;
-        goto bpm_acq_err;
+        goto halcs_acq_err;
     }
 
-bpm_acq_err:
+halcs_acq_err:
     return status;
 }
 
@@ -2210,7 +2210,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
                 "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
                 driverName, functionName, hwAmpChannel);
         status = asynError;
-        goto bpm_inv_channel;
+        goto halcs_inv_channel;
     }
     /* Get correct service name*/
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
@@ -2223,7 +2223,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask)
     }
 
 halcs_set_data_trig_chan_err:
-bpm_inv_channel:
+halcs_inv_channel:
     return status;
 }
 
@@ -2254,7 +2254,7 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
                 "%s:%s: invalid HwAmpChannel channelRevMap for channel %d\n",
                 driverName, functionName, hwAmpChannel);
         status = asynError;
-        goto bpm_inv_hw_channel;
+        goto halcs_inv_hw_channel;
     }
 
     /* Convert user channel into hw channel */
@@ -2264,15 +2264,15 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
                 "%s:%s: invalid channel channelRevMap for channel %d\n",
                 driverName, functionName, dataTrigChan);
         status = asynError;
-        goto bpm_inv_channel;
+        goto halcs_inv_channel;
     }
 
     /* Mask parameter according to the received mask */
     dataTrigChan &= mask;
     *channel = dataTrigChan;
 
-bpm_inv_channel:
-bpm_inv_hw_channel:
+halcs_inv_channel:
+halcs_inv_hw_channel:
 halcs_get_data_trig_chan_err:
     return status;
 }
