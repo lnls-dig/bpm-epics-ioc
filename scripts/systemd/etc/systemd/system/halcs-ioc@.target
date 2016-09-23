@@ -5,3 +5,4 @@ Wants=halcs-be-ioc@%i.service
 After=halcs-be-ioc@%i.service
 Wants=halcs-fe-ioc@%i.service
 After=halcs-fe-ioc@%i.service
+PartOf=halcs@%i.target
