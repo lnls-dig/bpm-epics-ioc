@@ -42,11 +42,6 @@
 #define FOFB_RATE_FACTOR                980
 #define MONIT_RATE_FACTOR               9800000
 
-#define ADC_DFLT_MAX_GAIN               ((1 << 16)-1)   /* 16-bit gain */
-#define ADC_DFLT_MIN_GAIN               0
-/* Default gain is just the mean of the gain range */
-#define ADC_DFLT_GAIN                   ( ((ADC_DFLT_MAX_GAIN + \
-                                            ADC_DFLT_MIN_GAIN) + 1) / 2)
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
 
 #define CH_DFLT_TRIGGER_CHAN              0
@@ -140,10 +135,7 @@ static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", halcs_set_monit_a
 static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", halcs_set_monit_updt, halcs_get_monit_updt};
 static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", halcs_set_sw, halcs_get_sw};
 static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", halcs_set_sw_dly, halcs_get_sw_dly};
-static const functionsInt32_t bpmSetGetAdcSwEnFunc = {"SWAP", halcs_set_sw_en, halcs_get_sw_en};
 static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", halcs_set_div_clk, halcs_get_div_clk};
-static const functionsInt32_t bpmSetGetAdcWdwFunc = {"SWAP", halcs_set_wdw, halcs_get_wdw};
-static const functionsInt32_t bpmSetGetAdcWdwDlyFunc = {"SWAP", halcs_set_wdw_dly, halcs_get_wdw_dly};
 static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir};
 static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term};
 static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand};
@@ -172,16 +164,6 @@ static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", halcs_set_ac
 static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", halcs_set_acq_data_trig_filt, halcs_get_acq_data_trig_filt};
 static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", halcs_set_acq_hw_trig_dly, halcs_get_acq_hw_trig_dly};
 static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", halcs_set_acq_data_trig_chan, halcs_get_acq_data_trig_chan};
-
-/* 2 Int32 functions mapping */
-static const functions2Int32_t bpmSetGetAdcGainAAFunc = {"SWAP", halcs_set_gain_a, halcs_get_gain_a, 1};
-static const functions2Int32_t bpmSetGetAdcGainBBFunc = {"SWAP", halcs_set_gain_b, halcs_get_gain_b, 1};
-static const functions2Int32_t bpmSetGetAdcGainCCFunc = {"SWAP", halcs_set_gain_c, halcs_get_gain_c, 1};
-static const functions2Int32_t bpmSetGetAdcGainDDFunc = {"SWAP", halcs_set_gain_d, halcs_get_gain_d, 1};
-static const functions2Int32_t bpmSetGetAdcGainACFunc = {"SWAP", halcs_set_gain_a, halcs_get_gain_a, 2};
-static const functions2Int32_t bpmSetGetAdcGainCAFunc = {"SWAP", halcs_set_gain_c, halcs_get_gain_c, 2};
-static const functions2Int32_t bpmSetGetAdcGainBDFunc = {"SWAP", halcs_set_gain_b, halcs_get_gain_b, 2};
-static const functions2Int32_t bpmSetGetAdcGainDBFunc = {"SWAP", halcs_set_gain_d, halcs_get_gain_d, 2};
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
@@ -287,22 +269,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
-    createParam(P_CompMethodString, asynParamInt32,                 &P_CompMethod);
     createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
     createParam(P_SwString,         asynParamUInt32Digital,         &P_Sw);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
-    createParam(P_SwEnString,       asynParamUInt32Digital,         &P_SwEn);
     createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
-    createParam(P_WdwString,        asynParamUInt32Digital,         &P_Wdw);
-    createParam(P_WdwDlyString,     asynParamUInt32Digital,         &P_WdwDly);
-    createParam(P_GainAAString,     asynParamUInt32Digital,         &P_GainAA);
-    createParam(P_GainBBString,     asynParamUInt32Digital,         &P_GainBB);
-    createParam(P_GainCCString,     asynParamUInt32Digital,         &P_GainCC);
-    createParam(P_GainDDString,     asynParamUInt32Digital,         &P_GainDD);
-    createParam(P_GainACString,     asynParamUInt32Digital,         &P_GainAC);
-    createParam(P_GainCAString,     asynParamUInt32Digital,         &P_GainCA);
-    createParam(P_GainBDString,     asynParamUInt32Digital,         &P_GainBD);
-    createParam(P_GainDBString,     asynParamUInt32Digital,         &P_GainDB);
     createParam(P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
     createParam(P_AdcTrigTermString,
                                     asynParamUInt32Digital,         &P_AdcTrigTerm);
@@ -396,21 +366,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
-    setIntegerParam(P_CompMethod,                           0);
     setUIntDigitalParam(P_Sw,           0x1,                0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_SwEn,         0x0,                0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
-    setUIntDigitalParam(P_Wdw,          0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_WdwDly,       0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_GainAA,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainBB,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainCC,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainDD,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainAC,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainCA,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainBD,       ADC_DFLT_GAIN,      0xFFFFFFFF);
-    setUIntDigitalParam(P_GainDB,       ADC_DFLT_GAIN,      0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigTerm,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcRand,      0,                  0xFFFFFFFF);
@@ -515,10 +473,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_Ksum] = bpmSetGetKsumFunc;
     bpmHwInt32Func[P_Sw] = bpmSetGetAdcSwFunc;
     bpmHwInt32Func[P_SwDly] = bpmSetGetAdcSwDlyFunc;
-    bpmHwInt32Func[P_SwEn] = bpmSetGetAdcSwEnFunc;
     bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
-    bpmHwInt32Func[P_Wdw] = bpmSetGetAdcWdwFunc;
-    bpmHwInt32Func[P_WdwDly] = bpmSetGetAdcWdwDlyFunc;
     bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
     bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
     bpmHwInt32Func[P_AdcRand] = bpmSetGetAdcRandFunc;
@@ -552,17 +507,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
     bpmHwInt32Func[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
     bpmHwInt32Func[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
-
-    /* BPM HW 2 Int32 Functions mapping. Functions not mapped here are just written
-     * to the parameter library */
-    bpmHw2Int32Func[P_GainAA] = bpmSetGetAdcGainAAFunc;
-    bpmHw2Int32Func[P_GainBB] = bpmSetGetAdcGainBBFunc;
-    bpmHw2Int32Func[P_GainCC] = bpmSetGetAdcGainCCFunc;
-    bpmHw2Int32Func[P_GainDD] = bpmSetGetAdcGainDDFunc;
-    bpmHw2Int32Func[P_GainAC] = bpmSetGetAdcGainACFunc;
-    bpmHw2Int32Func[P_GainCA] = bpmSetGetAdcGainCAFunc;
-    bpmHw2Int32Func[P_GainBD] = bpmSetGetAdcGainBDFunc;
-    bpmHw2Int32Func[P_GainDB] = bpmSetGetAdcGainDBFunc;
 
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */

@@ -1,17 +1,6 @@
-$(P)ADC:gainAA
-$(P)ADC:gainBB
-$(P)ADC:gainCC
-$(P)ADC:gainDD
-$(P)ADC:gainAC
-$(P)ADC:gainCA
-$(P)ADC:gainBD
-$(P)ADC:gainDB
 $(P)ADC:sw
 $(P)ADC:swDly
 $(P)ADC:swDivClk
-$(P)ADC:swEn
-$(P)ADC:wdwEn
-$(P)ADC:wdwDly
 $(P)ADC:trigDir
 $(P)ADC:trigTerm
 $(P)ADC:si57xFreq
