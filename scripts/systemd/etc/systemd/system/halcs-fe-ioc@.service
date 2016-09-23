@@ -3,7 +3,7 @@ Description=BPM FE IOC %p%I
 After=rc-local.service
 Requires=halcs-fe@%i.service
 After=halcs-fe@%i.service
-PartOf=halcs-ioc@%i.service
+PartOf=halcs-ioc@%i.target
 
 [Service]
 # Source environment
