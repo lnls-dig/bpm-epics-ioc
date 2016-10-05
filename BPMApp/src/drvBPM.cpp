@@ -2292,7 +2292,7 @@ asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
 
     if (adcRegWrite) {
         /* Get correct service name*/
-        snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:FMC250M_4CH%d",
             boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
         err = halcs_set_reg_adc (bpmClient, service, addr, adcRegAddr, adcRegData);
@@ -2321,7 +2321,7 @@ asynStatus drvBPM::getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr)
     getUIntDigitalParam(P_AdcRegReadAddr, &adcRegAddr, mask);
 
     /* Get correct service name*/
-    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:FMC250M_4CH%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     /* Clear parameter in case of an error occurs */
