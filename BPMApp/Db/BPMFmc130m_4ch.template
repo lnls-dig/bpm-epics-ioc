@@ -1,0 +1,107 @@
+#
+# BPM database file
+#
+# Authors: Lucas Russo
+#
+# Created Oct. 10, 2016
+#
+
+#######################################
+# Amplitude and phase compensation
+#######################################
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:randEn"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set LT2208 ADC RAND")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RAND")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:randEn_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get LT2208 ADC RAND")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RAND")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:dithEn"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set LT2208 ADC DITH")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_DITH")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:dithEn_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get LT2208 ADC DITH")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_DITH")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:shdnEn"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set LT2208 ADC SHDN")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SHDN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:shdnEn_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get LT2208 ADC SHDN")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SHDN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbo,"$(P)-$(BPM_NUMBER):ADC:pgaEn"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set LT2208 ADC PGA")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_PGA")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)-$(BPM_NUMBER):ADC:pgaEn_RBV"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get LT2208 ADC PGA")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_PGA")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
