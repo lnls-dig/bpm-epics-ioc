@@ -20,6 +20,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${EPICS_HOSTNAME}, PORT=$(
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${EPICS_HOSTNAME}-$(BPM_NUMBER):,R=asyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < trigger.cmd
+< fmc250m_4ch.cmd
 < waveformPlugins.cmd
 < waveformFilePlugins.cmd
 < waveformFFTRecords.cmd
