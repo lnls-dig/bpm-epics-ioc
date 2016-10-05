@@ -333,8 +333,12 @@ typedef struct {
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 #define P_AdcTestModeString         "ADC_TEST_MODE"         /* asynUInt32Digital,      r/w */
 #define P_AdcRstModesString         "ADC_RST_MODES"         /* asynUInt32Digital,      r/w */
-#define P_AdcRegDataString          "ADC_REG_DATA"          /* asynUInt32Digital,      r/w */
-#define P_AdcRegAddrString          "ADC_REG_ADDR"          /* asynUInt32Digital,      r/w */
+#define P_AdcRegReadString          "ADC_REG_READ"          /* asynUInt32Digital,      r/w */
+#define P_AdcRegReadDataString      "ADC_REG_READ_DATA"     /* asynUInt32Digital,      r/o */
+#define P_AdcRegReadAddrString      "ADC_REG_READ_ADDR"     /* asynUInt32Digital,      r/w */
+#define P_AdcRegWriteString         "ADC_REG_WRITE"         /* asynUInt32Digital,      r/w */
+#define P_AdcRegWriteDataString     "ADC_REG_WRITE_DATA"    /* asynUInt32Digital,      r/w */
+#define P_AdcRegWriteAddrString     "ADC_REG_WRITE_ADDR"    /* asynUInt32Digital,      r/w */
 #define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
 #define P_TriggerChanString         "TRIGGER_CHAN"          /* asynUInt32Digital,      r/w */
 #define P_TriggerDirString          "TRIGGER_DIR"           /* asynUInt32Digital,      r/w */
@@ -462,8 +466,12 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosD;
         int P_AdcTestMode;
         int P_AdcRstModes;
-        int P_AdcRegData;
-        int P_AdcRegAddr;
+        int P_AdcRegRead;
+        int P_AdcRegReadData;
+        int P_AdcRegReadAddr;
+        int P_AdcRegWrite;
+        int P_AdcRegWriteData;
+        int P_AdcRegWriteAddr;
         int P_AdcTemp;    
         int P_MonitUpdt;
         int P_TriggerChan;

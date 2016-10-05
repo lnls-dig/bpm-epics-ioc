@@ -353,8 +353,17 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                            asynParamInt32,           &P_AdcTestMode);
         createParam(i, P_AdcRstModesString,
                                            asynParamUInt32Digital,   &P_AdcRstModes);
-        createParam(i, P_AdcRegDataString, asynParamUInt32Digital,   &P_AdcRegData);
-        createParam(i, P_AdcRegAddrString, asynParamUInt32Digital,   &P_AdcRegAddr);
+        createParam(i, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
+        createParam(i, P_AdcRegReadDataString, 
+                                           asynParamUInt32Digital,   &P_AdcRegReadData);
+        createParam(i, P_AdcRegReadAddrString, 
+                                           asynParamUInt32Digital,   &P_AdcRegReadAddr);
+        createParam(i, P_AdcRegWriteString, 
+                                           asynParamUInt32Digital,       &P_AdcRegWrite);
+        createParam(i, P_AdcRegWriteDataString, 
+                                           asynParamUInt32Digital,   &P_AdcRegWriteData);
+        createParam(i, P_AdcRegWriteAddrString, 
+                                           asynParamUInt32Digital,   &P_AdcRegWriteAddr);
         createParam(i, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
     }
 
@@ -458,8 +467,16 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
         setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegData,   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegAddr,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegRead,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegReadData,   
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegReadAddr,   
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWrite,  0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWriteData,   
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWriteAddr,   
+                                               0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
     }
 
@@ -1526,9 +1543,13 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* Ah... FIXME: ugly static mapping! */
         setDataTrigChan(mask);
     }
-    else if (function == P_AdcRegAddr) {
+    else if (function == P_AdcRegWrite) {
         /* Ah... FIXME: ugly static mapping! */
-       setAdcReg(mask, addr);
+        setAdcReg(mask, addr);
+    }
+    else if (function == P_AdcRegRead) {
+        /* Ah... FIXME: ugly static mapping! */
+        getAdcReg(NULL, mask, addr);
     }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
@@ -1576,10 +1597,6 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     if (function == P_DataTrigChan) {
         status = getDataTrigChan(value, mask);
     }
-    else if (function == P_AdcRegAddr) {
-        /* Ah... FIXME: ugly static mapping! */
-        status = getAdcReg(value, mask, addr);
-    }
     else {
         /* Get parameter, possibly from HW */
         status = getParam32(function, value, mask, addr);
@@ -1625,7 +1642,7 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
     /* Call base class */
     status = asynNDArrayDriver::writeInt32(pasynUser, value);
-
+    
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
 
@@ -2265,21 +2282,25 @@ asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
     const char* functionName = "setAdcReg";
     epicsUInt32 adcRegData = 0;
     epicsUInt32 adcRegAddr = 0;
+    epicsUInt32 adcRegWrite = 0;
 
     /* Get parameters in the parameter library. */
-    getUIntDigitalParam(P_AdcRegData, &adcRegData, mask);
-    getUIntDigitalParam(P_AdcRegAddr, &adcRegAddr, mask);
+    getUIntDigitalParam(P_AdcRegWrite, &adcRegWrite, mask);
+    getUIntDigitalParam(P_AdcRegWriteData, &adcRegData, mask);
+    getUIntDigitalParam(P_AdcRegWriteAddr, &adcRegAddr, mask);
 
-    /* Get correct service name*/
-    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
-        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+    if (adcRegWrite) {
+        /* Get correct service name*/
+        snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
+            boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
-    err = halcs_set_reg_adc (bpmClient, service, addr, adcRegAddr, adcRegData);
-    if (err != HALCS_CLIENT_SUCCESS) {
-        status = asynError;
-        goto halcs_set_err;
+        err = halcs_set_reg_adc (bpmClient, service, addr, adcRegAddr, adcRegData);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            status = asynError;
+            goto halcs_set_err;
+        }            
     }
-
+                 
 halcs_set_err:
     return status;
 }
@@ -2292,26 +2313,37 @@ asynStatus drvBPM::getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr)
     const char* functionName = "getAdcReg";
     epicsUInt32 adcRegData = 0;
     epicsUInt32 adcRegAddr = 0;
+    epicsUInt32 adcRegRead = 0;
 
     /* Get parameters */
-    getUIntDigitalParam(P_AdcRegAddr, &adcRegAddr, mask);
+    getUIntDigitalParam(P_AdcRegRead, &adcRegRead, mask);
+    getUIntDigitalParam(P_AdcRegReadAddr, &adcRegAddr, mask);
 
     /* Get correct service name*/
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
         boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
 
     /* Clear parameter in case of an error occurs */
-    *data = 0;
-
-    err = halcs_get_reg_adc (bpmClient, service, addr, adcRegAddr, &adcRegData);
-    if (err != HALCS_CLIENT_SUCCESS) {
-        status = asynError;
-        goto halcs_get_err;
+    if (data) {
+        *data = 0;
     }
 
-    /* Mask parameter according to the received mask */
-    adcRegData &= mask;
-    *data = adcRegData;
+    if (adcRegRead) {
+        err = halcs_get_reg_adc (bpmClient, service, addr, adcRegAddr, &adcRegData);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            status = asynError;
+            goto halcs_get_err;
+        }
+
+        /* Mask parameter according to the received mask */
+        adcRegData &= mask;
+        if (data) {
+            *data = adcRegData;
+        }
+
+        /* Set parameters in the parameter library. */
+        setUIntDigitalParam(P_AdcRegReadData, adcRegData, mask);
+    }
 
 halcs_get_err:
     return status;
