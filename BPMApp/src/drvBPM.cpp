@@ -350,7 +350,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
         createParam(i, P_AdcTestModeString,
-                                           asynParamInt32,           &P_AdcTestMode);
+                                           asynParamUInt32Digital,   &P_AdcTestMode);
         createParam(i, P_AdcRstModesString,
                                            asynParamUInt32Digital,   &P_AdcRstModes);
         createParam(i, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
@@ -359,7 +359,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         createParam(i, P_AdcRegReadAddrString, 
                                            asynParamUInt32Digital,   &P_AdcRegReadAddr);
         createParam(i, P_AdcRegWriteString, 
-                                           asynParamUInt32Digital,       &P_AdcRegWrite);
+                                           asynParamUInt32Digital,   &P_AdcRegWrite);
         createParam(i, P_AdcRegWriteDataString, 
                                            asynParamUInt32Digital,   &P_AdcRegWriteData);
         createParam(i, P_AdcRegWriteAddrString, 
