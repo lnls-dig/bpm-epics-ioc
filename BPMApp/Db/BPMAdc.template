@@ -233,7 +233,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC:AD9510PllStatus_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 PLL Status")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLSTATUS")
 }
 
