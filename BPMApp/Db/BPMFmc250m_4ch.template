@@ -120,7 +120,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadAddr_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_ADDR")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ADC:regWrite"){
+record(mbbo, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register write")
     field(PINI,"YES")
@@ -133,7 +133,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ADC:regWrite"){
     field(ONST,"write")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ADC:regWrite_RBV"){
+record(mbbi, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite_RBV"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register write status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE")
