@@ -331,6 +331,11 @@ typedef struct {
 #define P_MonitPosCString           "MONITPOS_C"            /* asynUInt32Digital,      r/o */
 #define P_MonitPosDString           "MONITPOS_D"            /* asynUInt32Digital,      r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
+#define P_AdcTestModeString         "ADC_TEST_MODE"         /* asynUInt32Digital,      r/w */
+#define P_AdcRstModesString         "ADC_RST_MODES"         /* asynUInt32Digital,      r/w */
+#define P_AdcRegDataString          "ADC_REG_DATA"          /* asynUInt32Digital,      r/w */
+#define P_AdcRegAddrString          "ADC_REG_ADDR"          /* asynUInt32Digital,      r/w */
+#define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
 #define P_TriggerChanString         "TRIGGER_CHAN"          /* asynUInt32Digital,      r/w */
 #define P_TriggerDirString          "TRIGGER_DIR"           /* asynUInt32Digital,      r/w */
 #define P_TriggerDirPolString       "TRIGGER_DIR_POL"       /* asynUInt32Digital,      r/w */
@@ -455,6 +460,11 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosB;
         int P_MonitPosC;
         int P_MonitPosD;
+        int P_AdcTestMode;
+        int P_AdcRstModes;
+        int P_AdcRegData;
+        int P_AdcRegAddr;
+        int P_AdcTemp;    
         int P_MonitUpdt;
         int P_TriggerChan;
         int P_TriggerDir;
@@ -515,6 +525,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
         asynStatus setDataTrigChan (epicsUInt32 mask);
         asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
+        asynStatus setAdcReg(epicsUInt32 mask, int addr);
+        asynStatus getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

@@ -44,7 +44,9 @@
 
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
 
-#define CH_DFLT_TRIGGER_CHAN              0
+#define CH_DFLT_TRIGGER_CHAN            0
+#define ADC_RST_NORMAL_OP               1
+#define ADC_NUM_CHANNELS                4
 
 static const boardMap_t boardMap[MAX_BPMS+1] = {
          /* board, bpm*/
@@ -142,6 +144,9 @@ static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", halcs_set_a
 static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith};
 static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn};
 static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga};
+static const functionsInt32Chan_t bpmSetGetAdcTestModeFunc = {"FMC250M_4CH", halcs_set_test_mode_adc, NULL};
+static const functionsInt32Chan_t bpmSetGetAdcRstModesFunc = {"FMC250M_4CH", halcs_set_rst_modes_adc, NULL};
+static const functionsInt32Chan_t bpmSetGetAdcTempFunc = {"FMC250M_4CH", NULL, halcs_get_temp_adc};
 static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en};
 static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel};
 static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, NULL};
@@ -342,6 +347,17 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
     createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
 
+
+    for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
+        createParam(i, P_AdcTestModeString,
+                                           asynParamInt32,           &P_AdcTestMode);
+        createParam(i, P_AdcRstModesString,
+                                           asynParamUInt32Digital,   &P_AdcRstModes);
+        createParam(i, P_AdcRegDataString, asynParamUInt32Digital,   &P_AdcRegData);
+        createParam(i, P_AdcRegAddrString, asynParamUInt32Digital,   &P_AdcRegAddr);
+        createParam(i, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
+    }
+
     for (int i = 0; i < MAX_ADDR; ++i) {
         createParam(i, P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
         createParam(i, P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
@@ -439,6 +455,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
 
+    for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
+        setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegData,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegAddr,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
+    }
+
     for (int i = 0; i < MAX_ADDR; ++i) {
         setIntegerParam(i, P_TriggerChan,                          CH_DFLT_TRIGGER_CHAN);
         setUIntDigitalParam(i, P_MonitUpdt,        0,              0xFFFFFFFF);
@@ -514,6 +538,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     /* BPM HW Int32 with channel selection. Functions not mapped here are just written
      * to the parameter library */
+    bpmHwInt32ChanFunc[P_AdcTestMode] = bpmSetGetAdcTestModeFunc;
+    bpmHwInt32ChanFunc[P_AdcRstModes] =  bpmSetGetAdcRstModesFunc;
+    bpmHwInt32ChanFunc[P_AdcTemp] = bpmSetGetAdcTempFunc;
+
     bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
     bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;
     bpmHwInt32ChanFunc[P_TriggerRcvCntRst] = bpmSetGetTrigRcvCntRstFunc;
@@ -1498,6 +1526,10 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* Ah... FIXME: ugly static mapping! */
         setDataTrigChan(mask);
     }
+    else if (function == P_AdcRegAddr) {
+        /* Ah... FIXME: ugly static mapping! */
+       setAdcReg(mask, addr);
+    }
     else {
         /* Do operation on HW. Some functions do not set anything on hardware */
         status = setParam32(function, mask, addr);
@@ -1543,6 +1575,10 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
 
     if (function == P_DataTrigChan) {
         status = getDataTrigChan(value, mask);
+    }
+    else if (function == P_AdcRegAddr) {
+        /* Ah... FIXME: ugly static mapping! */
+        status = getAdcReg(value, mask, addr);
     }
     else {
         /* Get parameter, possibly from HW */
@@ -2218,6 +2254,66 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask)
 halcs_inv_channel:
 halcs_inv_hw_channel:
 halcs_get_data_trig_chan_err:
+    return status;
+}
+
+asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char service[50];
+    asynStatus status = asynSuccess;
+    const char* functionName = "setAdcReg";
+    epicsUInt32 adcRegData = 0;
+    epicsUInt32 adcRegAddr = 0;
+
+    /* Get parameters in the parameter library. */
+    getUIntDigitalParam(P_AdcRegData, &adcRegData, mask);
+    getUIntDigitalParam(P_AdcRegAddr, &adcRegAddr, mask);
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    err = halcs_set_reg_adc (bpmClient, service, addr, adcRegAddr, adcRegData);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_set_err;
+    }
+
+halcs_set_err:
+    return status;
+}
+
+asynStatus drvBPM::getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char service[50];
+    asynStatus status = asynSuccess;
+    const char* functionName = "getAdcReg";
+    epicsUInt32 adcRegData = 0;
+    epicsUInt32 adcRegAddr = 0;
+
+    /* Get parameters */
+    getUIntDigitalParam(P_AdcRegAddr, &adcRegAddr, mask);
+
+    /* Get correct service name*/
+    snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
+        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+
+    /* Clear parameter in case of an error occurs */
+    *data = 0;
+
+    err = halcs_get_reg_adc (bpmClient, service, addr, adcRegAddr, &adcRegData);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_get_err;
+    }
+
+    /* Mask parameter according to the received mask */
+    adcRegData &= mask;
+    *data = adcRegData;
+
+halcs_get_err:
     return status;
 }
 
