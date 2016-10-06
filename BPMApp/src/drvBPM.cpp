@@ -2286,9 +2286,9 @@ asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
     epicsUInt32 adcRegWrite = 0;
 
     /* Get parameters in the parameter library. */
-    getUIntDigitalParam(P_AdcRegWrite, &adcRegWrite, mask);
-    getUIntDigitalParam(P_AdcRegWriteData, &adcRegData, mask);
-    getUIntDigitalParam(P_AdcRegWriteAddr, &adcRegAddr, mask);
+    getUIntDigitalParam(addr, P_AdcRegWrite, &adcRegWrite, mask);
+    getUIntDigitalParam(addr, P_AdcRegWriteData, &adcRegData, mask);
+    getUIntDigitalParam(addr, P_AdcRegWriteAddr, &adcRegAddr, mask);
 
     if (adcRegWrite) {
         /* Get correct service name*/
@@ -2317,8 +2317,8 @@ asynStatus drvBPM::getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr)
     epicsUInt32 adcRegRead = 0;
 
     /* Get parameters */
-    getUIntDigitalParam(P_AdcRegRead, &adcRegRead, mask);
-    getUIntDigitalParam(P_AdcRegReadAddr, &adcRegAddr, mask);
+    getUIntDigitalParam(addr, P_AdcRegRead, &adcRegRead, mask);
+    getUIntDigitalParam(addr, P_AdcRegReadAddr, &adcRegAddr, mask);
 
     /* Get correct service name*/
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:FMC250M_4CH%d",
@@ -2343,7 +2343,7 @@ asynStatus drvBPM::getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr)
         }
 
         /* Set parameters in the parameter library. */
-        setUIntDigitalParam(P_AdcRegReadData, adcRegData, mask);
+        setUIntDigitalParam(addr, P_AdcRegReadData, adcRegData, mask);
     }
 
 halcs_get_err:
