@@ -217,7 +217,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC:AD9510PllFunc"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 PLL function")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLFUNC")
 }
 
