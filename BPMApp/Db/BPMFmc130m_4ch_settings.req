@@ -1,0 +1,4 @@
+$(P)ADC:randEn
+$(P)ADC:dithEn
+$(P)ADC:shdnEn
+$(P)ADC:pgaEn
