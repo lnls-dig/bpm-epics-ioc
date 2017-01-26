@@ -11,6 +11,6 @@ $(P)ADC:AD9510BDiv
 $(P)ADC:AD9510Prescaler
 $(P)ADC:AD9510RDiv
 $(P)ADC:AD9510PllPDown
-$(P)AD9510MuxStatus
+$(P)ADC:AD9510MuxStatus
 $(P)ADC:AD9510CpCurrent
 $(P)ADC:AD9510Outputs
