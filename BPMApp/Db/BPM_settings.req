@@ -2,5 +2,10 @@ file "BPMAcq_settings.req",    P=$(P)
 file "BPMAdc_settings.req",    P=$(P)
 file "BPMDsp_settings.req",    P=$(P)
 file "BPMFFT_settings.req",    P=$(P)
+file "BPMFmc130m_4ch_settings.req", P=$(P)
+file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=0
+file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=1
+file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=2
+file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=3
 file "BPMInfo_settings.req",   P=$(P)
 file "BPMTrigger_settings.req", P=$(P)
