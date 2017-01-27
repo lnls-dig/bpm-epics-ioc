@@ -472,7 +472,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcRegWrite;
         int P_AdcRegWriteData;
         int P_AdcRegWriteAddr;
-        int P_AdcTemp;    
+        int P_AdcTemp;
         int P_MonitUpdt;
         int P_TriggerChan;
         int P_TriggerDir;

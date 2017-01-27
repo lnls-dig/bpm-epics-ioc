@@ -370,15 +370,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         createParam(i, P_AdcRstModesString,
                                            asynParamUInt32Digital,   &P_AdcRstModes);
         createParam(i, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
-        createParam(i, P_AdcRegReadDataString, 
+        createParam(i, P_AdcRegReadDataString,
                                            asynParamUInt32Digital,   &P_AdcRegReadData);
-        createParam(i, P_AdcRegReadAddrString, 
+        createParam(i, P_AdcRegReadAddrString,
                                            asynParamUInt32Digital,   &P_AdcRegReadAddr);
-        createParam(i, P_AdcRegWriteString, 
+        createParam(i, P_AdcRegWriteString,
                                            asynParamUInt32Digital,   &P_AdcRegWrite);
-        createParam(i, P_AdcRegWriteDataString, 
+        createParam(i, P_AdcRegWriteDataString,
                                            asynParamUInt32Digital,   &P_AdcRegWriteData);
-        createParam(i, P_AdcRegWriteAddrString, 
+        createParam(i, P_AdcRegWriteAddrString,
                                            asynParamUInt32Digital,   &P_AdcRegWriteAddr);
         createParam(i, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
     }
@@ -486,14 +486,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRegRead,   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegReadData,   
+        setUIntDigitalParam(i, P_AdcRegReadData,
                                                0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegReadAddr,   
+        setUIntDigitalParam(i, P_AdcRegReadAddr,
                                                0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRegWrite,  0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegWriteData,   
+        setUIntDigitalParam(i, P_AdcRegWriteData,
                                                0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegWriteAddr,   
+        setUIntDigitalParam(i, P_AdcRegWriteAddr,
                                                0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
     }
@@ -1643,7 +1643,7 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
     /* Call base class */
     status = asynNDArrayDriver::writeInt32(pasynUser, value);
-    
+
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
 
@@ -2299,9 +2299,9 @@ asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
         if (err != HALCS_CLIENT_SUCCESS) {
             status = asynError;
             goto halcs_set_err;
-        }            
+        }
     }
-                 
+
 halcs_set_err:
     return status;
 }
