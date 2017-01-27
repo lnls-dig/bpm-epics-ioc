@@ -296,7 +296,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
     field(TWST,"External Trig")
     field(THST,"Data Trig")
     field(FRST,"Software Trig")
-    field(FVST,"Acquire")
+    field(FVST,"Acquiring")
     field(SXST,"Error")
     field(SVST,"Aborted")
 }
