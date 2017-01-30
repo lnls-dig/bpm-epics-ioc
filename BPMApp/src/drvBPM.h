@@ -21,6 +21,15 @@
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
 
+typedef enum {
+    BPMAcqIdReg = 0,
+    BPMAcqIdPM = 1,
+    BPMAcqIDEnd,
+} bpm_acqTaskID_types;
+
+#define NUM_ACQ_CORES_PER_BPM       BPMAcqIDEnd /* Regular Acquisition core and Post-Mortem */
+#define NUM_TRIG_CORES_PER_BPM      NUM_ACQ_CORES_PER_BPM /* Trigger core for regular Acquisition and Post-Mortem */
+
 /* BPM acquisition status */
 typedef enum {
     BPMStatusIdle = 0,
@@ -83,6 +92,12 @@ typedef enum {
     WVF_FOFBPHASE_D,
     WVF_FOFBPHASE_ALL,
     WVF_FOFBPHASE_FREQ,
+    WVF_ADC_PM_A,
+    WVF_ADC_PM_B,
+    WVF_ADC_PM_C,
+    WVF_ADC_PM_D,
+    WVF_ADC_PM_ALL,
+    WVF_ADC_PM_FREQ,
     WVF_END
 } wvf_types;
 
@@ -173,6 +188,7 @@ typedef enum {
 typedef struct {
     int board;
     int bpm;
+    int acq_pm; /* Acquisition core Post-Mortem ID*/
 } boardMap_t;
 
 /* BPM Channel structure */
@@ -185,12 +201,12 @@ typedef struct {
      * 0 otherwise */
     int CalcPos;
     /* NDArray addresses mapping */
-    int NDArrayAmp[MAX_WVF_AMP_TYPES];
-    int NDArrayAmpFreq;
-    int NDArrayPhase[MAX_WVF_PHA_TYPES];
-    int NDArrayPhaseFreq;
-    int NDArrayPos[MAX_WVF_POS_TYPES];
-    int NDArrayPosFreq;
+    int NDArrayAmp[NUM_ACQ_CORES_PER_BPM][MAX_WVF_AMP_TYPES];
+    int NDArrayAmpFreq[NUM_ACQ_CORES_PER_BPM];
+    int NDArrayPhase[NUM_ACQ_CORES_PER_BPM][MAX_WVF_PHA_TYPES];
+    int NDArrayPhaseFreq[NUM_ACQ_CORES_PER_BPM];
+    int NDArrayPos[NUM_ACQ_CORES_PER_BPM][MAX_WVF_POS_TYPES];
+    int NDArrayPosFreq[NUM_ACQ_CORES_PER_BPM];
 } channelMap_t;
 
 /* BPM Reverse channel mapping structure */
@@ -308,20 +324,62 @@ typedef struct {
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
-#define P_SamplesPreString          "ACQ_SAMPLES_PRE"       /* asynUInt32Digital,      r/w */
-#define P_SamplesPostString         "ACQ_SAMPLES_POST"      /* asynUInt32Digital,      r/w */
-#define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
-#define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
-#define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
-#define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
-#define P_AcqControlString          "ACQ_CONTROL"           /* asynInt32,              r/w */
-#define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
-#define P_TriggerDataThresString    "ACQ_TRIGGER_THRES"     /* asynInt32,              r/w */
-#define P_TriggerDataPolString      "ACQ_TRIGGER_POL"       /* asynInt32,              r/w */
-#define P_TriggerDataSelString      "ACQ_TRIGGER_SEL"       /* asynInt32,              r/w */
-#define P_TriggerDataFiltString     "ACQ_TRIGGER_FILT"      /* asynInt32,              r/w */
-#define P_TriggerHwDlyString        "ACQ_TRIGGER_HWDLY"     /* asynInt32,              r/w */
-#define P_DataTrigChanString        "ACQ_DATA_TRIG_CHAN"    /* asynuint32digital,      r/w */
+const char* P_SamplesPreString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_SAMPLES_PRE",          /* asynUInt32Digital,      r/w */
+    "ACQ_PM_SAMPLES_PRE",       /* asynUInt32Digital,      r/w */
+};
+const char* P_SamplesPostString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_SAMPLES_POST",         /* asynUInt32Digital,      r/w */
+    "ACQ_PM_SAMPLES_POST",      /* asynUInt32Digital,      r/w */
+};
+const char* P_NumShotsString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_NUM_SHOTS",            /* asynUInt32Digital,      r/w */
+    "ACQ_PM_NUM_SHOTS",         /* asynUInt32Digital,      r/w */
+};
+const char* P_ChannelString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_CHANNEL",              /* asynInt32,              r/w */
+    "ACQ_PM_CHANNEL",           /* asynInt32,              r/w */
+};
+const char* P_TriggerString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER",              /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER",           /* asynInt32,              r/w */
+};
+const char* P_BPMStatusString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_STATUS",               /* asynInt32,              r/o */
+    "ACQ_PM_STATUS",            /* asynInt32,              r/o */
+};
+const char* P_AcqControlString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_CONTROL",              /* asynInt32,              r/w */
+    "ACQ_PM_CONTROL",           /* asynInt32,              r/w */
+};
+const char* P_UpdateTimeString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_UPDATE_TIME",          /* asynFloat64,            r/w */
+    "ACQ_PM_UPDATE_TIME",       /* asynFloat64,            r/w */
+};
+const char* P_TriggerDataThresString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER_THRES",        /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER_THRES",     /* asynInt32,              r/w */
+};
+const char* P_TriggerDataPolString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER_POL",          /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER_POL",       /* asynInt32,              r/w */
+};
+const char* P_TriggerDataSelString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER_SEL",          /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER_SEL",       /* asynInt32,              r/w */
+};
+const char* P_TriggerDataFiltString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER_FILT",         /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER_FILT",      /* asynInt32,              r/w */
+};
+const char* P_TriggerHwDlyString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_TRIGGER_HWDLY",        /* asynInt32,              r/w */
+    "ACQ_PM_TRIGGER_HWDLY",     /* asynInt32,              r/w */
+};
+const char* P_DataTrigChanString[NUM_ACQ_CORES_PER_BPM] = {
+    "ACQ_DATA_TRIG_CHAN",       /* asynuint32digital,      r/w */
+    "ACQ_PM_DATA_TRIG_CHAN",    /* asynuint32digital,      r/w */
+};
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
@@ -340,19 +398,58 @@ typedef struct {
 #define P_AdcRegWriteDataString     "ADC_REG_WRITE_DATA"    /* asynUInt32Digital,      r/w */
 #define P_AdcRegWriteAddrString     "ADC_REG_WRITE_ADDR"    /* asynUInt32Digital,      r/w */
 #define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
-#define P_TriggerChanString         "TRIGGER_CHAN"          /* asynUInt32Digital,      r/w */
-#define P_TriggerDirString          "TRIGGER_DIR"           /* asynUInt32Digital,      r/w */
-#define P_TriggerDirPolString       "TRIGGER_DIR_POL"       /* asynUInt32Digital,      r/w */
-#define P_TriggerRcvCntRstString    "TRIGGER_RCV_CNT_RST"   /* asynUInt32Digital,      r/w */
-#define P_TriggerTrnCntRstString    "TRIGGER_TRN_CNT_RST"   /* asynUInt32Digital,      r/w */
-#define P_TriggerRcvLenString       "TRIGGER_RCV_LEN"       /* asynUInt32Digital,      r/w */
-#define P_TriggerTrnLenString       "TRIGGER_TRN_LEN"       /* asynUInt32Digital,      r/w */
-#define P_TriggerCntRcvString       "TRIGGER_CNT_RCV"       /* asynUInt32Digital,      r/w */
-#define P_TriggerCntTrnString       "TRIGGER_CNT_TRN"       /* asynUInt32Digital,      r/w */
-#define P_TriggerRcvSrcString       "TRIGGER_RCV_SRC"       /* asynUInt32Digital,      r/w */
-#define P_TriggerTrnSrcString       "TRIGGER_TRN_SRC"       /* asynUInt32Digital,      r/w */
-#define P_TriggerRcvInSelString     "TRIGGER_RCV_IN_SEL"    /* asynUInt32Digital,      r/w */
-#define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
+const char *P_TriggerChanString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_CHAN",             /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_CHAN",          /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerDirString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_DIR",              /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_DIR",           /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerDirPolString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_DIR_POL",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_DIR_POL",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerRcvCntRstString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_RCV_CNT_RST",      /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_RCV_CNT_RST",   /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerTrnCntRstString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_TRN_CNT_RST",      /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_TRN_CNT_RST",   /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerRcvLenString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_RCV_LEN",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_RCV_LEN",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerTrnLenString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_TRN_LEN",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_TRN_LEN",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerCntRcvString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_CNT_RCV",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_CNT_RCV",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerCntTrnString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_CNT_TRN",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_CNT_TRN",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerRcvSrcString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_RCV_SRC",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_RCV_SRC",      /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerTrnSrcString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_TRN_SRC",          /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_TRN_SRC",       /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerRcvInSelString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_RCV_IN_SEL",       /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_RCV_IN_SEL",    /* asynUInt32Digital,      r/w */
+};
+const char *P_TriggerTrnOutSelString[NUM_TRIG_CORES_PER_BPM] = {
+    "TRIGGER_TRN_OUT_SEL",      /* asynUInt32Digital,      r/w */
+    "TRIGGER_PM_TRN_OUT_SEL",   /* asynUInt32Digital,      r/w */
+};
 
 typedef enum {
     /* These trigger types matches the HW */
@@ -389,7 +486,7 @@ class drvBPM : public asynNDArrayDriver {
         virtual asynStatus disconnect(asynUser* pasynUser);
 
         /* These are the methods that are new to this class */
-        void acqTask(void);
+        void acqTask(int acqTaskID, double pollTime);
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
@@ -399,7 +496,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
-        int P_BPMStatus;
+        int P_BPMStatus[NUM_ACQ_CORES_PER_BPM];
         int P_CompMethod;
         int P_Sw;
         int P_SwDly;
@@ -443,19 +540,19 @@ class drvBPM : public asynNDArrayDriver {
         int P_XOffset;
         int P_YOffset;
         int P_QOffset;
-        int P_SamplesPre;
-        int P_SamplesPost;
-        int P_NumShots;
-        int P_Channel;
-        int P_AcqControl;
-        int P_UpdateTime;
-        int P_Trigger;
-        int P_TriggerDataThres;
-        int P_TriggerDataPol;
-        int P_TriggerDataSel;
-        int P_TriggerDataFilt;
-        int P_TriggerHwDly;
-        int P_DataTrigChan;
+        int P_SamplesPre[NUM_ACQ_CORES_PER_BPM];
+        int P_SamplesPost[NUM_ACQ_CORES_PER_BPM];
+        int P_NumShots[NUM_ACQ_CORES_PER_BPM];
+        int P_Channel[NUM_ACQ_CORES_PER_BPM];
+        int P_AcqControl[NUM_ACQ_CORES_PER_BPM];
+        int P_UpdateTime[NUM_ACQ_CORES_PER_BPM];
+        int P_Trigger[NUM_ACQ_CORES_PER_BPM];
+        int P_TriggerDataThres[NUM_ACQ_CORES_PER_BPM];
+        int P_TriggerDataPol[NUM_ACQ_CORES_PER_BPM];
+        int P_TriggerDataSel[NUM_ACQ_CORES_PER_BPM];
+        int P_TriggerDataFilt[NUM_ACQ_CORES_PER_BPM];
+        int P_TriggerHwDly[NUM_ACQ_CORES_PER_BPM];
+        int P_DataTrigChan[NUM_ACQ_CORES_PER_BPM];
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
@@ -474,20 +571,20 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcRegWriteAddr;
         int P_AdcTemp;
         int P_MonitUpdt;
-        int P_TriggerChan;
-        int P_TriggerDir;
-        int P_TriggerDirPol;
-        int P_TriggerRcvCntRst;
-        int P_TriggerTrnCntRst;
-        int P_TriggerRcvLen;
-        int P_TriggerTrnLen;
-        int P_TriggerCntRcv;
-        int P_TriggerCntTrn;
-        int P_TriggerRcvSrc;
-        int P_TriggerTrnSrc;
-        int P_TriggerRcvInSel;
-        int P_TriggerTrnOutSel;
-#define LAST_COMMAND P_TriggerTrnOutSel
+        int P_TriggerChan[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerDir[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerDirPol[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerRcvCntRst[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerTrnCntRst[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerRcvLen[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerTrnLen[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerCntRcv[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerCntTrn[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerRcvSrc[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerTrnSrc[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerRcvInSel[NUM_TRIG_CORES_PER_BPM];
+        int P_TriggerTrnOutSel[NUM_TRIG_CORES_PER_BPM];
+#define LAST_COMMAND P_TriggerTrnOutSel[NUM_TRIG_CORES_PER_BPM]
 
     private:
         /* Our data */
@@ -498,11 +595,11 @@ class drvBPM : public asynNDArrayDriver {
         int verbose;
         int timeout;
         char *bpmPortName;
-        int readingActive;
-        int repetitiveTrigger;
-        epicsEventId startAcqEventId;
-        epicsEventId stopAcqEventId;
-        epicsEventId abortAcqEventId;
+        int readingActive[NUM_ACQ_CORES_PER_BPM];
+        int repetitiveTrigger[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId startAcqEventId[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId stopAcqEventId[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId abortAcqEventId[NUM_ACQ_CORES_PER_BPM];
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
@@ -511,28 +608,28 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus setAcquire();
+        asynStatus setAcquire(int acqTaskID);
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
-        asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
+        asynStatus startAcq(int acqTaskID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
-        asynStatus abortAcq();
-        int checkAcqCompletion();
-        asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
+        asynStatus abortAcq(int acqTaskID);
+        int checkAcqCompletion(int acqTaskID);
+        asynStatus getAcqCurve(int acqTaskID, NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
                 epicsUInt32 num_shots);
-        void computeFreqArray(NDArray *pArrayChannelFreq, int channel,
+        void computeFreqArray(int acqTaskID, NDArray *pArrayChannelFreq, int channel,
                 epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
-        void computePositions(NDArray *pArrayAllChannels, int channel);
+        void computePositions(int acqTaskID, NDArray *pArrayAllChannels, int channel);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
-        asynStatus setDataTrigChan (epicsUInt32 mask);
-        asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
+        asynStatus setDataTrigChan(int AcqTaskID, epicsUInt32 mask);
+        asynStatus getDataTrigChan(int acqTaskID, epicsUInt32 *channel, epicsUInt32 mask);
         asynStatus setAdcReg(epicsUInt32 mask, int addr);
         asynStatus getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr);
 };
