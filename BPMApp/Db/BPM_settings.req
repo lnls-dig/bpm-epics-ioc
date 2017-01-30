@@ -9,4 +9,5 @@ file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=1
 file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=2
 file "BPMFmc250m_4ch_settings.req", P=$(P), ADC_CHAN=3
 file "BPMInfo_settings.req",   P=$(P)
-file "BPMTrigger_settings.req", P=$(P)
+file "BPMTrigger_settings.req", P=$(P), TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req", P=$(P), TRIGGER_NAME=TRIGGER_PM

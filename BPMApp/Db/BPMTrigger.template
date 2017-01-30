@@ -2,21 +2,21 @@
 # Trigger parameters
 #########################
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):chan"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):chan"){
     field(DTYP,"asynInt32")
     field(PINI,"YES")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))$(TRIGGER_NAME)_CHAN")
     field(VAL, "$(TRIGGER_CHAN)")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):chan_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):chan_RBV"){
     field(DTYP,"asynInt32")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))$(TRIGGER_NAME)_CHAN")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):dir"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction")
     field(PINI,"YES")
@@ -26,10 +26,10 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir"){
     field(ONVL,"1")
     field(ZRST,"trn")
     field(ONST,"rcv")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_DIR")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):dir_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction")
     field(PINI,"YES")
@@ -39,10 +39,10 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dir_RBV"){
     field(ONVL,"1")
     field(ZRST,"trn")
     field(ONST,"rcv")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_DIR")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):dirPol"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction polarity")
     field(PINI,"YES")
@@ -52,10 +52,10 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol"){
     field(ONVL,"1")
     field(ZRST,"same")
     field(ONST,"rev")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_DIR_POL")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):dirPol_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction polarity")
     field(PINI,"YES")
@@ -65,108 +65,108 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):dirPol_RBV"){
     field(ONVL,"1")
     field(ZRST,"same")
     field(ONST,"rev")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_DIR_POL")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCntRst"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCntRst"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive counter reset")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT_RST")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_CNT_RST")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCntRst_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCntRst_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive counter reset")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT_RST")
-    field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt_RBV")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_CNT_RST")
+    field(FLNK,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCnt_RBV")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCntRst"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCntRst"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit counter reset")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT_RST")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_CNT_RST")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCntRst_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCntRst_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit counter reset")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT_RST")
-    field(FLNK,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt_RBV")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_CNT_RST")
+    field(FLNK,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCnt_RBV")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvLen"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvLen"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive debounce length")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_LEN")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_LEN")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvLen_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvLen_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive debounce length")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_LEN")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_LEN")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnLen"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnLen"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit extension length")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_LEN")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_LEN")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnLen_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnLen_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit extension length")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_LEN")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_LEN")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCnt"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive counter")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_CNT_RCV")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvCnt_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCnt_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive counter")
     field(PINI,"YES")
     field(SCAN,"2 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_CNT_RCV")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCnt"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit counter")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_CNT_TRN")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnCnt_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCnt_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit counter")
     field(PINI,"YES")
     field(SCAN,"2 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_CNT_TRN")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvSrc"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive source")
     field(PINI,"YES")
@@ -176,10 +176,10 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc"){
     field(ONVL,"1")
     field(ZRST,"ext")
     field(ONST,"int")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_SRC")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvSrc_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive source")
     field(PINI,"YES")
@@ -189,10 +189,10 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvSrc_RBV"){
     field(ONVL,"1")
     field(ZRST,"ext")
     field(ONST,"int")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_SRC")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnSrc"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit source")
     field(PINI,"YES")
@@ -202,10 +202,10 @@ record(mbbo,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc"){
     field(ONVL,"1")
     field(ZRST,"ext")
     field(ONST,"int")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_SRC")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnSrc_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit source")
     field(PINI,"YES")
@@ -215,37 +215,37 @@ record(mbbi,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnSrc_RBV"){
     field(ONVL,"1")
     field(ZRST,"ext")
     field(ONST,"int")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_SRC")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvInSel"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvInSel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive selection mux")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_IN_SEL")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_IN_SEL")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):rcvInSel_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvInSel_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive selection mux")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_IN_SEL")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_RCV_IN_SEL")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnOutSel"){
+record(longout,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnOutSel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit selection mux")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_OUT_SEL")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_OUT_SEL")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):TRIGGER$(TRIGGER_CHAN):trnOutSel_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnOutSel_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit selection mux")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_OUT_SEL")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))$(TRIGGER_NAME)_TRN_OUT_SEL")
 }
