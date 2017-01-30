@@ -808,7 +808,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
          * The other parameters are already set-up*/
-        taskParams[i] = {.drvBPMp = this};
+        taskParams[i].drvBPMp = this;
         status = (asynStatus)(epicsThreadCreate("drvBPMTask",
                     epicsThreadPriorityMedium,
                     epicsThreadGetStackSize(epicsThreadStackMedium),
