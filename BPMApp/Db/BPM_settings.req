@@ -1,4 +1,5 @@
-file "BPMAcq_settings.req",    P=$(P)
+file "BPMAcq_settings.req",    P=$(P), ACQ_NAME=ACQ
+file "BPMAcq_settings.req",    P=$(P), ACQ_NAME=ACQ_PM
 file "BPMAdc_settings.req",    P=$(P)
 file "BPMDsp_settings.req",    P=$(P)
 file "BPMFFT_settings.req",    P=$(P)
