@@ -2468,6 +2468,7 @@ asynStatus drvBPM::setDataTrigChan(int acqTaskID, epicsUInt32 mask)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[50];
+    int acqCoreID = 0;
     asynStatus status = asynSuccess;
     const char* functionName = "setDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
@@ -2485,9 +2486,18 @@ asynStatus drvBPM::setDataTrigChan(int acqTaskID, epicsUInt32 mask)
         status = asynError;
         goto halcs_inv_channel;
     }
+
     /* Get correct service name*/
+    status = getAcqCoreID (this->bpmNumber, acqTaskID, &acqCoreID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getAcqCoreID, status=%d\n",
+            driverName, functionName, status);
+        goto halcs_acq_core_sel_err;
+    }
+
     snprintf(service, sizeof(service), "HALCS%d:DEVIO:ACQ%d",
-        boardMap[this->bpmNumber].board, boardMap[this->bpmNumber].bpm);
+        boardMap[this->bpmNumber].board, acqCoreID);
 
     err = halcs_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
