@@ -371,6 +371,7 @@ static void exitHandlerC(void *pPvt)
 asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceName,
         int *serviceIDArg)
 {
+    static const char *functionName = "getServiceID";
     asynStatus status = asynSuccess;
     int serviceID = 0;
     int addrMod = 0;
@@ -397,6 +398,9 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
 
         default:
             status = asynError;
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error getting serviceID for addr = %d for service = %s\n",
+                driverName, functionName, addr, serviceName);
             goto err_exit;
     }
     *serviceIDArg = serviceID;
@@ -416,7 +420,7 @@ asynStatus drvBPM::getFullServiceName (int bpmNumber, int addr, const char *serv
     status = getServiceID (bpmNumber, addr, serviceName, &coreID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling getFullServiceName, status=%d\n",
+            "%s:%s: error calling getServiceID, status=%d\n",
             driverName, functionName, status);
         goto get_service_id_err;
     }
