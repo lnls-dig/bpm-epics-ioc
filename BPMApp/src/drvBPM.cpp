@@ -422,7 +422,7 @@ asynStatus drvBPM::getFullServiceName (int bpmNumber, int addr, const char *serv
     }
 
     errs = snprintf(fullServiceName, fullServiceNameSize, "HALCS%d:DEVIO:%s%d",
-            bpmNumber, serviceName, coreID);
+            boardMap[bpmNumber].board, serviceName, coreID);
     if (errs < 0 || errs >= fullServiceNameSize){
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error generating fullServiceName, errs=%d\n",
