@@ -2143,8 +2143,8 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
         err = func->second.write(bpmClient, service, paramLib);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func->second.write() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_set_func1_param_err;
         }
@@ -2175,8 +2175,8 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
         err = func2->second.read(bpmClient, service, &param1, &param2);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.read() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func2->second.read() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_get_func2_param_err;
         }
@@ -2196,8 +2196,8 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.write() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func2->second.write() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_set_func2_param_err;
         }
@@ -2239,8 +2239,8 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
         err = funcChan->second.write(bpmClient, service, addr, paramLib);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcChan->second.write() failure\n",
-                    driverName, functionName);
+                    "%s:%s: funcChan->second.write() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_set_func_chan_param_err;
         }
@@ -2305,8 +2305,8 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         err = func->second.read(bpmClient, service, &paramHw);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func->second.read() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_get_func1_param_err;
         }
@@ -2341,8 +2341,8 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         err = func2->second.read(bpmClient, service, &param1, &param2);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.read() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func2->second.read() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_get_func2_param_err;
         }
@@ -2397,8 +2397,8 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         err = funcChan->second.read(bpmClient, service, addr, &paramHw);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcChan->second.read() failure\n",
-                    driverName, functionName);
+                    "%s:%s: funcChan->second.read() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_get_func_chan_param_err;
         }
@@ -2461,8 +2461,8 @@ asynStatus drvBPM::setParamDouble(int functionId, int addr)
         err = func->second.write(bpmClient, service, paramLib);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func->second.write() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_set_func_param_err;
         }
@@ -2516,8 +2516,8 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
         err = func->second.read(bpmClient, service, param);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure\n",
-                    driverName, functionName);
+                    "%s:%s: func->second.read() failure for service %s\n",
+                    driverName, functionName, service);
             status = asynError;
             goto halcs_get_func_param_err;
         }
