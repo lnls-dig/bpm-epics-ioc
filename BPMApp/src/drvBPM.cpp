@@ -283,6 +283,30 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
      /* [CH_HW_FOFB] =      */  {CH_FOFB}
 };
 
+/* This function should not be called, as there is no client function to replace it and
+ * the EPICS Db should not export PVs that maps here. 
+ * FIXME: not sure why, but some unavailable functions are called even with no
+ * "apperently" Db record mapped to it. When this happens, segfault occurs. So,
+ * until we figure out what s happening we keep "NULL" function mapped to this dummy
+ * fcuntions */
+static halcs_client_err_e halcs_dummy_read_32 (halcs_client_t *self, char *service, uint32_t *param)
+{
+    (void) self;
+    (void) service;
+    (void) param;
+    return HALCS_CLIENT_ERR_INV_FUNCTION;
+}
+
+static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *service,
+        uint32_t chan, uint32_t *param)
+{
+    (void) self;
+    (void) service;
+    (void) chan;
+    (void) param;
+    return HALCS_CLIENT_ERR_INV_FUNCTION;
+}
+
 /* Int32 functions mapping */
 static const functionsInt32_t bpmSetGetKxFunc = {"DSP", halcs_set_kx, halcs_get_kx};
 static const functionsInt32_t bpmSetGetKyFunc = {"DSP", halcs_set_ky, halcs_get_ky};
@@ -301,12 +325,12 @@ static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", halcs_set_a
 static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith};
 static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn};
 static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga};
-static const functionsInt32Chan_t bpmSetGetAdcTestModeFunc = {"FMC250M_4CH", halcs_set_test_mode_adc, NULL};
-static const functionsInt32Chan_t bpmSetGetAdcRstModesFunc = {"FMC250M_4CH", halcs_set_rst_modes_adc, NULL};
+static const functionsInt32Chan_t bpmSetGetAdcTestModeFunc = {"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32};
+static const functionsInt32Chan_t bpmSetGetAdcRstModesFunc = {"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32};
 static const functionsInt32Chan_t bpmSetGetAdcTempFunc = {"FMC250M_4CH", NULL, halcs_get_temp_adc};
 static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en};
 static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel};
-static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, NULL};
+static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32};
 static const functionsInt32_t bpmSetGetAdcAD9510PllFunctionFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function};
 static const functionsInt32_t bpmSetGetAdcAD9510PllStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status};
 static const functionsInt32_t bpmSetGetAdcAD9510ClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel};
