@@ -47,8 +47,6 @@ dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B:EnableCallbacks" 1
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C:EnableCallbacks" 1
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D:EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCAMP_PM_Freq:EnableCallbacks" 1
-
 # File Saving Plugin
 
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_ABCD_NETCDF:EnableCallbacks" 1
@@ -196,3 +194,5 @@ dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeHistogram" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeStatistics" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeHistogram" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeStatistics" Yes
+
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PMAMP_Freq:EnableCallbacks" 1
