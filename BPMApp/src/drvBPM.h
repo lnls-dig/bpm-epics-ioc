@@ -235,7 +235,6 @@ typedef struct {
     const char *serviceName;
     writeInt32Fp write;
     readInt32Fp read;
-    int checkCoreId;
 } functionsInt32_t;
 
 /* Write 2 32-bit function pointer */
@@ -253,7 +252,6 @@ typedef struct {
     /* Which parameter (first or second) would trigger this function to be
      * executed on hardware (the other one won't be changed) */
     int parameterPos;
-    int checkCoreId;
 } functions2Int32_t;
 
 /* Write 64-bit float function pointer */
@@ -268,7 +266,6 @@ typedef struct {
     const char *serviceName;
     writeFloat64Fp write;
     readFloat64Fp read;
-    int checkCoreId;
 } functionsFloat64_t;
 
 /* Write 32-bit function pointer with channel selection */
@@ -283,7 +280,6 @@ typedef struct {
     const char *serviceName;
     writeInt32ChanFp write;
     readInt32ChanFp read;
-    int checkCoreId;
 } functionsInt32Chan_t;
 
 /* These are the drvInfo strings that are used to identify the parameters.
