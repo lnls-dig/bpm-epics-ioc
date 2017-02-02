@@ -1066,7 +1066,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
             getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
             if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
-                callParamCallbacks();
+                callParamCallbacks(coreID);
             }
             unlock();
             /* Release the lock while we wait for an event that says acquire has started, then lock again */
@@ -1090,7 +1090,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
         getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
 
         setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
-        callParamCallbacks();
+        callParamCallbacks(coreID);
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -1169,7 +1169,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
             }
 
-            callParamCallbacks();
+            callParamCallbacks(coreID);
 
             /* Wait for acquisition to complete, but allow acquire stop events to be handled */
             while (1) {
@@ -1180,7 +1180,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
                     /* We got a stop event, abort acquisition */
                     abortAcq(coreID);
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusAborted);
-                    callParamCallbacks();
+                    callParamCallbacks(coreID);
                     break;
                 }
                 else {
@@ -1225,7 +1225,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
 
             /* Release buffer */
             pArrayAllChannels->release();
-            callParamCallbacks();
+            callParamCallbacks(coreID);
         }
         else {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1233,7 +1233,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
                     driverName, functionName);
             /* Could not start acquisition. Invalid parameters */
             setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
-            callParamCallbacks();
+            callParamCallbacks(coreID);
             continue;
         }
 
@@ -1248,7 +1248,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
             if (delay >= 0.0) {
                 /* We set the status to indicate we are in the period delay */
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusWaiting);
-                callParamCallbacks();
+                callParamCallbacks(coreID);
                 unlock();
                 epicsEventWaitWithTimeout(this->stopAcqEventId[coreID], delay);
                 lock();
