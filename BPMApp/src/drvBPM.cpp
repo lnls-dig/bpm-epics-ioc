@@ -514,59 +514,46 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
-    /* Create parameters */
-    createParam(P_HarmonicNumberString,
-                                    asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
-    createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
-    createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
-    createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
-    createParam(P_SwString,         asynParamUInt32Digital,         &P_Sw);
-    createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
-    createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
-    createParam(P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
-    createParam(P_AdcTrigTermString,
-                                    asynParamUInt32Digital,         &P_AdcTrigTerm);
-    createParam(P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
-    createParam(P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
-    createParam(P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
-    createParam(P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
-    createParam(P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
-    createParam(P_AdcSi57xFreqString,
-                                    asynParamFloat64,               &P_AdcSi57xFreq);
-    createParam(P_AdcTestDataString,
-                                    asynParamUInt32Digital,         &P_AdcTestData);
-    createParam(P_AdcAD9510DfltString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510Dflt);
-    createParam(P_AdcAD9510PllFuncString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
-    createParam(P_AdcAD9510PllStatusString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
-    createParam(P_AdcAD9510ClkSelString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
-    createParam(P_AdcAD9510ADivString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510ADiv);
-    createParam(P_AdcAD9510BDivString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510BDiv);
-    createParam(P_AdcAD9510PrescalerString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
-    createParam(P_AdcAD9510RDivString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510RDiv);
-    createParam(P_AdcAD9510PllPDownString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
-    createParam(P_AdcAD9510MuxStatusString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
-    createParam(P_AdcAD9510CpCurrentString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
-    createParam(P_AdcAD9510OutputsString,
-                                    asynParamUInt32Digital,         &P_AdcAD9510Outputs);
-    createParam(P_KxString,         asynParamUInt32Digital,         &P_Kx);
-    createParam(P_KyString,         asynParamUInt32Digital,         &P_Ky);
-    createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
-    createParam(P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
-    createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
-    createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
-    createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+    /* Create parameters for all triggers, all Acquisition cores. FIXME (Caution):
+     * We must deal with it at the Database level and be sure we are
+     * accessing the right parameter! */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerDirPolString,    asynParamUInt32Digital,   &P_TriggerDirPol);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvCntRstString, asynParamUInt32Digital,   &P_TriggerRcvCntRst);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnCntRstString, asynParamUInt32Digital,   &P_TriggerTrnCntRst);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvLenString,    asynParamUInt32Digital,   &P_TriggerRcvLen);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnLenString,    asynParamUInt32Digital,   &P_TriggerTrnLen);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerCntRcvString,    asynParamUInt32Digital,   &P_TriggerCntRcv);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerCntTrnString,    asynParamUInt32Digital,   &P_TriggerCntTrn);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvSrcString,    asynParamUInt32Digital,   &P_TriggerRcvSrc);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnSrcString,    asynParamUInt32Digital,   &P_TriggerTrnSrc);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
+            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
+        }
+    }
+    
+    /* Create ADC parameters after trigger, as we would have mismatched IDs, otherwise */
+    for (int addr = 0; addr < ADC_NUM_CHANNELS; ++addr) {
+        createParam(addr, P_AdcTestModeString,
+                                              asynParamUInt32Digital,   &P_AdcTestMode);
+        createParam(addr, P_AdcRstModesString,
+                                              asynParamUInt32Digital,   &P_AdcRstModes);
+        createParam(addr, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
+        createParam(addr, P_AdcRegReadDataString,
+                                              asynParamUInt32Digital,   &P_AdcRegReadData);
+        createParam(addr, P_AdcRegReadAddrString,
+                                              asynParamUInt32Digital,   &P_AdcRegReadAddr);
+        createParam(addr, P_AdcRegWriteString,
+                                              asynParamUInt32Digital,   &P_AdcRegWrite);
+        createParam(addr, P_AdcRegWriteDataString,
+                                              asynParamUInt32Digital,   &P_AdcRegWriteData);
+        createParam(addr, P_AdcRegWriteAddrString,
+                                              asynParamUInt32Digital,   &P_AdcRegWriteAddr);
+        createParam(addr, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
+    }
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         createParam(addr, P_SamplesPreString,  asynParamUInt32Digital, &P_SamplesPre);
@@ -591,59 +578,136 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                asynParamUInt32Digital, &P_DataTrigChan);
     }
 
-    createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
-    createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
-    createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
-    createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
-
-    /* Create parameters for all triggers, all Acquisition cores. FIXME (Caution):
-     * We must deal with it at the Database level and be sure we are
-     * accessing the right parameter! */
-    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
-        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerChanString,      asynParamInt32,           &P_TriggerChan);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerDirString,       asynParamUInt32Digital,   &P_TriggerDir);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerDirPolString,    asynParamUInt32Digital,   &P_TriggerDirPol);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvCntRstString, asynParamUInt32Digital,   &P_TriggerRcvCntRst);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnCntRstString, asynParamUInt32Digital,   &P_TriggerTrnCntRst);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvLenString,    asynParamUInt32Digital,   &P_TriggerRcvLen);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnLenString,    asynParamUInt32Digital,   &P_TriggerTrnLen);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerCntRcvString,    asynParamUInt32Digital,   &P_TriggerCntRcv);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerCntTrnString,    asynParamUInt32Digital,   &P_TriggerCntTrn);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvSrcString,    asynParamUInt32Digital,   &P_TriggerRcvSrc);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnSrcString,    asynParamUInt32Digital,   &P_TriggerTrnSrc);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
-            createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
-        }
-    }
-
-    /* Create ADC parameters after trigger, as we would have mismatched IDs, otherwise */
-    for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
-        createParam(i, P_AdcTestModeString,
-                                           asynParamUInt32Digital,   &P_AdcTestMode);
-        createParam(i, P_AdcRstModesString,
-                                           asynParamUInt32Digital,   &P_AdcRstModes);
-        createParam(i, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
-        createParam(i, P_AdcRegReadDataString,
-                                           asynParamUInt32Digital,   &P_AdcRegReadData);
-        createParam(i, P_AdcRegReadAddrString,
-                                           asynParamUInt32Digital,   &P_AdcRegReadAddr);
-        createParam(i, P_AdcRegWriteString,
-                                           asynParamUInt32Digital,   &P_AdcRegWrite);
-        createParam(i, P_AdcRegWriteDataString,
-                                           asynParamUInt32Digital,   &P_AdcRegWriteData);
-        createParam(i, P_AdcRegWriteAddrString,
-                                           asynParamUInt32Digital,   &P_AdcRegWriteAddr);
-        createParam(i, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
-    }
-
     /* Create BPM Status after all parameters, as we would have mismatched IDs, otherwise */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         createParam(addr, P_BPMStatusString,  asynParamInt32,        &P_BPMStatus);
     }
 
+    /* Create parameters */
+    createParam(0,P_HarmonicNumberString,
+                                      asynParamUInt32Digital,         &P_HarmonicNumber);
+    createParam(0,P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
+    createParam(0,P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
+    createParam(0,P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
+    createParam(0,P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
+    createParam(0,P_SwString,         asynParamUInt32Digital,         &P_Sw);
+    createParam(0,P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
+    createParam(0,P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+    createParam(0,P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
+    createParam(0,P_AdcTrigTermString,
+                                      asynParamUInt32Digital,         &P_AdcTrigTerm);
+    createParam(0,P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
+    createParam(0,P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
+    createParam(0,P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
+    createParam(0,P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
+    createParam(0,P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
+    createParam(0,P_AdcSi57xFreqString,
+                                      asynParamFloat64,               &P_AdcSi57xFreq);
+    createParam(0,P_AdcTestDataString,
+                                      asynParamUInt32Digital,         &P_AdcTestData);
+    createParam(0,P_AdcAD9510DfltString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510Dflt);
+    createParam(0,P_AdcAD9510PllFuncString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
+    createParam(0,P_AdcAD9510PllStatusString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
+    createParam(0,P_AdcAD9510ClkSelString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
+    createParam(0,P_AdcAD9510ADivString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510ADiv);
+    createParam(0,P_AdcAD9510BDivString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510BDiv);
+    createParam(0,P_AdcAD9510PrescalerString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
+    createParam(0,P_AdcAD9510RDivString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510RDiv);
+    createParam(0,P_AdcAD9510PllPDownString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
+    createParam(0,P_AdcAD9510MuxStatusString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
+    createParam(0,P_AdcAD9510CpCurrentString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
+    createParam(0,P_AdcAD9510OutputsString,
+                                      asynParamUInt32Digital,         &P_AdcAD9510Outputs);
+    createParam(0,P_KxString,         asynParamUInt32Digital,         &P_Kx);
+    createParam(0,P_KyString,         asynParamUInt32Digital,         &P_Ky);
+    createParam(0,P_KqString,         asynParamUInt32Digital,         &P_Kq);
+    createParam(0,P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
+    createParam(0,P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
+    createParam(0,P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
+    createParam(0,P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+
+    createParam(0,P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
+    createParam(0,P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
+    createParam(0,P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
+    createParam(0,P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
+    createParam(0,P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+
     /* Set the initial values of some parameters */
+
+    /* Set parameters for all triggers, all Acquisition cores. FIXME (Caution):
+     * We must deal with it at the Database level and be sure we are
+     * accessing the right parameter! */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            setIntegerParam(    i*MAX_TRIGGERS + addr, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerCntRcv,    0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerCntTrn,    0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvLen,    1,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnLen,    1,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvSrc,    0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvInSel,  0,              0xFFFFFFFF);
+            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+        }
+    }
+
+    for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
+        setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegRead,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegReadData,
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegReadAddr,
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWrite,  0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWriteData,
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcRegWriteAddr,
+                                               0,                  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
+    }
+
+    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
+        setUIntDigitalParam(addr, P_SamplesPre,    1000,               0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_SamplesPost,   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_NumShots,      1,                  0xFFFFFFFF);
+        setIntegerParam(    addr, P_Channel,                               CH_ADC);
+        setUIntDigitalParam(addr, P_AcqControl,    0,                  0xFFFFFFFF);
+        setDoubleParam(     addr, P_UpdateTime,                             1.0);
+        setUIntDigitalParam(addr, P_Trigger,       0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataThres,
+                                                   100,                0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataPol,
+                                                   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataSel,
+                                                   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataFilt,
+                                                   1,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerHwDly,
+                                                   0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_DataTrigChan,
+                                                   0,                  0xFFFFFFFF);
+    }
+
+    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
+        setIntegerParam(addr, P_BPMStatus,                     BPMStatusIdle);
+    }
+
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkFreq, ADC_CLK_FREQ_UVX_DFLT,
@@ -695,28 +759,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
 
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
-        setUIntDigitalParam(addr, P_SamplesPre,    1000,               0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_SamplesPost,   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_NumShots,      1,                  0xFFFFFFFF);
-        setIntegerParam(    addr, P_Channel,                               CH_ADC);
-        setUIntDigitalParam(addr, P_AcqControl,    0,                  0xFFFFFFFF);
-        setDoubleParam(     addr, P_UpdateTime,                             1.0);
-        setUIntDigitalParam(addr, P_Trigger,       0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_TriggerDataThres,
-                                                   100,                0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_TriggerDataPol,
-                                                   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_TriggerDataSel,
-                                                   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_TriggerDataFilt,
-                                                   1,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_TriggerHwDly,
-                                                   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_DataTrigChan,
-                                                   0,                  0xFFFFFFFF);
-    }
-
     setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
@@ -726,47 +768,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitPosC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitPosD,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
-
-    /* Set parameters for all triggers, all Acquisition cores. FIXME (Caution):
-     * We must deal with it at the Database level and be sure we are
-     * accessing the right parameter! */
-    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
-        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
-            setIntegerParam(    i*MAX_TRIGGERS + addr, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerCntRcv,    0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerCntTrn,    0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvLen,    1,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnLen,    1,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvSrc,    0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvInSel,  0,              0xFFFFFFFF);
-            setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
-        }
-    }
-
-    for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
-        setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegRead,   0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegReadData,
-                                               0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegReadAddr,
-                                               0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegWrite,  0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegWriteData,
-                                               0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcRegWriteAddr,
-                                               0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
-    }
-
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
-        setIntegerParam(addr, P_BPMStatus,                     BPMStatusIdle);
-    }
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
