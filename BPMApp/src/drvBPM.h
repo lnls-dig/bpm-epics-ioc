@@ -541,6 +541,7 @@ class drvBPM : public asynNDArrayDriver {
                 char *fullServiceName, int fullServiceNameSize);
         asynStatus setAcquire(int addr);
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
+        bpm_status_types getBPMInitAcqStatus(int coreID);
         asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
         asynStatus abortAcq(int coreID);

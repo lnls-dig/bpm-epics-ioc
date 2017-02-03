@@ -727,11 +727,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(addr, P_DataTrigChan,
                                                    0,                  0xFFFFFFFF);
     }
-
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
-        setIntegerParam(addr, P_BPMStatus,                     BPMStatusIdle);
-    }
-
+        
+    /* This will be initalized later, after we have connected to the server */
+    /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
+    
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkFreq, ADC_CLK_FREQ_UVX_DFLT,
@@ -884,6 +883,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         exit(1);
     }
 
+    /* Initialize BPM status after we have connected to the server */
+    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
+        /* Get the intitial state from HW */
+        bpm_status_types BPMStatus = getBPMInitAcqStatus(addr);
+        setIntegerParam(addr, P_BPMStatus,                     BPMStatus);
+    }
+
     /* Create the thread that computes the waveforms in the background */
     for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
@@ -1028,6 +1034,62 @@ void acqTask(void *drvPvt)
 /********************************************************************/
 /******************* BPM Acquisition functions **********************/
 /********************************************************************/
+
+/* This can only return if the ACQ engine is IDLE or waiting
+ * for some trigger (External, Data or Software) */
+bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
+{
+    bpm_status_types bpmStatus = BPMStatusErrAcq;
+    asynStatus status = asynSuccess;
+    halcs_client_err_e herr = HALCS_CLIENT_SUCCESS;
+    uint32_t trig = 0;
+    const char* functionName = "getBPMAcqStatus";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Have ACQ engine completed some work or is it still busy? */
+    herr = halcs_acq_check (bpmClientAcq, service);
+    if (herr == HALCS_CLIENT_SUCCESS) {
+        return BPMStatusIdle;
+    }
+
+    /* If the ACQ is doing something we need to figure it out what is it */
+    herr = halcs_get_acq_trig (bpmClientAcq, service, &trig);
+    if (herr != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
+            driverName, functionName, herr);
+        goto get_service_err;
+    }
+
+    switch (trig) {
+        case HALCS_CLIENT_TRIG_EXTERNAL:
+            bpmStatus = BPMStatusTriggerHwExtWaiting;
+            break;
+
+        case HALCS_CLIENT_TRIG_DATA_DRIVEN:
+            bpmStatus = BPMStatusTriggerHwDataWaiting;
+            break;
+
+        case HALCS_CLIENT_TRIG_SOFTWARE:
+            bpmStatus = BPMStatusTriggerSwWaiting;
+            break;
+
+        default:
+            bpmStatus = BPMStatusErrAcq;
+    }
+
+get_service_err:
+    return bpmStatus;
+}
 
 /*
  * BPM acquisition functions
