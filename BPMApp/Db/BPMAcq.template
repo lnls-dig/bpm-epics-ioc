@@ -131,7 +131,6 @@ record(mbbi, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):trigger_RBV"){
 record(mbbo, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):control"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition control")
-    field(PINI,"YES")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
     field(SCAN,"Passive")
     field(NOBT,"1")
