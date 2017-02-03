@@ -11,7 +11,7 @@
     <include_parent_macros>true</include_parent_macros>
     <MODULE>TBT</MODULE>
   </macros>
-  <boy_version>4.0.103.201506301920</boy_version>
+  <boy_version>4.0.103.201507131348</boy_version>
   <show_edit_range>true</show_edit_range>
   <widget_type>Display</widget_type>
   <auto_scale_widgets>
@@ -5775,7 +5775,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>31</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -5825,13 +5825,13 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Stop</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireStop</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("stop")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):stop</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
         </path>
       </scripts>
@@ -5845,7 +5845,7 @@ pvs[1].setValue("stop")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(1)</pv_name>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6638,7 +6638,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Start</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireStartAll</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
@@ -6678,7 +6678,7 @@ for i in range(4):
     display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples);
     display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);
     display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samplesPre</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samplesPost</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:shots</pv>
@@ -6707,7 +6707,7 @@ for i in range(4):
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):start(1)</pv_name>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):start(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6785,7 +6785,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>31</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -6827,7 +6827,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>31</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -6910,13 +6910,13 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Abort</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireAbort</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("abort")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
         </path>
       </scripts>
@@ -6930,7 +6930,7 @@ pvs[1].setValue("abort")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(1)</pv_name>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>

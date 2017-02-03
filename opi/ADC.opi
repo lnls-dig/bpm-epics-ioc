@@ -1518,13 +1518,13 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Stop</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireStop</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
-#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
+# from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("stop")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):stop</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):$(ACQ_NAME):trigger</pv>
         </path>
       </scripts>
@@ -1538,7 +1538,7 @@ pvs[1].setValue("stop")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(1)</pv_name>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2331,10 +2331,10 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Start</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireStart</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
-from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
+#from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 samplesPre = PVUtil.getDouble(pvs[1])
 samplesPost = PVUtil.getDouble(pvs[2])
@@ -2361,7 +2361,7 @@ pvs[12].setValue(totalSamples)
 for i in range(4):
     display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples);
     display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):$(ACQ_NAME):samplesPre</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):$(ACQ_NAME):samplesPost</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):$(ACQ_NAME):shots</pv>
@@ -2589,13 +2589,13 @@ $(pv_value)</tooltip>
       <pv_value />
       <text>Abort</text>
       <scripts>
-        <path pathString="EmbeddedPy" checkConnect="true" sfe="false" seoe="false">
+        <path pathString="EmbeddedPy" checkConnect="true" sfe="true" seoe="false">
           <scriptName>AcquireAbort</scriptName>
           <scriptText><![CDATA[from org.csstudio.opibuilder.scriptUtil import PVUtil
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("abort")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort</pv>
+          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv>
           <pv trig="false">$(HOSTNAME)-$(BPM):$(ACQ_NAME):trigger</pv>
         </path>
       </scripts>
@@ -2609,7 +2609,7 @@ pvs[1].setValue("abort")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(1)</pv_name>
+      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
