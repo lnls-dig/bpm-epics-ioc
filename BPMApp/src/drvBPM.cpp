@@ -1073,6 +1073,12 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     switch (trig) {
+        case HALCS_CLIENT_TRIG_SKIP:
+            /* If we are doing something and the trigger is set to SKIP,
+             * then we are acquiring */
+            bpmStatus = BPMStatusAcquire;
+            break;
+
         case HALCS_CLIENT_TRIG_EXTERNAL:
             bpmStatus = BPMStatusTriggerHwExtWaiting;
             break;
