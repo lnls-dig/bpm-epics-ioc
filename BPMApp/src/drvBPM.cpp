@@ -1099,6 +1099,17 @@ get_service_err:
     return bpmStatus;
 }
 
+static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
+{
+    if (bpmStatus == BPMStatusTriggerHwExtWaiting ||
+        bpmStatus == BPMStatusTriggerHwDataWaiting ||
+        bpmStatus == BPMStatusTriggerSwWaiting) {
+        return 1;
+    }
+
+    return 0;
+}
+
 /*
  * BPM acquisition functions
  */
@@ -1119,6 +1130,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
     int hwAmpChannel = 0;
     int acqCompleted = 0;
     int bpmStatus = 0;
+    int newAcq = 1;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
@@ -1156,18 +1168,36 @@ void drvBPM::acqTask(int coreID, double pollTime)
         if (status == epicsEventWaitOK || !repetitiveTrigger[coreID]) {
             /* We got a stop event, stop repetitive acquisition */
             readingActive[coreID] = 0;
-            /* Only change state to IDLE if we are not in a error state */
             getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
-            if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
+            /* Default to new acquisition. If we are waiting for a trigger 
+             * we will change this */
+            newAcq = 1;
+
+            /* Now, we can either be finished with the previous acquisition
+             * (repetitive or not) or we could be waiting for a trigger armed
+             * outside this thread (for now, the only option is the case when 
+             * you set a trigger and then exit the IOC for some reason) */
+            if (acqIsBPMStatusWaitSomeTrigger(bpmStatus)) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for trigger\n", driverName, functionName);
+                newAcq = 0;
+            }
+            /* Only change state to IDLE if we are not in a error state */
+            else if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
             }
-            unlock();
-            /* Release the lock while we wait for an event that says acquire has started, then lock again */
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for acquire to start\n", driverName, functionName);
-            epicsEventWait(startAcqEventId[coreID]);
-            lock();
+            
+            /* Only wait for the startEvent if we are waiting for a 
+             * new acquisition */
+            if (newAcq) {
+                unlock();
+                /* Release the lock while we wait for an event that says acquire has started, then lock again */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for acquire to start\n", driverName, functionName);
+                epicsEventWait(startAcqEventId[coreID]);
+                lock();
+            }
             readingActive[coreID] = 1;
         }
 
@@ -1182,9 +1212,6 @@ void drvBPM::acqTask(int coreID, double pollTime)
         getIntegerParam(    coreID , P_Channel      , &channel);
         getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
         getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
-
-        setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
-        callParamCallbacks(coreID);
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -1239,97 +1266,104 @@ void drvBPM::acqTask(int coreID, double pollTime)
         pArrayChannelFreq->timeStamp = timeStamp;
         getAttributes(pArrayChannelFreq->pAttributeList);
 
-        /* Do acquisition */
-        unlock();
-        pasynManager->lockPort(pasynUser);
-        status = startAcq(coreID, hwAmpChannel, num_samples_pre, num_samples_post,
-                num_shots);
-        pasynManager->unlockPort(pasynUser);
-        lock();
-
-        if (status == asynSuccess) {
-            /* FIXME: Improve BPMStatus trigger waiting. The information
-             * about waiting for trigger is not totally accurate here.
-             * Although, we will for SW or HW trigger in a short time,
-             * we are not actually there yet ...
-             */
-            if (trigger == TRIG_ACQ_EXT_HW) {
-                setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
-            }
-            else if (trigger == TRIG_ACQ_EXT_DATA) {
-                setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
-            }
-            else if (trigger == TRIG_ACQ_SW) {
-                setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
-            }
-
+        /* Just start the acquisition if we are not already acquiring */
+        if (newAcq) {
+            /* Tell we are acquiring just before we actually start it */
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
             callParamCallbacks(coreID);
+    
+            /* Do acquisition */
+            unlock();
+            pasynManager->lockPort(pasynUser);
+            status = startAcq(coreID, hwAmpChannel, num_samples_pre, num_samples_post,
+                    num_shots);
+            pasynManager->unlockPort(pasynUser);
+            lock();
 
-            /* Wait for acquisition to complete, but allow acquire stop events to be handled */
-            while (1) {
-                unlock();
-                status = epicsEventWaitWithTimeout(this->abortAcqEventId[coreID], pollTime);
-                lock();
-                if (status == epicsEventWaitOK) {
-                    /* We got a stop event, abort acquisition */
-                    abortAcq(coreID);
-                    setIntegerParam(coreID, P_BPMStatus, BPMStatusAborted);
-                    callParamCallbacks(coreID);
-                    break;
+            if (status == asynSuccess) {
+                /* FIXME: Improve BPMStatus trigger waiting. The information
+                 * about waiting for trigger is not totally accurate here.
+                 * Although, we will for SW or HW trigger in a short time,
+                 * we are not actually there yet ...
+                 */
+                if (trigger == TRIG_ACQ_EXT_HW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
                 }
-                else {
-                    acqCompleted = checkAcqCompletion(coreID);
+                else if (trigger == TRIG_ACQ_EXT_DATA) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
+                }
+                else if (trigger == TRIG_ACQ_SW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
                 }
 
-                if (acqCompleted == 1) {
-                    /* Get curve */
-                    getAcqCurve(coreID, pArrayAllChannels, hwAmpChannel, num_samples_pre,
-                            num_samples_post, num_shots);
-                    break;
-                }
+                callParamCallbacks(coreID);
+            }
+            else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to acquire waveform\n",
+                        driverName, functionName);
+                /* Could not start acquisition. Invalid parameters */
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
+                callParamCallbacks(coreID);
+                continue;
+            }
+        }
+
+        /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+        while (1) {
+            unlock();
+            status = epicsEventWaitWithTimeout(this->abortAcqEventId[coreID], pollTime);
+            lock();
+            if (status == epicsEventWaitOK) {
+                /* We got a stop event, abort acquisition */
+                abortAcq(coreID);
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusAborted);
+                callParamCallbacks(coreID);
+                break;
+            }
+            else {
+                acqCompleted = checkAcqCompletion(coreID);
             }
 
-            /* Only do callbacks and calculate position if we could acquire some
-             * data */
             if (acqCompleted == 1) {
-                /* Do callbacks on the full waveform (all channels interleaved) */
-                unlock();
-                /* We must do the callbacks with mutex unlocked ad the plugin
-                 * can call us and a deadlock would occur */
-                doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                        channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
-                lock();
-
-                /* Compute frequency arrays for amplitude, positions and do
-                 * callbacks on that */
-                computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
-                        num_samples_pre, num_samples_post, num_shots);
-
-                /* Copy AMP data to arrays for each type of data, do callbacks on that */
-                deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                        MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
-
-                /* Calculate positions and call callbacks */
-                computePositions(coreID, pArrayAllChannels, channel);
-                /* We have consumed our data. This is important if we abort the next
-                 * acquisition, as we can detect that the current acquisition is completed,
-                 * which would be wrong */
-                acqCompleted = 0;
+                /* Get curve */
+                getAcqCurve(coreID, pArrayAllChannels, hwAmpChannel, num_samples_pre,
+                        num_samples_post, num_shots);
+                break;
             }
+        }
 
-            /* Release buffer */
-            pArrayAllChannels->release();
-            callParamCallbacks(coreID);
+        /* Only do callbacks and calculate position if we could acquire some
+         * data */
+        if (acqCompleted == 1) {
+            /* Do callbacks on the full waveform (all channels interleaved) */
+            unlock();
+            /* We must do the callbacks with mutex unlocked ad the plugin
+             * can call us and a deadlock would occur */
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                    channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+            lock();
+
+            /* Compute frequency arrays for amplitude, positions and do
+             * callbacks on that */
+            computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
+                    num_samples_pre, num_samples_post, num_shots);
+
+            /* Copy AMP data to arrays for each type of data, do callbacks on that */
+            deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                    MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+
+            /* Calculate positions and call callbacks */
+            computePositions(coreID, pArrayAllChannels, channel);
+            /* We have consumed our data. This is important if we abort the next
+             * acquisition, as we can detect that the current acquisition is completed,
+             * which would be wrong */
+            acqCompleted = 0;
         }
-        else {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to acquire waveform\n",
-                    driverName, functionName);
-            /* Could not start acquisition. Invalid parameters */
-            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
-            callParamCallbacks(coreID);
-            continue;
-        }
+
+        /* Release buffer */
+        pArrayAllChannels->release();
+        callParamCallbacks(coreID);
 
         /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
         if (repetitiveTrigger[coreID]) {
