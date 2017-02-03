@@ -888,6 +888,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         /* Get the intitial state from HW */
         bpm_status_types BPMStatus = getBPMInitAcqStatus(addr);
         setIntegerParam(addr, P_BPMStatus,                     BPMStatus);
+        /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
+        callParamCallbacks(addr);
     }
 
     /* Create the thread that computes the waveforms in the background */
