@@ -290,7 +290,7 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
 };
 
 /* This function should not be called, as there is no client function to replace it and
- * the EPICS Db should not export PVs that maps here. 
+ * the EPICS Db should not export PVs that maps here.
  * FIXME: not sure why, but some unavailable functions are called even with no
  * "apperently" Db record mapped to it. When this happens, segfault occurs. So,
  * until we figure out what s happening we keep "NULL" function mapped to this dummy
@@ -564,7 +564,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
             createParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
         }
     }
-    
+
     /* Create ADC parameters after trigger, as we would have mismatched IDs, otherwise */
     for (int addr = 0; addr < ADC_NUM_CHANNELS; ++addr) {
         createParam(addr, P_AdcTestModeString,
@@ -733,10 +733,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(addr, P_DataTrigChan,
                                                    0,                  0xFFFFFFFF);
     }
-        
+
     /* This will be initalized later, after we have connected to the server */
     /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
-    
+
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkFreq, ADC_CLK_FREQ_UVX_DFLT,
@@ -890,7 +890,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Initialize ACQ PM */
-    status = initAcqPM (BPMIDPM); 
+    status = initAcqPM (BPMIDPM);
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error initAcqPM, status=%d\n",
@@ -901,7 +901,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         goto init_acq_pm_err;
 #endif
     }
-    
+
     /* Initialize BPM status after we have connected to the server */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         /* Get the intitial state from HW */
@@ -1159,7 +1159,7 @@ asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
             driverName, functionName, status);
         goto get_service_err;
     }
-    
+
     err = halcs_set_acq_trig (bpmClientAcq, service, trig);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1307,13 +1307,13 @@ void drvBPM::acqTask(int coreID, double pollTime)
             /* We got a stop event, stop repetitive acquisition */
             readingActive[coreID] = 0;
             getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
-            /* Default to new acquisition. If we are waiting for a trigger 
+            /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
             newAcq = 1;
 
             /* Now, we can either be finished with the previous acquisition
              * (repetitive or not) or we could be waiting for a trigger armed
-             * outside this thread (for now, the only option is the case when 
+             * outside this thread (for now, the only option is the case when
              * you set a trigger and then exit the IOC for some reason) */
             if (acqIsBPMStatusWaitSomeTrigger(bpmStatus)) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -1325,8 +1325,8 @@ void drvBPM::acqTask(int coreID, double pollTime)
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
             }
-            
-            /* Only wait for the startEvent if we are waiting for a 
+
+            /* Only wait for the startEvent if we are waiting for a
              * new acquisition */
             if (newAcq) {
                 unlock();
@@ -1409,7 +1409,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
             /* Tell we are acquiring just before we actually start it */
             setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
             callParamCallbacks(coreID);
-    
+
             /* Do acquisition */
             unlock();
             pasynManager->lockPort(pasynUser);
