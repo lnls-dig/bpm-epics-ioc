@@ -398,6 +398,28 @@ static void exitHandlerC(void *pPvt)
     pdrvBPM->~drvBPM();
 }
 
+asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceName,
+        epicsUInt32 *chanArg)
+{
+    static const char *functionName = "getServiceChan";
+    asynStatus status = asynSuccess;
+    epicsUInt32 chan = 0;
+
+    /* Static mapping. FIXME? */
+    if (streq(serviceName, "ACQ")) {
+        chan = addr;
+    }
+    else if (streq(serviceName, "TRIGGER_MUX")) {
+        chan = addr % MAX_TRIGGERS;
+    }
+    else {
+        chan = 0;
+    }
+
+    *chanArg = chan;
+    return status;
+}
+
 asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceName,
         int *serviceIDArg)
 {
@@ -2372,6 +2394,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     epicsUInt32 paramLib = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
+    epicsUInt32 serviceChan = 0;
     const char *functionName = "setParam32";
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
@@ -2501,8 +2524,12 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
             goto no_registered_write_func_chan;
         }
 
+        /* Get correct service channel */
+        getServiceChan (this->bpmNumber, addr, funcChan->second.serviceName,
+                &serviceChan);
+
         /* Function found. Execute it */
-        err = funcChan->second.write(bpmClient, service, addr, paramLib);
+        err = funcChan->second.write(bpmClient, service, serviceChan, paramLib);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.write() failure for service %s\n",
@@ -2537,6 +2564,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     epicsUInt32 paramHw = 0;
     epicsUInt32 param1 = 0;
     epicsUInt32 param2 = 0;
+    epicsUInt32 serviceChan = 0;
     const char *functionName = "getParam32";
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
@@ -2659,8 +2687,12 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
             goto no_registered_read_func_chan;
         }
 
+        /* Get correct service channel */
+        getServiceChan (this->bpmNumber, addr, funcChan->second.serviceName,
+                &serviceChan);
+
         /* Function found. Execute it */
-        err = funcChan->second.read(bpmClient, service, addr, &paramHw);
+        err = funcChan->second.read(bpmClient, service, serviceChan, &paramHw);
         if (err != HALCS_CLIENT_SUCCESS) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: funcChan->second.read() failure for service %s\n",

@@ -535,6 +535,8 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
+        asynStatus getServiceChan (int bpmNumber, int addr, const char *serviceName,
+                epicsUInt32 *chanArg);
         asynStatus getServiceID (int bpmNumber, int addr, const char *serviceName,
                 int *serviceIDArg);
         asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
