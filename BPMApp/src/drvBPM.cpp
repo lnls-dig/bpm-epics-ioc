@@ -925,6 +925,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 #endif
 
     epicsAtExit(exitHandlerC, this);
+    return;
 
 invalid_bpm_number_err:
     free (this->endpoint);
