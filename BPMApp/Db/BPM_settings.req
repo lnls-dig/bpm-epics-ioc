@@ -1,5 +1,7 @@
 file "BPMAcq_settings.req",    P=$(P), ACQ_NAME=ACQ
-file "BPMAcq_settings.req",    P=$(P), ACQ_NAME=ACQ_PM
+# Don't save ACQ_PM PVs, as we rely on the default values
+# to always return Post-Mortem to a safe state.
+# file "BPMAcq_settings.req",    P=$(P), ACQ_NAME=ACQ_PM
 file "BPMAdc_settings.req",    P=$(P)
 file "BPMDsp_settings.req",    P=$(P)
 file "BPMFFT_settings.req",    P=$(P)
