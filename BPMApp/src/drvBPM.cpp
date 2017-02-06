@@ -49,6 +49,12 @@
 #define ADC_RST_NORMAL_OP               1
 #define ADC_NUM_CHANNELS                4
 
+#define CH_DEFAULT_PM                   CH_ADC
+#define SAMPLES_PRE_DEFAULT_PM          100000
+#define SAMPLES_POST_DEFAULT_PM         100000
+#define NUM_SHOTS_DEFAULT_PM            1
+#define TRIG_DEFAULT_PM                 HALCS_CLIENT_TRIG_EXTERNAL
+
 #define SERVICE_NAME_SIZE               50
 
 typedef struct {
@@ -883,6 +889,19 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         exit(1);
     }
 
+    /* Initialize ACQ PM */
+    status = initAcqPM (BPMIDPM); 
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error initAcqPM, status=%d\n",
+            driverName, functionName, status);
+        /* PV is already set to error bu initAcqPM. So, just
+         * continue and assert alarm here */
+#if 0
+        goto init_acq_pm_err;
+#endif
+    }
+    
     /* Initialize BPM status after we have connected to the server */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         /* Get the intitial state from HW */
@@ -927,6 +946,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     epicsAtExit(exitHandlerC, this);
     return;
 
+#if 0
+init_acq_pm_err:
+    bpmClientDisconnect();
+#endif
 invalid_bpm_number_err:
     free (this->endpoint);
 endpoint_dup_err:
@@ -1037,6 +1060,120 @@ void acqTask(void *drvPvt)
 /********************************************************************/
 /******************* BPM Acquisition functions **********************/
 /********************************************************************/
+
+asynStatus drvBPM::initAcqPM(int coreID)
+{
+    static const char *functionName = "initAcqPM";
+    int hwAmpChannel = 0;
+    asynStatus status = asynSuccess;
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    setUIntDigitalParam(coreID, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_NumShots,      NUM_SHOTS_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setIntegerParam(    coreID, P_Channel,                           CH_DEFAULT_PM);
+    setUIntDigitalParam(coreID, P_AcqControl,    0,                  0xFFFFFFFF);
+    setDoubleParam(     coreID, P_UpdateTime,                             1.0);
+    setUIntDigitalParam(coreID, P_Trigger,       1 /* External */,   0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataThres,
+                                               100,                0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataPol,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataSel,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataFilt,
+                                               1,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerHwDly,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_DataTrigChan,
+                                               0,                  0xFFFFFFFF);
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks(coreID);
+
+    /* Convert user channel into hw channel */
+    hwAmpChannel = channelMap[CH_DEFAULT_PM].HwAmpChannel;
+    if(hwAmpChannel < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto get_hw_amp_channel_err;
+    }
+
+    /* Just in case we were doing something before */
+    status = abortAcq(coreID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling abortAcq, status=%d\n",
+            driverName, functionName, status);
+        goto abort_acq_err;
+    }
+
+    status = setAcqTrig(coreID, TRIG_DEFAULT_PM);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling setAcqTrig, status=%d\n",
+            driverName, functionName, status);
+        goto set_acq_trig;
+    }
+
+    status = startAcq(coreID, hwAmpChannel, SAMPLES_PRE_DEFAULT_PM, SAMPLES_POST_DEFAULT_PM,
+            NUM_SHOTS_DEFAULT_PM);
+    return status;
+
+set_acq_trig:
+abort_acq_err:
+get_hw_amp_channel_err:
+get_service_err:
+    /* Always an error if we are here. So, set PV to err value */
+    setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
+    callParamCallbacks(coreID);
+    return status;
+}
+
+asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
+{
+    static const char *functionName = "setAcqTrig";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    asynStatus status = asynSuccess;
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+    
+    err = halcs_set_acq_trig (bpmClientAcq, service, trig);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
+                driverName, functionName, service, trig);
+        status = asynError;
+        goto halcs_acq_trig_err;
+    }
+
+halcs_acq_trig_err:
+get_service_err:
+    return status;
+}
+
 
 /* This can only return if the ACQ engine is IDLE or waiting
  * for some trigger (External, Data or Software) */
