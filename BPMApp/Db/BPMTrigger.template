@@ -146,7 +146,7 @@ record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):rcvCnt_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive counter")
     field(PINI,"YES")
-    field(SCAN,"2 second")
+    field(SCAN,"5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
 }
 
@@ -162,7 +162,7 @@ record(longin,"$(P)-$(BPM_NUMBER):$(TRIGGER_NAME)$(TRIGGER_CHAN):trnCnt_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit counter")
     field(PINI,"YES")
-    field(SCAN,"2 second")
+    field(SCAN,"5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
 }
 
