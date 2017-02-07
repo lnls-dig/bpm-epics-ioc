@@ -15,11 +15,22 @@
 /* Third-party libraries */
 #include <unordered_map>
 #include <halcs_client.h>
+/* Variable macros */
+#include "varg_macros.h"
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
+
+typedef enum {
+    BPMIDReg = 0,
+    BPMIDPM = 1,
+    BPMIDEnd,
+} bpm_coreID_types;
+
+#define NUM_ACQ_CORES_PER_BPM       BPMIDEnd /* Regular Acquisition core and Post-Mortem */
+#define NUM_TRIG_CORES_PER_BPM      NUM_ACQ_CORES_PER_BPM /* Trigger core for regular Acquisition and Post-Mortem */
 
 /* BPM acquisition status */
 typedef enum {
@@ -83,6 +94,12 @@ typedef enum {
     WVF_FOFBPHASE_D,
     WVF_FOFBPHASE_ALL,
     WVF_FOFBPHASE_FREQ,
+    WVF_ADC_PM_A,
+    WVF_ADC_PM_B,
+    WVF_ADC_PM_C,
+    WVF_ADC_PM_D,
+    WVF_ADC_PM_ALL,
+    WVF_ADC_PM_FREQ,
     WVF_END
 } wvf_types;
 
@@ -95,8 +112,14 @@ typedef enum {
  * In summary, we use the different addresses to call different trigger channel
  * functions */
 #define MAX_WAVEFORMS               WVF_END
-#define MAX_TRIGGERS                WVF_END
-#define MAX_ADDR                    MAX_WAVEFORMS
+/* FIXME FIXME: This should be read from HW. Also, this is actually less than 24,
+ * but we let space for extra room */
+#define MAX_TRIGGERS                24
+/* This is needed so we have EPICS Asyn addresses sufficient for all of the
+ * Triggers, from either ACQ core */
+#define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_BPM*MAX_TRIGGERS)
+/* Get the greater between them */
+#define MAX_ADDR                    IF(MAX_WAVEFORMS > MAX_TRIGGERS_ALL_ACQ)(MAX_WAVEFORMS, MAX_TRIGGERS_ALL_ACQ)
 
 /* Channel IDs */
 typedef enum {
@@ -173,6 +196,7 @@ typedef enum {
 typedef struct {
     int board;
     int bpm;
+    int core_id; /* Acquisition and Trigger core IDs */
 } boardMap_t;
 
 /* BPM Channel structure */
@@ -185,12 +209,12 @@ typedef struct {
      * 0 otherwise */
     int CalcPos;
     /* NDArray addresses mapping */
-    int NDArrayAmp[MAX_WVF_AMP_TYPES];
-    int NDArrayAmpFreq;
-    int NDArrayPhase[MAX_WVF_PHA_TYPES];
-    int NDArrayPhaseFreq;
-    int NDArrayPos[MAX_WVF_POS_TYPES];
-    int NDArrayPosFreq;
+    int NDArrayAmp[NUM_ACQ_CORES_PER_BPM][MAX_WVF_AMP_TYPES];
+    int NDArrayAmpFreq[NUM_ACQ_CORES_PER_BPM];
+    int NDArrayPhase[NUM_ACQ_CORES_PER_BPM][MAX_WVF_PHA_TYPES];
+    int NDArrayPhaseFreq[NUM_ACQ_CORES_PER_BPM];
+    int NDArrayPos[NUM_ACQ_CORES_PER_BPM][MAX_WVF_POS_TYPES];
+    int NDArrayPosFreq[NUM_ACQ_CORES_PER_BPM];
 } channelMap_t;
 
 /* BPM Reverse channel mapping structure */
@@ -389,7 +413,7 @@ class drvBPM : public asynNDArrayDriver {
         virtual asynStatus disconnect(asynUser* pasynUser);
 
         /* These are the methods that are new to this class */
-        void acqTask(void);
+        void acqTask(int coreID, double pollTime);
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
@@ -498,11 +522,11 @@ class drvBPM : public asynNDArrayDriver {
         int verbose;
         int timeout;
         char *bpmPortName;
-        int readingActive;
-        int repetitiveTrigger;
-        epicsEventId startAcqEventId;
-        epicsEventId stopAcqEventId;
-        epicsEventId abortAcqEventId;
+        int readingActive[NUM_ACQ_CORES_PER_BPM];
+        int repetitiveTrigger[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId startAcqEventId[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId stopAcqEventId[NUM_ACQ_CORES_PER_BPM];
+        epicsEventId abortAcqEventId[NUM_ACQ_CORES_PER_BPM];
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
@@ -511,28 +535,37 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus setAcquire();
+        asynStatus getServiceChan (int bpmNumber, int addr, const char *serviceName,
+                epicsUInt32 *chanArg);
+        asynStatus getServiceID (int bpmNumber, int addr, const char *serviceName,
+                int *serviceIDArg);
+        asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
+                char *fullServiceName, int fullServiceNameSize);
+        asynStatus setAcquire(int addr);
         asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
-        asynStatus startAcq(int hwChannel, epicsUInt32 num_samples_pre,
+        bpm_status_types getBPMInitAcqStatus(int coreID);
+        asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
-        asynStatus abortAcq();
-        int checkAcqCompletion();
-        asynStatus getAcqCurve(NDArray *pArrayAllChannels, int hwChannel,
+        asynStatus setAcqTrig(int coreID, halcs_client_trig_e trig);
+        asynStatus initAcqPM(int coreID);
+        asynStatus abortAcq(int coreID);
+        int checkAcqCompletion(int coreID);
+        asynStatus getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
                 epicsUInt32 num_shots);
-        void computeFreqArray(NDArray *pArrayChannelFreq, int channel,
+        void computeFreqArray(int coreID, NDArray *pArrayChannelFreq, int channel,
                 epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
-        void computePositions(NDArray *pArrayAllChannels, int channel);
+        void computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
-        asynStatus setDataTrigChan (epicsUInt32 mask);
-        asynStatus getDataTrigChan (epicsUInt32 *hwChannel, epicsUInt32 mask);
+        asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
+        asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus setAdcReg(epicsUInt32 mask, int addr);
         asynStatus getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr);
 };

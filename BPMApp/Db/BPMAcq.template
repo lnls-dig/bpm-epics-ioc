@@ -2,7 +2,7 @@
 # Waveform Acquisition parameters
 #########################
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPre"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):samplesPre"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of pre samples for waveforms")
     field(PINI,"YES")
@@ -10,7 +10,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPre"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPre_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):samplesPre_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of pre samples for waveforms")
     field(PINI,"YES")
@@ -18,7 +18,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPre_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPost"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):samplesPost"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of post samples for waveforms")
     field(PINI,"YES")
@@ -26,7 +26,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:samplesPost"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPost_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):samplesPost_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of post samples for waveforms")
     field(PINI,"YES")
@@ -34,7 +34,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:samplesPost_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:shots"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):shots"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of shots for waveforms")
     field(PINI,"YES")
@@ -42,7 +42,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:shots"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:shots_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):shots_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of shots for waveforms")
     field(PINI,"YES")
@@ -50,7 +50,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:shots_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:channel"){
+record(mbbo, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):channel"){
     field(DTYP, "asynInt32")
     field(DESC, "Set acquisition's channel")
     field(PINI,"YES")
@@ -67,7 +67,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:channel"){
     field(THST,"fofb")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:channel_RBV"){
+record(mbbi, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):channel_RBV"){
     field(DTYP, "asynInt32")
     field(DESC, "Get acquisition's channel")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_CHANNEL")
@@ -84,7 +84,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:channel_RBV"){
     field(THST,"fofb")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
+record(mbbo, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):trigger"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition's trigger")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
@@ -106,7 +106,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:trigger"){
     field(SXST,"repetitive")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
+record(mbbi, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):trigger_RBV"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get acquisition's trigger")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
@@ -128,10 +128,9 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:trigger_RBV"){
     field(SXST,"repetitive")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:control"){
+record(mbbo, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):control"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition control")
-    field(PINI,"YES")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
     field(SCAN,"Passive")
     field(NOBT,"1")
@@ -141,7 +140,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ACQ:control"){
     field(ONST,"abort")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:control_RBV"){
+record(mbbi, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):control_RBV"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get acquisition control")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
@@ -153,7 +152,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:control_RBV"){
     field(ONST,"abort")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataThres"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger threshold")
     field(PINI,"YES")
@@ -161,7 +160,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataThres_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger threshold")
     field(PINI,"YES")
@@ -169,7 +168,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataThres_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataPol"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger polarity")
     field(PINI,"YES")
@@ -182,7 +181,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataPol_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger polarity")
     field(PINI,"YES")
@@ -195,7 +194,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:triggerDataPol_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataSel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger selection")
     field(PINI,"YES")
@@ -203,7 +202,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataSel_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger selection")
     field(PINI,"YES")
@@ -211,7 +210,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataSel_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataHyst"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger hysteresis")
     field(PINI,"YES")
@@ -219,7 +218,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_FILT")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerDataHyst_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger hysteresis")
     field(PINI,"YES")
@@ -227,7 +226,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerDataHyst_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_FILT")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly"){
+record(longout,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerHwDly"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set trigger delay")
     field(PINI,"YES")
@@ -235,7 +234,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly_RBV"){
+record(longin,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):triggerHwDly_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get trigger delay")
     field(PINI,"YES")
@@ -243,7 +242,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ACQ:triggerHwDly_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan"){
+record(mbbo,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):dataTrigChan"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data-driven trigger channel")
     field(PINI,"YES")
@@ -260,7 +259,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan_RBV"){
+record(mbbi,"$(P)-$(BPM_NUMBER):$(ACQ_NAME):dataTrigChan_RBV"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data-driven trigger channel")
     field(PINI,"YES")
@@ -277,7 +276,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ACQ:dataTrigChan_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
+record(mbbi, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):status_RBV"){
     field(DTYP, "asynInt32")
     field(DESC, "Get acquisition's status")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_STATUS")
@@ -301,7 +300,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ACQ:status_RBV"){
     field(SVST,"Aborted")
 }
 
-record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
+record(ao, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):updateTime"){
     field(DTYP, "asynFloat64")
     field(DESC, "Set repetitive mode update time")
     field(PINI,"YES")
@@ -310,7 +309,7 @@ record(ao, "$(P)-$(BPM_NUMBER):ACQ:updateTime"){
     field(EGU, "s")
 }
 
-record(ai, "$(P)-$(BPM_NUMBER):ACQ:updateTime_RBV"){
+record(ai, "$(P)-$(BPM_NUMBER):$(ACQ_NAME):updateTime_RBV"){
     field(DTYP, "asynFloat64")
     field(DESC, "Get repetitive mode update time")
     field(PINI,"YES")

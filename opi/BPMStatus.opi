@@ -10,7 +10,7 @@
   <macros>
     <include_parent_macros>true</include_parent_macros>
   </macros>
-  <boy_version>4.0.103.201506301920</boy_version>
+  <boy_version>4.0.103.201507131348</boy_version>
   <show_edit_range>true</show_edit_range>
   <widget_type>Display</widget_type>
   <auto_scale_widgets>
@@ -1763,6 +1763,8 @@ $(pv_value)</tooltip>
         <path>ADC.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
+          <ACQ_NAME>ACQ</ACQ_NAME>
+          <MODULE>ADC</MODULE>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2020,6 +2022,58 @@ $(pv_value)</tooltip>
         <path>PhysicalTrigger12_23.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
+        </macros>
+        <replace>0</replace>
+        <description></description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <toggle_button>false</toggle_button>
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <push_action_index>0</push_action_index>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-5a2d2d0f:159db0c4e2f:-379c</wuid>
+    <pv_value />
+    <text>ADC PM</text>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>40</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <image></image>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Action Button</widget_type>
+    <width>87</width>
+    <x>308</x>
+    <name>Action Button_11</name>
+    <y>336</y>
+    <style>1</style>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>ADC.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <ACQ_NAME>ACQ_PM</ACQ_NAME>
+          <MODULE>ADC_PM</MODULE>
         </macros>
         <replace>0</replace>
         <description></description>

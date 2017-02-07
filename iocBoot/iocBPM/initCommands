@@ -42,6 +42,11 @@ dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM:EnableCallbacks" 1
 
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFBPOS_Freq:EnableCallbacks" 1
 
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D:EnableCallbacks" 1
+
 # File Saving Plugin
 
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_ABCD_NETCDF:EnableCallbacks" 1
@@ -171,3 +176,23 @@ dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:ComputeHistogram" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:ComputeStatistics" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:ComputeHistogram" Yes
 dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:ComputeStatistics" Yes
+
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:TSControl" Start
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:TSControl" Start
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:TSControl" Start
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:EnableCallbacks" 1
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:TSControl" Start
+
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:ComputeHistogram" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:ComputeStatistics" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:ComputeHistogram" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:ComputeStatistics" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeHistogram" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeStatistics" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeHistogram" Yes
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeStatistics" Yes
+
+dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PMAMP_Freq:EnableCallbacks" 1
