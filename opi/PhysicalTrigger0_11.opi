@@ -6,7 +6,7 @@
   <show_grid>false</show_grid>
   <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <scripts />
-  <height>1600</height>
+  <height>1000</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
   </macros>
@@ -21,7 +21,7 @@
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <width>1200</width>
+  <width>2000</width>
   <x>-1</x>
   <name></name>
   <grid_space>6</grid_space>
@@ -12375,11 +12375,11 @@ $(pv_value)</tooltip>
     <rules />
     <crop_left>0</crop_left>
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-3270</wuid>
+    <wuid>-57cdac8b:15a052f6efd:2a17</wuid>
     <auto_size>true</auto_size>
     <image_file>trigger_phys_css.png</image_file>
     <scripts />
-    <height>612</height>
+    <height>478</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -12409,10 +12409,10 @@ $(pv_value)</tooltip>
         <col>1.0</col>
       </row>
     </permutation_matrix>
-    <width>921</width>
-    <x>150</x>
-    <name>Image</name>
-    <y>909</y>
+    <width>719</width>
+    <x>1235</x>
+    <name>Image_1</name>
+    <y>213</y>
     <foreground_color>
       <color red="192" green="192" blue="192" />
     </foreground_color>
