@@ -11,5 +11,55 @@ file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=1
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=2
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=3
 file "BPMInfo_settings.req",        P=$(P), R=$(R)
-file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_NAME=TRIGGER
-file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_NAME=TRIGGER_PM
+
+# Regular triggers
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=2,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=3,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=4,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=5,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=6,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=7,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=8,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=9,  TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=10, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=11, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=12, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=13, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=14, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=15, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=16, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=17, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=18, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=19, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
+
+# PM triggers
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=2,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=3,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=4,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=5,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=6,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=7,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=8,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=9,  TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=10, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=11, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=12, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=13, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=14, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=15, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=16, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=17, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=18, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=19, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER_PM
+file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
