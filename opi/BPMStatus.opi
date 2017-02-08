@@ -269,7 +269,7 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5f0c</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>$(HOSTNAME)-$(BPM) Status</text>
+    <text>$(P)$(R) Status</text>
     <scripts />
     <height>31</height>
     <border_width>1</border_width>
@@ -545,7 +545,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:tempAC_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFETempAC-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -701,7 +701,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:tempBD_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFETempBD-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1375,6 +1375,8 @@ $(pv_value)</tooltip>
         <path>ADCSWAP.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
+          <ACQ_NAME>ACQ</ACQ_NAME>
+          <MODULE>ADCSWAP</MODULE>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -1659,8 +1661,8 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(HOSTNAME)-$(BPM):asyn.CNCT</pv>
-        <pv trig="true">$(HOSTNAME)-$(BPM):asyn.ENBL</pv>
+        <pv trig="true">$(P)$(R)asyn.CNCT</pv>
+        <pv trig="true">$(P)$(R)asyn.ENBL</pv>
       </rule>
     </rules>
     <enabled>true</enabled>

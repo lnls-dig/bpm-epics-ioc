@@ -269,7 +269,7 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5574</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>$(HOSTNAME)-$(BPM) Settings</text>
+    <text>$(P)$(R) Settings</text>
     <scripts />
     <height>31</height>
     <border_width>1</border_width>
@@ -430,7 +430,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Kx</pv_name>
+    <pv_name>$(P)$(R)DSPKx</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -498,7 +498,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Kx_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPKx-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -579,7 +579,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Ky</pv_name>
+    <pv_name>$(P)$(R)DSPKy</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -647,7 +647,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Ky_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPKy-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -728,7 +728,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Kq</pv_name>
+    <pv_name>$(P)$(R)DSPKq</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -796,7 +796,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Kq_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPKq-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -877,7 +877,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Ksum</pv_name>
+    <pv_name>$(P)$(R)DSPKsum</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -945,7 +945,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:Ksum_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPKsum-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1026,7 +1026,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:XOffset</pv_name>
+    <pv_name>$(P)$(R)DSPXOffset</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1094,7 +1094,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:XOffset_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPXOffset-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1175,7 +1175,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:YOffset</pv_name>
+    <pv_name>$(P)$(R)DSPYOffset</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1243,7 +1243,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:YOffset_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPYOffset-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1324,7 +1324,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:QOffset</pv_name>
+    <pv_name>$(P)$(R)DSPQOffset</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1392,7 +1392,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):DSP:QOffset_RBV</pv_name>
+    <pv_name>$(P)$(R)DSPQOffset-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1524,7 +1524,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:sw_RBV</pv_name>
+    <pv_name>$(P)$(R)ADCSw-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1565,7 +1565,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:swDly</pv_name>
+    <pv_name>$(P)$(R)ADCSwDly</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1633,7 +1633,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:swDly_RBV</pv_name>
+    <pv_name>$(P)$(R)ADCSwDly-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1714,7 +1714,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidSpAC</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpAC</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1782,7 +1782,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidSpAC_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpAC-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1823,7 +1823,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidSpBD</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpBD</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1891,7 +1891,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidSpBD_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpBD-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1972,7 +1972,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:heaterAC</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterAC</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2040,7 +2040,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:heaterAC_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterAC-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2121,7 +2121,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:heaterBD</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterBD</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2189,7 +2189,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:heaterBD_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterBD-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2270,7 +2270,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACKp</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACKp</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2338,7 +2338,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACKp_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACKp-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2419,7 +2419,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACTi</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTi</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2487,7 +2487,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACTi_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTi-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2568,7 +2568,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:swDivClk</pv_name>
+    <pv_name>$(P)$(R)ADCSwDivClk</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2636,7 +2636,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:swDivClk_RBV</pv_name>
+    <pv_name>$(P)$(R)ADCSwDivClk-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2717,7 +2717,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:att</pv_name>
+    <pv_name>$(P)$(R)RFFEAtt</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2785,7 +2785,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:att_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEAtt-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2831,7 +2831,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):ADC:sw</pv_name>
+    <pv_name>$(P)$(R)ADCSw</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3040,7 +3040,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:tempCtl_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFETempCtl-RB</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3116,7 +3116,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:tempCtl</pv_name>
+    <pv_name>$(P)$(R)RFFETempCtl</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3200,7 +3200,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACTd</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTd</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3268,7 +3268,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidACTd_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTd-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3349,7 +3349,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDKp</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDKp</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3417,7 +3417,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDKp_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDKp-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3498,7 +3498,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDTi</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTi</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3566,7 +3566,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDTi_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTi-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3647,7 +3647,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDTd</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTd</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3715,7 +3715,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(HOSTNAME)-$(BPM):RFFE:pidBDTd_RBV</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTd-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
