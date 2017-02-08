@@ -1,7 +1,7 @@
-$(P)DSP:Kx
-$(P)DSP:Ky
-$(P)DSP:Kq
-$(P)DSP:Ksum
-$(P)DSP:XOffset
-$(P)DSP:YOffset
-$(P)DSP:QOffset
+$(P)$(R)DSPKx
+$(P)$(R)DSPKy
+$(P)$(R)DSPKq
+$(P)$(R)DSPKsum
+$(P)$(R)DSPXOffset
+$(P)$(R)DSPYOffset
+$(P)$(R)DSPQOffset

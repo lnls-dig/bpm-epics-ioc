@@ -10,7 +10,7 @@
 # Amplitude and phase compensation
 #######################################
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ADC:randEn"){
+record(mbbo,"$(P)$(R)ADCRandEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC RAND")
     field(SCAN,"Passive")
@@ -22,7 +22,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:randEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ADC:randEn_RBV"){
+record(mbbi,"$(P)$(R)ADCRandEn-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC RAND")
     field(SCAN,"I/O Intr")
@@ -34,7 +34,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:randEn_RBV"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ADC:dithEn"){
+record(mbbo,"$(P)$(R)ADCDithEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC DITH")
     field(SCAN,"Passive")
@@ -46,7 +46,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:dithEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ADC:dithEn_RBV"){
+record(mbbi,"$(P)$(R)ADCDithEn-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC DITH")
     field(SCAN,"I/O Intr")
@@ -58,7 +58,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:dithEn_RBV"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ADC:shdnEn"){
+record(mbbo,"$(P)$(R)ADCShdnEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC SHDN")
     field(SCAN,"Passive")
@@ -70,7 +70,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:shdnEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ADC:shdnEn_RBV"){
+record(mbbi,"$(P)$(R)ADCShdnEn-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC SHDN")
     field(SCAN,"I/O Intr")
@@ -82,7 +82,7 @@ record(mbbi,"$(P)-$(BPM_NUMBER):ADC:shdnEn_RBV"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ADC:pgaEn"){
+record(mbbo,"$(P)$(R)ADCPgaEn"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC PGA")
     field(SCAN,"Passive")
@@ -94,7 +94,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC:pgaEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)-$(BPM_NUMBER):ADC:pgaEn_RBV"){
+record(mbbi,"$(P)$(R)ADCPgaEn-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC PGA")
     field(SCAN,"I/O Intr")
