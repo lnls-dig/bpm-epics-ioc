@@ -1,198 +1,198 @@
 # Waveform Plugin
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_A:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_B:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_C:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_D:EnableCallbacks" 1
+dbpf "${P}${R}ADC_AEnableCallbacks" 1
+dbpf "${P}${R}ADC_BEnableCallbacks" 1
+dbpf "${P}${R}ADC_CEnableCallbacks" 1
+dbpf "${P}${R}ADC_DEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCAMP_Freq:EnableCallbacks" 1
+dbpf "${P}${R}ADCAMP_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_A:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_B:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_C:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_D:EnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_AEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_BEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_CEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_DEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAPAMP_Freq:EnableCallbacks" 1
+dbpf "${P}${R}ADCSWAPAMP_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_A:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_B:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_C:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_D:EnableCallbacks" 1
+dbpf "${P}${R}TBT_AEnableCallbacks" 1
+dbpf "${P}${R}TBT_BEnableCallbacks" 1
+dbpf "${P}${R}TBT_CEnableCallbacks" 1
+dbpf "${P}${R}TBT_DEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBTAMP_Freq:EnableCallbacks" 1
+dbpf "${P}${R}TBTAMP_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_X:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Y:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Q:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_SUM:EnableCallbacks" 1
+dbpf "${P}${R}TBT_XEnableCallbacks" 1
+dbpf "${P}${R}TBT_YEnableCallbacks" 1
+dbpf "${P}${R}TBT_QEnableCallbacks" 1
+dbpf "${P}${R}TBT_SUMEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBTPOS_Freq:EnableCallbacks" 1
+dbpf "${P}${R}TBTPOS_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_A:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_B:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_C:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_D:EnableCallbacks" 1
+dbpf "${P}${R}FOFB_AEnableCallbacks" 1
+dbpf "${P}${R}FOFB_BEnableCallbacks" 1
+dbpf "${P}${R}FOFB_CEnableCallbacks" 1
+dbpf "${P}${R}FOFB_DEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFBAMP_Freq:EnableCallbacks" 1
+dbpf "${P}${R}FOFBAMP_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_X:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM:EnableCallbacks" 1
+dbpf "${P}${R}FOFB_XEnableCallbacks" 1
+dbpf "${P}${R}FOFB_YEnableCallbacks" 1
+dbpf "${P}${R}FOFB_QEnableCallbacks" 1
+dbpf "${P}${R}FOFB_SUMEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFBPOS_Freq:EnableCallbacks" 1
+dbpf "${P}${R}FOFBPOS_FreqEnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D:EnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_AEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_BEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_CEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_DEnableCallbacks" 1
 
 # File Saving Plugin
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_ABCD_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_ABCD_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}ADC_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}ADC_ABCD_HDF5EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_ABCD_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_ABCD_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_ABCD_HDF5EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_ABCD_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_ABCD_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}TBT_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}TBT_ABCD_HDF5EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_XYQS_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_XYQS_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}TBT_XYQS_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}TBT_XYQS_HDF5EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_ABCD_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_ABCD_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}FOFB_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}FOFB_ABCD_HDF5EnableCallbacks" 1
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_XYQS_NETCDF:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_XYQS_HDF5:EnableCallbacks" 1
+dbpf "${P}${R}FOFB_XYQS_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}FOFB_XYQS_HDF5EnableCallbacks" 1
 
 # STATS Plugin
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_A_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_A_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_B_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_B_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_C_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_C_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_D_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_D_STATS:TSControl" Start
+dbpf "${P}${R}ADC_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_A_STATSTSControl" Start
+dbpf "${P}${R}ADC_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_B_STATSTSControl" Start
+dbpf "${P}${R}ADC_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_C_STATSTSControl" Start
+dbpf "${P}${R}ADC_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_D_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_A_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_A_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_B_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_B_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_C_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_C_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_D_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_D_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}ADC_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_D_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_A_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_A_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_B_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_B_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_C_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_C_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_D_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_D_STATS:TSControl" Start
+dbpf "${P}${R}ADCSWAP_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_A_STATSTSControl" Start
+dbpf "${P}${R}ADCSWAP_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_B_STATSTSControl" Start
+dbpf "${P}${R}ADCSWAP_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_C_STATSTSControl" Start
+dbpf "${P}${R}ADCSWAP_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADCSWAP_D_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_A_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_A_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_B_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_B_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_C_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_C_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_D_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADCSWAP_D_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}ADCSWAP_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADCSWAP_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADCSWAP_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADCSWAP_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADCSWAP_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADCSWAP_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADCSWAP_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADCSWAP_D_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_A_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_A_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_B_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_B_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_C_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_C_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_D_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_D_STATS:TSControl" Start
+dbpf "${P}${R}TBT_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_A_STATSTSControl" Start
+dbpf "${P}${R}TBT_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_B_STATSTSControl" Start
+dbpf "${P}${R}TBT_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_C_STATSTSControl" Start
+dbpf "${P}${R}TBT_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_D_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_A_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_A_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_B_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_B_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_C_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_C_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_D_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_D_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}TBT_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_D_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_X_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_X_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Y_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Y_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Q_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Q_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_SUM_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_SUM_STATS:TSControl" Start
+dbpf "${P}${R}TBT_X_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_X_STATSTSControl" Start
+dbpf "${P}${R}TBT_Y_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_Y_STATSTSControl" Start
+dbpf "${P}${R}TBT_Q_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_Q_STATSTSControl" Start
+dbpf "${P}${R}TBT_SUM_STATSEnableCallbacks" 1
+dbpf "${P}${R}TBT_SUM_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_X_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_X_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Y_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Y_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Q_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_Q_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_SUM_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):TBT_SUM_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}TBT_X_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_X_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_Y_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_Y_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_Q_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_Q_STATSComputeStatistics" Yes
+dbpf "${P}${R}TBT_SUM_STATSComputeHistogram" Yes
+dbpf "${P}${R}TBT_SUM_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_A_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_A_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_B_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_B_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_C_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_C_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_D_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_D_STATS:TSControl" Start
+dbpf "${P}${R}FOFB_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_A_STATSTSControl" Start
+dbpf "${P}${R}FOFB_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_B_STATSTSControl" Start
+dbpf "${P}${R}FOFB_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_C_STATSTSControl" Start
+dbpf "${P}${R}FOFB_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_D_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_A_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_A_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_B_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_B_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_C_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_C_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_D_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_D_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}FOFB_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_D_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_X_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_X_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:TSControl" Start
+dbpf "${P}${R}FOFB_X_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_X_STATSTSControl" Start
+dbpf "${P}${R}FOFB_Y_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_Y_STATSTSControl" Start
+dbpf "${P}${R}FOFB_Q_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_Q_STATSTSControl" Start
+dbpf "${P}${R}FOFB_SUM_STATSEnableCallbacks" 1
+dbpf "${P}${R}FOFB_SUM_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_X_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_X_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Y_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_Q_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):FOFB_SUM_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}FOFB_X_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_X_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_Y_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_Y_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_Q_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_Q_STATSComputeStatistics" Yes
+dbpf "${P}${R}FOFB_SUM_STATSComputeHistogram" Yes
+dbpf "${P}${R}FOFB_SUM_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:TSControl" Start
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:EnableCallbacks" 1
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:TSControl" Start
+dbpf "${P}${R}ADC_PM_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_A_STATSTSControl" Start
+dbpf "${P}${R}ADC_PM_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_B_STATSTSControl" Start
+dbpf "${P}${R}ADC_PM_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_C_STATSTSControl" Start
+dbpf "${P}${R}ADC_PM_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}ADC_PM_D_STATSTSControl" Start
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_A_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_B_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_C_STATS:ComputeStatistics" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeHistogram" Yes
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PM_D_STATS:ComputeStatistics" Yes
+dbpf "${P}${R}ADC_PM_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_PM_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_PM_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_PM_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_PM_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_PM_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}ADC_PM_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}ADC_PM_D_STATSComputeStatistics" Yes
 
-dbpf "${EPICS_HOSTNAME}-$(BPM_NUMBER):ADC_PMAMP_Freq:EnableCallbacks" 1
+dbpf "${P}${R}ADC_PMAMP_FreqEnableCallbacks" 1
