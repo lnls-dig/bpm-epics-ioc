@@ -1,1 +1,1 @@
-file "BPMRFFE_settings.req",          P=$(P)
+file "BPMRFFE_settings.req",          P=$(P), R=$(R)

@@ -86,7 +86,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(HOSTNAME)-$(BPM) $(MODULE) Amplitude Data</title>
+    <title>$(P)$(R) $(MODULE) Amplitude Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>B</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -125,7 +125,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_B:ArrayData</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_BArrayData</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -136,7 +136,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>446</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_D:ArrayData</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_DArrayData</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -153,7 +153,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxA(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxA(1)</pv>
       </rule>
       <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -162,7 +162,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxB(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxB(1)</pv>
       </rule>
       <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -171,7 +171,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxC(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxC(1)</pv>
       </rule>
       <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -180,7 +180,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxD(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxD(1)</pv>
       </rule>
     </rules>
     <axis_1_visible>true</axis_1_visible>
@@ -205,13 +205,13 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_C:ArrayData</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_CArrayData</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_A:ArrayData</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_AArrayData</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
@@ -242,10 +242,10 @@ $(trace_0_y_pv_value)</tooltip>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <scripts>
       <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASX(1)</pv>
       </path>
       <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASY(1)</pv>
       </path>
     </scripts>
     <trace_0_point_size>4</trace_0_point_size>
@@ -285,7 +285,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxA(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxA(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -372,7 +372,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxB(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxB(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -419,7 +419,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxC(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxC(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -466,7 +466,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxD(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxD(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -625,7 +625,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fa</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_1_x_pv>
+    <trace_1_x_pv>$(P)$(R)$(MODULE)AMP_FreqArrayData</trace_1_x_pv>
     <wuid>2dce1549:14effa31136:-7c43</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -661,7 +661,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>true</axis_1_log_scale>
-    <title>$(HOSTNAME)-$(BPM) $(MODULE) Amplitude FFT Data </title>
+    <title>$(P)$(R) $(MODULE) Amplitude FFT Data </title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Fb</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -683,7 +683,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_3_x_pv>
+    <trace_3_x_pv>$(P)$(R)$(MODULE)AMP_FreqArrayData</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -700,7 +700,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_B:FFTData.AMP</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_BFFTData.AMP</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -711,7 +711,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>446</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_D:FFTData.AMP</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_DFFTData.AMP</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -728,7 +728,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTA(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTA(1)</pv>
       </rule>
       <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -737,7 +737,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTB(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTB(1)</pv>
       </rule>
       <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -746,7 +746,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTC(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTC(1)</pv>
       </rule>
       <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -755,7 +755,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTD(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTD(1)</pv>
       </rule>
     </rules>
     <axis_1_visible>true</axis_1_visible>
@@ -780,17 +780,17 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_C:FFTData.AMP</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_CFFTData.AMP</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_A:FFTData.AMP</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_AFFTData.AMP</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_0_x_pv>
+    <trace_0_x_pv>$(P)$(R)$(MODULE)AMP_FreqArrayData</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -817,10 +817,10 @@ $(trace_0_y_pv_value)</tooltip>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <scripts>
       <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASFFTX(1)</pv>
       </path>
       <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASFFTY(1)</pv>
       </path>
     </scripts>
     <trace_0_point_size>4</trace_0_point_size>
@@ -830,7 +830,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)AMP_Freq:ArrayData</trace_2_x_pv>
+    <trace_2_x_pv>$(P)$(R)$(MODULE)AMP_FreqArrayData</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
@@ -860,7 +860,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTA(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTA(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -947,7 +947,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTB(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTB(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -994,7 +994,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTC(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTC(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1041,7 +1041,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTD(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTD(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1236,7 +1236,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>false</axis_1_log_scale>
-    <title>$(HOSTNAME)-$(BPM) $(MODULE) Position Data</title>
+    <title>$(P)$(R) $(MODULE) Position Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Y</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -1275,7 +1275,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Y:ArrayData</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_YArrayData</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -1286,7 +1286,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>446</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_SUM:ArrayData</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_SUMArrayData</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -1303,7 +1303,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxX(1)</pv>
       </rule>
       <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1312,7 +1312,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxY(1)</pv>
       </rule>
       <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1321,7 +1321,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxQ(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxQ(1)</pv>
       </rule>
       <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1330,7 +1330,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxSUM(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxSUM(1)</pv>
       </rule>
     </rules>
     <axis_1_visible>true</axis_1_visible>
@@ -1355,13 +1355,13 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Q:ArrayData</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_QArrayData</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_X:ArrayData</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_XArrayData</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
@@ -1392,10 +1392,10 @@ $(trace_0_y_pv_value)</tooltip>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <scripts>
       <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASPosX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASPosX(1)</pv>
       </path>
       <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASPosY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASPosY(1)</pv>
       </path>
     </scripts>
     <trace_0_point_size>4</trace_0_point_size>
@@ -1435,7 +1435,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1522,7 +1522,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1569,7 +1569,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxQ(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxQ(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1616,7 +1616,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxSUM(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxSUM(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -1775,7 +1775,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fx</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_1_x_pv>
+    <trace_1_x_pv>$(P)$(R)$(MODULE)POS_FreqArrayData</trace_1_x_pv>
     <wuid>5baac38b:14f02d40895:-6f69</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -1811,7 +1811,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_1_axis_color>
     <axis_0_scale_format></axis_0_scale_format>
     <axis_1_log_scale>true</axis_1_log_scale>
-    <title>$(HOSTNAME)-$(BPM) $(MODULE) Position FFT Data</title>
+    <title>$(P)$(R) $(MODULE) Position FFT Data</title>
     <trace_0_visible>true</trace_0_visible>
     <trace_1_name>Fy</trace_1_name>
     <trace_3_anti_alias>true</trace_3_anti_alias>
@@ -1833,7 +1833,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_3_x_pv>
+    <trace_3_x_pv>$(P)$(R)$(MODULE)POS_FreqArrayData</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -1850,7 +1850,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Y:FFTData.AMP</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_YFFTData.AMP</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -1861,7 +1861,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>446</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_SUM:FFTData.AMP</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_SUMFFTData.AMP</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -1878,7 +1878,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTX(1)</pv>
       </rule>
       <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1887,7 +1887,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTY(1)</pv>
       </rule>
       <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1896,7 +1896,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTQ(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTQ(1)</pv>
       </rule>
       <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -1905,7 +1905,7 @@ $(trace_0_y_pv_value)</tooltip>
         <exp bool_exp="pv0 == 1">
           <value>true</value>
         </exp>
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTSUM(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxFFTSUM(1)</pv>
       </rule>
     </rules>
     <axis_1_visible>true</axis_1_visible>
@@ -1930,17 +1930,17 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_Q:FFTData.AMP</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_QFFTData.AMP</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(HOSTNAME)-$(BPM):$(MODULE)_X:FFTData.AMP</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_XFFTData.AMP</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_0_x_pv>
+    <trace_0_x_pv>$(P)$(R)$(MODULE)POS_FreqArrayData</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -1967,10 +1967,10 @@ $(trace_0_y_pv_value)</tooltip>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <scripts>
       <path pathString="autoscaleX.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTPosX(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASFFTPosX(1)</pv>
       </path>
       <path pathString="autoscaleY.js" checkConnect="true" sfe="false" seoe="false">
-        <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTPosY(1)</pv>
+        <pv trig="true">loc://$(P)$(R)$(MODULE)CheckBoxASFFTPosY(1)</pv>
       </path>
     </scripts>
     <trace_0_point_size>4</trace_0_point_size>
@@ -1980,7 +1980,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv>$(HOSTNAME)-$(BPM):$(MODULE)POS_Freq:ArrayData</trace_2_x_pv>
+    <trace_2_x_pv>$(P)$(R)$(MODULE)POS_FreqArrayData</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
@@ -2010,7 +2010,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2097,7 +2097,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2144,7 +2144,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTQ(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTQ(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2191,7 +2191,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxFFTSUM(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxFFTSUM(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2440,7 +2440,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_B_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_B_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2532,7 +2532,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_C_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_C_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2624,7 +2624,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_D_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_D_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2716,7 +2716,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_A_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_A_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2808,7 +2808,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_B_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_B_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2900,7 +2900,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_C_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_C_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2992,7 +2992,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_D_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_D_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3084,7 +3084,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_A_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_A_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3176,7 +3176,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_B_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_B_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3268,7 +3268,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_C_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_C_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3360,7 +3360,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_D_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_D_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3452,7 +3452,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_A_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_A_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3544,7 +3544,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_B_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_B_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3636,7 +3636,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_C_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_C_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3728,7 +3728,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_D_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_D_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3820,7 +3820,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_A_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_A_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3953,7 +3953,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Y_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Y_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4045,7 +4045,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Q_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Q_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4137,7 +4137,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_SUM_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_SUM_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4229,7 +4229,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_X_STATS:MinValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_X_STATSMinValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4321,7 +4321,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Y_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Y_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4413,7 +4413,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Q_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Q_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4505,7 +4505,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_SUM_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_SUM_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4597,7 +4597,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_X_STATS:MaxValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_X_STATSMaxValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4689,7 +4689,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Y_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Y_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4781,7 +4781,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Q_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Q_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4873,7 +4873,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_SUM_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_SUM_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4965,7 +4965,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_X_STATS:MeanValue_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_X_STATSMeanValue_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5057,7 +5057,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Y_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Y_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5149,7 +5149,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_Q_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_Q_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5241,7 +5241,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_SUM_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_SUM_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5333,7 +5333,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):$(MODULE)_X_STATS:Sigma_RBV</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)_X_STATSSigma_RBV</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5404,7 +5404,7 @@ $(pv_value)</tooltip>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <R>$(MODULE)_ABCD_NETCDF:</R>
-          <P>$(HOSTNAME)-$(BPM):</P>
+          <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving netCDF</description>
@@ -5414,7 +5414,7 @@ $(pv_value)</tooltip>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <R>$(MODULE)_ABCD_HDF5:</R>
-          <P>$(HOSTNAME)-$(BPM):</P>
+          <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving HDF5</description>
@@ -5469,7 +5469,7 @@ $(pv_value)</tooltip>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <R>$(MODULE)_XYQS_NETCDF:</R>
-          <P>$(HOSTNAME)-$(BPM):</P>
+          <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving netCDF</description>
@@ -5479,7 +5479,7 @@ $(pv_value)</tooltip>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <R>$(MODULE)_XYQS_HDF5:</R>
-          <P>$(HOSTNAME)-$(BPM):</P>
+          <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
         <description>ADC A File Saving HDF5</description>
@@ -5545,7 +5545,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):updateTime(1.0)</pv_name>
+      <pv_name>loc://$(P)$(R)$(MODULE)UpdateTime(1.0)</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -5682,7 +5682,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:samplesPre</pv_name>
+      <pv_name>$(P)$(R)ACQSamplesPre</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -5784,7 +5784,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>false</items_from_pv>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):trigger("now")</pv_name>
+      <pv_name>loc://$(P)$(R)$(MODULE)Trigger("now")</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -5831,8 +5831,8 @@ $(pv_value)</tooltip>
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("stop")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
+          <pv trig="true">loc://$(P)$(R)$(MODULE)Stop(0)</pv>
+          <pv trig="false">$(P)$(R)ACQTrigger</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -5845,7 +5845,7 @@ pvs[1].setValue("stop")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):stop(0)</pv_name>
+      <pv_name>loc://$(P)$(R)$(MODULE)Stop(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -5967,7 +5967,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataThres</pv_name>
+      <pv_name>$(P)$(R)ACQTriggerDataThres</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6104,7 +6104,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataSel</pv_name>
+      <pv_name>$(P)$(R)ACQTriggerDataSel</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6161,7 +6161,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerHwDly</pv_name>
+      <pv_name>$(P)$(R)ACQTriggerHwDly</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6298,7 +6298,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataHyst</pv_name>
+      <pv_name>$(P)$(R)ACQTriggerDataHyst</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6366,7 +6366,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:status_RBV</pv_name>
+      <pv_name>$(P)$(R)ACQStatus-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -6447,7 +6447,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:samplesPost</pv_name>
+      <pv_name>$(P)$(R)ACQSamplesPost</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6584,7 +6584,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:shots</pv_name>
+      <pv_name>$(P)$(R)ACQShots</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6678,23 +6678,23 @@ for i in range(4):
     display.getWidget("XY Graph_2").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples);
     display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);
     display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):start(0)</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samplesPre</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:samplesPost</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:shots</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:channel</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:updateTime</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
-          <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):updateTime</pv>
-          <pv trig="false">loc://$(HOSTNAME)-$(BPM):$(MODULE):trigger</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_A:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_B:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_C:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_D:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_X:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_Y:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_Q:FFTData.SPAN</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):$(MODULE)_SUM:FFTData.SPAN</pv>
+          <pv trig="true">loc://$(P)$(R)$(MODULE)Start(0)</pv>
+          <pv trig="false">$(P)$(R)ACQSamplesPre</pv>
+          <pv trig="false">$(P)$(R)ACQSamplesPost</pv>
+          <pv trig="false">$(P)$(R)ACQShots</pv>
+          <pv trig="false">$(P)$(R)ACQChannel</pv>
+          <pv trig="false">$(P)$(R)ACQUpdateTime</pv>
+          <pv trig="false">$(P)$(R)ACQTrigger</pv>
+          <pv trig="false">loc://$(P)$(R)$(MODULE)UpdateTime</pv>
+          <pv trig="false">loc://$(P)$(R)$(MODULE)Trigger</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_AFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_BFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_CFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_DFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_XFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_YFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_QFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_SUMFFTData.SPAN</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -6707,7 +6707,7 @@ for i in range(4):
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):start(0)</pv_name>
+      <pv_name>loc://$(P)$(R)$(MODULE)Start(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6794,7 +6794,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:dataTrigChan</pv_name>
+      <pv_name>$(P)$(R)ACQDataTrigChan</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6836,7 +6836,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(HOSTNAME)-$(BPM):ACQ:triggerDataPol</pv_name>
+      <pv_name>$(P)$(R)ACQTriggerDataPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6916,8 +6916,8 @@ $(pv_value)</tooltip>
 #from org.csstudio.opibuilder.scriptUtil import ConsoleUtil
 
 pvs[1].setValue("abort")]]></scriptText>
-          <pv trig="true">loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv>
-          <pv trig="false">$(HOSTNAME)-$(BPM):ACQ:trigger</pv>
+          <pv trig="true">loc://$(P)$(R)$(MODULE)Abort(0)</pv>
+          <pv trig="false">$(P)$(R)ACQTrigger</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -6930,7 +6930,7 @@ pvs[1].setValue("abort")]]></scriptText>
       </scale_options>
       <image></image>
       <visible>true</visible>
-      <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):abort(0)</pv_name>
+      <pv_name>loc://$(P)$(R)$(MODULE)Abort(0)</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6982,7 +6982,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7069,7 +7069,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7156,7 +7156,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASFFTX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7243,7 +7243,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASFFTY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7330,7 +7330,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASPosX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASPosX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7417,7 +7417,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASPosY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASPosY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7504,7 +7504,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTPosX(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASFFTPosX(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7591,7 +7591,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>loc://$(HOSTNAME)-$(BPM):$(MODULE):checkBoxASFFTPosY(1)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)CheckBoxASFFTPosY(1)</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>

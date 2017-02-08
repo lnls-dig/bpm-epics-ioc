@@ -25,4 +25,12 @@ if [ "$BPM_NUMBER" -lt 0 ] || [ "$BPM_NUMBER" -gt 23 ]; then
     exit 1
 fi
 
-BPM_ENDPOINT=${BPM_ENDPOINT} BPM_NUMBER=${BPM_NUMBER} ../../bin/${EPICS_HOST_ARCH}/BPM st.cmd
+# Select PV area prefix.
+BPM_PV_AREA=$3
+
+if [ -z "$BPM_PV_AREA" ]; then
+    echo "\"BPM_PV_AREA\" variable unset."
+    exit 1
+fi
+
+BPM_ENDPOINT=${BPM_ENDPOINT} BPM_NUMBER=${BPM_NUMBER} BPM_PV_AREA=${BPM_PV_AREA} ../../bin/${EPICS_HOST_ARCH}/BPM st.cmd

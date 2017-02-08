@@ -1,4 +1,4 @@
-$(P)ADC:randEn
-$(P)ADC:dithEn
-$(P)ADC:shdnEn
-$(P)ADC:pgaEn
+$(P)$(R)ADCRandEn
+$(P)$(R)ADCDithEn
+$(P)$(R)ADCShdnEn
+$(P)$(R)ADCPgaEn

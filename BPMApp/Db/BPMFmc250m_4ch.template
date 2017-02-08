@@ -10,7 +10,7 @@
 # Amplitude and phase compensation
 #######################################
 
-record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):testMode"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)TestMode"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ISLA216P25 test mode")
     field(PINI,"YES")
@@ -19,7 +19,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):testMode"){
 }
 
 # Not implemented yet
-#record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):testMode_RBV"){
+#record(longin,"$(P)$(R)ADC$(ADC_CHAN)TestMode-RB"){
 #    field(DTYP,"asynUInt32Digital")
 #    field(DESC,"get ISLA216P25 test mode")
 #    field(PINI,"YES")
@@ -27,7 +27,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):testMode"){
 #    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEST_MODE")
 #}
 
-record(mbbo,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):rstModes"){
+record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ISLA216P25 reset mode")
     field(PINI,"YES")
@@ -45,7 +45,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):rstModes"){
 }
 
 # Not implemented yet
-#record(mbbi,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):rstModes_RBV"){
+#record(mbbi,"$(P)$(R)ADC$(ADC_CHAN)RstModes-RB"){
 #    field(DTYP,"asynUInt32Digital")
 #    field(DESC,"get ISLA216P25 reset mode")
 #    field(PINI,"YES")
@@ -62,7 +62,7 @@ record(mbbo,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):rstModes"){
 #    field(THST,"sleep")
 #}
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):temp_RBV"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ISLA216P25 temperature code")
     field(PINI,"YES")
@@ -70,7 +70,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):temp_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEMP")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regRead"){
+record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegRead"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register read")
     field(PINI,"YES")
@@ -83,7 +83,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regRead"){
     field(ONST,"read")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regRead_RBV"){
+record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegRead-RB"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register read status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ")
@@ -96,7 +96,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regRead_RBV"){
     field(ONST,"read")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadData_RBV"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadData-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get data from ADC register")
     field(PINI,"YES")
@@ -104,7 +104,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadData_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_DATA")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadAddr"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set addr to be read to ADC")
     field(PINI,"YES")
@@ -112,7 +112,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadAddr"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_ADDR")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadAddr_RBV"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get addr to be read to ADC")
     field(PINI,"YES")
@@ -120,7 +120,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regReadAddr_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_ADDR")
 }
 
-record(mbbo, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite"){
+record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegWrite"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register write")
     field(PINI,"YES")
@@ -133,7 +133,7 @@ record(mbbo, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite"){
     field(ONST,"write")
 }
 
-record(mbbi, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite_RBV"){
+record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-RB"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register write status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE")
@@ -146,7 +146,7 @@ record(mbbi, "$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWrite_RBV"){
     field(ONST,"write")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteData"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set data to be written to ADC")
     field(PINI,"YES")
@@ -154,7 +154,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteData"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_DATA")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteData_RBV"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get data to be written to ADC")
     field(PINI,"YES")
@@ -162,7 +162,7 @@ record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteData_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_DATA")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteAddr"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set addr to be written to ADC")
     field(PINI,"YES")
@@ -170,7 +170,7 @@ record(longout,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteAddr"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_ADDR")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):ADC$(ADC_CHAN):regWriteAddr_RBV"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get addr to be written to ADC")
     field(PINI,"YES")

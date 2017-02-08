@@ -1,2 +1,2 @@
-$(P)ADC:testMode
-$(P)ADC:rstModes
+$(P)$(R)ADC$(ADC_CHAN)TestMode
+$(P)$(R)ADC$(ADC_CHAN)RstModes

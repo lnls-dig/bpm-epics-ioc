@@ -11,7 +11,7 @@
 # General Board information parameters
 #########################
 
-record(longout,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber"){
+record(longout,"$(P)$(R)INFOHarmonicNumber"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set accelerator harmonic number")
     field(PINI,"YES")
@@ -19,7 +19,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
+record(longin,"$(P)$(R)INFOHarmonicNumber-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get accelerator harmonic number")
     field(PINI,"YES")
@@ -27,7 +27,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:HarmonicNumber_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
+record(longout,"$(P)$(R)INFOADCClkFreq"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC clock frequency")
     field(PINI,"YES")
@@ -36,7 +36,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq"){
     field(EGU, "Hz")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
+record(longin,"$(P)$(R)INFOADCClkFreq-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC clock frequency")
     field(PINI,"YES")
@@ -45,7 +45,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:ADCClkFreq_RBV"){
     field(EGU, "Hz")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):INFO:TBTRate"){
+record(longout,"$(P)$(R)INFOTBTRate"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set TBT rate factor")
     field(PINI,"YES")
@@ -53,7 +53,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:TBTRate"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):INFO:TBTRate_RBV"){
+record(longin,"$(P)$(R)INFOTBTRate-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get TBT rate factor")
     field(PINI,"YES")
@@ -61,7 +61,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:TBTRate_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):INFO:FOFBRate"){
+record(longout,"$(P)$(R)INFOFOFBRate"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set FOFB rate factor")
     field(PINI,"YES")
@@ -69,7 +69,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:FOFBRate"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):INFO:FOFBRate_RBV"){
+record(longin,"$(P)$(R)INFOFOFBRate-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FOFB rate factor")
     field(PINI,"YES")
@@ -77,7 +77,7 @@ record(longin,"$(P)-$(BPM_NUMBER):INFO:FOFBRate_RBV"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
 }
 
-record(longout,"$(P)-$(BPM_NUMBER):INFO:MONITRate"){
+record(longout,"$(P)$(R)INFOMONITRate"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set MONIT rate factor")
     field(PINI,"YES")
@@ -85,7 +85,7 @@ record(longout,"$(P)-$(BPM_NUMBER):INFO:MONITRate"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
 }
 
-record(longin,"$(P)-$(BPM_NUMBER):INFO:MONITRate_RBV"){
+record(longin,"$(P)$(R)INFOMONITRate-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get MONIT rate factor")
     field(PINI,"YES")
