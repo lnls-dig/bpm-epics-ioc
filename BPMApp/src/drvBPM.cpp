@@ -1288,7 +1288,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
     double updateTime;
     double delay;
     int hwAmpChannel = 0;
-    int acqCompleted = 0;
+    int acqCompleted = 1;
     int bpmStatus = 0;
     int newAcq = 1;
     epicsTimeStamp now;
