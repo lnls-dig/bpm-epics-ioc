@@ -1004,7 +1004,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -1056,7 +1056,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -1102,7 +1102,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -1144,7 +1144,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -1318,7 +1318,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -1373,7 +1373,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1414,7 +1414,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1482,7 +1482,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1581,7 +1581,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -1636,7 +1636,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1677,7 +1677,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1745,7 +1745,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -1920,7 +1920,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -1972,7 +1972,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2018,7 +2018,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2060,7 +2060,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2234,7 +2234,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -2289,7 +2289,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2330,7 +2330,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2398,7 +2398,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2497,7 +2497,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -2552,7 +2552,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2593,7 +2593,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2661,7 +2661,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -2836,7 +2836,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2888,7 +2888,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2934,7 +2934,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2976,7 +2976,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -3150,7 +3150,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -3205,7 +3205,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3246,7 +3246,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3314,7 +3314,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3413,7 +3413,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -3468,7 +3468,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3509,7 +3509,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3577,7 +3577,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -3752,7 +3752,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3804,7 +3804,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -3850,7 +3850,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -3892,7 +3892,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -4066,7 +4066,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -4121,7 +4121,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4162,7 +4162,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4230,7 +4230,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4329,7 +4329,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -4384,7 +4384,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4425,7 +4425,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4493,7 +4493,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -4668,7 +4668,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4720,7 +4720,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4766,7 +4766,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -4808,7 +4808,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -4982,7 +4982,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -5037,7 +5037,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5078,7 +5078,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5146,7 +5146,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5245,7 +5245,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -5300,7 +5300,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5341,7 +5341,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5409,7 +5409,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5584,7 +5584,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5636,7 +5636,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5682,7 +5682,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -5724,7 +5724,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -5898,7 +5898,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -5953,7 +5953,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -5994,7 +5994,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6062,7 +6062,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6161,7 +6161,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -6216,7 +6216,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6257,7 +6257,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6325,7 +6325,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6500,7 +6500,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -6552,7 +6552,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -6598,7 +6598,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6640,7 +6640,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6814,7 +6814,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -6869,7 +6869,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6910,7 +6910,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -6978,7 +6978,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7077,7 +7077,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -7132,7 +7132,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7173,7 +7173,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7241,7 +7241,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7416,7 +7416,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -7468,7 +7468,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -7514,7 +7514,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -7556,7 +7556,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -7730,7 +7730,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -7785,7 +7785,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7826,7 +7826,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7894,7 +7894,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -7993,7 +7993,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -8048,7 +8048,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8089,7 +8089,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8157,7 +8157,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8332,7 +8332,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -8384,7 +8384,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -8430,7 +8430,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -8472,7 +8472,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -8646,7 +8646,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -8701,7 +8701,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8742,7 +8742,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8810,7 +8810,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -8909,7 +8909,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -8964,7 +8964,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9005,7 +9005,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9073,7 +9073,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9248,7 +9248,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -9300,7 +9300,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -9346,7 +9346,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -9388,7 +9388,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -9562,7 +9562,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -9617,7 +9617,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9658,7 +9658,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9726,7 +9726,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9825,7 +9825,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -9880,7 +9880,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9921,7 +9921,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -9989,7 +9989,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10164,7 +10164,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -10216,7 +10216,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -10262,7 +10262,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -10304,7 +10304,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -10478,7 +10478,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -10533,7 +10533,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10574,7 +10574,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10642,7 +10642,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10741,7 +10741,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -10796,7 +10796,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10837,7 +10837,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -10905,7 +10905,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11080,7 +11080,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -11132,7 +11132,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol-RB</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -11178,7 +11178,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)Dir</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -11220,7 +11220,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)DirPol</pv_name>
+      <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -11394,7 +11394,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -11449,7 +11449,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11490,7 +11490,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11558,7 +11558,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)TrnLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11657,7 +11657,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>true</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCntRst</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst</pv_name>
         <border_color>
           <color red="0" green="128" blue="255" />
         </border_color>
@@ -11712,7 +11712,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11753,7 +11753,7 @@ $(pv_value)</tooltip>
         <multiline_input>false</multiline_input>
         <border_width>1</border_width>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen</pv_name>
         <selector_type>0</selector_type>
         <border_color>
           <color red="0" green="128" blue="255" />
@@ -11821,7 +11821,7 @@ $(pv_value)</tooltip>
           <keep_wh_ratio>false</keep_wh_ratio>
         </scale_options>
         <visible>true</visible>
-        <pv_name>$(P)$(R)TRIGGER$(TRIGGER_CHAN)RcvLen-RB</pv_name>
+        <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB</pv_name>
         <vertical_alignment>1</vertical_alignment>
         <border_color>
           <color red="0" green="128" blue="255" />
