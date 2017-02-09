@@ -516,7 +516,7 @@ class drvBPM : public asynNDArrayDriver {
     private:
         /* Our data */
         halcs_client_t *bpmClient;
-        halcs_client_t *bpmClientAcq;
+        halcs_client_t *bpmClientAcq[NUM_ACQ_CORES_PER_BPM];
         char *endpoint;
         int bpmNumber;
         int verbose;

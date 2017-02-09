@@ -1023,15 +1023,17 @@ asynStatus drvBPM::bpmClientConnect(void)
         }
     }
 
-    /* Connect ACQ BPM */
-    if (bpmClientAcq == NULL) {
-        bpmClientAcq = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
-        if (bpmClientAcq == NULL) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s bpmClientConnect failure to create bpmClientAcq instance\n",
-                    driverName, functionName);
-            status = asynError;
-            goto create_halcs_client_acq_err;
+    /* Connect ACQ BPM clients */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcq[i] == NULL) {
+            bpmClientAcq[i] = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+            if (bpmClientAcq[i] == NULL) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s bpmClientConnect failure to create bpmClientAcq[%d] instance\n",
+                        driverName, functionName, i);
+                status = asynError;
+                goto create_halcs_client_acq_err;
+            }
         }
     }
 
@@ -1044,6 +1046,13 @@ asynStatus drvBPM::bpmClientConnect(void)
     return status;
 
 create_halcs_client_acq_err:
+    /* Destroy possible uninitialized bpmClientAcq instances */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcq[i] != NULL) {
+            halcs_client_destroy (&bpmClientAcq[i]);
+        }
+    }
+    /* Destroy regular bpmClient instance */
     halcs_client_destroy (&bpmClient);
 create_halcs_client_err:
     return status;
@@ -1065,8 +1074,10 @@ asynStatus drvBPM::bpmClientDisconnect(void)
         halcs_client_destroy (&bpmClient);
     }
 
-    if (bpmClientAcq != NULL) {
-        halcs_client_destroy (&bpmClientAcq);
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcq[i] != NULL) {
+            halcs_client_destroy (&bpmClientAcq[i]);
+        }
     }
 
     pasynManager->exceptionDisconnect(this->pasynUserSelf);
@@ -1182,7 +1193,7 @@ asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_trig (bpmClientAcq, service, trig);
+    err = halcs_set_acq_trig (bpmClientAcq[coreID], service, trig);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
@@ -1218,13 +1229,13 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     /* Have ACQ engine completed some work or is it still busy? */
-    herr = halcs_acq_check (bpmClientAcq, service);
+    herr = halcs_acq_check (bpmClientAcq[coreID], service);
     if (herr == HALCS_CLIENT_SUCCESS) {
         return BPMStatusIdle;
     }
 
     /* If the ACQ is doing something we need to figure it out what is it */
-    herr = halcs_get_acq_trig (bpmClientAcq, service, &trig);
+    herr = halcs_get_acq_trig (bpmClientAcq[coreID], service, &trig);
     if (herr != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
@@ -1941,7 +1952,7 @@ asynStatus drvBPM::startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_p
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = halcs_acq_start (bpmClientAcq, service, &req);
+    err = halcs_acq_start (bpmClientAcq[coreID], service, &req);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1976,7 +1987,7 @@ asynStatus drvBPM::abortAcq(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_fsm_stop (bpmClientAcq, service, fsm_stop);
+    err = halcs_set_acq_fsm_stop (bpmClientAcq[coreID], service, fsm_stop);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_acq_stop_err;
@@ -2004,7 +2015,7 @@ int drvBPM::checkAcqCompletion(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_acq_check (bpmClientAcq, service);
+    err = halcs_acq_check (bpmClientAcq[coreID], service);
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -2051,7 +2062,7 @@ asynStatus drvBPM::getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwCha
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = halcs_acq_get_curve (bpmClientAcq, service, &acq_trans);
+    err = halcs_acq_get_curve (bpmClientAcq[coreID], service, &acq_trans);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
