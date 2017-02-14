@@ -67,7 +67,7 @@ BPM_SYS_LIBS += gcc
 BPM_INCLUDES += -I/usr/include
 
 # CXX Compiler flags
-USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API
+USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
 include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
 
