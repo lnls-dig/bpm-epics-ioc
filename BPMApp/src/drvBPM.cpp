@@ -1359,11 +1359,6 @@ void drvBPM::acqTask(int coreID, double pollTime)
                 callParamCallbacks(coreID);
             }
             
-            /* We have consumed our data. This is important if we abort the next
-             * acquisition, as we can detect that the current acquisition is completed,
-             * which would be wrong */
-            acqCompleted = 0;
-
             /* Only wait for the startEvent if we are waiting for a
              * new acquisition */
             if (newAcq) {
@@ -1531,6 +1526,11 @@ void drvBPM::acqTask(int coreID, double pollTime)
 
             /* Calculate positions and call callbacks */
             computePositions(coreID, pArrayAllChannels, channel);
+
+            /* We have consumed our data. This is important if we abort the next
+             * acquisition, as we can detect that the current acquisition is completed,
+             * which would be wrong */
+            acqCompleted = 0;
         }
 
         /* Release buffer */
