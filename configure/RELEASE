@@ -40,7 +40,7 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 # EPICS_BASE usually appears last so other apps can override stuff:
 SUPPORT=/opt/epics/base/../synApps_5_8/support
 #SUPPORT=/usr/local/epics/synApps_5_8/support
-AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
+AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0/ADCore-R2-2
 ASYN=$(SUPPORT)/asyn-4-26
 MCA=$(SUPPORT)/mca-7-6
 SSCAN=$(SUPPORT)/sscan-2-10-1
