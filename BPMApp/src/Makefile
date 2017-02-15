@@ -69,7 +69,7 @@ BPM_INCLUDES += -I/usr/include
 # CXX Compiler flags
 USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
-include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
+include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
 
 #===========================
 

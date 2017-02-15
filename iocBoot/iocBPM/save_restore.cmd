@@ -36,7 +36,7 @@ set_pass1_restoreFile("auto_settings_${P}${R}.sav")
 set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "")
 set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
 set_requestfile_path("$(TOP)", "BPMApp/Db")
-set_requestfile_path("$(AREA_DETECTOR)", "ADApp/Db")
+set_requestfile_path("$(AREA_DETECTOR_COMPAT)", "ADApp/Db")
 set_requestfile_path("$(AUTOSAVE)", "asApp/Db")
 
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${P}${R}")
