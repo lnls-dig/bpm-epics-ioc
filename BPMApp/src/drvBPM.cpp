@@ -1299,7 +1299,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
     double updateTime;
     double delay;
     int hwAmpChannel = 0;
-    int acqCompleted = 1;
+    int acqCompleted = 0;
     int bpmStatus = 0;
     int newAcq = 1;
     epicsTimeStamp now;
@@ -1348,7 +1348,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
              * (repetitive or not) or we could be waiting for a trigger armed
              * outside this thread (for now, the only option is the case when
              * you set a trigger and then exit the IOC for some reason) */
-            if (acqCompleted && acqIsBPMStatusWaitSomeTrigger(bpmStatus)) {
+            if (!acqCompleted && acqIsBPMStatusWaitSomeTrigger(bpmStatus)) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: waiting for trigger\n", driverName, functionName);
                 newAcq = 0;
