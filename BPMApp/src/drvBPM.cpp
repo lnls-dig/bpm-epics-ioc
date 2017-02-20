@@ -409,7 +409,7 @@ asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceN
     if (streq(serviceName, "ACQ")) {
         chan = addr;
     }
-    else if (streq(serviceName, "TRIGGER_MUX")) {
+    else if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         chan = addr % MAX_TRIGGERS;
     }
     else {
@@ -432,7 +432,7 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
     if (streq(serviceName, "ACQ")) {
         addrMod = addr;
     }
-    else if (streq(serviceName, "TRIGGER_MUX")) {
+    else if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         addrMod = addr/MAX_TRIGGERS;
     }
     else {
