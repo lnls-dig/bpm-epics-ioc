@@ -1119,7 +1119,7 @@ asynStatus drvBPM::initAcqPM(int coreID)
     setIntegerParam(    coreID, P_Channel,                           CH_DEFAULT_PM);
     setUIntDigitalParam(coreID, P_AcqControl,    0,                  0xFFFFFFFF);
     setDoubleParam(     coreID, P_UpdateTime,                             1.0);
-    setUIntDigitalParam(coreID, P_Trigger,       1 /* External */,   0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_Trigger,       TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataPol,
