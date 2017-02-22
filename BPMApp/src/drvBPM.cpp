@@ -1883,6 +1883,12 @@ asynStatus drvBPM::setAcquire(int addr)
                         driverName, functionName);
                 epicsEventSignal(this->abortAcqEventId[addr]);
             }
+            else {
+                /* If we are not actively waiting for an event on acqTask,
+                 * abort the acquisition anyway, as we might have something
+                 * going on inside the FPGA from a previous acquisition */
+                abortAcq(addr);
+            }
             break;
 
         case TRIG_ACQ_REPETITIVE:
