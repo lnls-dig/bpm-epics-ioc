@@ -1084,6 +1084,11 @@ asynStatus drvBPM::initAcqPM(int coreID)
     static const char *functionName = "initAcqPM";
     asynStatus status = asynSuccess;
 
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: setting Post-Mortem parameters for coreID = %d\n",
+        driverName, functionName, coreID);
+
+    /* Set paramters for Post-Mortem */
     setUIntDigitalParam(coreID, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
                                                                    0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM,
