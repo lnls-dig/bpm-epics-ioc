@@ -1794,6 +1794,9 @@ asynStatus drvBPM::setAcquire(int addr)
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
         setParam32 (P_Trigger, 0xFFFFFFFF, addr);
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: writing trigger type = %u\n",
+                driverName, functionName, trigger_type);
     }
 
     switch (trigger_type) {
@@ -1831,11 +1834,14 @@ asynStatus drvBPM::setAcquire(int addr)
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
             if (readingActive[addr]) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_ABORT called\n",
-                        driverName, functionName);
+                        "%s:%s: trigger ACQ_ABORT called for coreID = %d\n",
+                        driverName, functionName, addr);
                 epicsEventSignal(this->abortAcqEventId[addr]);
             }
             else {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger ACQ_ABORT but with acquisition in progress, called for coreID = %d\n",
+                        driverName, functionName, addr);
                 /* If we are not actively waiting for an event on acqTask,
                  * abort the acquisition anyway, as we might have something
                  * going on inside the FPGA from a previous acquisition */
