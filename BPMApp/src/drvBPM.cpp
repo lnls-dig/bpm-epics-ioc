@@ -1115,18 +1115,7 @@ asynStatus drvBPM::initAcqPM(int coreID)
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(coreID);
 
-    /* Just in case we were doing something before. abort the acquisition */
-    setUIntDigitalParam(coreID, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
-    status = setAcquire(coreID);
-    if (status) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling setAcquire, status=%d\n",
-            driverName, functionName, status);
-        goto abort_acq_err;
-    }
-
     /* Start triggered acquisition */
-    setUIntDigitalParam(coreID, P_Trigger, TRIG_ACQ_EXT_HW, 0xFFFFFFFF);
     status = setAcquire(coreID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1137,7 +1126,6 @@ asynStatus drvBPM::initAcqPM(int coreID)
     return status;
 
 set_acq_trig:
-abort_acq_err:
     return status;
 }
 
