@@ -2296,8 +2296,15 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Do operation on HW. Some functions do not set anything on hardware */
-    status = setParamDouble(function, addr);
+    /* Some operations need some special handling*/
+    if (function == P_AdcSi57xFreq) {
+        /* If run was set then wake up the simulation task */
+        setSi57xFreq(addr);
+    }
+    else {
+        /* Do operation on HW. Some functions do not set anything on hardware */
+        status = setParamDouble(function, addr);
+    }
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
