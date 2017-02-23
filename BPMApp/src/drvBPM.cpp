@@ -3024,6 +3024,48 @@ get_service_err:
     return status;
 }
 
+asynStatus drvBPM::setSi57xFreq(int addr)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "setSi57xFreq";
+
+    /* On any frequency change, abort the current acquisitions
+     * and restart Post-Mortem */
+    for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
+       setUIntDigitalParam(i, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
+       status = setAcquire(i);
+       if (status) {
+           asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+               "%s:%s: error calling setAcquire, status=%d\n",
+               driverName, functionName, status);
+           goto abort_acq_err;
+       }
+    }
+
+    /* Set the Si57x frequency on HW */
+    status = setParamDouble (P_AdcSi57xFreq, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling setParamDouble, status=%d\n",
+            driverName, functionName, status);
+        goto set_si57x_freq_err;
+    }
+
+    /* Restart Post-Mortem */
+    status = initAcqPM (BPMIDPM);
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error initAcqPM, status=%d\n",
+            driverName, functionName, status);
+        goto init_acq_pm_err;
+    }
+
+init_acq_pm_err:
+set_si57x_freq_err:
+abort_acq_err:
+    return status;
+}
+
 /* Configuration routine.  Called directly, or from the iocsh function below */
 extern "C" {
 
