@@ -911,28 +911,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         exit(1);
     }
 
-    /* Initialize ACQ PM */
-    status = initAcqPM (BPMIDPM);
-    if (status != asynSuccess) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error initAcqPM, status=%d\n",
-            driverName, functionName, status);
-        /* PV is already set to error bu initAcqPM. So, just
-         * continue and assert alarm here */
-#if 0
-        goto init_acq_pm_err;
-#endif
-    }
-
-    /* Initialize BPM status after we have connected to the server */
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
-        /* Get the intitial state from HW */
-        bpm_status_types BPMStatus = getBPMInitAcqStatus(addr);
-        setIntegerParam(addr, P_BPMStatus,                     BPMStatus);
-        /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
-        callParamCallbacks(addr);
-    }
-
     /* Create the thread that computes the waveforms in the background */
     for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
@@ -947,6 +925,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
             printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
             return;
         }
+    }
+
+    /* Initialize ACQ PM */
+    status = initAcqPM (BPMIDPM);
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error initAcqPM, status=%d\n",
+            driverName, functionName, status);
+        goto init_acq_pm_err;
     }
 
 #if 0
@@ -968,10 +955,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     epicsAtExit(exitHandlerC, this);
     return;
 
-#if 0
 init_acq_pm_err:
     bpmClientDisconnect();
-#endif
 invalid_bpm_number_err:
     free (this->endpoint);
 endpoint_dup_err:
