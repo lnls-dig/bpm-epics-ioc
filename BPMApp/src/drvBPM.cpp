@@ -1097,18 +1097,7 @@ void acqTask(void *drvPvt)
 asynStatus drvBPM::initAcqPM(int coreID)
 {
     static const char *functionName = "initAcqPM";
-    int hwAmpChannel = 0;
     asynStatus status = asynSuccess;
-    char service[SERVICE_NAME_SIZE];
-
-    /* Get correct service name*/
-    status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
-    if (status) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling getFullServiceName, status=%d\n",
-            driverName, functionName, status);
-        goto get_service_err;
-    }
 
     setUIntDigitalParam(coreID, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
                                                                    0xFFFFFFFF);
@@ -1136,44 +1125,29 @@ asynStatus drvBPM::initAcqPM(int coreID)
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(coreID);
 
-    /* Convert user channel into hw channel */
-    hwAmpChannel = channelMap[CH_DEFAULT_PM].HwAmpChannel;
-    if(hwAmpChannel < 0) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
-                driverName, functionName, hwAmpChannel);
-        status = asynError;
-        goto get_hw_amp_channel_err;
-    }
-
-    /* Just in case we were doing something before */
-    status = abortAcq(coreID);
+    /* Just in case we were doing something before. abort the acquisition */
+    setUIntDigitalParam(coreID, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
+    status = setAcquire(coreID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling abortAcq, status=%d\n",
+            "%s:%s: error calling setAcquire, status=%d\n",
             driverName, functionName, status);
         goto abort_acq_err;
     }
 
-    status = setAcqTrig(coreID, TRIG_DEFAULT_PM);
+    /* Start triggered acquisition */
+    setUIntDigitalParam(coreID, P_Trigger, TRIG_ACQ_EXT_HW, 0xFFFFFFFF);
+    status = setAcquire(coreID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling setAcqTrig, status=%d\n",
+            "%s:%s: error calling setAcquire, status=%d\n",
             driverName, functionName, status);
         goto set_acq_trig;
     }
-
-    status = startAcq(coreID, hwAmpChannel, SAMPLES_PRE_DEFAULT_PM, SAMPLES_POST_DEFAULT_PM,
-            NUM_SHOTS_DEFAULT_PM);
     return status;
 
 set_acq_trig:
 abort_acq_err:
-get_hw_amp_channel_err:
-get_service_err:
-    /* Always an error if we are here. So, set PV to err value */
-    setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
-    callParamCallbacks(coreID);
     return status;
 }
 
