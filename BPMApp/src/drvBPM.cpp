@@ -1888,6 +1888,8 @@ asynStatus drvBPM::setAcquire(int addr)
                  * abort the acquisition anyway, as we might have something
                  * going on inside the FPGA from a previous acquisition */
                 abortAcq(addr);
+                setIntegerParam(addr, P_BPMStatus, BPMStatusAborted);
+                callParamCallbacks(addr);
             }
             break;
 
