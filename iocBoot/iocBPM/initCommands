@@ -47,6 +47,15 @@ dbpf "${P}${R}PM_BEnableCallbacks" 1
 dbpf "${P}${R}PM_CEnableCallbacks" 1
 dbpf "${P}${R}PM_DEnableCallbacks" 1
 
+dbpf "${P}${R}PMAMP_FreqEnableCallbacks" 1
+
+dbpf "${P}${R}PM_XEnableCallbacks" 1
+dbpf "${P}${R}PM_YEnableCallbacks" 1
+dbpf "${P}${R}PM_QEnableCallbacks" 1
+dbpf "${P}${R}PM_SUMEnableCallbacks" 1
+
+dbpf "${P}${R}PMPOS_FreqEnableCallbacks" 1
+
 # File Saving Plugin
 
 dbpf "${P}${R}ADC_ABCD_NETCDFEnableCallbacks" 1
@@ -212,5 +221,3 @@ dbpf "${P}${R}PM_Q_STATSComputeHistogram" Yes
 dbpf "${P}${R}PM_Q_STATSComputeStatistics" Yes
 dbpf "${P}${R}PM_SUM_STATSComputeHistogram" Yes
 dbpf "${P}${R}PM_SUM_STATSComputeStatistics" Yes
-
-dbpf "${P}${R}PMAMP_FreqEnableCallbacks" 1

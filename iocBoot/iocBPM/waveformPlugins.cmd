@@ -148,8 +148,8 @@ NDStdArraysConfigure("PM_D_Array", $(QSIZE), 0, "$(PORT)", 51)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PM_D,PORT=PM_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=51")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PM_D,PORT=PM_D_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("PMAMP_Freq_Array", $(QSIZE), 0, "$(PORT)", 35)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMAMP_Freq,PORT=PMAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=35")
+NDStdArraysConfigure("PMAMP_Freq_Array", $(QSIZE), 0, "$(PORT)", 53)
+dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMAMP_Freq,PORT=PMAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=53")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PMAMP_Freq,PORT=PMAMP_Freq_Array,ADDR=0,TIMEOUT=1,TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 ##################### POS PM Waveforms ##########################
@@ -170,6 +170,6 @@ NDStdArraysConfigure("PM_SUM_Array", $(QSIZE), 0, "$(PORT)", 57)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PM_SUM,PORT=PM_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=57")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PM_SUM,PORT=PM_SUM_Array,ADDR=0,TIMEOUT=1,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("PMPOS_Freq_Array", $(QSIZE), 0, "$(PORT)", 41)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMPOS_Freq,PORT=PMPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=41")
+NDStdArraysConfigure("PMPOS_Freq_Array", $(QSIZE), 0, "$(PORT)", 59)
+dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMPOS_Freq,PORT=PMPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=59")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PMPOS_Freq,PORT=PMPOS_Freq_Array,ADDR=0,TIMEOUT=1,TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
