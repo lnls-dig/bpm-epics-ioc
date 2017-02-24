@@ -61,6 +61,7 @@ typedef struct {
     drvBPM *drvBPMp;
     bpm_coreID_types coreID;
     double pollTime;
+    bool autoStart;
 } taskParams_t;
 
 static const boardMap_t boardMap[MAX_BPMS+1] = {
@@ -381,13 +382,15 @@ static taskParams_t taskParams[NUM_ACQ_CORES_PER_BPM] = {
     {
         NULL,                          // drvBPMp
         BPMIDReg,                      // coreID
-        BPM_POLL_TIME                  // pollTime
+        BPM_POLL_TIME,                 // pollTime
+        false                          // autoStart
     },
     /* Post-Mortem Core */
     {
         NULL,                          // drvBPMp
         BPMIDPM,                       // coreID
-        BPM_PM_POLL_TIME               // pollTime
+        BPM_PM_POLL_TIME,              // pollTime
+        true                           // autoStart
     },
 };
 void acqTask(void *drvPvt);
@@ -756,6 +759,30 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                    0,                  0xFFFFFFFF);
     }
 
+    /* Acquisition PM parameters */
+    setUIntDigitalParam(BPMIDPM, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_NumShots,      NUM_SHOTS_DEFAULT_PM,
+                                                                   0xFFFFFFFF);
+    setIntegerParam(    BPMIDPM, P_Channel,                           CH_DEFAULT_PM);
+    setUIntDigitalParam(BPMIDPM, P_AcqControl,    0,                  0xFFFFFFFF);
+    setDoubleParam(     BPMIDPM, P_UpdateTime,                             1.0);
+    setUIntDigitalParam(BPMIDPM, P_Trigger,       TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
+                                               100,                0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerDataPol,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerDataSel,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerDataFilt,
+                                               1,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerHwDly,
+                                               0,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_DataTrigChan,
+                                               0,                  0xFFFFFFFF);
+
     /* This will be initalized later, after we have connected to the server */
     /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
 
@@ -1072,7 +1099,7 @@ asynStatus drvBPM::bpmClientDisconnect(void)
 void acqTask(void *drvPvt)
 {
    taskParams_t *pPvt = (taskParams_t *)drvPvt;
-   pPvt->drvBPMp->acqTask(pPvt->coreID, pPvt->pollTime);
+   pPvt->drvBPMp->acqTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
 }
 
 /********************************************************************/
@@ -1239,7 +1266,7 @@ static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
 
 /** Acquisition task that runs as a separate thread.
 */
-void drvBPM::acqTask(int coreID, double pollTime)
+void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 {
     int status = asynSuccess;
     asynUser *pasynUser = NULL;
@@ -1254,6 +1281,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
     int acqCompleted = 0;
     int bpmStatus = 0;
     int newAcq = 1;
+    bool autoStartFirst = autoStart;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
@@ -1318,7 +1346,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
 
             /* Only wait for the startEvent if we are waiting for a
              * new acquisition */
-            if (newAcq) {
+            if (newAcq && !autoStartFirst) {
                 unlock();
                 /* Release the lock while we wait for an event that says acquire has started, then lock again */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -1327,6 +1355,7 @@ void drvBPM::acqTask(int coreID, double pollTime)
                 lock();
             }
             readingActive[coreID] = 1;
+            autoStartFirst = 0;
         }
 
         /* We are acquiring. Get the current time */
