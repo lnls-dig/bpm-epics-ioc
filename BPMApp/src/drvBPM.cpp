@@ -3062,6 +3062,18 @@ asynStatus drvBPM::setSi57xFreq(int addr)
         goto set_si57x_freq_err;
     }
 
+    /* Restart Acq cores again */
+    for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
+       setUIntDigitalParam(i, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
+       status = setAcquire(i);
+       if (status) {
+           asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+               "%s:%s: error calling setAcquire, status=%d\n",
+               driverName, functionName, status);
+           goto abort2_acq_err;
+       }
+    }
+    
     /* Restart Post-Mortem */
     status = initAcqPM (BPMIDPM);
     if (status != asynSuccess) {
@@ -3072,6 +3084,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
     }
 
 init_acq_pm_err:
+abort2_acq_err:
 set_si57x_freq_err:
 abort_acq_err:
     return status;
