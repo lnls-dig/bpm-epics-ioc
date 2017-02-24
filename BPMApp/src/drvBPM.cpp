@@ -49,7 +49,7 @@
 #define ADC_RST_NORMAL_OP               1
 #define ADC_NUM_CHANNELS                4
 
-#define CH_DEFAULT_PM                   CH_ADC
+#define CH_DEFAULT_PM                   CH_TBT
 #define SAMPLES_PRE_DEFAULT_PM          100000
 #define SAMPLES_POST_DEFAULT_PM         100000
 #define NUM_SHOTS_DEFAULT_PM            1
@@ -104,14 +104,14 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_ADC_C,
                             WVF_ADC_D,
                             WVF_ADC_ALL},
-                            {WVF_ADC_PM_A,
-                             WVF_ADC_PM_B,
-                             WVF_ADC_PM_C,
-                             WVF_ADC_PM_D,
-                             WVF_ADC_PM_ALL},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
                           },
                           {WVF_ADC_FREQ,                        // NDArrayAmpFreq
-                           WVF_ADC_PM_FREQ},
+                           -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
                             -1,
@@ -192,14 +192,14 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_TBTAMP_C,
                             WVF_TBTAMP_D,
                             WVF_TBTAMP_ALL},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
+                            {WVF_AMP_PM_A,
+                             WVF_AMP_PM_B,
+                             WVF_AMP_PM_C,
+                             WVF_AMP_PM_D,
+                             WVF_AMP_PM_ALL},
                           },
                           {WVF_TBTAMP_FREQ,                      // NDArrayAmpFreq
-                           -1},
+                           WVF_AMP_PM_FREQ},
                           {{WVF_TBTPHASE_A,                      // NDArrayPhase
                             WVF_TBTPHASE_B,
                             WVF_TBTPHASE_C,
@@ -218,14 +218,14 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_TBTPOS_C,
                             WVF_TBTPOS_D,
                             WVF_TBTPOS_ALL},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+                            {WVF_POS_PM_A,
+                             WVF_POS_PM_B,
+                             WVF_POS_PM_C,
+                             WVF_POS_PM_D,
+                             WVF_POS_PM_ALL},
                           },
                           {WVF_TBTPOS_FREQ,                      // NDArrayPosFreq
-                           -1},
+                           WVF_POS_PM_FREQ},
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                            // HwAmpChannel
                           -1,                                    // HwPhaseChannel
