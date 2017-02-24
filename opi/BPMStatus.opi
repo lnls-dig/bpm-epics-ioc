@@ -1575,6 +1575,8 @@ $(pv_value)</tooltip>
         <path>TBT.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
+          <MODULE>TBT</MODULE>
+          <ACQ_NAME>ACQ</ACQ_NAME>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2146,7 +2148,7 @@ $(pv_value)</tooltip>
     <enabled>true</enabled>
     <wuid>-5a2d2d0f:159db0c4e2f:-379c</wuid>
     <pv_value />
-    <text>ADC PM</text>
+    <text>Post-Mortem</text>
     <scripts />
     <border_alarm_sensitive>false</border_alarm_sensitive>
     <height>40</height>
@@ -2163,7 +2165,7 @@ $(pv_value)</tooltip>
       <color red="0" green="128" blue="255" />
     </border_color>
     <widget_type>Action Button</widget_type>
-    <width>87</width>
+    <width>185</width>
     <x>308</x>
     <name>Action Button_11</name>
     <y>336</y>
@@ -2173,11 +2175,11 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>ADC.opi</path>
+        <path>TBT.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <ACQ_NAME>ACQ_PM</ACQ_NAME>
-          <MODULE>ADC_PM</MODULE>
+          <MODULE>PM</MODULE>
         </macros>
         <replace>0</replace>
         <description></description>
