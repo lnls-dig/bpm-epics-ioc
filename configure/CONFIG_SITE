@@ -31,3 +31,15 @@ CHECK_RELEASE = YES
 # You must rebuild in the iocBoot directory for this to
 #   take effect.
 #IOCS_APPL_TOP = </IOC/path/to/application/top>
+
+# ADCore third-party libraries locations
+HDF5=/usr/lib/x86_64-linux-gnu
+HDF5_LIB=/usr/lib/x86_64-linux-gnu
+HDF5_INCLUDE=/usr/include
+SZIP=/usr/lib
+SZIP_LIB=/usr/lib
+SZIP_INCLUDE=/usr/include
+GRAPHICS_MAGICK=/usr/lib/x86_64-linux-gnu
+GRAPHICS_MAGICK_LIB=/usr/lib/x86_64-linux-gnu
+GRAPHICS_MAGICK_INCLUDE=/usr/include/ImageMagick/magick
+
