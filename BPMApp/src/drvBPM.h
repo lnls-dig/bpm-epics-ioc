@@ -413,7 +413,7 @@ class drvBPM : public asynNDArrayDriver {
         virtual asynStatus disconnect(asynUser* pasynUser);
 
         /* These are the methods that are new to this class */
-        void acqTask(int coreID, double pollTime);
+        void acqTask(int coreID, double pollTime, bool autoStart);
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
