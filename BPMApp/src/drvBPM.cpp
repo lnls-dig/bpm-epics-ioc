@@ -954,15 +954,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
-    /* Initialize ACQ PM */
-    status = initAcqPM (BPMIDPM);
-    if (status != asynSuccess) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error initAcqPM, status=%d\n",
-            driverName, functionName, status);
-        goto init_acq_pm_err;
-    }
-
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
