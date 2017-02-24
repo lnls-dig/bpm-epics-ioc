@@ -744,7 +744,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setIntegerParam(    addr, P_Channel,                               CH_ADC);
         setUIntDigitalParam(addr, P_AcqControl,    0,                  0xFFFFFFFF);
         setDoubleParam(     addr, P_UpdateTime,                             1.0);
-        setUIntDigitalParam(addr, P_Trigger,       0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_Trigger,       TRIG_ACQ_STOP,      0xFFFFFFFF);
         setUIntDigitalParam(addr, P_TriggerDataThres,
                                                    100,                0xFFFFFFFF);
         setUIntDigitalParam(addr, P_TriggerDataPol,
