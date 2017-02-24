@@ -1329,7 +1329,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
             }
-            
+
             /* Only wait for the startEvent if we are waiting for a
              * new acquisition */
             if (newAcq && !autoStartFirst) {
@@ -3073,7 +3073,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
            goto abort2_acq_err;
        }
     }
-    
+
     /* Restart Post-Mortem */
     status = initAcqPM (BPMIDPM);
     if (status != asynSuccess) {
