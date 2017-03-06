@@ -8,8 +8,7 @@ PartOf=halcs-ioc@%i.target
 [Service]
 # Source environment
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
-# Environment="BPM_ENDPOINT=tcp://127.0.0.1:8978" BPM_NUMBER=%i
-Environment="BPM_ENDPOINT=tcp://127.0.0.1:8978" EPICS_PV_AREA_PREFIX=SI-01-%i:
+Environment="BPM_ENDPOINT=ipc:///tmp/malamute" EPICS_PV_AREA_PREFIX=SI-01-%i:
 # Execute pre with root
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
