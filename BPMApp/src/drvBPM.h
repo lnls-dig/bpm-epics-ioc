@@ -15,6 +15,8 @@
 /* Third-party libraries */
 #include <unordered_map>
 #include <halcs_client.h>
+#include <acq_client.h>
+#include <bpm_client.h>
 /* Variable macros */
 #include "varg_macros.h"
 
@@ -242,6 +244,20 @@ typedef struct {
     writeInt32Fp write;
     readInt32Fp read;
 } functionsInt32_t;
+
+/* Write 32-bit function pointer with acq_client structure */
+typedef halcs_client_err_e (*writeInt32AcqFp)(acq_client_t *self, char *service,
+	uint32_t param);
+/* Read 32-bit function pointer with acq_client structure */
+typedef halcs_client_err_e (*readInt32AcqFp)(acq_client_t *self, char *service,
+	uint32_t *param);
+
+/* BPM command dispatch table */
+typedef struct {
+    const char *serviceName;
+    writeInt32AcqFp write;
+    readInt32AcqFp read;
+} functionsInt32Acq_t;
 
 /* Write 2 32-bit function pointer */
 typedef halcs_client_err_e (*write2Int32Fp)(halcs_client_t *self, char *service,
@@ -522,7 +538,8 @@ class drvBPM : public asynNDArrayDriver {
     private:
         /* Our data */
         halcs_client_t *bpmClient;
-        halcs_client_t *bpmClientAcq[NUM_ACQ_CORES_PER_BPM];
+        acq_client_t *bpmClientAcqParam[NUM_ACQ_CORES_PER_BPM];
+        acq_client_t *bpmClientAcq[NUM_ACQ_CORES_PER_BPM];
         char *endpoint;
         int bpmNumber;
         int verbose;
@@ -534,6 +551,7 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId stopAcqEventId[NUM_ACQ_CORES_PER_BPM];
         epicsEventId abortAcqEventId[NUM_ACQ_CORES_PER_BPM];
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
+        std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
         std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
         std::unordered_map<int, functionsInt32Chan_t> bpmHwInt32ChanFunc;
@@ -548,11 +566,11 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
                 char *fullServiceName, int fullServiceNameSize);
         asynStatus setAcquire(int addr);
-        asynStatus getAcqNDArrayType(int channel, NDDataType_t *NDType);
+        asynStatus getAcqNDArrayType(int coreID, int channel, NDDataType_t *NDType);
         bpm_status_types getBPMInitAcqStatus(int coreID);
         asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
-        asynStatus setAcqTrig(int coreID, halcs_client_trig_e trig);
+        asynStatus setAcqTrig(int coreID, acq_client_trig_e trig);
         asynStatus initAcqPM(int coreID);
         asynStatus abortAcq(int coreID);
         int checkAcqCompletion(int coreID);

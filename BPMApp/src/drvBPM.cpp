@@ -53,7 +53,7 @@
 #define SAMPLES_PRE_DEFAULT_PM          100000
 #define SAMPLES_POST_DEFAULT_PM         100000
 #define NUM_SHOTS_DEFAULT_PM            1
-#define TRIG_DEFAULT_PM                 HALCS_CLIENT_TRIG_EXTERNAL
+#define TRIG_DEFAULT_PM                 ACQ_CLIENT_TRIG_EXTERNAL
 
 #define SERVICE_NAME_SIZE               50
 
@@ -349,14 +349,14 @@ static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK"
 static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status};
 static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
-static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", halcs_set_acq_fsm_stop, halcs_get_acq_fsm_stop};
-static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", halcs_set_acq_trig, halcs_get_acq_trig};
-static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", halcs_set_acq_data_trig_thres, halcs_get_acq_data_trig_thres};
-static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", halcs_set_acq_data_trig_pol, halcs_get_acq_data_trig_pol};
-static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", halcs_set_acq_data_trig_sel, halcs_get_acq_data_trig_sel};
-static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", halcs_set_acq_data_trig_filt, halcs_get_acq_data_trig_filt};
-static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", halcs_set_acq_hw_trig_dly, halcs_get_acq_hw_trig_dly};
-static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", halcs_set_acq_data_trig_chan, halcs_get_acq_data_trig_chan};
+static const functionsInt32Acq_t bpmSetGetAcqControlFunc = {"ACQ", acq_set_fsm_stop, acq_get_fsm_stop};
+static const functionsInt32Acq_t bpmSetGetAcqTriggerFunc = {"ACQ", acq_set_trig, acq_get_trig};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt};
+static const functionsInt32Acq_t bpmSetGetAcqHwDlyFunc = {"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan};
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
@@ -891,15 +891,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
 
-    bpmHwInt32Func[P_AcqControl] = bpmSetGetAcqControlFunc;
-    bpmHwInt32Func[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
+    bpmHwInt32AcqFunc[P_AcqControl] = bpmSetGetAcqControlFunc;
+    bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
-    bpmHwInt32Func[P_Trigger] = bpmSetGetAcqTriggerFunc;
-    bpmHwInt32Func[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
-    bpmHwInt32Func[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
-    bpmHwInt32Func[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
-    bpmHwInt32Func[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
-    bpmHwInt32Func[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
+    bpmHwInt32AcqFunc[P_Trigger] = bpmSetGetAcqTriggerFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
+    bpmHwInt32AcqFunc[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
 
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1025,11 +1025,25 @@ asynStatus drvBPM::bpmClientConnect(void)
             goto create_halcs_client_err;
         }
     }
+    
+    /* Connect ACQ BPM parameter clients*/
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] == NULL) {
+            bpmClientAcqParam[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+            if (bpmClientAcqParam[i] == NULL) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s bpmClientConnect failure to create bpmClientAcqParam[%d] instance\n",
+                        driverName, functionName, i);
+                status = asynError;
+                goto create_halcs_client_acq_param_err;
+            }
+        }
+    }
 
     /* Connect ACQ BPM clients */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] == NULL) {
-            bpmClientAcq[i] = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+            bpmClientAcq[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcq[i] == NULL) {
                 asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcq[%d] instance\n",
@@ -1052,7 +1066,14 @@ create_halcs_client_acq_err:
     /* Destroy possible uninitialized bpmClientAcq instances */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] != NULL) {
-            halcs_client_destroy (&bpmClientAcq[i]);
+            acq_client_destroy (&bpmClientAcq[i]);
+        }
+    }
+create_halcs_client_acq_param_err:
+    /* Destroy possible uninitialized bpmClientAcqParam instances */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] != NULL) {
+            acq_client_destroy (&bpmClientAcqParam[i]);
         }
     }
     /* Destroy regular bpmClient instance */
@@ -1078,8 +1099,14 @@ asynStatus drvBPM::bpmClientDisconnect(void)
     }
 
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] != NULL) {
+            acq_client_destroy (&bpmClientAcqParam[i]);
+        }
+    }
+
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] != NULL) {
-            halcs_client_destroy (&bpmClientAcq[i]);
+            acq_client_destroy (&bpmClientAcq[i]);
         }
     }
 
@@ -1147,7 +1174,7 @@ set_acq_trig:
     return status;
 }
 
-asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
+asynStatus drvBPM::setAcqTrig(int coreID, acq_client_trig_e trig)
 {
     static const char *functionName = "setAcqTrig";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
@@ -1163,7 +1190,7 @@ asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_trig (bpmClientAcq[coreID], service, trig);
+    err = acq_set_trig (bpmClientAcq[coreID], service, trig);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
@@ -1199,13 +1226,13 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     /* Have ACQ engine completed some work or is it still busy? */
-    herr = halcs_acq_check (bpmClientAcq[coreID], service);
+    herr = acq_check (bpmClientAcq[coreID], service);
     if (herr == HALCS_CLIENT_SUCCESS) {
         return BPMStatusIdle;
     }
 
     /* If the ACQ is doing something we need to figure it out what is it */
-    herr = halcs_get_acq_trig (bpmClientAcq[coreID], service, &trig);
+    herr = acq_get_trig (bpmClientAcq[coreID], service, &trig);
     if (herr != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
@@ -1214,21 +1241,21 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     switch (trig) {
-        case HALCS_CLIENT_TRIG_SKIP:
+        case ACQ_CLIENT_TRIG_SKIP:
             /* If we are doing something and the trigger is set to SKIP,
              * then we are acquiring */
             bpmStatus = BPMStatusAcquire;
             break;
 
-        case HALCS_CLIENT_TRIG_EXTERNAL:
+        case ACQ_CLIENT_TRIG_EXTERNAL:
             bpmStatus = BPMStatusTriggerHwExtWaiting;
             break;
 
-        case HALCS_CLIENT_TRIG_DATA_DRIVEN:
+        case ACQ_CLIENT_TRIG_DATA_DRIVEN:
             bpmStatus = BPMStatusTriggerHwDataWaiting;
             break;
 
-        case HALCS_CLIENT_TRIG_SOFTWARE:
+        case ACQ_CLIENT_TRIG_SOFTWARE:
             bpmStatus = BPMStatusTriggerSwWaiting;
             break;
 
@@ -1381,7 +1408,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         arrayCounter++;
         setIntegerParam(NDArrayCounter, arrayCounter);
 
-        status = getAcqNDArrayType(hwAmpChannel, &NDType);
+        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to determine NDArray type for acquisition\n",
@@ -1938,7 +1965,7 @@ asynStatus drvBPM::startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_p
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = halcs_acq_start (bpmClientAcq[coreID], service, &req);
+    err = acq_start (bpmClientAcq[coreID], service, &req);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1973,7 +2000,7 @@ asynStatus drvBPM::abortAcq(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_fsm_stop (bpmClientAcq[coreID], service, fsm_stop);
+    err = acq_set_fsm_stop (bpmClientAcq[coreID], service, fsm_stop);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_acq_stop_err;
@@ -2001,7 +2028,7 @@ int drvBPM::checkAcqCompletion(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_acq_check (bpmClientAcq[coreID], service);
+    err = acq_check (bpmClientAcq[coreID], service);
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -2048,7 +2075,7 @@ asynStatus drvBPM::getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwCha
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = halcs_acq_get_curve (bpmClientAcq[coreID], service, &acq_trans);
+    err = acq_get_curve (bpmClientAcq[coreID], service, &acq_trans);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
@@ -2064,10 +2091,11 @@ get_service_err:
     return status;
 }
 
-asynStatus drvBPM::getAcqNDArrayType(int hwChannel, NDDataType_t *NDType)
+asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *NDType)
 {
     asynStatus status = asynSuccess;
     static const char *functionName = "getAcqNDArrayType";
+    const acq_chan_t *acq_chan = acq_get_chan (bpmClientAcq[coreID]);
 
     /* Determine minimum data size. FIXME: This should be in libbpmclient */
     switch (acq_chan[hwChannel].sample_size/POINTS_PER_SAMPLE) {
@@ -2404,6 +2432,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
+    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
@@ -2441,6 +2470,40 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
                     driverName, functionName, service, functionId, paramLib);
             status = asynError;
             goto halcs_set_func1_param_err;
+        }
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+    /* Lookup function on 32-bit map for acquisition */
+    funcAcq = bpmHwInt32AcqFunc.find (functionId);
+    if (funcAcq != bpmHwInt32AcqFunc.end()) {
+        int serviceID = 0;
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
+                service, sizeof(service));
+        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
+                &serviceID);
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling getFullServiceName, status=%d\n",
+                    driverName, functionName, status);
+            goto get_service_acq_err;
+        }
+
+        /* Silently exit if no function is registered */
+        if(!funcAcq->second.write) {
+            goto no_registered_write_acq_func;
+        }
+
+        /* Function found. Execute it */
+        err = funcAcq->second.write(bpmClientAcqParam[serviceID], service, paramLib);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcAcq->second.write() failure for service %s, function %d, paramLib = %u\n",
+                    driverName, functionName, service, functionId, paramLib);
+            status = asynError;
+            goto halcs_set_func1_param_acq_err;
         }
         /* We've done our job here. No need to check other maps */
         return (asynStatus)status;
@@ -2554,6 +2617,9 @@ no_registered_write_func2:
 halcs_get_func2_param_err:
 no_registered_read_func2:
 get_service_err2:
+halcs_set_func1_param_acq_err:
+no_registered_write_acq_func:
+get_service_acq_err:
 halcs_set_func1_param_err:
 no_registered_write_func:
 get_service_err:
@@ -2574,6 +2640,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
+    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
@@ -2608,6 +2675,40 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
                     driverName, functionName, service, functionId);
             status = asynError;
             goto halcs_get_func1_param_err;
+        }
+
+        /* Mask parameter according to the received mask */
+        paramHw &= mask;
+        *param = paramHw;
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+    /* Lookup function */
+    funcAcq = bpmHwInt32AcqFunc.find (functionId);
+    if (funcAcq != bpmHwInt32AcqFunc.end()) {
+        int serviceID = 0;
+        *param = 0;
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
+                service, sizeof(service));
+        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
+                &serviceID);
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling getFullServiceName, status=%d\n",
+                    driverName, functionName, status);
+            goto get_service_acq_err;
+        }
+
+        /* Function found. Execute it */
+        err = funcAcq->second.read(bpmClientAcqParam[serviceID], service, &paramHw);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcAcq->second.read() failure for service %s, function %d\n",
+                    driverName, functionName, service, functionId);
+            status = asynError;
+            goto halcs_get_func1_param_acq_err;
         }
 
         /* Mask parameter according to the received mask */
@@ -2719,6 +2820,8 @@ get_service_err3:
 halcs_get_func2_param_err:
 no_registered_read_func2:
 get_service_err2:
+halcs_get_func1_param_acq_err:
+get_service_acq_err:
 halcs_get_func1_param_err:
 get_service_err:
 get_param_err:
@@ -2849,10 +2952,11 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[SERVICE_NAME_SIZE];
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "setDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
     int hwAmpChannel = 0;
+    int serviceID = 0;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_DataTrigChan, &dataTrigChan, mask);
@@ -2870,6 +2974,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
     /* Get correct service name*/
     status = getFullServiceName (this->bpmNumber, addr, "ACQ",
             service, sizeof(service));
+    status |= getServiceID (this->bpmNumber, addr, "ACQ", &serviceID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling getFullServiceName, status=%d\n",
@@ -2877,7 +2982,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
+    err = acq_set_data_trig_chan (bpmClientAcqParam[serviceID], service, hwAmpChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_set_data_trig_chan_err;
@@ -2886,21 +2991,23 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 halcs_set_data_trig_chan_err:
 get_service_err:
 halcs_inv_channel:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[SERVICE_NAME_SIZE];
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "getDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
     epicsUInt32 hwAmpChannel = 0;
+    int serviceID = 0;
 
     /* Get correct service name*/
     status = getFullServiceName (this->bpmNumber, addr, "ACQ",
             service, sizeof(service));
+    status |= getServiceID (this->bpmNumber, addr, "ACQ", &serviceID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling getFullServiceName, status=%d\n",
@@ -2911,7 +3018,7 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int a
     /* Clear parameter in case of an error occurs */
     *channel = 0;
 
-    err = halcs_get_acq_data_trig_chan (bpmClient, service, &hwAmpChannel);
+    err = acq_get_data_trig_chan (bpmClientAcqParam[serviceID], service, &hwAmpChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_get_data_trig_chan_err;
@@ -2943,7 +3050,7 @@ halcs_inv_channel:
 halcs_inv_hw_channel:
 halcs_get_data_trig_chan_err:
 get_service_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)
