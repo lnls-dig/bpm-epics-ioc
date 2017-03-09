@@ -841,10 +841,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosA,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosB,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosC,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosD,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
