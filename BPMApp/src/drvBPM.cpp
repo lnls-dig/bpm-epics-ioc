@@ -639,64 +639,64 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Create parameters */
-    createParam(0,P_HarmonicNumberString,
-                                      asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(0,P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
-    createParam(0,P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
-    createParam(0,P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
-    createParam(0,P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
-    createParam(0,P_SwString,         asynParamUInt32Digital,         &P_Sw);
-    createParam(0,P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
-    createParam(0,P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
-    createParam(0,P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
-    createParam(0,P_AdcTrigTermString,
-                                      asynParamUInt32Digital,         &P_AdcTrigTerm);
-    createParam(0,P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
-    createParam(0,P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
-    createParam(0,P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
-    createParam(0,P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
-    createParam(0,P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
-    createParam(0,P_AdcSi57xFreqString,
-                                      asynParamFloat64,               &P_AdcSi57xFreq);
-    createParam(0,P_AdcTestDataString,
-                                      asynParamUInt32Digital,         &P_AdcTestData);
-    createParam(0,P_AdcAD9510DfltString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Dflt);
-    createParam(0,P_AdcAD9510PllFuncString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
-    createParam(0,P_AdcAD9510PllStatusString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
-    createParam(0,P_AdcAD9510ClkSelString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
-    createParam(0,P_AdcAD9510ADivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510ADiv);
-    createParam(0,P_AdcAD9510BDivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510BDiv);
-    createParam(0,P_AdcAD9510PrescalerString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
-    createParam(0,P_AdcAD9510RDivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510RDiv);
-    createParam(0,P_AdcAD9510PllPDownString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
-    createParam(0,P_AdcAD9510MuxStatusString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
-    createParam(0,P_AdcAD9510CpCurrentString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
-    createParam(0,P_AdcAD9510OutputsString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Outputs);
-    createParam(0,P_KxString,         asynParamUInt32Digital,         &P_Kx);
-    createParam(0,P_KyString,         asynParamUInt32Digital,         &P_Ky);
-    createParam(0,P_KqString,         asynParamUInt32Digital,         &P_Kq);
-    createParam(0,P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
-    createParam(0,P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
-    createParam(0,P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
-    createParam(0,P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+    createParam(0, P_HarmonicNumberString,
+                                       asynParamUInt32Digital,         &P_HarmonicNumber);
+    createParam(0, P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
+    createParam(0, P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
+    createParam(0, P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
+    createParam(0, P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
+    createParam(0, P_SwString,         asynParamUInt32Digital,         &P_Sw);
+    createParam(0, P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
+    createParam(0, P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+    createParam(0, P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
+    createParam(0, P_AdcTrigTermString,
+                                       asynParamUInt32Digital,         &P_AdcTrigTerm);
+    createParam(0, P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
+    createParam(0, P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
+    createParam(0, P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
+    createParam(0, P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
+    createParam(0, P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
+    createParam(0, P_AdcSi57xFreqString,
+                                       asynParamFloat64,               &P_AdcSi57xFreq);
+    createParam(0, P_AdcTestDataString,
+                                       asynParamUInt32Digital,         &P_AdcTestData);
+    createParam(0, P_AdcAD9510DfltString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Dflt);
+    createParam(0, P_AdcAD9510PllFuncString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
+    createParam(0, P_AdcAD9510PllStatusString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
+    createParam(0, P_AdcAD9510ClkSelString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
+    createParam(0, P_AdcAD9510ADivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510ADiv);
+    createParam(0, P_AdcAD9510BDivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510BDiv);
+    createParam(0, P_AdcAD9510PrescalerString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
+    createParam(0, P_AdcAD9510RDivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510RDiv);
+    createParam(0, P_AdcAD9510PllPDownString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
+    createParam(0, P_AdcAD9510MuxStatusString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
+    createParam(0, P_AdcAD9510CpCurrentString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
+    createParam(0, P_AdcAD9510OutputsString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Outputs);
+    createParam(0, P_KxString,         asynParamUInt32Digital,         &P_Kx);
+    createParam(0, P_KyString,         asynParamUInt32Digital,         &P_Ky);
+    createParam(0, P_KqString,         asynParamUInt32Digital,         &P_Kq);
+    createParam(0, P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
+    createParam(0, P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
+    createParam(0, P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
+    createParam(0, P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
 
-    createParam(0,P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
-    createParam(0,P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
-    createParam(0,P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
-    createParam(0,P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(0,P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+    createParam(0, P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
+    createParam(0, P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
+    createParam(0, P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
+    createParam(0, P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
+    createParam(0, P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
 
     /* Set the initial values of some parameters */
 
