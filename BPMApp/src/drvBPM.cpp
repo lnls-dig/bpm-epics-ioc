@@ -271,6 +271,50 @@ static const channelMap_t channelMap[CH_END] = {
                           {WVF_FOFBPOS_FREQ,                     // NDArrayPosFreq
                            -1},
                           },
+    /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
+                          -1,                                  // HwPhaseChannel
+                          -1,                                  // HwPosChannel
+                          0,                                   // CalcPos
+                          {{WVF_AMP_SP_A,                      // NDArrayAmp
+                            WVF_AMP_SP_B,
+                            WVF_AMP_SP_C,
+                            WVF_AMP_SP_D,
+                            WVF_AMP_SP_ALL},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {WVF_AMP_SP_FREQ,                     // NDArrayAmpFreq
+                           -1},
+                          {{-1,                                 // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {-1,                                  // NDArrayPhaseFreq
+                           -1},
+                          {{-1,                                 // NDArrayPos
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                          },
+                          {-1,                                  // NDArrayPosFreq
+                           -1},
+                          },
 };
 
 /* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
@@ -539,33 +583,44 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     this->bpmNumber = bpmNumber;
     this->verbose = verbose;
     this->timeout = timeout;
-    for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-        this->readingActive[i] = 0;
-        this->repetitiveTrigger[i] = 0;
+    for (int i = 0; i < NUM_BPM_MODES; ++i) {
+        for (int j = 0; j < NUM_ACQ_CORES_PER_BPM; ++j) {
+            this->readingActive[i][j] = 0;
+            this->repetitiveTrigger[i][j] = 0;
+        }
     }
 
-    for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-        /* Create events for signalling acquisition thread */
-        this->startAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->startAcqEventId[i]) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s epicsEventCreate[%d] failure for start event\n",
-                    driverName, functionName, i);
-            return;
-        }
+    for (int i = 0; i < NUM_BPM_MODES; ++i) {
+        for (int j = 0; j < NUM_ACQ_CORES_PER_BPM; ++j) {
+            /* Create events for signalling acquisition thread */
+            this->startAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->startAcqEventId[i][j]) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s epicsEventCreate[%d] failure for start event\n",
+                        driverName, functionName, i);
+                return;
+            }
+    
+            this->stopAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->stopAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
+                        driverName, functionName, i);
+                return;
+            }
+    
+            this->abortAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->abortAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
+                        driverName, functionName, i);
+                return;
+            }
 
-        this->stopAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->stopAcqEventId[i]) {
-            printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
-                    driverName, functionName, i);
-            return;
-        }
-
-        this->abortAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->abortAcqEventId[i]) {
-            printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
-                    driverName, functionName, i);
-            return;
+            this->activeAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->activeAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for active event\n",
+                        driverName, functionName, i);
+                return;
+            }
         }
     }
 
@@ -697,6 +752,17 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(0, P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
     createParam(0, P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
     createParam(0, P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+
+    createParam(0, P_SPAmpAString,     asynParamFloat64,               &P_SPAmpA);
+    createParam(0, P_SPAmpBString,     asynParamFloat64,               &P_SPAmpB);
+    createParam(0, P_SPAmpCString,     asynParamFloat64,               &P_SPAmpC);
+    createParam(0, P_SPAmpDString,     asynParamFloat64,               &P_SPAmpD);
+    createParam(0, P_SPPosXString,     asynParamFloat64,               &P_SPPosX);
+    createParam(0, P_SPPosYString,     asynParamFloat64,               &P_SPPosY);
+    createParam(0, P_SPPosQString,     asynParamFloat64,               &P_SPPosQ);
+    createParam(0, P_SPPosSumString,   asynParamFloat64,               &P_SPPosSum);
+
+    createParam(0, P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
 
     /* Set the initial values of some parameters */
 
@@ -843,6 +909,18 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
 
+    setDoubleParam(P_SPAmpA,            0.0);
+    setDoubleParam(P_SPAmpB,            0.0);
+    setDoubleParam(P_SPAmpC,            0.0);
+    setDoubleParam(P_SPAmpD,            0.0);
+    setDoubleParam(P_SPPosX,            0.0);
+    setDoubleParam(P_SPPosY,            0.0);
+    setDoubleParam(P_SPPosQ,            0.0);
+    setDoubleParam(P_SPPosSum,          0.0);
+
+    /* Default BPM mode is Multibunch */
+    setIntegerParam(    P_BPMMode,      BPMModeMultiBunch);
+
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
         callParamCallbacks(i);
@@ -969,8 +1047,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     epicsAtExit(exitHandlerC, this);
     return;
 
-init_acq_pm_err:
-    bpmClientDisconnect();
 invalid_bpm_number_err:
     free (this->endpoint);
 endpoint_dup_err:
@@ -1279,6 +1355,7 @@ static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
  */
 
 /** Acquisition task that runs as a separate thread.
+ *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
 */
 void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 {
@@ -1288,6 +1365,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 num_samples_post;
     epicsUInt32 num_shots;
     int channel;
+    int bpmMode;
     epicsUInt32 trigger;
     double updateTime;
     double delay;
@@ -1328,11 +1406,21 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     /* Loop forever */
     lock ();
     while (1) {
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeMultiBunch) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
+	    epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
+            lock ();
+        }
+
         /* Check if we received a stop event */
-        status = epicsEventWaitWithTimeout(this->stopAcqEventId[coreID], pollTime);
-        if (status == epicsEventWaitOK || !repetitiveTrigger[coreID]) {
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], pollTime);
+        if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID]) {
             /* We got a stop event, stop repetitive acquisition */
-            readingActive[coreID] = 0;
+            readingActive[BPMModeMultiBunch][coreID] = 0;
             getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
             /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
@@ -1365,10 +1453,10 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 /* Release the lock while we wait for an event that says acquire has started, then lock again */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: waiting for acquire to start\n", driverName, functionName);
-                epicsEventWait(startAcqEventId[coreID]);
+                epicsEventWait(startAcqEventId[BPMModeMultiBunch][coreID]);
                 lock();
             }
-            readingActive[coreID] = 1;
+            readingActive[BPMModeMultiBunch][coreID] = 1;
             autoStartFirst = 0;
         }
 
@@ -1483,7 +1571,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         /* Wait for acquisition to complete, but allow acquire stop events to be handled */
         while (1) {
             unlock();
-            status = epicsEventWaitWithTimeout(this->abortAcqEventId[coreID], pollTime);
+            status = epicsEventWaitWithTimeout(this->abortAcqEventId[BPMModeMultiBunch][coreID], pollTime);
             lock();
             if (status == epicsEventWaitOK) {
                 /* We got a stop event, abort acquisition */
@@ -1533,7 +1621,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         callParamCallbacks(coreID);
 
         /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
-        if (repetitiveTrigger[coreID]) {
+        if (repetitiveTrigger[BPMModeMultiBunch][coreID]) {
             epicsTimeGetCurrent(&endTime);
             elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
             delay = updateTime - elapsedTime;
@@ -1545,9 +1633,340 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusWaiting);
                 callParamCallbacks(coreID);
                 unlock();
-                epicsEventWaitWithTimeout(this->stopAcqEventId[coreID], delay);
+                epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], delay);
                 lock();
             }
+        }
+    }
+}
+
+/** Acquisition task for Single Pass BPM mode that runs as a separate thread.
+ *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
+*/
+void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
+{
+    int status = asynSuccess;
+    asynUser *pasynUser = NULL;
+    epicsUInt32 num_samples_pre;
+    epicsUInt32 num_samples_post;
+    epicsUInt32 num_shots;
+    int channel;
+    int bpmMode;
+    epicsUInt32 trigger;
+    epicsUInt32 XOffset;
+    epicsUInt32 YOffset;
+    epicsUInt32 QOffset;
+    epicsUInt32 Kx;
+    epicsUInt32 Ky;
+    epicsUInt32 Kq;
+    epicsUInt32 Ksum;
+    epicsUInt32 TriggerDataThres;
+    epicsUInt32 TriggerDataPol;
+    epicsUInt32 TriggerDataSel;
+    epicsUInt32 TriggerDataFilt;
+    epicsUInt32 TriggerHwDly; 
+    epicsUInt32 DataTrigChan;
+    bpm_sample_t bpm_sample = {0};
+    char service[SERVICE_NAME_SIZE];
+    int hwAmpChannel = 0;
+    int acqCompleted = 0;
+    int bpmStatus = 0;
+    bool autoStartFirst = autoStart;
+    epicsTimeStamp now;
+    epicsFloat64 timeStamp;
+    NDArray *pArrayAllChannels;
+    NDArray *pArrayChannelFreq;
+    NDDataType_t NDType = NDInt32;
+    NDDataType_t NDTypeFreq = NDFloat64;
+    epicsTimeStamp startTime;
+    double adcFreq;
+    int arrayCounter;
+    size_t dims[MAX_WVF_DIMS];
+    size_t dimsFreq[1];
+    static const char *functionName = "acqSPTask";
+
+    /* Create an asynUser. FIXME: we should probably create a callback
+     * for the processCallback, which would be called on a queuePortLock ()
+     * so as to not block all addresses, just the ones related to that
+     * specific BOARD */
+    pasynUser = pasynManager->createAsynUser(0, 0);
+    pasynUser->timeout = BPM_TIMEOUT;
+    status = pasynManager->connectDevice(pasynUser, bpmPortName, 0);
+    if(status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: connectDevice failed, status=%d\n",
+            driverName, functionName, status);
+        return;
+    }
+
+    /* Loop forever */
+    lock ();
+    while (1) {
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeSinglePass) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
+	    epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
+            lock ();
+        }
+
+        /* Check if we received a stop event */
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeSinglePass][coreID], pollTime);
+        if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeSinglePass][coreID]) {
+            /* We got a stop event, stop repetitive acquisition */
+            readingActive[BPMModeSinglePass][coreID] = 0;
+            getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
+
+            /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
+            if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
+                callParamCallbacks(coreID);
+            }
+
+            /* We have consumed our data. This is important if we abort the next
+             * acquisition, as we can detect that the current acquisition is completed,
+             * which would be wrong */
+            acqCompleted = 0;
+
+            /* Only wait for the startEvent if we are waiting for a
+             * new acquisition */
+            if (!autoStartFirst) {
+                unlock();
+                /* Release the lock while we wait for an event that says acquire has started, then lock again */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for acquire to start\n", driverName, functionName);
+                epicsEventWait(startAcqEventId[BPMModeSinglePass][coreID]);
+                lock();
+            }
+            readingActive[BPMModeSinglePass][coreID] = 1;
+            autoStartFirst = 0;
+        }
+
+        /* We are acquiring. Get the current time */
+        epicsTimeGetCurrent(&startTime);
+
+        /* Set the parameter in the parameter library. */
+        getUIntDigitalParam(coreID , P_Trigger      , &trigger          , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
+        getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
+
+        /* Select our "fake" channel if we are in single pass mode. 
+         * This is done so we can the same flow as BPMModeMultiBunch mode,
+         * without having to separate the implementations */
+	channel = CH_SP;
+
+        /* Convert user channel into hw channel */
+        hwAmpChannel = channelMap[channel].HwAmpChannel;
+        if(hwAmpChannel < 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                    driverName, functionName, hwAmpChannel);
+            continue;
+        }
+
+        /* Our waveform will have "num_samples_pres + num_samples_post"
+         * samples in each dimension */
+        dims[0] = POINTS_PER_SAMPLE;
+        dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* Waveform statistics */
+        epicsTimeGetCurrent(&now);
+        getIntegerParam(NDArrayCounter, &arrayCounter);
+        arrayCounter++;
+        setIntegerParam(NDArrayCounter, arrayCounter);
+
+        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
+        if (status != asynSuccess) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unable to determine NDArray type for acquisition\n",
+                    driverName, functionName);
+            continue;
+        }
+
+        pArrayAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
+        if (pArrayAllChannels == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayAllChannels\n",
+                driverName, functionName);
+        }
+        pArrayAllChannels->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayAllChannels->timeStamp = timeStamp;
+        getAttributes(pArrayAllChannels->pAttributeList);
+
+        dimsFreq[0] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* Alloc array for frequency axis */
+        pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
+        if (pArrayChannelFreq == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayChannelFreq\n",
+                driverName, functionName);
+        }
+        pArrayChannelFreq->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayChannelFreq->timeStamp = timeStamp;
+        getAttributes(pArrayChannelFreq->pAttributeList);
+
+        /* Tell we are acquiring just before we actually start it */
+        setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
+        callParamCallbacks(coreID);
+
+        getUIntDigitalParam(        P_XOffset,          &XOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_YOffset,          &YOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_QOffset,          &QOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_Kx,               &Kx,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Ky,               &Ky,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Kq,               &Kq,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Ksum,             &Ksum,                0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataThres, &TriggerDataThres,    0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataPol,   &TriggerDataPol,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataSel,   &TriggerDataSel,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataFilt,  &TriggerDataFilt,     0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerHwDly,     &TriggerHwDly,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_DataTrigChan,     &DataTrigChan,        0xFFFFFFFF);
+ 
+        /* Setup single-pass parameters */
+        /* Kx, Ky, etc are epicsUInt32 type which are perfectly representable
+         * on a double (52-bit mantissa). So, we makle an explicitly cast to 
+         * avoid warning of the type: warning: narrowing conversion of ...
+         * This just comes from the fact that in a particular architecture,
+         * epicsUInt32 is unsigned int, but epics types are portable */
+        bpm_parameters_t bpm_parameters = {.kx       = (double) Kx,
+                                           .ky       = (double) Ky,
+                                           .kq       = (double) Kq,
+                                           .ksum     = (double) Ksum,
+                                           .offset_x = (double) XOffset,
+                                           .offset_y = (double) YOffset,
+                                           .offset_q = (double) QOffset
+                                           };
+        
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
+        bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint, 
+            this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post);
+        if (bpm_single_pass == NULL) {
+            fprintf (stderr, "[client:acq]: bpm_single_pass could not be created\n");
+            continue;
+        }
+
+        bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt, 
+            TriggerDataPol, TriggerHwDly);
+        if (trigger == TRIG_ACQ_EXT_DATA) {
+            bpm_single_pass_configure_data_trigger (bpm_single_pass,
+                TriggerDataThres, TriggerDataSel);
+        }
+        else if (TRIG_ACQ_EXT_HW) {
+            bpm_single_pass_configure_external_trigger (bpm_single_pass);
+        }
+        
+        /* Do acquisition until a stop event arrives */
+        while (1) { 
+            unlock();
+            pasynManager->lockPort(pasynUser);
+            status = startSPAcq(bpm_single_pass);
+            pasynManager->unlockPort(pasynUser);
+            lock();
+
+            if (status == asynSuccess) {
+                /* FIXME: Improve BPMStatus trigger waiting. The information
+                 * about waiting for trigger is not totally accurate here.
+                 * Although, we will for SW or HW trigger in a short time,
+                 * we are not actually there yet ...
+                 */
+                if (trigger == TRIG_ACQ_EXT_HW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
+                }
+                else if (trigger == TRIG_ACQ_EXT_DATA) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
+                }
+                else if (trigger == TRIG_ACQ_SW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
+                }
+
+                callParamCallbacks(coreID);
+            }
+            else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to acquire waveform\n",
+                        driverName, functionName);
+                /* Could not start acquisition. Invalid parameters */
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
+                callParamCallbacks(coreID);
+                continue;
+            }
+
+            /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+            while (1) {
+                unlock();
+                /* Don't wait. If there is no event, just exit directly */
+                status = epicsEventTryWait(this->abortAcqEventId[BPMModeSinglePass][coreID]);
+                lock();
+                if (status == epicsEventWaitOK) {
+                    /* We got a stop event, abort acquisition */
+                    abortAcq(coreID);
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusAborted);
+                    callParamCallbacks(coreID);
+                    break;
+                }
+                else {
+                    acqCompleted = checkSPAcqCompletion (bpm_single_pass);
+                }
+
+                if (acqCompleted == 1) {
+                    /* Get curve */
+                    getAcqSPSamples(bpm_single_pass, &bpm_sample);
+                    break;
+                }
+            }
+
+            /* Only do callbacks and calculate position if we could acquire some
+             * data */
+            if (acqCompleted == 1) {
+                /* Get SinglePass Raw Data for the user */
+                getAcqSPCurve(bpm_single_pass, pArrayAllChannels);
+                /* Do callbacks on the full waveform (all channels interleaved) */
+                unlock();
+                /* We must do the callbacks with mutex unlocked ad the plugin
+                 * can call us and a deadlock would occur */
+                doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                        channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+                lock();
+
+                /* Compute frequency arrays for amplitude, positions and do
+                 * callbacks on that */
+                computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
+                        num_samples_pre, num_samples_post, num_shots);
+
+                /* Copy AMP data to arrays for each type of data, do callbacks on that */
+                deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                        MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+
+                /* Set SinglePass AMP/POS Calculate positions and call callbacks */
+                setDoubleParam(P_SPAmpA,       bpm_sample.a);
+                setDoubleParam(P_SPAmpB,       bpm_sample.b);
+                setDoubleParam(P_SPAmpC,       bpm_sample.c);
+                setDoubleParam(P_SPAmpD,       bpm_sample.d);
+                setDoubleParam(P_SPPosX,       bpm_sample.x);
+                setDoubleParam(P_SPPosY,       bpm_sample.y);
+                setDoubleParam(P_SPPosQ,       bpm_sample.q);
+                setDoubleParam(P_SPPosSum,     bpm_sample.sum);
+            }
+
+            /* Release buffer */
+            pArrayAllChannels->release();
+            callParamCallbacks(coreID);
         }
     }
 }
@@ -1830,9 +2249,12 @@ asynStatus drvBPM::setAcquire(int addr)
     asynStatus status = asynSuccess;
     const char* functionName = "setAcquire";
     epicsUInt32 trigger_type = 0;
+    int bpmMode = 0;
+    int bpmModeOther = 0;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_Trigger, &trigger_type, 0xFFFFFFFF);
+    getIntegerParam(P_BPMMode, &bpmMode);
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
@@ -1842,18 +2264,29 @@ asynStatus drvBPM::setAcquire(int addr)
                 driverName, functionName, trigger_type);
     }
 
+    /* Get the other acquisition task mode */
+    if (bpmMode == BPMModeSinglePass) {
+        bpmModeOther = BPMModeMultiBunch;
+    }
+    else {
+        bpmModeOther = BPMModeSinglePass;
+    }
+    
     switch (trigger_type) {
         case TRIG_ACQ_NOW:
         case TRIG_ACQ_EXT_HW:
         case TRIG_ACQ_EXT_DATA:
         case TRIG_ACQ_SW:
-            if (!readingActive[addr] && !repetitiveTrigger[addr]) {
-                repetitiveTrigger[addr] = 0;
+            /* abort the other acquisition task if needed */
+            abortAcqTask(addr, bpmModeOther);
+            /* Start the current AcqTask */
+            if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
+                repetitiveTrigger[bpmMode][addr] = 0;
                 /* Signal acq thread to start acquisition with the current parameters */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: trigger ACQ_NOW or HW/SW called\n",
                         driverName, functionName);
-                epicsEventSignal(startAcqEventId[addr]);
+                epicsEventSignal(startAcqEventId[bpmMode][addr]);
             }
             break;
 
@@ -1861,13 +2294,13 @@ asynStatus drvBPM::setAcquire(int addr)
          * acquiring. Otherwise, we don't need to do anything, as the acquisition
          * task will stop after the current acquisition */
         case TRIG_ACQ_STOP: /* Trigger == Stop */
-            if (readingActive[addr]) {
-                repetitiveTrigger[addr] = 0;
+            if (readingActive[bpmMode][addr]) {
+                repetitiveTrigger[bpmMode][addr] = 0;
                 /* Send the stop event */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: trigger ACQ_STOP called\n",
                         driverName, functionName);
-                epicsEventSignal(this->stopAcqEventId[addr]);
+                epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
             }
             break;
 
@@ -1875,33 +2308,21 @@ asynStatus drvBPM::setAcquire(int addr)
          *  If we want to stop a repetitive trigger, we must send a stop
          *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
-            if (readingActive[addr]) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_ABORT called for coreID = %d\n",
-                        driverName, functionName, addr);
-                epicsEventSignal(this->abortAcqEventId[addr]);
-            }
-            else {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_ABORT but with acquisition in progress, called for coreID = %d\n",
-                        driverName, functionName, addr);
-                /* If we are not actively waiting for an event on acqTask,
-                 * abort the acquisition anyway, as we might have something
-                 * going on inside the FPGA from a previous acquisition */
-                abortAcq(addr);
-                setIntegerParam(addr, P_BPMStatus, BPMStatusAborted);
-                callParamCallbacks(addr);
-            }
+            /* abort the other acquisition task if needed */
+            abortAcqTask(addr, bpmMode);
             break;
 
         case TRIG_ACQ_REPETITIVE:
-            if (!repetitiveTrigger[addr]) {
-                repetitiveTrigger[addr] = 1;
+            /* abort the other acquisition task if needed */
+            abortAcqTask(addr, bpmModeOther);
+            /* Start the current AcqTask */
+            if (!repetitiveTrigger[bpmMode][addr]) {
+                repetitiveTrigger[bpmMode][addr] = 1;
                 /* Signal acq thread to start acquisition with the current parameters */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: trigger ACQ_REPETITIVE called\n",
                         driverName, functionName);
-                epicsEventSignal(startAcqEventId[addr]);
+                epicsEventSignal(startAcqEventId[bpmMode][addr]);
             }
             break;
 
@@ -1914,6 +2335,33 @@ asynStatus drvBPM::setAcquire(int addr)
     }
 
 trig_unimplemented_err:
+    return status;
+}
+
+asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "abortAcqTask";
+
+    if (readingActive[bpmMode][addr]) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        epicsEventSignal(this->abortAcqEventId[bpmMode][addr]);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT but with acquisition in progress, "
+                "called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        /* If we are not actively waiting for an event on acqTask,
+         * abort the acquisition anyway, as we might have something
+         * going on inside the FPGA from a previous acquisition */
+        abortAcq(addr);
+        setIntegerParam(addr, P_BPMStatus, BPMStatusAborted);
+        callParamCallbacks(addr);
+    }
+
     return status;
 }
 
@@ -1979,6 +2427,23 @@ halcs_samples_sel_err:
     return status;
 }
 
+asynStatus drvBPM::startSPAcq(bpm_single_pass_t *bpm_single_pass)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "startSPAcq";
+
+    err = bpm_single_pass_start (bpm_single_pass);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+    }
+    else {
+        status = asynSuccess;
+    }
+
+    return status;
+}
+
 asynStatus drvBPM::abortAcq(int coreID)
 {
     asynStatus status = asynSuccess;
@@ -2037,6 +2502,24 @@ get_service_err:
     return complete;
 }
 
+int drvBPM::checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass)
+{
+    int complete = 0;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "checkSPAcqCompletion";
+
+    err = bpm_single_pass_check (bpm_single_pass);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        complete = 0;
+        goto halcs_acq_not_finished;
+    }
+
+    complete = 1;
+
+halcs_acq_not_finished:
+    return complete;
+}
+
 asynStatus drvBPM::getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
         epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
         epicsUInt32 num_shots)
@@ -2087,6 +2570,38 @@ get_service_err:
     return status;
 }
 
+asynStatus drvBPM::getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "getAcqSPCurve";
+
+    /* Copy data to NDArray */
+    const acq_trans_t * acq_trans = bpm_single_pass_get_acq_transaction (bpm_single_pass);
+    memcpy (pArrayAllChannels->pData, acq_trans->block.data, acq_trans->block.data_size);
+    pArrayAllChannels->dataSize = acq_trans->block.data_size;
+
+    return status;
+}
+
+asynStatus drvBPM::getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getAcqSPSamples";
+
+    err = bpm_single_pass_sample (bpm_single_pass, bpm_sample);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to read Single Pass samples\n",
+                driverName, functionName);
+        status = asynError;
+        goto halcs_acq_err;
+    }
+
+halcs_acq_err:
+    return status;
+}
+ 
 asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *NDType)
 {
     asynStatus status = asynSuccess;

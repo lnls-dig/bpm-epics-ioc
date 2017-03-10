@@ -34,6 +34,15 @@ typedef enum {
 #define NUM_ACQ_CORES_PER_BPM       BPMIDEnd /* Regular Acquisition core and Post-Mortem */
 #define NUM_TRIG_CORES_PER_BPM      NUM_ACQ_CORES_PER_BPM /* Trigger core for regular Acquisition and Post-Mortem */
 
+/* BPM modes */
+typedef enum {
+    BPMModeMultiBunch = 0,
+    BPMModeSinglePass = 1,
+    BPMModeEnd,
+} bpm_mode_types;
+
+#define NUM_BPM_MODES               BPMModeEnd
+
 /* BPM acquisition status */
 typedef enum {
     BPMStatusIdle = 0,
@@ -108,6 +117,12 @@ typedef enum {
     WVF_POS_PM_D,
     WVF_POS_PM_ALL,
     WVF_POS_PM_FREQ,
+    WVF_AMP_SP_A,
+    WVF_AMP_SP_B,
+    WVF_AMP_SP_C,
+    WVF_AMP_SP_D,
+    WVF_AMP_SP_ALL,
+    WVF_AMP_SP_FREQ,
     WVF_END
 } wvf_types;
 
@@ -135,6 +150,7 @@ typedef enum {
     CH_ADCSWAP = 1,
     CH_TBT = 2,
     CH_FOFB = 3,
+    CH_SP = 4,
     CH_END
 } ch_types;
 
@@ -306,6 +322,7 @@ typedef struct {
 
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
+#define P_BPMModeString             "BPM_MODE"              /* asynInt32,              r/w */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
 #define P_AdcClkFreqString          "INFO_ADCCLKFREQ"          /* asynUInt32Digital,      r/o */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
@@ -396,6 +413,16 @@ typedef struct {
 #define P_TriggerRcvInSelString     "TRIGGER_RCV_IN_SEL"    /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
 
+/* Single Pass parameters */
+#define P_SPAmpAString           "SP_AMP_A"            /* asynUInt32Digital,      r/o */
+#define P_SPAmpBString           "SP_AMP_B"            /* asynUInt32Digital,      r/o */
+#define P_SPAmpCString           "SP_AMP_C"            /* asynUInt32Digital,      r/o */
+#define P_SPAmpDString           "SP_AMP_D"            /* asynUInt32Digital,      r/o */
+#define P_SPPosXString           "SP_POS_X"            /* asynUInt32Digital,      r/o */
+#define P_SPPosYString           "SP_POS_Y"            /* asynUInt32Digital,      r/o */
+#define P_SPPosQString           "SP_POS_Q"            /* asynUInt32Digital,      r/o */
+#define P_SPPosSumString         "SP_POS_SUM"          /* asynUInt32Digital,      r/o */
+
 typedef enum {
     /* These trigger types matches the HW */
     TRIG_ACQ_NOW = 0,
@@ -432,11 +459,13 @@ class drvBPM : public asynNDArrayDriver {
 
         /* These are the methods that are new to this class */
         void acqTask(int coreID, double pollTime, bool autoStart);
+        void acqSPTask(int coreID, double pollTime, bool autoStart);
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
+        int P_BPMMode;
+#define FIRST_COMMAND P_BPMMode
         int P_HarmonicNumber;
-#define FIRST_COMMAND P_HarmonicNumber
         int P_AdcClkFreq;
         int P_TbtRate;
         int P_FofbRate;
@@ -502,10 +531,14 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitAmpB;
         int P_MonitAmpC;
         int P_MonitAmpD;
-        int P_MonitPosA;
-        int P_MonitPosB;
-        int P_MonitPosC;
-        int P_MonitPosD;
+        int P_SPAmpA;  
+        int P_SPAmpB;  
+        int P_SPAmpC;  
+        int P_SPAmpD;  
+        int P_SPPosX;  
+        int P_SPPosY;  
+        int P_SPPosQ;  
+        int P_SPPosSum;
         int P_AdcTestMode;
         int P_AdcRstModes;
         int P_AdcRegRead;
@@ -536,16 +569,18 @@ class drvBPM : public asynNDArrayDriver {
         halcs_client_t *bpmClient;
         acq_client_t *bpmClientAcqParam[NUM_ACQ_CORES_PER_BPM];
         acq_client_t *bpmClientAcq[NUM_ACQ_CORES_PER_BPM];
+        bpm_single_pass_t *bpmSinglePass[NUM_ACQ_CORES_PER_BPM];
         char *endpoint;
         int bpmNumber;
         int verbose;
         int timeout;
         char *bpmPortName;
-        int readingActive[NUM_ACQ_CORES_PER_BPM];
-        int repetitiveTrigger[NUM_ACQ_CORES_PER_BPM];
-        epicsEventId startAcqEventId[NUM_ACQ_CORES_PER_BPM];
-        epicsEventId stopAcqEventId[NUM_ACQ_CORES_PER_BPM];
-        epicsEventId abortAcqEventId[NUM_ACQ_CORES_PER_BPM];
+        int readingActive[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        int repetitiveTrigger[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId startAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId stopAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId abortAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
@@ -566,13 +601,18 @@ class drvBPM : public asynNDArrayDriver {
         bpm_status_types getBPMInitAcqStatus(int coreID);
         asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
+        asynStatus startSPAcq(bpm_single_pass_t *bpm_single_pass);
         asynStatus setAcqTrig(int coreID, acq_client_trig_e trig);
         asynStatus initAcqPM(int coreID);
         asynStatus abortAcq(int coreID);
+        asynStatus abortAcqTask(int addr, int bpmMode);
         int checkAcqCompletion(int coreID);
+        int checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass);
         asynStatus getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
                 epicsUInt32 num_shots);
+        asynStatus getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels);
+        asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
         void computeFreqArray(int coreID, NDArray *pArrayChannelFreq, int channel,
                 epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
