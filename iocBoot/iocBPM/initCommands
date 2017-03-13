@@ -56,6 +56,13 @@ dbpf "${P}${R}PM_SUMEnableCallbacks" 1
 
 dbpf "${P}${R}PMPOS_FreqEnableCallbacks" 1
 
+dbpf "${P}${R}SP_AEnableCallbacks" 1
+dbpf "${P}${R}SP_BEnableCallbacks" 1
+dbpf "${P}${R}SP_CEnableCallbacks" 1
+dbpf "${P}${R}SP_DEnableCallbacks" 1
+
+dbpf "${P}${R}SPAMP_FreqEnableCallbacks" 1
+
 # File Saving Plugin
 
 dbpf "${P}${R}ADC_ABCD_NETCDFEnableCallbacks" 1
@@ -221,3 +228,21 @@ dbpf "${P}${R}PM_Q_STATSComputeHistogram" Yes
 dbpf "${P}${R}PM_Q_STATSComputeStatistics" Yes
 dbpf "${P}${R}PM_SUM_STATSComputeHistogram" Yes
 dbpf "${P}${R}PM_SUM_STATSComputeStatistics" Yes
+
+dbpf "${P}${R}SP_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}SP_A_STATSTSControl" Start
+dbpf "${P}${R}SP_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}SP_B_STATSTSControl" Start
+dbpf "${P}${R}SP_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}SP_C_STATSTSControl" Start
+dbpf "${P}${R}SP_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}SP_D_STATSTSControl" Start
+
+dbpf "${P}${R}SP_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}SP_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}SP_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}SP_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_D_STATSComputeStatistics" Yes
