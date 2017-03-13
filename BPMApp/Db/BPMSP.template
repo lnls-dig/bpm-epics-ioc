@@ -87,11 +87,11 @@ record(ai,"$(P)$(R)SPPosX-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_X")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_X")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)SPAmpY-Mon"){
+record(ai,"$(P)$(R)SPPosY-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position Y")
     field(PINI,"YES")
@@ -100,11 +100,11 @@ record(ai,"$(P)$(R)SPAmpY-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_Y")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Y")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)SPAmpQ-Mon"){
+record(ai,"$(P)$(R)SPPosQ-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position Q")
     field(PINI,"YES")
@@ -113,11 +113,11 @@ record(ai,"$(P)$(R)SPAmpQ-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_Q")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Q")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)SPAmpSum-Mon"){
+record(ai,"$(P)$(R)SPPosSum-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position Sum")
     field(PINI,"YES")
@@ -126,6 +126,6 @@ record(ai,"$(P)$(R)SPAmpSum-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_SUM")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_SUM")
     field(EGU, "nm")
 }
