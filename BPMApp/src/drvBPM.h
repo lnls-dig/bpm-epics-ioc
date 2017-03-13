@@ -580,7 +580,6 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId startAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId stopAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId abortAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
-        epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
