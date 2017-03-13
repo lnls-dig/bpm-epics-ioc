@@ -2277,8 +2277,10 @@ asynStatus drvBPM::setAcquire(int addr)
         case TRIG_ACQ_EXT_HW:
         case TRIG_ACQ_EXT_DATA:
         case TRIG_ACQ_SW:
-            /* abort the other acquisition task if needed */
+            /* Abort the other acquisition task if needed */
             abortAcqTask(addr, bpmModeOther);
+            /* Send event telling the current task to proceed */
+            epicsEventSignal(activeAcqEventId[bpmMode][addr]);
             /* Start the current AcqTask */
             if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 0;
@@ -2294,14 +2296,7 @@ asynStatus drvBPM::setAcquire(int addr)
          * acquiring. Otherwise, we don't need to do anything, as the acquisition
          * task will stop after the current acquisition */
         case TRIG_ACQ_STOP: /* Trigger == Stop */
-            if (readingActive[bpmMode][addr]) {
-                repetitiveTrigger[bpmMode][addr] = 0;
-                /* Send the stop event */
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_STOP called\n",
-                        driverName, functionName);
-                epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
-            }
+            stopAcqTask(addr, bpmMode);
             break;
 
         /* Send the abort event if we are reading (repetitive or regular).
@@ -2313,8 +2308,10 @@ asynStatus drvBPM::setAcquire(int addr)
             break;
 
         case TRIG_ACQ_REPETITIVE:
-            /* abort the other acquisition task if needed */
-            abortAcqTask(addr, bpmModeOther);
+            /* Stop the other acquisition task if needed */
+            stopAcqTask(addr, bpmModeOther);
+            /* Send event telling the current task to proceed */
+            epicsEventSignal(activeAcqEventId[bpmMode][addr]);
             /* Start the current AcqTask */
             if (!repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 1;
@@ -2343,17 +2340,7 @@ asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
     asynStatus status = asynSuccess;
     const char* functionName = "abortAcqTask";
 
-    /* In case we are in repetitive mode */
-    if (readingActive[bpmMode][addr]) {
-        repetitiveTrigger[bpmMode][addr] = 0;
-        /* Send the stop event */
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: trigger ACQ_STOP called for acqTask = %d, coreID = %d\n",
-                driverName, functionName, bpmMode, addr);
-        epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
-    }
-
-    /* In case we are waiting for a trigger */
+    /* we are waiting for a trigger */
     if (readingActive[bpmMode][addr]) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                 "%s:%s: trigger ACQ_ABORT called for acqTask = %d, coreID = %d\n",
@@ -2371,6 +2358,24 @@ asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
         abortAcq(addr);
         setIntegerParam(addr, P_BPMStatus, BPMStatusAborted);
         callParamCallbacks(addr);
+    }
+
+    return status;
+}
+
+asynStatus drvBPM::stopAcqTask(int addr, int bpmMode)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "stopAcqTask";
+
+    /* We are in repetitive mode */
+    if (readingActive[bpmMode][addr]) {
+        repetitiveTrigger[bpmMode][addr] = 0;
+        /* Send the stop event */
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_STOP called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
     }
 
     return status;
