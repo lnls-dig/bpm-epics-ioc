@@ -2343,6 +2343,17 @@ asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
     asynStatus status = asynSuccess;
     const char* functionName = "abortAcqTask";
 
+    /* In case we are in repetitive mode */
+    if (readingActive[bpmMode][addr]) {
+        repetitiveTrigger[bpmMode][addr] = 0;
+        /* Send the stop event */
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_STOP called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
+    }
+
+    /* In case we are waiting for a trigger */
     if (readingActive[bpmMode][addr]) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                 "%s:%s: trigger ACQ_ABORT called for acqTask = %d, coreID = %d\n",
