@@ -414,14 +414,14 @@ typedef struct {
 #define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
 
 /* Single Pass parameters */
-#define P_SPAmpAString           "SP_AMP_A"            /* asynUInt32Digital,      r/o */
-#define P_SPAmpBString           "SP_AMP_B"            /* asynUInt32Digital,      r/o */
-#define P_SPAmpCString           "SP_AMP_C"            /* asynUInt32Digital,      r/o */
-#define P_SPAmpDString           "SP_AMP_D"            /* asynUInt32Digital,      r/o */
-#define P_SPPosXString           "SP_POS_X"            /* asynUInt32Digital,      r/o */
-#define P_SPPosYString           "SP_POS_Y"            /* asynUInt32Digital,      r/o */
-#define P_SPPosQString           "SP_POS_Q"            /* asynUInt32Digital,      r/o */
-#define P_SPPosSumString         "SP_POS_SUM"          /* asynUInt32Digital,      r/o */
+#define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
+#define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
+#define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
+#define P_SPAmpDString              "SP_AMP_D"              /* asynFloat64,            r/o */
+#define P_SPPosXString              "SP_POS_X"              /* asynFloat64,            r/o */
+#define P_SPPosYString              "SP_POS_Y"              /* asynFloat64,            r/o */
+#define P_SPPosQString              "SP_POS_Q"              /* asynFloat64,            r/o */
+#define P_SPPosSumString            "SP_POS_SUM"            /* asynFloat64,            r/o */
 
 typedef enum {
     /* These trigger types matches the HW */
