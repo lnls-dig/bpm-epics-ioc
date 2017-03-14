@@ -53,7 +53,7 @@
 #define SAMPLES_PRE_DEFAULT_PM          100000
 #define SAMPLES_POST_DEFAULT_PM         100000
 #define NUM_SHOTS_DEFAULT_PM            1
-#define TRIG_DEFAULT_PM                 HALCS_CLIENT_TRIG_EXTERNAL
+#define TRIG_DEFAULT_PM                 ACQ_CLIENT_TRIG_EXTERNAL
 
 #define SERVICE_NAME_SIZE               50
 
@@ -271,6 +271,50 @@ static const channelMap_t channelMap[CH_END] = {
                           {WVF_FOFBPOS_FREQ,                     // NDArrayPosFreq
                            -1},
                           },
+    /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
+                          -1,                                  // HwPhaseChannel
+                          -1,                                  // HwPosChannel
+                          0,                                   // CalcPos
+                          {{WVF_AMP_SP_A,                      // NDArrayAmp
+                            WVF_AMP_SP_B,
+                            WVF_AMP_SP_C,
+                            WVF_AMP_SP_D,
+                            WVF_AMP_SP_ALL},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {WVF_AMP_SP_FREQ,                     // NDArrayAmpFreq
+                           -1},
+                          {{-1,                                 // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {-1,                                  // NDArrayPhaseFreq
+                           -1},
+                          {{-1,                                 // NDArrayPos
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                          },
+                          {-1,                                  // NDArrayPosFreq
+                           -1},
+                          },
 };
 
 /* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
@@ -349,14 +393,14 @@ static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK"
 static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status};
 static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
-static const functionsInt32_t bpmSetGetAcqControlFunc = {"ACQ", halcs_set_acq_fsm_stop, halcs_get_acq_fsm_stop};
-static const functionsInt32_t bpmSetGetAcqTriggerFunc = {"ACQ", halcs_set_acq_trig, halcs_get_acq_trig};
-static const functionsInt32_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", halcs_set_acq_data_trig_thres, halcs_get_acq_data_trig_thres};
-static const functionsInt32_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", halcs_set_acq_data_trig_pol, halcs_get_acq_data_trig_pol};
-static const functionsInt32_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", halcs_set_acq_data_trig_sel, halcs_get_acq_data_trig_sel};
-static const functionsInt32_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", halcs_set_acq_data_trig_filt, halcs_get_acq_data_trig_filt};
-static const functionsInt32_t bpmSetGetAcqHwDlyFunc = {"ACQ", halcs_set_acq_hw_trig_dly, halcs_get_acq_hw_trig_dly};
-static const functionsInt32_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", halcs_set_acq_data_trig_chan, halcs_get_acq_data_trig_chan};
+static const functionsInt32Acq_t bpmSetGetAcqControlFunc = {"ACQ", acq_set_fsm_stop, acq_get_fsm_stop};
+static const functionsInt32Acq_t bpmSetGetAcqTriggerFunc = {"ACQ", acq_set_trig, acq_get_trig};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt};
+static const functionsInt32Acq_t bpmSetGetAcqHwDlyFunc = {"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly};
+static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan};
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
@@ -393,7 +437,26 @@ static taskParams_t taskParams[NUM_ACQ_CORES_PER_BPM] = {
         true                           // autoStart
     },
 };
+static taskParams_t taskSPParams[NUM_ACQ_CORES_PER_BPM] = {
+    /* Regular Core */
+    {
+        NULL,                          // drvBPMp
+        BPMIDReg,                      // coreID
+        BPM_POLL_TIME,                 // pollTime
+        false                          // autoStart
+    },
+#if 0
+    /* Post-Mortem Core */
+    {
+        NULL,                          // drvBPMp
+        BPMIDPM,                       // coreID
+        BPM_PM_POLL_TIME,              // pollTime
+        false                          // autoStart
+    },
+#endif
+};
 void acqTask(void *drvPvt);
+void acqSPTask(void *drvPvt);
 
 static void exitHandlerC(void *pPvt)
 {
@@ -539,33 +602,38 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     this->bpmNumber = bpmNumber;
     this->verbose = verbose;
     this->timeout = timeout;
-    for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-        this->readingActive[i] = 0;
-        this->repetitiveTrigger[i] = 0;
+    for (int i = 0; i < NUM_BPM_MODES; ++i) {
+        for (int j = 0; j < NUM_ACQ_CORES_PER_BPM; ++j) {
+            this->readingActive[i][j] = 0;
+            this->repetitiveTrigger[i][j] = 0;
+        }
     }
 
-    for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-        /* Create events for signalling acquisition thread */
-        this->startAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->startAcqEventId[i]) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s epicsEventCreate[%d] failure for start event\n",
-                    driverName, functionName, i);
-            return;
-        }
+    for (int i = 0; i < NUM_BPM_MODES; ++i) {
+        for (int j = 0; j < NUM_ACQ_CORES_PER_BPM; ++j) {
+            /* Create events for signalling acquisition thread */
+            this->startAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->startAcqEventId[i][j]) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s epicsEventCreate[%d] failure for start event\n",
+                        driverName, functionName, i);
+                return;
+            }
 
-        this->stopAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->stopAcqEventId[i]) {
-            printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
-                    driverName, functionName, i);
-            return;
-        }
+            this->stopAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->stopAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
+                        driverName, functionName, i);
+                return;
+            }
 
-        this->abortAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
-        if (!this->abortAcqEventId[i]) {
-            printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
-                    driverName, functionName, i);
-            return;
+            this->abortAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->abortAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
+                        driverName, functionName, i);
+                return;
+            }
+
         }
     }
 
@@ -639,64 +707,75 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Create parameters */
-    createParam(0,P_HarmonicNumberString,
-                                      asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(0,P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
-    createParam(0,P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
-    createParam(0,P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
-    createParam(0,P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
-    createParam(0,P_SwString,         asynParamUInt32Digital,         &P_Sw);
-    createParam(0,P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
-    createParam(0,P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
-    createParam(0,P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
-    createParam(0,P_AdcTrigTermString,
-                                      asynParamUInt32Digital,         &P_AdcTrigTerm);
-    createParam(0,P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
-    createParam(0,P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
-    createParam(0,P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
-    createParam(0,P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
-    createParam(0,P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
-    createParam(0,P_AdcSi57xFreqString,
-                                      asynParamFloat64,               &P_AdcSi57xFreq);
-    createParam(0,P_AdcTestDataString,
-                                      asynParamUInt32Digital,         &P_AdcTestData);
-    createParam(0,P_AdcAD9510DfltString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Dflt);
-    createParam(0,P_AdcAD9510PllFuncString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
-    createParam(0,P_AdcAD9510PllStatusString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
-    createParam(0,P_AdcAD9510ClkSelString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
-    createParam(0,P_AdcAD9510ADivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510ADiv);
-    createParam(0,P_AdcAD9510BDivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510BDiv);
-    createParam(0,P_AdcAD9510PrescalerString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
-    createParam(0,P_AdcAD9510RDivString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510RDiv);
-    createParam(0,P_AdcAD9510PllPDownString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
-    createParam(0,P_AdcAD9510MuxStatusString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
-    createParam(0,P_AdcAD9510CpCurrentString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
-    createParam(0,P_AdcAD9510OutputsString,
-                                      asynParamUInt32Digital,         &P_AdcAD9510Outputs);
-    createParam(0,P_KxString,         asynParamUInt32Digital,         &P_Kx);
-    createParam(0,P_KyString,         asynParamUInt32Digital,         &P_Ky);
-    createParam(0,P_KqString,         asynParamUInt32Digital,         &P_Kq);
-    createParam(0,P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
-    createParam(0,P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
-    createParam(0,P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
-    createParam(0,P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+    createParam(0, P_HarmonicNumberString,
+                                       asynParamUInt32Digital,         &P_HarmonicNumber);
+    createParam(0, P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
+    createParam(0, P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
+    createParam(0, P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
+    createParam(0, P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
+    createParam(0, P_SwString,         asynParamUInt32Digital,         &P_Sw);
+    createParam(0, P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
+    createParam(0, P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+    createParam(0, P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
+    createParam(0, P_AdcTrigTermString,
+                                       asynParamUInt32Digital,         &P_AdcTrigTerm);
+    createParam(0, P_AdcRandString,    asynParamUInt32Digital,         &P_AdcRand);
+    createParam(0, P_AdcDithString,    asynParamUInt32Digital,         &P_AdcDith);
+    createParam(0, P_AdcShdnString,    asynParamUInt32Digital,         &P_AdcShdn);
+    createParam(0, P_AdcPgaString,     asynParamUInt32Digital,         &P_AdcPga);
+    createParam(0, P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
+    createParam(0, P_AdcSi57xFreqString,
+                                       asynParamFloat64,               &P_AdcSi57xFreq);
+    createParam(0, P_AdcTestDataString,
+                                       asynParamUInt32Digital,         &P_AdcTestData);
+    createParam(0, P_AdcAD9510DfltString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Dflt);
+    createParam(0, P_AdcAD9510PllFuncString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllFunc);
+    createParam(0, P_AdcAD9510PllStatusString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllStatus);
+    createParam(0, P_AdcAD9510ClkSelString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510ClkSel);
+    createParam(0, P_AdcAD9510ADivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510ADiv);
+    createParam(0, P_AdcAD9510BDivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510BDiv);
+    createParam(0, P_AdcAD9510PrescalerString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Prescaler);
+    createParam(0, P_AdcAD9510RDivString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510RDiv);
+    createParam(0, P_AdcAD9510PllPDownString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510PllPDown);
+    createParam(0, P_AdcAD9510MuxStatusString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510MuxStatus);
+    createParam(0, P_AdcAD9510CpCurrentString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510CpCurrent);
+    createParam(0, P_AdcAD9510OutputsString,
+                                       asynParamUInt32Digital,         &P_AdcAD9510Outputs);
+    createParam(0, P_KxString,         asynParamUInt32Digital,         &P_Kx);
+    createParam(0, P_KyString,         asynParamUInt32Digital,         &P_Ky);
+    createParam(0, P_KqString,         asynParamUInt32Digital,         &P_Kq);
+    createParam(0, P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
+    createParam(0, P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
+    createParam(0, P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
+    createParam(0, P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
 
-    createParam(0,P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
-    createParam(0,P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
-    createParam(0,P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
-    createParam(0,P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(0,P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+    createParam(0, P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
+    createParam(0, P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
+    createParam(0, P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
+    createParam(0, P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
+    createParam(0, P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+
+    createParam(0, P_SPAmpAString,     asynParamFloat64,               &P_SPAmpA);
+    createParam(0, P_SPAmpBString,     asynParamFloat64,               &P_SPAmpB);
+    createParam(0, P_SPAmpCString,     asynParamFloat64,               &P_SPAmpC);
+    createParam(0, P_SPAmpDString,     asynParamFloat64,               &P_SPAmpD);
+    createParam(0, P_SPPosXString,     asynParamFloat64,               &P_SPPosX);
+    createParam(0, P_SPPosYString,     asynParamFloat64,               &P_SPPosY);
+    createParam(0, P_SPPosQString,     asynParamFloat64,               &P_SPPosQ);
+    createParam(0, P_SPPosSumString,   asynParamFloat64,               &P_SPPosSum);
+
+    createParam(0, P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
 
     /* Set the initial values of some parameters */
 
@@ -841,11 +920,19 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosA,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosB,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosC,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitPosD,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
+
+    setDoubleParam(P_SPAmpA,            0.0);
+    setDoubleParam(P_SPAmpB,            0.0);
+    setDoubleParam(P_SPAmpC,            0.0);
+    setDoubleParam(P_SPAmpD,            0.0);
+    setDoubleParam(P_SPPosX,            0.0);
+    setDoubleParam(P_SPPosY,            0.0);
+    setDoubleParam(P_SPPosQ,            0.0);
+    setDoubleParam(P_SPPosSum,          0.0);
+
+    /* Default BPM mode is Multibunch */
+    setIntegerParam(    P_BPMMode,      BPMModeMultiBunch);
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
@@ -891,15 +978,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
 
-    bpmHwInt32Func[P_AcqControl] = bpmSetGetAcqControlFunc;
-    bpmHwInt32Func[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
+    bpmHwInt32AcqFunc[P_AcqControl] = bpmSetGetAcqControlFunc;
+    bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
-    bpmHwInt32Func[P_Trigger] = bpmSetGetAcqTriggerFunc;
-    bpmHwInt32Func[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
-    bpmHwInt32Func[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
-    bpmHwInt32Func[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
-    bpmHwInt32Func[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
-    bpmHwInt32Func[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
+    bpmHwInt32AcqFunc[P_Trigger] = bpmSetGetAcqTriggerFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
+    bpmHwInt32AcqFunc[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
 
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -954,6 +1041,20 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
+    /* Create the thread that computes the SP waveforms in the background */
+    /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
+     * The other parameters are already set-up*/
+    taskSPParams[BPMIDReg].drvBPMp = this;
+    status = (asynStatus)(epicsThreadCreate("drvBPMSPTask",
+                epicsThreadPriorityMedium,
+                epicsThreadGetStackSize(epicsThreadStackMedium),
+                (EPICSTHREADFUNC)::acqSPTask,
+                &taskSPParams[BPMIDReg]) == NULL);
+    if (status) {
+        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+        return;
+    }
+
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
@@ -973,8 +1074,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     epicsAtExit(exitHandlerC, this);
     return;
 
-init_acq_pm_err:
-    bpmClientDisconnect();
 invalid_bpm_number_err:
     free (this->endpoint);
 endpoint_dup_err:
@@ -1026,10 +1125,24 @@ asynStatus drvBPM::bpmClientConnect(void)
         }
     }
 
+    /* Connect ACQ BPM parameter clients*/
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] == NULL) {
+            bpmClientAcqParam[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+            if (bpmClientAcqParam[i] == NULL) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s bpmClientConnect failure to create bpmClientAcqParam[%d] instance\n",
+                        driverName, functionName, i);
+                status = asynError;
+                goto create_halcs_client_acq_param_err;
+            }
+        }
+    }
+
     /* Connect ACQ BPM clients */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] == NULL) {
-            bpmClientAcq[i] = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+            bpmClientAcq[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcq[i] == NULL) {
                 asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcq[%d] instance\n",
@@ -1052,7 +1165,14 @@ create_halcs_client_acq_err:
     /* Destroy possible uninitialized bpmClientAcq instances */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] != NULL) {
-            halcs_client_destroy (&bpmClientAcq[i]);
+            acq_client_destroy (&bpmClientAcq[i]);
+        }
+    }
+create_halcs_client_acq_param_err:
+    /* Destroy possible uninitialized bpmClientAcqParam instances */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] != NULL) {
+            acq_client_destroy (&bpmClientAcqParam[i]);
         }
     }
     /* Destroy regular bpmClient instance */
@@ -1078,8 +1198,14 @@ asynStatus drvBPM::bpmClientDisconnect(void)
     }
 
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        if (bpmClientAcqParam[i] != NULL) {
+            acq_client_destroy (&bpmClientAcqParam[i]);
+        }
+    }
+
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcq[i] != NULL) {
-            halcs_client_destroy (&bpmClientAcq[i]);
+            acq_client_destroy (&bpmClientAcq[i]);
         }
     }
 
@@ -1091,6 +1217,12 @@ void acqTask(void *drvPvt)
 {
    taskParams_t *pPvt = (taskParams_t *)drvPvt;
    pPvt->drvBPMp->acqTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
+}
+
+void acqSPTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvBPMp->acqSPTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
 }
 
 /********************************************************************/
@@ -1147,7 +1279,7 @@ set_acq_trig:
     return status;
 }
 
-asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
+asynStatus drvBPM::setAcqTrig(int coreID, acq_client_trig_e trig)
 {
     static const char *functionName = "setAcqTrig";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
@@ -1163,7 +1295,7 @@ asynStatus drvBPM::setAcqTrig(int coreID, halcs_client_trig_e trig)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_trig (bpmClientAcq[coreID], service, trig);
+    err = acq_set_trig (bpmClientAcq[coreID], service, trig);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
@@ -1199,13 +1331,13 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     /* Have ACQ engine completed some work or is it still busy? */
-    herr = halcs_acq_check (bpmClientAcq[coreID], service);
+    herr = acq_check (bpmClientAcq[coreID], service);
     if (herr == HALCS_CLIENT_SUCCESS) {
         return BPMStatusIdle;
     }
 
     /* If the ACQ is doing something we need to figure it out what is it */
-    herr = halcs_get_acq_trig (bpmClientAcq[coreID], service, &trig);
+    herr = acq_get_trig (bpmClientAcq[coreID], service, &trig);
     if (herr != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
@@ -1214,21 +1346,21 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     switch (trig) {
-        case HALCS_CLIENT_TRIG_SKIP:
+        case ACQ_CLIENT_TRIG_SKIP:
             /* If we are doing something and the trigger is set to SKIP,
              * then we are acquiring */
             bpmStatus = BPMStatusAcquire;
             break;
 
-        case HALCS_CLIENT_TRIG_EXTERNAL:
+        case ACQ_CLIENT_TRIG_EXTERNAL:
             bpmStatus = BPMStatusTriggerHwExtWaiting;
             break;
 
-        case HALCS_CLIENT_TRIG_DATA_DRIVEN:
+        case ACQ_CLIENT_TRIG_DATA_DRIVEN:
             bpmStatus = BPMStatusTriggerHwDataWaiting;
             break;
 
-        case HALCS_CLIENT_TRIG_SOFTWARE:
+        case ACQ_CLIENT_TRIG_SOFTWARE:
             bpmStatus = BPMStatusTriggerSwWaiting;
             break;
 
@@ -1256,6 +1388,7 @@ static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
  */
 
 /** Acquisition task that runs as a separate thread.
+ *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
 */
 void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 {
@@ -1265,6 +1398,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 num_samples_post;
     epicsUInt32 num_shots;
     int channel;
+    int bpmMode;
     epicsUInt32 trigger;
     double updateTime;
     double delay;
@@ -1306,10 +1440,10 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     lock ();
     while (1) {
         /* Check if we received a stop event */
-        status = epicsEventWaitWithTimeout(this->stopAcqEventId[coreID], pollTime);
-        if (status == epicsEventWaitOK || !repetitiveTrigger[coreID]) {
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], pollTime);
+        if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID]) {
             /* We got a stop event, stop repetitive acquisition */
-            readingActive[coreID] = 0;
+            readingActive[BPMModeMultiBunch][coreID] = 0;
             getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
             /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
@@ -1342,10 +1476,10 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 /* Release the lock while we wait for an event that says acquire has started, then lock again */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: waiting for acquire to start\n", driverName, functionName);
-                epicsEventWait(startAcqEventId[coreID]);
+                epicsEventWait(startAcqEventId[BPMModeMultiBunch][coreID]);
                 lock();
             }
-            readingActive[coreID] = 1;
+            readingActive[BPMModeMultiBunch][coreID] = 1;
             autoStartFirst = 0;
         }
 
@@ -1381,7 +1515,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         arrayCounter++;
         setIntegerParam(NDArrayCounter, arrayCounter);
 
-        status = getAcqNDArrayType(hwAmpChannel, &NDType);
+        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to determine NDArray type for acquisition\n",
@@ -1460,7 +1594,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         /* Wait for acquisition to complete, but allow acquire stop events to be handled */
         while (1) {
             unlock();
-            status = epicsEventWaitWithTimeout(this->abortAcqEventId[coreID], pollTime);
+            status = epicsEventWaitWithTimeout(this->abortAcqEventId[BPMModeMultiBunch][coreID], pollTime);
             lock();
             if (status == epicsEventWaitOK) {
                 /* We got a stop event, abort acquisition */
@@ -1505,12 +1639,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             computePositions(coreID, pArrayAllChannels, channel);
         }
 
-        /* Release buffer */
+        /* Release buffers */
+        pArrayChannelFreq->release();
         pArrayAllChannels->release();
         callParamCallbacks(coreID);
 
         /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
-        if (repetitiveTrigger[coreID]) {
+        if (repetitiveTrigger[BPMModeMultiBunch][coreID]) {
             epicsTimeGetCurrent(&endTime);
             elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
             delay = updateTime - elapsedTime;
@@ -1522,10 +1657,356 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusWaiting);
                 callParamCallbacks(coreID);
                 unlock();
-                epicsEventWaitWithTimeout(this->stopAcqEventId[coreID], delay);
+                epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], delay);
                 lock();
             }
         }
+    }
+}
+
+/** Acquisition task for Single Pass BPM mode that runs as a separate thread.
+ *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
+*/
+void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
+{
+    int status = asynSuccess;
+    asynUser *pasynUser = NULL;
+    epicsUInt32 num_samples_pre;
+    epicsUInt32 num_samples_post;
+    epicsUInt32 num_shots;
+    int channel;
+    int bpmMode;
+    epicsUInt32 trigger;
+    epicsUInt32 XOffset;
+    epicsUInt32 YOffset;
+    epicsUInt32 QOffset;
+    epicsUInt32 Kx;
+    epicsUInt32 Ky;
+    epicsUInt32 Kq;
+    epicsUInt32 Ksum;
+    epicsUInt32 TriggerDataThres;
+    epicsUInt32 TriggerDataPol;
+    epicsUInt32 TriggerDataSel;
+    epicsUInt32 TriggerDataFilt;
+    epicsUInt32 TriggerHwDly;
+    epicsUInt32 DataTrigChan;
+    bpm_sample_t bpm_sample = {0};
+    char service[SERVICE_NAME_SIZE];
+    int hwAmpChannel = 0;
+    int acqCompleted = 0;
+    int bpmStatus = 0;
+    int interrupted = 0;
+    bool autoStartFirst = autoStart;
+    epicsTimeStamp now;
+    epicsFloat64 timeStamp;
+    NDArray *pArrayAllChannels;
+    NDArray *pArrayChannelFreq;
+    NDDataType_t NDType = NDInt32;
+    NDDataType_t NDTypeFreq = NDFloat64;
+    epicsTimeStamp startTime;
+    double adcFreq;
+    int arrayCounter;
+    size_t dims[MAX_WVF_DIMS];
+    size_t dimsFreq[1];
+    bpm_single_pass_t *bpm_single_pass = NULL;
+    static const char *functionName = "acqSPTask";
+
+    /* Create an asynUser. FIXME: we should probably create a callback
+     * for the processCallback, which would be called on a queuePortLock ()
+     * so as to not block all addresses, just the ones related to that
+     * specific BOARD */
+    pasynUser = pasynManager->createAsynUser(0, 0);
+    pasynUser->timeout = BPM_TIMEOUT;
+    status = pasynManager->connectDevice(pasynUser, bpmPortName, 0);
+    if(status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: connectDevice failed, status=%d\n",
+            driverName, functionName, status);
+        return;
+    }
+
+    /* Loop forever */
+    lock ();
+    while (1) {
+        /* Clear out any flags*/
+        interrupted = 0;
+
+        /* Destroy bpm_single_pass instance, if any */
+        if (bpm_single_pass != NULL) {
+            bpm_single_pass_destroy (&bpm_single_pass);
+        }
+
+        /* We got a stop event, stop acquisition */
+        readingActive[BPMModeSinglePass][coreID] = 0;
+        getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
+
+        /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
+        if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
+            callParamCallbacks(coreID);
+        }
+
+        /* We have consumed our data. This is important if we abort the next
+         * acquisition, as we can detect that the current acquisition is completed,
+         * which would be wrong */
+        acqCompleted = 0;
+
+        /* Only wait for the startEvent if we are waiting for a
+         * new acquisition */
+        if (!autoStartFirst) {
+            unlock();
+            /* Release the lock while we wait for an event that says acquire has started, then lock again */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for acquire to start\n", driverName, functionName);
+            epicsEventWait(startAcqEventId[BPMModeSinglePass][coreID]);
+            lock();
+        }
+        readingActive[BPMModeSinglePass][coreID] = 1;
+        autoStartFirst = 0;
+
+        /* We are acquiring. Get the current time */
+        epicsTimeGetCurrent(&startTime);
+
+        /* Set the parameter in the parameter library. */
+        getUIntDigitalParam(coreID , P_Trigger      , &trigger          , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
+        getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
+
+        /* Select our "fake" channel if we are in single pass mode.
+         * This is done so we can the same flow as BPMModeMultiBunch mode,
+         * without having to separate the implementations */
+        channel = CH_SP;
+
+        /* Convert user channel into hw channel */
+        hwAmpChannel = channelMap[channel].HwAmpChannel;
+        if(hwAmpChannel < 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                    driverName, functionName, hwAmpChannel);
+            continue;
+        }
+
+        /* Our waveform will have "num_samples_pres + num_samples_post"
+         * samples in each dimension */
+        dims[0] = POINTS_PER_SAMPLE;
+        dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* Waveform statistics */
+        epicsTimeGetCurrent(&now);
+        getIntegerParam(NDArrayCounter, &arrayCounter);
+        arrayCounter++;
+        setIntegerParam(NDArrayCounter, arrayCounter);
+
+        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
+        if (status != asynSuccess) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unable to determine NDArray type for acquisition\n",
+                    driverName, functionName);
+            continue;
+        }
+
+        pArrayAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
+        if (pArrayAllChannels == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayAllChannels\n",
+                driverName, functionName);
+        }
+        pArrayAllChannels->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayAllChannels->timeStamp = timeStamp;
+        getAttributes(pArrayAllChannels->pAttributeList);
+
+        dimsFreq[0] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* Alloc array for frequency axis */
+        pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
+        if (pArrayChannelFreq == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayChannelFreq\n",
+                driverName, functionName);
+        }
+        pArrayChannelFreq->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayChannelFreq->timeStamp = timeStamp;
+        getAttributes(pArrayChannelFreq->pAttributeList);
+
+        /* Tell we are acquiring just before we actually start it */
+        setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
+        callParamCallbacks(coreID);
+
+        getUIntDigitalParam(        P_XOffset,          &XOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_YOffset,          &YOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_QOffset,          &QOffset,             0xFFFFFFFF);
+        getUIntDigitalParam(        P_Kx,               &Kx,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Ky,               &Ky,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Kq,               &Kq,                  0xFFFFFFFF);
+        getUIntDigitalParam(        P_Ksum,             &Ksum,                0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataThres, &TriggerDataThres,    0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataPol,   &TriggerDataPol,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataSel,   &TriggerDataSel,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataFilt,  &TriggerDataFilt,     0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerHwDly,     &TriggerHwDly,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_DataTrigChan,     &DataTrigChan,        0xFFFFFFFF);
+
+        /* Setup single-pass parameters */
+        /* Kx, Ky, etc are epicsUInt32 type which are perfectly representable
+         * on a double (52-bit mantissa). So, we makle an explicitly cast to
+         * avoid warning of the type: warning: narrowing conversion of ...
+         * This just comes from the fact that in a particular architecture,
+         * epicsUInt32 is unsigned int, but epics types are portable */
+        bpm_parameters_t bpm_parameters = {.kx       = (double) Kx,
+                                           .ky       = (double) Ky,
+                                           .kq       = (double) Kq,
+                                           .ksum     = (double) Ksum,
+                                           .offset_x = (double) XOffset,
+                                           .offset_y = (double) YOffset,
+                                           .offset_q = (double) QOffset
+                                           };
+
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
+        bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint,
+            this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post,
+            num_shots);
+        if (bpm_single_pass == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: bpm_single_pass could not be created, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
+        bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt,
+            TriggerDataPol, TriggerHwDly);
+        if (trigger == TRIG_ACQ_EXT_DATA) {
+            bpm_single_pass_configure_data_trigger (bpm_single_pass,
+                TriggerDataThres, TriggerDataSel);
+        }
+        else if (trigger == TRIG_ACQ_EXT_HW) {
+            bpm_single_pass_configure_external_trigger (bpm_single_pass);
+        }
+        else {
+        /* Invalid trigger for SP*/
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: Invalid trigger for Single Pass\n",
+                driverName, functionName);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* Do acquisition until a stop event arrives */
+        while (1) {
+            /* If we were interrupted, jut go back to waiting the start event */
+            if (interrupted) {
+                break;
+            }
+            unlock();
+            pasynManager->lockPort(pasynUser);
+            status = startSPAcq(bpm_single_pass);
+            pasynManager->unlockPort(pasynUser);
+            lock();
+
+            if (status == asynSuccess) {
+                /* FIXME: Improve BPMStatus trigger waiting. The information
+                 * about waiting for trigger is not totally accurate here.
+                 * Although, we will for SW or HW trigger in a short time,
+                 * we are not actually there yet ...
+                 */
+                if (trigger == TRIG_ACQ_EXT_HW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
+                }
+                else if (trigger == TRIG_ACQ_EXT_DATA) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
+                }
+                else if (trigger == TRIG_ACQ_SW) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
+                }
+
+                callParamCallbacks(coreID);
+            }
+            else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to acquire waveform\n",
+                        driverName, functionName);
+                /* Could not start acquisition. Invalid parameters */
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcq);
+                callParamCallbacks(coreID);
+                break;
+            }
+
+            /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+            while (1) {
+                unlock();
+                /* Don't wait. If there is no event, just exit directly */
+                status = epicsEventTryWait(this->abortAcqEventId[BPMModeSinglePass][coreID]);
+                lock();
+                if (status == epicsEventWaitOK) {
+                    /* We got a stop event, abort acquisition */
+                    abortAcq(coreID);
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusAborted);
+                    callParamCallbacks(coreID);
+                    interrupted = 1;
+                    break;
+                }
+                else {
+                    acqCompleted = checkSPAcqCompletion (bpm_single_pass);
+                }
+
+                if (acqCompleted == 1) {
+                    /* Get curve */
+                    getAcqSPSamples(bpm_single_pass, &bpm_sample);
+                    break;
+                }
+            }
+
+            /* Only do callbacks and calculate position if we could acquire some
+             * data */
+            if (acqCompleted == 1) {
+                /* Get SinglePass Raw Data for the user */
+                getAcqSPCurve(bpm_single_pass, pArrayAllChannels);
+                /* Do callbacks on the full waveform (all channels interleaved) */
+                unlock();
+                /* We must do the callbacks with mutex unlocked ad the plugin
+                 * can call us and a deadlock would occur */
+                doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                        channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+                lock();
+
+                /* Compute frequency arrays for amplitude, positions and do
+                 * callbacks on that */
+                computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
+                        num_samples_pre, num_samples_post, num_shots);
+
+                /* Copy AMP data to arrays for each type of data, do callbacks on that */
+                deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                        MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+
+                /* Set SinglePass AMP/POS Calculate positions and call callbacks */
+                setDoubleParam(P_SPAmpA,       bpm_sample.a);
+                setDoubleParam(P_SPAmpB,       bpm_sample.b);
+                setDoubleParam(P_SPAmpC,       bpm_sample.c);
+                setDoubleParam(P_SPAmpD,       bpm_sample.d);
+                setDoubleParam(P_SPPosX,       bpm_sample.x);
+                setDoubleParam(P_SPPosY,       bpm_sample.y);
+                setDoubleParam(P_SPPosQ,       bpm_sample.q);
+                setDoubleParam(P_SPPosSum,     bpm_sample.sum);
+            }
+
+            callParamCallbacks(coreID);
+        }
+
+        /* Release buffers */
+        pArrayChannelFreq->release();
+        pArrayAllChannels->release();
     }
 }
 
@@ -1610,7 +2091,6 @@ void drvBPM::computeFreqArray(int coreID, NDArray *pArrayChannelFreq, int channe
                 channelMap[channel].NDArrayPosFreq[coreID]);
         lock();
     }
-    pArrayChannelFreq->release();
 }
 
 void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
@@ -1807,9 +2287,12 @@ asynStatus drvBPM::setAcquire(int addr)
     asynStatus status = asynSuccess;
     const char* functionName = "setAcquire";
     epicsUInt32 trigger_type = 0;
+    int bpmMode = 0;
+    int bpmModeOther = 0;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_Trigger, &trigger_type, 0xFFFFFFFF);
+    getIntegerParam(P_BPMMode, &bpmMode);
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
@@ -1819,18 +2302,30 @@ asynStatus drvBPM::setAcquire(int addr)
                 driverName, functionName, trigger_type);
     }
 
+    /* Get the other acquisition task mode */
+    if (bpmMode == BPMModeSinglePass) {
+        bpmModeOther = BPMModeMultiBunch;
+    }
+    else {
+        bpmModeOther = BPMModeSinglePass;
+    }
+
     switch (trigger_type) {
         case TRIG_ACQ_NOW:
         case TRIG_ACQ_EXT_HW:
         case TRIG_ACQ_EXT_DATA:
         case TRIG_ACQ_SW:
-            if (!readingActive[addr] && !repetitiveTrigger[addr]) {
-                repetitiveTrigger[addr] = 0;
+            /* Abort the other acquisition task if needed */
+            stopAcqTask(addr, bpmModeOther);
+            abortAcqTask(addr, bpmModeOther);
+            /* Start the current AcqTask */
+            if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
+                repetitiveTrigger[bpmMode][addr] = 0;
                 /* Signal acq thread to start acquisition with the current parameters */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: trigger ACQ_NOW or HW/SW called\n",
                         driverName, functionName);
-                epicsEventSignal(startAcqEventId[addr]);
+                epicsEventSignal(startAcqEventId[bpmMode][addr]);
             }
             break;
 
@@ -1838,47 +2333,29 @@ asynStatus drvBPM::setAcquire(int addr)
          * acquiring. Otherwise, we don't need to do anything, as the acquisition
          * task will stop after the current acquisition */
         case TRIG_ACQ_STOP: /* Trigger == Stop */
-            if (readingActive[addr]) {
-                repetitiveTrigger[addr] = 0;
-                /* Send the stop event */
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_STOP called\n",
-                        driverName, functionName);
-                epicsEventSignal(this->stopAcqEventId[addr]);
-            }
+            stopAcqTask(addr, bpmMode);
             break;
 
         /* Send the abort event if we are reading (repetitive or regular).
          *  If we want to stop a repetitive trigger, we must send a stop
          *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
-            if (readingActive[addr]) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_ABORT called for coreID = %d\n",
-                        driverName, functionName, addr);
-                epicsEventSignal(this->abortAcqEventId[addr]);
-            }
-            else {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_ABORT but with acquisition in progress, called for coreID = %d\n",
-                        driverName, functionName, addr);
-                /* If we are not actively waiting for an event on acqTask,
-                 * abort the acquisition anyway, as we might have something
-                 * going on inside the FPGA from a previous acquisition */
-                abortAcq(addr);
-                setIntegerParam(addr, P_BPMStatus, BPMStatusAborted);
-                callParamCallbacks(addr);
-            }
+            /* abort the other acquisition task if needed */
+            abortAcqTask(addr, bpmMode);
             break;
 
         case TRIG_ACQ_REPETITIVE:
-            if (!repetitiveTrigger[addr]) {
-                repetitiveTrigger[addr] = 1;
+            /* Stop the other acquisition task if needed */
+            stopAcqTask(addr, bpmModeOther);
+            abortAcqTask(addr, bpmModeOther);
+            /* Start the current AcqTask */
+            if (!repetitiveTrigger[bpmMode][addr]) {
+                repetitiveTrigger[bpmMode][addr] = 1;
                 /* Signal acq thread to start acquisition with the current parameters */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: trigger ACQ_REPETITIVE called\n",
                         driverName, functionName);
-                epicsEventSignal(startAcqEventId[addr]);
+                epicsEventSignal(startAcqEventId[bpmMode][addr]);
             }
             break;
 
@@ -1891,6 +2368,50 @@ asynStatus drvBPM::setAcquire(int addr)
     }
 
 trig_unimplemented_err:
+    return status;
+}
+
+asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "abortAcqTask";
+
+    /* we are waiting for a trigger */
+    if (readingActive[bpmMode][addr]) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        epicsEventSignal(this->abortAcqEventId[bpmMode][addr]);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT but with acquisition in progress, "
+                "called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        /* If we are not actively waiting for an event on acqTask,
+         * abort the acquisition anyway, as we might have something
+         * going on inside the FPGA from a previous acquisition */
+        abortAcq(addr);
+    }
+
+    return status;
+}
+
+asynStatus drvBPM::stopAcqTask(int addr, int bpmMode)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "stopAcqTask";
+
+    /* We are in repetitive mode */
+    if (readingActive[bpmMode][addr]) {
+        repetitiveTrigger[bpmMode][addr] = 0;
+        /* Send the stop event */
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_STOP called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, bpmMode, addr);
+        epicsEventSignal(this->stopAcqEventId[bpmMode][addr]);
+    }
+
     return status;
 }
 
@@ -1938,7 +2459,7 @@ asynStatus drvBPM::startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_p
         ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
     }
 #else
-    err = halcs_acq_start (bpmClientAcq[coreID], service, &req);
+    err = acq_start (bpmClientAcq[coreID], service, &req);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
@@ -1953,6 +2474,23 @@ asynStatus drvBPM::startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_p
 halcs_acq_err:
 get_service_err:
 halcs_samples_sel_err:
+    return status;
+}
+
+asynStatus drvBPM::startSPAcq(bpm_single_pass_t *bpm_single_pass)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "startSPAcq";
+
+    err = bpm_single_pass_start (bpm_single_pass);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+    }
+    else {
+        status = asynSuccess;
+    }
+
     return status;
 }
 
@@ -1973,7 +2511,7 @@ asynStatus drvBPM::abortAcq(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_fsm_stop (bpmClientAcq[coreID], service, fsm_stop);
+    err = acq_set_fsm_stop (bpmClientAcq[coreID], service, fsm_stop);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_acq_stop_err;
@@ -2001,7 +2539,7 @@ int drvBPM::checkAcqCompletion(int coreID)
         goto get_service_err;
     }
 
-    err = halcs_acq_check (bpmClientAcq[coreID], service);
+    err = acq_check (bpmClientAcq[coreID], service);
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -2011,6 +2549,24 @@ int drvBPM::checkAcqCompletion(int coreID)
 
 halcs_acq_not_finished:
 get_service_err:
+    return complete;
+}
+
+int drvBPM::checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass)
+{
+    int complete = 0;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "checkSPAcqCompletion";
+
+    err = bpm_single_pass_check (bpm_single_pass);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        complete = 0;
+        goto halcs_acq_not_finished;
+    }
+
+    complete = 1;
+
+halcs_acq_not_finished:
     return complete;
 }
 
@@ -2048,7 +2604,7 @@ asynStatus drvBPM::getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwCha
     acq_trans = {req, block};
 
     /* This just reads the data from memory */
-    err = halcs_acq_get_curve (bpmClientAcq[coreID], service, &acq_trans);
+    err = acq_get_curve (bpmClientAcq[coreID], service, &acq_trans);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
@@ -2064,10 +2620,43 @@ get_service_err:
     return status;
 }
 
-asynStatus drvBPM::getAcqNDArrayType(int hwChannel, NDDataType_t *NDType)
+asynStatus drvBPM::getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "getAcqSPCurve";
+
+    /* Copy data to NDArray */
+    const acq_trans_t * acq_trans = bpm_single_pass_get_acq_transaction (bpm_single_pass);
+    memcpy (pArrayAllChannels->pData, acq_trans->block.data, acq_trans->block.data_size);
+    pArrayAllChannels->dataSize = acq_trans->block.data_size;
+
+    return status;
+}
+
+asynStatus drvBPM::getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getAcqSPSamples";
+
+    err = bpm_single_pass_sample (bpm_single_pass, bpm_sample);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to read Single Pass samples\n",
+                driverName, functionName);
+        status = asynError;
+        goto halcs_acq_err;
+    }
+
+halcs_acq_err:
+    return status;
+}
+
+asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *NDType)
 {
     asynStatus status = asynSuccess;
     static const char *functionName = "getAcqNDArrayType";
+    const acq_chan_t *acq_chan = acq_get_chan (bpmClientAcq[coreID]);
 
     /* Determine minimum data size. FIXME: This should be in libbpmclient */
     switch (acq_chan[hwChannel].sample_size/POINTS_PER_SAMPLE) {
@@ -2404,6 +2993,7 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
+    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
@@ -2441,6 +3031,40 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
                     driverName, functionName, service, functionId, paramLib);
             status = asynError;
             goto halcs_set_func1_param_err;
+        }
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+    /* Lookup function on 32-bit map for acquisition */
+    funcAcq = bpmHwInt32AcqFunc.find (functionId);
+    if (funcAcq != bpmHwInt32AcqFunc.end()) {
+        int serviceID = 0;
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
+                service, sizeof(service));
+        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
+                &serviceID);
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling getFullServiceName, status=%d\n",
+                    driverName, functionName, status);
+            goto get_service_acq_err;
+        }
+
+        /* Silently exit if no function is registered */
+        if(!funcAcq->second.write) {
+            goto no_registered_write_acq_func;
+        }
+
+        /* Function found. Execute it */
+        err = funcAcq->second.write(bpmClientAcqParam[serviceID], service, paramLib);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcAcq->second.write() failure for service %s, function %d, paramLib = %u\n",
+                    driverName, functionName, service, functionId, paramLib);
+            status = asynError;
+            goto halcs_set_func1_param_acq_err;
         }
         /* We've done our job here. No need to check other maps */
         return (asynStatus)status;
@@ -2554,6 +3178,9 @@ no_registered_write_func2:
 halcs_get_func2_param_err:
 no_registered_read_func2:
 get_service_err2:
+halcs_set_func1_param_acq_err:
+no_registered_write_acq_func:
+get_service_acq_err:
 halcs_set_func1_param_err:
 no_registered_write_func:
 get_service_err:
@@ -2574,6 +3201,7 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     int coreID = 0;
     char service[SERVICE_NAME_SIZE];
     std::unordered_map<int,functionsInt32_t>::const_iterator func;
+    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
     std::unordered_map<int,functions2Int32_t>::const_iterator func2;
     std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
@@ -2608,6 +3236,40 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
                     driverName, functionName, service, functionId);
             status = asynError;
             goto halcs_get_func1_param_err;
+        }
+
+        /* Mask parameter according to the received mask */
+        paramHw &= mask;
+        *param = paramHw;
+        /* We've done our job here. No need to check other maps */
+        return (asynStatus)status;
+    }
+
+    /* Lookup function */
+    funcAcq = bpmHwInt32AcqFunc.find (functionId);
+    if (funcAcq != bpmHwInt32AcqFunc.end()) {
+        int serviceID = 0;
+        *param = 0;
+        /* Get correct service name*/
+        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
+                service, sizeof(service));
+        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
+                &serviceID);
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling getFullServiceName, status=%d\n",
+                    driverName, functionName, status);
+            goto get_service_acq_err;
+        }
+
+        /* Function found. Execute it */
+        err = funcAcq->second.read(bpmClientAcqParam[serviceID], service, &paramHw);
+        if (err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: funcAcq->second.read() failure for service %s, function %d\n",
+                    driverName, functionName, service, functionId);
+            status = asynError;
+            goto halcs_get_func1_param_acq_err;
         }
 
         /* Mask parameter according to the received mask */
@@ -2719,6 +3381,8 @@ get_service_err3:
 halcs_get_func2_param_err:
 no_registered_read_func2:
 get_service_err2:
+halcs_get_func1_param_acq_err:
+get_service_acq_err:
 halcs_get_func1_param_err:
 get_service_err:
 get_param_err:
@@ -2849,10 +3513,11 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[SERVICE_NAME_SIZE];
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "setDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
     int hwAmpChannel = 0;
+    int serviceID = 0;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_DataTrigChan, &dataTrigChan, mask);
@@ -2870,6 +3535,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
     /* Get correct service name*/
     status = getFullServiceName (this->bpmNumber, addr, "ACQ",
             service, sizeof(service));
+    status |= getServiceID (this->bpmNumber, addr, "ACQ", &serviceID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling getFullServiceName, status=%d\n",
@@ -2877,7 +3543,7 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
         goto get_service_err;
     }
 
-    err = halcs_set_acq_data_trig_chan (bpmClient, service, hwAmpChannel);
+    err = acq_set_data_trig_chan (bpmClientAcqParam[serviceID], service, hwAmpChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_set_data_trig_chan_err;
@@ -2886,21 +3552,23 @@ asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 halcs_set_data_trig_chan_err:
 get_service_err:
 halcs_inv_channel:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char service[SERVICE_NAME_SIZE];
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "getDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
     epicsUInt32 hwAmpChannel = 0;
+    int serviceID = 0;
 
     /* Get correct service name*/
     status = getFullServiceName (this->bpmNumber, addr, "ACQ",
             service, sizeof(service));
+    status |= getServiceID (this->bpmNumber, addr, "ACQ", &serviceID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling getFullServiceName, status=%d\n",
@@ -2911,7 +3579,7 @@ asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int a
     /* Clear parameter in case of an error occurs */
     *channel = 0;
 
-    err = halcs_get_acq_data_trig_chan (bpmClient, service, &hwAmpChannel);
+    err = acq_get_data_trig_chan (bpmClientAcqParam[serviceID], service, &hwAmpChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_get_data_trig_chan_err;
@@ -2943,7 +3611,7 @@ halcs_inv_channel:
 halcs_inv_hw_channel:
 halcs_get_data_trig_chan_err:
 get_service_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::setAdcReg(epicsUInt32 mask, int addr)

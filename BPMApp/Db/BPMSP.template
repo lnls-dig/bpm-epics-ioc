@@ -1,0 +1,131 @@
+#########################
+# Single Pass Acquisition parameters
+#########################
+
+
+record(mbbo, "$(P)$(R)BPMMode"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set BPM mode")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
+    field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"MultiBunch")
+    field(ONST,"SinglePass")
+}
+
+record(mbbi, "$(P)$(R)BPMMode-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get BPM mode")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
+    field(SCAN,"I/O Intr")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"MultiBunch")
+    field(ONST,"SinglePass")
+}
+
+record(ai,"$(P)$(R)SPAmpA-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Amplitude A")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_A")
+    field(EGU, "au")
+}
+
+record(ai,"$(P)$(R)SPAmpB-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Amplitude B")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_B")
+    field(EGU, "au")
+}
+
+record(ai,"$(P)$(R)SPAmpC-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Amplitude C")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_C")
+    field(EGU, "au")
+}
+
+record(ai,"$(P)$(R)SPAmpD-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Amplitude D")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_D")
+    field(EGU, "au")
+}
+
+record(ai,"$(P)$(R)SPPosX-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Position X")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_X")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)SPPosY-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Position Y")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Y")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)SPPosQ-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Position Q")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Q")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)SPPosSum-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Single Pass Position Sum")
+    field(PINI,"YES")
+    field(PREC, "5")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SPAmpA-Mon.TIME")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_SUM")
+    field(EGU, "nm")
+}

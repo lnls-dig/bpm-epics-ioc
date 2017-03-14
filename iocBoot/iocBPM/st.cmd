@@ -18,6 +18,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMAdc.template", "P=${P}, R=${R}, PORT=$(BPM_NA
 # dbLoadRecords("${TOP}/BPMApp/Db/BPMFmc130m_4ch.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMSP.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < trigger.cmd
