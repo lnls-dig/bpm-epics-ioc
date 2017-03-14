@@ -2317,7 +2317,7 @@ asynStatus drvBPM::setAcquire(int addr)
         case TRIG_ACQ_SW:
             /* Abort the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
-            abortAcqTask(addr, bpmModeOther);
+            abortAcqTask(addr, bpmModeOther, false);
             /* Start the current AcqTask */
             if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 0;
@@ -2341,13 +2341,13 @@ asynStatus drvBPM::setAcquire(int addr)
          *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
             /* abort the other acquisition task if needed */
-            abortAcqTask(addr, bpmMode);
+            abortAcqTask(addr, bpmMode, true);
             break;
 
         case TRIG_ACQ_REPETITIVE:
             /* Stop the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
-            abortAcqTask(addr, bpmModeOther);
+            abortAcqTask(addr, bpmModeOther, false);
             /* Start the current AcqTask */
             if (!repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 1;
@@ -2371,7 +2371,7 @@ trig_unimplemented_err:
     return status;
 }
 
-asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
+asynStatus drvBPM::abortAcqTask(int addr, int bpmMode, bool abortAcqHw)
 {
     asynStatus status = asynSuccess;
     const char* functionName = "abortAcqTask";
@@ -2391,7 +2391,9 @@ asynStatus drvBPM::abortAcqTask(int addr, int bpmMode)
         /* If we are not actively waiting for an event on acqTask,
          * abort the acquisition anyway, as we might have something
          * going on inside the FPGA from a previous acquisition */
-        abortAcq(addr);
+        if (abortAcqHw) {
+            abortAcq(addr);
+        }
     }
 
     return status;

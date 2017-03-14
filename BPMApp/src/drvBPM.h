@@ -604,7 +604,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus setAcqTrig(int coreID, acq_client_trig_e trig);
         asynStatus initAcqPM(int coreID);
         asynStatus abortAcq(int coreID);
-        asynStatus abortAcqTask(int addr, int bpmMode);
+        asynStatus abortAcqTask(int addr, int bpmMode, bool abortAcqHw = false);
         asynStatus stopAcqTask(int addr, int bpmMode);
         int checkAcqCompletion(int coreID);
         int checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass);
