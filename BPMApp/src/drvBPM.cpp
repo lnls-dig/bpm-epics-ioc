@@ -619,14 +619,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                         driverName, functionName, i);
                 return;
             }
-    
+
             this->stopAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
             if (!this->stopAcqEventId[i][j]) {
                 printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
                         driverName, functionName, i);
                 return;
             }
-    
+
             this->abortAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
             if (!this->abortAcqEventId[i][j]) {
                 printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
@@ -1124,7 +1124,7 @@ asynStatus drvBPM::bpmClientConnect(void)
             goto create_halcs_client_err;
         }
     }
-    
+
     /* Connect ACQ BPM parameter clients*/
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcqParam[i] == NULL) {
@@ -1688,7 +1688,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 TriggerDataPol;
     epicsUInt32 TriggerDataSel;
     epicsUInt32 TriggerDataFilt;
-    epicsUInt32 TriggerHwDly; 
+    epicsUInt32 TriggerHwDly;
     epicsUInt32 DataTrigChan;
     bpm_sample_t bpm_sample = {0};
     char service[SERVICE_NAME_SIZE];
@@ -1708,7 +1708,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
     size_t dimsFreq[1];
-    bpm_single_pass_t *bpm_single_pass = NULL; 
+    bpm_single_pass_t *bpm_single_pass = NULL;
     static const char *functionName = "acqSPTask";
 
     /* Create an asynUser. FIXME: we should probably create a callback
@@ -1739,18 +1739,18 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         /* We got a stop event, stop acquisition */
         readingActive[BPMModeSinglePass][coreID] = 0;
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
- 
+
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
         if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
             setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
             callParamCallbacks(coreID);
         }
- 
+
         /* We have consumed our data. This is important if we abort the next
          * acquisition, as we can detect that the current acquisition is completed,
          * which would be wrong */
         acqCompleted = 0;
- 
+
         /* Only wait for the startEvent if we are waiting for a
          * new acquisition */
         if (!autoStartFirst) {
@@ -1774,10 +1774,10 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
 
-        /* Select our "fake" channel if we are in single pass mode. 
+        /* Select our "fake" channel if we are in single pass mode.
          * This is done so we can the same flow as BPMModeMultiBunch mode,
          * without having to separate the implementations */
-	channel = CH_SP;
+        channel = CH_SP;
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -1849,10 +1849,10 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID, P_TriggerDataFilt,  &TriggerDataFilt,     0xFFFFFFFF);
         getUIntDigitalParam(coreID, P_TriggerHwDly,     &TriggerHwDly,        0xFFFFFFFF);
         getUIntDigitalParam(coreID, P_DataTrigChan,     &DataTrigChan,        0xFFFFFFFF);
- 
+
         /* Setup single-pass parameters */
         /* Kx, Ky, etc are epicsUInt32 type which are perfectly representable
-         * on a double (52-bit mantissa). So, we makle an explicitly cast to 
+         * on a double (52-bit mantissa). So, we makle an explicitly cast to
          * avoid warning of the type: warning: narrowing conversion of ...
          * This just comes from the fact that in a particular architecture,
          * epicsUInt32 is unsigned int, but epics types are portable */
@@ -1864,7 +1864,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                                            .offset_y = (double) YOffset,
                                            .offset_q = (double) QOffset
                                            };
-        
+
         /* Get correct service name*/
         status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
         if (status) {
@@ -1874,7 +1874,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             continue;
         }
 
-        bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint, 
+        bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint,
             this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post);
         if (bpm_single_pass == NULL) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1883,7 +1883,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             continue;
         }
 
-        bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt, 
+        bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt,
             TriggerDataPol, TriggerHwDly);
         if (trigger == TRIG_ACQ_EXT_DATA) {
             bpm_single_pass_configure_data_trigger (bpm_single_pass,
@@ -1901,9 +1901,9 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             callParamCallbacks(coreID);
             continue;
         }
-        
+
         /* Do acquisition until a stop event arrives */
-        while (1) { 
+        while (1) {
             /* If we were interrupted, jut go back to waiting the start event */
             if (interrupted) {
                 break;
@@ -2308,7 +2308,7 @@ asynStatus drvBPM::setAcquire(int addr)
     else {
         bpmModeOther = BPMModeSinglePass;
     }
-    
+
     switch (trigger_type) {
         case TRIG_ACQ_NOW:
         case TRIG_ACQ_EXT_HW:
@@ -2650,7 +2650,7 @@ asynStatus drvBPM::getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sampl
 halcs_acq_err:
     return status;
 }
- 
+
 asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *NDType)
 {
     asynStatus status = asynSuccess;
