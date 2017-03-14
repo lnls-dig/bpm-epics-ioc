@@ -1875,7 +1875,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         }
 
         bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint,
-            this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post);
+            this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post,
+            num_shots);
         if (bpm_single_pass == NULL) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: bpm_single_pass could not be created, status=%d\n",
