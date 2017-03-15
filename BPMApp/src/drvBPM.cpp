@@ -710,6 +710,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create BPM Status after all parameters, as we would have mismatched IDs, otherwise */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         createParam(addr, P_BPMStatusString,  asynParamInt32,        &P_BPMStatus);
+        createParam(addr, P_BPMModeString,    asynParamInt32,        &P_BPMMode);
     }
 
     /* Create parameters */
@@ -781,8 +782,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(0, P_SPPosQString,     asynParamFloat64,               &P_SPPosQ);
     createParam(0, P_SPPosSumString,   asynParamFloat64,               &P_SPPosSum);
 
-    createParam(0, P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
-
     /* Set the initial values of some parameters */
 
     /* Set parameters for all triggers, all Acquisition cores. FIXME (Caution):
@@ -844,6 +843,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                    0,                  0xFFFFFFFF);
     }
 
+
+    for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
+        setIntegerParam(addr,     P_BPMMode,       BPMModeMultiBunch);
+        /* This will be initalized later, after we have connected to the server */
+        /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
+    }
+
     /* Acquisition PM parameters */
     setUIntDigitalParam(BPMIDPM, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
                                                                    0xFFFFFFFF);
@@ -867,9 +873,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                0,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_DataTrigChan,
                                                0,                  0xFFFFFFFF);
-
-    /* This will be initalized later, after we have connected to the server */
-    /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
 
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
@@ -936,9 +939,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setDoubleParam(P_SPPosY,            0.0);
     setDoubleParam(P_SPPosQ,            0.0);
     setDoubleParam(P_SPPosSum,          0.0);
-
-    /* Default BPM mode is Multibunch */
-    setIntegerParam(    P_BPMMode,      BPMModeMultiBunch);
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
@@ -1446,7 +1446,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     lock ();
     while (1) {
         /* Wait until we are in MultiBunch mode */
-        getIntegerParam(P_BPMMode, &bpmMode);
+        getIntegerParam(coreID, P_BPMMode, &bpmMode);
         if (bpmMode != BPMModeMultiBunch) {
             unlock ();
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -1745,7 +1745,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     lock ();
     while (1) {
         /* Wait until we are in SinglePass mode */
-        getIntegerParam(P_BPMMode, &bpmMode);
+        getIntegerParam(coreID, P_BPMMode, &bpmMode);
         if (bpmMode != BPMModeSinglePass) {
             unlock ();
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -2318,7 +2318,7 @@ asynStatus drvBPM::setAcquire(int addr)
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_Trigger, &trigger_type, 0xFFFFFFFF);
-    getIntegerParam(P_BPMMode, &bpmMode);
+    getIntegerParam(addr, P_BPMMode, &bpmMode);
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
