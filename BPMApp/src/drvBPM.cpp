@@ -634,6 +634,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                 return;
             }
 
+            this->activeAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->activeAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for active event\n",
+                        driverName, functionName, i);
+                return;
+            }
         }
     }
 
@@ -1439,6 +1445,16 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     /* Loop forever */
     lock ();
     while (1) {
+        /* Wait until we are in MultiBunch mode */
+        getIntegerParam(P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeMultiBunch) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
+	    epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
+            lock ();
+        }
+
         /* Check if we received a stop event */
         status = epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], pollTime);
         if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID]) {
@@ -1728,6 +1744,16 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     /* Loop forever */
     lock ();
     while (1) {
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeSinglePass) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
+	    epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
+            lock ();
+        }
+
         /* Clear out any flags*/
         interrupted = 0;
 
@@ -2318,6 +2344,10 @@ asynStatus drvBPM::setAcquire(int addr)
             /* Abort the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
             abortAcqTask(addr, bpmModeOther, false);
+
+            /* Send event telling the current task to proceed */
+            epicsEventSignal(activeAcqEventId[bpmMode][addr]);
+
             /* Start the current AcqTask */
             if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 0;
@@ -2348,6 +2378,10 @@ asynStatus drvBPM::setAcquire(int addr)
             /* Stop the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
             abortAcqTask(addr, bpmModeOther, false);
+
+            /* Send event telling the current task to proceed */
+            epicsEventSignal(activeAcqEventId[bpmMode][addr]);
+
             /* Start the current AcqTask */
             if (!repetitiveTrigger[bpmMode][addr]) {
                 repetitiveTrigger[bpmMode][addr] = 1;
