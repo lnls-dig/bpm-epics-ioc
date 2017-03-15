@@ -1,3 +1,4 @@
+$(P)$(R)$(ACQ_NAME)BPMMode
 $(P)$(R)$(ACQ_NAME)SamplesPre
 $(P)$(R)$(ACQ_NAME)SamplesPost
 $(P)$(R)$(ACQ_NAME)Shots

@@ -2,31 +2,6 @@
 # Single Pass Acquisition parameters
 #########################
 
-
-record(mbbo, "$(P)$(R)BPMMode"){
-    field(DTYP, "asynInt32")
-    field(DESC, "Set BPM mode")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
-    field(SCAN,"Passive")
-    field(NOBT,"1")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(ZRST,"MultiBunch")
-    field(ONST,"SinglePass")
-}
-
-record(mbbi, "$(P)$(R)BPMMode-RB"){
-    field(DTYP, "asynInt32")
-    field(DESC, "Get BPM mode")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
-    field(SCAN,"I/O Intr")
-    field(NOBT,"1")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(ZRST,"MultiBunch")
-    field(ONST,"SinglePass")
-}
-
 record(ai,"$(P)$(R)SPAmpA-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Amplitude A")
