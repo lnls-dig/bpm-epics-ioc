@@ -77,10 +77,10 @@ typedef struct
 /* Button values. */
 typedef struct
 {
-    uint32_t A;
-    uint32_t B;
-    uint32_t C;
-    uint32_t D;
+    int32_t A;
+    int32_t B;
+    int32_t C;
+    int32_t D;
 } ABCDRow_t;
 
 #define ABCD_ROW ABCDRow_t
@@ -88,10 +88,10 @@ typedef struct
 /* Computed X, Y values in nm, S in arbitrary units. */
 typedef struct
 {
-    uint32_t X;
-    uint32_t Y;
-    uint32_t Q;
-    uint32_t S;
+    int32_t X;
+    int32_t Y;
+    int32_t Q;
+    int32_t S;
 } XYQSRow_t;
 
 #define XYQS_ROW XYQSRow_t

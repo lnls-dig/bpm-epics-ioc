@@ -230,11 +230,11 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
          *    The button values A,B,C,D are known to lie in the range 0 to
          * 2^31 - 1 so we similarly know that 0 <= S < 2^31. */
         /* *FIXME: we are not scaling down the amplitudes as it was before */
-        int A = abcd.A /* >> 2*/;
-        int B = abcd.B /* >> 2*/;
-        int C = abcd.C /* >> 2*/;
-        int D = abcd.D /* >> 2*/;
-        int S = A + B + C + D;
+        int32_t A = abcd.A /* >> 2*/;
+        int32_t B = abcd.B /* >> 2*/;
+        int32_t C = abcd.C /* >> 2*/;
+        int32_t D = abcd.D /* >> 2*/;
+        int32_t S = A + B + C + D;
 
         /* Now compute the positions according to the model.  As this is an
          * inner loop function we take some time to optimise its execution by
