@@ -16,6 +16,8 @@ drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOS
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ_PM, PORT=$(BPM_NAME), ADDR=1, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAdc.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMActiveClk.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMAdcCommon.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 # dbLoadRecords("${TOP}/BPMApp/Db/BPMFmc130m_4ch.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 # dbLoadRecords("${TOP}/BPMApp/Db/BPMFmcPico1m_4ch.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
