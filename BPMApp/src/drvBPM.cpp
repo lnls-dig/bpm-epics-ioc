@@ -722,7 +722,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create parameters */
     createParam(0, P_HarmonicNumberString,
                                        asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(0, P_AdcClkFreqString, asynParamUInt32Digital,         &P_AdcClkFreq);
+    createParam(0, P_AdcClkFreqString, asynParamFloat64,               &P_AdcClkFreq);
     createParam(0, P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(0, P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(0, P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
@@ -890,8 +890,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
-    setUIntDigitalParam(P_AdcClkFreq, ADC_CLK_FREQ_UVX_DFLT,
-                                                            0xFFFFFFFF);
+    setDoubleParam(P_AdcClkFreq,                            ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
@@ -1531,7 +1530,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getIntegerParam(    coreID , P_Channel      , &channel);
         getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
-        getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
+        getDoubleParam(              P_AdcClkFreq , &adcFreq);
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -1820,7 +1819,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
-        getDoubleParam(              P_AdcSi57xFreq , &adcFreq);
+        getDoubleParam(              P_AdcClkFreq   , &adcFreq);
 
         /* Select our "fake" channel if we are in single pass mode.
          * This is done so we can the same flow as BPMModeMultiBunch mode,
