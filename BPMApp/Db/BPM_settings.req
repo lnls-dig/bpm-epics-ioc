@@ -10,6 +10,7 @@ file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=0
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=1
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=2
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=3
+file "BPMFmcPico1m_4ch_settings.req" P=$(P), R=$(R)
 file "BPMInfo_settings.req",        P=$(P), R=$(R)
 file "BPMSP_settings.req",          P=$(P), R=$(R)
 
