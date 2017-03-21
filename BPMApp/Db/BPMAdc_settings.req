@@ -1,3 +1,4 @@
+$(P)$(R)ADCClkFreq
 $(P)$(R)ADCSw
 $(P)$(R)ADCSwDly
 $(P)$(R)ADCSwDivClk
