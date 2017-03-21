@@ -1,0 +1,85 @@
+#
+# BPM database file
+#
+# Authors: Juliano Murari
+#
+# Created Mar. 21, 2017
+#
+
+record(mbbo,"$(P)$(R)ADCTrigDir"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC trigger direction")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGDIR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"output")
+    field(ONST,"input")
+}
+
+record(mbbi,"$(P)$(R)ADCTrigDir-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC trigger direction")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGDIR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"output")
+    field(ONST,"input")
+}
+
+record(mbbo,"$(P)$(R)ADCTrigTerm"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC trigger 50ohm termination")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGTERM")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)$(R)ADCTrigTerm-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC trigger 50ogm termination")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TRIGTERM")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbo,"$(P)$(R)ADCTestDataEn"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC test ramp data")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TESTDATA")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)$(R)ADCTestDataEn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC test ramp data")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TESTDATA")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}

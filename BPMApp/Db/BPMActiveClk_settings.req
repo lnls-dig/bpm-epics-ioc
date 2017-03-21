@@ -1,0 +1,12 @@
+$(P)$(R)ADCClkSel
+$(P)$(R)ADCSi57xFreq
+$(P)$(R)ADCAD9510PllFunc
+$(P)$(R)ADCAD9510ClkSel
+$(P)$(R)ADCAD9510ADiv
+$(P)$(R)ADCAD9510BDiv
+$(P)$(R)ADCAD9510Prescaler
+$(P)$(R)ADCAD9510RDiv
+$(P)$(R)ADCAD9510PllPDown
+$(P)$(R)ADCAD9510MuxStatus
+$(P)$(R)ADCAD9510CpCurrent
+$(P)$(R)ADCAD9510Outputs
