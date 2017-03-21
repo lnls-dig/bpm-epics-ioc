@@ -27,21 +27,23 @@ record(longin,"$(P)$(R)INFOHarmonicNumber-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
-record(longout,"$(P)$(R)INFOADCClkFreq"){
-    field(DTYP,"asynUInt32Digital")
+record(ao,"$(P)$(R)ADCClkFreq"){
+    field(DTYP,"asynFloat64")
     field(DESC,"set ADC clock frequency")
     field(PINI,"YES")
+    field(PREC, "3")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
     field(EGU, "Hz")
 }
 
-record(longin,"$(P)$(R)INFOADCClkFreq-RB"){
-    field(DTYP,"asynUInt32Digital")
+record(ai,"$(P)$(R)ADCClkFreq-RB"){
+    field(DTYP,"asynFloat64")
     field(DESC,"get ADC clock frequency")
     field(PINI,"YES")
+    field(PREC, "3")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
     field(EGU, "Hz")
 }
 

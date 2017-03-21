@@ -78,21 +78,3 @@ record(longin,"$(P)$(R)ADCSwDivClk-RB"){
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW_DIVCLK")
 }
-
-record(ao,"$(P)$(R)ADCClkFreq"){
-    field(DTYP,"asynFloat64")
-    field(DESC,"set ADC clock frequency")
-    field(PINI,"YES")
-    field(PREC, "3")
-    field(SCAN,"Passive")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
-}
-
-record(ai,"$(P)$(R)ADCClkFreq-RB"){
-    field(DTYP,"asynFloat64")
-    field(DESC,"get ADC clock frequency")
-    field(PINI,"YES")
-    field(PREC, "3")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
-}
