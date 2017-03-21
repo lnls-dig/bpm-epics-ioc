@@ -35,6 +35,7 @@ record(ao,"$(P)$(R)ADCClkFreq"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
     field(EGU, "Hz")
+    field(FLNK, "$(P)$(R)ADCSi57xFreq.PROC")
 }
 
 record(ai,"$(P)$(R)ADCClkFreq-RB"){
