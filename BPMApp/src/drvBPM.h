@@ -324,7 +324,7 @@ typedef struct {
  * They are used by asyn clients, including standard asyn device support */
 #define P_BPMModeString             "BPM_MODE"              /* asynInt32,              r/w */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
-#define P_AdcClkFreqString          "INFO_ADCCLKFREQ"          /* asynUInt32Digital,      r/o */
+#define P_AdcClkFreqString          "INFO_ADCCLKFREQ"       /* asynFloat64,            r/w */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
