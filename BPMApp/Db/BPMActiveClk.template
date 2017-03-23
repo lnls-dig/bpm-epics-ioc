@@ -40,7 +40,7 @@ record(ao,"$(P)$(R)ADCSi57xFreq"){
     field(PREC, "3")
     field(SCAN,"Passive")
     field(DOL,"$(P)$(R)ADCClkFreq PP NMS")
-    field(OMSL,"CLOSED_LOOP")
+    field(OMSL,"closed_loop")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
 }
 
