@@ -478,14 +478,11 @@ asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceN
     epicsUInt32 chan = 0;
 
     /* Static mapping. FIXME? */
-    if (streq(serviceName, "ACQ")) {
-        chan = addr;
-    }
-    else if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
+    if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         chan = addr % MAX_TRIGGERS;
     }
     else {
-        chan = 0;
+        chan = addr;
     }
 
     *chanArg = chan;
