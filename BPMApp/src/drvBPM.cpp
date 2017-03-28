@@ -54,6 +54,9 @@
 #define SAMPLES_POST_DEFAULT_PM         100000
 #define NUM_SHOTS_DEFAULT_PM            1
 #define TRIG_DEFAULT_PM                 ACQ_CLIENT_TRIG_EXTERNAL
+#define DFLT_SAMPLE_SIZE                8 /* in bytes */
+#define DFLT_NUM_ATOMS                  4
+#define DFLT_ATOM_WIDTH                 2 /* in bytes */
 
 #define SERVICE_NAME_SIZE               50
 
@@ -708,6 +711,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                asynParamUInt32Digital, &P_TriggerHwDly);
         createParam(addr, P_DataTrigChanString,
                                                asynParamUInt32Digital, &P_DataTrigChan);
+        createParam(addr, P_ChannelSampleSizeString,     
+                                               asynParamUInt32Digital, &P_ChannelSampleSize);
+        createParam(addr, P_ChannelNumAtomsString,     
+                                               asynParamUInt32Digital, &P_ChannelNumAtoms);
+        createParam(addr, P_ChannelAtomWidthString,     
+                                               asynParamUInt32Digital, &P_ChannelAtomWidth);
     }
 
     /* Create BPM Status after all parameters, as we would have mismatched IDs, otherwise */
@@ -852,6 +861,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                    0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_DataTrigChan,
                                                    0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelSampleSize, 
+                                                   DFLT_SAMPLE_SIZE,   0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelNumAtoms,   
+                                                   DFLT_NUM_ATOMS,     0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelAtomWidth,   
+                                                   DFLT_ATOM_WIDTH,    0xFFFFFFFF);
     }
 
 
@@ -1421,6 +1436,9 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 num_samples_pre;
     epicsUInt32 num_samples_post;
     epicsUInt32 num_shots;
+    epicsUInt32 sampleSize = 16; /* bytes */
+    epicsUInt32 numAtoms = 4;
+    epicsUInt32 atomWidth = 32; /* bits */
     int channel;
     int bpmMode;
     epicsUInt32 trigger;
@@ -1527,7 +1545,16 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getIntegerParam(    coreID , P_Channel      , &channel);
         getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
-        getDoubleParam(              P_AdcClkFreq , &adcFreq);
+        getDoubleParam(              P_AdcClkFreq   , &adcFreq);
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize, 
+                                                      &sampleSize,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms, 
+                                                      &numAtoms,          0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth, 
+                                                      &atomWidth,         0xFFFFFFFF);
+
+        /* Convert bit to byte */
+        atomWidth = atomWidth/8;
 
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -1540,7 +1567,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
         /* Our waveform will have "num_samples_pres + num_samples_post"
          * samples in each dimension */
-        dims[0] = POINTS_PER_SAMPLE;
+        dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
         /* Waveform statistics */
@@ -1549,7 +1576,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         arrayCounter++;
         setIntegerParam(NDArrayCounter, arrayCounter);
 
-        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
+        status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to determine NDArray type for acquisition\n",
@@ -1708,6 +1735,9 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 num_samples_pre;
     epicsUInt32 num_samples_post;
     epicsUInt32 num_shots;
+    epicsUInt32 sampleSize = 16; /* bytes */
+    epicsUInt32 numAtoms = 4;
+    epicsUInt32 atomWidth = 32; /* bits */
     int channel;
     int bpmMode;
     epicsUInt32 trigger;
@@ -1817,6 +1847,15 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getDoubleParam(              P_AdcClkFreq   , &adcFreq);
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize, 
+                                                      &sampleSize,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms, 
+                                                      &numAtoms,          0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth, 
+                                                      &atomWidth,          0xFFFFFFFF);
+
+        /* Convert bit to byte */
+        atomWidth = atomWidth/8;
 
         /* Select our "fake" channel if we are in single pass mode.
          * This is done so we can the same flow as BPMModeMultiBunch mode,
@@ -1834,7 +1873,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         /* Our waveform will have "num_samples_pres + num_samples_post"
          * samples in each dimension */
-        dims[0] = POINTS_PER_SAMPLE;
+        dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
         /* Waveform statistics */
@@ -1843,7 +1882,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         arrayCounter++;
         setIntegerParam(NDArrayCounter, arrayCounter);
 
-        status = getAcqNDArrayType(coreID, hwAmpChannel, &NDType);
+        status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to determine NDArray type for acquisition\n",
@@ -2331,12 +2370,16 @@ asynStatus drvBPM::setAcquire(int addr)
     asynStatus status = asynSuccess;
     const char* functionName = "setAcquire";
     epicsUInt32 trigger_type = 0;
+    epicsUInt32 hwAmpChannel = 0;
+    int channel = 0;
     int bpmMode = 0;
     int bpmModeOther = 0;
+    channelProp_t channelProp;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_Trigger, &trigger_type, 0xFFFFFFFF);
     getIntegerParam(addr, P_BPMMode, &bpmMode);
+    getIntegerParam(addr, P_Channel, &channel);
 
     /* Set the trigger if it matches the HW */
     if (trigger_type < TRIG_ACQ_STOP) {
@@ -2345,6 +2388,29 @@ asynStatus drvBPM::setAcquire(int addr)
                 "%s:%s: writing trigger type = %u\n",
                 driverName, functionName, trigger_type);
     }
+
+    /* Convert user channel into hw channel */
+    hwAmpChannel = channelMap[channel].HwAmpChannel;
+    if(hwAmpChannel < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto halcs_inv_channel;
+    }
+
+    /* Get channel properties */
+    status = getChannelProperties(addr, hwAmpChannel, &channelProp);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getChannelProperties, status=%d\n",
+            driverName, functionName, status);
+        goto get_chan_prop_err;
+    }
+
+    setUIntDigitalParam(addr, P_ChannelSampleSize, channelProp.sampleSize, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_ChannelNumAtoms, channelProp.numAtoms, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_ChannelAtomWidth, channelProp.atomWidth, 0xFFFFFFFF);
 
     /* Get the other acquisition task mode */
     if (bpmMode == BPMModeSinglePass) {
@@ -2420,6 +2486,8 @@ asynStatus drvBPM::setAcquire(int addr)
     }
 
 trig_unimplemented_err:
+get_chan_prop_err:
+halcs_inv_channel:
     return status;
 }
 
@@ -2706,14 +2774,13 @@ halcs_acq_err:
     return status;
 }
 
-asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *NDType)
+asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, epicsUInt32 atomWidth, NDDataType_t *NDType)
 {
     asynStatus status = asynSuccess;
     static const char *functionName = "getAcqNDArrayType";
-    const acq_chan_t *acq_chan = acq_get_chan (bpmClientAcq[coreID]);
 
-    /* Determine minimum data size. FIXME: This should be in libbpmclient */
-    switch (acq_chan[hwChannel].sample_size/POINTS_PER_SAMPLE) {
+    /* Determine minimum data size */
+    switch (atomWidth) {
         case 2: /* bytes */
             *NDType = NDInt16;
             break;
@@ -2722,13 +2789,53 @@ asynStatus drvBPM::getAcqNDArrayType(int coreID, int hwChannel, NDDataType_t *ND
             break;
         default:
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to determine NDType for acquisition\n",
-                    driverName, functionName);
+                    "%s:%s: unable to determine NDType for acquisition with atomWidth = %u\n",
+                    driverName, functionName, atomWidth);
             status = asynError;
             goto get_ndarray_type_err;
     }
 
 get_ndarray_type_err:
+    return status;
+}
+
+asynStatus drvBPM::getChannelProperties(int coreID, int channel, channelProp_t *channelProp)
+{
+    asynStatus status = asynSuccess;
+    int err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getChannelSampleSize";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = halcs_get_acq_ch_sample_size (bpmClientAcq[coreID], service,
+        channel, &channelProp->sampleSize);
+    err |= halcs_get_acq_ch_num_atoms (bpmClientAcq[coreID], service,
+        channel, &channelProp->numAtoms);
+    err |= halcs_get_acq_ch_atom_width (bpmClientAcq[coreID], service,
+        channel, &channelProp->atomWidth);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_get_sample_size_err;
+    }
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: channel properties for coreID = %u, channel = %d:\n"
+        "\tsampleSize = %u\n"
+        "\tnumAtoms = %u\n"
+        "\tatomWidth = %u\n",
+        driverName, functionName, coreID, channel,
+        channelProp->sampleSize, channelProp->numAtoms, channelProp->atomWidth);
+
+halcs_get_sample_size_err:
+get_service_err:
     return status;
 }
 

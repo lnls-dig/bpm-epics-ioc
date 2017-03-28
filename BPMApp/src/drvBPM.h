@@ -207,7 +207,6 @@ typedef enum {
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                2
-#define POINTS_PER_SAMPLE           4
 
 #define MAX_SLOTS                   12
 #define MAX_BPM_PER_SLOT            2
@@ -246,6 +245,13 @@ typedef struct {
     /* EPICS channel. -1 means not available */
     int epicsChannel;
 } channelRevMap_t;
+
+/* BPM Acq Channel properties structure */
+typedef struct {
+    epicsUInt32 sampleSize;
+    epicsUInt32 numAtoms;
+    epicsUInt32 atomWidth;
+} channelProp_t;
 
 /* Write 32-bit function pointer */
 typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
@@ -389,6 +395,9 @@ typedef struct {
 #define P_TriggerDataFiltString     "ACQ_TRIGGER_FILT"      /* asynInt32,              r/w */
 #define P_TriggerHwDlyString        "ACQ_TRIGGER_HWDLY"     /* asynInt32,              r/w */
 #define P_DataTrigChanString        "ACQ_DATA_TRIG_CHAN"    /* asynuint32digital,      r/w */
+#define P_ChannelSampleSizeString   "ACQ_CH_SAMPLE_SIZE"    /* asynUInt32Digital,      r/o */
+#define P_ChannelNumAtomsString     "ACQ_CH_NUM_ATOMS"      /* asynUInt32Digital,      r/o */
+#define P_ChannelAtomWidthString     "ACQ_CH_ATOM_WIDTH"     /* asynUInt32Digital,      r/o */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
@@ -535,6 +544,9 @@ class drvBPM : public asynNDArrayDriver {
         int P_TriggerDataFilt;
         int P_TriggerHwDly;
         int P_DataTrigChan;
+        int P_ChannelSampleSize;
+        int P_ChannelNumAtoms; 
+        int P_ChannelAtomWidth;
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
@@ -605,7 +617,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
                 char *fullServiceName, int fullServiceNameSize);
         asynStatus setAcquire(int addr);
-        asynStatus getAcqNDArrayType(int coreID, int channel, NDDataType_t *NDType);
+        asynStatus getAcqNDArrayType(int coreID, int channel, epicsUInt32 atomWidth, NDDataType_t *NDType);
+        asynStatus getChannelProperties(int coreID, int channel, channelProp_t *channelProp);
         bpm_status_types getBPMInitAcqStatus(int coreID);
         asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
                 epicsUInt32 num_samples_post, epicsUInt32 num_shots);
