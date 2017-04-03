@@ -305,7 +305,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-RB"){
     field(DESC, "Get acquisition's status")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_STATUS")
     field(SCAN,"I/O Intr")
-    field(NOBT,"3")
+    field(NOBT,"4")
     field(ZRVL,"0")
     field(ONVL,"1")
     field(TWVL,"2")
@@ -314,6 +314,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-RB"){
     field(FVVL,"5")
     field(SXVL,"6")
     field(SVVL,"7")
+    field(EIVL,"8")
     field(ZRST,"Idle")
     field(ONST,"Waiting")
     field(TWST,"External Trig")
@@ -322,6 +323,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-RB"){
     field(FVST,"Acquiring")
     field(SXST,"Error")
     field(SVST,"Aborted")
+    field(EIST,"Too Many Samples")
 }
 
 record(ao, "$(P)$(R)$(ACQ_NAME)UpdateTime"){
