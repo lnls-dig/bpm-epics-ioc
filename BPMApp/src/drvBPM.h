@@ -53,6 +53,7 @@ typedef enum {
     BPMStatusAcquire,
     BPMStatusErrAcq,
     BPMStatusAborted,
+    BPMStatusErrTooManyPoints,
 } bpm_status_types;
 
 /* Waveform IDs */
@@ -453,7 +454,8 @@ typedef enum {
 class drvBPM : public asynNDArrayDriver {
     public:
         drvBPM(const char *portName, const char *endpoint,
-                int bpmNumber, int verbose, int timeout);
+                int bpmNumber, int verbose, int timeout, 
+                int maxPoints);
         ~drvBPM();
 
         /* These are the methods that we override from asynPortDriver */
@@ -592,6 +594,7 @@ class drvBPM : public asynNDArrayDriver {
         bpm_single_pass_t *bpmSinglePass[NUM_ACQ_CORES_PER_BPM];
         char *endpoint;
         int bpmNumber;
+        int bpmMaxPoints;
         int verbose;
         int timeout;
         char *bpmPortName;

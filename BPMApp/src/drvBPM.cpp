@@ -570,7 +570,7 @@ get_service_id_err:
  * \param[in] endpoint The device address string ]
  * */
 drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-        int verbose, int timeout)
+        int verbose, int timeout, int maxPoints)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     (int)NUM_PARAMS,
@@ -587,6 +587,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     /* Create portName so we can create a new AsynUser later */
     bpmPortName = epicsStrDup(portName);
+    bpmMaxPoints = maxPoints;
 
     this->endpoint = strdup(endpoint);
     if (this->endpoint == NULL) {
@@ -1511,7 +1512,9 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 newAcq = 0;
             }
             /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-            else if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
+            else if (bpmStatus != BPMStatusErrAcq && 
+                     bpmStatus != BPMStatusAborted && 
+                     bpmStatus != BPMStatusErrTooManyPoints) {
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
             }
@@ -1569,6 +1572,17 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
          * samples in each dimension */
         dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
+         * points for the Waveform Plugins */ 
+        if (dims[1] > bpmMaxPoints) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (> %d)\n",
+                    driverName, functionName, bpmMaxPoints);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrTooManyPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
 
         /* Waveform statistics */
         epicsTimeGetCurrent(&now);
@@ -1815,7 +1829,9 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-        if (bpmStatus != BPMStatusErrAcq && bpmStatus != BPMStatusAborted) {
+        if (bpmStatus != BPMStatusErrAcq && 
+            bpmStatus != BPMStatusAborted && 
+            bpmStatus != BPMStatusErrTooManyPoints) {
             setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
             callParamCallbacks(coreID);
         }
@@ -1875,6 +1891,17 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
          * samples in each dimension */
         dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
+         * points for the Waveform Plugins */ 
+        if (dims[1] > bpmMaxPoints) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (> %d)\n",
+                    driverName, functionName, bpmMaxPoints);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrTooManyPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
 
         /* Waveform statistics */
         epicsTimeGetCurrent(&now);
@@ -3926,9 +3953,10 @@ extern "C" {
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
     int drvBPMConfigure(const char *portName, const char *endpoint,
-            int bpmNumber, int verbose, int timeout)
+            int bpmNumber, int verbose, int timeout, int maxPoints)
     {
-        new drvBPM(portName, endpoint, bpmNumber, verbose, timeout);
+        new drvBPM(portName, endpoint, bpmNumber, verbose, timeout,
+                maxPoints);
         return(asynSuccess);
     }
 
@@ -3938,16 +3966,18 @@ extern "C" {
     static const iocshArg initArg2 = { "bpmNumber", iocshArgInt};
     static const iocshArg initArg3 = { "verbose", iocshArgInt};
     static const iocshArg initArg4 = { "timeout", iocshArgInt};
+    static const iocshArg initArg5 = { "maxPoints", iocshArgInt};
     static const iocshArg * const initArgs[] = {&initArg0,
         &initArg1,
         &initArg2,
         &initArg3,
-        &initArg4};
-    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",5,initArgs};
+        &initArg4,
+        &initArg5};
+    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",6,initArgs};
     static void initCallFunc(const iocshArgBuf *args)
     {
         drvBPMConfigure(args[0].sval, args[1].sval, args[2].ival,
-                args[3].ival, args[4].ival);
+                args[3].ival, args[4].ival, args[5].ival);
     }
 
     void drvBPMRegister(void)
