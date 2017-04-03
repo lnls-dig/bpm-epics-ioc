@@ -2740,7 +2740,7 @@ $(pv_value)</tooltip>
         <path>NDFileNetCDF.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(MODULE)_ABCD_NETCDF:</R>
+          <R>$(MODULE)_ABCD_NETCDF</R>
           <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
@@ -2750,7 +2750,7 @@ $(pv_value)</tooltip>
         <path>NDFileHDF5.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
-          <R>$(MODULE)_ABCD_HDF5:</R>
+          <R>$(MODULE)_ABCD_HDF5</R>
           <P>$(P)$(R)</P>
         </macros>
         <replace>0</replace>
