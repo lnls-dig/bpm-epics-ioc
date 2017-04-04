@@ -554,7 +554,7 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5574</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>$(P)$(R) Physical Trigger 12-23</text>
+    <text>$(P)$(R) Physical Trigger 0-11</text>
     <scripts />
     <height>31</height>
     <border_width>1</border_width>
@@ -954,7 +954,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>12</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_0)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -1870,7 +1870,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>13</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_1)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -2786,7 +2786,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>14</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_2)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -3702,7 +3702,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>15</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_3)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -4618,7 +4618,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>16</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_4)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -5534,7 +5534,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>17</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_5)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -6450,7 +6450,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>18</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_6)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -7366,7 +7366,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>19</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_7)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -8282,7 +8282,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>20</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_8)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -9198,7 +9198,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>21</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_9)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -10114,7 +10114,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>22</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_10)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -11030,7 +11030,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>23</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_11)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -12375,7 +12375,7 @@ $(pv_value)</tooltip>
     <rules />
     <crop_left>0</crop_left>
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:2a40</wuid>
+    <wuid>-57cdac8b:15a052f6efd:2a17</wuid>
     <auto_size>true</auto_size>
     <image_file>trigger_phys_css.png</image_file>
     <scripts />

@@ -260,6 +260,46 @@ $(pv_value)</tooltip>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </font>
   </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4b176946:14ef51d6cd0:-5574</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>$(P)$(R) Logical Trigger 0-11</text>
+    <scripts />
+    <height>31</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>334</width>
+    <x>8</x>
+    <name>Label_1</name>
+    <y>12</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="1">Default Bold</opifont.name>
+    </font>
+  </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
     <border_style>0</border_style>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
@@ -529,7 +569,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>12</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_0)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -1799,7 +1839,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>13</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_1)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -2384,7 +2424,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>14</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_2)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -2969,7 +3009,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>15</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_3)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -3554,7 +3594,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>16</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_4)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -4139,7 +4179,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>17</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_5)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -4724,7 +4764,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>18</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_6)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -5309,7 +5349,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>19</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_7)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -5894,7 +5934,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>20</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_8)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -6479,7 +6519,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>21</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_9)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -7064,7 +7104,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>22</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_10)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -7649,7 +7689,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <macros>
       <include_parent_macros>true</include_parent_macros>
-      <TRIGGER_CHAN>23</TRIGGER_CHAN>
+      <TRIGGER_CHAN>$(TRIGGER_CHAN_11)</TRIGGER_CHAN>
     </macros>
     <visible>true</visible>
     <border_color>
@@ -8216,53 +8256,13 @@ $(pv_value)</tooltip>
       </font>
     </widget>
   </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-776a6faf:154e4480072:-20ad</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>$(P)$(R) Logical Trigger 12-23</text>
-    <scripts />
-    <height>31</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>334</width>
-    <x>8</x>
-    <name>Label_64</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="1">Default Bold</opifont.name>
-    </font>
-  </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Image" version="1.0.0">
     <border_style>0</border_style>
     <tooltip></tooltip>
     <rules />
     <crop_left>0</crop_left>
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14de</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2d16</wuid>
     <auto_size>true</auto_size>
     <image_file>trigger_logic_css.png</image_file>
     <scripts />
@@ -8318,7 +8318,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14dd</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2cc4</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>recv trig. in</text>
@@ -8342,7 +8342,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>87</width>
     <x>852</x>
-    <name>Label_65</name>
+    <name>Label_64</name>
     <y>45</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -8358,7 +8358,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14dc</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2ca4</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -8382,7 +8382,7 @@ $(pv_value)</tooltip>
     </background_color>
     <width>24</width>
     <x>823</x>
-    <name>Label_66</name>
+    <name>Label_65</name>
     <y>70</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -8398,7 +8398,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14db</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c5e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 0</text>
@@ -8438,7 +8438,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14da</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c52</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 1</text>
@@ -8478,7 +8478,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d9</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c48</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 2</text>
@@ -8518,7 +8518,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d8</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c43</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 3</text>
@@ -8558,7 +8558,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d7</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c32</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 4</text>
@@ -8598,7 +8598,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d6</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c31</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 5</text>
@@ -8638,7 +8638,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d5</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c30</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 6</text>
@@ -8678,7 +8678,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d4</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2c2f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>phys. trig 7</text>
@@ -8723,7 +8723,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d3</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b91</wuid>
     <transparent>false</transparent>
     <points>
       <point x="823" y="45" />
@@ -8780,7 +8780,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d2</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b90</wuid>
     <transparent>false</transparent>
     <points>
       <point x="944" y="45" />
@@ -8837,7 +8837,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d1</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b80</wuid>
     <transparent>false</transparent>
     <points>
       <point x="944" y="227" />
@@ -8894,7 +8894,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14d0</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b78</wuid>
     <transparent>false</transparent>
     <points>
       <point x="950" y="45" />
@@ -8951,7 +8951,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14cf</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b68</wuid>
     <transparent>false</transparent>
     <points>
       <point x="846" y="45" />
@@ -9008,7 +9008,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ce</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b5d</wuid>
     <transparent>false</transparent>
     <points>
       <point x="944" y="64" />
@@ -9060,7 +9060,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14cd</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2b0b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>transm. trig. out</text>
@@ -9105,7 +9105,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14cc</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2afa</wuid>
     <transparent>false</transparent>
     <points>
       <point x="811" y="528" />
@@ -9162,7 +9162,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14cb</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2af9</wuid>
     <transparent>false</transparent>
     <points>
       <point x="931" y="528" />
@@ -9219,7 +9219,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ca</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2af8</wuid>
     <transparent>false</transparent>
     <points>
       <point x="954" y="709" />
@@ -9276,7 +9276,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c9</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2af7</wuid>
     <transparent>false</transparent>
     <points>
       <point x="961" y="528" />
@@ -9333,7 +9333,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c8</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2af6</wuid>
     <transparent>false</transparent>
     <points>
       <point x="834" y="528" />
@@ -9390,7 +9390,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c7</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2af5</wuid>
     <transparent>false</transparent>
     <points>
       <point x="954" y="547" />
@@ -9442,7 +9442,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c6</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2833</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -9482,7 +9482,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c5</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2821</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>2</text>
@@ -9522,7 +9522,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c4</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2817</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>3</text>
@@ -9562,7 +9562,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c3</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-280d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>4</text>
@@ -9602,7 +9602,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c2</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2803</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>5</text>
@@ -9642,7 +9642,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c1</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-27fe</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>6</text>
@@ -9682,7 +9682,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14c0</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-27f9</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>7</text>
@@ -9722,7 +9722,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14bf</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ef</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>recv trig. out</text>
@@ -9762,7 +9762,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14be</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ee</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -9807,7 +9807,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14bd</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e5</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1431" y="112" />
@@ -9864,7 +9864,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14bc</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e4</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1552" y="112" />
@@ -9921,7 +9921,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14bb</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e3</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1552" y="316" />
@@ -9978,7 +9978,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ba</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e2</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1558" y="112" />
@@ -10035,7 +10035,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b9</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e1</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1454" y="112" />
@@ -10092,7 +10092,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b8</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26e0</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1552" y="131" />
@@ -10144,7 +10144,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b7</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26df</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -10184,7 +10184,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b6</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26de</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>2</text>
@@ -10224,7 +10224,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b5</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26dd</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>3</text>
@@ -10264,7 +10264,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b4</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26dc</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>4</text>
@@ -10304,7 +10304,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b3</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26db</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>5</text>
@@ -10344,7 +10344,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b2</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26da</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>6</text>
@@ -10384,7 +10384,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b1</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26d9</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>7</text>
@@ -10424,7 +10424,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14b0</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26b2</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>8</text>
@@ -10464,7 +10464,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14af</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26b1</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>9</text>
@@ -10504,7 +10504,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ae</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26b0</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>10</text>
@@ -10544,7 +10544,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ad</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26af</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>11</text>
@@ -10584,7 +10584,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ac</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ae</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>12</text>
@@ -10624,7 +10624,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14ab</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ad</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>13</text>
@@ -10664,7 +10664,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14aa</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ac</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>14</text>
@@ -10704,7 +10704,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a9</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-26ab</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>15</text>
@@ -10744,7 +10744,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a8</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-268e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>16</text>
@@ -10784,7 +10784,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a7</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-268d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>17</text>
@@ -10824,7 +10824,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a6</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25e3</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>recv trig. out</text>
@@ -10869,7 +10869,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a5</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25e1</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1570" y="112" />
@@ -10926,7 +10926,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a4</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25e0</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1691" y="112" />
@@ -10983,7 +10983,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a3</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25df</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1691" y="316" />
@@ -11040,7 +11040,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a2</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25de</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1697" y="112" />
@@ -11097,7 +11097,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a1</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25dd</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1593" y="112" />
@@ -11154,7 +11154,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-14a0</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25dc</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1691" y="131" />
@@ -11206,7 +11206,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25b7</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>ADC</text>
@@ -11246,7 +11246,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25ad</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>ADC swap</text>
@@ -11286,7 +11286,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-25a3</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>mixer I/Q</text>
@@ -11326,7 +11326,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2597</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -11366,7 +11366,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-258b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>TBT I/Q</text>
@@ -11406,7 +11406,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-149a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-257b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -11446,7 +11446,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1499</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2573</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>TBT Amp</text>
@@ -11486,7 +11486,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1498</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2569</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>TBT Phase</text>
@@ -11526,7 +11526,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1497</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-255b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>TBT Pos</text>
@@ -11566,7 +11566,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1496</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-254f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FOFB I/Q</text>
@@ -11606,7 +11606,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1495</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-253a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -11646,7 +11646,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1494</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2521</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FOFB Amp</text>
@@ -11686,7 +11686,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1493</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2520</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FOFB Phase</text>
@@ -11726,7 +11726,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1492</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-251f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FOFB Pos</text>
@@ -11766,7 +11766,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1491</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2515</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>Monit. Amp</text>
@@ -11806,7 +11806,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1490</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2507</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>Monit. Pos</text>
@@ -11846,7 +11846,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-24fb</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>Monit. 1 Pos</text>
@@ -11886,7 +11886,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-24f1</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FMC trig out</text>
@@ -11926,7 +11926,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-246b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>recv internal
@@ -11967,7 +11967,7 @@ trig in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-246a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -12012,7 +12012,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2469</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1509" y="357" />
@@ -12069,7 +12069,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-148a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2468</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1630" y="357" />
@@ -12126,7 +12126,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1489</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2466</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1642" y="357" />
@@ -12183,7 +12183,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1488</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2465</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1532" y="357" />
@@ -12240,7 +12240,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1487</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2464</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1630" y="394" />
@@ -12292,7 +12292,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1486</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2463</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -12332,7 +12332,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1485</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-245b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>FMC trig in</text>
@@ -12372,7 +12372,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1484</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-245a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>DSP sw clock</text>
@@ -12417,7 +12417,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1483</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2425</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1630" y="439" />
@@ -12469,7 +12469,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1482</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2353</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>transm 
@@ -12510,7 +12510,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1481</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2352</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -12555,7 +12555,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1480</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2351</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1437" y="519" />
@@ -12612,7 +12612,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2350</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1558" y="519" />
@@ -12669,7 +12669,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234f</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1558" y="742" />
@@ -12726,7 +12726,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234e</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1564" y="519" />
@@ -12783,7 +12783,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234d</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1460" y="519" />
@@ -12840,7 +12840,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234c</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1558" y="557" />
@@ -12892,7 +12892,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-147a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -12932,7 +12932,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1479</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-234a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>2</text>
@@ -12972,7 +12972,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1478</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2349</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>3</text>
@@ -13012,7 +13012,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1477</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2348</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>4</text>
@@ -13052,7 +13052,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1476</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2347</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>5</text>
@@ -13092,7 +13092,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1475</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2346</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>6</text>
@@ -13132,7 +13132,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1474</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2345</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>7</text>
@@ -13172,7 +13172,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1473</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2344</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>8</text>
@@ -13212,7 +13212,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1472</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2343</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>9</text>
@@ -13252,7 +13252,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1471</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2342</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>10</text>
@@ -13292,7 +13292,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1470</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2341</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>11</text>
@@ -13332,7 +13332,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2340</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>12</text>
@@ -13372,7 +13372,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-233f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>13</text>
@@ -13412,7 +13412,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-233e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>14</text>
@@ -13452,7 +13452,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-233d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>15</text>
@@ -13492,7 +13492,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-233c</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>16</text>
@@ -13532,7 +13532,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-146a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-233b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>17</text>
@@ -13577,7 +13577,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1469</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2339</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1576" y="519" />
@@ -13634,7 +13634,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1468</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2337</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1697" y="742" />
@@ -13691,7 +13691,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1467</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2334</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1697" y="557" />
@@ -13743,7 +13743,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1466</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2330</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -13788,7 +13788,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1465</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2178</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1697" y="519" />
@@ -13845,7 +13845,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1464</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-216b</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1703" y="519" />
@@ -13902,7 +13902,7 @@ $(pv_value)</tooltip>
     <arrows>0</arrows>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1463</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2163</wuid>
     <transparent>false</transparent>
     <points>
       <point x="1603" y="519" />
@@ -13954,7 +13954,7 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1462</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-215b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>transm 
@@ -13995,7 +13995,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1461</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2153</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14035,7 +14035,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1460</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-214e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14075,7 +14075,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2149</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14115,7 +14115,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-212a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14155,7 +14155,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2129</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14195,7 +14195,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2128</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14235,7 +14235,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2127</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14275,7 +14275,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-145a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-211f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14315,7 +14315,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1459</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20ff</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14355,7 +14355,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1458</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20fe</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14395,7 +14395,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1457</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20fd</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14435,7 +14435,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1456</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20fc</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14475,7 +14475,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1455</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20fb</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14515,7 +14515,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1454</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20fa</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14555,7 +14555,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1453</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20f9</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14595,7 +14595,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1452</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20f8</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14635,7 +14635,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1451</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-20f7</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -14675,7 +14675,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1450</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2068</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -14715,7 +14715,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144f</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -14755,7 +14755,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144e</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>2</text>
@@ -14795,7 +14795,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144d</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>3</text>
@@ -14835,7 +14835,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144c</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205c</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>4</text>
@@ -14875,7 +14875,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144b</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>5</text>
@@ -14915,7 +14915,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-144a</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-205a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>6</text>
@@ -14955,7 +14955,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1449</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2059</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>7</text>
@@ -14995,7 +14995,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1448</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2051</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15035,7 +15035,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1447</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-204c</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15075,7 +15075,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1446</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2047</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15115,7 +15115,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1445</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2042</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15155,7 +15155,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1444</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-2020</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15195,7 +15195,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1443</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-201f</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15235,7 +15235,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1442</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-201e</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>
@@ -15275,7 +15275,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-1441</wuid>
+    <wuid>-57cdac8b:15a052f6efd:-201d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>unconnected</text>

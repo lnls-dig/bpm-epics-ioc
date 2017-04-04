@@ -1974,10 +1974,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>LogicalTrigger0_11.opi</path>
+        <path>LogicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>0</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>1</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>2</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>3</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>4</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>5</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>6</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>7</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>8</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>9</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>10</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>11</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2025,10 +2037,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>LogicalTrigger12_23.opi</path>
+        <path>LogicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>12</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>13</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>14</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>15</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>16</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>17</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>18</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>19</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>20</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>21</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>22</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>23</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2076,10 +2100,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>PhysicalTrigger0_11.opi</path>
+        <path>PhysicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>0</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>1</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>2</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>3</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>4</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>5</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>6</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>7</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>8</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>9</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>10</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>11</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2127,10 +2163,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>PhysicalTrigger12_23.opi</path>
+        <path>PhysicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>12</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>13</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>14</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>15</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>16</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>17</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>18</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>19</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>20</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>21</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>22</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>23</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2327,10 +2375,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>LogicalTrigger0_11.opi</path>
+        <path>LogicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER_PM</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>0</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>1</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>2</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>3</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>4</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>5</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>6</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>7</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>8</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>9</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>10</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>11</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2378,10 +2438,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>LogicalTrigger12_23.opi</path>
+        <path>LogicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER_PM</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>12</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>13</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>14</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>15</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>16</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>17</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>18</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>19</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>20</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>21</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>22</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>23</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2429,10 +2501,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>PhysicalTrigger0_11.opi</path>
+        <path>PhysicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER_PM</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>0</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>1</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>2</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>3</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>4</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>5</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>6</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>7</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>8</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>9</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>10</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>11</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
@@ -2480,10 +2564,22 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>PhysicalTrigger12_23.opi</path>
+        <path>PhysicalTrigger.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <TRIGGER_NAME>TRIGGER_PM</TRIGGER_NAME>
+          <TRIGGER_CHAN_0>12</TRIGGER_CHAN_0>
+          <TRIGGER_CHAN_1>13</TRIGGER_CHAN_1>
+          <TRIGGER_CHAN_2>14</TRIGGER_CHAN_2>
+          <TRIGGER_CHAN_3>15</TRIGGER_CHAN_3>
+          <TRIGGER_CHAN_4>16</TRIGGER_CHAN_4>
+          <TRIGGER_CHAN_5>17</TRIGGER_CHAN_5>
+          <TRIGGER_CHAN_6>18</TRIGGER_CHAN_6>
+          <TRIGGER_CHAN_7>19</TRIGGER_CHAN_7>
+          <TRIGGER_CHAN_8>20</TRIGGER_CHAN_8>
+          <TRIGGER_CHAN_9>21</TRIGGER_CHAN_9>
+          <TRIGGER_CHAN_10>22</TRIGGER_CHAN_10>
+          <TRIGGER_CHAN_11>23</TRIGGER_CHAN_11>
         </macros>
         <replace>0</replace>
         <description></description>
