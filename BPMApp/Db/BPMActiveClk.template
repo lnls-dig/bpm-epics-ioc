@@ -115,6 +115,19 @@ record(mbbi,"$(P)$(R)ADCAD9510ClkSel-RB"){
     field(ONST,"clk2")
 }
 
+record(mbbo,"$(P)$(R)ActiveClkRstAdcs"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"reset all ADCs")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACTIVE_CLK_RST_ADCS")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"no change")
+    field(ONST,"reset")
+}
+
 record(longout,"$(P)$(R)ADCAD9510ADiv"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 A divider")
