@@ -3898,7 +3898,7 @@ get_service_err:
 
 asynStatus drvBPM::setSi57xFreq(int addr)
 {
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "setSi57xFreq";
 
     /* On any frequency change, abort the current acquisitions
@@ -3921,6 +3921,18 @@ asynStatus drvBPM::setSi57xFreq(int addr)
             "%s:%s: error calling setParamDouble, status=%d\n",
             driverName, functionName, status);
         goto set_si57x_freq_err;
+    }
+
+    /* Restart AD9510 and ADCs */
+    setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, 0xFFFFFFFF);
+    status = setParam32 (P_AdcAD9510Dflt, 0xFFFFFFFF, addr);
+    status |= setParam32 (P_ActiveClkRstADCs, 0xFFFFFFFF, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error restarting AD9510 or ADCs, status=%d\n",
+            driverName, functionName, status);
+        goto set_ad9510_adcs_err;
     }
 
     /* Restart Acq cores again */
@@ -3946,9 +3958,10 @@ asynStatus drvBPM::setSi57xFreq(int addr)
 
 init_acq_pm_err:
 abort2_acq_err:
+set_ad9510_adcs_err:
 set_si57x_freq_err:
 abort_acq_err:
-    return status;
+    return (asynStatus) status;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
