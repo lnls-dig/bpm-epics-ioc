@@ -216,6 +216,15 @@ typedef enum {
 #define BPM_NUMBER_MIN              1
 #define BPM_NUMBER_MAX              MAX_BPMS
 
+/* AD9510 clock sel */
+typedef enum {
+    AD9510_ADC_CLK_SEL_1 = 1,
+    AD9510_ADC_CLK_SEL_2 = 2,
+    AD9510_ADC_CLK_SEL_END,
+} ad9510_clk_sel_types;
+
+#define MAX_AD9510_CLK_SEL_TYPES    AD9510_ADC_CLK_SEL_END
+
 /* BPM Mappping structure */
 typedef struct {
     int board;
@@ -652,6 +661,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
+        asynStatus setAdcClkSel(epicsUInt32 mask, int addr);
         asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus setAdcReg(epicsUInt32 mask, int addr);
         asynStatus getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr);

@@ -920,7 +920,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcShdn,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcPga,       0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_AdcClkSel,    0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcClkSel,    AD9510_ADC_CLK_SEL_1,
+                                                            0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
@@ -2911,6 +2912,9 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* If run was set then wake up the simulation task */
         setAcquire(addr);
     }
+    else if (function == P_AdcClkSel) {
+        setAdcClkSel(mask, addr);
+    }
     else if (function == P_DataTrigChan) {
         /* Ah... FIXME: ugly static mapping! */
         setDataTrigChan(mask, addr);
@@ -3747,6 +3751,37 @@ halcs_set_data_trig_chan_err:
 get_service_err:
 halcs_inv_channel:
     return (asynStatus)status;
+}
+
+asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    asynStatus status = asynSuccess;
+    const char* functionName = "setAdcClkSel";
+
+    /* Call ClkSel function */
+    status = setParam32 (P_AdcClkSel, mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error setting AdcClkSel, status=%d\n",
+            driverName, functionName, status);
+        goto set_adc_clk_sel_err;
+    }
+
+    /* Restart AD9510 and ADCs */
+    status = resetAD9510AndADCs(mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling resetAD9510AndADCs, status=%d\n",
+            driverName, functionName, status);
+        goto set_ad9510_adcs_err;
+    }
+
+    return status;
+
+set_ad9510_adcs_err:
+set_adc_clk_sel_err:
+    return status;
 }
 
 asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr)
