@@ -371,6 +371,7 @@ typedef struct {
 #define P_AdcAD9510MuxStatusString  "ADC_AD9510MUXSTATUS"   /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510CpCurrentString  "ADC_AD9510CPCURRENT"   /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510OutputsString    "ADC_AD9510OUTPUTS"     /* asynUInt32Digital,      r/w */
+#define P_ActiveClkRstADCsString    "ACTIVE_CLK_RST_ADCS"   /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR0String        "FMCPICO_RNG_R0"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR1String        "FMCPICO_RNG_R1"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR2String        "FMCPICO_RNG_R2"        /* asynUInt32Digital,      r/w */
@@ -522,6 +523,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcAD9510MuxStatus;
         int P_AdcAD9510CpCurrent;
         int P_AdcAD9510Outputs;
+        int P_ActiveClkRstADCs;
         int P_FmcPicoRngR0;
         int P_FmcPicoRngR1;
         int P_FmcPicoRngR2;
