@@ -3925,13 +3925,10 @@ asynStatus drvBPM::setSi57xFreq(int addr)
     }
 
     /* Restart AD9510 and ADCs */
-    setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, 0xFFFFFFFF);
-    status = setParam32 (P_AdcAD9510Dflt, 0xFFFFFFFF, addr);
-    status |= setParam32 (P_ActiveClkRstADCs, 0xFFFFFFFF, addr);
+    status = resetAD9510AndADCs(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error restarting AD9510 or ADCs, status=%d\n",
+            "%s:%s: error calling resetAD9510AndADCs, status=%d\n",
             driverName, functionName, status);
         goto set_ad9510_adcs_err;
     }
@@ -3963,6 +3960,30 @@ set_ad9510_adcs_err:
 set_si57x_freq_err:
 abort_acq_err:
     return (asynStatus) status;
+}
+
+asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
+{
+    int status = asynSuccess;
+    const char* functionName = "resetAD9510AndADCs";
+
+    /* Restart AD9510 and ADCs */
+    setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
+    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
+
+    status = setParam32 (P_AdcAD9510Dflt, mask, addr);
+    status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error restarting AD9510 or ADCs, status=%d\n",
+            driverName, functionName, status);
+        goto set_ad9510_adcs_err;
+    }
+ 
+    return (asynStatus)status;
+
+set_ad9510_adcs_err:
+    return (asynStatus)status;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
