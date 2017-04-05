@@ -396,6 +396,7 @@ static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK"
 static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status};
 static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
+static const functionsInt32_t bpmSetGetActiveClkRstADCsFunc = {"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32};
 
 static const functionsInt32_t bpmSetGetFmcPicoRngR0Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0};
 static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1};
