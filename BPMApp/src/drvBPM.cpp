@@ -4005,6 +4005,7 @@ asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
     /* Restart AD9510 and ADCs */
     setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
     setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
+    callParamCallbacks(addr);
 
     status = setParam32 (P_AdcAD9510Dflt, mask, addr);
     status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
