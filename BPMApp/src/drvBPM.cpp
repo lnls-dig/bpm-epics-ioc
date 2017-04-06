@@ -3960,10 +3960,10 @@ asynStatus drvBPM::setSi57xFreq(int addr)
     }
 
     /* Restart AD9510 and ADCs */
-    status = resetAD9510AndADCs(0xFFFFFFFF, addr);
+    status = resetADCs(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling resetAD9510AndADCs, status=%d\n",
+            "%s:%s: error calling resetADCs, status=%d\n",
             driverName, functionName, status);
         goto set_ad9510_adcs_err;
     }
@@ -3997,30 +3997,60 @@ abort_acq_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
+asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
-    const char* functionName = "resetAD9510AndADCs";
+    const char* functionName = "resetAD9510";
 
-    /* Restart AD9510 and ADCs */
+    /* Restart AD9510 */
     setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
-    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
     callParamCallbacks(addr);
 
     status = setParam32 (P_AdcAD9510Dflt, mask, addr);
-    status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error restarting AD9510 or ADCs, status=%d\n",
+            "%s:%s: error restarting AD9510, status=%d\n",
             driverName, functionName, status);
-        goto set_ad9510_adcs_err;
+        goto reset_ad9510_err;
     }
  
     return (asynStatus)status;
 
-set_ad9510_adcs_err:
+reset_ad9510_err:
     return (asynStatus)status;
 }
+
+asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
+{
+    int status = asynSuccess;
+    const char* functionName = "resetADCs";
+
+    /* Restart AD9510 and ADCs */
+    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
+    callParamCallbacks(addr);
+
+    status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error restarting ADCs, status=%d\n",
+            driverName, functionName, status);
+        goto reset_adcs_err;
+    }
+ 
+    return (asynStatus)status;
+
+reset_adcs_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
+{
+    int status = resetAD9510(mask, addr);
+    status |= resetADCs(mask, addr);
+
+    return (asynStatus)status;
+}
+
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
 extern "C" {
