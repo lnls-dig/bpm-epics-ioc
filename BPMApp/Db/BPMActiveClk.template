@@ -238,7 +238,7 @@ record(longin,"$(P)$(R)ADCAD9510MuxStatus-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 mux status")
     field(PINI,"YES")
-    field(SCAN,"1 second")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
 }
 
