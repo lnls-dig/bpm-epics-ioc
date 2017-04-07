@@ -4004,13 +4004,6 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
 
     /* Restart AD9510 */
     setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
-
-    /* In order to update all of the readback values from AD9510,
-     * force a change in all of its parameters and then call
-     * callbacks */
-    forceTriggerCalbacksAD9510(addr);
-    callParamCallbacks(addr);
-
     status = setParam32 (P_AdcAD9510Dflt, mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -4018,6 +4011,12 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_ad9510_err;
     }
+
+    /* In order to update all of the readback values from AD9510,
+     * force a change in all of its parameters and then call
+     * callbacks */
+    forceTriggerCalbacksAD9510(addr);
+    callParamCallbacks(addr);
 
     return (asynStatus)status;
 
@@ -4032,13 +4031,6 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
 
     /* Restart and ADCs */
     setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
-
-    /* In order to update all of the readback values from AD9510,
-     * force a change in all of its parameters and then call
-     * callbacks */
-    forceTriggerCalbacksADCs (addr);
-    callParamCallbacks(addr);
-
     status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -4046,6 +4038,12 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_adcs_err;
     }
+
+    /* In order to update all of the readback values from AD9510,
+     * force a change in all of its parameters and then call
+     * callbacks */
+    forceTriggerCalbacksADCs (addr);
+    callParamCallbacks(addr);
 
     return (asynStatus)status;
 
