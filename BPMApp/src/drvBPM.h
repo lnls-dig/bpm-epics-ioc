@@ -669,6 +669,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus resetAD9510AndADCs(epicsUInt32 mask, int addr);
         asynStatus resetAD9510(epicsUInt32 mask, int addr);
         asynStatus resetADCs(epicsUInt32 mask, int addr);
+        asynStatus forceTriggerCalbacksAD9510(int addr);
+        asynStatus forceTriggerCalbacksADCs(int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

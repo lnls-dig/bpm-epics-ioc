@@ -4004,6 +4004,11 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
 
     /* Restart AD9510 */
     setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
+
+    /* In order to update all of the readback values from AD9510,
+     * force a change in all of its parameters and then call
+     * callbacks */
+    forceTriggerCalbacksAD9510(addr);
     callParamCallbacks(addr);
 
     status = setParam32 (P_AdcAD9510Dflt, mask, addr);
@@ -4013,7 +4018,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_ad9510_err;
     }
- 
+
     return (asynStatus)status;
 
 reset_ad9510_err:
@@ -4025,8 +4030,13 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
     int status = asynSuccess;
     const char* functionName = "resetADCs";
 
-    /* Restart AD9510 and ADCs */
+    /* Restart and ADCs */
     setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
+
+    /* In order to update all of the readback values from AD9510,
+     * force a change in all of its parameters and then call
+     * callbacks */
+    forceTriggerCalbacksADCs (addr);
     callParamCallbacks(addr);
 
     status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
@@ -4036,7 +4046,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_adcs_err;
     }
- 
+
     return (asynStatus)status;
 
 reset_adcs_err:
@@ -4051,6 +4061,132 @@ asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
     return (asynStatus)status;
 }
 
+asynStatus drvBPM::forceTriggerCalbacksAD9510(int addr)
+{
+    int status = asynSuccess;
+    const char* functionName = "forceTriggerCalbacksAD9510";
+
+    epicsUInt32 AdcAD9510PllFunc = 0;
+    epicsUInt32 AdcAD9510PllStatus = 0;
+    epicsUInt32 AdcAD9510ClkSel = 0;
+    epicsUInt32 AdcAD9510ADiv = 0;
+    epicsUInt32 AdcAD9510BDiv = 0;
+    epicsUInt32 AdcAD9510Prescaler = 0;
+    epicsUInt32 AdcAD9510RDiv = 0;
+    epicsUInt32 AdcAD9510PllPDown = 0;
+    epicsUInt32 AdcAD9510MuxStatus = 0;
+    epicsUInt32 AdcAD9510CpCurrent = 0;
+    epicsUInt32 AdcAD9510Outputs = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: forcing trigger callback for AD9510 parameters for addr = %d\n",
+        driverName, functionName, addr);
+
+    /* Get all parameters */
+    getUIntDigitalParam(addr, P_AdcAD9510PllFunc,
+                                        &AdcAD9510PllFunc,  0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510PllStatus,
+                                        &AdcAD9510PllStatus,0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510ClkSel,
+                                        &AdcAD9510ClkSel,   0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510ADiv,
+                                        &AdcAD9510ADiv,     0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510BDiv,
+                                        &AdcAD9510BDiv,     0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510Prescaler,
+                                        &AdcAD9510Prescaler, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510RDiv,
+                                        &AdcAD9510RDiv,     0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510PllPDown,
+                                        &AdcAD9510PllPDown, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
+                                        &AdcAD9510MuxStatus, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
+                                        &AdcAD9510CpCurrent, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcAD9510Outputs,
+                                        &AdcAD9510Outputs,  0xFFFFFFFF);
+
+    /* Change parameter to something else to mark callbacks as changed */
+    setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
+                                        AdcAD9510PllFunc+1,  0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
+                                        AdcAD9510PllStatus+1,0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
+                                        AdcAD9510ClkSel+1,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510ADiv,
+                                        AdcAD9510ADiv+1,      0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510BDiv,
+                                        AdcAD9510BDiv+1,     0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
+                                        AdcAD9510Prescaler+1, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510RDiv,
+                                        AdcAD9510RDiv+1,     0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
+                                        AdcAD9510PllPDown+1, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
+                                        AdcAD9510MuxStatus+1, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
+                                        AdcAD9510CpCurrent+1, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510Outputs,
+                                        AdcAD9510Outputs+1,  0xFFFFFFFF);
+
+    /* Go back to the old value to keep the parameter */
+    setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
+                                        AdcAD9510PllFunc,  0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
+                                        AdcAD9510PllStatus,0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
+                                        AdcAD9510ClkSel,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510ADiv,
+                                        AdcAD9510ADiv,      0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510BDiv,
+                                        AdcAD9510BDiv,     0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
+                                        AdcAD9510Prescaler, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510RDiv,
+                                        AdcAD9510RDiv,     0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
+                                        AdcAD9510PllPDown, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
+                                        AdcAD9510MuxStatus, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
+                                        AdcAD9510CpCurrent, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcAD9510Outputs,
+                                        AdcAD9510Outputs,  0xFFFFFFFF);
+
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::forceTriggerCalbacksADCs(int addr)
+{
+    int status = asynSuccess;
+    const char* functionName = "forceTriggerCalbacksADCs";
+
+    epicsUInt32 AdcTestMode = 0;
+    epicsUInt32 AdcRstModes = 0;
+    epicsUInt32 AdcTemp = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: forcing trigger callback for ADC parameters for addr = %d\n",
+        driverName, functionName, addr);
+
+    /* Get all parameters */
+    getUIntDigitalParam(addr, P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_AdcTemp,     &AdcTemp,       0xFFFFFFFF);
+
+    /* Change parameter to something else to mark callbacks as changed */
+    setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode+1,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes+1,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp+1,       0xFFFFFFFF);
+
+    /* Go back to the old value to keep the parameter */
+    setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
+
+    return (asynStatus)status;
+}
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
 extern "C" {
