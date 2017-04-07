@@ -464,7 +464,7 @@ typedef enum {
 class drvBPM : public asynNDArrayDriver {
     public:
         drvBPM(const char *portName, const char *endpoint,
-                int bpmNumber, int verbose, int timeout, 
+                int bpmNumber, int verbose, int timeout,
                 int maxPoints);
         ~drvBPM();
 
@@ -558,19 +558,19 @@ class drvBPM : public asynNDArrayDriver {
         int P_TriggerHwDly;
         int P_DataTrigChan;
         int P_ChannelSampleSize;
-        int P_ChannelNumAtoms; 
+        int P_ChannelNumAtoms;
         int P_ChannelAtomWidth;
         int P_MonitAmpA;
         int P_MonitAmpB;
         int P_MonitAmpC;
         int P_MonitAmpD;
-        int P_SPAmpA;  
-        int P_SPAmpB;  
-        int P_SPAmpC;  
-        int P_SPAmpD;  
-        int P_SPPosX;  
-        int P_SPPosY;  
-        int P_SPPosQ;  
+        int P_SPAmpA;
+        int P_SPAmpB;
+        int P_SPAmpC;
+        int P_SPAmpD;
+        int P_SPPosX;
+        int P_SPPosY;
+        int P_SPPosQ;
         int P_SPPosSum;
         int P_AdcTestMode;
         int P_AdcRstModes;

@@ -713,11 +713,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                asynParamUInt32Digital, &P_TriggerHwDly);
         createParam(addr, P_DataTrigChanString,
                                                asynParamUInt32Digital, &P_DataTrigChan);
-        createParam(addr, P_ChannelSampleSizeString,     
+        createParam(addr, P_ChannelSampleSizeString,
                                                asynParamUInt32Digital, &P_ChannelSampleSize);
-        createParam(addr, P_ChannelNumAtomsString,     
+        createParam(addr, P_ChannelNumAtomsString,
                                                asynParamUInt32Digital, &P_ChannelNumAtoms);
-        createParam(addr, P_ChannelAtomWidthString,     
+        createParam(addr, P_ChannelAtomWidthString,
                                                asynParamUInt32Digital, &P_ChannelAtomWidth);
     }
 
@@ -865,11 +865,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                    0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_DataTrigChan,
                                                    0,                  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_ChannelSampleSize, 
+        setUIntDigitalParam(addr, P_ChannelSampleSize,
                                                    DFLT_SAMPLE_SIZE,   0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_ChannelNumAtoms,   
+        setUIntDigitalParam(addr, P_ChannelNumAtoms,
                                                    DFLT_NUM_ATOMS,     0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_ChannelAtomWidth,   
+        setUIntDigitalParam(addr, P_ChannelAtomWidth,
                                                    DFLT_ATOM_WIDTH,    0xFFFFFFFF);
     }
 
@@ -1519,8 +1519,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 newAcq = 0;
             }
             /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-            else if (bpmStatus != BPMStatusErrAcq && 
-                     bpmStatus != BPMStatusAborted && 
+            else if (bpmStatus != BPMStatusErrAcq &&
+                     bpmStatus != BPMStatusAborted &&
                      bpmStatus != BPMStatusErrTooManyPoints) {
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
@@ -1556,11 +1556,11 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         getIntegerParam(    coreID , P_Channel      , &channel);
         getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
         getDoubleParam(              P_AdcClkFreq   , &adcFreq);
-        getUIntDigitalParam(coreID,  P_ChannelSampleSize, 
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize,
                                                       &sampleSize,        0xFFFFFFFF);
-        getUIntDigitalParam(coreID,  P_ChannelNumAtoms, 
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
                                                       &numAtoms,          0xFFFFFFFF);
-        getUIntDigitalParam(coreID,  P_ChannelAtomWidth, 
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth,
                                                       &atomWidth,         0xFFFFFFFF);
 
         /* Convert bit to byte */
@@ -1581,7 +1581,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
         /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
-         * points for the Waveform Plugins */ 
+         * points for the Waveform Plugins */
         if (dims[1] > bpmMaxPoints) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: invalid number of points for acquisition (> %d)\n",
@@ -1836,8 +1836,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-        if (bpmStatus != BPMStatusErrAcq && 
-            bpmStatus != BPMStatusAborted && 
+        if (bpmStatus != BPMStatusErrAcq &&
+            bpmStatus != BPMStatusAborted &&
             bpmStatus != BPMStatusErrTooManyPoints) {
             setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
             callParamCallbacks(coreID);
@@ -1870,11 +1870,11 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getDoubleParam(              P_AdcClkFreq   , &adcFreq);
-        getUIntDigitalParam(coreID,  P_ChannelSampleSize, 
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize,
                                                       &sampleSize,        0xFFFFFFFF);
-        getUIntDigitalParam(coreID,  P_ChannelNumAtoms, 
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
                                                       &numAtoms,          0xFFFFFFFF);
-        getUIntDigitalParam(coreID,  P_ChannelAtomWidth, 
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth,
                                                       &atomWidth,          0xFFFFFFFF);
 
         /* Convert bit to byte */
@@ -1900,7 +1900,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
         /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
-         * points for the Waveform Plugins */ 
+         * points for the Waveform Plugins */
         if (dims[1] > bpmMaxPoints) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: invalid number of points for acquisition (> %d)\n",
