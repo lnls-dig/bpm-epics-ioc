@@ -4015,7 +4015,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
      * callbacks */
-    forceTriggerCalbacksAD9510(addr);
+    readAD9510Params(addr);
     callParamCallbacks(addr);
 
     return (asynStatus)status;
@@ -4042,7 +4042,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
      * callbacks */
-    forceTriggerCalbacksADCs (addr);
+    readADCsParams (addr);
     callParamCallbacks(addr);
 
     return (asynStatus)status;
@@ -4059,10 +4059,10 @@ asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::forceTriggerCalbacksAD9510(int addr)
+asynStatus drvBPM::readAD9510Params(int addr)
 {
     int status = asynSuccess;
-    const char* functionName = "forceTriggerCalbacksAD9510";
+    const char* functionName = "readAD9510Params";
 
     epicsUInt32 AdcAD9510PllFunc = 0;
     epicsUInt32 AdcAD9510PllStatus = 0;
@@ -4080,55 +4080,20 @@ asynStatus drvBPM::forceTriggerCalbacksAD9510(int addr)
         "%s:%s: forcing trigger callback for AD9510 parameters for addr = %d\n",
         driverName, functionName, addr);
 
-    /* Get all parameters */
-    getUIntDigitalParam(addr, P_AdcAD9510PllFunc,
-                                        &AdcAD9510PllFunc,  0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510PllStatus,
-                                        &AdcAD9510PllStatus,0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510ClkSel,
-                                        &AdcAD9510ClkSel,   0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510ADiv,
-                                        &AdcAD9510ADiv,     0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510BDiv,
-                                        &AdcAD9510BDiv,     0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510Prescaler,
-                                        &AdcAD9510Prescaler, 0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510RDiv,
-                                        &AdcAD9510RDiv,     0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510PllPDown,
-                                        &AdcAD9510PllPDown, 0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
-                                        &AdcAD9510MuxStatus, 0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
-                                        &AdcAD9510CpCurrent, 0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcAD9510Outputs,
-                                        &AdcAD9510Outputs,  0xFFFFFFFF);
-
-    /* Change parameter to something else to mark callbacks as changed */
-    setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
-                                        AdcAD9510PllFunc+1,  0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
-                                        AdcAD9510PllStatus+1,0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
-                                        AdcAD9510ClkSel+1,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510ADiv,
-                                        AdcAD9510ADiv+1,      0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510BDiv,
-                                        AdcAD9510BDiv+1,     0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
-                                        AdcAD9510Prescaler+1, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510RDiv,
-                                        AdcAD9510RDiv+1,     0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
-                                        AdcAD9510PllPDown+1, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
-                                        AdcAD9510MuxStatus+1, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
-                                        AdcAD9510CpCurrent+1, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510Outputs,
-                                        AdcAD9510Outputs+1,  0xFFFFFFFF);
-
-    /* Go back to the old value to keep the parameter */
+    /* Get all parameters from HW */
+    getParam32(P_AdcAD9510PllFunc,      &AdcAD9510PllFunc,    0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510PllStatus,    &AdcAD9510PllStatus,  0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr); 
+    getParam32(P_AdcAD9510ADiv,         &AdcAD9510ADiv,       0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510BDiv,         &AdcAD9510BDiv,       0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510Prescaler,    &AdcAD9510Prescaler,  0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510RDiv,         &AdcAD9510RDiv,       0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510PllPDown,     &AdcAD9510PllPDown,   0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510MuxStatus,    &AdcAD9510MuxStatus,  0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510CpCurrent,    &AdcAD9510CpCurrent,  0xFFFFFFFF, addr);
+    getParam32(P_AdcAD9510Outputs,      &AdcAD9510Outputs,    0xFFFFFFFF, addr);
+                                                                        
+    /* Write to parameter library */
     setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
                                         AdcAD9510PllFunc,  0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
@@ -4155,10 +4120,10 @@ asynStatus drvBPM::forceTriggerCalbacksAD9510(int addr)
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::forceTriggerCalbacksADCs(int addr)
+asynStatus drvBPM::readADCsParams(int addr)
 {
     int status = asynSuccess;
-    const char* functionName = "forceTriggerCalbacksADCs";
+    const char* functionName = "readADCsParams";
 
     epicsUInt32 AdcTestMode = 0;
     epicsUInt32 AdcRstModes = 0;
@@ -4169,16 +4134,11 @@ asynStatus drvBPM::forceTriggerCalbacksADCs(int addr)
         driverName, functionName, addr);
 
     /* Get all parameters */
-    getUIntDigitalParam(addr, P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF);
-    getUIntDigitalParam(addr, P_AdcTemp,     &AdcTemp,       0xFFFFFFFF);
+    getParam32(P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF, addr);
+    getParam32(P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF, addr);
+    getParam32(P_AdcTemp,     &AdcTemp,       0xFFFFFFFF, addr);
 
-    /* Change parameter to something else to mark callbacks as changed */
-    setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode+1,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes+1,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp+1,       0xFFFFFFFF);
-
-    /* Go back to the old value to keep the parameter */
+    /* Write to parameter library */
     setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
