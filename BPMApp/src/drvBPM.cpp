@@ -2902,34 +2902,41 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
-    /* Set the parameter in the parameter library. */
-    setUIntDigitalParam(addr, function, value, mask);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Some operations need some special handling*/
-    if (function == P_Trigger) {
-        /* If run was set then wake up the simulation task */
-        setAcquire(addr);
-    }
-    else if (function == P_AdcClkSel) {
-        setAdcClkSel(mask, addr);
-    }
-    else if (function == P_DataTrigChan) {
-        /* Ah... FIXME: ugly static mapping! */
-        setDataTrigChan(mask, addr);
-    }
-    else if (function == P_AdcRegWrite) {
-        /* Ah... FIXME: ugly static mapping! */
-        setAdcReg(mask, addr);
-    }
-    else if (function == P_AdcRegRead) {
-        /* Ah... FIXME: ugly static mapping! */
-        getAdcReg(NULL, mask, addr);
+    if (function >= FIRST_COMMAND) {
+        /* Set the parameter in the parameter library. */
+        setUIntDigitalParam(addr, function, value, mask);
+
+        /* Some operations need some special handling*/
+        if (function == P_Trigger) {
+            /* If run was set then wake up the simulation task */
+            setAcquire(addr);
+        }
+        else if (function == P_AdcClkSel) {
+            setAdcClkSel(mask, addr);
+        }
+        else if (function == P_DataTrigChan) {
+            /* Ah... FIXME: ugly static mapping! */
+            setDataTrigChan(mask, addr);
+        }
+        else if (function == P_AdcRegWrite) {
+            /* Ah... FIXME: ugly static mapping! */
+            setAdcReg(mask, addr);
+        }
+        else if (function == P_AdcRegRead) {
+            /* Ah... FIXME: ugly static mapping! */
+            getAdcReg(NULL, mask, addr);
+        }
+        else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParam32(function, mask, addr);
+        }
     }
     else {
-        /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParam32(function, mask, addr);
+        /* Call base class */
+        status = asynNDArrayDriver::writeUInt32DigitalInt32(pasynUser, value);
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -2970,12 +2977,18 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    if (function == P_DataTrigChan) {
-        status = getDataTrigChan(value, mask, addr);
+    if (function >= FIRST_COMMAND) {
+        if (function == P_DataTrigChan) {
+            status = getDataTrigChan(value, mask, addr);
+        }
+        else {
+            /* Get parameter, possibly from HW */
+            status = getParam32(function, value, mask, addr);
+        }
     }
     else {
-        /* Get parameter, possibly from HW */
-        status = getParam32(function, value, mask, addr);
+        /* Call base class */
+        status = asynNDArrayDriver::readUIn32Digital(pasynUser, value);
     }
 
     if (status)
@@ -3011,13 +3024,17 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
-    /* Set the parameter in the parameter library. */
-    setIntegerParam(addr, function, value);
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
 
-    /* Call base class */
-    status = asynNDArrayDriver::writeInt32(pasynUser, value);
+    if (function >= FIRST_COMMAND) {
+        /* Set the parameter in the parameter library. */
+        setIntegerParam(addr, function, value);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::writeInt32(pasynUser, value);
+    }
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -3056,12 +3073,10 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
     }
     /* Fetch the parameter string name for possible use in debugging */
     getParamName(function, &paramName);
-    /* Get parameter in library, as some parameters are not written in HW */
-    status = getIntegerParam(addr, function, value);
 
     if (function >= FIRST_COMMAND) {
-        /* Does nothibng for now. This is here, if we need to write Integer
-         *  values on HW in the future */
+        /* Get parameter in library, as some parameters are not written in HW */
+        status = getIntegerParam(addr, function, value);
     }
     else {
         /* Call base class */
@@ -3098,19 +3113,26 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
-    /* Set the parameter in the parameter library. */
-    setDoubleParam(addr, function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
-    /* Some operations need some special handling*/
-    if (function == P_AdcSi57xFreq) {
-        /* If run was set then wake up the simulation task */
-        setSi57xFreq(addr);
+    if (function >= FIRST_COMMAND) {
+        /* Set the parameter in the parameter library. */
+        setDoubleParam(addr, function, value);
+        /* Fetch the parameter string name for possible use in debugging */
+        getParamName(function, &paramName);
+
+        /* Some operations need some special handling*/
+        if (function == P_AdcSi57xFreq) {
+            /* If run was set then wake up the simulation task */
+            setSi57xFreq(addr);
+        }
+        else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParamDouble(function, addr);
+        }
     }
     else {
-        /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParamDouble(function, addr);
+        /* Call base class */
+        status = asynNDArrayDriver::writeFloat64(pasynUser, value);
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -4083,7 +4105,7 @@ asynStatus drvBPM::readAD9510Params(int addr)
     /* Get all parameters from HW */
     getParam32(P_AdcAD9510PllFunc,      &AdcAD9510PllFunc,    0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510PllStatus,    &AdcAD9510PllStatus,  0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr); 
+    getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510ADiv,         &AdcAD9510ADiv,       0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510BDiv,         &AdcAD9510BDiv,       0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510Prescaler,    &AdcAD9510Prescaler,  0xFFFFFFFF, addr);
@@ -4092,7 +4114,7 @@ asynStatus drvBPM::readAD9510Params(int addr)
     getParam32(P_AdcAD9510MuxStatus,    &AdcAD9510MuxStatus,  0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510CpCurrent,    &AdcAD9510CpCurrent,  0xFFFFFFFF, addr);
     getParam32(P_AdcAD9510Outputs,      &AdcAD9510Outputs,    0xFFFFFFFF, addr);
-                                                                        
+
     /* Write to parameter library */
     setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
                                         AdcAD9510PllFunc,  0xFFFFFFFF);
