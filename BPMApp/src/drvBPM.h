@@ -662,6 +662,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus setAdcClkSel(epicsUInt32 mask, int addr);
+        asynStatus setAdcAD9510ClkSel(epicsUInt32 mask, int addr);
         asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus setAdcReg(epicsUInt32 mask, int addr);
         asynStatus getAdcReg(epicsUInt32 *data, epicsUInt32 mask, int addr);

@@ -2917,6 +2917,9 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         else if (function == P_AdcClkSel) {
             setAdcClkSel(mask, addr);
         }
+        else if (function == P_AdcAD9510ClkSel) {
+            setAdcAD9510ClkSel(mask, addr);
+        }
         else if (function == P_DataTrigChan) {
             /* Ah... FIXME: ugly static mapping! */
             setDataTrigChan(mask, addr);
@@ -3794,21 +3797,50 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
         goto set_adc_clk_sel_err;
     }
 
-# if 0
-    /* Restart AD9510 and ADCs */
-    status = resetAD9510AndADCs(mask, addr);
+    /* Read AD9510 and ADCs */
+    status = readAD9510AndADCsParams(addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling resetAD9510AndADCs, status=%d\n",
+            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
             driverName, functionName, status);
-        goto set_ad9510_adcs_err;
+        goto read_adcs_ad9510_err;
     }
-#endif
 
     return status;
 
-set_ad9510_adcs_err:
+read_adcs_ad9510_err:
 set_adc_clk_sel_err:
+    return status;
+}
+
+asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    asynStatus status = asynSuccess;
+    const char* functionName = "setAdcAD9510ClkSel";
+
+    /* Call ClkSel function */
+    status = setParam32 (P_AdcAD9510ClkSel, mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error setting AdcAD9510ClkSel, status=%d\n",
+            driverName, functionName, status);
+        goto set_adcAD9510_clk_sel_err;
+    }
+
+    /* Restart AD9510 and ADCs */
+    status = readAD9510AndADCsParams(addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
+            driverName, functionName, status);
+        goto read_adcs_ad9510_err;
+    }
+
+    return status;
+
+read_adcs_ad9510_err:
+set_adcAD9510_clk_sel_err:
     return status;
 }
 
