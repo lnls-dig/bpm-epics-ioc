@@ -3790,6 +3790,7 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
         goto set_adc_clk_sel_err;
     }
 
+# if 0
     /* Restart AD9510 and ADCs */
     status = resetAD9510AndADCs(mask, addr);
     if (status) {
@@ -3798,6 +3799,7 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto set_ad9510_adcs_err;
     }
+#endif
 
     return status;
 
@@ -3981,6 +3983,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
         goto set_si57x_freq_err;
     }
 
+#if 0
     /* Restart AD9510 and ADCs */
     status = resetADCs(0xFFFFFFFF, addr);
     if (status) {
@@ -3989,6 +3992,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
             driverName, functionName, status);
         goto set_ad9510_adcs_err;
     }
+#endif
 
     /* Restart Acq cores again */
     for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
@@ -4038,7 +4042,6 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
      * force a change in all of its parameters and then call
      * callbacks */
     readAD9510Params(addr);
-    callParamCallbacks(addr);
 
     return (asynStatus)status;
 
@@ -4065,7 +4068,6 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
      * force a change in all of its parameters and then call
      * callbacks */
     readADCsParams (addr);
-    callParamCallbacks(addr);
 
     return (asynStatus)status;
 
@@ -4138,6 +4140,8 @@ asynStatus drvBPM::readAD9510Params(int addr)
                                         AdcAD9510CpCurrent, 0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcAD9510Outputs,
                                         AdcAD9510Outputs,  0xFFFFFFFF);
+
+    callParamCallbacks(addr);
 
     return (asynStatus)status;
 }
