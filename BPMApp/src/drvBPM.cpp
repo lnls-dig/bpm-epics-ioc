@@ -4019,16 +4019,14 @@ asynStatus drvBPM::setSi57xFreq(int addr)
         goto set_si57x_freq_err;
     }
 
-#if 0
-    /* Restart AD9510 and ADCs */
-    status = resetADCs(0xFFFFFFFF, addr);
+    /* Read AD9510 and ADCs */
+    status = readAD9510AndADCsParams(addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling resetADCs, status=%d\n",
+            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
             driverName, functionName, status);
-        goto set_ad9510_adcs_err;
+        goto read_adcs_ad9510_err;
     }
-#endif
 
     /* Restart Acq cores again */
     for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
@@ -4053,10 +4051,18 @@ asynStatus drvBPM::setSi57xFreq(int addr)
 
 init_acq_pm_err:
 abort2_acq_err:
-set_ad9510_adcs_err:
+read_adcs_ad9510_err:
 set_si57x_freq_err:
 abort_acq_err:
     return (asynStatus) status;
+}
+
+asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
+{
+    int status = resetAD9510(mask, addr);
+    status |= resetADCs(mask, addr);
+
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
@@ -4111,10 +4117,10 @@ reset_adcs_err:
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::resetAD9510AndADCs(epicsUInt32 mask, int addr)
+asynStatus drvBPM::readAD9510AndADCsParams(int addr)
 {
-    int status = resetAD9510(mask, addr);
-    status |= resetADCs(mask, addr);
+    int status = readAD9510Params(addr);
+    status |= readADCsParams(addr);
 
     return (asynStatus)status;
 }
