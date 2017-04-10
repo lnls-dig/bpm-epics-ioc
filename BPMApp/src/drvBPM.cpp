@@ -2936,7 +2936,9 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     }
     else {
         /* Call base class */
+#if 0
         status = asynNDArrayDriver::writeUInt32DigitalInt32(pasynUser, value);
+#endif
     }
 
     /* Do callbacks so higher layers see any changes */
@@ -2987,8 +2989,10 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
         }
     }
     else {
+#if 0
         /* Call base class */
         status = asynNDArrayDriver::readUIn32Digital(pasynUser, value);
+#endif
     }
 
     if (status)
