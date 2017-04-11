@@ -225,6 +225,15 @@ typedef enum {
 
 #define MAX_AD9510_CLK_SEL_TYPES    AD9510_ADC_CLK_SEL_END
 
+/* Si57x clock sel */
+typedef enum {
+    SI57X_DISABLE = 0,
+    SI57X_ENABLE = 1,
+    SI57X_OE_END,
+} si57x_oe_types;
+
+#define MAX_SI57X_OE_TYPES          SI57X_OE_END
+
 /* BPM Mappping structure */
 typedef struct {
     int board;
@@ -381,6 +390,7 @@ typedef struct {
 #define P_AdcAD9510CpCurrentString  "ADC_AD9510CPCURRENT"   /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510OutputsString    "ADC_AD9510OUTPUTS"     /* asynUInt32Digital,      r/w */
 #define P_ActiveClkRstADCsString    "ACTIVE_CLK_RST_ADCS"   /* asynUInt32Digital,      r/w */
+#define P_ActiveClkSi571OeString    "ACTIVE_CLK_SI57X_OE"   /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR0String        "FMCPICO_RNG_R0"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR1String        "FMCPICO_RNG_R1"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR2String        "FMCPICO_RNG_R2"        /* asynUInt32Digital,      r/w */
@@ -533,6 +543,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcAD9510CpCurrent;
         int P_AdcAD9510Outputs;
         int P_ActiveClkRstADCs;
+        int P_ActiveClkSi571Oe;
         int P_FmcPicoRngR0;
         int P_FmcPicoRngR1;
         int P_FmcPicoRngR2;

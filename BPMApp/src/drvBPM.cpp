@@ -397,6 +397,7 @@ static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK
 static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
 static const functionsInt32_t bpmSetGetActiveClkRstADCsFunc = {"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32};
+static const functionsInt32_t bpmSetGetActiveClkSi571OeFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe};
 
 static const functionsInt32_t bpmSetGetFmcPicoRngR0Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0};
 static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1};
@@ -775,6 +776,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                        asynParamUInt32Digital,         &P_AdcAD9510Outputs);
     createParam(0, P_ActiveClkRstADCsString,
                                        asynParamUInt32Digital,         &P_ActiveClkRstADCs);
+    createParam(0, P_ActiveClkSi571OeString,
+                                       asynParamUInt32Digital,         &P_ActiveClkSi571Oe);
     createParam(0, P_FmcPicoRngR0String,
                                        asynParamUInt32Digital,         &P_FmcPicoRngR0);
     createParam(0, P_FmcPicoRngR1String,
@@ -949,6 +952,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_ActiveClkRstADCs,
                                         0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_ActiveClkSi571Oe,
+                                        SI57X_ENABLE,       0xFFFFFFFF);
     setUIntDigitalParam(P_FmcPicoRngR0, 1,                  0xFFFFFFFF);
     setUIntDigitalParam(P_FmcPicoRngR1, 1,                  0xFFFFFFFF);
     setUIntDigitalParam(P_FmcPicoRngR2, 1,                  0xFFFFFFFF);
@@ -1015,6 +1020,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_AdcAD9510CpCurrent] = bpmSetGetAdcAD9510CPCurrentFunc;
     bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
     bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
+    bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
     bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
     bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
     bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
