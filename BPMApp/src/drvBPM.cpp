@@ -4028,6 +4028,15 @@ asynStatus drvBPM::setSi57xFreq(int addr)
         goto read_adcs_ad9510_err;
     }
 
+    /* Read Si57x */
+    status = readSi57xParams(addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling readSi57xParams, status=%d\n",
+            driverName, functionName, status);
+        goto read_si57x_err;
+    }
+
     /* Restart Acq cores again */
     for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
        setUIntDigitalParam(i, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
@@ -4051,6 +4060,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
 
 init_acq_pm_err:
 abort2_acq_err:
+read_si57x_err:
 read_adcs_ad9510_err:
 set_si57x_freq_err:
 abort_acq_err:
@@ -4208,6 +4218,26 @@ asynStatus drvBPM::readADCsParams(int addr)
     setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
     setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
+
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::readSi57xParams(int addr)
+{
+    int status = asynSuccess;
+    const char* functionName = "readSi57xParams";
+
+    epicsFloat64 Si57xFreq = 0.0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: forcing trigger callback for Si57x parameters for addr = %d\n",
+        driverName, functionName, addr);
+
+    /* Get all parameters */
+    getParamDouble(P_AdcSi57xFreq, &Si57xFreq, addr);
+
+    /* Write to parameter library */
+    setDoubleParam(addr, P_AdcSi57xFreq, Si57xFreq);
 
     return (asynStatus)status;
 }

@@ -673,6 +673,7 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus readAD9510AndADCsParams(int addr);
         asynStatus readAD9510Params(int addr);
         asynStatus readADCsParams(int addr);
+        asynStatus readSi57xParams(int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)
