@@ -4183,8 +4183,6 @@ asynStatus drvBPM::readAD9510Params(int addr)
     setUIntDigitalParam(addr, P_AdcAD9510Outputs,
                                         AdcAD9510Outputs,  0xFFFFFFFF);
 
-    callParamCallbacks(addr);
-
     return (asynStatus)status;
 }
 
