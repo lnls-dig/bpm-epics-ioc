@@ -53,6 +53,32 @@ record(ai,"$(P)$(R)ADCSi57xFreq-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
 }
 
+record(mbbo,"$(P)$(R)ADCSi57xOe"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set Si57x output enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACTIVE_CLK_SI57X_OE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
+record(mbbi,"$(P)$(R)ADCSi57xOe-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get Si57x output enable")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACTIVE_CLK_SI57X_OE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+
 record(mbbo,"$(P)$(R)ADCAD9510Defaults"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 to BPM default values")
