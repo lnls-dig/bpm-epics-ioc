@@ -3823,6 +3823,7 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     asynStatus status = asynSuccess;
+    epicsUInt32 ad9510ClkSel = 0;
     const char* functionName = "setAdcAD9510ClkSel";
 
     /* Call ClkSel function */
@@ -3832,6 +3833,15 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
             "%s:%s: error setting AdcAD9510ClkSel, status=%d\n",
             driverName, functionName, status);
         goto set_adcAD9510_clk_sel_err;
+    }
+
+    /* If we select CLK1, disable Si57x outputs */
+    getUIntDigitalParam(addr, P_AdcAD9510ClkSel, &ad9510ClkSel, mask);
+    if (ad9510ClkSel == AD9510_ADC_CLK_SEL_1) {
+        setUIntDigitalParam(addr, P_ActiveClkSi571Oe, SI57X_DISABLE);
+    }
+    else if (ad9510ClkSel == AD9510_ADC_CLK_SEL_2) {
+        setUIntDigitalParam(addr, P_ActiveClkSi571Oe, SI57X_ENABLE);
     }
 
     /* Restart AD9510 and ADCs */
