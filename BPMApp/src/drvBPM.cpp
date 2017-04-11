@@ -923,7 +923,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcShdn,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcPga,       0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_AdcClkSel,    AD9510_ADC_CLK_SEL_1,
+    setUIntDigitalParam(P_AdcClkSel,    AD9510_ADC_CLK_SEL_2,
                                                             0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_AdcAD9510Dflt,
