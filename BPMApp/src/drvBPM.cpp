@@ -4157,41 +4157,49 @@ asynStatus drvBPM::readAD9510Params(int addr)
         driverName, functionName, addr);
 
     /* Get all parameters from HW */
-    getParam32(P_AdcAD9510PllFunc,      &AdcAD9510PllFunc,    0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510PllStatus,    &AdcAD9510PllStatus,  0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510ADiv,         &AdcAD9510ADiv,       0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510BDiv,         &AdcAD9510BDiv,       0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510Prescaler,    &AdcAD9510Prescaler,  0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510RDiv,         &AdcAD9510RDiv,       0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510PllPDown,     &AdcAD9510PllPDown,   0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510MuxStatus,    &AdcAD9510MuxStatus,  0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510CpCurrent,    &AdcAD9510CpCurrent,  0xFFFFFFFF, addr);
-    getParam32(P_AdcAD9510Outputs,      &AdcAD9510Outputs,    0xFFFFFFFF, addr);
+    status  = getParam32(P_AdcAD9510PllFunc,      &AdcAD9510PllFunc,    0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510PllStatus,    &AdcAD9510PllStatus,  0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510ADiv,         &AdcAD9510ADiv,       0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510BDiv,         &AdcAD9510BDiv,       0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510Prescaler,    &AdcAD9510Prescaler,  0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510RDiv,         &AdcAD9510RDiv,       0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510PllPDown,     &AdcAD9510PllPDown,   0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510MuxStatus,    &AdcAD9510MuxStatus,  0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510CpCurrent,    &AdcAD9510CpCurrent,  0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcAD9510Outputs,      &AdcAD9510Outputs,    0xFFFFFFFF, addr);
 
-    /* Write to parameter library */
-    setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
-                                        AdcAD9510PllFunc,  0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
-                                        AdcAD9510PllStatus,0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
-                                        AdcAD9510ClkSel,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510ADiv,
-                                        AdcAD9510ADiv,      0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510BDiv,
-                                        AdcAD9510BDiv,     0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
-                                        AdcAD9510Prescaler, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510RDiv,
-                                        AdcAD9510RDiv,     0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
-                                        AdcAD9510PllPDown, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
-                                        AdcAD9510MuxStatus, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
-                                        AdcAD9510CpCurrent, 0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcAD9510Outputs,
-                                        AdcAD9510Outputs,  0xFFFFFFFF);
+    /* Only write values is there is no error */
+    if (!status) {
+        /* Write to parameter library */
+        setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
+                AdcAD9510PllFunc,  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
+                AdcAD9510PllStatus,0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
+                AdcAD9510ClkSel,   0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510ADiv,
+                AdcAD9510ADiv,      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510BDiv,
+                AdcAD9510BDiv,     0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
+                AdcAD9510Prescaler, 0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510RDiv,
+                AdcAD9510RDiv,     0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
+                AdcAD9510PllPDown, 0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
+                AdcAD9510MuxStatus, 0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
+                AdcAD9510CpCurrent, 0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcAD9510Outputs,
+                AdcAD9510Outputs,  0xFFFFFFFF);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: error getting AD9510 parameters for addr = %d, status = %d\n",
+                driverName, functionName, addr, status);
+    }
 
     return (asynStatus)status;
 }
@@ -4210,14 +4218,22 @@ asynStatus drvBPM::readADCsParams(int addr)
         driverName, functionName, addr);
 
     /* Get all parameters */
-    getParam32(P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF, addr);
-    getParam32(P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF, addr);
-    getParam32(P_AdcTemp,     &AdcTemp,       0xFFFFFFFF, addr);
+    status =  getParam32(P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF, addr);
+    status |= getParam32(P_AdcTemp,     &AdcTemp,       0xFFFFFFFF, addr);
 
-    /* Write to parameter library */
-    setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
-    setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
+    /* Only write values is there is no error */
+    if (!status) {
+        /* Write to parameter library */
+        setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: error getting ADC parameters for addr = %d, status = %d\n",
+                driverName, functionName, addr, status);
+    }
 
     return (asynStatus)status;
 }
@@ -4234,10 +4250,18 @@ asynStatus drvBPM::readSi57xParams(int addr)
         driverName, functionName, addr);
 
     /* Get all parameters */
-    getParamDouble(P_AdcSi57xFreq, &Si57xFreq, addr);
+    status = getParamDouble(P_AdcSi57xFreq, &Si57xFreq, addr);
 
-    /* Write to parameter library */
-    setDoubleParam(addr, P_AdcSi57xFreq, Si57xFreq);
+    /* Only write values is there is no error */
+    if (!status) {
+        /* Write to parameter library */
+        setDoubleParam(addr, P_AdcSi57xFreq, Si57xFreq);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: error getting Si57x parameters for addr = %d, status = %d\n",
+                driverName, functionName, addr, status);
+    }
 
     return (asynStatus)status;
 }
