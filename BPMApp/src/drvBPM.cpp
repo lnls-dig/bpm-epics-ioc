@@ -4178,7 +4178,7 @@ asynStatus drvBPM::readAD9510AndADCsParams(epicsUInt32 mask, int addr)
 }
 
 asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
-        int lastParam)
+        int lastParam, bool acceptErrors)
 {
     int status = asynSuccess;
     int errs = 0;
@@ -4205,10 +4205,15 @@ asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam
         }
     }
 
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
     return (errs == 0)? asynSuccess : asynError;
 }
 
-asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam)
+asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam,
+        bool acceptErrors)
 {
     int status = asynSuccess;
     int errs = 0;
@@ -4235,22 +4240,26 @@ asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam)
         }
     }
 
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
     return (errs == 0)? asynSuccess : asynError;
 }
 
 asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_AdcAD9510PllFunc, P_AdcAD9510Outputs);
+    return updateUInt32Params(mask, addr, P_AdcAD9510PllFunc, P_AdcAD9510Outputs, true);
 }
 
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcTemp);
+    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcTemp, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)
 {
-    return updateDoubleParams(addr, P_AdcSi57xFreq, P_AdcSi57xFreq);
+    return updateDoubleParams(addr, P_AdcSi57xFreq, P_AdcSi57xFreq, false);
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
