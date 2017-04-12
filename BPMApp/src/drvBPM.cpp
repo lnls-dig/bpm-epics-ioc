@@ -679,6 +679,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                               asynParamUInt32Digital,   &P_AdcTestMode);
         createParam(addr, P_AdcRstModesString,
                                               asynParamUInt32Digital,   &P_AdcRstModes);
+        createParam(addr, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
         createParam(addr, P_AdcRegReadString, asynParamUInt32Digital,   &P_AdcRegRead);
         createParam(addr, P_AdcRegReadDataString,
                                               asynParamUInt32Digital,   &P_AdcRegReadData);
@@ -690,7 +691,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                               asynParamUInt32Digital,   &P_AdcRegWriteData);
         createParam(addr, P_AdcRegWriteAddrString,
                                               asynParamUInt32Digital,   &P_AdcRegWriteAddr);
-        createParam(addr, P_AdcTempString,    asynParamUInt32Digital,   &P_AdcTemp);
     }
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
@@ -835,6 +835,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int i = 0; i < ADC_NUM_CHANNELS; ++i) {
         setUIntDigitalParam(i, P_AdcTestMode,  0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
+        setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRegRead,   0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRegReadData,
                                                0,                  0xFFFFFFFF);
@@ -845,7 +846,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                0,                  0xFFFFFFFF);
         setUIntDigitalParam(i, P_AdcRegWriteAddr,
                                                0,                  0xFFFFFFFF);
-        setUIntDigitalParam(i, P_AdcTemp,      0,                  0xFFFFFFFF);
     }
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
