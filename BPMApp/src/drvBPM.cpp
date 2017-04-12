@@ -382,6 +382,7 @@ static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", halcs_set_ad
 static const functionsInt32Chan_t bpmSetGetAdcTestModeFunc = {"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32};
 static const functionsInt32Chan_t bpmSetGetAdcRstModesFunc = {"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32};
 static const functionsInt32Chan_t bpmSetGetAdcTempFunc = {"FMC250M_4CH", NULL, halcs_get_temp_adc};
+static const functionsInt32Chan_t bpmSetGetAdcCalStatusFunc = {"FMC250M_4CH", NULL, halcs_get_cal_status_adc};
 static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en};
 static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel};
 static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32};
@@ -783,6 +784,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcRstModesString,
                                     asynParamUInt32Digital,         &P_AdcRstModes);
     createParam(P_AdcTempString,    asynParamUInt32Digital,         &P_AdcTemp);
+    createParam(P_AdcCalStatusString,    
+                                    asynParamUInt32Digital,         &P_AdcCalStatus);
     createParam(P_AdcRegReadString, asynParamUInt32Digital,         &P_AdcRegRead);
     createParam(P_AdcRegReadDataString,
                                     asynParamUInt32Digital,         &P_AdcRegReadData);
@@ -951,6 +954,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(addr, P_AdcTestMode,  0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcTemp,      0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcCalStatus, 0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRegRead,   0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRegReadData,
                                                   0,                  0xFFFFFFFF);
@@ -1053,6 +1057,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32ChanFunc[P_AdcTestMode] = bpmSetGetAdcTestModeFunc;
     bpmHwInt32ChanFunc[P_AdcRstModes] =  bpmSetGetAdcRstModesFunc;
     bpmHwInt32ChanFunc[P_AdcTemp] = bpmSetGetAdcTempFunc;
+    bpmHwInt32ChanFunc[P_AdcCalStatus] = bpmSetGetAdcCalStatusFunc;
 
     bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
     bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;

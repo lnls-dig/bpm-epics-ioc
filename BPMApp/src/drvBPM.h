@@ -426,6 +426,7 @@ typedef struct {
 #define P_AdcTestModeString         "ADC_TEST_MODE"         /* asynUInt32Digital,      r/w */
 #define P_AdcRstModesString         "ADC_RST_MODES"         /* asynUInt32Digital,      r/w */
 #define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
+#define P_AdcCalStatusString        "ADC_CAL_STATUS"        /* asynUInt32Digital,      r/w */
 #define P_AdcRegReadString          "ADC_REG_READ"          /* asynUInt32Digital,      r/w */
 #define P_AdcRegReadDataString      "ADC_REG_READ_DATA"     /* asynUInt32Digital,      r/o */
 #define P_AdcRegReadAddrString      "ADC_REG_READ_ADDR"     /* asynUInt32Digital,      r/w */
@@ -565,6 +566,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcTestMode;
         int P_AdcRstModes;
         int P_AdcTemp;
+        int P_AdcCalStatus;
         int P_AdcRegRead;
         int P_AdcRegReadData;
         int P_AdcRegReadAddr;
