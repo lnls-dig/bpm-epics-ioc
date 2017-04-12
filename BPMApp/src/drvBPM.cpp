@@ -1586,6 +1586,16 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
+        /* We can't acquire something with 0 points */
+        if (dims[1] == 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (= 0)\n",
+                    driverName, functionName, bpmMaxPoints);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrTooFewPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
         /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
          * points for the Waveform Plugins */
         if (dims[1] > bpmMaxPoints) {
@@ -1906,6 +1916,16 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
          * samples in each dimension */
         dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* We can't acquire something with 0 points */
+        if (dims[1] == 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (= 0)\n",
+                    driverName, functionName, bpmMaxPoints);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrTooFewPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
 
         /* dims[1] must not exceed bpmMaxPoints, as we use this to alloc
          * points for the Waveform Plugins */
