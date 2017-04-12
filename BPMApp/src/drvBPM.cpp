@@ -1433,10 +1433,10 @@ static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
     if (bpmStatus == BPMStatusTriggerHwExtWaiting ||
         bpmStatus == BPMStatusTriggerHwDataWaiting ||
         bpmStatus == BPMStatusTriggerSwWaiting) {
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 static bool acqIsBPMStatusErr(int bpmStatus)
