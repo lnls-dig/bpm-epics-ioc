@@ -1439,6 +1439,18 @@ static bool acqIsBPMStatusWaitSomeTrigger(int bpmStatus)
     return 0;
 }
 
+static bool acqIsBPMStatusErr(int bpmStatus)
+{
+    if (bpmStatus == BPMStatusErrAcq ||
+        bpmStatus == BPMStatusAborted ||
+        bpmStatus == BPMStatusErrTooManyPoints ||
+        bpmStatus == BPMStatusErrTooFewPoints) {
+        return true;
+    }
+
+    return false;
+}
+
 /*
  * BPM acquisition functions
  */
@@ -1528,9 +1540,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 newAcq = 0;
             }
             /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-            else if (bpmStatus != BPMStatusErrAcq &&
-                     bpmStatus != BPMStatusAborted &&
-                     bpmStatus != BPMStatusErrTooManyPoints) {
+            else if (!acqIsBPMStatusErr(bpmStatus)) {
                 setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
                 callParamCallbacks(coreID);
             }
@@ -1857,9 +1867,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
-        if (bpmStatus != BPMStatusErrAcq &&
-            bpmStatus != BPMStatusAborted &&
-            bpmStatus != BPMStatusErrTooManyPoints) {
+        if (!acqIsBPMStatusErr(bpmStatus)) {
             setIntegerParam(coreID, P_BPMStatus, BPMStatusIdle);
             callParamCallbacks(coreID);
         }
