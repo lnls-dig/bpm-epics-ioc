@@ -2918,28 +2918,28 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* Some operations need some special handling*/
         if (function == P_Trigger) {
             /* If run was set then wake up the simulation task */
-            setAcquire(addr);
+            status = setAcquire(addr);
         }
         else if (function == P_AdcClkSel) {
-            setAdcClkSel(mask, addr);
+            status = setAdcClkSel(mask, addr);
         }
         else if (function == P_AdcAD9510ClkSel) {
-            setAdcAD9510ClkSel(mask, addr);
+            status = setAdcAD9510ClkSel(mask, addr);
         }
         else if (function == P_AdcAD9510Dflt) {
-            resetAD9510(mask, addr);
+            status = resetAD9510(mask, addr);
         }
         else if (function == P_DataTrigChan) {
             /* Ah... FIXME: ugly static mapping! */
-            setDataTrigChan(mask, addr);
+            status = setDataTrigChan(mask, addr);
         }
         else if (function == P_AdcRegWrite) {
             /* Ah... FIXME: ugly static mapping! */
-            setAdcReg(mask, addr);
+            status = setAdcReg(mask, addr);
         }
         else if (function == P_AdcRegRead) {
             /* Ah... FIXME: ugly static mapping! */
-            getAdcReg(NULL, mask, addr);
+            status = getAdcReg(NULL, mask, addr);
         }
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
@@ -3045,7 +3045,7 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
-        setIntegerParam(addr, function, value);
+        status = setIntegerParam(addr, function, value);
     }
     else {
         /* Call base class */
@@ -3138,8 +3138,7 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 
         /* Some operations need some special handling*/
         if (function == P_AdcSi57xFreq) {
-            /* If run was set then wake up the simulation task */
-            setSi57xFreq(addr);
+            status = setSi57xFreq(addr);
         }
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
