@@ -3806,7 +3806,7 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
     }
 
     /* Read AD9510 and ADCs */
-    status = readAD9510AndADCsParams(addr);
+    status = readAD9510AndADCsParams(mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
@@ -3847,7 +3847,7 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
     }
 
     /* Restart AD9510 and ADCs */
-    status = readAD9510AndADCsParams(addr);
+    status = readAD9510AndADCsParams(mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
@@ -4038,7 +4038,7 @@ asynStatus drvBPM::setSi57xFreq(int addr)
     }
 
     /* Read AD9510 and ADCs */
-    status = readAD9510AndADCsParams(addr);
+    status = readAD9510AndADCsParams(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
@@ -4111,7 +4111,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
      * callbacks */
-    readAD9510Params(addr);
+    readAD9510Params(mask, addr);
 
     return (asynStatus)status;
 
@@ -4137,7 +4137,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
      * callbacks */
-    readADCsParams (addr);
+    readADCsParams (mask, addr);
 
     return (asynStatus)status;
 
@@ -4145,143 +4145,88 @@ reset_adcs_err:
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::readAD9510AndADCsParams(int addr)
+asynStatus drvBPM::readAD9510AndADCsParams(epicsUInt32 mask, int addr)
 {
-    int status = readAD9510Params(addr);
-    status |= readADCsParams(addr);
+    int status = readAD9510Params(mask, addr);
+    status |= readADCsParams(mask, addr);
 
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::readAD9510Params(int addr)
+asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
+        int lastParam)
 {
     int status = asynSuccess;
-    const char* functionName = "readAD9510Params";
-
-    epicsUInt32 AdcAD9510PllFunc = 0;
-    epicsUInt32 AdcAD9510PllStatus = 0;
-    epicsUInt32 AdcAD9510ClkSel = 0;
-    epicsUInt32 AdcAD9510ADiv = 0;
-    epicsUInt32 AdcAD9510BDiv = 0;
-    epicsUInt32 AdcAD9510Prescaler = 0;
-    epicsUInt32 AdcAD9510RDiv = 0;
-    epicsUInt32 AdcAD9510PllPDown = 0;
-    epicsUInt32 AdcAD9510MuxStatus = 0;
-    epicsUInt32 AdcAD9510CpCurrent = 0;
-    epicsUInt32 AdcAD9510Outputs = 0;
+    int errs = 0;
+    const char* functionName = "updateUInt32Params";
+    epicsUInt32 param = 0;
 
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-        "%s:%s: forcing trigger callback for AD9510 parameters for addr = %d\n",
-        driverName, functionName, addr);
+        "%s:%s: updating UInt32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
 
-    /* Get all parameters from HW */
-    status  = getParam32(P_AdcAD9510PllFunc,      &AdcAD9510PllFunc,    0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510PllStatus,    &AdcAD9510PllStatus,  0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510ClkSel,       &AdcAD9510ClkSel,     0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510ADiv,         &AdcAD9510ADiv,       0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510BDiv,         &AdcAD9510BDiv,       0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510Prescaler,    &AdcAD9510Prescaler,  0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510RDiv,         &AdcAD9510RDiv,       0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510PllPDown,     &AdcAD9510PllPDown,   0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510MuxStatus,    &AdcAD9510MuxStatus,  0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510CpCurrent,    &AdcAD9510CpCurrent,  0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcAD9510Outputs,      &AdcAD9510Outputs,    0xFFFFFFFF, addr);
-
-    /* Only write values is there is no error */
-    if (!status) {
-        /* Write to parameter library */
-        setUIntDigitalParam(addr, P_AdcAD9510PllFunc,
-                AdcAD9510PllFunc,  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510PllStatus,
-                AdcAD9510PllStatus,0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510ClkSel,
-                AdcAD9510ClkSel,   0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510ADiv,
-                AdcAD9510ADiv,      0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510BDiv,
-                AdcAD9510BDiv,     0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510Prescaler,
-                AdcAD9510Prescaler, 0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510RDiv,
-                AdcAD9510RDiv,     0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510PllPDown,
-                AdcAD9510PllPDown, 0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510MuxStatus,
-                AdcAD9510MuxStatus, 0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510CpCurrent,
-                AdcAD9510CpCurrent, 0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcAD9510Outputs,
-                AdcAD9510Outputs,  0xFFFFFFFF);
-    }
-    else {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: error getting AD9510 parameters for addr = %d, status = %d\n",
-                driverName, functionName, addr, status);
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParam32(i, &param, mask, addr);
+        /* Only write values is there is no error */
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error getting UInt32 parameter for function = %d, "
+                    "addr = %d status = %d\n",
+                    driverName, functionName, i, addr, status);
+            ++errs;
+        }
+        else {
+            setUIntDigitalParam(addr, i, param, mask);
+        }
     }
 
-    return (asynStatus)status;
+    return (errs == 0)? asynSuccess : asynError;
 }
 
-asynStatus drvBPM::readADCsParams(int addr)
+asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam)
 {
     int status = asynSuccess;
-    const char* functionName = "readADCsParams";
-
-    epicsUInt32 AdcTestMode = 0;
-    epicsUInt32 AdcRstModes = 0;
-    epicsUInt32 AdcTemp = 0;
+    int errs = 0;
+    const char* functionName = "updateDoubleParams";
+    epicsFloat64 param = 0.0;
 
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-        "%s:%s: forcing trigger callback for ADC parameters for addr = %d\n",
-        driverName, functionName, addr);
+        "%s:%s: updating Double parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
 
-    /* Get all parameters */
-    status =  getParam32(P_AdcTestMode, &AdcTestMode,   0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcRstModes, &AdcRstModes,   0xFFFFFFFF, addr);
-    status |= getParam32(P_AdcTemp,     &AdcTemp,       0xFFFFFFFF, addr);
-
-    /* Only write values is there is no error */
-    if (!status) {
-        /* Write to parameter library */
-        setUIntDigitalParam(addr, P_AdcTestMode, AdcTestMode,   0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcRstModes, AdcRstModes,   0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcTemp,     AdcTemp,       0xFFFFFFFF);
-    }
-    else {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: error getting ADC parameters for addr = %d, status = %d\n",
-                driverName, functionName, addr, status);
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamDouble(i, &param, addr);
+        /* Only write values is there is no error */
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error getting Double parameter for function = %d, "
+                    "addr = %d status = %d\n",
+                    driverName, functionName, i, addr, status);
+            ++errs;
+        }
+        else {
+            setDoubleParam(addr, i, param);
+        }
     }
 
-    return (asynStatus)status;
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_AdcAD9510PllFunc, P_AdcAD9510Outputs);
+}
+
+asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcTemp);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)
 {
-    int status = asynSuccess;
-    const char* functionName = "readSi57xParams";
-
-    epicsFloat64 Si57xFreq = 0.0;
-
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-        "%s:%s: forcing trigger callback for Si57x parameters for addr = %d\n",
-        driverName, functionName, addr);
-
-    /* Get all parameters */
-    status = getParamDouble(P_AdcSi57xFreq, &Si57xFreq, addr);
-
-    /* Only write values is there is no error */
-    if (!status) {
-        /* Write to parameter library */
-        setDoubleParam(addr, P_AdcSi57xFreq, Si57xFreq);
-    }
-    else {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: error getting Si57x parameters for addr = %d, status = %d\n",
-                driverName, functionName, addr, status);
-    }
-
-    return (asynStatus)status;
+    return updateDoubleParams(addr, P_AdcSi57xFreq, P_AdcSi57xFreq);
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */

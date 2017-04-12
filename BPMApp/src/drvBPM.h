@@ -681,9 +681,12 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus resetAD9510AndADCs(epicsUInt32 mask, int addr);
         asynStatus resetAD9510(epicsUInt32 mask, int addr);
         asynStatus resetADCs(epicsUInt32 mask, int addr);
-        asynStatus readAD9510AndADCsParams(int addr);
-        asynStatus readAD9510Params(int addr);
-        asynStatus readADCsParams(int addr);
+        asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
+                int lastParam);
+        asynStatus updateDoubleParams(int addr, int firstParam, int lastParam);
+        asynStatus readAD9510AndADCsParams(epicsUInt32 mask, int addr);
+        asynStatus readAD9510Params(epicsUInt32 mask, int addr);
+        asynStatus readADCsParams(epicsUInt32 mask, int addr);
         asynStatus readSi57xParams(int addr);
 };
 
