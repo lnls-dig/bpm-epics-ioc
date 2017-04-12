@@ -349,6 +349,7 @@ typedef struct {
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_BPMModeString             "BPM_MODE"              /* asynInt32,              r/w */
+#define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
 #define P_AdcClkFreqString          "INFO_ADCCLKFREQ"       /* asynFloat64,            r/w */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
@@ -357,18 +358,8 @@ typedef struct {
 #define P_SwString                  "ADC_SW"                /* asynUInt32Digital,      r/w */
 #define P_SwDlyString               "ADC_SWDLY"             /* asynUInt32Digital,      r/w */
 #define P_SwDivClkString            "ADC_SW_DIVCLK"         /* asynUInt32Digital,      r/w */
-#define P_SwEnString                "ADC_SWEN"              /* asynUInt32Digital,      r/w */
 #define P_WdwString                 "ADC_WDW"               /* asynUInt32Digital,      r/w */
 #define P_WdwDlyString              "ADC_WDWDLY"            /* asynfloat64             r/w */
-#define P_CompMethodString          "ADC_COMPMETHOD"        /* asynInt32,              r/w */
-#define P_GainAAString              "ADC_GAINAA"            /* asynUInt32Digital,      r/w */
-#define P_GainBBString              "ADC_GAINBB"            /* asynUInt32Digital,      r/w */
-#define P_GainCCString              "ADC_GAINCC"            /* asynUInt32Digital,      r/w */
-#define P_GainDDString              "ADC_GAINDD"            /* asynUInt32Digital,      r/w */
-#define P_GainACString              "ADC_GAINAC"            /* asynUInt32Digital,      r/w */
-#define P_GainCAString              "ADC_GAINCA"            /* asynUInt32Digital,      r/w */
-#define P_GainBDString              "ADC_GAINBD"            /* asynUInt32Digital,      r/w */
-#define P_GainDBString              "ADC_GAINDB"            /* asynUInt32Digital,      r/w */
 #define P_AdcTrigDirString          "ADC_TRIGDIR"           /* asynUInt32Digital,      r/w */
 #define P_AdcTrigTermString         "ADC_TRIGTERM"          /* asynUInt32Digital,      r/w */
 #define P_AdcRandString             "ADC_RAND"              /* asynUInt32Digital,      r/w */
@@ -408,7 +399,6 @@ typedef struct {
 #define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
 #define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
 #define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
-#define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_AcqControlString          "ACQ_CONTROL"           /* asynInt32,              r/w */
 #define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
 #define P_TriggerDataThresString    "ACQ_TRIGGER_THRES"     /* asynInt32,              r/w */
@@ -419,21 +409,29 @@ typedef struct {
 #define P_DataTrigChanString        "ACQ_DATA_TRIG_CHAN"    /* asynuint32digital,      r/w */
 #define P_ChannelSampleSizeString   "ACQ_CH_SAMPLE_SIZE"    /* asynUInt32Digital,      r/o */
 #define P_ChannelNumAtomsString     "ACQ_CH_NUM_ATOMS"      /* asynUInt32Digital,      r/o */
-#define P_ChannelAtomWidthString     "ACQ_CH_ATOM_WIDTH"     /* asynUInt32Digital,      r/o */
+#define P_ChannelAtomWidthString    "ACQ_CH_ATOM_WIDTH"     /* asynUInt32Digital,      r/o */
 #define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpDString           "MONITAMP_D"            /* asynUInt32Digital,      r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
+#define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
+#define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
+#define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
+#define P_SPAmpDString              "SP_AMP_D"              /* asynFloat64,            r/o */
+#define P_SPPosXString              "SP_POS_X"              /* asynFloat64,            r/o */
+#define P_SPPosYString              "SP_POS_Y"              /* asynFloat64,            r/o */
+#define P_SPPosQString              "SP_POS_Q"              /* asynFloat64,            r/o */
+#define P_SPPosSumString            "SP_POS_SUM"            /* asynFloat64,            r/o */
 #define P_AdcTestModeString         "ADC_TEST_MODE"         /* asynUInt32Digital,      r/w */
 #define P_AdcRstModesString         "ADC_RST_MODES"         /* asynUInt32Digital,      r/w */
+#define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
 #define P_AdcRegReadString          "ADC_REG_READ"          /* asynUInt32Digital,      r/w */
 #define P_AdcRegReadDataString      "ADC_REG_READ_DATA"     /* asynUInt32Digital,      r/o */
 #define P_AdcRegReadAddrString      "ADC_REG_READ_ADDR"     /* asynUInt32Digital,      r/w */
 #define P_AdcRegWriteString         "ADC_REG_WRITE"         /* asynUInt32Digital,      r/w */
 #define P_AdcRegWriteDataString     "ADC_REG_WRITE_DATA"    /* asynUInt32Digital,      r/w */
 #define P_AdcRegWriteAddrString     "ADC_REG_WRITE_ADDR"    /* asynUInt32Digital,      r/w */
-#define P_AdcTempString             "ADC_TEMP"              /* asynUInt32Digital,      r/w */
 #define P_TriggerChanString         "TRIGGER_CHAN"          /* asynUInt32Digital,      r/w */
 #define P_TriggerDirString          "TRIGGER_DIR"           /* asynUInt32Digital,      r/w */
 #define P_TriggerDirPolString       "TRIGGER_DIR_POL"       /* asynUInt32Digital,      r/w */
@@ -448,15 +446,6 @@ typedef struct {
 #define P_TriggerRcvInSelString     "TRIGGER_RCV_IN_SEL"    /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
 
-/* Single Pass parameters */
-#define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
-#define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
-#define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
-#define P_SPAmpDString              "SP_AMP_D"              /* asynFloat64,            r/o */
-#define P_SPPosXString              "SP_POS_X"              /* asynFloat64,            r/o */
-#define P_SPPosYString              "SP_POS_Y"              /* asynFloat64,            r/o */
-#define P_SPPosQString              "SP_POS_Q"              /* asynFloat64,            r/o */
-#define P_SPPosSumString            "SP_POS_SUM"            /* asynFloat64,            r/o */
 
 typedef enum {
     /* These trigger types matches the HW */
@@ -501,27 +490,15 @@ class drvBPM : public asynNDArrayDriver {
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
         int P_BPMMode;
 #define FIRST_COMMAND P_BPMMode
+        int P_BPMStatus;
         int P_HarmonicNumber;
         int P_AdcClkFreq;
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
-        int P_BPMStatus;
-        int P_CompMethod;
         int P_Sw;
         int P_SwDly;
-        int P_SwEn;
         int P_SwDivClk;
-        int P_Wdw;
-        int P_WdwDly;
-        int P_GainAA;
-        int P_GainBB;
-        int P_GainCC;
-        int P_GainDD;
-        int P_GainAC;
-        int P_GainCA;
-        int P_GainBD;
-        int P_GainDB;
         int P_AdcTrigDir;
         int P_AdcTrigTerm;
         int P_AdcRand;
@@ -576,6 +553,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitAmpB;
         int P_MonitAmpC;
         int P_MonitAmpD;
+        int P_MonitUpdt;
         int P_SPAmpA;
         int P_SPAmpB;
         int P_SPAmpC;
@@ -586,14 +564,13 @@ class drvBPM : public asynNDArrayDriver {
         int P_SPPosSum;
         int P_AdcTestMode;
         int P_AdcRstModes;
+        int P_AdcTemp;
         int P_AdcRegRead;
         int P_AdcRegReadData;
         int P_AdcRegReadAddr;
         int P_AdcRegWrite;
         int P_AdcRegWriteData;
         int P_AdcRegWriteAddr;
-        int P_AdcTemp;
-        int P_MonitUpdt;
         int P_TriggerChan;
         int P_TriggerDir;
         int P_TriggerDirPol;
