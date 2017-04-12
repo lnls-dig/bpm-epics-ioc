@@ -1616,6 +1616,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayAllChannels\n",
                 driverName, functionName);
+            continue;
         }
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
@@ -1630,6 +1631,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayChannelFreq\n",
                 driverName, functionName);
+            continue;
         }
         pArrayChannelFreq->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
@@ -1935,6 +1937,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayAllChannels\n",
                 driverName, functionName);
+            continue;
         }
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
@@ -1949,6 +1952,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayChannelFreq\n",
                 driverName, functionName);
+            continue;
         }
         pArrayChannelFreq->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
