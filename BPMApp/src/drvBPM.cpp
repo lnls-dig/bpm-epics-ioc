@@ -2926,6 +2926,9 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         else if (function == P_AdcAD9510ClkSel) {
             setAdcAD9510ClkSel(mask, addr);
         }
+        else if (function == P_AdcAD9510Dflt) {
+            resetAD9510(mask, addr);
+        }
         else if (function == P_DataTrigChan) {
             /* Ah... FIXME: ugly static mapping! */
             setDataTrigChan(mask, addr);
