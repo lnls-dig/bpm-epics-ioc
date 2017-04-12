@@ -70,6 +70,14 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEMP")
 }
 
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)CalStatus-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ISLA216P25 calibration status")
+    field(PINI,"YES")
+    field(SCAN,"2 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_CAL_STATUS")
+}
+
 record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegRead"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register read")
