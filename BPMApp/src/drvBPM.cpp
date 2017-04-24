@@ -653,9 +653,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
-    /* Create parameters for all addresses without specifying the ones that don't 
+    /* Create parameters for all addresses without specifying the ones that don't
      * make sense to be on a specified list. Without this we woudl have to create
-     * different parameterIndex structures to store each index, as they could be 
+     * different parameterIndex structures to store each index, as they could be
      * differently if created in just a few lists */
 
     /* CAUTION. The order of craetion must be the same as defined in .h file.
@@ -664,7 +664,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create BPM Status parameters */
     createParam(P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
     createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
-    
+
     /* Create general parameters */
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
@@ -784,7 +784,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcRstModesString,
                                     asynParamUInt32Digital,         &P_AdcRstModes);
     createParam(P_AdcTempString,    asynParamUInt32Digital,         &P_AdcTemp);
-    createParam(P_AdcCalStatusString,    
+    createParam(P_AdcCalStatusString,
                                     asynParamUInt32Digital,         &P_AdcCalStatus);
     createParam(P_AdcRegReadString, asynParamUInt32Digital,         &P_AdcRegRead);
     createParam(P_AdcRegReadDataString,
