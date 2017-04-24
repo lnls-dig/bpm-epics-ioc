@@ -102,18 +102,18 @@ static const channelMap_t channelMap[CH_END] = {
                           -1,                                  // HwPhaseChannel
                           -1,                                  // HwPosChannel
                           0,                                   // CalcPos
-                          {{WVF_ADC_A,                         // NDArrayAmp
-                            WVF_ADC_B,
-                            WVF_ADC_C,
-                            WVF_ADC_D,
-                            WVF_ADC_ALL},
+                          {{WVF_GENAMP_A,                      // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
                             {-1,
                              -1,
                              -1,
                              -1,
                              -1},
                           },
-                          {WVF_ADC_FREQ,                        // NDArrayAmpFreq
+                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
                            -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
@@ -146,18 +146,18 @@ static const channelMap_t channelMap[CH_END] = {
                           -1,                                   // HwPhaseChannel
                           -1,                                   // HwPosChannel
                           0,                                    // CalcPos
-                          {{WVF_ADCSWAP_A,                      // NDArrayAmp
-                            WVF_ADCSWAP_B,
-                            WVF_ADCSWAP_C,
-                            WVF_ADCSWAP_D,
-                            WVF_ADCSWAP_ALL},
+                          {{WVF_GENAMP_A,                       // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
                             {-1,
                              -1,
                              -1,
                              -1,
                              -1},
                           },
-                          {WVF_ADCSWAP_FREQ,                    // NDArrayAmpFreq
+                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
                            -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
@@ -190,88 +190,88 @@ static const channelMap_t channelMap[CH_END] = {
                           -1,                                    // HwPhaseChannel
                           -1,                                    // HwPosChannel
                           1,                                     // CalcPos
-                          {{WVF_TBTAMP_A,                        // NDArrayAmp
-                            WVF_TBTAMP_B,
-                            WVF_TBTAMP_C,
-                            WVF_TBTAMP_D,
-                            WVF_TBTAMP_ALL},
+                          {{WVF_GENAMP_A,                        // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
                             {WVF_AMP_PM_A,
                              WVF_AMP_PM_B,
                              WVF_AMP_PM_C,
                              WVF_AMP_PM_D,
                              WVF_AMP_PM_ALL},
                           },
-                          {WVF_TBTAMP_FREQ,                      // NDArrayAmpFreq
+                          {WVF_GENAMP_FREQ,                      // NDArrayAmpFreq
                            WVF_AMP_PM_FREQ},
-                          {{WVF_TBTPHASE_A,                      // NDArrayPhase
-                            WVF_TBTPHASE_B,
-                            WVF_TBTPHASE_C,
-                            WVF_TBTPHASE_D,
-                            WVF_TBTPHASE_ALL},
+                          {{-1,                                  // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                             {-1,
                              -1,
                              -1,
                              -1,
                              -1},
                           },
-                          {WVF_TBTPHASE_FREQ,                    // NDArrayPhaseFreq
+                          {-1,                                   // NDArrayPhaseFreq
                            -1},
-                          {{WVF_TBTPOS_A,                        // NDArrayPos
-                            WVF_TBTPOS_B,
-                            WVF_TBTPOS_C,
-                            WVF_TBTPOS_D,
-                            WVF_TBTPOS_ALL},
+                          {{WVF_GENPOS_A,                        // NDArrayPos
+                            WVF_GENPOS_B,
+                            WVF_GENPOS_C,
+                            WVF_GENPOS_D,
+                            WVF_GENPOS_ALL},
                             {WVF_POS_PM_A,
                              WVF_POS_PM_B,
                              WVF_POS_PM_C,
                              WVF_POS_PM_D,
                              WVF_POS_PM_ALL},
                           },
-                          {WVF_TBTPOS_FREQ,                      // NDArrayPosFreq
+                          {WVF_GENPOS_FREQ,                      // NDArrayPosFreq
                            WVF_POS_PM_FREQ},
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                            // HwAmpChannel
                           -1,                                    // HwPhaseChannel
                           -1,                                    // HwPosChannel
                           1,                                     // CalcPos
-                          {{WVF_FOFBAMP_A,                       // NDArrayAmp
-                            WVF_FOFBAMP_B,
-                            WVF_FOFBAMP_C,
-                            WVF_FOFBAMP_D,
-                            WVF_FOFBAMP_ALL},
+                          {{WVF_GENAMP_A,                        // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
                             {-1,
                              -1,
                              -1,
                              -1,
                              -1},
                           },
-                          {WVF_FOFBAMP_FREQ,                     // NDArrayAmpFreq
+                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
                            -1},
-                          {{WVF_FOFBPHASE_A,                     // NDArrayPhase
-                            WVF_FOFBPHASE_B,
-                            WVF_FOFBPHASE_C,
-                            WVF_FOFBPHASE_D,
-                            WVF_FOFBPHASE_ALL},
+                          {{-1,                                 // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                             {-1,
                              -1,
                              -1,
                              -1,
                              -1},
                           },
-                          {WVF_FOFBPHASE_FREQ,                   // NDArrayPhaseFreq
+                          {-1,                                   // NDArrayPhaseFreq
                            -1},
-                          {{WVF_FOFBPOS_A,                       // NDArrayPos
-                            WVF_FOFBPOS_B,
-                            WVF_FOFBPOS_C,
-                            WVF_FOFBPOS_D,
-                            WVF_FOFBPOS_ALL},
+                          {{WVF_GENPOS_A,                        // NDArrayPos
+                            WVF_GENPOS_B,
+                            WVF_GENPOS_C,
+                            WVF_GENPOS_D,
+                            WVF_GENPOS_ALL},
                            {-1,
                             -1,
                             -1,
                             -1,
                             -1},
                           },
-                          {WVF_FOFBPOS_FREQ,                     // NDArrayPosFreq
+                          {WVF_GENPOS_FREQ,                    // NDArrayPosFreq
                            -1},
                           },
     /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
