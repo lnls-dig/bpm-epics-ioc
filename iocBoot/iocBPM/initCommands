@@ -1,46 +1,18 @@
 # Waveform Plugin
 
-dbpf "${P}${R}ADC_AEnableCallbacks" 1
-dbpf "${P}${R}ADC_BEnableCallbacks" 1
-dbpf "${P}${R}ADC_CEnableCallbacks" 1
-dbpf "${P}${R}ADC_DEnableCallbacks" 1
+dbpf "${P}${R}GEN_AEnableCallbacks" 1
+dbpf "${P}${R}GEN_BEnableCallbacks" 1
+dbpf "${P}${R}GEN_CEnableCallbacks" 1
+dbpf "${P}${R}GEN_DEnableCallbacks" 1
 
-dbpf "${P}${R}ADCAMP_FreqEnableCallbacks" 1
+dbpf "${P}${R}GENAMP_FreqEnableCallbacks" 1
 
-dbpf "${P}${R}ADCSWAP_AEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_BEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_CEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_DEnableCallbacks" 1
+dbpf "${P}${R}GEN_XEnableCallbacks" 1
+dbpf "${P}${R}GEN_YEnableCallbacks" 1
+dbpf "${P}${R}GEN_QEnableCallbacks" 1
+dbpf "${P}${R}GEN_SUMEnableCallbacks" 1
 
-dbpf "${P}${R}ADCSWAPAMP_FreqEnableCallbacks" 1
-
-dbpf "${P}${R}TBT_AEnableCallbacks" 1
-dbpf "${P}${R}TBT_BEnableCallbacks" 1
-dbpf "${P}${R}TBT_CEnableCallbacks" 1
-dbpf "${P}${R}TBT_DEnableCallbacks" 1
-
-dbpf "${P}${R}TBTAMP_FreqEnableCallbacks" 1
-
-dbpf "${P}${R}TBT_XEnableCallbacks" 1
-dbpf "${P}${R}TBT_YEnableCallbacks" 1
-dbpf "${P}${R}TBT_QEnableCallbacks" 1
-dbpf "${P}${R}TBT_SUMEnableCallbacks" 1
-
-dbpf "${P}${R}TBTPOS_FreqEnableCallbacks" 1
-
-dbpf "${P}${R}FOFB_AEnableCallbacks" 1
-dbpf "${P}${R}FOFB_BEnableCallbacks" 1
-dbpf "${P}${R}FOFB_CEnableCallbacks" 1
-dbpf "${P}${R}FOFB_DEnableCallbacks" 1
-
-dbpf "${P}${R}FOFBAMP_FreqEnableCallbacks" 1
-
-dbpf "${P}${R}FOFB_XEnableCallbacks" 1
-dbpf "${P}${R}FOFB_YEnableCallbacks" 1
-dbpf "${P}${R}FOFB_QEnableCallbacks" 1
-dbpf "${P}${R}FOFB_SUMEnableCallbacks" 1
-
-dbpf "${P}${R}FOFBPOS_FreqEnableCallbacks" 1
+dbpf "${P}${R}GENPOS_FreqEnableCallbacks" 1
 
 dbpf "${P}${R}PM_AEnableCallbacks" 1
 dbpf "${P}${R}PM_BEnableCallbacks" 1
@@ -65,133 +37,49 @@ dbpf "${P}${R}SPAMP_FreqEnableCallbacks" 1
 
 # File Saving Plugin
 
-dbpf "${P}${R}ADC_ABCD_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}ADC_ABCD_HDF5EnableCallbacks" 1
+dbpf "${P}${R}GEN_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}GEN_ABCD_HDF5EnableCallbacks" 1
 
-dbpf "${P}${R}ADCSWAP_ABCD_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_ABCD_HDF5EnableCallbacks" 1
-
-dbpf "${P}${R}TBT_ABCD_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}TBT_ABCD_HDF5EnableCallbacks" 1
-
-dbpf "${P}${R}TBT_XYQS_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}TBT_XYQS_HDF5EnableCallbacks" 1
-
-dbpf "${P}${R}FOFB_ABCD_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}FOFB_ABCD_HDF5EnableCallbacks" 1
-
-dbpf "${P}${R}FOFB_XYQS_NETCDFEnableCallbacks" 1
-dbpf "${P}${R}FOFB_XYQS_HDF5EnableCallbacks" 1
+dbpf "${P}${R}GEN_XYQS_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}GEN_XYQS_HDF5EnableCallbacks" 1
 
 # STATS Plugin
 
-dbpf "${P}${R}ADC_A_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADC_A_STATSTSControl" Start
-dbpf "${P}${R}ADC_B_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADC_B_STATSTSControl" Start
-dbpf "${P}${R}ADC_C_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADC_C_STATSTSControl" Start
-dbpf "${P}${R}ADC_D_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADC_D_STATSTSControl" Start
+dbpf "${P}${R}GEN_A_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_A_STATSTSControl" Start
+dbpf "${P}${R}GEN_B_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_B_STATSTSControl" Start
+dbpf "${P}${R}GEN_C_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_C_STATSTSControl" Start
+dbpf "${P}${R}GEN_D_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_D_STATSTSControl" Start
 
-dbpf "${P}${R}ADC_A_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADC_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADC_B_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADC_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADC_C_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADC_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADC_D_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADC_D_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_A_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_A_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_B_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_B_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_C_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_C_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_D_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_D_STATSComputeStatistics" Yes
 
-dbpf "${P}${R}ADCSWAP_A_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_A_STATSTSControl" Start
-dbpf "${P}${R}ADCSWAP_B_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_B_STATSTSControl" Start
-dbpf "${P}${R}ADCSWAP_C_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_C_STATSTSControl" Start
-dbpf "${P}${R}ADCSWAP_D_STATSEnableCallbacks" 1
-dbpf "${P}${R}ADCSWAP_D_STATSTSControl" Start
+dbpf "${P}${R}GEN_X_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_X_STATSTSControl" Start
+dbpf "${P}${R}GEN_Y_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_Y_STATSTSControl" Start
+dbpf "${P}${R}GEN_Q_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_Q_STATSTSControl" Start
+dbpf "${P}${R}GEN_SUM_STATSEnableCallbacks" 1
+dbpf "${P}${R}GEN_SUM_STATSTSControl" Start
 
-dbpf "${P}${R}ADCSWAP_A_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADCSWAP_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADCSWAP_B_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADCSWAP_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADCSWAP_C_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADCSWAP_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}ADCSWAP_D_STATSComputeHistogram" Yes
-dbpf "${P}${R}ADCSWAP_D_STATSComputeStatistics" Yes
-
-dbpf "${P}${R}TBT_A_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_A_STATSTSControl" Start
-dbpf "${P}${R}TBT_B_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_B_STATSTSControl" Start
-dbpf "${P}${R}TBT_C_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_C_STATSTSControl" Start
-dbpf "${P}${R}TBT_D_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_D_STATSTSControl" Start
-
-dbpf "${P}${R}TBT_A_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_B_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_C_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_D_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_D_STATSComputeStatistics" Yes
-
-dbpf "${P}${R}TBT_X_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_X_STATSTSControl" Start
-dbpf "${P}${R}TBT_Y_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_Y_STATSTSControl" Start
-dbpf "${P}${R}TBT_Q_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_Q_STATSTSControl" Start
-dbpf "${P}${R}TBT_SUM_STATSEnableCallbacks" 1
-dbpf "${P}${R}TBT_SUM_STATSTSControl" Start
-
-dbpf "${P}${R}TBT_X_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_X_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_Y_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_Y_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_Q_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_Q_STATSComputeStatistics" Yes
-dbpf "${P}${R}TBT_SUM_STATSComputeHistogram" Yes
-dbpf "${P}${R}TBT_SUM_STATSComputeStatistics" Yes
-
-dbpf "${P}${R}FOFB_A_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_A_STATSTSControl" Start
-dbpf "${P}${R}FOFB_B_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_B_STATSTSControl" Start
-dbpf "${P}${R}FOFB_C_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_C_STATSTSControl" Start
-dbpf "${P}${R}FOFB_D_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_D_STATSTSControl" Start
-
-dbpf "${P}${R}FOFB_A_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_B_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_C_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_D_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_D_STATSComputeStatistics" Yes
-
-dbpf "${P}${R}FOFB_X_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_X_STATSTSControl" Start
-dbpf "${P}${R}FOFB_Y_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_Y_STATSTSControl" Start
-dbpf "${P}${R}FOFB_Q_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_Q_STATSTSControl" Start
-dbpf "${P}${R}FOFB_SUM_STATSEnableCallbacks" 1
-dbpf "${P}${R}FOFB_SUM_STATSTSControl" Start
-
-dbpf "${P}${R}FOFB_X_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_X_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_Y_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_Y_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_Q_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_Q_STATSComputeStatistics" Yes
-dbpf "${P}${R}FOFB_SUM_STATSComputeHistogram" Yes
-dbpf "${P}${R}FOFB_SUM_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_X_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_X_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_Y_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_Y_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_Q_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_Q_STATSComputeStatistics" Yes
+dbpf "${P}${R}GEN_SUM_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_SUM_STATSComputeStatistics" Yes
 
 dbpf "${P}${R}PM_A_STATSEnableCallbacks" 1
 dbpf "${P}${R}PM_A_STATSTSControl" Start
@@ -202,13 +90,13 @@ dbpf "${P}${R}PM_C_STATSTSControl" Start
 dbpf "${P}${R}PM_D_STATSEnableCallbacks" 1
 dbpf "${P}${R}PM_D_STATSTSControl" Start
 
-dbpf "${P}${R}PM_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_A_STATSComputeHistogram" No
 dbpf "${P}${R}PM_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_B_STATSComputeHistogram" No
 dbpf "${P}${R}PM_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_C_STATSComputeHistogram" No
 dbpf "${P}${R}PM_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_D_STATSComputeHistogram" No
 dbpf "${P}${R}PM_D_STATSComputeStatistics" Yes
 
 dbpf "${P}${R}PM_X_STATSEnableCallbacks" 1
@@ -220,13 +108,13 @@ dbpf "${P}${R}PM_Q_STATSTSControl" Start
 dbpf "${P}${R}PM_SUM_STATSEnableCallbacks" 1
 dbpf "${P}${R}PM_SUM_STATSTSControl" Start
 
-dbpf "${P}${R}PM_X_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_X_STATSComputeHistogram" No
 dbpf "${P}${R}PM_X_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_Y_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_Y_STATSComputeHistogram" No
 dbpf "${P}${R}PM_Y_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_Q_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_Q_STATSComputeHistogram" No
 dbpf "${P}${R}PM_Q_STATSComputeStatistics" Yes
-dbpf "${P}${R}PM_SUM_STATSComputeHistogram" Yes
+dbpf "${P}${R}PM_SUM_STATSComputeHistogram" No
 dbpf "${P}${R}PM_SUM_STATSComputeStatistics" Yes
 
 dbpf "${P}${R}SP_A_STATSEnableCallbacks" 1
@@ -238,11 +126,11 @@ dbpf "${P}${R}SP_C_STATSTSControl" Start
 dbpf "${P}${R}SP_D_STATSEnableCallbacks" 1
 dbpf "${P}${R}SP_D_STATSTSControl" Start
 
-dbpf "${P}${R}SP_A_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_A_STATSComputeHistogram" No
 dbpf "${P}${R}SP_A_STATSComputeStatistics" Yes
-dbpf "${P}${R}SP_B_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_B_STATSComputeHistogram" No
 dbpf "${P}${R}SP_B_STATSComputeStatistics" Yes
-dbpf "${P}${R}SP_C_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_C_STATSComputeHistogram" No
 dbpf "${P}${R}SP_C_STATSComputeStatistics" Yes
-dbpf "${P}${R}SP_D_STATSComputeHistogram" Yes
+dbpf "${P}${R}SP_D_STATSComputeHistogram" No
 dbpf "${P}${R}SP_D_STATSComputeStatistics" Yes

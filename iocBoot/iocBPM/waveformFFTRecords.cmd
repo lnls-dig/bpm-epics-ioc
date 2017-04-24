@@ -1,44 +1,16 @@
-##################### ADC FFT ##########################
+##################### GEN AMP FFT ##########################
 
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADC_A, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADC_B, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADC_C, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADC_D, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_A, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_B, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_C, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_D, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
 
-##################### ADC SWAP FFT ##########################
+##################### GEN POS FFT ##########################
 
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADCSWAP_A, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADCSWAP_B, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADCSWAP_C, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=ADCSWAP_D, FTVL=SHORT,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-
-##################### TBT AMP FFT ##########################
-
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_A, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_B, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_C, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_D, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-
-##################### TBT POS FFT ##########################
-
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_X, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_Y, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_Q, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=TBT_SUM, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-
-##################### FOFB AMP FFT ##########################
-
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_A, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_B, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_C, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_D, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-
-##################### FOFB POS FFT ##########################
-
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_X, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_Y, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_Q, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=FOFB_SUM, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_X, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_Y, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_Q, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=GEN_SUM, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
 
 ##################### AMP PM FFT ##########################
 
@@ -47,7 +19,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NA
 dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=PM_C, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=PM_D, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
 
-##################### POS FFT ##########################
+##################### POS PM FFT ##########################
 
 dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=PM_X, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMFFT.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, ARRAY_NAME=PM_Y, FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS), TIMEOUT=1")
