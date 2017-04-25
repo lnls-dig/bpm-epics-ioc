@@ -8,14 +8,17 @@ PartOf=halcs-ioc@%i.target
 [Service]
 # Source environment
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
-Environment="BPM_ENDPOINT=ipc:///tmp/malamute" EPICS_PV_AREA_PREFIX=SI-01-%i:
+EnvironmentFile=/etc/sysconfig/bpm-epics-ioc-slot-mapping
+Environment=BPM_NUMBER=%i
+Environment=EPICS_PV_AREA_PREFIX_NAME=BPM_NUMBER_${BPM_NUMBER}_PV_AREA_PREFIX
+Environment=EPICS_PV_DEVICE_PREFIX_NAME=BPM_NUMBER_${BPM_NUMBER}_PV_DEVICE_PREFIX
 # Execute pre with root
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 # Run procServ with user ioc
-ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${EPICS_PV_AREA_PREFIX}
+ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT}
 
 [Install]
 WantedBy=halcs-ioc@%i.target

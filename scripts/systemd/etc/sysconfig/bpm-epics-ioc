@@ -1,10 +1,11 @@
 # General configuration
 BPM_BE_IOC_STARTUP=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM
 BPM_FE_IOC_STARTUP=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
+BPM_ENDPOINT="ipc:///tmp/malamute"
 EPICS_HOST_ARCH=linux-x86_64
 PROCSERV_BE_PORT_PREFIX=200
 PROCSERV_FE_PORT_PREFIX=300
 # EPICS_PV_AREA_PREFIX="SI-XXYY:"
-EPICS_PV_DEVICE_PREFIX="DI-BPM:"
+# EPICS_PV_DEVICE_PREFIX="DI-BPM:"
 EPICS_CA_MAX_ARRAY_BYTES=50000000
 PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/epics/base/bin/linux-x86_64
