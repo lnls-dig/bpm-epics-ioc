@@ -5850,9 +5850,9 @@ pvs[1].setValue("stop")]]></scriptText>
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>433</x>
+      <x>431</x>
       <name>Action Button</name>
-      <y>189</y>
+      <y>228</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -5899,9 +5899,9 @@ pvs[1].setValue("stop")]]></scriptText>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>252</x>
+      <x>250</x>
       <name>Label_57</name>
-      <y>188</y>
+      <y>227</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -6653,7 +6653,6 @@ trigger = PVUtil.getString(pvs[8])
 #ConsoleUtil.writeInfo("samplesPre: "+str(samplesPre))
 #ConsoleUtil.writeInfo("samplesPost: "+str(samplesPost))
 #ConsoleUtil.writeInfo("shots "+str(shots))
-pvs[4].setValue("tbt")
 pvs[5].setValue(updateTime)
 pvs[6].setValue(trigger)
 
@@ -6694,6 +6693,7 @@ for i in range(4):
           <pv trig="false">$(P)$(R)$(MODULE)_YFFTData.SPAN</pv>
           <pv trig="false">$(P)$(R)$(MODULE)_QFFTData.SPAN</pv>
           <pv trig="false">$(P)$(R)$(MODULE)_SUMFFTData.SPAN</pv>
+          <pv trig="false">loc://$(P)$(R)$(MODULE)AcqChannel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -6712,9 +6712,9 @@ for i in range(4):
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>362</x>
+      <x>360</x>
       <name>Action Button</name>
-      <y>189</y>
+      <y>228</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -6885,9 +6885,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>252</x>
+      <x>250</x>
       <name>Label_57</name>
-      <y>227</y>
+      <y>266</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -6935,9 +6935,9 @@ pvs[1].setValue("abort")]]></scriptText>
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>362</x>
+      <x>360</x>
       <name>Action Button</name>
-      <y>228</y>
+      <y>267</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -7043,6 +7043,88 @@ $(pv_value)</tooltip>
         <color red="0" green="0" blue="0" />
       </foreground_color>
       <actions hook="false" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+      <border_style>0</border_style>
+      <tooltip></tooltip>
+      <horizontal_alignment>1</horizontal_alignment>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>-757d6a64:15ba036c6e3:-5b2a</wuid>
+      <transparent>true</transparent>
+      <auto_size>false</auto_size>
+      <text>Acq Channel:</text>
+      <scripts />
+      <height>31</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <visible>true</visible>
+      <vertical_alignment>1</vertical_alignment>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Label</widget_type>
+      <wrap_words>false</wrap_words>
+      <background_color>
+        <color red="255" green="255" blue="255" />
+      </background_color>
+      <width>105</width>
+      <x>252</x>
+      <name>Label_53</name>
+      <y>188</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="false" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+      <border_style>0</border_style>
+      <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+      <alarm_pulsing>false</alarm_pulsing>
+      <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>-757d6a64:15ba036c6e3:-5b29</wuid>
+      <pv_value />
+      <scripts />
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+      <height>29</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>false</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <items_from_pv>true</items_from_pv>
+      <visible>true</visible>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Channel</pv_name>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Combo</widget_type>
+      <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+      <background_color>
+        <color red="255" green="255" blue="255" />
+      </background_color>
+      <width>133</width>
+      <x>360</x>
+      <name>Combo_1</name>
+      <y>189</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="true" hook_all="false" />
       <font>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>

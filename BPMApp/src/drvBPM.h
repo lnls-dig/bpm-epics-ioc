@@ -21,6 +21,9 @@
 #include "varg_macros.h"
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
+#define MAX(a,b)                    ({ __typeof__ (a) _a = (a); \
+                                       __typeof__ (b) _b = (b); \
+                                      _a > _b ? _a : _b; })
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
@@ -59,54 +62,18 @@ typedef enum {
 
 /* Waveform IDs */
 typedef enum {
-    WVF_ADC_A = 0,
-    WVF_ADC_B,
-    WVF_ADC_C,
-    WVF_ADC_D,
-    WVF_ADC_ALL,
-    WVF_ADC_FREQ,
-    WVF_ADCSWAP_A,
-    WVF_ADCSWAP_B,
-    WVF_ADCSWAP_C,
-    WVF_ADCSWAP_D,
-    WVF_ADCSWAP_ALL,
-    WVF_ADCSWAP_FREQ,
-    WVF_TBTAMP_A,
-    WVF_TBTAMP_B,
-    WVF_TBTAMP_C,
-    WVF_TBTAMP_D,
-    WVF_TBTAMP_ALL,
-    WVF_TBTAMP_FREQ,
-    WVF_TBTPOS_A,
-    WVF_TBTPOS_B,
-    WVF_TBTPOS_C,
-    WVF_TBTPOS_D,
-    WVF_TBTPOS_ALL,
-    WVF_TBTPOS_FREQ,
-    WVF_TBTPHASE_A,
-    WVF_TBTPHASE_B,
-    WVF_TBTPHASE_C,
-    WVF_TBTPHASE_D,
-    WVF_TBTPHASE_ALL,
-    WVF_TBTPHASE_FREQ,
-    WVF_FOFBAMP_A,
-    WVF_FOFBAMP_B,
-    WVF_FOFBAMP_C,
-    WVF_FOFBAMP_D,
-    WVF_FOFBAMP_ALL,
-    WVF_FOFBAMP_FREQ,
-    WVF_FOFBPOS_A,
-    WVF_FOFBPOS_B,
-    WVF_FOFBPOS_C,
-    WVF_FOFBPOS_D,
-    WVF_FOFBPOS_ALL,
-    WVF_FOFBPOS_FREQ,
-    WVF_FOFBPHASE_A,
-    WVF_FOFBPHASE_B,
-    WVF_FOFBPHASE_C,
-    WVF_FOFBPHASE_D,
-    WVF_FOFBPHASE_ALL,
-    WVF_FOFBPHASE_FREQ,
+    WVF_GENAMP_A = 0,
+    WVF_GENAMP_B,
+    WVF_GENAMP_C,
+    WVF_GENAMP_D,
+    WVF_GENAMP_ALL,
+    WVF_GENAMP_FREQ,
+    WVF_GENPOS_A,
+    WVF_GENPOS_B,
+    WVF_GENPOS_C,
+    WVF_GENPOS_D,
+    WVF_GENPOS_ALL,
+    WVF_GENPOS_FREQ,
     WVF_AMP_PM_A,
     WVF_AMP_PM_B,
     WVF_AMP_PM_C,
@@ -144,7 +111,7 @@ typedef enum {
  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_BPM*MAX_TRIGGERS)
 /* Get the greater between them */
-#define MAX_ADDR                    IF(MAX_WAVEFORMS > MAX_TRIGGERS_ALL_ACQ)(MAX_WAVEFORMS, MAX_TRIGGERS_ALL_ACQ)
+#define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
 
 /* Channel IDs */
 typedef enum {
