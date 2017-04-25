@@ -21,6 +21,9 @@
 #include "varg_macros.h"
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
+#define MAX(a,b)                    ({ __typeof__ (a) _a = (a); \
+                                       __typeof__ (b) _b = (b); \
+                                      _a > _b ? _a : _b; })
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
@@ -108,7 +111,7 @@ typedef enum {
  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_BPM*MAX_TRIGGERS)
 /* Get the greater between them */
-#define MAX_ADDR                    IF(MAX_WAVEFORMS > MAX_TRIGGERS_ALL_ACQ)(MAX_WAVEFORMS, MAX_TRIGGERS_ALL_ACQ)
+#define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
 
 /* Channel IDs */
 typedef enum {
