@@ -33,13 +33,13 @@ CHECK_RELEASE = YES
 #IOCS_APPL_TOP = </IOC/path/to/application/top>
 
 # ADCore third-party libraries locations
-HDF5=/usr/lib/x86_64-linux-gnu
-HDF5_LIB=/usr/lib/x86_64-linux-gnu
-HDF5_INCLUDE=/usr/include
-SZIP=/usr/lib
-SZIP_LIB=/usr/lib
-SZIP_INCLUDE=/usr/include
-GRAPHICS_MAGICK=/usr/lib/x86_64-linux-gnu
-GRAPHICS_MAGICK_LIB=/usr/lib/x86_64-linux-gnu
-GRAPHICS_MAGICK_INCLUDE=/usr/include/ImageMagick/magick
+HDF5= /lib64
+HDF5_LIB= /lib64
+HDF5_INCLUDE= -I/usr/include
+SZIP= /usr/lib64
+SZIP_LIB= /usr/lib64
+SZIP_INCLUDE= -I/usr/include
+GRAPHICS_MAGICK= /usr/lib64
+GRAPHICS_MAGICK_LIB= /usr/lib64
+GRAPHICS_MAGICK_INCLUDE= -I/usr/include/ImageMagick/magick
 
