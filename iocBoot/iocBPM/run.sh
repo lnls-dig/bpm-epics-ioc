@@ -20,7 +20,7 @@ if [ -z "$BPM_NUMBER" ]; then
     exit 1
 fi
 
-if [ "$BPM_NUMBER" -lt 0 ] || [ "$BPM_NUMBER" -gt 23 ]; then
+if [ "$BPM_NUMBER" -lt 1 ] || [ "$BPM_NUMBER" -gt 24 ]; then
     echo "Unsupported BPM number. "$VALID_BPM_NUMBERS_STR
     exit 1
 fi
