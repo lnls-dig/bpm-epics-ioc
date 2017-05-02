@@ -19,9 +19,6 @@
 #include <bpm_client.h>
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
-#define MAX(a,b)                    ({ __typeof__ (a) _a = (a); \
-                                       __typeof__ (b) _b = (b); \
-                                      _a > _b ? _a : _b; })
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
