@@ -17,8 +17,6 @@
 #include <halcs_client.h>
 #include <acq_client.h>
 #include <bpm_client.h>
-/* Variable macros */
-#include "varg_macros.h"
 
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 #define MAX(a,b)                    ({ __typeof__ (a) _a = (a); \
