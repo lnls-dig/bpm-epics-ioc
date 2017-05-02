@@ -1521,7 +1521,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             unlock ();
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
-	    epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
+            epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
             lock ();
         }
 
@@ -1855,7 +1855,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             unlock ();
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
-	    epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
+        epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
             lock ();
         }
 

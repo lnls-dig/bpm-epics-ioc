@@ -242,10 +242,10 @@ typedef struct {
 
 /* Write 32-bit function pointer */
 typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
-	uint32_t param);
+    uint32_t param);
 /* Read 32-bit function pointer */
 typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
-	uint32_t *param);
+    uint32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
@@ -256,10 +256,10 @@ typedef struct {
 
 /* Write 32-bit function pointer with acq_client structure */
 typedef halcs_client_err_e (*writeInt32AcqFp)(acq_client_t *self, char *service,
-	uint32_t param);
+    uint32_t param);
 /* Read 32-bit function pointer with acq_client structure */
 typedef halcs_client_err_e (*readInt32AcqFp)(acq_client_t *self, char *service,
-	uint32_t *param);
+    uint32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
@@ -270,10 +270,10 @@ typedef struct {
 
 /* Write 2 32-bit function pointer */
 typedef halcs_client_err_e (*write2Int32Fp)(halcs_client_t *self, char *service,
-	uint32_t param1, uint32_t param2);
+    uint32_t param1, uint32_t param2);
 /* Read 32-bit function pointer */
 typedef halcs_client_err_e (*read2Int32Fp)(halcs_client_t *self, char *service,
-	uint32_t *param1, uint32_t *param2);
+    uint32_t *param1, uint32_t *param2);
 
 /* BPM command dispatch table */
 typedef struct {
@@ -287,10 +287,10 @@ typedef struct {
 
 /* Write 64-bit float function pointer */
 typedef halcs_client_err_e (*writeFloat64Fp)(halcs_client_t *self, char *service,
-	double param);
+    double param);
 /* Read 32-bit function pointer */
 typedef halcs_client_err_e (*readFloat64Fp)(halcs_client_t *self, char *service,
-	double *param);
+    double *param);
 
 /* BPM command dispatch table */
 typedef struct {
@@ -301,10 +301,10 @@ typedef struct {
 
 /* Write 32-bit function pointer with channel selection */
 typedef halcs_client_err_e (*writeInt32ChanFp)(halcs_client_t *self, char *service,
-	uint32_t chan, uint32_t param);
+    uint32_t chan, uint32_t param);
 /* Read 32-bit function pointer with channel selection */
 typedef halcs_client_err_e (*readInt32ChanFp)(halcs_client_t *self, char *service,
-	uint32_t chan, uint32_t *param);
+    uint32_t chan, uint32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
