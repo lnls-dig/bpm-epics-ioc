@@ -2909,11 +2909,11 @@ asynStatus drvBPM::getChannelProperties(int coreID, int channel, channelProp_t *
         goto get_service_err;
     }
 
-    err = halcs_get_acq_ch_sample_size (bpmClientAcq[coreID], service,
+    err = halcs_get_acq_ch_sample_size (bpmClientAcqParam[coreID], service,
         channel, &channelProp->sampleSize);
-    err |= halcs_get_acq_ch_num_atoms (bpmClientAcq[coreID], service,
+    err |= halcs_get_acq_ch_num_atoms (bpmClientAcqParam[coreID], service,
         channel, &channelProp->numAtoms);
-    err |= halcs_get_acq_ch_atom_width (bpmClientAcq[coreID], service,
+    err |= halcs_get_acq_ch_atom_width (bpmClientAcqParam[coreID], service,
         channel, &channelProp->atomWidth);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
