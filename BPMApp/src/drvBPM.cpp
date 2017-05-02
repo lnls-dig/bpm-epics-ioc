@@ -2702,7 +2702,7 @@ asynStatus drvBPM::startSPAcq(bpm_single_pass_t *bpm_single_pass)
     return status;
 }
 
-asynStatus drvBPM::abortAcqRaw(acq_client_t *acq_client)
+asynStatus drvBPM::abortAcqRaw(int coreID, acq_client_t *acq_client)
 {
     asynStatus status = asynSuccess;
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
@@ -2733,13 +2733,13 @@ get_service_err:
 /* This must be called only acquisition threads */
 asynStatus drvBPM::abortAcq(int coreID)
 {
-    return abortAcqRaw(bpmClientAcq[coreID]);
+    return abortAcqRaw(coreID, bpmClientAcq[coreID]);
 }
 
 /* This must be called only from asyn PortThread*/
 asynStatus drvBPM::abortAcqFromPortThread(int coreID)
 {
-    return abortAcqRaw(bpmClientAcqParam[coreID]);
+    return abortAcqRaw(coreID, bpmClientAcqParam[coreID]);
 }
 
 int drvBPM::checkAcqCompletion(int coreID)
