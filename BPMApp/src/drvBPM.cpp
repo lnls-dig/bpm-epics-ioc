@@ -2594,7 +2594,7 @@ asynStatus drvBPM::abortAcqTask(int addr, int bpmMode, bool abortAcqHw)
          * abort the acquisition anyway, as we might have something
          * going on inside the FPGA from a previous acquisition */
         if (abortAcqHw) {
-            abortAcq(addr);
+            abortAcqFromPortThread(addr);
         }
     }
 
