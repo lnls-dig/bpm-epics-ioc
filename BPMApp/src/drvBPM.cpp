@@ -1943,7 +1943,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         if (dims[1] == 0) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: invalid number of points for acquisition (= 0)\n",
-                    driverName, functionName, bpmMaxPoints);
+                    driverName, functionName);
             setIntegerParam(coreID, P_BPMStatus, BPMStatusErrTooFewPoints);
             callParamCallbacks(coreID);
             continue;
