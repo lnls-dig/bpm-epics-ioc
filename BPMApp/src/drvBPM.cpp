@@ -1340,6 +1340,7 @@ set_acq_trig:
     return status;
 }
 
+/* This should only be called by asyn thread, not Acquisition ones */
 asynStatus drvBPM::setAcqTrig(int coreID, acq_client_trig_e trig)
 {
     static const char *functionName = "setAcqTrig";
@@ -1356,7 +1357,7 @@ asynStatus drvBPM::setAcqTrig(int coreID, acq_client_trig_e trig)
         goto get_service_err;
     }
 
-    err = acq_set_trig (bpmClientAcq[coreID], service, trig);
+    err = acq_set_trig (bpmClientAcqParam[coreID], service, trig);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
@@ -1373,6 +1374,7 @@ get_service_err:
 
 /* This can only return if the ACQ engine is IDLE or waiting
  * for some trigger (External, Data or Software) */
+/* This should only be called by asyn thread, not Acquisition ones */
 bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
 {
     bpm_status_types bpmStatus = BPMStatusErrAcq;
@@ -1392,13 +1394,13 @@ bpm_status_types drvBPM::getBPMInitAcqStatus(int coreID)
     }
 
     /* Have ACQ engine completed some work or is it still busy? */
-    herr = acq_check (bpmClientAcq[coreID], service);
+    herr = acq_check (bpmClientAcqParam[coreID], service);
     if (herr == HALCS_CLIENT_SUCCESS) {
         return BPMStatusIdle;
     }
 
     /* If the ACQ is doing something we need to figure it out what is it */
-    herr = acq_get_trig (bpmClientAcq[coreID], service, &trig);
+    herr = acq_get_trig (bpmClientAcqParam[coreID], service, &trig);
     if (herr != HALCS_CLIENT_SUCCESS) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
