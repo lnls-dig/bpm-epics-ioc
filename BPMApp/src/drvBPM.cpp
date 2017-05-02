@@ -1729,8 +1729,12 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
             if (acqCompleted == 1) {
                 /* Get curve */
+                unlock();
+                pasynManager->lockPort(pasynUser);
                 getAcqCurve(coreID, pArrayAllChannels, hwAmpChannel, num_samples_pre,
                         num_samples_post, num_shots);
+                pasynManager->unlockPort(pasynUser);
+                lock();
                 break;
             }
         }
