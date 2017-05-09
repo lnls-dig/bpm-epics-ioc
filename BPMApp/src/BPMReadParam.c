@@ -99,9 +99,6 @@ int main (int argc, char *argv [])
         }
     }
 
-            fprintf (stderr, "[client:dsp]: board, halcs: %u, %u\n",
-                    board_number, halcs_number);
-
     /* Generate the service names for each SMIO */
     char service_dsp[50];
     snprintf (service_dsp, sizeof (service_dsp), "HALCS%u:DEVIO:DSP%u", board_number, halcs_number);
