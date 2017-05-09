@@ -14,6 +14,11 @@ Environment=BPM_NUMBER=%i
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
+ExecStartPre=/bin/sh -c " \
+    BOARD_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2;}'); \
+    HALCS_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3;}'); \
+    /opt/epics/startup/ioc/bpm-epics-ioc/bin/${EPICS_HOST_ARCH}/BPMReadParam -b ipc:///tmp/malamute -board $${BOARD_NUMBER} -halcs $${HALCS_NUMBER} \
+"
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM
 # Run procServ with user ioc
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_BE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
