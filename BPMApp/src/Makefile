@@ -68,8 +68,30 @@ BPM_SYS_LIBS += gcc
 # System header files
 BPM_INCLUDES += -I/usr/include
 
+# Compile test program
+PROD += BPMReadParam
+BPMReadParam_SRCS += BPMReadParam.c
+
+# Link to system libraries
+BPMReadParam_SYS_LIBS += bpmclient
+BPMReadParam_SYS_LIBS += acqclient
+BPMReadParam_SYS_LIBS += halcsclient
+BPMReadParam_SYS_LIBS += errhand
+BPMReadParam_SYS_LIBS += hutils
+BPMReadParam_SYS_LIBS += mlm
+BPMReadParam_SYS_LIBS += czmq
+BPMReadParam_SYS_LIBS += zmq
+# FIXME: Why does epics does not include these libs?
+BPMReadParam_SYS_LIBS += pthread
+BPMReadParam_SYS_LIBS += readline
+BPMReadParam_SYS_LIBS += m
+BPMReadParam_SYS_LIBS += rt
+BPMReadParam_SYS_LIBS += dl
+BPMReadParam_SYS_LIBS += gcc
+
 # CXX Compiler flags
 USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CFLAGS = -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
 include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
 
