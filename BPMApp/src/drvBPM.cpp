@@ -43,11 +43,20 @@
 #define FOFB_RATE_FACTOR                980
 #define MONIT_RATE_FACTOR               9800000
 
+#define ADC_DFLT_SW                     0x1             /* No switching. Direct state */
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
+#define FMC_REF_CLK_SEL_1               0
+#define AD9510_ADC_DFLT_B_DIV           35
+#define AD9510_ADC_DFLT_MUX_STATUS      1
+#define AD9510_ADC_DFLT_CP_CURRENT      600
+#define AD9510_ADC_DFLT_OUTPUTS         31
+
+#define FMCPICO_1MA_SCALE               1
 
 #define CH_DFLT_TRIGGER_CHAN            0
 #define ADC_RST_NORMAL_OP               1
 #define ADC_NUM_CHANNELS                4
+#define CH_DFLT_TRIGGER_SW_CHAN         17
 
 #define CH_DEFAULT_PM                   CH_TBT
 #define SAMPLES_PRE_DEFAULT_PM          100000
@@ -813,12 +822,104 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
 
+    /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
+     * to the parameter library */                                   
+    bpmHwInt32Func[P_Kx] = bpmSetGetKxFunc;                          
+    bpmHwInt32Func[P_Ky] = bpmSetGetKyFunc;                          
+    /* FIXME: There is no BPM function to do that. Add funcionality to
+     * FPGA firmware */
+#if 0
+    bpmHwInt32Func[P_Kq] = bpmSetGetKqFunc;
+#endif
+    bpmHwInt32Func[P_Ksum] = bpmSetGetKsumFunc;
+    bpmHwInt32Func[P_Sw] = bpmSetGetAdcSwFunc;
+    bpmHwInt32Func[P_SwDly] = bpmSetGetAdcSwDlyFunc;
+    bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
+    bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
+    bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
+    bpmHwInt32Func[P_AdcRand] = bpmSetGetAdcRandFunc;
+    bpmHwInt32Func[P_AdcDith] = bpmSetGetAdcDithFunc;
+    bpmHwInt32Func[P_AdcShdn] = bpmSetGetAdcShdnFunc;
+    bpmHwInt32Func[P_AdcPga] = bpmSetGetAdcPgaFunc;
+    bpmHwInt32Func[P_AdcTestData] = bpmSetGetAdcTestDataFunc;
+    bpmHwInt32Func[P_AdcClkSel] = bpmSetGetAdcClkSelFunc;
+    bpmHwInt32Func[P_AdcAD9510Dflt] = bpmSetGetAdcAD9510DefaultsFunc;
+    bpmHwInt32Func[P_AdcAD9510PllFunc] = bpmSetGetAdcAD9510PllFunctionFunc;
+    bpmHwInt32Func[P_AdcAD9510PllStatus] = bpmSetGetAdcAD9510PllStatusFunc;
+    bpmHwInt32Func[P_AdcAD9510ClkSel] = bpmSetGetAdcAD9510ClkSelFunc;
+    bpmHwInt32Func[P_AdcAD9510ADiv] = bpmSetGetAdcAD9510ADivFunc;
+    bpmHwInt32Func[P_AdcAD9510BDiv] = bpmSetGetAdcAD9510BDivFunc;
+    bpmHwInt32Func[P_AdcAD9510Prescaler] = bpmSetGetAdcAD9510PrescalerFunc;
+    bpmHwInt32Func[P_AdcAD9510RDiv] = bpmSetGetAdcAD9510RDivFunc;
+    bpmHwInt32Func[P_AdcAD9510PllPDown] = bpmSetGetAdcAD9510PllPDownFunc;
+    bpmHwInt32Func[P_AdcAD9510MuxStatus] = bpmSetGetAdcAD9510MuxStatusFunc;
+    bpmHwInt32Func[P_AdcAD9510CpCurrent] = bpmSetGetAdcAD9510CPCurrentFunc;
+    bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
+    bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
+    bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
+    bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
+    bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
+    bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
+    bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
+    bpmHwInt32Func[P_MonitAmpA] = bpmSetGetMonitAmpAFunc;
+    bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
+    bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
+    bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
+    bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
+
+    bpmHwInt32AcqFunc[P_AcqControl] = bpmSetGetAcqControlFunc;
+    bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
+
+    bpmHwInt32AcqFunc[P_Trigger] = bpmSetGetAcqTriggerFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
+    bpmHwInt32AcqFunc[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
+    bpmHwInt32AcqFunc[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
+
+    /* BPM HW Double Functions mapping. Functions not mapped here are just written
+     * to the parameter library */
+    bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
+
+    /* BPM HW Int32 with channel selection. Functions not mapped here are just written
+     * to the parameter library */
+    bpmHwInt32ChanFunc[P_AdcTestMode] = bpmSetGetAdcTestModeFunc;
+    bpmHwInt32ChanFunc[P_AdcRstModes] =  bpmSetGetAdcRstModesFunc;
+    bpmHwInt32ChanFunc[P_AdcTemp] = bpmSetGetAdcTempFunc;
+    bpmHwInt32ChanFunc[P_AdcCalStatus] = bpmSetGetAdcCalStatusFunc;
+
+    bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
+    bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvCntRst] = bpmSetGetTrigRcvCntRstFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnCntRst] = bpmSetGetTrigTrnCntRstFunc;
+    bpmHwInt32ChanFunc[P_TriggerCntRcv] = bpmSetGetTrigCntRcvFunc;
+    bpmHwInt32ChanFunc[P_TriggerCntTrn] = bpmSetGetTrigCntTrnFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvLen] = bpmSetGetTrigRcvLenFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnLen] = bpmSetGetTrigTrnLenFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvSrc] = bpmSetGetTrigRcvSrcFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnSrc] = bpmSetGetTrigTrnSrcFunc;
+    bpmHwInt32ChanFunc[P_TriggerRcvInSel] = bpmSetGetTrigRcvSelFunc;
+    bpmHwInt32ChanFunc[P_TriggerTrnOutSel] = bpmSetGetTrigTrnSelFunc;
+
+    lock();
+    status = bpmClientConnect();
+    unlock();
+
+    /* If we correct connect for this first time, libbpmclient
+     * will ensure the reconnection to server if necessary, but we
+     * must succeed here or we must abort completely */
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling bpmClientConnect, status=%d\n",
+            driverName, functionName, status);
+        exit(1);
+    }
+
     /* Set the initial values of some parameters */
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
-        setIntegerParam(addr,     P_BPMMode,       BPMModeMultiBunch);
-        /* This will be initalized later, after we have connected to the server */
-        /* setIntegerParam(addr, P_BPMStatus,                     BPMStatus); */
+        setIntegerParam(addr, P_BPMMode,                   BPMModeMultiBunch);
+        setIntegerParam(addr, P_BPMStatus,                 BPMStatusIdle);
     }
 
     setUIntDigitalParam(P_HarmonicNumber,
@@ -827,7 +928,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
-    setUIntDigitalParam(P_Sw,           0x1,                0xFFFFFFFF);
+    setUIntDigitalParam(P_Sw,           ADC_DFLT_SW,        0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);
@@ -837,9 +938,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcShdn,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcPga,       0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_AdcClkSel,    AD9510_ADC_CLK_SEL_2,
-                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_AdcClkSel,    FMC_REF_CLK_SEL_1,  0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
+    
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510PllFunc,
@@ -847,11 +948,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcAD9510PllStatus,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510ClkSel,
-                                        0,                  0xFFFFFFFF);
+                                        AD9510_ADC_CLK_SEL_2,
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510ADiv,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510BDiv,
-                                        0,                  0xFFFFFFFF);
+                                        AD9510_ADC_DFLT_B_DIV, 
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510Prescaler,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510RDiv,
@@ -859,19 +962,24 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcAD9510PllPDown,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510MuxStatus,
-                                        0,                  0xFFFFFFFF);
+                                        AD9510_ADC_DFLT_MUX_STATUS,
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510CpCurrent,
-                                        0,                  0xFFFFFFFF);
+                                        AD9510_ADC_DFLT_CP_CURRENT,
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510Outputs,
-                                        0,                  0xFFFFFFFF);
+                                        AD9510_ADC_DFLT_OUTPUTS,
+                                                            0xFFFFFFFF);
     setUIntDigitalParam(P_ActiveClkRstADCs,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_ActiveClkSi571Oe,
                                         SI57X_ENABLE,       0xFFFFFFFF);
-    setUIntDigitalParam(P_FmcPicoRngR0, 1,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_FmcPicoRngR1, 1,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_FmcPicoRngR2, 1,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_FmcPicoRngR3, 1,                  0xFFFFFFFF);
+
+    setUIntDigitalParam(P_FmcPicoRngR0, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
+    setUIntDigitalParam(P_FmcPicoRngR1, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
+    setUIntDigitalParam(P_FmcPicoRngR2, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
+    setUIntDigitalParam(P_FmcPicoRngR3, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
+
     setUIntDigitalParam(P_Kx,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ky,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
@@ -988,104 +1096,49 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
-    /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
-    for (int i = 0; i < MAX_ADDR; ++i) {
-        callParamCallbacks(i);
+    /* Set Switching Trigger values */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        setIntegerParam(    i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerCntRcv,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerCntTrn,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvSrc,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvInSel,  1,              0xFFFFFFFF);
+        setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
-    /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
-     * to the parameter library */
-    bpmHwInt32Func[P_Kx] = bpmSetGetKxFunc;
-    bpmHwInt32Func[P_Ky] = bpmSetGetKyFunc;
-    /* FIXME: There is no BPM function to do that. Add funcionality to
-     * FPGA firmware */
 #if 0
-    bpmHwInt32Func[P_Kq] = bpmSetGetKqFunc;
-#endif
-    bpmHwInt32Func[P_Ksum] = bpmSetGetKsumFunc;
-    bpmHwInt32Func[P_Sw] = bpmSetGetAdcSwFunc;
-    bpmHwInt32Func[P_SwDly] = bpmSetGetAdcSwDlyFunc;
-    bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
-    bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
-    bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
-    bpmHwInt32Func[P_AdcRand] = bpmSetGetAdcRandFunc;
-    bpmHwInt32Func[P_AdcDith] = bpmSetGetAdcDithFunc;
-    bpmHwInt32Func[P_AdcShdn] = bpmSetGetAdcShdnFunc;
-    bpmHwInt32Func[P_AdcPga] = bpmSetGetAdcPgaFunc;
-    bpmHwInt32Func[P_AdcTestData] = bpmSetGetAdcTestDataFunc;
-    bpmHwInt32Func[P_AdcClkSel] = bpmSetGetAdcClkSelFunc;
-    bpmHwInt32Func[P_AdcAD9510Dflt] = bpmSetGetAdcAD9510DefaultsFunc;
-    bpmHwInt32Func[P_AdcAD9510PllFunc] = bpmSetGetAdcAD9510PllFunctionFunc;
-    bpmHwInt32Func[P_AdcAD9510PllStatus] = bpmSetGetAdcAD9510PllStatusFunc;
-    bpmHwInt32Func[P_AdcAD9510ClkSel] = bpmSetGetAdcAD9510ClkSelFunc;
-    bpmHwInt32Func[P_AdcAD9510ADiv] = bpmSetGetAdcAD9510ADivFunc;
-    bpmHwInt32Func[P_AdcAD9510BDiv] = bpmSetGetAdcAD9510BDivFunc;
-    bpmHwInt32Func[P_AdcAD9510Prescaler] = bpmSetGetAdcAD9510PrescalerFunc;
-    bpmHwInt32Func[P_AdcAD9510RDiv] = bpmSetGetAdcAD9510RDivFunc;
-    bpmHwInt32Func[P_AdcAD9510PllPDown] = bpmSetGetAdcAD9510PllPDownFunc;
-    bpmHwInt32Func[P_AdcAD9510MuxStatus] = bpmSetGetAdcAD9510MuxStatusFunc;
-    bpmHwInt32Func[P_AdcAD9510CpCurrent] = bpmSetGetAdcAD9510CPCurrentFunc;
-    bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
-    bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
-    bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
-    bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
-    bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
-    bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
-    bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
-    bpmHwInt32Func[P_MonitAmpA] = bpmSetGetMonitAmpAFunc;
-    bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
-    bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
-    bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
-    bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
+    /* Read values from HW */
+    readAD9510Params (0xFFFFFFFF, 0);
+    readSi57xParams (0);
 
-    bpmHwInt32AcqFunc[P_AcqControl] = bpmSetGetAcqControlFunc;
-    bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
-
-    bpmHwInt32AcqFunc[P_Trigger] = bpmSetGetAcqTriggerFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
-    bpmHwInt32AcqFunc[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
-
-    /* BPM HW Double Functions mapping. Functions not mapped here are just written
-     * to the parameter library */
-    bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
-
-    /* BPM HW Int32 with channel selection. Functions not mapped here are just written
-     * to the parameter library */
-    bpmHwInt32ChanFunc[P_AdcTestMode] = bpmSetGetAdcTestModeFunc;
-    bpmHwInt32ChanFunc[P_AdcRstModes] =  bpmSetGetAdcRstModesFunc;
-    bpmHwInt32ChanFunc[P_AdcTemp] = bpmSetGetAdcTempFunc;
-    bpmHwInt32ChanFunc[P_AdcCalStatus] = bpmSetGetAdcCalStatusFunc;
-
-    bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
-    bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvCntRst] = bpmSetGetTrigRcvCntRstFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnCntRst] = bpmSetGetTrigTrnCntRstFunc;
-    bpmHwInt32ChanFunc[P_TriggerCntRcv] = bpmSetGetTrigCntRcvFunc;
-    bpmHwInt32ChanFunc[P_TriggerCntTrn] = bpmSetGetTrigCntTrnFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvLen] = bpmSetGetTrigRcvLenFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnLen] = bpmSetGetTrigTrnLenFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvSrc] = bpmSetGetTrigRcvSrcFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnSrc] = bpmSetGetTrigTrnSrcFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvInSel] = bpmSetGetTrigRcvSelFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnOutSel] = bpmSetGetTrigTrnSelFunc;
-
-    lock();
-    status = bpmClientConnect();
-    unlock();
-
-    /* If we correct connect for this first time, libbpmclient
-     * will ensure the reconnection to server if necessary, but we
-     * must succeed here or we must abort completely */
-    if (status != asynSuccess) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling bpmClientConnect, status=%d\n",
-            driverName, functionName, status);
-        exit(1);
+    for (int addr = 0; addr < ADC_NUM_CHANNELS; ++addr) {
+        readADCsParams (0xFFFFFFFF, addr);
     }
 
+    for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            readTriggerParams(0xFFFFFFFF, i*MAX_TRIGGERS + addr);
+        }
+    }
+
+#if 0
+    readFMCPicoParams(0xFFFFFFFF, 0);
+#endif
+
+#endif
+                                                                     
+    /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
+    for (int i = 0; i < MAX_ADDR; ++i) {                             
+        callParamCallbacks(i);                                       
+    }                                                                
+                                                                     
     /* Create the thread that computes the waveforms in the background */
     for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
@@ -4226,7 +4279,7 @@ asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam
 
     for (int i = firstParam; i < lastParam+1; ++i) {
         status = getParam32(i, &param, mask, addr);
-        /* Only write values is there is no error */
+        /* Only write values if there is no error */
         if (status) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: error getting UInt32 parameter for function = %d, "
