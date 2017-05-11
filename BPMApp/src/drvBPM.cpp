@@ -4288,12 +4288,25 @@ asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcTemp, true);
+    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcCalStatus, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)
 {
-    return updateDoubleParams(addr, P_AdcSi57xFreq, P_AdcSi57xFreq, false);
+    int status = asynSuccess;
+    status = updateDoubleParams(addr, P_AdcSi57xFreq, P_AdcSi57xFreq, false);
+    status |= updateUInt32Params(0xFFFFFFFF, addr, P_ActiveClkSi571Oe, P_ActiveClkSi571Oe, false);
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::readTriggerParams(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_TriggerDir, P_TriggerTrnOutSel, false);
+}
+
+asynStatus drvBPM::readFMCPicoParams(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_FmcPicoRngR0, P_FmcPicoRngR3, true);
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
