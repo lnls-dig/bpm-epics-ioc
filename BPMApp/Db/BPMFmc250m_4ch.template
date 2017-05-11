@@ -64,7 +64,9 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ISLA216P25 temperature code")
     field(PINI,"YES")
-    field(SCAN,"5 second")
+    field(SCAN,"1 second")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEMP")
 }
 
