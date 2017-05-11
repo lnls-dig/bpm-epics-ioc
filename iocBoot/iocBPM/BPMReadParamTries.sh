@@ -35,12 +35,18 @@ if [ -z "$TRIES" ]; then
     exit 1
 fi
 
+TRIES_SUCCESSFULLY=0
 for i in `seq 1 ${TRIES}`;
 do
     ../../bin/${EPICS_HOST_ARCH}/BPMReadParam -b ipc:///tmp/malamute -board ${BOARD_NUMBER} -halcs ${HALCS_NUMBER}
     if [ $? -eq 0 ]; then
-        exit 0
+        ((TRIES_SUCCESSFULLY++))
     fi
 done
+
+# FIXME please...
+if [ "$TRIES_SUCCESSFULLY" -ge "2" ]; then
+    exit 0
+fi
 
 exit 1
