@@ -22,7 +22,6 @@ record(mbbo,"$(P)$(R)ADCClkSel"){
 record(mbbi,"$(P)$(R)ADCClkSel-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC reference clock")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_CLKSEL")
     field(NOBT,"1")
@@ -47,7 +46,6 @@ record(ao,"$(P)$(R)ADCSi57xFreq"){
 record(ai,"$(P)$(R)ADCSi57xFreq-RB"){
     field(DTYP,"asynFloat64")
     field(DESC,"get si57x frequency")
-    field(PINI,"YES")
     field(PREC, "3")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
@@ -64,12 +62,12 @@ record(mbbo,"$(P)$(R)ADCSi57xOe"){
     field(ONVL,"1")
     field(ZRST,"disable")
     field(ONST,"enable")
+    field(VAL,"1")
 }
 
 record(mbbi,"$(P)$(R)ADCSi57xOe-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get Si57x output enable")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACTIVE_CLK_SI57X_OE")
     field(NOBT,"1")
@@ -102,7 +100,6 @@ record(longout,"$(P)$(R)ADCAD9510PllFunc"){
 record(longin,"$(P)$(R)ADCAD9510PllFunc-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 PLL function")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLFUNC")
 }
@@ -110,7 +107,6 @@ record(longin,"$(P)$(R)ADCAD9510PllFunc-RB"){
 record(longin,"$(P)$(R)ADCAD9510PllStatus-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 PLL Status")
-    field(PINI,"YES")
     field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLSTATUS")
 }
@@ -126,12 +122,12 @@ record(mbbo,"$(P)$(R)ADCAD9510ClkSel"){
     field(ONVL,"2")
     field(ZRST,"clk1")
     field(ONST,"clk2")
+    field(VAL,"clk1")
 }
 
 record(mbbi,"$(P)$(R)ADCAD9510ClkSel-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 reference clock")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CLKSEL")
     field(NOBT,"1")
@@ -165,7 +161,6 @@ record(longout,"$(P)$(R)ADCAD9510ADiv"){
 record(longin,"$(P)$(R)ADCAD9510ADiv-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 A divider")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510ADIV")
 }
@@ -176,12 +171,12 @@ record(longout,"$(P)$(R)ADCAD9510BDiv"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510BDIV")
+    field(VAL,"35")
 }
 
 record(longin,"$(P)$(R)ADCAD9510BDiv-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 B divider")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510BDIV")
 }
@@ -197,7 +192,6 @@ record(longout,"$(P)$(R)ADCAD9510Prescaler"){
 record(longin,"$(P)$(R)ADCAD9510Prescaler-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 prescaler")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PRESCALER")
 }
@@ -213,7 +207,6 @@ record(longout,"$(P)$(R)ADCAD9510RDiv"){
 record(longin,"$(P)$(R)ADCAD9510RDiv-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 R divider")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510RDIV")
 }
@@ -238,7 +231,6 @@ record(mbbo,"$(P)$(R)ADCAD9510PllPDown"){
 record(mbbi,"$(P)$(R)ADCAD9510PllPDown-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 PLL power down")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510PLLPDOWN")
     field(NOBT,"2")
@@ -258,12 +250,12 @@ record(longout,"$(P)$(R)ADCAD9510MuxStatus"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
+    field(VAL,"1")
 }
 
 record(longin,"$(P)$(R)ADCAD9510MuxStatus-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 mux status")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
 }
@@ -274,12 +266,12 @@ record(longout,"$(P)$(R)ADCAD9510CpCurrent"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CPCURRENT")
+    field(VAL,"600")
 }
 
 record(longin,"$(P)$(R)ADCAD9510CpCurrent-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 CP current")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CPCURRENT")
 }
@@ -290,12 +282,12 @@ record(longout,"$(P)$(R)ADCAD9510Outputs"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510OUTPUTS")
+    field(VAL,"31")
 }
 
 record(longin,"$(P)$(R)ADCAD9510Outputs-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 outputs")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510OUTPUTS")
 }

@@ -22,7 +22,6 @@ record(longout,"$(P)$(R)ADC$(ADC_CHAN)TestMode"){
 #record(longin,"$(P)$(R)ADC$(ADC_CHAN)TestMode-RB"){
 #    field(DTYP,"asynUInt32Digital")
 #    field(DESC,"get ISLA216P25 test mode")
-#    field(PINI,"YES")
 #    field(SCAN,"I/O Intr")
 #    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEST_MODE")
 #}
@@ -48,7 +47,6 @@ record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes"){
 #record(mbbi,"$(P)$(R)ADC$(ADC_CHAN)RstModes-RB"){
 #    field(DTYP,"asynUInt32Digital")
 #    field(DESC,"get ISLA216P25 reset mode")
-#    field(PINI,"YES")
 #    field(SCAN,"I/O Intr")
 #    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RST_MODES")
 #    field(NOBT,"2")
@@ -95,7 +93,6 @@ record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegRead-RB"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register read status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(NOBT,"1")
     field(ZRVL,"0")
@@ -107,7 +104,6 @@ record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegRead-RB"){
 record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadData-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get data from ADC register")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_DATA")
 }
@@ -123,7 +119,6 @@ record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr"){
 record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get addr to be read to ADC")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_ADDR")
 }
@@ -145,7 +140,6 @@ record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-RB"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register write status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(NOBT,"1")
     field(ZRVL,"0")
@@ -165,7 +159,6 @@ record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData"){
 record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get data to be written to ADC")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_DATA")
 }
@@ -181,7 +174,6 @@ record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr"){
 record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get addr to be written to ADC")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_ADDR")
 }
