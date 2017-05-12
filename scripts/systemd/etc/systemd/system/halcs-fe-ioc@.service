@@ -10,10 +10,16 @@ PartOf=halcs-ioc@%i.target
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc-slot-mapping
 Environment=BPM_NUMBER=%i
+Environment=BPM_TRY_READ=3
 # Execute pre with root
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
+ExecStartPre=/bin/sh -c " \
+    BOARD_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2;}'); \
+    HALCS_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3;}'); \
+    /opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM/BPMCheckInitTries.sh ipc:///tmp/malamute $${BOARD_NUMBER} $${HALCS_NUMBER} $${BPM_TRY_READ} \
+"
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 # Run procServ with user ioc
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
