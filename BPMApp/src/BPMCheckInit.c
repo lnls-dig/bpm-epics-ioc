@@ -74,7 +74,7 @@ int main (int argc, char *argv [])
     /* Set default board number */
     uint32_t board_number;
     if (board_number_str == NULL) {
-        fprintf (stderr, "[client:dsp]: Setting default value to BOARD number: %u\n",
+        fprintf (stderr, "[client:check_init]: Setting default value to BOARD number: %u\n",
                 DFLT_BOARD_NUMBER);
         board_number = DFLT_BOARD_NUMBER;
     }
@@ -85,7 +85,7 @@ int main (int argc, char *argv [])
     /* Set default halcs number */
     uint32_t halcs_number;
     if (halcs_number_str == NULL) {
-        fprintf (stderr, "[client:dsp]: Setting default value to HALCS number: %u\n",
+        fprintf (stderr, "[client:check_init]: Setting default value to HALCS number: %u\n",
                 DFLT_HALCS_NUMBER);
         halcs_number = DFLT_HALCS_NUMBER;
     }
@@ -93,27 +93,30 @@ int main (int argc, char *argv [])
         halcs_number = strtoul (halcs_number_str, NULL, 10);
 
         if (halcs_number > MAX_HALCS_NUMBER) {
-            fprintf (stderr, "[client:dsp]: HALCS number too big! Defaulting to: %u\n",
+            fprintf (stderr, "[client:check_init]: HALCS number too big! Defaulting to: %u\n",
                     MAX_HALCS_NUMBER);
             halcs_number = MAX_HALCS_NUMBER;
         }
     }
 
+    /* unused parameter */
+    (void) halcs_number;
+
     /* Generate the service names for each SMIO */
-    char service_dsp[50];
-    snprintf (service_dsp, sizeof (service_dsp), "HALCS%u:DEVIO:DSP%u", board_number, halcs_number);
+    char service_init[50];
+    snprintf (service_init, sizeof (service_init), "HALCS%u:DEVIO:INIT0", board_number);
 
     halcs_client_t *halcs_client = halcs_client_new (broker_endp, verbose, NULL);
     if (halcs_client == NULL) {
-        fprintf (stderr, "[client:dsp]: halcs_client could be created\n");
+        fprintf (stderr, "[client:check_init]: halcs_client could be created\n");
         err = -1;
         goto err_halcs_client_new;
     }
 
-    uint32_t kx_get;
-    halcs_client_err_e herr = halcs_get_kx (halcs_client, service_dsp, &kx_get);
+    uint32_t init_check_get;
+    halcs_client_err_e herr = halcs_get_init_check (halcs_client, service_init, &init_check_get);
     if (herr != HALCS_CLIENT_SUCCESS){
-        fprintf (stderr, "[client:dsp]: halcs_get_kx failed, status = %s\n", halcs_client_err_str (herr));
+        fprintf (stderr, "[client:check_init]: halcs_get_init_check failed, status = %s\n", halcs_client_err_str (herr));
         err = -1;
         goto err_halcs_get;
     }
