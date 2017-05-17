@@ -16,4 +16,5 @@ done
 
 for i in $(seq 0 3); do 
 	caput ${BPM_PREFIX}:DI-BPM:ADC${i}Temp-RB.SCAN Passive 
+	caput ${BPM_PREFIX}:DI-BPM:ADC${i}CalStatus-RB.SCAN Passive 
 done
