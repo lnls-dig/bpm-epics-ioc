@@ -387,7 +387,7 @@ pvs[1].setValue(scan)
     </scale_options>
     <image></image>
     <visible>true</visible>
-    <pv_name>loc://$(P)$(R)$(MODULE)StopScan(0)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)StopScan</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -449,7 +449,7 @@ pvs[1].setValue(scan)]]></scriptText>
     </scale_options>
     <image></image>
     <visible>true</visible>
-    <pv_name>loc://$(P)$(R)$(MODULE)StartScan(0)</pv_name>
+    <pv_name>loc://$(P)$(R)$(MODULE)StartScan</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
