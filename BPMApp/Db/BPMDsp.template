@@ -218,7 +218,7 @@ record(longin,"$(P)$(R)MONITD"){
 # This keeps the MONIT/AMP records synched
 record(ai,"$(P)$(R)MONITUpdtAll"){
     field(PINI,"YES")
-    field(SCAN,".2 second")
+    field(SCAN,".1 second")
     field(FLNK,"$(P)$(R)MONITUpdt 1")
 }
 
