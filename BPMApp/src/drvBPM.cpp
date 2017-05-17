@@ -59,8 +59,10 @@
 #define CH_DFLT_TRIGGER_SW_CHAN         17
 
 #define CH_DEFAULT_PM                   CH_TBT
-#define SAMPLES_PRE_DEFAULT_PM          100000
-#define SAMPLES_POST_DEFAULT_PM         100000
+#define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
+                                        (maxPoints/2)
+#define SAMPLES_POST_DEFAULT_PM(maxPoints) \
+                                        (maxPoints/2)
 #define NUM_SHOTS_DEFAULT_PM            1
 #define TRIG_DEFAULT_PM                 ACQ_CLIENT_TRIG_EXTERNAL
 #define DFLT_SAMPLE_SIZE                8 /* in bytes */
@@ -1018,16 +1020,16 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Acquisition PM parameters */
-    setUIntDigitalParam(BPMIDPM, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setUIntDigitalParam(BPMIDPM, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setUIntDigitalParam(BPMIDPM, P_NumShots,      NUM_SHOTS_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setIntegerParam(    BPMIDPM, P_Channel,                           CH_DEFAULT_PM);
-    setUIntDigitalParam(BPMIDPM, P_AcqControl,    0,                  0xFFFFFFFF);
-    setDoubleParam(     BPMIDPM, P_UpdateTime,                             1.0);
-    setUIntDigitalParam(BPMIDPM, P_Trigger,       TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_SamplesPre, SAMPLES_PRE_DEFAULT_PM(bpmMaxPoints),
+                                                                0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_SamplesPost,SAMPLES_POST_DEFAULT_PM(bpmMaxPoints),
+                                                                0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_NumShots,   NUM_SHOTS_DEFAULT_PM,
+                                                                0xFFFFFFFF);
+    setIntegerParam(    BPMIDPM, P_Channel,                        CH_DEFAULT_PM);
+    setUIntDigitalParam(BPMIDPM, P_AcqControl, 0,                  0xFFFFFFFF);
+    setDoubleParam(     BPMIDPM, P_UpdateTime,                          1.0);
+    setUIntDigitalParam(BPMIDPM, P_Trigger,    TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataPol,
@@ -1353,16 +1355,16 @@ asynStatus drvBPM::initAcqPM(int coreID)
         driverName, functionName, coreID);
 
     /* Set paramters for Post-Mortem */
-    setUIntDigitalParam(coreID, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setUIntDigitalParam(coreID, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setUIntDigitalParam(coreID, P_NumShots,      NUM_SHOTS_DEFAULT_PM,
-                                                                   0xFFFFFFFF);
-    setIntegerParam(    coreID, P_Channel,                           CH_DEFAULT_PM);
-    setUIntDigitalParam(coreID, P_AcqControl,    0,                  0xFFFFFFFF);
-    setDoubleParam(     coreID, P_UpdateTime,                             1.0);
-    setUIntDigitalParam(coreID, P_Trigger,       TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_SamplesPre,  SAMPLES_PRE_DEFAULT_PM(bpmMaxPoints),
+                                                                 0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_SamplesPost, SAMPLES_POST_DEFAULT_PM(bpmMaxPoints),
+                                                                 0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_NumShots,    NUM_SHOTS_DEFAULT_PM,
+                                                                 0xFFFFFFFF);
+    setIntegerParam(    coreID, P_Channel,                         CH_DEFAULT_PM);
+    setUIntDigitalParam(coreID, P_AcqControl,  0,                  0xFFFFFFFF);
+    setDoubleParam(     coreID, P_UpdateTime,                           1.0);
+    setUIntDigitalParam(coreID, P_Trigger,     TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataPol,
