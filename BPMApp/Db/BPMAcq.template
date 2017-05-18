@@ -108,6 +108,14 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-RB"){
     field(THST,"fofb")
 }
 
+# For use with rate seq record defined in FFTRecords.template
+record(calc, "$(P)$(R)$(ACQ_NAME)ChannelRateIdx-RB"){
+    field(DESC, "get acquisition's channel index")
+    field(SCAN,"Passive")
+    field(INPA,"$(P)$(R)$(ACQ_NAME)Channel-RB.RVAL CP NMS")
+    field(CALC,"A+1")
+}
+
 record(mbbo, "$(P)$(R)$(ACQ_NAME)Trigger"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition's trigger")
