@@ -48,6 +48,22 @@ record(ai,"$(P)$(R)ADCClkFreq-RB"){
     field(EGU, "Hz")
 }
 
+record(longout,"$(P)$(R)INFOADCRate"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCRATE")
+}
+
+record(longin,"$(P)$(R)INFOADCRate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC rate factor")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCRATE")
+}
+
 record(longout,"$(P)$(R)INFOTBTRate"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set TBT rate factor")
