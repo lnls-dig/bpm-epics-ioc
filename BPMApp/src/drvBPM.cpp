@@ -124,8 +124,6 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_AMP_PM_D,
                             WVF_AMP_PM_ALL},
                           },
-                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
-                           -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
                             -1,
@@ -137,8 +135,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {-1,                                  // NDArrayPhaseFreq
-                           -1},
                           {{-1,                                 // NDArrayPos
                             -1,
                             -1,
@@ -150,8 +146,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1},
                           },
-                          {-1,                                  // NDArrayPosFreq
-                           -1},
                           },
     /* [CH_ADCSWAP] = */ {CH_HW_ADCSWAP,                        // HwAmpChannel
                           -1,                                   // HwPhaseChannel
@@ -168,8 +162,6 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_AMP_PM_D,
                             WVF_AMP_PM_ALL},
                           },
-                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
-                           -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
                             -1,
@@ -181,8 +173,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {-1,                                  // NDArrayPhaseFreq
-                           -1},
                           {{-1,                                 // NDArrayPos
                             -1,
                             -1,
@@ -194,8 +184,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1},
                           },
-                          {-1,                                   // NDArrayPosFreq
-                           -1},
                           },
     /* [CH_TBT] =     */ {CH_HW_TBT,                             // HwAmpChannel
                           -1,                                    // HwPhaseChannel
@@ -212,8 +200,6 @@ static const channelMap_t channelMap[CH_END] = {
                              WVF_AMP_PM_D,
                              WVF_AMP_PM_ALL},
                           },
-                          {WVF_GENAMP_FREQ,                      // NDArrayAmpFreq
-                           WVF_AMP_PM_FREQ},
                           {{-1,                                  // NDArrayPhase
                             -1,
                             -1,
@@ -225,8 +211,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {-1,                                   // NDArrayPhaseFreq
-                           -1},
                           {{WVF_GENPOS_A,                        // NDArrayPos
                             WVF_GENPOS_B,
                             WVF_GENPOS_C,
@@ -238,8 +222,6 @@ static const channelMap_t channelMap[CH_END] = {
                              WVF_POS_PM_D,
                              WVF_POS_PM_ALL},
                           },
-                          {WVF_GENPOS_FREQ,                      // NDArrayPosFreq
-                           WVF_POS_PM_FREQ},
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                            // HwAmpChannel
                           -1,                                    // HwPhaseChannel
@@ -256,8 +238,6 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_AMP_PM_D,
                             WVF_AMP_PM_ALL},
                           },
-                          {WVF_GENAMP_FREQ,                     // NDArrayAmpFreq
-                           -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
                             -1,
@@ -269,8 +249,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {-1,                                   // NDArrayPhaseFreq
-                           -1},
                           {{WVF_GENPOS_A,                        // NDArrayPos
                             WVF_GENPOS_B,
                             WVF_GENPOS_C,
@@ -282,8 +260,6 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_POS_PM_D,
                             WVF_POS_PM_ALL},
                           },
-                          {WVF_GENPOS_FREQ,                    // NDArrayPosFreq
-                           -1},
                           },
     /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
                           -1,                                  // HwPhaseChannel
@@ -300,8 +276,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {WVF_AMP_SP_FREQ,                     // NDArrayAmpFreq
-                           -1},
                           {{-1,                                 // NDArrayPhase
                             -1,
                             -1,
@@ -313,8 +287,6 @@ static const channelMap_t channelMap[CH_END] = {
                              -1,
                              -1},
                           },
-                          {-1,                                  // NDArrayPhaseFreq
-                           -1},
                           {{-1,                                 // NDArrayPos
                             -1,
                             -1,
@@ -326,8 +298,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1},
                           },
-                          {-1,                                  // NDArrayPosFreq
-                           -1},
                           },
 };
 
@@ -680,6 +650,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
     createParam(P_AdcClkFreqString, asynParamFloat64,               &P_AdcClkFreq);
+    createParam(P_AdcRateString,    asynParamUInt32Digital,         &P_AdcRate);
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
@@ -927,6 +898,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
     setDoubleParam(P_AdcClkFreq,                            ADC_CLK_FREQ_UVX_DFLT);
+    setUIntDigitalParam(P_AdcRate,      ADC_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
@@ -1543,16 +1515,12 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
-    NDArray *pArrayChannelFreq;
     NDDataType_t NDType = NDInt32;
-    NDDataType_t NDTypeFreq = NDFloat64;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
     double elapsedTime;
-    double adcFreq;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
-    size_t dimsFreq[1];
     static const char *functionName = "acqTask";
 
     /* Create an asynUser. FIXME: we should probably create a callback
@@ -1636,7 +1604,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
         getIntegerParam(    coreID , P_Channel      , &channel);
         getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
-        getDoubleParam(              P_AdcClkFreq   , &adcFreq);
         getUIntDigitalParam(coreID,  P_ChannelSampleSize,
                                                       &sampleSize,        0xFFFFFFFF);
         getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
@@ -1707,21 +1674,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
         getAttributes(pArrayAllChannels->pAttributeList);
-
-        dimsFreq[0] = (num_samples_pre + num_samples_post)*num_shots;
-
-        /* Alloc array for frequency axis */
-        pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
-        if (pArrayChannelFreq == NULL) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to alloc pArrayChannelFreq\n",
-                driverName, functionName);
-            continue;
-        }
-        pArrayChannelFreq->uniqueId = arrayCounter;
-        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-        pArrayChannelFreq->timeStamp = timeStamp;
-        getAttributes(pArrayChannelFreq->pAttributeList);
 
         /* Just start the acquisition if we are not already acquiring */
         if (newAcq) {
@@ -1805,11 +1757,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                     channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
             lock();
 
-            /* Compute frequency arrays for amplitude, positions and do
-             * callbacks on that */
-            computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
-                    num_samples_pre, num_samples_post, num_shots);
-
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
                     MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
@@ -1819,7 +1766,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         }
 
         /* Release buffers */
-        pArrayChannelFreq->release();
         pArrayAllChannels->release();
         callParamCallbacks(coreID);
 
@@ -1882,14 +1828,10 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     NDArray *pArrayAllChannels;
-    NDArray *pArrayChannelFreq;
     NDDataType_t NDType = NDInt32;
-    NDDataType_t NDTypeFreq = NDFloat64;
     epicsTimeStamp startTime;
-    double adcFreq;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
-    size_t dimsFreq[1];
     bpm_single_pass_t *bpm_single_pass = NULL;
     static const char *functionName = "acqSPTask";
 
@@ -1964,7 +1906,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
         getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
-        getDoubleParam(              P_AdcClkFreq   , &adcFreq);
         getUIntDigitalParam(coreID,  P_ChannelSampleSize,
                                                       &sampleSize,        0xFFFFFFFF);
         getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
@@ -2040,21 +1981,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
         getAttributes(pArrayAllChannels->pAttributeList);
-
-        dimsFreq[0] = (num_samples_pre + num_samples_post)*num_shots;
-
-        /* Alloc array for frequency axis */
-        pArrayChannelFreq = pNDArrayPool->alloc(1, dimsFreq, NDTypeFreq, 0, NULL);
-        if (pArrayChannelFreq == NULL) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to alloc pArrayChannelFreq\n",
-                driverName, functionName);
-            continue;
-        }
-        pArrayChannelFreq->uniqueId = arrayCounter;
-        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-        pArrayChannelFreq->timeStamp = timeStamp;
-        getAttributes(pArrayChannelFreq->pAttributeList);
 
         /* Tell we are acquiring just before we actually start it */
         setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
@@ -2205,11 +2131,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                         channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
                 lock();
 
-                /* Compute frequency arrays for amplitude, positions and do
-                 * callbacks on that */
-                computeFreqArray(coreID, pArrayChannelFreq, channel, adcFreq,
-                        num_samples_pre, num_samples_post, num_shots);
-
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
                         MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
@@ -2229,91 +2150,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         }
 
         /* Release buffers */
-        pArrayChannelFreq->release();
         pArrayAllChannels->release();
-    }
-}
-
-void drvBPM::computeFreqArray(int coreID, NDArray *pArrayChannelFreq, int channel,
-        epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
-        epicsUInt32 num_samples_post, epicsUInt32 num_shots)
-{
-    int status = 0;
-    size_t dims[1];
-    NDArrayInfo_t arrayInfo;
-    NDDataType_t NDType;
-    epicsFloat64 *pFreqData;
-    epicsFloat64 freqStep;
-    epicsUInt32 numPoints;
-    epicsUInt32 harmNumber = 1;
-    epicsUInt32 tbtRate = 1;
-    epicsUInt32 fofbRate = 1;
-    static const char *functionName = "computeFreqArray";
-
-    status = pArrayChannelFreq->getInfo(&arrayInfo);
-    if (status != 0) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to get information about pArrayChannelFreq\n",
-                driverName, functionName);
-        return;
-    }
-
-    dims[0] = arrayInfo.xSize;
-    NDType = pArrayChannelFreq->dataType;
-    if (NDType != NDFloat64) {
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: wrong array type for frequency vector\n",
-                driverName, functionName);
-        return;
-    }
-
-    pFreqData = (epicsFloat64 *)pArrayChannelFreq->pData;
-    numPoints = (num_samples_pre + num_samples_post)*num_shots;
-    freqStep = adcFreq/numPoints;
-
-    /* Get rate/harmonic parameters */
-    getUIntDigitalParam(P_HarmonicNumber, &harmNumber, 0xFFFFFFFF);
-    getUIntDigitalParam(P_TbtRate, &tbtRate, 0xFFFFFFFF);
-    getUIntDigitalParam(P_FofbRate, &fofbRate, 0xFFFFFFFF);
-
-    switch (channel) {
-        case CH_ADC:
-            /* nothing to be done for ADC case */
-            break;
-
-        case CH_ADCSWAP:
-            /* nothing to be done for ADCSWAP case */
-            break;
-
-        case CH_TBT:
-            freqStep /= tbtRate;
-            break;
-
-        case CH_FOFB:
-            freqStep /= fofbRate;
-            break;
-    }
-
-    for (size_t i = 0; i < dims[0]; ++i) {
-        pFreqData[i] = freqStep*i;
-    }
-
-    /* Do callbacks on amplitude and position frequency arrays */
-    if (channelMap[channel].NDArrayAmpFreq[coreID] != -1) {
-        unlock();
-        /* We must do the callbacks with mutex unlocked ad the plugin
-         * can call us and a deadlock would occur */
-        doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
-                channelMap[channel].NDArrayAmpFreq[coreID]);
-        lock();
-    }
-    if (channelMap[channel].NDArrayPosFreq[coreID] != -1) {
-        unlock();
-        /* We must do the callbacks with mutex unlocked ad the plugin
-         * can call us and a deadlock would occur */
-        doCallbacksGenericPointer(pArrayChannelFreq, NDArrayData,
-                channelMap[channel].NDArrayPosFreq[coreID]);
-        lock();
     }
 }
 

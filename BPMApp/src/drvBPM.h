@@ -62,31 +62,31 @@ typedef enum {
     WVF_GENAMP_C,
     WVF_GENAMP_D,
     WVF_GENAMP_ALL,
-    WVF_GENAMP_FREQ,
+    WVF_UNUSED_1,
     WVF_GENPOS_A,
     WVF_GENPOS_B,
     WVF_GENPOS_C,
     WVF_GENPOS_D,
     WVF_GENPOS_ALL,
-    WVF_GENPOS_FREQ,
+    WVF_UNUSED_2,
     WVF_AMP_PM_A,
     WVF_AMP_PM_B,
     WVF_AMP_PM_C,
     WVF_AMP_PM_D,
     WVF_AMP_PM_ALL,
-    WVF_AMP_PM_FREQ,
+    WVF_UNUSED_3,
     WVF_POS_PM_A,
     WVF_POS_PM_B,
     WVF_POS_PM_C,
     WVF_POS_PM_D,
     WVF_POS_PM_ALL,
-    WVF_POS_PM_FREQ,
+    WVF_UNUSED_4,
     WVF_AMP_SP_A,
     WVF_AMP_SP_B,
     WVF_AMP_SP_C,
     WVF_AMP_SP_D,
     WVF_AMP_SP_ALL,
-    WVF_AMP_SP_FREQ,
+    WVF_UNUSED_5,
     WVF_END
 } wvf_types;
 
@@ -215,11 +215,8 @@ typedef struct {
     int CalcPos;
     /* NDArray addresses mapping */
     int NDArrayAmp[NUM_ACQ_CORES_PER_BPM][MAX_WVF_AMP_TYPES];
-    int NDArrayAmpFreq[NUM_ACQ_CORES_PER_BPM];
     int NDArrayPhase[NUM_ACQ_CORES_PER_BPM][MAX_WVF_PHA_TYPES];
-    int NDArrayPhaseFreq[NUM_ACQ_CORES_PER_BPM];
     int NDArrayPos[NUM_ACQ_CORES_PER_BPM][MAX_WVF_POS_TYPES];
-    int NDArrayPosFreq[NUM_ACQ_CORES_PER_BPM];
 } channelMap_t;
 
 /* BPM Reverse channel mapping structure */
@@ -314,6 +311,7 @@ typedef struct {
 #define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
 #define P_AdcClkFreqString          "INFO_ADCCLKFREQ"       /* asynFloat64,            r/w */
+#define P_AdcRateString             "INFO_ADCRATE"          /* asynUInt32Digital,      r/o */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
@@ -456,6 +454,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_BPMStatus;
         int P_HarmonicNumber;
         int P_AdcClkFreq;
+        int P_AdcRate;
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
@@ -604,9 +603,6 @@ class drvBPM : public asynNDArrayDriver {
                 epicsUInt32 num_shots);
         asynStatus getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels);
         asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
-        void computeFreqArray(int coreID, NDArray *pArrayChannelFreq, int channel,
-                epicsFloat64 adcFreq, epicsUInt32 num_samples_pre,
-                epicsUInt32 num_samples_post, epicsUInt32 num_shots);
         void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
         void computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
