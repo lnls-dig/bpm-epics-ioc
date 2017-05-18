@@ -2070,7 +2070,7 @@ $(pv_value)</tooltip>
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>GEN.opi</path>
+        <path>GENPM.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <ACQ_NAME>ACQ_PM</ACQ_NAME>
