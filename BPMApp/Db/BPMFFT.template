@@ -5,3 +5,20 @@ record(RFFT,"$(P)$(R)$(ARRAY_NAME)FFTData")
     field(SPAN,"$(NELEMENTS)")
     field(PREC,"3")
 }
+
+record(acalcout,"$(P)$(R)$(ARRAY_NAME)FFTFreq")
+{
+    field(DESC, "FFT Frequency Vector")
+    field(DTYP, "Soft Channel")
+    field(NELM,"$(NELEMENTS)")
+    field(PINI, "YES")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)ADCClkFreq.VAL")
+    field(INAA, "$(P)$(R)$(ARRAY_NAME)FFTData.WAVN CP MS")
+    field(WAIT, "Wait")
+    field(OOPT, "Every Time")
+    field(CALC, "A*AA")
+    field(OUT, "0")
+}
