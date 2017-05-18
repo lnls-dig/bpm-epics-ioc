@@ -122,7 +122,6 @@ record(mbbo,"$(P)$(R)ADCAD9510ClkSel"){
     field(ONVL,"2")
     field(ZRST,"clk1")
     field(ONST,"clk2")
-    field(VAL,"clk1")
 }
 
 record(mbbi,"$(P)$(R)ADCAD9510ClkSel-RB"){
