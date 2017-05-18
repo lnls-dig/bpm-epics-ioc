@@ -237,7 +237,7 @@ static long process(self)
 	    rfftf((int) self->span, rptr, &self->wsav[self->span]);
 	  }
 	  self->bcos[j]=norm/2.0*rptr[r];
-	  self->bamp[j]=norm/2.0*abs(rptr[r]);
+	  self->bamp[j]=norm/2.0*fabs(rptr[r]);
 	  self->bsin[j]=0.0;
 	  self->bpha[j]=0.0;
 	  self->bwvn[j]=0.0;
