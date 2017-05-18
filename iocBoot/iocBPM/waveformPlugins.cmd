@@ -16,10 +16,6 @@ NDStdArraysConfigure("GEN_D_Array", $(QSIZE), 0, "$(PORT)", 3)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_D,PORT=GEN_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=3")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}GEN_D,PORT=GEN_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GENAMP_Freq_Array", $(QSIZE), 0, "$(PORT)", 5)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GENAMP_Freq,PORT=GENAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=5")
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}GENAMP_Freq,PORT=GENAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-
 ##################### GEN POS Waveforms ##########################
 
 NDStdArraysConfigure("GEN_X_Array", $(QSIZE), 0, "$(PORT)", 6)
@@ -37,10 +33,6 @@ dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R
 NDStdArraysConfigure("GEN_SUM_Array", $(QSIZE), 0, "$(PORT)", 9)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_SUM,PORT=GEN_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=9")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}GEN_SUM,PORT=GEN_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-
-NDStdArraysConfigure("GENPOS_Freq_Array", $(QSIZE), 0, "$(PORT)", 11)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GENPOS_Freq,PORT=GENPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=11")
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}GENPOS_Freq,PORT=GENPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 ##################### AMP PM Waveforms ##########################
 
@@ -60,10 +52,6 @@ NDStdArraysConfigure("PM_D_Array", $(QSIZE), 0, "$(PORT)", 15)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PM_D,PORT=PM_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=15")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PM_D,PORT=PM_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("PMAMP_Freq_Array", $(QSIZE), 0, "$(PORT)", 17)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMAMP_Freq,PORT=PMAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=17")
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PMAMP_Freq,PORT=PMAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-
 ##################### POS PM Waveforms ##########################
 
 NDStdArraysConfigure("PM_X_Array", $(QSIZE), 0, "$(PORT)", 18)
@@ -82,10 +70,6 @@ NDStdArraysConfigure("PM_SUM_Array", $(QSIZE), 0, "$(PORT)", 21)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PM_SUM,PORT=PM_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=21")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PM_SUM,PORT=PM_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("PMPOS_Freq_Array", $(QSIZE), 0, "$(PORT)", 23)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}PMPOS_Freq,PORT=PMPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=23")
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}PMPOS_Freq,PORT=PMPOS_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-
 ##################### Raw Data Single Pass Waveforms ##########################
 
 NDStdArraysConfigure("SP_A_Array", $(QSIZE), 0, "$(PORT)", 24)
@@ -103,7 +87,3 @@ dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R
 NDStdArraysConfigure("SP_D_Array", $(QSIZE), 0, "$(PORT)", 27)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}SP_D,PORT=SP_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=27")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}SP_D,PORT=SP_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-
-NDStdArraysConfigure("SPAMP_Freq_Array", $(QSIZE), 0, "$(PORT)", 29)
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}SPAMP_Freq,PORT=SPAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=29")
-dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStdArrays.template", "P=${P},R=${R}SPAMP_Freq,PORT=SPAMP_Freq_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
