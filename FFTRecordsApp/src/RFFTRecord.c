@@ -208,7 +208,7 @@ static long process(self)
 
         self->udf = TRUE;
 	rffti((int) self->span, (double *) &(self->wsav[self->span]));
-	norm=1.0/sqrt(self->span);
+	norm=2.0/self->span;
 
 	for (r = 0, j=0;
 	     r <=(self->nelm - self->span); 
@@ -236,8 +236,8 @@ static long process(self)
 	  else{
 	    rfftf((int) self->span, rptr, &self->wsav[self->span]);
 	  }
-	  self->bcos[j]=norm*rptr[r];
-	  self->bamp[j]=norm*abs(rptr[r]);
+	  self->bcos[j]=norm/2.0*rptr[r];
+	  self->bamp[j]=norm/2.0*abs(rptr[r]);
 	  self->bsin[j]=0.0;
 	  self->bpha[j]=0.0;
 	  self->bwvn[j]=0.0;
@@ -252,7 +252,7 @@ static long process(self)
 	  if((self->span%2) ==0){
 	    double c,s;
 	    long m=self->span/2;
-	    c=self->bcos[j+m]=norm*rptr[self->span-1];
+	    c=self->bcos[j+m]=norm/2.0*rptr[self->span-1];
 	    s=self->bsin[j+m]=0.0;
 	    self->bamp[j+m]=sqrt(c*c+s*s);
 	    self->bpha[j+m]=0.0;
