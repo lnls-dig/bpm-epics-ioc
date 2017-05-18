@@ -16,9 +16,35 @@ record(acalcout,"$(P)$(R)$(ARRAY_NAME)FFTFreq")
     field(ADEL, "-1")
     field(SCAN, "Passive")
     field(INPA, "$(P)$(R)ADCClkFreq.VAL")
+    field(INPB, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB.VAL")
     field(INAA, "$(P)$(R)$(ARRAY_NAME)FFTData.WAVN CP MS")
     field(WAIT, "Wait")
     field(OOPT, "Every Time")
-    field(CALC, "A*AA")
+    field(CALC, "(B)==(0)?A*AA:(A/B)*AA")
     field(OUT, "0")
+}
+
+# Rates are: ADC, ADCSWAP, TBT, FOFB, MONIT. ADC and ADCSWAP are always the same
+# rates
+record(seq, "$(P)$(R)$(ARRAY_NAME)AllRates-RB"){
+    field(DESC,"get rate factors of all rates")
+    field(PINI,"YES")
+    field(DOL1, "$(P)$(R)INFOADCRate-RB PP NMS")
+    field(DOL2, "$(P)$(R)INFOADCRate-RB PP NMS")
+    field(DOL3, "$(P)$(R)INFOTBTRate-RB PP NMS")
+    field(DOL4, "$(P)$(R)INFOFOFBRate-RB PP NMS")
+    field(DOL5, "$(P)$(R)INFOMONITRate-RB PP NMS")
+    field(LNK1, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
+    field(LNK2, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
+    field(LNK3, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
+    field(LNK4, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
+    field(LNK5, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
+    field(SELL, "$(P)$(R)$(ACQ_NAME)ChannelRateIdx-RB CP MS")
+    field(SELM, "Specified")
+    field(SELN, "1")
+}
+
+record(longin,"$(P)$(R)$(ARRAY_NAME)CurrentRate-RB"){
+    field(DESC,"get current rate factor")
+    field(SCAN,"Passive")
 }
