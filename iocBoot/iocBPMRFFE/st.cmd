@@ -13,7 +13,7 @@ drvBPMRFFEConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VE
 
 ## Load record instances
 dbLoadRecords("${TOP}/BPMRFFEApp/Db/BPMRffe.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
-dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}RFFEasyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < save_restore.cmd
 
