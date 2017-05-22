@@ -796,9 +796,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
-     * to the parameter library */                                   
-    bpmHwInt32Func[P_Kx] = bpmSetGetKxFunc;                          
-    bpmHwInt32Func[P_Ky] = bpmSetGetKyFunc;                          
+     * to the parameter library */
+    bpmHwInt32Func[P_Kx] = bpmSetGetKxFunc;
+    bpmHwInt32Func[P_Ky] = bpmSetGetKyFunc;
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -914,7 +914,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkSel,    FMC_REF_CLK_SEL_1,  0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
-    
+
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510PllFunc,
@@ -927,7 +927,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcAD9510ADiv,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510BDiv,
-                                        AD9510_ADC_DFLT_B_DIV, 
+                                        AD9510_ADC_DFLT_B_DIV,
                                                             0xFFFFFFFF);
     setUIntDigitalParam(P_AdcAD9510Prescaler,
                                         0,                  0xFFFFFFFF);
@@ -1107,12 +1107,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 #endif
 
 #endif
-                                                                     
+
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
-    for (int i = 0; i < MAX_ADDR; ++i) {                             
-        callParamCallbacks(i);                                       
-    }                                                                
-                                                                     
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        callParamCallbacks(i);
+    }
+
     /* Create the thread that computes the waveforms in the background */
     for (int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
