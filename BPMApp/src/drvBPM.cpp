@@ -2891,6 +2891,10 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
             /* Ah... FIXME: ugly static mapping! */
             status = getAdcReg(NULL, mask, addr);
         }
+        /* This bit is self-clearing. So, we use some special treatment */
+        else if (function == P_ActiveClkRstADCs) {
+            status = resetADCs(mask, addr);
+        }
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
             status = setParam32(function, mask, addr);
@@ -4057,6 +4061,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_ad9510_err;
     }
+    setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x0, mask);
 
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
@@ -4083,6 +4088,8 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto reset_adcs_err;
     }
+    /* Set bit to 0 in library as it is a self-clearing bit */
+    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x0, mask);
 
     /* In order to update all of the readback values from AD9510,
      * force a change in all of its parameters and then call
