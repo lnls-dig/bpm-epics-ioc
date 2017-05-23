@@ -2682,4 +2682,92 @@ $(pv_value)</tooltip>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </font>
   </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>0</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules>
+      <rule name="Connectivity" prop_id="background_color" out_exp="false">
+        <exp bool_exp="pv0 == 0">
+          <value>
+            <color red="255" green="0" blue="0" />
+          </value>
+        </exp>
+        <exp bool_exp="pv1 == 0">
+          <value>
+            <color red="255" green="0" blue="0" />
+          </value>
+        </exp>
+        <exp bool_exp="!(pv0 == 0) &amp;&amp; !(pv1 == 0)">
+          <value>
+            <color red="0" green="255" blue="0" />
+          </value>
+        </exp>
+        <pv trig="true">$(P)$(R)RFFEasyn.CNCT</pv>
+        <pv trig="true">$(P)$(R)RFFEasyn.ENBL</pv>
+      </rule>
+    </rules>
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:-b96</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <alpha>255</alpha>
+    <bg_gradient_color>
+      <color red="255" green="255" blue="255" />
+    </bg_gradient_color>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <gradient>false</gradient>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <widget_type>Rectangle</widget_type>
+    <fg_gradient_color>
+      <color red="255" green="255" blue="255" />
+    </fg_gradient_color>
+    <backcolor_alarm_sensitive>true</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="0" />
+    </background_color>
+    <width>20</width>
+    <x>540</x>
+    <name>Rectangle_3</name>
+    <y>56</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>asynRecord.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <R>$(R)RFFEasyn</R>
+        </macros>
+        <replace>0</replace>
+        <description></description>
+      </action>
+    </actions>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <line_color>
+      <color red="128" green="0" blue="255" />
+    </line_color>
+  </widget>
 </display>
