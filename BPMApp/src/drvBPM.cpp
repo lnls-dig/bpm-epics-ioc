@@ -4052,8 +4052,15 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
     int status = asynSuccess;
     const char* functionName = "resetAD9510";
 
+    epicsUInt32 adcAD9510Dflt = 0;
+    getUIntDigitalParam(addr, P_AdcAD9510Dflt, &adcAD9510Dflt, 0xFFFFFFFF);
+
+    /* Only reset on rising edge of signal */
+    if (adcAD9510Dflt != 1) {
+        goto reset_ad9510_not_rising_edge;    
+    }
+
     /* Restart AD9510 */
-    setUIntDigitalParam(addr, P_AdcAD9510Dflt, 0x1, mask);
     status = setParam32 (P_AdcAD9510Dflt, mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -4070,6 +4077,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
 
     return (asynStatus)status;
 
+reset_ad9510_not_rising_edge:
 reset_ad9510_err:
     return (asynStatus)status;
 }
@@ -4079,8 +4087,15 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
     int status = asynSuccess;
     const char* functionName = "resetADCs";
 
+    epicsUInt32 activeClkRstADCs = 0;
+    getUIntDigitalParam(addr, P_AdcAD9510Dflt, &activeClkRstADCs, 0xFFFFFFFF);
+
+    /* Only reset on rising edge of signal */
+    if (activeClkRstADCs != 1) {
+        goto reset_adcs_not_rising_edge;    
+    }
+
     /* Restart and ADCs */
-    setUIntDigitalParam(addr, P_ActiveClkRstADCs, 0x1, mask);
     status |= setParam32 (P_ActiveClkRstADCs, mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -4098,6 +4113,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
 
     return (asynStatus)status;
 
+reset_adcs_not_rising_edge:
 reset_adcs_err:
     return (asynStatus)status;
 }
