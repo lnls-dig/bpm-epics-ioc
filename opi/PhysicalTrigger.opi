@@ -12379,12 +12379,12 @@ $(pv_value)</tooltip>
     <auto_size>true</auto_size>
     <image_file>trigger_phys_css.png</image_file>
     <scripts />
-    <height>478</height>
+    <height>816</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
+      <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <align_to_nearest_second>false</align_to_nearest_second>
     <visible>true</visible>
@@ -12409,7 +12409,7 @@ $(pv_value)</tooltip>
         <col>1.0</col>
       </row>
     </permutation_matrix>
-    <width>719</width>
+    <width>1228</width>
     <x>1235</x>
     <name>Image_1</name>
     <y>95</y>
