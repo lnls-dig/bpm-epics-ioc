@@ -8318,748 +8318,6 @@ $(pv_value)</tooltip>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2cc4</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>recv trig. in</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>87</width>
-    <x>852</x>
-    <name>Label_64</name>
-    <y>45</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2ca4</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>0</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_65</name>
-    <y>70</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c5e</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 0</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_74</name>
-    <y>70</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c52</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 1</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_75</name>
-    <y>89</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c48</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 2</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_76</name>
-    <y>108</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c43</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 3</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_77</name>
-    <y>130</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c32</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 4</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_78</name>
-    <y>148</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c31</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 5</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_79</name>
-    <y>167</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c30</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 6</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_80</name>
-    <y>186</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2c2f</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>phys. trig 7</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>92</width>
-    <x>850</x>
-    <name>Label_81</name>
-    <y>208</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b91</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="823" y="45" />
-      <point x="823" y="175" />
-      <point x="823" y="227" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>0.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>183</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>1</width>
-    <x>823</x>
-    <name>Polyline_17</name>
-    <y>45</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b90</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="944" y="45" />
-      <point x="950" y="45" />
-      <point x="823" y="45" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>90.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>1</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>128</width>
-    <x>823</x>
-    <name>Polyline_18</name>
-    <y>45</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b80</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="944" y="227" />
-      <point x="950" y="227" />
-      <point x="823" y="227" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>90.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>1</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>128</width>
-    <x>823</x>
-    <name>Polyline_19</name>
-    <y>227</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b78</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="950" y="45" />
-      <point x="950" y="175" />
-      <point x="950" y="227" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>0.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>183</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>1</width>
-    <x>950</x>
-    <name>Polyline_20</name>
-    <y>45</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b68</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="846" y="45" />
-      <point x="846" y="175" />
-      <point x="846" y="227" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>0.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>183</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>1</width>
-    <x>846</x>
-    <name>Polyline_22</name>
-    <y>45</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <line_width>1</line_width>
-    <horizontal_fill>true</horizontal_fill>
-    <alarm_pulsing>false</alarm_pulsing>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <arrows>0</arrows>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2b5d</wuid>
-    <transparent>false</transparent>
-    <points>
-      <point x="944" y="64" />
-      <point x="950" y="64" />
-      <point x="823" y="64" />
-    </points>
-    <fill_arrow>true</fill_arrow>
-    <pv_value />
-    <alpha>255</alpha>
-    <rotation_angle>90.0</rotation_angle>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>1</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <anti_alias>true</anti_alias>
-    <line_style>0</line_style>
-    <arrow_length>20</arrow_length>
-    <widget_type>Polyline</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <width>128</width>
-    <x>823</x>
-    <name>Polyline_23</name>
-    <y>64</y>
-    <fill_level>0.0</fill_level>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
     <wuid>-57cdac8b:15a052f6efd:-2b0b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
@@ -9083,9 +8341,9 @@ $(pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>122</width>
-    <x>834</x>
+    <x>820</x>
     <name>Label_82</name>
-    <y>528</y>
+    <y>510</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9108,9 +8366,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2afa</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="811" y="528" />
-      <point x="811" y="656" />
-      <point x="811" y="708" />
+      <point x="797" y="510" />
+      <point x="797" y="638" />
+      <point x="797" y="690" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9139,9 +8397,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>1</width>
-    <x>811</x>
+    <x>797</x>
     <name>Polyline_24</name>
-    <y>528</y>
+    <y>510</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -9165,9 +8423,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2af9</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="931" y="528" />
-      <point x="961" y="528" />
-      <point x="811" y="528" />
+      <point x="917" y="510" />
+      <point x="947" y="510" />
+      <point x="797" y="510" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9196,9 +8454,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>151</width>
-    <x>811</x>
+    <x>797</x>
     <name>Polyline_25</name>
-    <y>528</y>
+    <y>510</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -9222,9 +8480,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2af8</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="954" y="709" />
-      <point x="961" y="709" />
-      <point x="811" y="709" />
+      <point x="940" y="691" />
+      <point x="947" y="691" />
+      <point x="797" y="691" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9253,9 +8511,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>151</width>
-    <x>811</x>
+    <x>797</x>
     <name>Polyline_26</name>
-    <y>709</y>
+    <y>691</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -9279,9 +8537,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2af7</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="961" y="528" />
-      <point x="961" y="621" />
-      <point x="961" y="708" />
+      <point x="947" y="510" />
+      <point x="947" y="603" />
+      <point x="947" y="690" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9310,9 +8568,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>1</width>
-    <x>961</x>
+    <x>947</x>
     <name>Polyline_27</name>
-    <y>528</y>
+    <y>510</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -9336,9 +8594,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2af6</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="834" y="528" />
-      <point x="834" y="705" />
-      <point x="834" y="708" />
+      <point x="820" y="510" />
+      <point x="820" y="687" />
+      <point x="820" y="690" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9367,9 +8625,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>1</width>
-    <x>834</x>
+    <x>820</x>
     <name>Polyline_28</name>
-    <y>528</y>
+    <y>510</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -9393,9 +8651,9 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-2af5</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="954" y="547" />
-      <point x="961" y="547" />
-      <point x="811" y="547" />
+      <point x="940" y="529" />
+      <point x="947" y="529" />
+      <point x="797" y="529" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -9424,292 +8682,12 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </background_color>
     <width>151</width>
-    <x>811</x>
+    <x>797</x>
     <name>Polyline_29</name>
-    <y>547</y>
+    <y>529</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2833</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>1</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_100</name>
-    <y>89</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2821</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>2</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_101</name>
-    <y>108</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2817</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>3</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_102</name>
-    <y>130</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-280d</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>4</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_103</name>
-    <y>148</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2803</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>5</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_104</name>
-    <y>167</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-27fe</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>6</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_105</name>
-    <y>186</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-27f9</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>7</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>24</width>
-    <x>823</x>
-    <name>Label_106</name>
-    <y>208</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
@@ -11929,8 +10907,8 @@ $(pv_value)</tooltip>
     <wuid>-57cdac8b:15a052f6efd:-246b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>recv internal
-trig in</text>
+    <text>internal
+trig. in</text>
     <scripts />
     <height>38</height>
     <border_width>1</border_width>
@@ -14675,7 +13653,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2068</wuid>
+    <wuid>38df1c7e:15c3077769b:3368</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>0</text>
@@ -14698,9 +13676,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_233</name>
-    <y>548</y>
+    <y>530</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14715,7 +13693,327 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205f</wuid>
+    <wuid>38df1c7e:15c3077769b:3369</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 0</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_234</name>
+    <y>530</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336a</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 1</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_235</name>
+    <y>550</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336b</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 2</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_236</name>
+    <y>570</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336c</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 3</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_237</name>
+    <y>590</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336d</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 4</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_238</name>
+    <y>610</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336e</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 5</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_239</name>
+    <y>630</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:336f</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 6</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_240</name>
+    <y>650</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3370</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 7</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_241</name>
+    <y>670</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3371</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>1</text>
@@ -14738,9 +14036,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_242</name>
-    <y>567</y>
+    <y>550</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14755,7 +14053,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205e</wuid>
+    <wuid>38df1c7e:15c3077769b:3372</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>2</text>
@@ -14778,9 +14076,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_243</name>
-    <y>586</y>
+    <y>570</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14795,7 +14093,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205d</wuid>
+    <wuid>38df1c7e:15c3077769b:3373</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>3</text>
@@ -14818,9 +14116,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_244</name>
-    <y>608</y>
+    <y>590</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14835,7 +14133,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205c</wuid>
+    <wuid>38df1c7e:15c3077769b:3374</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>4</text>
@@ -14858,9 +14156,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_245</name>
-    <y>626</y>
+    <y>610</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14875,7 +14173,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205b</wuid>
+    <wuid>38df1c7e:15c3077769b:3375</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>5</text>
@@ -14898,9 +14196,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_246</name>
-    <y>645</y>
+    <y>630</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14915,7 +14213,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-205a</wuid>
+    <wuid>38df1c7e:15c3077769b:3376</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>6</text>
@@ -14938,9 +14236,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_247</name>
-    <y>664</y>
+    <y>650</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14955,7 +14253,7 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2059</wuid>
+    <wuid>38df1c7e:15c3077769b:3377</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
     <text>7</text>
@@ -14978,9 +14276,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>24</width>
-    <x>811</x>
+    <x>798</x>
     <name>Label_248</name>
-    <y>686</y>
+    <y>670</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -14995,10 +14293,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2051</wuid>
+    <wuid>38df1c7e:15c3077769b:3410</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>recv trig. in</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15017,12 +14315,354 @@ trig. in</text>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>92</width>
-    <x>849</x>
+    <width>122</width>
+    <x>820</x>
     <name>Label_249</name>
-    <y>548</y>
+    <y>75</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3411</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="797" y="75" />
+      <point x="797" y="203" />
+      <point x="797" y="255" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>181</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>1</width>
+    <x>797</x>
+    <name>Polyline_65</name>
+    <y>75</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3412</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="917" y="75" />
+      <point x="947" y="75" />
+      <point x="797" y="75" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>90.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>1</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>151</width>
+    <x>797</x>
+    <name>Polyline_66</name>
+    <y>75</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3413</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="940" y="256" />
+      <point x="947" y="256" />
+      <point x="797" y="256" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>90.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>1</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>151</width>
+    <x>797</x>
+    <name>Polyline_67</name>
+    <y>256</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3414</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="947" y="75" />
+      <point x="947" y="168" />
+      <point x="947" y="255" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>181</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>1</width>
+    <x>947</x>
+    <name>Polyline_68</name>
+    <y>75</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3415</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="820" y="75" />
+      <point x="820" y="252" />
+      <point x="820" y="255" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>181</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>1</width>
+    <x>820</x>
+    <name>Polyline_69</name>
+    <y>75</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <line_width>1</line_width>
+    <horizontal_fill>true</horizontal_fill>
+    <alarm_pulsing>false</alarm_pulsing>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <arrows>0</arrows>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3416</wuid>
+    <transparent>false</transparent>
+    <points>
+      <point x="940" y="94" />
+      <point x="947" y="94" />
+      <point x="797" y="94" />
+    </points>
+    <fill_arrow>true</fill_arrow>
+    <pv_value />
+    <alpha>255</alpha>
+    <rotation_angle>90.0</rotation_angle>
+    <scripts />
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <height>1</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <anti_alias>true</anti_alias>
+    <line_style>0</line_style>
+    <arrow_length>20</arrow_length>
+    <widget_type>Polyline</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="0" green="0" blue="0" />
+    </background_color>
+    <width>151</width>
+    <x>797</x>
+    <name>Polyline_70</name>
+    <y>94</y>
+    <fill_level>0.0</fill_level>
+    <foreground_color>
+      <color red="255" green="0" blue="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
@@ -15035,10 +14675,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-204c</wuid>
+    <wuid>38df1c7e:15c3077769b:3417</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>0</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15057,10 +14697,10 @@ trig. in</text>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>92</width>
-    <x>849</x>
+    <width>24</width>
+    <x>798</x>
     <name>Label_250</name>
-    <y>567</y>
+    <y>95</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15075,10 +14715,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2047</wuid>
+    <wuid>38df1c7e:15c3077769b:3418</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 0</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15098,9 +14738,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_251</name>
-    <y>585</y>
+    <y>95</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15115,10 +14755,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2042</wuid>
+    <wuid>38df1c7e:15c3077769b:3419</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 1</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15138,9 +14778,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_252</name>
-    <y>608</y>
+    <y>115</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15155,10 +14795,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-2020</wuid>
+    <wuid>38df1c7e:15c3077769b:341a</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 2</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15178,9 +14818,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_253</name>
-    <y>626</y>
+    <y>135</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15195,10 +14835,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-201f</wuid>
+    <wuid>38df1c7e:15c3077769b:341b</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 3</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15218,9 +14858,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_254</name>
-    <y>645</y>
+    <y>155</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15235,10 +14875,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-201e</wuid>
+    <wuid>38df1c7e:15c3077769b:341c</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 4</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15258,9 +14898,9 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_255</name>
-    <y>664</y>
+    <y>175</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15275,10 +14915,10 @@ trig. in</text>
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
-    <wuid>-57cdac8b:15a052f6efd:-201d</wuid>
+    <wuid>38df1c7e:15c3077769b:341d</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>unconnected</text>
+    <text>phys. trig 5</text>
     <scripts />
     <height>20</height>
     <border_width>1</border_width>
@@ -15298,9 +14938,369 @@ trig. in</text>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>92</width>
-    <x>849</x>
+    <x>838</x>
     <name>Label_256</name>
-    <y>686</y>
+    <y>195</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:341e</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 6</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_257</name>
+    <y>215</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:341f</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>phys. trig 7</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>92</width>
+    <x>838</x>
+    <name>Label_258</name>
+    <y>235</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3420</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>1</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_259</name>
+    <y>115</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3421</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>2</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_260</name>
+    <y>135</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3422</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>3</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_261</name>
+    <y>155</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3423</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>4</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_262</name>
+    <y>175</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3424</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>5</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_263</name>
+    <y>195</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3425</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>6</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_264</name>
+    <y>215</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>38df1c7e:15c3077769b:3426</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>7</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>24</width>
+    <x>798</x>
+    <name>Label_265</name>
+    <y>235</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
