@@ -4088,7 +4088,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
     const char* functionName = "resetADCs";
 
     epicsUInt32 activeClkRstADCs = 0;
-    getUIntDigitalParam(addr, P_AdcAD9510Dflt, &activeClkRstADCs, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_ActiveClkRstADCs, &activeClkRstADCs, 0xFFFFFFFF);
 
     /* Only reset on rising edge of signal */
     if (activeClkRstADCs != 1) {
