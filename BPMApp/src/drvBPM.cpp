@@ -655,7 +655,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
 
-    createParam(P_SwString,         asynParamUInt32Digital,         &P_Sw);
+    createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
     createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
 
@@ -805,7 +805,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_Kq] = bpmSetGetKqFunc;
 #endif
     bpmHwInt32Func[P_Ksum] = bpmSetGetKsumFunc;
-    bpmHwInt32Func[P_Sw] = bpmSetGetAdcSwFunc;
+    bpmHwInt32Func[P_SwMode] = bpmSetGetAdcSwFunc;
     bpmHwInt32Func[P_SwDly] = bpmSetGetAdcSwDlyFunc;
     bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
     bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
@@ -902,7 +902,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
-    setUIntDigitalParam(P_Sw,           ADC_DFLT_SW,        0xFFFFFFFF);
+    setUIntDigitalParam(P_SwMode,       ADC_DFLT_SW,        0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);

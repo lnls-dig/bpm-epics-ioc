@@ -315,9 +315,9 @@ typedef struct {
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
-#define P_SwString                  "ADC_SW"                /* asynUInt32Digital,      r/w */
-#define P_SwDlyString               "ADC_SWDLY"             /* asynUInt32Digital,      r/w */
-#define P_SwDivClkString            "ADC_SW_DIVCLK"         /* asynUInt32Digital,      r/w */
+#define P_SwModeString              "SW_MODE"               /* asynUInt32Digital,      r/w */
+#define P_SwDlyString               "SW_DLY"                /* asynUInt32Digital,      r/w */
+#define P_SwDivClkString            "SW_DIVCLK"             /* asynUInt32Digital,      r/w */
 #define P_WdwString                 "ADC_WDW"               /* asynUInt32Digital,      r/w */
 #define P_WdwDlyString              "ADC_WDWDLY"            /* asynfloat64             r/w */
 #define P_AdcTrigDirString          "ADC_TRIGDIR"           /* asynUInt32Digital,      r/w */
@@ -458,7 +458,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
-        int P_Sw;
+        int P_SwMode;
         int P_SwDly;
         int P_SwDivClk;
         int P_AdcTrigDir;
