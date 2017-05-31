@@ -1,4 +1,4 @@
 $(P)$(R)ADCClkFreq
-$(P)$(R)ADCSw
-$(P)$(R)ADCSwDly
-$(P)$(R)ADCSwDivClk
+$(P)$(R)SwMode
+$(P)$(R)SwDly
+$(P)$(R)SwDivClk

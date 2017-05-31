@@ -11,12 +11,12 @@
 # Amplitude and phase compensation
 #######################################
 
-record(mbbo,"$(P)$(R)ADCSw"){
+record(mbbo,"$(P)$(R)SwMode"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_MODE")
     field(NOBT,"2")
     field(ZRVL,"0")
     field(ONVL,"1")
@@ -28,12 +28,12 @@ record(mbbo,"$(P)$(R)ADCSw"){
     field(THST,"switching")
 }
 
-record(mbbi,"$(P)$(R)ADCSw-RB"){
+record(mbbi,"$(P)$(R)SwMode-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_MODE")
     field(NOBT,"2")
     field(ZRVL,"0")
     field(ONVL,"1")
@@ -45,36 +45,36 @@ record(mbbi,"$(P)$(R)ADCSw-RB"){
     field(THST,"switching")
 }
 
-record(longout,"$(P)$(R)ADCSwDly"){
+record(longout,"$(P)$(R)SwDly"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching delay")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWDLY")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DLY")
     field(EGU, "clks")
 }
 
-record(longin,"$(P)$(R)ADCSwDly-RB"){
+record(longin,"$(P)$(R)SwDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching delay")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SWDLY")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DLY")
     field(EGU, "clks")
 }
 
-record(longout,"$(P)$(R)ADCSwDivClk"){
+record(longout,"$(P)$(R)SwDivClk"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching divider clock")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW_DIVCLK")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DIVCLK")
 }
 
-record(longin,"$(P)$(R)ADCSwDivClk-RB"){
+record(longin,"$(P)$(R)SwDivClk-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching divider clock")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SW_DIVCLK")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DIVCLK")
 }
