@@ -33,7 +33,7 @@ record(ao,"$(P)$(R)INFOClkFreq"){
     field(PINI,"YES")
     field(PREC, "3")
     field(SCAN,"Passive")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_CLKFREQ")
     field(EGU, "Hz")
     field(FLNK, "$(P)$(R)ADCSi57xFreq.PROC")
 }
@@ -44,7 +44,7 @@ record(ai,"$(P)$(R)INFOClkFreq-RB"){
     field(PINI,"YES")
     field(PREC, "3")
     field(SCAN,"I/O Intr")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_ADCCLKFREQ")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_CLKFREQ")
     field(EGU, "Hz")
 }
 
