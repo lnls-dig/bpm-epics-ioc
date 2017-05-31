@@ -5,7 +5,6 @@ file "BPMAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
 file "BPMAdc_settings.req",         P=$(P), R=$(R)
 file "BPMActiveClk_settings.req",   P=$(P), R=$(R)
 file "BPMAdcCommon_settings.req",   P=$(P), R=$(R)
-file "BPMAdc_settings.req",         P=$(P), R=$(R)
 file "BPMDsp_settings.req",         P=$(P), R=$(R)
 file "BPMFFT_settings.req",         P=$(P), R=$(R)
 file "BPMFmc130m_4ch_settings.req", P=$(P), R=$(R)
