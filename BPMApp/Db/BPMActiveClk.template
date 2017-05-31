@@ -31,14 +31,14 @@ record(mbbi,"$(P)$(R)ADCClkSel-RB"){
     field(ONST,"fmc_conn")
 }
 
-# Get value from ADCClkFreq PV
+# Get value from INFOClkFreq PV
 record(ao,"$(P)$(R)ADCSi57xFreq"){
     field(DTYP,"asynFloat64")
     field(DESC,"set si57x frequency")
     field(PINI,"YES")
     field(PREC, "3")
     field(SCAN,"Passive")
-    field(DOL,"$(P)$(R)ADCClkFreq PP NMS")
+    field(DOL,"$(P)$(R)INFOClkFreq PP NMS")
     field(OMSL,"closed_loop")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
 }

@@ -27,7 +27,7 @@ record(longin,"$(P)$(R)INFOHarmonicNumber-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_HARMNUMB")
 }
 
-record(ao,"$(P)$(R)ADCClkFreq"){
+record(ao,"$(P)$(R)INFOClkFreq"){
     field(DTYP,"asynFloat64")
     field(DESC,"set ADC clock frequency")
     field(PINI,"YES")
@@ -38,7 +38,7 @@ record(ao,"$(P)$(R)ADCClkFreq"){
     field(FLNK, "$(P)$(R)ADCSi57xFreq.PROC")
 }
 
-record(ai,"$(P)$(R)ADCClkFreq-RB"){
+record(ai,"$(P)$(R)INFOClkFreq-RB"){
     field(DTYP,"asynFloat64")
     field(DESC,"get ADC clock frequency")
     field(PINI,"YES")

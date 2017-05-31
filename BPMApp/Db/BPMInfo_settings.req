@@ -1,6 +1,6 @@
 # Nothing needs to be saved here
 $(P)$(R)INFOHarmonicNumber
-$(P)$(R)INFOADCClkFreq
+$(P)$(R)INFOClkFreq
 $(P)$(R)INFOTBTRate
 $(P)$(R)INFOFOFBRate
 $(P)$(R)INFOMONITRate
