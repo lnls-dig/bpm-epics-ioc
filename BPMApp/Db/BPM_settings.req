@@ -2,7 +2,7 @@ file "BPMAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
 # Don't save ACQ_PM PVs, as we rely on the default values
 # to always return Post-Mortem to a safe state.
 # file "BPMAcq_settings.req",       P=$(P), R=$(R), ACQ_NAME=ACQ_PM
-file "BPMAdc_settings.req",         P=$(P), R=$(R)
+file "BPMSwitching_settings.req",   P=$(P), R=$(R)
 file "BPMActiveClk_settings.req",   P=$(P), R=$(R)
 file "BPMAdcCommon_settings.req",   P=$(P), R=$(R)
 file "BPMDsp_settings.req",         P=$(P), R=$(R)
