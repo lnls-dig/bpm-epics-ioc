@@ -4057,7 +4057,7 @@ asynStatus drvBPM::resetAD9510(epicsUInt32 mask, int addr)
 
     /* Only reset on rising edge of signal */
     if (adcAD9510Dflt != 1) {
-        goto reset_ad9510_not_rising_edge;    
+        goto reset_ad9510_not_rising_edge;
     }
 
     /* Restart AD9510 */
@@ -4092,7 +4092,7 @@ asynStatus drvBPM::resetADCs(epicsUInt32 mask, int addr)
 
     /* Only reset on rising edge of signal */
     if (activeClkRstADCs != 1) {
-        goto reset_adcs_not_rising_edge;    
+        goto reset_adcs_not_rising_edge;
     }
 
     /* Restart and ADCs */
