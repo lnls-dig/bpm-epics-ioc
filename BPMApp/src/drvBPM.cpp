@@ -649,7 +649,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create general parameters */
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(P_AdcClkFreqString, asynParamFloat64,               &P_AdcClkFreq);
+    createParam(P_ClkFreqString,    asynParamFloat64,               &P_ClkFreq);
     createParam(P_AdcRateString,    asynParamUInt32Digital,         &P_AdcRate);
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
@@ -897,7 +897,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
-    setDoubleParam(P_AdcClkFreq,                            ADC_CLK_FREQ_UVX_DFLT);
+    setDoubleParam(P_ClkFreq,                               ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_AdcRate,      ADC_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);

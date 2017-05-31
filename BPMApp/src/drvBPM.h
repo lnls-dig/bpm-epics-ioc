@@ -310,7 +310,7 @@ typedef struct {
 #define P_BPMModeString             "BPM_MODE"              /* asynInt32,              r/w */
 #define P_BPMStatusString           "ACQ_STATUS"            /* asynInt32,              r/o */
 #define P_HarmonicNumberString      "INFO_HARMNUMB"         /* asynUInt32Digital,      r/o */
-#define P_AdcClkFreqString          "INFO_ADCCLKFREQ"       /* asynFloat64,            r/w */
+#define P_ClkFreqString             "INFO_CLKFREQ"          /* asynFloat64,            r/w */
 #define P_AdcRateString             "INFO_ADCRATE"          /* asynUInt32Digital,      r/o */
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
@@ -453,7 +453,7 @@ class drvBPM : public asynNDArrayDriver {
 #define FIRST_COMMAND P_BPMMode
         int P_BPMStatus;
         int P_HarmonicNumber;
-        int P_AdcClkFreq;
+        int P_ClkFreq;
         int P_AdcRate;
         int P_TbtRate;
         int P_FofbRate;
