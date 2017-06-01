@@ -373,7 +373,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="679" y="344" />
       <point x="418" y="344" />
-      <point x="299" y="344" />
+      <point x="298" y="344" />
     </points>
     <fill_arrow>true</fill_arrow>
     <pv_value />
@@ -401,8 +401,8 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="0" green="0" blue="0" />
     </background_color>
-    <width>381</width>
-    <x>299</x>
+    <width>382</width>
+    <x>298</x>
     <name>Polyline_6</name>
     <y>344</y>
     <fill_level>0.0</fill_level>
@@ -2906,7 +2906,7 @@ $(pv_value)</tooltip>
     <wuid>-23979ae1:155df38f9e9:-7b03</wuid>
     <transparent>false</transparent>
     <points>
-      <point x="678" y="693" />
+      <point x="679" y="693" />
       <point x="414" y="693" />
       <point x="200" y="693" />
     </points>
@@ -2936,7 +2936,7 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="0" green="0" blue="0" />
     </background_color>
-    <width>479</width>
+    <width>480</width>
     <x>200</x>
     <name>Polyline_7</name>
     <y>693</y>
@@ -4711,7 +4711,7 @@ $(pv_value)</tooltip>
     <width>99</width>
     <x>200</x>
     <name>Rectangle_2</name>
-    <y>81</y>
+    <y>80</y>
     <fill_level>0.0</fill_level>
     <foreground_color>
       <color red="255" green="0" blue="0" />
@@ -4755,7 +4755,7 @@ $(pv_value)</tooltip>
     <width>94</width>
     <x>203</x>
     <name>Label_123</name>
-    <y>80</y>
+    <y>79</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
