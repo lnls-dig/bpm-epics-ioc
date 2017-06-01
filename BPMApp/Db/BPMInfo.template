@@ -48,44 +48,40 @@ record(ai,"$(P)$(R)INFOClkFreq-RB"){
     field(EGU, "Hz")
 }
 
-record(bo,"$(P)$(R)INFOClkPropToOsc") {
+record(bo,"$(P)$(R)INFOClkProp") {
     field(DESC, "Set INFO Clk propagation to oscillator")
     field(PINI, "YES")
     field(ZNAM, "0")
     field(ONAM, "1")
-    field(FLNK, "$(P)$(R)INFOClkPropToOsc-RB")
+    field(FLNK, "$(P)$(R)INFOClkProp-RB")
     }
 
-record(bi,"$(P)$(R)INFOClkPropToOsc-RB") {
+record(bi,"$(P)$(R)INFOClkProp-RB") {
     field(DESC, "Get INFO Clk propagation to oscillator")
+    field(INP, "$(P)$(R)INFOClkProp")
     field(SCAN, "Passive")
     field(ZNAM, "0")
     field(ONAM, "1")
 }
 
-# For use with seq record defined in FFTRecords.template
-record(calc, "$(P)$(R)INFOClkPropToOscIdx-RB"){
+# For use with seq record below
+record(calc, "$(P)$(R)INFOClkPropIdx-RB"){
     field(DESC, "get INFO Clk propagation index")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)INFOClkPropToOsc-RB.RVAL CP NMS")
+    field(INPA, "$(P)$(R)INFOClkProp-RB.VAL CP NMS")
     field(CALC, "A+1")
 }
 
-record(seq, "$(P)$(R)INFOClkPropToOscAllTypes-RB"){
+record(sseq, "$(P)$(R)INFOClkPropAllTypes-RB"){
     field(DESC, "get all types of ao OMSL")
     field(PINI, "YES")
-    field(DOL1, "supervisory")
-    field(DOL2, "closed_loop")
-    field(LNK1, "$(P)$(R)INFOCurrentClkPropType-RB PP NMS")
-    field(LNK2, "$(P)$(R)INFOCurrentClkPropType-RB PP NMS")
-    field(SELL, "$(P)$(R)INFOClkPropToOscIdx-RB CP MS")
+    field(STR1, "supervisory")
+    field(STR2, "closed_loop")
+    field(LNK1, "$(P)$(R)ADCSi57xFreq.OMSL PP NMS")
+    field(LNK2, "$(P)$(R)ADCSi57xFreq.OMSL PP NMS")
+    field(SELL, "$(P)$(R)INFOClkPropIdx-RB CP MS")
     field(SELM, "Specified")
     field(SELN, "1")
-}
-
-record(stringin,"$(P)$(R)INFOCurrentClkPropType-RB"){
-    field(DESC,"get current INFO Clk type")
-    field(SCAN,"Passive")
 }
 
 record(longout,"$(P)$(R)INFOADCRate"){

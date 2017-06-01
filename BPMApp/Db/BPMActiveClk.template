@@ -39,10 +39,9 @@ record(ao,"$(P)$(R)ADCSi57xFreq"){
     field(PREC, "3")
     field(SCAN,"Passive")
     field(DOL,"$(P)$(R)INFOClkFreq PP NMS")
-    field(OMSL,"$(P)$(R)INFOCurrentClkPropType-RB PP NMS")
-    field(DISV, "0")
-    field(SDIS, "$(P)$(R)INFOClkPropToOsc-RB")
+    field(OMSL,"closed_loop")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
+    field(EGU, "Hz")
 }
 
 record(ai,"$(P)$(R)ADCSi57xFreq-RB"){
@@ -51,6 +50,7 @@ record(ai,"$(P)$(R)ADCSi57xFreq-RB"){
     field(PREC, "3")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFREQ")
+    field(EGU, "Hz")
 }
 
 record(mbbo,"$(P)$(R)ADCSi57xOe"){
