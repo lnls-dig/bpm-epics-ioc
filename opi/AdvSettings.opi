@@ -3496,7 +3496,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkFreq</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xFreq</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3564,7 +3564,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkFreq-RB</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xFreq-RB</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -10753,7 +10753,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkPropToOsc-RB</pv_name>
+    <pv_name>$(P)$(R)INFOClkProp-RB</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -10829,7 +10829,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkPropToOsc</pv_name>
+    <pv_name>$(P)$(R)INFOClkProp</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
