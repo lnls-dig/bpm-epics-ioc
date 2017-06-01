@@ -76,14 +76,14 @@ record(seq, "$(P)$(R)INFOClkPropToOscAllTypes-RB"){
     field(PINI, "YES")
     field(DOL1, "supervisory")
     field(DOL2, "closed_loop")
-    field(LNK1, "$(P)$(R)$(ARRAY_NAME)INFOCurrentClkPropType-RB PP NMS")
-    field(LNK2, "$(P)$(R)$(ARRAY_NAME)INFOCurrentClkPropType-RB PP NMS")
+    field(LNK1, "$(P)$(R)INFOCurrentClkPropType-RB PP NMS")
+    field(LNK2, "$(P)$(R)INFOCurrentClkPropType-RB PP NMS")
     field(SELL, "$(P)$(R)INFOClkPropToOscIdx-RB CP MS")
     field(SELM, "Specified")
     field(SELN, "1")
 }
 
-record(stringin,"$(P)$(R)$(ARRAY_NAME)INFOCurrentClkPropType-RB"){
+record(stringin,"$(P)$(R)INFOCurrentClkPropType-RB"){
     field(DESC,"get current INFO Clk type")
     field(SCAN,"Passive")
 }
