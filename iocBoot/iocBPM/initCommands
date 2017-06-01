@@ -5,35 +5,25 @@ dbpf "${P}${R}GEN_BEnableCallbacks" 1
 dbpf "${P}${R}GEN_CEnableCallbacks" 1
 dbpf "${P}${R}GEN_DEnableCallbacks" 1
 
-dbpf "${P}${R}GENAMP_FreqEnableCallbacks" 1
-
 dbpf "${P}${R}GEN_XEnableCallbacks" 1
 dbpf "${P}${R}GEN_YEnableCallbacks" 1
 dbpf "${P}${R}GEN_QEnableCallbacks" 1
 dbpf "${P}${R}GEN_SUMEnableCallbacks" 1
-
-dbpf "${P}${R}GENPOS_FreqEnableCallbacks" 1
 
 dbpf "${P}${R}PM_AEnableCallbacks" 1
 dbpf "${P}${R}PM_BEnableCallbacks" 1
 dbpf "${P}${R}PM_CEnableCallbacks" 1
 dbpf "${P}${R}PM_DEnableCallbacks" 1
 
-dbpf "${P}${R}PMAMP_FreqEnableCallbacks" 1
-
 dbpf "${P}${R}PM_XEnableCallbacks" 1
 dbpf "${P}${R}PM_YEnableCallbacks" 1
 dbpf "${P}${R}PM_QEnableCallbacks" 1
 dbpf "${P}${R}PM_SUMEnableCallbacks" 1
 
-dbpf "${P}${R}PMPOS_FreqEnableCallbacks" 1
-
 dbpf "${P}${R}SP_AEnableCallbacks" 1
 dbpf "${P}${R}SP_BEnableCallbacks" 1
 dbpf "${P}${R}SP_CEnableCallbacks" 1
 dbpf "${P}${R}SP_DEnableCallbacks" 1
-
-dbpf "${P}${R}SPAMP_FreqEnableCallbacks" 1
 
 # File Saving Plugin
 
