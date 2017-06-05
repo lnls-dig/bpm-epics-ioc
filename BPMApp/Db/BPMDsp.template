@@ -164,10 +164,10 @@ record(longin,"$(P)$(R)MONITUpdt-RB"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDT")
-    field(FLNK,"$(P)$(R)MONITX")
+    field(FLNK,"$(P)$(R)X")
 }
 
-record(longin,"$(P)$(R)MONITA"){
+record(longin,"$(P)$(R)A"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude A")
     field(PINI,"YES")
@@ -179,7 +179,7 @@ record(longin,"$(P)$(R)MONITA"){
     field(EGU, "au")
 }
 
-record(longin,"$(P)$(R)MONITB"){
+record(longin,"$(P)$(R)B"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude B")
     field(PINI,"YES")
@@ -191,7 +191,7 @@ record(longin,"$(P)$(R)MONITB"){
     field(EGU, "au")
 }
 
-record(longin,"$(P)$(R)MONITC"){
+record(longin,"$(P)$(R)C"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude C")
     field(PINI,"YES")
@@ -203,7 +203,7 @@ record(longin,"$(P)$(R)MONITC"){
     field(EGU, "au")
 }
 
-record(longin,"$(P)$(R)MONITD"){
+record(longin,"$(P)$(R)D"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude D")
     field(PINI,"YES")
@@ -222,7 +222,7 @@ record(ai,"$(P)$(R)MONITUpdtAll"){
     field(FLNK,"$(P)$(R)MONITUpdt 1")
 }
 
-record(calcout,"$(P)$(R)MONITX"){
+record(calcout,"$(P)$(R)X"){
     field(PINI,"YES")
     field(MDEL, "-1")
     field(ADEL, "-1")
@@ -230,17 +230,17 @@ record(calcout,"$(P)$(R)MONITX"){
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"a*((b-c-d+e)/(b+c+d+e))-f")
     field(INPA,"$(P)$(R)DSPKx.VAL PP")
-    field(INPB,"$(P)$(R)MONITA.VAL PP")
-    field(INPC,"$(P)$(R)MONITB.VAL PP")
-    field(INPD,"$(P)$(R)MONITC.VAL PP")
-    field(INPE,"$(P)$(R)MONITD.VAL PP")
+    field(INPB,"$(P)$(R)A.VAL PP")
+    field(INPC,"$(P)$(R)B.VAL PP")
+    field(INPD,"$(P)$(R)C.VAL PP")
+    field(INPE,"$(P)$(R)D.VAL PP")
     field(INPF,"$(P)$(R)DSPXOffset.VAL PP")
     field(OUT, "0")
-    field(FLNK,"$(P)$(R)MONITXFake")
+    field(FLNK,"$(P)$(R)XFake")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)MONITXFake"){
+record(calcout,"$(P)$(R)XFake"){
     field(PINI,"YES")
     field(MDEL, "-1")
     field(ADEL, "-1")
@@ -248,73 +248,73 @@ record(calcout,"$(P)$(R)MONITXFake"){
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"a*((b-c)/(b+c))-d")
     field(INPA,"$(P)$(R)DSPKx.VAL NPP")
-    field(INPB,"$(P)$(R)MONITA.VAL NPP")
-    field(INPC,"$(P)$(R)MONITC.VAL NPP")
+    field(INPB,"$(P)$(R)A.VAL NPP")
+    field(INPC,"$(P)$(R)C.VAL NPP")
     field(INPD,"$(P)$(R)DSPXOffset.VAL NPP")
     field(OUT, "0")
-    field(FLNK,"$(P)$(R)MONITY")
+    field(FLNK,"$(P)$(R)Y")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)MONITY"){
+record(calcout,"$(P)$(R)Y"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"a*((b+c-d-e)/(b+c+d+e))-f")
     field(INPA,"$(P)$(R)DSPKy.VAL PP")
-    field(INPB,"$(P)$(R)MONITA.VAL NPP")
-    field(INPC,"$(P)$(R)MONITB.VAL NPP")
-    field(INPD,"$(P)$(R)MONITC.VAL NPP")
-    field(INPE,"$(P)$(R)MONITD.VAL NPP")
+    field(INPB,"$(P)$(R)A.VAL NPP")
+    field(INPC,"$(P)$(R)B.VAL NPP")
+    field(INPD,"$(P)$(R)C.VAL NPP")
+    field(INPE,"$(P)$(R)D.VAL NPP")
     field(INPF,"$(P)$(R)DSPYOffset.VAL PP")
     field(OUT, "0")
-    field(FLNK,"$(P)$(R)MONITYFake")
+    field(FLNK,"$(P)$(R)YFake")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)MONITYFake"){
+record(calcout,"$(P)$(R)YFake"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"a*((b-c)/(b+c))-d")
     field(INPA,"$(P)$(R)DSPKy.VAL NPP")
-    field(INPB,"$(P)$(R)MONITB.VAL NPP")
-    field(INPC,"$(P)$(R)MONITD.VAL NPP")
+    field(INPB,"$(P)$(R)B.VAL NPP")
+    field(INPC,"$(P)$(R)D.VAL NPP")
     field(INPD,"$(P)$(R)DSPYOffset.VAL NPP")
     field(OUT, "0")
-    field(FLNK,"$(P)$(R)MONITQ")
+    field(FLNK,"$(P)$(R)Q")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)MONITQ"){
+record(calcout,"$(P)$(R)Q"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"a*((b-c+d-e)/(b+c+d+e))-f")
     field(INPA,"$(P)$(R)DSPKq.VAL PP")
-    field(INPB,"$(P)$(R)MONITA.VAL NPP")
-    field(INPC,"$(P)$(R)MONITB.VAL NPP")
-    field(INPD,"$(P)$(R)MONITC.VAL NPP")
-    field(INPE,"$(P)$(R)MONITD.VAL NPP")
+    field(INPB,"$(P)$(R)A.VAL NPP")
+    field(INPC,"$(P)$(R)B.VAL NPP")
+    field(INPD,"$(P)$(R)C.VAL NPP")
+    field(INPE,"$(P)$(R)D.VAL NPP")
     field(INPF,"$(P)$(R)DSPQOffset.VAL PP")
     field(OUT, "0")
-    field(FLNK,"$(P)$(R)MONITSUM")
+    field(FLNK,"$(P)$(R)Sum")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)MONITSUM"){
+record(calcout,"$(P)$(R)Sum"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
     field(TSEL, "$(P)$(R)MONITUpdt.TIME")
     field(CALC,"(a+b+c+d)")
-    field(INPA,"$(P)$(R)MONITA.VAL NPP")
-    field(INPB,"$(P)$(R)MONITB.VAL NPP")
-    field(INPC,"$(P)$(R)MONITC.VAL NPP")
-    field(INPD,"$(P)$(R)MONITD.VAL NPP")
+    field(INPA,"$(P)$(R)A.VAL NPP")
+    field(INPB,"$(P)$(R)B.VAL NPP")
+    field(INPC,"$(P)$(R)C.VAL NPP")
+    field(INPD,"$(P)$(R)D.VAL NPP")
     field(OUT, "0")
     field(EGU, "au")
 }
