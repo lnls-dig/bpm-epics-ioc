@@ -5495,12 +5495,17 @@ samplesPost = PVUtil.getDouble(pvs[2])
 shots = PVUtil.getDouble(pvs[3])
 totalSamples = (samplesPre + samplesPost)*shots
 
+channel = PVUtil.getString(pvs[4])
 trigger = PVUtil.getString(pvs[6])
 
 #ConsoleUtil.writeInfo("samplesPre: "+str(samplesPre))
 #ConsoleUtil.writeInfo("samplesPost: "+str(samplesPost))
 #ConsoleUtil.writeInfo("shots "+str(shots))
 pvs[5].setValue(trigger)
+
+# If ADC or ADCSWAP, clear Position graphs
+if channel == 'adc' or channel == 'adcswap':
+    display.getWidget("XY Graph_2").clearGraph();
 
 # TODO. If multiple shots, FFT will be calculated based on all shots 
 # joined together
