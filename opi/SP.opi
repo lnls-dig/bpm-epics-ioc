@@ -699,7 +699,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(P)$(R)$(MODULE)PosY-Mon</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)Y-Mon</trace_1_y_pv>
     <trace_2_concatenate_data>true</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -710,7 +710,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>446</height>
     <trace_2_visible>true</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(P)$(R)$(MODULE)PosSum-Mon</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)Sum-Mon</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -779,13 +779,13 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(P)$(R)$(MODULE)PosQ-Mon</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)Q-Mon</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(P)$(R)$(MODULE)PosX-Mon</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)X-Mon</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
@@ -4750,7 +4750,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)AmpA-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)A-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4842,7 +4842,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)AmpB-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)B-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -4934,7 +4934,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)AmpC-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)C-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5026,7 +5026,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)AmpD-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)D-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5159,7 +5159,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)PosX-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)X-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5251,7 +5251,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)PosY-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)Y-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5343,7 +5343,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)PosQ-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)Q-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -5435,7 +5435,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(MODULE)PosSum-Mon</pv_name>
+      <pv_name>$(P)$(R)$(MODULE)Sum-Mon</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
