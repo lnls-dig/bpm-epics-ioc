@@ -426,7 +426,7 @@ class drvBPM : public asynNDArrayDriver {
     public:
         drvBPM(const char *portName, const char *endpoint,
                 int bpmNumber, int verbose, int timeout,
-                int maxPoints);
+                int maxPoints, int maxBuffers, size_t maxMemory);
         ~drvBPM();
 
         /* These are the methods that we override from asynPortDriver */

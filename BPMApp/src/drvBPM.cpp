@@ -554,11 +554,11 @@ get_service_id_err:
  * \param[in] endpoint The device address string ]
  * */
 drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-        int verbose, int timeout, int maxPoints)
+        int verbose, int timeout, int maxPoints, int maxBuffers, size_t maxMemory)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     (int)NUM_PARAMS,
-                    0, 0,        /* maxBuffers, maxMemory, no limits */
+                    maxBuffers, maxMemory, /* maxBuffers, maxMemory */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
@@ -4231,10 +4231,11 @@ extern "C" {
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
     int drvBPMConfigure(const char *portName, const char *endpoint,
-            int bpmNumber, int verbose, int timeout, int maxPoints)
+            int bpmNumber, int verbose, int timeout, int maxPoints,
+            int maxBuffers, size_t maxMemory)
     {
         new drvBPM(portName, endpoint, bpmNumber, verbose, timeout,
-                maxPoints);
+                maxPoints, maxBuffers, maxMemory);
         return(asynSuccess);
     }
 
@@ -4245,17 +4246,22 @@ extern "C" {
     static const iocshArg initArg3 = { "verbose", iocshArgInt};
     static const iocshArg initArg4 = { "timeout", iocshArgInt};
     static const iocshArg initArg5 = { "maxPoints", iocshArgInt};
+    static const iocshArg initArg6 = { "maxBuffers", iocshArgInt};
+    static const iocshArg initArg7 = { "maxMemory", iocshArgInt};
     static const iocshArg * const initArgs[] = {&initArg0,
         &initArg1,
         &initArg2,
         &initArg3,
         &initArg4,
-        &initArg5};
-    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",6,initArgs};
+        &initArg5,
+        &initArg6,
+        &initArg7};
+    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",8,initArgs};
     static void initCallFunc(const iocshArgBuf *args)
     {
         drvBPMConfigure(args[0].sval, args[1].sval, args[2].ival,
-                args[3].ival, args[4].ival, args[5].ival);
+                args[3].ival, args[4].ival, args[5].ival,
+                args[6].ival, args[7].ival);
     }
 
     void drvBPMRegister(void)
