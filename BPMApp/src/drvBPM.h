@@ -603,9 +603,9 @@ class drvBPM : public asynNDArrayDriver {
                 epicsUInt32 num_shots);
         asynStatus getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels);
         asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
-        void deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
+        asynStatus deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
-        void computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
+        asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);

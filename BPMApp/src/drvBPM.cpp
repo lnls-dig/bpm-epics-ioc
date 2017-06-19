@@ -1758,11 +1758,23 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             lock();
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
-            deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
                     MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to deinterleave NDArray\n",
+                        driverName, functionName);
+                continue;
+            }
 
             /* Calculate positions and call callbacks */
-            computePositions(coreID, pArrayAllChannels, channel);
+            status = computePositions(coreID, pArrayAllChannels, channel);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to compute positions\n",
+                        driverName, functionName);
+                continue;
+            }
         }
 
         /* Release buffers */
@@ -2132,8 +2144,14 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                 lock();
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
-                deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
                         MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+                if (status != asynSuccess) {
+                    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                            "%s:%s: unable to deinterleave NDArray\n",
+                            driverName, functionName);
+                    continue;
+                }
 
                 /* Set SinglePass AMP/POS Calculate positions and call callbacks */
                 setDoubleParam(P_SPAmpA,       bpm_sample.a);
@@ -2154,10 +2172,10 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     }
 }
 
-void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
+asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
         int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp)
 {
-    int status = 0;
+    int status = asynSuccess;
     size_t dims[MAX_WVF_DIMS];
     NDArrayInfo_t arrayInfo;
     NDDataType_t NDType;
@@ -2171,11 +2189,12 @@ void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArra
     static const char *functionName = "deinterleaveNDArray";
 
     status = pArrayAllChannels->getInfo(&arrayInfo);
-    if (status != 0) {
+    if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to get information about pArrayAllChannels\n",
                 driverName, functionName);
-        return;
+        status = asynError;
+        goto get_info_array_err;
     }
 
     arrayYStride = arrayInfo.yStride;
@@ -2184,6 +2203,14 @@ void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArra
     for (int i = 0; i < pNDArrayAddrSize; ++i) {
         channelAddr = pNDArrayAddr[i];
         pArraySingleChannel = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        if (pArraySingleChannel == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArraySingleChannel\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
+
         pArraySingleChannel->uniqueId = arrayCounter;
         pArraySingleChannel->timeStamp = timeStamp;
         getAttributes(pArraySingleChannel->pAttributeList);
@@ -2217,15 +2244,21 @@ void drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArra
         pArraySingleChannel->release();
         lock();
     }
+
+    return (asynStatus)status;
+
+alloc_ndarray_err:
+get_info_array_err:
+    return (asynStatus)status;
 }
 
 /** This function computes the sums, diffs and positions
   * \param[in] NDArray of amplitudes interleaved (A1, B1, C1, D1,
   * A2, B2, C2, D2, ...)
   */
-void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel)
+asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel)
 {
-    int status = 0;
+    int status = asynSuccess;
     epicsUInt32 XOffset;
     epicsUInt32 YOffset;
     epicsUInt32 QOffset;
@@ -2251,6 +2284,7 @@ void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channe
 
     /* Check if we need to compute position for this channel */
     if (channelMap[channel].CalcPos != 1) {
+        status = asynError;
         goto no_calc_pos;
     }
 
@@ -2278,6 +2312,7 @@ void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channe
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to get information about pArrayAllChannels\n",
                 driverName, functionName);
+        status = asynError;
         goto get_arrayinfo_err;
     }
 
@@ -2297,6 +2332,7 @@ void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channe
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayPosAllChannels\n",
                 driverName, functionName);
+        status = asynError;
         goto array_pool_copy_err;
     }
     pArrayPosAllChannels->uniqueId = arrayCounter;
@@ -2312,6 +2348,7 @@ void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channe
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to calculate positions for data different than NDInt32\n",
                 driverName, functionName);
+        status = asynError;
         goto inv_ndtype_err;
     }
 
@@ -2331,16 +2368,26 @@ void drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channe
     lock();
 
     /* Copy data to arrays for each type of data, do callbacks on that */
-    deinterleaveNDArray(pArrayPosAllChannels, channelMap[channel].NDArrayPos[coreID],
+    status = deinterleaveNDArray(pArrayPosAllChannels, channelMap[channel].NDArrayPos[coreID],
             MAX_WVF_POS_SINGLE, arrayCounter, timeStamp);
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to deinterleaveNDArray\n",
+                driverName, functionName);
+        goto deinterleave_ndarray_err;
+    }
 
+    pArrayPosAllChannels->release();
+    return (asynStatus)status;
+
+deinterleave_ndarray_err:
 inv_ndtype_err:
     /* Release array */
     pArrayPosAllChannels->release();
 array_pool_copy_err:
 get_arrayinfo_err:
 no_calc_pos:
-    return;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::setAcquire(int addr)
