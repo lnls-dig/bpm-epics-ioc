@@ -324,6 +324,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-RB"){
     field(SVVL,"7")
     field(EIVL,"8")
     field(NIVL,"9")
+    field(TEVL,"10")
     field(ZRST,"Idle")
     field(ONST,"Waiting")
     field(TWST,"External Trig")
@@ -334,6 +335,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-RB"){
     field(SVST,"Aborted")
     field(EIST,"Too Many Samples")
     field(NIST,"Too Few Samples")
+    field(TEST,"No Memory")
 }
 
 record(ao, "$(P)$(R)$(ACQ_NAME)UpdateTime"){
