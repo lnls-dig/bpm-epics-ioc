@@ -1478,7 +1478,8 @@ static bool acqIsBPMStatusErr(int bpmStatus)
     if (bpmStatus == BPMStatusErrAcq ||
         bpmStatus == BPMStatusAborted ||
         bpmStatus == BPMStatusErrTooManyPoints ||
-        bpmStatus == BPMStatusErrTooFewPoints) {
+        bpmStatus == BPMStatusErrTooFewPoints ||
+        bpmStatus == BPMStatusErrNoMem) {
         return true;
     }
 
@@ -1668,6 +1669,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayAllChannels\n",
                 driverName, functionName);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrNoMem);
+            callParamCallbacks(coreID);
             continue;
         }
         pArrayAllChannels->uniqueId = arrayCounter;
@@ -1987,6 +1990,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayAllChannels\n",
                 driverName, functionName);
+            setIntegerParam(coreID, P_BPMStatus, BPMStatusErrNoMem);
+            callParamCallbacks(coreID);
             continue;
         }
         pArrayAllChannels->uniqueId = arrayCounter;
