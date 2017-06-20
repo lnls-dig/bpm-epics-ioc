@@ -63,7 +63,7 @@ record(longout,"$(P)$(R)DSPKq"){
 
 record(longin,"$(P)$(R)DSPKq-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get kyq")
+    field(DESC,"get kq")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(TSEL, "$(P)$(R)MONITUpdt-RB.TIME")
