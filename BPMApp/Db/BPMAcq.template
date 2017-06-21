@@ -121,21 +121,15 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Trigger"){
     field(DESC, "Set acquisition's trigger")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
     field(SCAN,"Passive")
-    field(NOBT,"3")
+    field(NOBT,"2")
     field(ZRVL,"0")
     field(ONVL,"1")
     field(TWVL,"2")
     field(THVL,"3")
-    field(FRVL,"4")
-    field(FVVL,"5")
-    field(SXVL,"6")
-    field(ZRST,"now")
+    field(ZRST,"skip")
     field(ONST,"external")
     field(TWST,"data")
-    field(THST,"sw")
-    field(FRST,"stop")
-    field(FVST,"abort")
-    field(SXST,"repetitive")
+    field(THST,"software")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Trigger-RB"){
@@ -143,45 +137,67 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Trigger-RB"){
     field(DESC, "Get acquisition's trigger")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
     field(SCAN,"I/O Intr")
-    field(NOBT,"3")
+    field(NOBT,"2")
     field(ZRVL,"0")
     field(ONVL,"1")
     field(TWVL,"2")
     field(THVL,"3")
-    field(FRVL,"4")
-    field(FVVL,"5")
-    field(SXVL,"6")
-    field(ZRST,"now")
+    field(ZRST,"skip")
     field(ONST,"external")
     field(TWST,"data")
-    field(THST,"sw")
-    field(FRST,"stop")
-    field(FVST,"abort")
-    field(SXST,"repetitive")
+    field(THST,"software")
 }
 
-record(mbbo, "$(P)$(R)$(ACQ_NAME)Control"){
+record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerEvent"){
     field(DTYP, "asynUInt32Digital")
-    field(DESC, "Set acquisition control")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
+    field(DESC, "Set acquisition's trigger event")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_EVENT")
+    field(SCAN,"Passive")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(ZRST,"start")
+    field(ONST,"stop")
+    field(TWST,"abort")
+}
+
+record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerEvent-RB"){
+    field(DTYP, "asynUInt32Digital")
+    field(DESC, "Get acquisition's trigger event")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_EVENT")
+    field(SCAN,"I/O Intr")
+    field(NOBT,"2")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(TWVL,"2")
+    field(ZRST,"start")
+    field(ONST,"stop")
+    field(TWST,"abort")
+}
+
+record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerRep"){
+    field(DTYP, "asynUInt32Digital")
+    field(DESC, "Set acquisition's trigger repetitive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_REP")
     field(SCAN,"Passive")
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"unchanged")
-    field(ONST,"abort")
+    field(ZRST,"normal")
+    field(ONST,"repetitive")
 }
 
-record(mbbi, "$(P)$(R)$(ACQ_NAME)Control-RB"){
+record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerRep-RB"){
     field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get acquisition control")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_CONTROL")
+    field(DESC, "Get acquisition's trigger repetitive")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_REP")
     field(SCAN,"I/O Intr")
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"unchanged")
-    field(ONST,"abort")
+    field(ZRST,"normal")
+    field(ONST,"repetitive")
 }
 
 record(longout,"$(P)$(R)$(ACQ_NAME)TriggerDataThres"){
