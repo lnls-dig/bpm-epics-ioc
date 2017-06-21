@@ -1191,7 +1191,7 @@ $(pv_value)</tooltip>
     <transparent>false</transparent>
     <lock_children>false</lock_children>
     <scripts />
-    <height>335</height>
+    <height>340</height>
     <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -1238,7 +1238,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>loc://$(P)$(R)$(MODULE)UpdateTime(1.0)</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)UpdateTime</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1263,18 +1263,16 @@ $(pv_value)</tooltip>
       </scale_options>
       <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
       <format_type>1</format_type>
-      <limits_from_pv>false</limits_from_pv>
+      <limits_from_pv>true</limits_from_pv>
       <background_color>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>133</width>
       <x>108</x>
       <y>78</y>
-      <maximum>10000.0</maximum>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <minimum>0.01</minimum>
       <font>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>
@@ -1475,9 +1473,9 @@ $(pv_value)</tooltip>
         <height_scalable>false</height_scalable>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
-      <items_from_pv>false</items_from_pv>
+      <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>loc://$(P)$(R)$(MODULE)Trigger("now")</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Trigger</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -1494,13 +1492,6 @@ $(pv_value)</tooltip>
         <color red="0" green="0" blue="0" />
       </foreground_color>
       <actions hook="true" hook_all="false" />
-      <items>
-        <s>now</s>
-        <s>external</s>
-        <s>data</s>
-        <s>sw</s>
-        <s>repetitive</s>
-      </items>
       <font>
         <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
       </font>
@@ -1525,7 +1516,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("stop")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Stop(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Trigger</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -1544,9 +1535,9 @@ pvs[1].setValue("stop")]]></scriptText>
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>431</x>
+      <x>433</x>
       <name>Action Button</name>
-      <y>190</y>
+      <y>227</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -1593,9 +1584,9 @@ pvs[1].setValue("stop")]]></scriptText>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>250</x>
+      <x>252</x>
       <name>Label_57</name>
-      <y>189</y>
+      <y>226</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -1770,9 +1761,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>250</x>
+      <x>252</x>
       <name>Label_53</name>
-      <y>114</y>
+      <y>151</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -1827,8 +1818,8 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>133</width>
-      <x>360</x>
-      <y>115</y>
+      <x>362</x>
+      <y>152</y>
       <maximum>100000.0</maximum>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -1884,8 +1875,8 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>133</width>
-      <x>360</x>
-      <y>78</y>
+      <x>362</x>
+      <y>115</y>
       <maximum>100000.0</maximum>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -1924,9 +1915,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>252</x>
+      <x>254</x>
       <name>Label_53</name>
-      <y>77</y>
+      <y>114</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -1964,9 +1955,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>252</x>
+      <x>254</x>
       <name>Label_53</name>
-      <y>151</y>
+      <y>188</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -2021,8 +2012,8 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>133</width>
-      <x>360</x>
-      <y>152</y>
+      <x>362</x>
+      <y>189</y>
       <maximum>1000000.0</maximum>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -2250,9 +2241,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>250</x>
+      <x>252</x>
       <name>Label_53</name>
-      <y>40</y>
+      <y>77</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -2307,8 +2298,8 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>133</width>
-      <x>360</x>
-      <y>41</y>
+      <x>362</x>
+      <y>78</y>
       <maximum>100000.0</maximum>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -2341,15 +2332,11 @@ samplesPost = PVUtil.getDouble(pvs[2])
 shots = PVUtil.getDouble(pvs[3])
 totalSamples = (samplesPre + samplesPost)*shots
 
-updateTime = PVUtil.getDouble(pvs[7])
-trigger = PVUtil.getString(pvs[8])
-
 #ConsoleUtil.writeInfo("samplesPre: "+str(samplesPre))
 #ConsoleUtil.writeInfo("samplesPost: "+str(samplesPost))
 #ConsoleUtil.writeInfo("shots "+str(shots))
 pvs[4].setValue("adc")
-pvs[5].setValue(updateTime)
-pvs[6].setValue(trigger)
+pvs[5].setValue("start")
 
 #Resize Graphs
 for i in range(4):
@@ -2359,10 +2346,7 @@ for i in range(4):
           <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPost</pv>
           <pv trig="false">$(P)$(R)$(ACQ_NAME)Shots</pv>
           <pv trig="false">$(P)$(R)$(ACQ_NAME)Channel</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)UpdateTime</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Trigger</pv>
-          <pv trig="false">loc://$(P)$(R)$(MODULE)UpdateTime</pv>
-          <pv trig="false">loc://$(P)$(R)$(MODULE)Trigger</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -2381,9 +2365,9 @@ for i in range(4):
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>360</x>
+      <x>362</x>
       <name>Action Button</name>
-      <y>190</y>
+      <y>227</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -2554,9 +2538,9 @@ $(pv_value)</tooltip>
         <color red="255" green="255" blue="255" />
       </background_color>
       <width>105</width>
-      <x>250</x>
+      <x>252</x>
       <name>Label_57</name>
-      <y>228</y>
+      <y>265</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
@@ -2585,7 +2569,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("abort")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Abort(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Trigger</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -2604,9 +2588,9 @@ pvs[1].setValue("abort")]]></scriptText>
       </border_color>
       <widget_type>Action Button</widget_type>
       <width>62</width>
-      <x>360</x>
+      <x>362</x>
       <name>Action Button</name>
-      <y>229</y>
+      <y>266</y>
       <style>1</style>
       <foreground_color>
         <color red="0" green="0" blue="0" />
@@ -2708,6 +2692,93 @@ $(pv_value)</tooltip>
       <x>108</x>
       <name>Text Update_19</name>
       <y>267</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="false" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+      <border_style>0</border_style>
+      <tooltip></tooltip>
+      <horizontal_alignment>1</horizontal_alignment>
+      <rules />
+      <enabled>true</enabled>
+      <wuid>7c0b2406:15cc74ae79b:-4bfc</wuid>
+      <transparent>true</transparent>
+      <auto_size>false</auto_size>
+      <text>Repetitive:</text>
+      <scripts />
+      <height>31</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <visible>true</visible>
+      <vertical_alignment>1</vertical_alignment>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <widget_type>Label</widget_type>
+      <wrap_words>false</wrap_words>
+      <background_color>
+        <color red="255" green="255" blue="255" />
+      </background_color>
+      <width>105</width>
+      <x>254</x>
+      <name>Label_53</name>
+      <y>40</y>
+      <foreground_color>
+        <color red="0" green="0" blue="0" />
+      </foreground_color>
+      <actions hook="false" hook_all="false" />
+      <font>
+        <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+      </font>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+      <border_style>0</border_style>
+      <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+      <alarm_pulsing>false</alarm_pulsing>
+      <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+      <rules />
+      <bit>0</bit>
+      <enabled>true</enabled>
+      <wuid>7c0b2406:15cc74ae79b:-4bfb</wuid>
+      <selected_color>
+        <color red="77" green="77" blue="77" />
+      </selected_color>
+      <pv_value />
+      <auto_size>false</auto_size>
+      <scripts />
+      <border_alarm_sensitive>true</border_alarm_sensitive>
+      <height>31</height>
+      <border_width>1</border_width>
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>false</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <visible>true</visible>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerRep</pv_name>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <label></label>
+      <widget_type>Check Box</widget_type>
+      <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <width>22</width>
+      <x>418</x>
+      <name>Check Box_24</name>
+      <y>40</y>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
