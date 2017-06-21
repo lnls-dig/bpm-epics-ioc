@@ -722,9 +722,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_ChannelString,    asynParamInt32,                &P_Channel);
     createParam(P_UpdateTimeString, asynParamFloat64,              &P_UpdateTime);
     createParam(P_TriggerString,    asynParamUInt32Digital,        &P_Trigger);
-    createParam(P_TriggerEventString,    
+    createParam(P_TriggerEventString,
                                     asynParamUInt32Digital,        &P_TriggerEvent);
-    createParam(P_TriggerRepString,    
+    createParam(P_TriggerRepString,
                                     asynParamUInt32Digital,        &P_TriggerRep);
     createParam(P_TriggerDataThresString,
                                     asynParamUInt32Digital,        &P_TriggerDataThres);
@@ -1001,7 +1001,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(    BPMIDPM, P_Channel,                        CH_DEFAULT_PM);
     setDoubleParam(     BPMIDPM, P_UpdateTime,                          1.0);
     setUIntDigitalParam(BPMIDPM, P_Trigger,    ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
-    setUIntDigitalParam(BPMIDPM, P_TriggerEvent,  
+    setUIntDigitalParam(BPMIDPM, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerRep, 0,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
@@ -1338,7 +1338,7 @@ asynStatus drvBPM::initAcqPM(int coreID)
     setIntegerParam(    coreID, P_Channel,                         CH_DEFAULT_PM);
     setDoubleParam(     coreID, P_UpdateTime,                           1.0);
     setUIntDigitalParam(coreID, P_Trigger,     ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
-    setUIntDigitalParam(coreID, P_TriggerEvent, 
+    setUIntDigitalParam(coreID, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerRep,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
@@ -2463,11 +2463,11 @@ asynStatus drvBPM::setAcqEvent(epicsUInt32 mask, int addr)
     }
 
     switch (triggerEvent) {
-        case TRIG_ACQ_START: 
+        case TRIG_ACQ_START:
             /* Abort the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
             abortAcqTask(addr, bpmModeOther, false);
-             
+
             /* Don't try to change anything is we are still acquiring.
              * We must stop r abort the acquisition first */
             if (readingActive[bpmMode][addr]) {
