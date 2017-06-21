@@ -7,11 +7,11 @@ caput ${BPM_PREFIX}:DI-BPM:ADCAD9510MuxStatus-RB.SCAN Passive
 caput ${BPM_PREFIX}:DI-BPM:ADCAD9510PllStatus-RB.SCAN Passive
 
 for i in $(seq 0 23); do 
-	caput ${BPM_PREFIX}:DI-BPM:TRIGGER${i}TrnCnt-RB.SCAN Passive 
-	caput ${BPM_PREFIX}:DI-BPM:TRIGGER${i}RcvCnt-RB.SCAN Passive 
+	caput ${BPM_PREFIX}:DI-BPM:TRIGGER${i}TrnCnt-Mon.SCAN Passive 
+	caput ${BPM_PREFIX}:DI-BPM:TRIGGER${i}RcvCnt-Mon.SCAN Passive 
 
-	caput ${BPM_PREFIX}:DI-BPM:TRIGGER_PM${i}TrnCnt-RB.SCAN Passive 
-	caput ${BPM_PREFIX}:DI-BPM:TRIGGER_PM${i}RcvCnt-RB.SCAN Passive 
+	caput ${BPM_PREFIX}:DI-BPM:TRIGGER_PM${i}TrnCnt-Mon.SCAN Passive 
+	caput ${BPM_PREFIX}:DI-BPM:TRIGGER_PM${i}RcvCnt-Mon.SCAN Passive 
 done
 
 for i in $(seq 0 3); do 
