@@ -164,7 +164,7 @@ record(longin,"$(P)$(R)MONITUpdt-RB"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDT")
-    field(FLNK,"$(P)$(R)X")
+    field(FLNK,"$(P)$(R)PosX-Mon")
 }
 
 record(longin,"$(P)$(R)AmplA-Mon"){
@@ -222,7 +222,7 @@ record(ai,"$(P)$(R)MONITUpdtAll"){
     field(FLNK,"$(P)$(R)MONITUpdt 1")
 }
 
-record(calcout,"$(P)$(R)X"){
+record(calcout,"$(P)$(R)PosX-Mon"){
     field(PINI,"YES")
     field(MDEL, "-1")
     field(ADEL, "-1")
