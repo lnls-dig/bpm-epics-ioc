@@ -4,6 +4,8 @@ $(P)$(R)$(ACQ_NAME)SamplesPost
 $(P)$(R)$(ACQ_NAME)Shots
 $(P)$(R)$(ACQ_NAME)Channel
 $(P)$(R)$(ACQ_NAME)UpdateTime
+$(P)$(R)$(ACQ_NAME)Trigger
+$(P)$(R)$(ACQ_NAME)TriggerRep
 $(P)$(R)$(ACQ_NAME)TriggerDataThres
 $(P)$(R)$(ACQ_NAME)TriggerDataPol
 $(P)$(R)$(ACQ_NAME)TriggerDataSel
