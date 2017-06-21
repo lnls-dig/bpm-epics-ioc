@@ -2415,6 +2415,8 @@ asynStatus drvBPM::setAcqEvent(epicsUInt32 mask, int addr)
     getUIntDigitalParam(addr, P_TriggerEvent, &triggerEvent, 0xFFFFFFFF);
     getUIntDigitalParam(addr, P_Trigger, &triggerType, 0xFFFFFFFF);
     getUIntDigitalParam(addr, P_TriggerRep, &triggerRep, 0xFFFFFFFF);
+    getIntegerParam(addr, P_BPMMode, &bpmMode);
+    getIntegerParam(addr, P_Channel, &channel);
 
     /* Convert user channel into hw channel */
     hwAmpChannel = channelMap[channel].HwAmpChannel;
