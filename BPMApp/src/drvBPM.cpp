@@ -386,8 +386,6 @@ static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halc
 static const functionsInt32_t bpmSetGetFmcPicoRngR2Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r2, halcs_get_fmcpico_rng_r2};
 static const functionsInt32_t bpmSetGetFmcPicoRngR3Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r3, halcs_get_fmcpico_rng_r3};
 
-static const functionsInt32Acq_t bpmSetGetAcqControlFunc = {"ACQ", acq_set_fsm_stop, acq_get_fsm_stop};
-static const functionsInt32Acq_t bpmSetGetAcqTriggerFunc = {"ACQ", acq_set_trig, acq_get_trig};
 static const functionsInt32Acq_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres};
 static const functionsInt32Acq_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol};
 static const functionsInt32Acq_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel};
@@ -722,9 +720,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,        &P_SamplesPost);
     createParam(P_NumShotsString,   asynParamUInt32Digital,        &P_NumShots);
     createParam(P_ChannelString,    asynParamInt32,                &P_Channel);
-    createParam(P_AcqControlString, asynParamUInt32Digital,        &P_AcqControl);
     createParam(P_UpdateTimeString, asynParamFloat64,              &P_UpdateTime);
     createParam(P_TriggerString,    asynParamUInt32Digital,        &P_Trigger);
+    createParam(P_TriggerEventString,    
+                                    asynParamUInt32Digital,        &P_TriggerEvent);
+    createParam(P_TriggerRepString,    
+                                    asynParamUInt32Digital,        &P_TriggerRep);
     createParam(P_TriggerDataThresString,
                                     asynParamUInt32Digital,        &P_TriggerDataThres);
     createParam(P_TriggerDataPolString,
@@ -840,10 +841,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
     bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
 
-    bpmHwInt32AcqFunc[P_AcqControl] = bpmSetGetAcqControlFunc;
     bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
-    bpmHwInt32AcqFunc[P_Trigger] = bpmSetGetAcqTriggerFunc;
     bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
     bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
     bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
@@ -968,9 +967,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(addr, P_SamplesPost,   0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_NumShots,      1,                  0xFFFFFFFF);
         setIntegerParam(    addr, P_Channel,                               CH_ADC);
-        setUIntDigitalParam(addr, P_AcqControl,    0,                  0xFFFFFFFF);
         setDoubleParam(     addr, P_UpdateTime,                             1.0);
-        setUIntDigitalParam(addr, P_Trigger,       TRIG_ACQ_STOP,      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_Trigger,       ACQ_CLIENT_TRIG_SKIP,      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerEvent,  TRIG_ACQ_STOP,      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerRep,    0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_TriggerDataThres,
                                                    100,                0xFFFFFFFF);
         setUIntDigitalParam(addr, P_TriggerDataPol,
@@ -999,9 +999,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(BPMIDPM, P_NumShots,   NUM_SHOTS_DEFAULT_PM,
                                                                 0xFFFFFFFF);
     setIntegerParam(    BPMIDPM, P_Channel,                        CH_DEFAULT_PM);
-    setUIntDigitalParam(BPMIDPM, P_AcqControl, 0,                  0xFFFFFFFF);
     setDoubleParam(     BPMIDPM, P_UpdateTime,                          1.0);
-    setUIntDigitalParam(BPMIDPM, P_Trigger,    TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_Trigger,    ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerEvent,  
+                                               TRIG_ACQ_START,     0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerRep, 0,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataPol,
@@ -1334,9 +1336,11 @@ asynStatus drvBPM::initAcqPM(int coreID)
     setUIntDigitalParam(coreID, P_NumShots,    NUM_SHOTS_DEFAULT_PM,
                                                                  0xFFFFFFFF);
     setIntegerParam(    coreID, P_Channel,                         CH_DEFAULT_PM);
-    setUIntDigitalParam(coreID, P_AcqControl,  0,                  0xFFFFFFFF);
     setDoubleParam(     coreID, P_UpdateTime,                           1.0);
-    setUIntDigitalParam(coreID, P_Trigger,     TRIG_ACQ_EXT_HW,  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_Trigger,     ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerEvent, 
+                                               TRIG_ACQ_START,     0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerRep,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataPol,
@@ -1354,10 +1358,10 @@ asynStatus drvBPM::initAcqPM(int coreID)
     callParamCallbacks(coreID);
 
     /* Start triggered acquisition */
-    status = setAcquire(coreID);
+    status = setAcqEvent(0xFFFFFFFF, coreID);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling setAcquire, status=%d\n",
+            "%s:%s: error calling setAcqEvent, status=%d\n",
             driverName, functionName, status);
         goto set_acq_trig;
     }
@@ -1397,7 +1401,6 @@ halcs_acq_trig_err:
 get_service_err:
     return status;
 }
-
 
 /* This can only return if the ACQ engine is IDLE or waiting
  * for some trigger (External, Data or Software) */
@@ -1698,13 +1701,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                  * Although, we will for SW or HW trigger in a short time,
                  * we are not actually there yet ...
                  */
-                if (trigger == TRIG_ACQ_EXT_HW) {
+                if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
                 }
-                else if (trigger == TRIG_ACQ_EXT_DATA) {
+                else if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
                 }
-                else if (trigger == TRIG_ACQ_SW) {
+                else if (trigger == ACQ_CLIENT_TRIG_SOFTWARE) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
                 }
 
@@ -2053,11 +2056,11 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt,
             TriggerDataPol, TriggerHwDly);
-        if (trigger == TRIG_ACQ_EXT_DATA) {
+        if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
             bpm_single_pass_configure_data_trigger (bpm_single_pass,
                 TriggerDataThres, TriggerDataSel);
         }
-        else if (trigger == TRIG_ACQ_EXT_HW) {
+        else if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
             bpm_single_pass_configure_external_trigger (bpm_single_pass);
         }
         else {
@@ -2088,13 +2091,13 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                  * Although, we will for SW or HW trigger in a short time,
                  * we are not actually there yet ...
                  */
-                if (trigger == TRIG_ACQ_EXT_HW) {
+                if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwExtWaiting);
                 }
-                else if (trigger == TRIG_ACQ_EXT_DATA) {
+                else if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerHwDataWaiting);
                 }
-                else if (trigger == TRIG_ACQ_SW) {
+                else if (trigger == ACQ_CLIENT_TRIG_SOFTWARE) {
                     setIntegerParam(coreID, P_BPMStatus, BPMStatusTriggerSwWaiting);
                 }
 
@@ -2395,29 +2398,23 @@ no_calc_pos:
     return (asynStatus)status;
 }
 
-asynStatus drvBPM::setAcquire(int addr)
+asynStatus drvBPM::setAcqEvent(epicsUInt32 mask, int addr)
 {
     asynStatus status = asynSuccess;
-    const char* functionName = "setAcquire";
-    epicsUInt32 trigger_type = 0;
+    const char* functionName = "setAcqEvent";
+    epicsUInt32 triggerEvent = 0;
+    epicsUInt32 triggerType = 0;
+    epicsUInt32 triggerRep = 0;
     epicsUInt32 hwAmpChannel = 0;
     int channel = 0;
     int bpmMode = 0;
     int bpmModeOther = 0;
     channelProp_t channelProp;
 
-    /* Set the parameter in the parameter library. */
-    getUIntDigitalParam(addr, P_Trigger, &trigger_type, 0xFFFFFFFF);
-    getIntegerParam(addr, P_BPMMode, &bpmMode);
-    getIntegerParam(addr, P_Channel, &channel);
-
-    /* Set the trigger if it matches the HW */
-    if (trigger_type < TRIG_ACQ_STOP) {
-        setParam32 (P_Trigger, 0xFFFFFFFF, addr);
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: writing trigger type = %u\n",
-                driverName, functionName, trigger_type);
-    }
+    /* Get the parameter in the parameter library. */
+    getUIntDigitalParam(addr, P_TriggerEvent, &triggerEvent, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_Trigger, &triggerType, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_TriggerRep, &triggerRep, 0xFFFFFFFF);
 
     /* Convert user channel into hw channel */
     hwAmpChannel = channelMap[channel].HwAmpChannel;
@@ -2450,27 +2447,43 @@ asynStatus drvBPM::setAcquire(int addr)
         bpmModeOther = BPMModeSinglePass;
     }
 
-    switch (trigger_type) {
-        case TRIG_ACQ_NOW:
-        case TRIG_ACQ_EXT_HW:
-        case TRIG_ACQ_EXT_DATA:
-        case TRIG_ACQ_SW:
+    switch (triggerEvent) {
+        case TRIG_ACQ_START: 
             /* Abort the other acquisition task if needed */
             stopAcqTask(addr, bpmModeOther);
             abortAcqTask(addr, bpmModeOther, false);
+             
+            /* Don't try to change anything is we are still acquiring.
+             * We must stop r abort the acquisition first */
+            if (readingActive[bpmMode][addr]) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: Not starting acquistion as acqTask is still active\n",
+                    driverName, functionName);
+                break;
+            }
+
+            if (triggerRep) {
+                repetitiveTrigger[bpmMode][addr] = 1;
+            }
+            else {
+                repetitiveTrigger[bpmMode][addr] = 0;
+            }
+
+            status = setAcqTrig(addr, (acq_client_trig_e) triggerType);
+            if (status) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling setAcqTrig, status=%d\n",
+                    driverName, functionName, status);
+                goto get_set_acq_trig_err;
+            }
 
             /* Send event telling the current task to proceed */
             epicsEventSignal(activeAcqEventId[bpmMode][addr]);
-
-            /* Start the current AcqTask */
-            if (!readingActive[bpmMode][addr] && !repetitiveTrigger[bpmMode][addr]) {
-                repetitiveTrigger[bpmMode][addr] = 0;
-                /* Signal acq thread to start acquisition with the current parameters */
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_NOW or HW/SW called\n",
-                        driverName, functionName);
-                epicsEventSignal(startAcqEventId[bpmMode][addr]);
-            }
+            /* Signal acq thread to start acquisition with the current parameters */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: trigger TRIG_ACQ_START called\n",
+                    driverName, functionName);
+            epicsEventSignal(startAcqEventId[bpmMode][addr]);
             break;
 
         /* Stop acquisition if we are in repetitive mode and if we are currently
@@ -2488,34 +2501,16 @@ asynStatus drvBPM::setAcquire(int addr)
             abortAcqTask(addr, bpmMode, true);
             break;
 
-        case TRIG_ACQ_REPETITIVE:
-            /* Stop the other acquisition task if needed */
-            stopAcqTask(addr, bpmModeOther);
-            abortAcqTask(addr, bpmModeOther, false);
-
-            /* Send event telling the current task to proceed */
-            epicsEventSignal(activeAcqEventId[bpmMode][addr]);
-
-            /* Start the current AcqTask */
-            if (!repetitiveTrigger[bpmMode][addr]) {
-                repetitiveTrigger[bpmMode][addr] = 1;
-                /* Signal acq thread to start acquisition with the current parameters */
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: trigger ACQ_REPETITIVE called\n",
-                        driverName, functionName);
-                epicsEventSignal(startAcqEventId[bpmMode][addr]);
-            }
-            break;
-
         default:
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: trigger type not implemented yet\n",
+                    "%s:%s: invalid trigger event\n",
                     driverName, functionName);
             status = asynError;
             goto trig_unimplemented_err;
     }
 
 trig_unimplemented_err:
+get_set_acq_trig_err:
 get_chan_prop_err:
 halcs_inv_channel:
     return status;
@@ -2918,9 +2913,9 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         setUIntDigitalParam(addr, function, value, mask);
 
         /* Some operations need some special handling*/
-        if (function == P_Trigger) {
+        if (function == P_TriggerEvent) {
             /* If run was set then wake up the simulation task */
-            status = setAcquire(addr);
+            status = setAcqEvent(mask, addr);
         }
         else if (function == P_AdcClkSel) {
             status = setAdcClkSel(mask, addr);
@@ -4024,11 +4019,11 @@ asynStatus drvBPM::setSi57xFreq(int addr)
     /* On any frequency change, abort the current acquisitions
      * and restart Post-Mortem */
     for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-       setUIntDigitalParam(i, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
-       status = setAcquire(i);
+       setUIntDigitalParam(addr, P_TriggerEvent, TRIG_ACQ_ABORT, 0xFFFFFFFF);
+       status = setAcqEvent(0xFFFFFFFF, addr);
        if (status) {
            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-               "%s:%s: error calling setAcquire, status=%d\n",
+               "%s:%s: error calling setAcqEvent, status=%d\n",
                driverName, functionName, status);
            goto abort_acq_err;
        }
@@ -4063,11 +4058,11 @@ asynStatus drvBPM::setSi57xFreq(int addr)
 
     /* Restart Acq cores again */
     for(int i = 0; i < NUM_ACQ_CORES_PER_BPM; ++i) {
-       setUIntDigitalParam(i, P_Trigger, TRIG_ACQ_ABORT, 0xFFFFFFFF);
-       status = setAcquire(i);
+       setUIntDigitalParam(addr, P_TriggerEvent, TRIG_ACQ_ABORT, 0xFFFFFFFF);
+       status = setAcqEvent(0xFFFFFFFF, addr);
        if (status) {
            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-               "%s:%s: error calling setAcquire, status=%d\n",
+               "%s:%s: error calling setAcqEvent, status=%d\n",
                driverName, functionName, status);
            goto abort2_acq_err;
        }

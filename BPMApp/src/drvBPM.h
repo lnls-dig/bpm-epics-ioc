@@ -359,8 +359,9 @@ typedef struct {
 #define P_SamplesPostString         "ACQ_SAMPLES_POST"      /* asynUInt32Digital,      r/w */
 #define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
 #define P_ChannelString             "ACQ_CHANNEL"           /* asynInt32,              r/w */
-#define P_TriggerString             "ACQ_TRIGGER"           /* asynInt32,              r/w */
-#define P_AcqControlString          "ACQ_CONTROL"           /* asynInt32,              r/w */
+#define P_TriggerString             "ACQ_TRIGGER"           /* asynUInt32Digital,      r/w */
+#define P_TriggerEventString        "ACQ_TRIGGER_EVENT"     /* asynUInt32Digital,      r/w */
+#define P_TriggerRepString          "ACQ_TRIGGER_REP"       /* asynUInt32Digital,      r/w */
 #define P_UpdateTimeString          "ACQ_UPDATE_TIME"       /* asynFloat64,            r/w */
 #define P_TriggerDataThresString    "ACQ_TRIGGER_THRES"     /* asynInt32,              r/w */
 #define P_TriggerDataPolString      "ACQ_TRIGGER_POL"       /* asynInt32,              r/w */
@@ -410,18 +411,10 @@ typedef struct {
 
 
 typedef enum {
-    /* These trigger types matches the HW */
-    TRIG_ACQ_NOW = 0,
-    TRIG_ACQ_EXT_HW,
-    TRIG_ACQ_EXT_DATA,
-    TRIG_ACQ_SW,
-    /* These trigger types do not exist in HW */
-    /* FIXME: TRIG_ACQ_STOP must be after the valid HW
-     * triggers */
+    TRIG_ACQ_START,
     TRIG_ACQ_STOP,
     TRIG_ACQ_ABORT,
-    TRIG_ACQ_REPETITIVE
-} trigEnum_t;
+} trigEvent_e;
 
 class drvBPM : public asynNDArrayDriver {
     public:
@@ -500,9 +493,10 @@ class drvBPM : public asynNDArrayDriver {
         int P_SamplesPost;
         int P_NumShots;
         int P_Channel;
-        int P_AcqControl;
         int P_UpdateTime;
         int P_Trigger;
+        int P_TriggerEvent;
+        int P_TriggerRep;
         int P_TriggerDataThres;
         int P_TriggerDataPol;
         int P_TriggerDataSel;
@@ -583,7 +577,7 @@ class drvBPM : public asynNDArrayDriver {
                 int *serviceIDArg);
         asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
                 char *fullServiceName, int fullServiceNameSize);
-        asynStatus setAcquire(int addr);
+        asynStatus setAcqEvent(epicsUInt32 mask, int addr);
         asynStatus getAcqNDArrayType(int coreID, int channel, epicsUInt32 atomWidth, NDDataType_t *NDType);
         asynStatus getChannelProperties(int coreID, int channel, channelProp_t *channelProp);
         bpm_status_types getBPMInitAcqStatus(int coreID);
