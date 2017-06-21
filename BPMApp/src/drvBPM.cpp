@@ -2305,7 +2305,7 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
 
     /* Check if we need to compute position for this channel */
     if (channelMap[channel].CalcPos != 1) {
-        status = asynError;
+        status = asynSuccess;
         goto no_calc_pos;
     }
 
