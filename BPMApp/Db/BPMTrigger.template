@@ -82,7 +82,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst-RB"){
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_CNT_RST")
-    field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB")
+    field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-Mon")
 }
 
 record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst"){
@@ -99,7 +99,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst-RB"){
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_CNT_RST")
-    field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB")
+    field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-Mon")
 }
 
 record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen"){
@@ -134,15 +134,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_LEN")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set trigger receive counter")
-    field(PINI,"YES")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
-}
-
-record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB"){
+record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive counter")
     field(PINI,"YES")
@@ -150,15 +142,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_RCV")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set trigger transmit counter")
-    field(PINI,"YES")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
-}
-
-record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-RB"){
+record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit counter")
     field(PINI,"YES")

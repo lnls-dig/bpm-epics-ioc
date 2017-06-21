@@ -1,7 +1,7 @@
-$(P)$(R)DSPKx
-$(P)$(R)DSPKy
-$(P)$(R)DSPKq
-$(P)$(R)DSPKsum
-$(P)$(R)DSPXOffset
-$(P)$(R)DSPYOffset
-$(P)$(R)DSPQOffset
+$(P)$(R)PosKx
+$(P)$(R)PosKy
+$(P)$(R)PosKq
+$(P)$(R)PosKsum
+$(P)$(R)PosXOffset
+$(P)$(R)PosYOffset
+$(P)$(R)PosQOffset

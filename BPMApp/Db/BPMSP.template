@@ -2,7 +2,7 @@
 # Single Pass Acquisition parameters
 #########################
 
-record(ai,"$(P)$(R)SPA-Mon"){
+record(ai,"$(P)$(R)SPAmplA-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Amplitude A")
     field(PINI,"YES")
@@ -14,7 +14,7 @@ record(ai,"$(P)$(R)SPA-Mon"){
     field(EGU, "au")
 }
 
-record(ai,"$(P)$(R)SPB-Mon"){
+record(ai,"$(P)$(R)SPAmplB-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Amplitude B")
     field(PINI,"YES")
@@ -22,12 +22,12 @@ record(ai,"$(P)$(R)SPB-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_B")
     field(EGU, "au")
 }
 
-record(ai,"$(P)$(R)SPC-Mon"){
+record(ai,"$(P)$(R)SPAmplC-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Amplitude C")
     field(PINI,"YES")
@@ -35,12 +35,12 @@ record(ai,"$(P)$(R)SPC-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_C")
     field(EGU, "au")
 }
 
-record(ai,"$(P)$(R)SPD-Mon"){
+record(ai,"$(P)$(R)SPAmplD-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Amplitude D")
     field(PINI,"YES")
@@ -48,12 +48,12 @@ record(ai,"$(P)$(R)SPD-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_D")
     field(EGU, "au")
 }
 
-record(ai,"$(P)$(R)SPX-Mon"){
+record(ai,"$(P)$(R)SPPosX-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position X")
     field(PINI,"YES")
@@ -61,12 +61,12 @@ record(ai,"$(P)$(R)SPX-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_X")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)SPY-Mon"){
+record(ai,"$(P)$(R)SPPosY-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position Y")
     field(PINI,"YES")
@@ -74,12 +74,12 @@ record(ai,"$(P)$(R)SPY-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Y")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)SPQ-Mon"){
+record(ai,"$(P)$(R)SPPosQ-Mon"){
     field(DTYP,"asynFloat64")
     field(DESC,"Single Pass Position Q")
     field(PINI,"YES")
@@ -87,20 +87,20 @@ record(ai,"$(P)$(R)SPQ-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_Q")
     field(EGU, "nm")
 }
 
 record(ai,"$(P)$(R)SPSum-Mon"){
     field(DTYP,"asynFloat64")
-    field(DESC,"Single Pass Position Sum")
+    field(DESC,"Single Pass Sum")
     field(PINI,"YES")
     field(PREC, "5")
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSEL, "$(P)$(R)SPA-Mon.TIME")
+    field(TSEL, "$(P)$(R)SPAmplA-Mon.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_POS_SUM")
     field(EGU, "nm")
 }
