@@ -1518,7 +1518,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     bool autoStartFirst = autoStart;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
-    NDArray *pArrayAllChannels;
+    NDArray *pArrayAllChannels = NULL;
     NDDataType_t NDType = NDInt32;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
@@ -1544,6 +1544,11 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
     /* Loop forever */
     lock ();
     while (1) {
+        /* Free buffers if needed*/
+        if (pArrayAllChannels) {
+            pArrayAllChannels->release ();
+            pArrayAllChannels = NULL;
+        }
         /* Wait until we are in MultiBunch mode */
         getIntegerParam(coreID, P_BPMMode, &bpmMode);
         if (bpmMode != BPMModeMultiBunch) {
@@ -1785,6 +1790,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
         /* Release buffers */
         pArrayAllChannels->release();
+        pArrayAllChannels = NULL;
         callParamCallbacks(coreID);
 
         /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
@@ -1845,7 +1851,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     bool autoStartFirst = autoStart;
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
-    NDArray *pArrayAllChannels;
+    NDArray *pArrayAllChannels = NULL;
     NDDataType_t NDType = NDInt32;
     epicsTimeStamp startTime;
     int arrayCounter;
@@ -1870,6 +1876,12 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     /* Loop forever */
     lock ();
     while (1) {
+        /* Free buffers if needed*/
+        if (pArrayAllChannels) {
+            pArrayAllChannels->release ();
+            pArrayAllChannels = NULL;
+        }
+
         /* Wait until we are in SinglePass mode */
         getIntegerParam(coreID, P_BPMMode, &bpmMode);
         if (bpmMode != BPMModeSinglePass) {
@@ -2177,6 +2189,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         /* Release buffers */
         pArrayAllChannels->release();
+        pArrayAllChannels = NULL;
     }
 }
 
