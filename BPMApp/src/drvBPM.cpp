@@ -1559,12 +1559,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             lock ();
         }
 
+        getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
+
         /* Check if we received a stop event */
         status = epicsEventWaitWithTimeout(this->stopAcqEventId[BPMModeMultiBunch][coreID], pollTime);
-        if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID]) {
+        if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID] || acqIsBPMStatusErr(bpmStatus)) {
             /* We got a stop event, stop repetitive acquisition */
             readingActive[BPMModeMultiBunch][coreID] = 0;
-            getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
             /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
             newAcq = 1;
