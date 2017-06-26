@@ -31,25 +31,35 @@ export EPICS_PV_AREA_PREFIX=${!BPM_CURRENT_PV_AREA_PREFIX}
 export EPICS_PV_DEVICE_PREFIX=${!BPM_CURRENT_PV_DEVICE_PREFIX}
 
 BOARD_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
+HALCS_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3}')
 FPGA_SYNTHESIS_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "synthesis-name:" | head -n 1 | awk '{print $2}')
+FPGA_FMC0_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "LNLS_FMC" | head -n 1 | awk '{print $4}')
+FPGA_FMC1_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "LNLS_FMC" | tail -n 1 | awk '{print $4}')
+FPGA_FMC_NAME_IND=FPGA_FMC${HALCS_IDX}_NAME
+FPGA_FMC_NAME=${!FPGA_FMC_NAME_IND}
 ST_CMD_FILE=
 
-# For now assume bpm-gw only maps to FMC250M
 case ${FPGA_SYNTHESIS_NAME} in
-    bpm-gw)
-        ST_CMD_FILE=stBPM250M.cmd
+    bpm-gw*)
+        case ${FPGA_FMC_NAME} in
+            LNLS_FMC250M*)
+                ST_CMD_FILE=stBPM250M.cmd
+                ;;
+            LNLS_FMC130M*)
+                ST_CMD_FILE=stBPM130M.cmd
+                ;;
+            *)
+                echo "Unsupported Gateware Module: "${FPGA_FMC_NAME} >&2
+                exit 1
+                ;;
+        esac
         ;;
-    bpm-gw+)
-        ST_CMD_FILE=stBPM250M.cmd
-        ;;
-    pbpm-gw)
-        ST_CMD_FILE=stPBPMPICO.cmd
-        ;;
-    pbpm-gw+)
+
+    pbpm-gw*)
         ST_CMD_FILE=stPBPMPICO.cmd
         ;;
     *)
-        echo "Invalid option" >&2
+        echo "Invalid Gateware: "${FPGA_SYNTHESIS_NAME} >&2
         exit 1
         ;;
 esac
