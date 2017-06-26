@@ -22,7 +22,7 @@ ExecStartPre=/bin/sh -c " \
 "
 WorkingDirectory=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM
 # Run procServ with user ioc
-ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_BE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
+ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_BE_PORT_PREFIX}%i ./runBPM.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
 
 [Install]
 WantedBy=halcs-ioc@%i.target
