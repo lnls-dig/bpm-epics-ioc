@@ -49,7 +49,7 @@ case ${FPGA_SYNTHESIS_NAME} in
         ST_CMD_FILE=stPBPMPICO.cmd
         ;;
     *)
-        echo "Invalid option: -$OPTARG" >&2
+        echo "Invalid option" >&2
         exit 1
         ;;
 esac
