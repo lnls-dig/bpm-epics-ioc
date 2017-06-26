@@ -30,7 +30,7 @@ export BPM_CURRENT_PV_DEVICE_PREFIX=${EPICS_PV_CRATE_PREFIX}_BPM_${BPM_NUMBER}_P
 export EPICS_PV_AREA_PREFIX=${!BPM_CURRENT_PV_AREA_PREFIX}
 export EPICS_PV_DEVICE_PREFIX=${!BPM_CURRENT_PV_DEVICE_PREFIX}
 
-BOARD_IDX=$(/usr/local/bin/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
+BOARD_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
 FPGA_SYNTHESIS_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "synthesis-name:" | head -n 1 | awk '{print $2}')
 ST_CMD_FILE=
 
