@@ -29,7 +29,7 @@ record(ai,"$(P)$(R)RFFEAtt-RB"){
     field(EGU, "dB")
 }
 
-record(ai,"$(P)$(R)RFFETempAC-RB"){
+record(ai,"$(P)$(R)RFFETempAC-Mon"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE temperature AC")
     field(PINI,"YES")
@@ -38,7 +38,7 @@ record(ai,"$(P)$(R)RFFETempAC-RB"){
     field(EGU, "oC")
 }
 
-record(ai,"$(P)$(R)RFFETempBD-RB"){
+record(ai,"$(P)$(R)RFFETempBD-Mon"){
     field(DTYP, "asynFloat64")
     field(DESC,"get RFFE temperature BD")
     field(PINI,"YES")
