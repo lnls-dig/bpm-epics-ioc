@@ -222,7 +222,7 @@ record(ai,"$(P)$(R)MONITUpdtAll"){
     field(FLNK,"$(P)$(R)MONITUpdt 1")
 }
 
-record(calcout,"$(P)$(R)PosX-Mon"){
+record(calc,"$(P)$(R)PosX-Mon"){
     field(PINI,"YES")
     field(MDEL, "-1")
     field(ADEL, "-1")
@@ -235,12 +235,11 @@ record(calcout,"$(P)$(R)PosX-Mon"){
     field(INPD,"$(P)$(R)AmplC-Mon.VAL PP")
     field(INPE,"$(P)$(R)AmplD-Mon.VAL PP")
     field(INPF,"$(P)$(R)PosXOffset.VAL PP")
-    field(OUT, "0")
     field(FLNK,"$(P)$(R)PosXFake-Mon")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)PosXFake-Mon"){
+record(calc,"$(P)$(R)PosXFake-Mon"){
     field(PINI,"YES")
     field(MDEL, "-1")
     field(ADEL, "-1")
@@ -251,12 +250,11 @@ record(calcout,"$(P)$(R)PosXFake-Mon"){
     field(INPB,"$(P)$(R)AmplA-Mon.VAL NPP")
     field(INPC,"$(P)$(R)AmplC-Mon.VAL NPP")
     field(INPD,"$(P)$(R)PosXOffset.VAL NPP")
-    field(OUT, "0")
     field(FLNK,"$(P)$(R)PosY-Mon")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)PosY-Mon"){
+record(calc,"$(P)$(R)PosY-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
@@ -268,12 +266,11 @@ record(calcout,"$(P)$(R)PosY-Mon"){
     field(INPD,"$(P)$(R)AmplC-Mon.VAL NPP")
     field(INPE,"$(P)$(R)AmplD-Mon.VAL NPP")
     field(INPF,"$(P)$(R)PosYOffset.VAL PP")
-    field(OUT, "0")
     field(FLNK,"$(P)$(R)PosYFake-Mon")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)PosYFake-Mon"){
+record(calc,"$(P)$(R)PosYFake-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
@@ -283,12 +280,11 @@ record(calcout,"$(P)$(R)PosYFake-Mon"){
     field(INPB,"$(P)$(R)AmplB-Mon.VAL NPP")
     field(INPC,"$(P)$(R)AmplD-Mon.VAL NPP")
     field(INPD,"$(P)$(R)PosYOffset.VAL NPP")
-    field(OUT, "0")
     field(FLNK,"$(P)$(R)PosQ-Mon")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)PosQ-Mon"){
+record(calc,"$(P)$(R)PosQ-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
@@ -300,12 +296,11 @@ record(calcout,"$(P)$(R)PosQ-Mon"){
     field(INPD,"$(P)$(R)AmplC-Mon.VAL NPP")
     field(INPE,"$(P)$(R)AmplD-Mon.VAL NPP")
     field(INPF,"$(P)$(R)PosQOffset.VAL PP")
-    field(OUT, "0")
     field(FLNK,"$(P)$(R)Sum-Mon")
     field(EGU, "nm")
 }
 
-record(calcout,"$(P)$(R)Sum-Mon"){
+record(calc,"$(P)$(R)Sum-Mon"){
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN,"Passive")
@@ -315,6 +310,5 @@ record(calcout,"$(P)$(R)Sum-Mon"){
     field(INPB,"$(P)$(R)AmplB-Mon.VAL NPP")
     field(INPC,"$(P)$(R)AmplC-Mon.VAL NPP")
     field(INPD,"$(P)$(R)AmplD-Mon.VAL NPP")
-    field(OUT, "0")
     field(EGU, "au")
 }
