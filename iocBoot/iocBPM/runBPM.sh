@@ -30,14 +30,33 @@ export BPM_CURRENT_PV_DEVICE_PREFIX=${EPICS_PV_CRATE_PREFIX}_BPM_${BPM_NUMBER}_P
 export EPICS_PV_AREA_PREFIX=${!BPM_CURRENT_PV_AREA_PREFIX}
 export EPICS_PV_DEVICE_PREFIX=${!BPM_CURRENT_PV_DEVICE_PREFIX}
 
+SDB_FILENAME_PATH=/var/log/halcs
+SDB_FILENAME_PREFIX=halcsd
+SDB_FILENAME_TYPE=be
+SDB_FILENAME_SUFFIX=info
+
 BOARD_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
 HALCS_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3}')
-FPGA_SYNTHESIS_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "synthesis-name:" | head -n 1 | awk '{print $2}')
-FPGA_FMC0_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "LNLS_FMC" | head -n 1 | awk '{print $4}')
-FPGA_FMC1_NAME=$(sdb-read-lnls -l -e 0x0 /dev/fpga-${BOARD_IDX} 2>/dev/null | grep "LNLS_FMC" | tail -n 1 | awk '{print $4}')
+# Compose filename as example: halcsd8_be0_info.log
+SDB_FILENAME=${SDB_FILENAME_PATH}/${SDB_FILENAME_PREFIX}${BOARD_IDX}_${SDB_FILENAME_TYPE}${HALCS_IDX}_${SDB_FILENAME_SUFFIX}.log
+
+if [ -f "${SDB_FILENAME}" ]; then
+    echo "${SDB_FILENAME} found. Parsing it to find which FMC board we have."
+else
+    echo "${SDB_FILENAME} not found. Exiting."
+    exit 1
+fi
+
+FPGA_SYNTHESIS_NAME=$(cat ${SDB_FILENAME} | grep "synthesis-name:" | head -n 1 | awk '{print $2}')
+FPGA_FMC0_NAME=$(cat ${SDB_FILENAME} | grep "LNLS_FMC" | head -n 1 | awk '{print $4}')
+FPGA_FMC1_NAME=$(cat ${SDB_FILENAME} | grep "LNLS_FMC" | tail -n 1 | awk '{print $4}')
 FPGA_FMC_NAME_IND=FPGA_FMC${HALCS_IDX}_NAME
 FPGA_FMC_NAME=${!FPGA_FMC_NAME_IND}
 ST_CMD_FILE=
+
+echo "Synthesis name: "${FPGA_SYNTHESIS_NAME}
+echo "FMC 0 name: "${FPGA_FMC0_NAME}
+echo "FMC 1 name: "${FPGA_FMC1_NAME}
 
 case ${FPGA_SYNTHESIS_NAME} in
     bpm-gw*)
@@ -64,5 +83,6 @@ case ${FPGA_SYNTHESIS_NAME} in
         ;;
 esac
 
+echo "Using st.cmd file: "${ST_CMD_FILE}
 
 BPM_ENDPOINT=${BPM_ENDPOINT} BPM_NUMBER=${BPM_NUMBER} ../../bin/${EPICS_HOST_ARCH}/BPM ${ST_CMD_FILE}
