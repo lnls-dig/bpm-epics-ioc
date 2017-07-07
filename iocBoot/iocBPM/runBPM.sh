@@ -34,11 +34,12 @@ SDB_FILENAME_PATH=/var/log/halcs
 SDB_FILENAME_PREFIX=halcsd
 SDB_FILENAME_TYPE=be
 SDB_FILENAME_SUFFIX=info
+SDB_FILENAME_HALCS_IDX=0
 
 BOARD_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
 HALCS_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3}')
 # Compose filename as example: halcsd8_be0_info.log
-SDB_FILENAME=${SDB_FILENAME_PATH}/${SDB_FILENAME_PREFIX}${BOARD_IDX}_${SDB_FILENAME_TYPE}${HALCS_IDX}_${SDB_FILENAME_SUFFIX}.log
+SDB_FILENAME=${SDB_FILENAME_PATH}/${SDB_FILENAME_PREFIX}${BOARD_IDX}_${SDB_FILENAME_TYPE}${SDB_FILENAME_HALCS_IDX}_${SDB_FILENAME_SUFFIX}.log
 
 if [ -f "${SDB_FILENAME}" ]; then
     echo "${SDB_FILENAME} found. Parsing it to find which FMC board we have."
