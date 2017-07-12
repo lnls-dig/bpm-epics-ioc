@@ -261,6 +261,82 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_POS_PM_ALL},
                           },
                           },
+    /* [CH_TBTPHA] =     */ {CH_HW_TBTPHA,                       // HwAmpChannel
+                          -1,                                    // HwPhaseChannel
+                          -1,                                    // HwPosChannel
+                          1,                                     // CalcPos
+                          {{WVF_GENAMP_A,                        // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
+                            {WVF_AMP_PM_A,
+                             WVF_AMP_PM_B,
+                             WVF_AMP_PM_C,
+                             WVF_AMP_PM_D,
+                             WVF_AMP_PM_ALL},
+                          },
+                          {{-1,                                  // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {{WVF_GENPOS_A,                        // NDArrayPos
+                            WVF_GENPOS_B,
+                            WVF_GENPOS_C,
+                            WVF_GENPOS_D,
+                            WVF_GENPOS_ALL},
+                            {WVF_POS_PM_A,
+                             WVF_POS_PM_B,
+                             WVF_POS_PM_C,
+                             WVF_POS_PM_D,
+                             WVF_POS_PM_ALL},
+                          },
+                          },
+    /* [CH_FOFBPHA] =    */ {CH_HW_FOFBPHA,                      // HwAmpChannel
+                          -1,                                    // HwPhaseChannel
+                          -1,                                    // HwPosChannel
+                          1,                                     // CalcPos
+                          {{WVF_GENAMP_A,                        // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
+                           {WVF_AMP_PM_A,
+                            WVF_AMP_PM_B,
+                            WVF_AMP_PM_C,
+                            WVF_AMP_PM_D,
+                            WVF_AMP_PM_ALL},
+                          },
+                          {{-1,                                 // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {{WVF_GENPOS_A,                        // NDArrayPos
+                            WVF_GENPOS_B,
+                            WVF_GENPOS_C,
+                            WVF_GENPOS_D,
+                            WVF_GENPOS_ALL},
+                           {WVF_POS_PM_A,
+                            WVF_POS_PM_B,
+                            WVF_POS_PM_C,
+                            WVF_POS_PM_D,
+                            WVF_POS_PM_ALL},
+                          },
+                          },
     /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
                           -1,                                  // HwPhaseChannel
                           -1,                                  // HwPosChannel
@@ -311,11 +387,12 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
      /* 4 = Unavailable     */  {-1},
      /* 5 = Unavailable     */  {-1},
      /* [CH_HW_TBT] =       */  {CH_TBT},
-     /* 7 = Unavailable     */  {-1},
+     /* [CH_HW_TBTPHA] =    */  {CH_TBTPHA},
      /* 8 = Unavailable     */  {-1},
      /* 9 = Unavailable     */  {-1},
      /* 10 = Unavailable    */  {-1},
-     /* [CH_HW_FOFB] =      */  {CH_FOFB}
+     /* [CH_HW_FOFB] =      */  {CH_FOFB},
+     /* [CH_HW_FOFBPHA] =   */  {CH_FOFBPHA}
 };
 
 /* This function should not be called, as there is no client function to replace it and

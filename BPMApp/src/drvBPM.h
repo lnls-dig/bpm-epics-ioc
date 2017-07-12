@@ -115,7 +115,9 @@ typedef enum {
     CH_ADCSWAP = 1,
     CH_TBT = 2,
     CH_FOFB = 3,
-    CH_SP = 4,
+    CH_TBTPHA = 4,
+    CH_FOFBPHA = 5,
+    CH_SP = 6,
     CH_END
 } ch_types;
 
@@ -125,7 +127,9 @@ typedef enum {
     CH_HW_ADC = 0,
     CH_HW_ADCSWAP = 1,
     CH_HW_TBT = 6,
+    CH_HW_TBTPHA = 7,
     CH_HW_FOFB = 11,
+    CH_HW_FOFBPHA = 12,
     CH_HW_END
 } ch_hw_types;
 
