@@ -423,11 +423,6 @@ static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *
 static const functionsInt32_t bpmSetGetKxFunc = {"DSP", halcs_set_kx, halcs_get_kx};
 static const functionsInt32_t bpmSetGetKyFunc = {"DSP", halcs_set_ky, halcs_get_ky};
 static const functionsInt32_t bpmSetGetKsumFunc = {"DSP", halcs_set_ksum, halcs_get_ksum};
-static const functionsInt32_t bpmSetGetMonitAmpAFunc = {"DSP", halcs_set_monit_amp_ch0, halcs_get_monit_amp_ch0};
-static const functionsInt32_t bpmSetGetMonitAmpBFunc = {"DSP", halcs_set_monit_amp_ch1, halcs_get_monit_amp_ch1};
-static const functionsInt32_t bpmSetGetMonitAmpCFunc = {"DSP", halcs_set_monit_amp_ch2, halcs_get_monit_amp_ch2};
-static const functionsInt32_t bpmSetGetMonitAmpDFunc = {"DSP", halcs_set_monit_amp_ch3, halcs_get_monit_amp_ch3};
-static const functionsInt32_t bpmSetGetMonitUpdtFunc = {"DSP", halcs_set_monit_updt, halcs_get_monit_updt};
 static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", halcs_set_sw, halcs_get_sw};
 static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", halcs_set_sw_dly, halcs_get_sw_dly};
 static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", halcs_set_div_clk, halcs_get_div_clk};
@@ -523,8 +518,15 @@ static taskParams_t taskSPParams[NUM_ACQ_CORES_PER_BPM] = {
     },
 #endif
 };
+static taskParams_t taskMonitParams = {
+    NULL,                              // drvBPMp
+    BPMIDReg,                          // coreID
+    BPM_POLL_TIME,                     // pollTime
+    false                              // autoStart
+};
 void acqTask(void *drvPvt);
 void acqSPTask(void *drvPvt);
+void acqMonitTask(void *drvPvt);
 
 static void exitHandlerC(void *pPvt)
 {
@@ -643,6 +645,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 {
     asynStatus status;
     const char *functionName = "drvBPM";
+
+    srand(time(NULL));
 
     /* Create portName so we can create a new AsynUser later */
     bpmPortName = epicsStrDup(portName);
@@ -827,7 +831,17 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(P_MonitUpdtString,  asynParamUInt32Digital,         &P_MonitUpdt);
+    createParam(P_MonitPosXString,  asynParamFloat64,               &P_MonitPosX);
+    createParam(P_MonitPosXFakeString,  
+                                    asynParamFloat64,               &P_MonitPosXFake);
+    createParam(P_MonitPosYString,  asynParamFloat64,               &P_MonitPosY);
+    createParam(P_MonitPosYFakeString,  
+                                    asynParamFloat64,               &P_MonitPosYFake);
+    createParam(P_MonitPosQString,  asynParamFloat64,               &P_MonitPosQ);
+    createParam(P_MonitPosSumString,
+                                    asynParamFloat64,               &P_MonitPosSum);
+    createParam(P_MonitUpdtTimeString,
+                                    asynParamFloat64,               &P_MonitUpdtTime);
 
     createParam(P_SPAmpAString,     asynParamFloat64,               &P_SPAmpA);
     createParam(P_SPAmpBString,     asynParamFloat64,               &P_SPAmpB);
@@ -912,11 +926,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
     bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
     bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
-    bpmHwInt32Func[P_MonitAmpA] = bpmSetGetMonitAmpAFunc;
-    bpmHwInt32Func[P_MonitAmpB] = bpmSetGetMonitAmpBFunc;
-    bpmHwInt32Func[P_MonitAmpC] = bpmSetGetMonitAmpCFunc;
-    bpmHwInt32Func[P_MonitAmpD] = bpmSetGetMonitAmpDFunc;
-    bpmHwInt32Func[P_MonitUpdt] = bpmSetGetMonitUpdtFunc;
 
     bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
@@ -1099,7 +1108,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitUpdt,    0,                  0xFFFFFFFF);
+    setDoubleParam(P_MonitPosX,         0.0);
+    setDoubleParam(P_MonitPosXFake,     0.0);
+    setDoubleParam(P_MonitPosY,         0.0);
+    setDoubleParam(P_MonitPosYFake,     0.0);
+    setDoubleParam(P_MonitPosQ,         0.0);
+    setDoubleParam(P_MonitPosSum,       0.0);
+    setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
 
     setDoubleParam(P_SPAmpA,            0.0);
     setDoubleParam(P_SPAmpB,            0.0);
@@ -1222,6 +1237,18 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         return;
     }
 
+    /* Create monitoring thread */
+    taskMonitParams.drvBPMp = this;
+    status = (asynStatus)(epicsThreadCreate("drvBPMMonitTask",
+                epicsThreadPriorityHigh,
+                epicsThreadGetStackSize(epicsThreadStackMedium),
+                (EPICSTHREADFUNC)::acqMonitTask,
+                &taskMonitParams) == NULL);
+    if (status) {
+        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+        return;
+    }
+
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
@@ -1292,6 +1319,18 @@ asynStatus drvBPM::bpmClientConnect(void)
         }
     }
 
+    /* Connect BPM Monit */
+    if (bpmClientMonit == NULL) {
+        bpmClientMonit = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
+        if (bpmClientMonit == NULL) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create bpmClientMonit instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_halcs_client_monit_err;
+        }
+    }
+
     /* Connect ACQ BPM parameter clients*/
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         if (bpmClientAcqParam[i] == NULL) {
@@ -1342,6 +1381,8 @@ create_halcs_client_acq_param_err:
             acq_client_destroy (&bpmClientAcqParam[i]);
         }
     }
+    halcs_client_destroy (&bpmClientMonit);
+create_halcs_client_monit_err:
     /* Destroy regular bpmClient instance */
     halcs_client_destroy (&bpmClient);
 create_halcs_client_err:
@@ -1362,6 +1403,10 @@ asynStatus drvBPM::bpmClientDisconnect(void)
 
     if (bpmClient != NULL) {
         halcs_client_destroy (&bpmClient);
+    }
+
+    if (bpmClientMonit != NULL) {
+        halcs_client_destroy (&bpmClientMonit);
     }
 
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
@@ -1390,6 +1435,12 @@ void acqSPTask(void *drvPvt)
 {
    taskParams_t *pPvt = (taskParams_t *)drvPvt;
    pPvt->drvBPMp->acqSPTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
+}
+
+void acqMonitTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvBPMp->acqMonitTask();
 }
 
 /********************************************************************/
@@ -2269,6 +2320,130 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->release();
         pArrayAllChannels = NULL;
     }
+}
+
+void drvBPM::acqMonitTask()
+{
+    asynStatus status = asynSuccess;
+    int err = HALCS_CLIENT_SUCCESS;
+    epicsUInt32 XOffset;
+    epicsUInt32 YOffset;
+    epicsUInt32 QOffset;
+    epicsUInt32 Kx;
+    epicsUInt32 Ky;
+    epicsUInt32 Kq;
+    epicsUInt32 Ksum;
+    epicsUInt32 mask = 0xFFFFFFFF;
+    ABCD_ROW abcdRow;
+    XYQS_ROW xyqsRow;
+    XYQS_ROW xyqsFakeRow;
+    POS_OFFSETS posOffsets;
+    K_FACTORS kFactors;
+    epicsTimeStamp startTime;
+    epicsTimeStamp endTime;
+    double elapsedTime;
+    double monitUpdtTime = 0.05; // 20 Hz
+    double delay;
+    static const char *functionName = "acqMonitTask";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, 0, "DSP", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    smio_dsp_data_t dsp_data; 
+    while (1) {
+        epicsTimeGetCurrent(&startTime);
+
+        err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
+        if(err == HALCS_CLIENT_SUCCESS) {
+            if (dsp_data.new_amp_data || dsp_data.new_pos_data) {
+                /* Get offsets and scaling factors */
+                getUIntDigitalParam(P_XOffset, &XOffset, mask);
+                getUIntDigitalParam(P_YOffset, &YOffset, mask);
+                getUIntDigitalParam(P_QOffset, &QOffset, mask);
+                getUIntDigitalParam(P_Kx, &Kx, mask);
+                getUIntDigitalParam(P_Ky, &Ky, mask);
+                getUIntDigitalParam(P_Kq, &Kq, mask);
+                getUIntDigitalParam(P_Ksum, &Ksum, mask);
+                getDoubleParam(P_MonitUpdtTime, &monitUpdtTime);
+
+                /* Prepare for position calculation */
+                posOffsets.XOFFSET = (epicsInt32)XOffset;
+                posOffsets.YOFFSET = (epicsInt32)YOffset;
+                posOffsets.QOFFSET = (epicsInt32)QOffset;
+                kFactors.KX = Kx;
+                kFactors.KY = Ky;
+                kFactors.KQ = Kq;
+                kFactors.KSUM = Ksum;
+
+                abcdRow.A = dsp_data.amp_ch0;
+                abcdRow.B = dsp_data.amp_ch1;
+                abcdRow.C = dsp_data.amp_ch2;
+                abcdRow.D = dsp_data.amp_ch3;
+                
+                ABCDtoXYQS(&abcdRow, &xyqsRow, &kFactors, &posOffsets, 1, true);
+                ABCDtoXYQS(&abcdRow, &xyqsFakeRow, &kFactors, &posOffsets, 1, false);
+
+                /* Force callbacks to happen by setting the value two times, so it detect
+                 * a change in the value. Otherwise, the same value will not trigger a 
+                 * callback */           
+                lock ();
+                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0+1, 0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0,   0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1+1, 0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1,   0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2+1, 0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2,   0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3+1, 0xFFFFFFFF);
+                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3,   0xFFFFFFFF);
+                setDoubleParam(P_MonitPosX,      xyqsRow.X+1.);
+                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X);
+                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X+1.);
+                setDoubleParam(P_MonitPosX,      xyqsRow.X);
+                setDoubleParam(P_MonitPosY,      xyqsRow.Y+1.);
+                setDoubleParam(P_MonitPosY,      xyqsRow.Y);
+                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y+1.);
+                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y);
+                setDoubleParam(P_MonitPosQ,      xyqsRow.Q+1.);
+                setDoubleParam(P_MonitPosQ,      xyqsRow.Q);
+                setDoubleParam(P_MonitPosSum,    xyqsRow.S+1.);
+                setDoubleParam(P_MonitPosSum,    xyqsRow.S);
+                /* Updates all records with TSE=-2 with the current timestamp */
+                updateTimeStamp ();
+                callParamCallbacks();
+                unlock ();
+            }
+            else {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: no new Monit. data AMP/POS.\n",
+                        driverName, functionName);
+            }
+        }
+        else {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: Could not get Monit. AMP/POS data. Status = %d\n",
+                    driverName, functionName, err);
+        }
+
+        epicsTimeGetCurrent(&endTime);
+        elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
+        delay = monitUpdtTime - elapsedTime;
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: Some time has passed (%f) out of our budget (%f). Sleeping for %f s\n",
+                driverName, functionName, elapsedTime, monitUpdtTime, delay);
+        if (delay >= 0.0) {
+            epicsThreadSleep(delay);
+        }
+    }
+
+get_service_err:
+    return;
 }
 
 asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,

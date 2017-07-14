@@ -113,7 +113,10 @@ static int ChannelGain[4] =
  * The vertical configuration can arise when buttons or striplines are
  * arranged around a circular vacuum vessel in a linear accelerator or
  * transfer path. */
-static bool Diagonal = true;
+
+/* This flasg was covnerted to ABCDtoXYWS parameter so we can have both
+ * values calculated dinamically */
+//static bool Diagonal = true;
 
 /*****************************************************************************/
 /*                                                                           */
@@ -214,7 +217,7 @@ static int DeltaToPosition(int K, int M, int InvS, int shift)
  */
 
 void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count)
+        int Count, bool Diagonal)
 {
     K_FACTORS k_factors = *K;
     POS_OFFSETS pos_offsets = *OFFSETS;

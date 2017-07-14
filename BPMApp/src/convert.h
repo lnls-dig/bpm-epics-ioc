@@ -143,7 +143,7 @@ void IQtoABCD(const IQ_ROW *IQ, ABCD_ROW *ABCD, int Count);
  * data via the configured conversion function. */
 /* void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, int Count); */
 void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count);
+        int Count, bool Diagonal = true);
 
 /* Gain correction on a single column of data from a single channel.  Note
  * that gain conversion is performed on RF board channels, not on buttons, so

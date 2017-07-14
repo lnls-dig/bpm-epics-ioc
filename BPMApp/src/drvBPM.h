@@ -380,7 +380,14 @@ typedef struct {
 #define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
 #define P_MonitAmpDString           "MONITAMP_D"            /* asynUInt32Digital,      r/o */
+#define P_MonitPosXString           "MONITPOS_X"            /* asynFloat64,            r/o */
+#define P_MonitPosXFakeString       "MONITPOS_XFAKE"        /* asynFloat64,            r/o */
+#define P_MonitPosYString           "MONITPOS_Y"            /* asynFloat64,            r/o */
+#define P_MonitPosYFakeString       "MONITPOS_YFAKE"        /* asynFloat64,            r/o */
+#define P_MonitPosQString           "MONITPOS_Q"            /* asynFloat64,            r/o */
+#define P_MonitPosSumString         "MONITPOS_SUM"          /* asynFloat64,            r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
+#define P_MonitUpdtTimeString       "MONIT_UPDTTIME"        /* asynFloat64,            r/w */
 #define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
 #define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
 #define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
@@ -444,6 +451,7 @@ class drvBPM : public asynNDArrayDriver {
         /* These are the methods that are new to this class */
         void acqTask(int coreID, double pollTime, bool autoStart);
         void acqSPTask(int coreID, double pollTime, bool autoStart);
+        void acqMonitTask();
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
@@ -514,7 +522,14 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitAmpB;
         int P_MonitAmpC;
         int P_MonitAmpD;
+        int P_MonitPosX;    
+        int P_MonitPosXFake;
+        int P_MonitPosY;    
+        int P_MonitPosYFake;
+        int P_MonitPosQ;    
+        int P_MonitPosSum;  
         int P_MonitUpdt;
+        int P_MonitUpdtTime;
         int P_SPAmpA;
         int P_SPAmpB;
         int P_SPAmpC;
@@ -551,6 +566,7 @@ class drvBPM : public asynNDArrayDriver {
     private:
         /* Our data */
         halcs_client_t *bpmClient;
+        halcs_client_t *bpmClientMonit;
         acq_client_t *bpmClientAcqParam[NUM_ACQ_CORES_PER_BPM];
         acq_client_t *bpmClientAcq[NUM_ACQ_CORES_PER_BPM];
         bpm_single_pass_t *bpmSinglePass[NUM_ACQ_CORES_PER_BPM];
