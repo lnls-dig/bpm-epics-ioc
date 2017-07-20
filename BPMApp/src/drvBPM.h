@@ -646,6 +646,9 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus readSi57xParams(int addr);
         asynStatus readTriggerParams(epicsUInt32 mask, int addr);
         asynStatus readFMCPicoParams(epicsUInt32 mask, int addr);
+        asynStatus readGenParams(epicsUInt32 mask, int addr);
+        asynStatus readDSPParams(epicsUInt32 mask, int addr);
+        asynStatus readGenDSPParams(epicsUInt32 mask, int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

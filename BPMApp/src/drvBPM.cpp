@@ -4062,7 +4062,7 @@ halcs_inv_channel:
 asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     const char* functionName = "setAdcClkSel";
 
     /* Call ClkSel function */
@@ -4076,24 +4076,25 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
 
     /* Read AD9510 and ADCs */
     status = readAD9510AndADCsParams(mask, addr);
+    status |= readGenDSPParams(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
+            "%s:%s: error calling readAD9510AndADCsParams/readGenDSPParams, status=%d\n",
             driverName, functionName, status);
         goto read_adcs_ad9510_err;
     }
 
-    return status;
+    return (asynStatus)status;
 
 read_adcs_ad9510_err:
 set_adc_clk_sel_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    asynStatus status = asynSuccess;
+    int status = asynSuccess;
     epicsUInt32 ad9510ClkSel = 0;
     const char* functionName = "setAdcAD9510ClkSel";
 
@@ -4117,18 +4118,19 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
 
     /* Restart AD9510 and ADCs */
     status = readAD9510AndADCsParams(mask, addr);
+    status |= readGenDSPParams(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
+            "%s:%s: error calling readAD9510AndADCsParams/readGenDSPParams, status=%d\n",
             driverName, functionName, status);
         goto read_adcs_ad9510_err;
     }
 
-    return status;
+    return (asynStatus)status;
 
 read_adcs_ad9510_err:
 set_adcAD9510_clk_sel_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPM::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr)
@@ -4308,9 +4310,10 @@ asynStatus drvBPM::setSi57xFreq(int addr)
 
     /* Read AD9510 and ADCs */
     status = readAD9510AndADCsParams(0xFFFFFFFF, addr);
+    status |= readGenDSPParams(0xFFFFFFFF, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-            "%s:%s: error calling readAD9510AndADCsParams, status=%d\n",
+            "%s:%s: error calling readAD9510AndADCsParams/readDSPParams, status=%d\n",
             driverName, functionName, status);
         goto read_adcs_ad9510_err;
     }
@@ -4537,6 +4540,24 @@ asynStatus drvBPM::readTriggerParams(epicsUInt32 mask, int addr)
 asynStatus drvBPM::readFMCPicoParams(epicsUInt32 mask, int addr)
 {
     return updateUInt32Params(mask, addr, P_FmcPicoRngR0, P_FmcPicoRngR3, true);
+}
+
+asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_HarmonicNumber, P_SwDivClk, true);
+}
+
+asynStatus drvBPM::readDSPParams(epicsUInt32 mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_Kx, P_QOffset, true);
+}
+
+asynStatus drvBPM::readGenDSPParams(epicsUInt32 mask, int addr)
+{
+    int status = asynSuccess;
+    status = readGenParams(mask, addr);
+    status |= readDSPParams(mask, addr);
+    return (asynStatus)status;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
