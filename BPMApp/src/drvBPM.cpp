@@ -4073,6 +4073,14 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto set_adc_clk_sel_err;
     }
+    
+    status = resetAdcMMCM(mask, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling resetAdcMMCM, status=%d\n",
+            driverName, functionName, status);
+        goto reset_adc_mmcm_err;
+    }
 
     /* Read AD9510 and ADCs */
     status = readAD9510AndADCsParams(mask, addr);
@@ -4087,6 +4095,7 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
     return (asynStatus)status;
 
 read_adcs_ad9510_err:
+reset_adc_mmcm_err:
 set_adc_clk_sel_err:
     return (asynStatus)status;
 }
@@ -4105,6 +4114,14 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
             "%s:%s: error setting AdcAD9510ClkSel, status=%d\n",
             driverName, functionName, status);
         goto set_adcAD9510_clk_sel_err;
+    }
+
+    status = resetAdcMMCM(0xFFFFFFFF, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling resetAdcMMCM, status=%d\n",
+            driverName, functionName, status);
+        goto reset_adc_mmcm_err;
     }
 
     /* If we select CLK1, disable Si57x outputs */
@@ -4129,6 +4146,7 @@ asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
     return (asynStatus)status;
 
 read_adcs_ad9510_err:
+reset_adc_mmcm_err:
 set_adcAD9510_clk_sel_err:
     return (asynStatus)status;
 }
@@ -4281,6 +4299,35 @@ get_service_err:
     return status;
 }
 
+asynStatus drvBPM::resetAdcMMCM(epicsUInt32 mask, int addr)
+{
+    int err = HALCS_CLIENT_SUCCESS;
+    char service[SERVICE_NAME_SIZE];
+    asynStatus status = asynSuccess;
+    const char* functionName = "resetAdcMMCM";
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->bpmNumber, addr, "FMC_ADC_COMMON",
+            service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = halcs_set_adc_mmcm_rst (bpmClient, service, 1);
+    err |= halcs_set_adc_mmcm_rst (bpmClient, service, 0);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_set_err;
+    }
+
+halcs_set_err:
+get_service_err:
+    return status;
+}
+
 asynStatus drvBPM::setSi57xFreq(int addr)
 {
     int status = asynSuccess;
@@ -4306,6 +4353,14 @@ asynStatus drvBPM::setSi57xFreq(int addr)
             "%s:%s: error calling setParamDouble, status=%d\n",
             driverName, functionName, status);
         goto set_si57x_freq_err;
+    }
+
+    status = resetAdcMMCM(0xFFFFFFFF, addr);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling resetAdcMMCM, status=%d\n",
+            driverName, functionName, status);
+        goto reset_adc_mmcm_err;
     }
 
     /* Read AD9510 and ADCs */
@@ -4352,6 +4407,7 @@ init_acq_pm_err:
 abort2_acq_err:
 read_si57x_err:
 read_adcs_ad9510_err:
+reset_adc_mmcm_err:
 set_si57x_freq_err:
 abort_acq_err:
     return (asynStatus) status;
