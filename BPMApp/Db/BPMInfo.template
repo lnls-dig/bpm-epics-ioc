@@ -35,7 +35,7 @@ record(ao,"$(P)$(R)INFOClkFreq"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))INFO_CLKFREQ")
     field(EGU, "Hz")
-    field(FLNK, "$(P)$(R)ADCSi57xFreq.PROC")
+    field(FLNK, "$(P)$(R)INFOClkFreqFilter")
 }
 
 record(ai,"$(P)$(R)INFOClkFreq-RB"){
@@ -54,7 +54,7 @@ record(bo,"$(P)$(R)INFOClkProp") {
     field(ZNAM, "0")
     field(ONAM, "1")
     field(FLNK, "$(P)$(R)INFOClkProp-RB")
-    }
+}
 
 record(bi,"$(P)$(R)INFOClkProp-RB") {
     field(DESC, "Get INFO Clk propagation to oscillator")
@@ -82,6 +82,16 @@ record(sseq, "$(P)$(R)INFOClkPropAllTypes-RB"){
     field(SELL, "$(P)$(R)INFOClkPropIdx-RB CP MS")
     field(SELM, "Specified")
     field(SELN, "1")
+}
+
+# Checks if we need to FLNK to Si57x or not depending
+# on INFOClkProp
+record(calcout, "$(P)$(R)INFOClkFreqFilter"){
+    field(DESC, "Set FLNK to Si57x if INFOClkProp")
+    field(INPA, "$(P)$(R)INFOClkProp-RB CPP")
+    field(CALC, "A>0")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)$(R)ADCSi57xFreq.PROC")
 }
 
 record(longout,"$(P)$(R)INFOADCRate"){
