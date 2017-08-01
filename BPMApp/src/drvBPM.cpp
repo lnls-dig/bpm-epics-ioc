@@ -832,10 +832,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
     createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
     createParam(P_MonitPosXString,  asynParamFloat64,               &P_MonitPosX);
-    createParam(P_MonitPosXFakeString,  
+    createParam(P_MonitPosXFakeString,
                                     asynParamFloat64,               &P_MonitPosXFake);
     createParam(P_MonitPosYString,  asynParamFloat64,               &P_MonitPosY);
-    createParam(P_MonitPosYFakeString,  
+    createParam(P_MonitPosYFakeString,
                                     asynParamFloat64,               &P_MonitPosYFake);
     createParam(P_MonitPosQString,  asynParamFloat64,               &P_MonitPosQ);
     createParam(P_MonitPosSumString,
@@ -2356,7 +2356,7 @@ void drvBPM::acqMonitTask()
         goto get_service_err;
     }
 
-    smio_dsp_data_t dsp_data; 
+    smio_dsp_data_t dsp_data;
     while (1) {
         epicsTimeGetCurrent(&startTime);
 
@@ -2386,13 +2386,13 @@ void drvBPM::acqMonitTask()
                 abcdRow.B = dsp_data.amp_ch1;
                 abcdRow.C = dsp_data.amp_ch2;
                 abcdRow.D = dsp_data.amp_ch3;
-                
+
                 ABCDtoXYQS(&abcdRow, &xyqsRow, &kFactors, &posOffsets, 1, true);
                 ABCDtoXYQS(&abcdRow, &xyqsFakeRow, &kFactors, &posOffsets, 1, false);
 
                 /* Force callbacks to happen by setting the value two times, so it detect
-                 * a change in the value. Otherwise, the same value will not trigger a 
-                 * callback */           
+                 * a change in the value. Otherwise, the same value will not trigger a
+                 * callback */
                 lock ();
                 setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0+1, 0xFFFFFFFF);
                 setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0,   0xFFFFFFFF);
@@ -4073,7 +4073,7 @@ asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
             driverName, functionName, status);
         goto set_adc_clk_sel_err;
     }
-    
+
     status = resetAdcMMCM(mask, addr);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
