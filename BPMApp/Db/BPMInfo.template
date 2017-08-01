@@ -96,16 +96,6 @@ record(calcout, "$(P)$(R)INFOClkFreqFilter"){
     field(OUT, "$(P)$(R)ADCSi57xFreq.PROC")
 }
 
-# Checks if we need to FLNK to Si57x or not depending
-# on INFOClkProp
-record(calcout, "$(P)$(R)INFOClkFreqFilter"){
-    field(DESC, "Set FLNK to Si57x if INFOClkProp")
-    field(INPA, "$(P)$(R)INFOClkProp-RB CPP")
-    field(CALC, "A>0")
-    field(OOPT, "When Non-zero")
-    field(OUT, "$(P)$(R)ADCSi57xFreq.PROC")
-}
-
 record(longout,"$(P)$(R)INFOADCRate"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC rate factor")
