@@ -62,6 +62,7 @@ record(bi,"$(P)$(R)INFOClkProp-RB") {
     field(SCAN, "Passive")
     field(ZNAM, "0")
     field(ONAM, "1")
+    field(FLNK, "$(P)$(R)INFOClkPropAllTypes-RB")
 }
 
 # For use with seq record below
