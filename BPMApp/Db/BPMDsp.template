@@ -154,8 +154,6 @@ record(ai,"$(P)$(R)MONITUpdtTime-RB"){
     field(DESC,"get MONIT AMP/POS update time")
     field(PINI,"YES")
     field(SCAN,"I/O Intr")
-    field(DRVH,"1")
-    field(DRVL,"0.001")
     field(HOPR,"1")
     field(LOPR,"0.001")
     field(PREC,"3")
