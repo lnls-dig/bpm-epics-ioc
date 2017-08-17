@@ -1752,6 +1752,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
+        if(numAtoms > MAX_WVF_AMP_TYPES) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
+                    driverName, functionName, MAX_WVF_AMP_TYPES);
+            continue;
+        }
+
         /* Convert user channel into hw channel */
         hwAmpChannel = channelMap[channel].HwAmpChannel;
         if(hwAmpChannel < 0) {
@@ -1899,7 +1906,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                    MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+                    dims[0], arrayCounter, timeStamp);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to deinterleave NDArray\n",
@@ -2074,6 +2081,13 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
+
+        if(numAtoms > MAX_WVF_AMP_TYPES) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
+                    driverName, functionName, MAX_WVF_AMP_TYPES);
+            continue;
+        }
 
         /* Select our "fake" channel if we are in single pass mode.
          * This is done so we can the same flow as BPMModeMultiBunch mode,
@@ -2294,7 +2308,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                        MAX_WVF_AMP_SINGLE, arrayCounter, timeStamp);
+                        dims[0], arrayCounter, timeStamp);
                 if (status != asynSuccess) {
                     asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                             "%s:%s: unable to deinterleave NDArray\n",
