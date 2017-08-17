@@ -2510,18 +2510,27 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
 
         /* Get only a single channel samples from a multi-channel
          * array */
-        /* FIXME: ugly if */
-        if (NDType == NDInt16) {
-            for (size_t j = 0; j < dims[0]; ++j) {
-                pOut16[j] = pIn16[i];
-                pIn16 += arrayYStride;
-            }
-        }
-        else if (NDType == NDInt32){
-            for (size_t j = 0; j < dims[0]; ++j) {
-                pOut32[j] = pIn32[i];
-                pIn32 += arrayYStride;
-            }
+        switch (NDType) {
+            case NDInt16:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut16[j] = pIn16[i];
+                    pIn16 += arrayYStride;
+                }
+                break;
+
+            case NDInt32:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut32[j] = pIn32[i];
+                    pIn32 += arrayYStride;
+                }
+                break;
+
+            default:
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported NDType of type: %d\n",
+                    driverName, functionName, NDType);
+                status = asynError;
+                goto unsup_ndtype_err;
         }
 
         unlock();
@@ -2535,6 +2544,7 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
 
     return (asynStatus)status;
 
+unsup_ndtype_err:
 alloc_ndarray_err:
 get_info_array_err:
     return (asynStatus)status;
