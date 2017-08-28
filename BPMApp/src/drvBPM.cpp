@@ -55,6 +55,10 @@
 
 #define FMCPICO_1MA_SCALE               1
 
+#define TIMRCV_DFLT_PHASE_MEAS_NAVG     10
+#define TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES 10
+#define TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES 10
+
 #define CH_DFLT_TRIGGER_CHAN            0
 #define ADC_RST_NORMAL_OP               1
 #define ADC_NUM_CHANNELS                4
@@ -468,6 +472,13 @@ static const functionsInt32Acq_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", acq_set_
 static const functionsInt32Acq_t bpmSetGetAcqHwDlyFunc = {"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly};
 static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan};
 
+static const functionsInt32_t timRcvSetGetPhaseMeasNavgFunc = {"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg};
+static const functionsInt32_t timRcvSetGetDMTDADeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
+static const functionsInt32_t timRcvSetGetDMTDBDeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
+static const functionsInt32_t timRcvSetGetPhaseMeasFunc = {"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas};
+static const functionsInt32_t timRcvSetGetDMTDAFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_a_freq};
+static const functionsInt32_t timRcvSetGetDMTDBFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_b_freq};
+
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
 static const functionsFloat64_t bpmSetGetAfcSi57xFreqFunc = {"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq};
@@ -803,6 +814,20 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
     createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
 
+    /* Timing parameters */
+    createParam(P_TimRcvPhaseMeasNavgString,
+                                    asynParamUInt32Digital,         &P_TimRcvPhaseMeasNavg);
+    createParam(P_TimRcvDMTDADeglitchThresString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDADeglitchThres);
+    createParam(P_TimRcvDMTDBDeglitchThresString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDBDeglitchThres);
+    createParam(P_TimRcvPhaseMeasString,
+                                    asynParamUInt32Digital,         &P_TimRcvPhaseMeas);
+    createParam(P_TimRcvDMTDAFreqString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDAFreq);
+    createParam(P_TimRcvDMTDBFreqString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDBFreq);
+
     /* Create acquistion parameters */
     createParam(P_SamplesPreString, asynParamUInt32Digital,        &P_SamplesPre);
     createParam(P_SamplesPostString,
@@ -936,6 +961,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
     bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
 
+    bpmHwInt32Func[P_TimRcvPhaseMeasNavg] = timRcvSetGetPhaseMeasNavgFunc;
+    bpmHwInt32Func[P_TimRcvDMTDADeglitchThres] = timRcvSetGetDMTDADeglitchThresFunc;
+    bpmHwInt32Func[P_TimRcvDMTDBDeglitchThres] = timRcvSetGetDMTDBDeglitchThresFunc;
+    bpmHwInt32Func[P_TimRcvPhaseMeas] = timRcvSetGetPhaseMeasFunc;
+    bpmHwInt32Func[P_TimRcvDMTDAFreq] = timRcvSetGetDMTDAFreqFunc;
+    bpmHwInt32Func[P_TimRcvDMTDBFreq] = timRcvSetGetDMTDBFreqFunc;
+
     bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
     bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
@@ -1060,6 +1092,22 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
+
+    setUIntDigitalParam(P_TimRcvPhaseMeasNavg, 
+                                        TIMRCV_DFLT_PHASE_MEAS_NAVG,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDADeglitchThres, 
+                                        TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDBDeglitchThres, 
+                                        TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvPhaseMeas,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDAFreq,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDBFreq,
+                                        0,                  0xFFFFFFFF);
 
     /* Set acquisition parameters */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {

@@ -361,6 +361,12 @@ typedef struct {
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
+#define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */ 
+#define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
+#define P_TimRcvPhaseMeasString     "TIM_RCV_PHASE_MEAS"    /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDAFreqString     "TIM_RCV_DMTD_A_FREQ"   /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDBFreqString     "TIM_RCV_DMTD_B_FREQ"   /* asynUInt32Digital,      r/w */
 #define P_SamplesPreString          "ACQ_SAMPLES_PRE"       /* asynUInt32Digital,      r/w */
 #define P_SamplesPostString         "ACQ_SAMPLES_POST"      /* asynUInt32Digital,      r/w */
 #define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
@@ -505,6 +511,12 @@ class drvBPM : public asynNDArrayDriver {
         int P_XOffset;
         int P_YOffset;
         int P_QOffset;
+        int P_TimRcvPhaseMeasNavg;
+        int P_TimRcvDMTDADeglitchThres;
+        int P_TimRcvDMTDBDeglitchThres;
+        int P_TimRcvPhaseMeas;
+        int P_TimRcvDMTDAFreq;        
+        int P_TimRcvDMTDBFreq;        
         int P_SamplesPre;
         int P_SamplesPost;
         int P_NumShots;
