@@ -16,6 +16,7 @@ file "BPMFmcPico1m_4ch_settings.req" P=$(P), R=$(R)
 file "BPMInfo_settings.req",        P=$(P), R=$(R)
 file "BPMSP_settings.req",          P=$(P), R=$(R)
 file "TIMRcv_settings.req",         P=$(P), R=$(R)
+file "AFCMgmt_settings.req",        P=$(P), R=$(R)
 
 # Regular triggers
 file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER
