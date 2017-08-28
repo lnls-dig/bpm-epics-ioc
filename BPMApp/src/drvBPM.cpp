@@ -51,6 +51,8 @@
 #define AD9510_ADC_DFLT_CP_CURRENT      600
 #define AD9510_ADC_DFLT_OUTPUTS         31
 
+#define AFC_SI57X_FREQ_DFLT             100000000       /* Hz */
+
 #define FMCPICO_1MA_SCALE               1
 
 #define CH_DFLT_TRIGGER_CHAN            0
@@ -452,6 +454,7 @@ static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
 static const functionsInt32_t bpmSetGetActiveClkRstADCsFunc = {"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32};
 static const functionsInt32_t bpmSetGetActiveClkSi571OeFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe};
+static const functionsInt32_t bpmSetGetAfcSi57xOeFunc = {"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe};
 
 static const functionsInt32_t bpmSetGetFmcPicoRngR0Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0};
 static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1};
@@ -467,6 +470,7 @@ static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAfcSi57xFreqFunc = {"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq};
 
 /* Int32 with channel selection functions mapping */
 static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir};
@@ -779,6 +783,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_ActiveClkRstADCs);
     createParam(P_ActiveClkSi571OeString,
                                     asynParamUInt32Digital,         &P_ActiveClkSi571Oe);
+    createParam(P_AfcSi57xOeString,
+                                    asynParamUInt32Digital,         &P_AfcSi57xOe);
+    createParam(P_AfcSi57xFreqString,
+                                    asynParamFloat64,               &P_AfcSi57xFreq);
     createParam(P_FmcPicoRngR0String,
                                     asynParamUInt32Digital,         &P_FmcPicoRngR0);
     createParam(P_FmcPicoRngR1String,
@@ -922,6 +930,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
     bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
     bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
+    bpmHwInt32Func[P_AfcSi57xOe] = bpmSetGetAfcSi57xOeFunc;
     bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
     bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
     bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
@@ -938,6 +947,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
+    bpmHwFloat64Func[P_AfcSi57xFreq] = bpmSetGetAfcSi57xFreqFunc;
 
     /* BPM HW Int32 with channel selection. Functions not mapped here are just written
      * to the parameter library */
@@ -999,6 +1009,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkSel,    FMC_REF_CLK_SEL_1,  0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
+    setDoubleParam(P_AfcSi57xFreq,                          AFC_SI57X_FREQ_DFLT);
 
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
@@ -1032,6 +1043,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_ActiveClkRstADCs,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_ActiveClkSi571Oe,
+                                        SI57X_ENABLE,       0xFFFFFFFF);
+
+    setUIntDigitalParam(P_AfcSi57xOe,
                                         SI57X_ENABLE,       0xFFFFFFFF);
 
     setUIntDigitalParam(P_FmcPicoRngR0, FMCPICO_1MA_SCALE,  0xFFFFFFFF);

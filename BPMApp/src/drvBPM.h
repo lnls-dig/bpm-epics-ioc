@@ -333,7 +333,7 @@ typedef struct {
 #define P_AdcPgaString              "ADC_PGA"               /* asynUInt32Digital,      r/w */
 #define P_AdcTestDataString         "ADC_TESTDATA"          /* asynUInt32Digital,      r/w */
 #define P_AdcClkSelString           "ADC_CLKSEL"            /* asynUInt32Digital,      r/w */
-#define P_AdcSi57xFreqString        "ADC_SI57XFREQ"         /* asynUInt32Digital,      w/o */
+#define P_AdcSi57xFreqString        "ADC_SI57XFREQ"         /* asynFloat64,            r/w */
 #define P_AdcAD9510DfltString       "ADC_AD9510DFLT"        /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllFuncString    "ADC_AD9510PLLFUNC"     /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllStatusString  "ADC_AD9510PLLSTATUS"   /* asynUInt32Digital,      r/w */
@@ -348,6 +348,8 @@ typedef struct {
 #define P_AdcAD9510OutputsString    "ADC_AD9510OUTPUTS"     /* asynUInt32Digital,      r/w */
 #define P_ActiveClkRstADCsString    "ACTIVE_CLK_RST_ADCS"   /* asynUInt32Digital,      r/w */
 #define P_ActiveClkSi571OeString    "ACTIVE_CLK_SI57X_OE"   /* asynUInt32Digital,      r/w */
+#define P_AfcSi57xFreqString        "AFC_SI571_FREQ"        /* asynFloat64,            r/w */
+#define P_AfcSi57xOeString          "AFC_SI571_OE"          /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR0String        "FMCPICO_RNG_R0"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR1String        "FMCPICO_RNG_R1"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR2String        "FMCPICO_RNG_R2"        /* asynUInt32Digital,      r/w */
@@ -490,6 +492,8 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcAD9510Outputs;
         int P_ActiveClkRstADCs;
         int P_ActiveClkSi571Oe;
+        int P_AfcSi57xFreq;
+        int P_AfcSi57xOe;
         int P_FmcPicoRngR0;
         int P_FmcPicoRngR1;
         int P_FmcPicoRngR2;
