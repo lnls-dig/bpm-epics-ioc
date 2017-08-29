@@ -24,7 +24,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT)
 dbLoadRecords("${TOP}/BPMApp/Db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
 
-< trigger.cmd
+< triggerBPM.cmd
 < waveformPlugins.cmd
 < waveformFilePlugins.cmd
 < waveformFFTRecords.cmd
