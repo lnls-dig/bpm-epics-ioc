@@ -5,7 +5,7 @@
 record(mbbo, "$(P)$(R)$(ACQ_NAME)BPMMode"){
     field(DTYP, "asynInt32")
     field(DESC, "Set BPM mode")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))BPM_MODE")
     field(SCAN,"Passive")
     field(NOBT,"1")
     field(ZRVL,"0")
@@ -17,7 +17,7 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)BPMMode"){
 record(mbbi, "$(P)$(R)$(ACQ_NAME)BPMMode-RB"){
     field(DTYP, "asynInt32")
     field(DESC, "Get BPM mode")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))BPM_MODE")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))BPM_MODE")
     field(SCAN,"I/O Intr")
     field(NOBT,"1")
     field(ZRVL,"0")
