@@ -19,6 +19,7 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMSwitching.template", "P=${P}, R=${R}, PORT=$(
 dbLoadRecords("${TOP}/BPMApp/Db/BPMActiveClk.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAdcCommon.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
