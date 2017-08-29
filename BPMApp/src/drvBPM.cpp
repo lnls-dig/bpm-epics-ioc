@@ -728,6 +728,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
+    this->activeMonitEnableEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->activeMonitEnableEventId) {
+        printf("%s:%s: epicsEventCreate failure for activeMonitEnableEventId\n",
+                driverName, functionName);
+        return;
+    }
+
     /* Create parameters for all addresses without specifying the ones that don't
      * make sense to be on a specified list. Without this we woudl have to create
      * different parameterIndex structures to store each index, as they could be
@@ -875,6 +882,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamFloat64,               &P_MonitPosSum);
     createParam(P_MonitUpdtTimeString,
                                     asynParamFloat64,               &P_MonitUpdtTime);
+    createParam(P_MonitEnableString,
+                                    asynParamInt32,                 &P_MonitEnable);
 
     createParam(P_SPAmpAString,     asynParamFloat64,               &P_SPAmpA);
     createParam(P_SPAmpBString,     asynParamFloat64,               &P_SPAmpB);
@@ -1177,6 +1186,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setDoubleParam(P_MonitPosQ,         0.0);
     setDoubleParam(P_MonitPosSum,       0.0);
     setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
+    setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
     setDoubleParam(P_SPAmpA,            0.0);
     setDoubleParam(P_SPAmpB,            0.0);
@@ -2417,6 +2427,7 @@ void drvBPM::acqMonitTask()
     K_FACTORS kFactors;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
+    int monitEnable = 0;
     double elapsedTime;
     double monitUpdtTime = 0.05; // 20 Hz
     double delay;
@@ -2434,6 +2445,14 @@ void drvBPM::acqMonitTask()
 
     smio_dsp_data_t dsp_data;
     while (1) {
+
+        getIntegerParam(P_MonitEnable, &monitEnable);
+        if (!monitEnable) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            epicsEventWait(activeMonitEnableEventId);
+        }
+
         epicsTimeGetCurrent(&startTime);
 
         err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
@@ -3295,6 +3314,13 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         /* This bit is self-clearing. So, we use some special treatment */
         else if (function == P_ActiveClkRstADCs) {
             status = resetADCs(mask, addr);
+        }
+        else if (function == P_MonitEnable) {
+            /* Send the stop event */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: Monit enable task event to be send\n",
+                    driverName, functionName);
+            epicsEventSignal(this->activeMonitEnableEventId);
         }
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */

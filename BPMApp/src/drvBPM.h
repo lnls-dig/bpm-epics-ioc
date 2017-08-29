@@ -396,6 +396,7 @@ typedef struct {
 #define P_MonitPosSumString         "MONITPOS_SUM"          /* asynFloat64,            r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 #define P_MonitUpdtTimeString       "MONIT_UPDTTIME"        /* asynFloat64,            r/w */
+#define P_MonitEnableString         "MONIT_ENABLE"          /* asynInt32,              r/w */
 #define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
 #define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
 #define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
@@ -546,6 +547,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosSum;  
         int P_MonitUpdt;
         int P_MonitUpdtTime;
+        int P_MonitEnable;
         int P_SPAmpA;
         int P_SPAmpB;
         int P_SPAmpC;
@@ -598,6 +600,7 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId stopAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId abortAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
