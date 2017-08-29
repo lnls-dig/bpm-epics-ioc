@@ -37,7 +37,8 @@
 
 /* FIXME: This should be read from hardware */
 #define HARMONIC_NUMBER                 148
-#define ADC_CLK_FREQ_UVX_DFLT           113040445           /* Hz */
+#define ADC_CLK_FREQ_UVX_DFLT           113040445       /* Hz */
+#define ADC_SI57X_FSTARTUP_DFLT         155490000       /* Hz */
 #define ADC_RATE_FACTOR                 1
 #define TBT_RATE_FACTOR                 35
 #define FOFB_RATE_FACTOR                980
@@ -52,6 +53,7 @@
 #define AD9510_ADC_DFLT_OUTPUTS         31
 
 #define AFC_SI57X_FREQ_DFLT             100000000       /* Hz */
+#define AFC_SI57X_FSTARTUP_DFLT         100000000       /* Hz */
 
 #define FMCPICO_1MA_SCALE               1
 
@@ -481,7 +483,9 @@ static const functionsInt32_t timRcvSetGetDMTDBFreqFunc = {"TIM_RCV", NULL, halc
 
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAdcSi57xFStartupFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
 static const functionsFloat64_t bpmSetGetAfcSi57xFreqFunc = {"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAfcSi57xFStartupFunc = {"AFC_MGMT", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
 
 /* Int32 with channel selection functions mapping */
 static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir};
@@ -773,6 +777,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
     createParam(P_AdcSi57xFreqString,
                                     asynParamFloat64,               &P_AdcSi57xFreq);
+    createParam(P_AdcSi57xFStartupString,
+                                    asynParamFloat64,               &P_AdcSi57xFStartup);
     createParam(P_AdcAD9510DfltString,
                                     asynParamUInt32Digital,         &P_AdcAD9510Dflt);
     createParam(P_AdcAD9510PllFuncString,
@@ -805,6 +811,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_AfcSi57xOe);
     createParam(P_AfcSi57xFreqString,
                                     asynParamFloat64,               &P_AfcSi57xFreq);
+    createParam(P_AfcSi57xFStartupString,
+                                    asynParamFloat64,               &P_AfcSi57xFStartup);
     createParam(P_FmcPicoRngR0String,
                                     asynParamUInt32Digital,         &P_FmcPicoRngR0);
     createParam(P_FmcPicoRngR1String,
@@ -988,7 +996,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
+    bpmHwFloat64Func[P_AdcSi57xFStartup] = bpmSetGetAdcSi57xFStartupFunc;
     bpmHwFloat64Func[P_AfcSi57xFreq] = bpmSetGetAfcSi57xFreqFunc;
+    bpmHwFloat64Func[P_AfcSi57xFStartup] = bpmSetGetAfcSi57xFStartupFunc;
 
     /* BPM HW Int32 with channel selection. Functions not mapped here are just written
      * to the parameter library */
@@ -1050,7 +1060,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkSel,    FMC_REF_CLK_SEL_1,  0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
+    setDoubleParam(P_AdcSi57xFStartup,                      ADC_SI57X_FSTARTUP_DFLT);
     setDoubleParam(P_AfcSi57xFreq,                          AFC_SI57X_FREQ_DFLT);
+    setDoubleParam(P_AfcSi57xFStartup,                      AFC_SI57X_FSTARTUP_DFLT);
 
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
