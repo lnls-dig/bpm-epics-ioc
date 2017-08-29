@@ -53,6 +53,25 @@ record(ai,"$(P)$(R)ADCSi57xFreq-RB"){
     field(EGU, "Hz")
 }
 
+record(ao,"$(P)$(R)ADCSi57xFStartup"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set ADC si57x startup frequency")
+    field(PINI,"YES")
+    field(PREC, "3")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFSTARTUP")
+    field(EGU, "Hz")
+}
+
+record(ai,"$(P)$(R)ADCSi57xFStartup-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get ADC si57x startup frequency")
+    field(PREC, "3")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ADC_SI57XFSTARTUP")
+    field(EGU, "Hz")
+}
+
 record(mbbo,"$(P)$(R)ADCSi57xOe"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Si57x output enable")
