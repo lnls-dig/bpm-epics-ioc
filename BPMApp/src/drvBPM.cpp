@@ -3315,13 +3315,6 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         else if (function == P_ActiveClkRstADCs) {
             status = resetADCs(mask, addr);
         }
-        else if (function == P_MonitEnable) {
-            /* Send the stop event */
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: Monit enable task event to be send\n",
-                    driverName, functionName);
-            epicsEventSignal(this->activeMonitEnableEventId);
-        }
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
             status = setParam32(function, mask, addr);
@@ -3427,6 +3420,16 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
         status = setIntegerParam(addr, function, value);
+
+        if (function == P_MonitEnable) {
+            /* Send the start event if the value is 1 */
+            if (value) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: Monit enable task event to be send\n",
+                        driverName, functionName);
+                epicsEventSignal(this->activeMonitEnableEventId);
+            }
+        }
     }
     else {
         /* Call base class */
