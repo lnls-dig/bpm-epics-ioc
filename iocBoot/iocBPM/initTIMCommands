@@ -1,0 +1,5 @@
+# Load common commands
+< initCommonCommands
+
+# Disable Monit Task
+dbpf "${P}${R}MonitEnable" No
