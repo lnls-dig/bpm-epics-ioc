@@ -75,6 +75,10 @@ case ${FPGA_SYNTHESIS_NAME} in
         esac
         ;;
 
+    tim-receiver*)
+        ST_CMD_FILE=stTIM.cmd
+        ;;
+
     pbpm-gw*)
         ST_CMD_FILE=stPBPMPICO.cmd
         ;;

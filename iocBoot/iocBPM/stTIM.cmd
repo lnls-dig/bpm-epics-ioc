@@ -14,18 +14,13 @@ drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOS
 
 ## Load record instances
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ_PM, PORT=$(PORT), ADDR=1, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMSwitching.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMActiveClk.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMAdcCommon.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMFmc130m_4ch.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/AFCMgmt.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/TIMRcv.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
 
-< triggerBPM.cmd
+< triggerTIM.cmd
 < waveformPlugins.cmd
 < waveformFilePlugins.cmd
 < waveformFFTRecords.cmd
@@ -51,7 +46,7 @@ asynSetTraceIOMask("$(BPM_NAME)",0,0x2)
 
 iocInit()
 
-< initBPMCommands
+< initTIMCommands
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=${P}, R=${R}")

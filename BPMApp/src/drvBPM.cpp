@@ -37,7 +37,8 @@
 
 /* FIXME: This should be read from hardware */
 #define HARMONIC_NUMBER                 148
-#define ADC_CLK_FREQ_UVX_DFLT           113040445           /* Hz */
+#define ADC_CLK_FREQ_UVX_DFLT           113040445       /* Hz */
+#define ADC_SI57X_FSTARTUP_DFLT         155490000       /* Hz */
 #define ADC_RATE_FACTOR                 1
 #define TBT_RATE_FACTOR                 35
 #define FOFB_RATE_FACTOR                980
@@ -51,7 +52,14 @@
 #define AD9510_ADC_DFLT_CP_CURRENT      600
 #define AD9510_ADC_DFLT_OUTPUTS         31
 
+#define AFC_SI57X_FREQ_DFLT             100000000       /* Hz */
+#define AFC_SI57X_FSTARTUP_DFLT         100000000       /* Hz */
+
 #define FMCPICO_1MA_SCALE               1
+
+#define TIMRCV_DFLT_PHASE_MEAS_NAVG     10
+#define TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES 10
+#define TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES 10
 
 #define CH_DFLT_TRIGGER_CHAN            0
 #define ADC_RST_NORMAL_OP               1
@@ -452,6 +460,7 @@ static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK
 static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
 static const functionsInt32_t bpmSetGetActiveClkRstADCsFunc = {"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32};
 static const functionsInt32_t bpmSetGetActiveClkSi571OeFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe};
+static const functionsInt32_t bpmSetGetAfcSi57xOeFunc = {"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe};
 
 static const functionsInt32_t bpmSetGetFmcPicoRngR0Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0};
 static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1};
@@ -465,8 +474,18 @@ static const functionsInt32Acq_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", acq_set_
 static const functionsInt32Acq_t bpmSetGetAcqHwDlyFunc = {"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly};
 static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan};
 
+static const functionsInt32_t timRcvSetGetPhaseMeasNavgFunc = {"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg};
+static const functionsInt32_t timRcvSetGetDMTDADeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
+static const functionsInt32_t timRcvSetGetDMTDBDeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
+static const functionsInt32_t timRcvSetGetPhaseMeasFunc = {"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas};
+static const functionsInt32_t timRcvSetGetDMTDAFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_a_freq};
+static const functionsInt32_t timRcvSetGetDMTDBFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_b_freq};
+
 /* Double functions mapping */
 static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAdcSi57xFStartupFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
+static const functionsFloat64_t bpmSetGetAfcSi57xFreqFunc = {"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq};
+static const functionsFloat64_t bpmSetGetAfcSi57xFStartupFunc = {"AFC_MGMT", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
 
 /* Int32 with channel selection functions mapping */
 static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir};
@@ -713,6 +732,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
+    this->activeMonitEnableEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->activeMonitEnableEventId) {
+        printf("%s:%s: epicsEventCreate failure for activeMonitEnableEventId\n",
+                driverName, functionName);
+        return;
+    }
+
     /* Create parameters for all addresses without specifying the ones that don't
      * make sense to be on a specified list. Without this we woudl have to create
      * different parameterIndex structures to store each index, as they could be
@@ -751,6 +777,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_AdcClkSelString,  asynParamUInt32Digital,         &P_AdcClkSel);
     createParam(P_AdcSi57xFreqString,
                                     asynParamFloat64,               &P_AdcSi57xFreq);
+    createParam(P_AdcSi57xFStartupString,
+                                    asynParamFloat64,               &P_AdcSi57xFStartup);
     createParam(P_AdcAD9510DfltString,
                                     asynParamUInt32Digital,         &P_AdcAD9510Dflt);
     createParam(P_AdcAD9510PllFuncString,
@@ -779,6 +807,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_ActiveClkRstADCs);
     createParam(P_ActiveClkSi571OeString,
                                     asynParamUInt32Digital,         &P_ActiveClkSi571Oe);
+    createParam(P_AfcSi57xOeString,
+                                    asynParamUInt32Digital,         &P_AfcSi57xOe);
+    createParam(P_AfcSi57xFreqString,
+                                    asynParamFloat64,               &P_AfcSi57xFreq);
+    createParam(P_AfcSi57xFStartupString,
+                                    asynParamFloat64,               &P_AfcSi57xFStartup);
     createParam(P_FmcPicoRngR0String,
                                     asynParamUInt32Digital,         &P_FmcPicoRngR0);
     createParam(P_FmcPicoRngR1String,
@@ -794,6 +828,20 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
     createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+
+    /* Timing parameters */
+    createParam(P_TimRcvPhaseMeasNavgString,
+                                    asynParamUInt32Digital,         &P_TimRcvPhaseMeasNavg);
+    createParam(P_TimRcvDMTDADeglitchThresString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDADeglitchThres);
+    createParam(P_TimRcvDMTDBDeglitchThresString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDBDeglitchThres);
+    createParam(P_TimRcvPhaseMeasString,
+                                    asynParamUInt32Digital,         &P_TimRcvPhaseMeas);
+    createParam(P_TimRcvDMTDAFreqString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDAFreq);
+    createParam(P_TimRcvDMTDBFreqString,
+                                    asynParamUInt32Digital,         &P_TimRcvDMTDBFreq);
 
     /* Create acquistion parameters */
     createParam(P_SamplesPreString, asynParamUInt32Digital,        &P_SamplesPre);
@@ -842,6 +890,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamFloat64,               &P_MonitPosSum);
     createParam(P_MonitUpdtTimeString,
                                     asynParamFloat64,               &P_MonitUpdtTime);
+    createParam(P_MonitEnableString,
+                                    asynParamInt32,                 &P_MonitEnable);
 
     createParam(P_SPAmpAString,     asynParamFloat64,               &P_SPAmpA);
     createParam(P_SPAmpBString,     asynParamFloat64,               &P_SPAmpB);
@@ -922,10 +972,18 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
     bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
     bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
+    bpmHwInt32Func[P_AfcSi57xOe] = bpmSetGetAfcSi57xOeFunc;
     bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
     bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
     bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
     bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
+
+    bpmHwInt32Func[P_TimRcvPhaseMeasNavg] = timRcvSetGetPhaseMeasNavgFunc;
+    bpmHwInt32Func[P_TimRcvDMTDADeglitchThres] = timRcvSetGetDMTDADeglitchThresFunc;
+    bpmHwInt32Func[P_TimRcvDMTDBDeglitchThres] = timRcvSetGetDMTDBDeglitchThresFunc;
+    bpmHwInt32Func[P_TimRcvPhaseMeas] = timRcvSetGetPhaseMeasFunc;
+    bpmHwInt32Func[P_TimRcvDMTDAFreq] = timRcvSetGetDMTDAFreqFunc;
+    bpmHwInt32Func[P_TimRcvDMTDBFreq] = timRcvSetGetDMTDBFreqFunc;
 
     bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
 
@@ -938,6 +996,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
+    bpmHwFloat64Func[P_AdcSi57xFStartup] = bpmSetGetAdcSi57xFStartupFunc;
+    bpmHwFloat64Func[P_AfcSi57xFreq] = bpmSetGetAfcSi57xFreqFunc;
+    bpmHwFloat64Func[P_AfcSi57xFStartup] = bpmSetGetAfcSi57xFStartupFunc;
 
     /* BPM HW Int32 with channel selection. Functions not mapped here are just written
      * to the parameter library */
@@ -999,6 +1060,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_AdcTestData,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcClkSel,    FMC_REF_CLK_SEL_1,  0xFFFFFFFF);
     setDoubleParam(P_AdcSi57xFreq,                          ADC_CLK_FREQ_UVX_DFLT);
+    setDoubleParam(P_AdcSi57xFStartup,                      ADC_SI57X_FSTARTUP_DFLT);
+    setDoubleParam(P_AfcSi57xFreq,                          AFC_SI57X_FREQ_DFLT);
+    setDoubleParam(P_AfcSi57xFStartup,                      AFC_SI57X_FSTARTUP_DFLT);
 
     setUIntDigitalParam(P_AdcAD9510Dflt,
                                         0,                  0xFFFFFFFF);
@@ -1034,6 +1098,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_ActiveClkSi571Oe,
                                         SI57X_ENABLE,       0xFFFFFFFF);
 
+    setUIntDigitalParam(P_AfcSi57xOe,
+                                        SI57X_ENABLE,       0xFFFFFFFF);
+
     setUIntDigitalParam(P_FmcPicoRngR0, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
     setUIntDigitalParam(P_FmcPicoRngR1, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
     setUIntDigitalParam(P_FmcPicoRngR2, FMCPICO_1MA_SCALE,  0xFFFFFFFF);
@@ -1046,6 +1113,22 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
+
+    setUIntDigitalParam(P_TimRcvPhaseMeasNavg, 
+                                        TIMRCV_DFLT_PHASE_MEAS_NAVG,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDADeglitchThres, 
+                                        TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDBDeglitchThres, 
+                                        TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES,  
+                                                            0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvPhaseMeas,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDAFreq,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TimRcvDMTDBFreq,
+                                        0,                  0xFFFFFFFF);
 
     /* Set acquisition parameters */
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
@@ -1115,6 +1198,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setDoubleParam(P_MonitPosQ,         0.0);
     setDoubleParam(P_MonitPosSum,       0.0);
     setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
+    setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
     setDoubleParam(P_SPAmpA,            0.0);
     setDoubleParam(P_SPAmpB,            0.0);
@@ -2355,6 +2439,7 @@ void drvBPM::acqMonitTask()
     K_FACTORS kFactors;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
+    int monitEnable = 0;
     double elapsedTime;
     double monitUpdtTime = 0.05; // 20 Hz
     double delay;
@@ -2372,6 +2457,14 @@ void drvBPM::acqMonitTask()
 
     smio_dsp_data_t dsp_data;
     while (1) {
+
+        getIntegerParam(P_MonitEnable, &monitEnable);
+        if (!monitEnable) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            epicsEventWait(activeMonitEnableEventId);
+        }
+
         epicsTimeGetCurrent(&startTime);
 
         err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
@@ -3339,6 +3432,16 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
         status = setIntegerParam(addr, function, value);
+
+        if (function == P_MonitEnable) {
+            /* Send the start event if the value is 1 */
+            if (value) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: Monit enable task event to be send\n",
+                        driverName, functionName);
+                epicsEventSignal(this->activeMonitEnableEventId);
+            }
+        }
     }
     else {
         /* Call base class */

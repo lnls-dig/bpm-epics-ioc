@@ -19,11 +19,12 @@ dbLoadRecords("${TOP}/BPMApp/Db/BPMSwitching.template", "P=${P}, R=${R}, PORT=$(
 dbLoadRecords("${TOP}/BPMApp/Db/BPMActiveClk.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAdcCommon.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMDsp.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/BPMApp/Db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/BPMApp/Db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
 
-< trigger.cmd
+< triggerBPM.cmd
 < fmc250m_4ch.cmd
 < waveformPlugins.cmd
 < waveformFilePlugins.cmd
@@ -50,7 +51,7 @@ asynSetTraceIOMask("$(BPM_NAME)",0,0x2)
 
 iocInit()
 
-< initCommands
+< initBPMCommands
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=${P}, R=${R}")

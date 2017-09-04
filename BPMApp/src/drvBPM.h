@@ -333,7 +333,8 @@ typedef struct {
 #define P_AdcPgaString              "ADC_PGA"               /* asynUInt32Digital,      r/w */
 #define P_AdcTestDataString         "ADC_TESTDATA"          /* asynUInt32Digital,      r/w */
 #define P_AdcClkSelString           "ADC_CLKSEL"            /* asynUInt32Digital,      r/w */
-#define P_AdcSi57xFreqString        "ADC_SI57XFREQ"         /* asynUInt32Digital,      w/o */
+#define P_AdcSi57xFreqString        "ADC_SI57XFREQ"         /* asynFloat64,            r/w */
+#define P_AdcSi57xFStartupString    "ADC_SI57XFSTARTUP"     /* asynFloat64,            r/w */
 #define P_AdcAD9510DfltString       "ADC_AD9510DFLT"        /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllFuncString    "ADC_AD9510PLLFUNC"     /* asynUInt32Digital,      r/w */
 #define P_AdcAD9510PllStatusString  "ADC_AD9510PLLSTATUS"   /* asynUInt32Digital,      r/w */
@@ -348,6 +349,9 @@ typedef struct {
 #define P_AdcAD9510OutputsString    "ADC_AD9510OUTPUTS"     /* asynUInt32Digital,      r/w */
 #define P_ActiveClkRstADCsString    "ACTIVE_CLK_RST_ADCS"   /* asynUInt32Digital,      r/w */
 #define P_ActiveClkSi571OeString    "ACTIVE_CLK_SI57X_OE"   /* asynUInt32Digital,      r/w */
+#define P_AfcSi57xFreqString        "AFC_SI57XFREQ"         /* asynFloat64,            r/w */
+#define P_AfcSi57xFStartupString    "AFC_SI57XFSTARTUP"     /* asynFloat64,            r/w */
+#define P_AfcSi57xOeString          "AFC_SI57XOE"           /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR0String        "FMCPICO_RNG_R0"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR1String        "FMCPICO_RNG_R1"        /* asynUInt32Digital,      r/w */
 #define P_FmcPicoRngR2String        "FMCPICO_RNG_R2"        /* asynUInt32Digital,      r/w */
@@ -359,6 +363,12 @@ typedef struct {
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
+#define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */ 
+#define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
+#define P_TimRcvPhaseMeasString     "TIM_RCV_PHASE_MEAS"    /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDAFreqString     "TIM_RCV_DMTD_A_FREQ"   /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDBFreqString     "TIM_RCV_DMTD_B_FREQ"   /* asynUInt32Digital,      r/w */
 #define P_SamplesPreString          "ACQ_SAMPLES_PRE"       /* asynUInt32Digital,      r/w */
 #define P_SamplesPostString         "ACQ_SAMPLES_POST"      /* asynUInt32Digital,      r/w */
 #define P_NumShotsString            "ACQ_NUM_SHOTS"         /* asynUInt32Digital,      r/w */
@@ -388,6 +398,7 @@ typedef struct {
 #define P_MonitPosSumString         "MONITPOS_SUM"          /* asynFloat64,            r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 #define P_MonitUpdtTimeString       "MONIT_UPDTTIME"        /* asynFloat64,            r/w */
+#define P_MonitEnableString         "MONIT_ENABLE"          /* asynInt32,              r/w */
 #define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
 #define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
 #define P_SPAmpCString              "SP_AMP_C"              /* asynFloat64,            r/o */
@@ -476,6 +487,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcTestData;
         int P_AdcClkSel;
         int P_AdcSi57xFreq;
+        int P_AdcSi57xFStartup;
         int P_AdcAD9510Dflt;
         int P_AdcAD9510PllFunc;
         int P_AdcAD9510PllStatus;
@@ -490,6 +502,9 @@ class drvBPM : public asynNDArrayDriver {
         int P_AdcAD9510Outputs;
         int P_ActiveClkRstADCs;
         int P_ActiveClkSi571Oe;
+        int P_AfcSi57xFreq;
+        int P_AfcSi57xFStartup;
+        int P_AfcSi57xOe;
         int P_FmcPicoRngR0;
         int P_FmcPicoRngR1;
         int P_FmcPicoRngR2;
@@ -501,6 +516,12 @@ class drvBPM : public asynNDArrayDriver {
         int P_XOffset;
         int P_YOffset;
         int P_QOffset;
+        int P_TimRcvPhaseMeasNavg;
+        int P_TimRcvDMTDADeglitchThres;
+        int P_TimRcvDMTDBDeglitchThres;
+        int P_TimRcvPhaseMeas;
+        int P_TimRcvDMTDAFreq;        
+        int P_TimRcvDMTDBFreq;        
         int P_SamplesPre;
         int P_SamplesPost;
         int P_NumShots;
@@ -530,6 +551,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosSum;  
         int P_MonitUpdt;
         int P_MonitUpdtTime;
+        int P_MonitEnable;
         int P_SPAmpA;
         int P_SPAmpB;
         int P_SPAmpC;
@@ -582,6 +604,7 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId stopAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId abortAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
+        epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
         std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
         std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;

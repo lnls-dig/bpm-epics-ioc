@@ -1,0 +1,23 @@
+record(mbbo, "$(P)$(R)MonitEnable"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set Monitoring Enable")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_ENABLE")
+    field(SCAN,"Passive")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"No")
+    field(ONST,"Yes")
+}
+
+record(mbbi, "$(P)$(R)MonitEnable-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get Monitoring Enable")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_ENABLE")
+    field(SCAN,"I/O Intr")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"No")
+    field(ONST,"Yes")
+}

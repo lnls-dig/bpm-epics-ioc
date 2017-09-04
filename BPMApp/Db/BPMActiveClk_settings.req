@@ -1,5 +1,6 @@
 $(P)$(R)ADCClkSel
 $(P)$(R)ADCSi57xFreq
+$(P)$(R)ADCSi57xFStartup
 $(P)$(R)ADCAD9510PllFunc
 $(P)$(R)ADCAD9510ClkSel
 $(P)$(R)ADCAD9510ADiv
