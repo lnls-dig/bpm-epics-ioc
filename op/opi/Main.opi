@@ -51174,7 +51174,8 @@ $(pv_value)</tooltip>
     <wuid>-11e5154c:15f4f97da04:-6ad9</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>SA-1</text>
+    <text>(SA|SB|SP)
+      -1</text>
     <scripts />
     <height>30</height>
     <border_width>1</border_width>
@@ -51193,50 +51194,10 @@ $(pv_value)</tooltip>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>75</width>
-    <x>101</x>
+    <width>93</width>
+    <x>93</x>
     <name>Label_58</name>
     <y>367</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Sans" height="10" style="1">Default Bold</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>1</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-11e5154c:15f4f97da04:-6ad8</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>SA-2</text>
-    <scripts />
-    <height>30</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <width>75</width>
-    <x>101</x>
-    <name>Label_59</name>
-    <y>395</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -88197,5 +88158,46 @@ $(pv_value)</tooltip>
     <line_color>
       <color red="128" green="0" blue="255" />
     </line_color>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-11e5154c:15f4f97da04:6708</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>(SA|SB|SP)
+      -2</text>
+    <scripts />
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>93</width>
+    <x>93</x>
+    <name>Label_73</name>
+    <y>396</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Sans" height="10" style="1">Default Bold</opifont.name>
+    </font>
   </widget>
 </display>
