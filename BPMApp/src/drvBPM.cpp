@@ -754,7 +754,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create general parameters */
     createParam(P_HarmonicNumberString,
                                     asynParamUInt32Digital,         &P_HarmonicNumber);
-    createParam(P_ClkFreqString,    asynParamFloat64,               &P_ClkFreq);
     createParam(P_AdcRateString,    asynParamUInt32Digital,         &P_AdcRate);
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
@@ -763,6 +762,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
     createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+
+    createParam(P_ClkFreqString,    asynParamFloat64,               &P_ClkFreq);
 
     /* Create ADC/AD9510/FMCPICO/DSP parameters */
     createParam(P_AdcTrigDirString, asynParamUInt32Digital,         &P_AdcTrigDir);
@@ -1043,7 +1044,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     setUIntDigitalParam(P_HarmonicNumber,
                                         HARMONIC_NUMBER,    0xFFFFFFFF);
-    setDoubleParam(P_ClkFreq,                               ADC_CLK_FREQ_UVX_DFLT);
     setUIntDigitalParam(P_AdcRate,      ADC_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
@@ -1051,6 +1051,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_SwMode,       ADC_DFLT_SW,        0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
+
+    setDoubleParam(P_ClkFreq,                               ADC_CLK_FREQ_UVX_DFLT);
+
     setUIntDigitalParam(P_AdcTrigDir,   0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcTrigTerm,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_AdcRand,      0,                  0xFFFFFFFF);
