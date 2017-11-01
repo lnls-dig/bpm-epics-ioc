@@ -6,7 +6,7 @@
   <show_grid>false</show_grid>
   <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <scripts />
-  <height>1200</height>
+  <height>1000</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
     <MODULE>MONIT</MODULE>
@@ -23,7 +23,7 @@
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <width>1600</width>
+  <width>1800</width>
   <x>-1</x>
   <name></name>
   <grid_space>6</grid_space>
