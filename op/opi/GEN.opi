@@ -6648,14 +6648,15 @@ pvs[5].setValue("start")
 # TODO. If multiple shots, FFT will be calculated based on all shots 
 # joined together
 # Set FFT SPAN
-pvs[6].setValue(totalSamples)
-pvs[7].setValue(totalSamples)
-pvs[8].setValue(totalSamples)
-pvs[9].setValue(totalSamples)
-pvs[10].setValue(totalSamples)
-pvs[11].setValue(totalSamples)
-pvs[12].setValue(totalSamples)
-pvs[13].setValue(totalSamples)
+fftSpan = totalSamples/shots
+pvs[6].setValue(fftSpan)
+pvs[7].setValue(fftSpan)
+pvs[8].setValue(fftSpan)
+pvs[9].setValue(fftSpan)
+pvs[10].setValue(fftSpan)
+pvs[11].setValue(fftSpan)
+pvs[12].setValue(fftSpan)
+pvs[13].setValue(fftSpan)
 
 # If ADC or ADCSWAP, clear Position graphs
 if channel == 'adc' or channel == 'adcswap':
