@@ -3875,7 +3875,7 @@ $(pv_value)</tooltip>
     <width>395</width>
     <x>1423</x>
     <name>Amplitude Statistics</name>
-    <y>58</y>
+    <y>47</y>
     <foreground_color>
       <color red="192" green="192" blue="192" />
     </foreground_color>
@@ -5518,7 +5518,7 @@ $(pv_value)</tooltip>
     <width>530</width>
     <x>1356</x>
     <name>Acquisition</name>
-    <y>456</y>
+    <y>464</y>
     <foreground_color>
       <color red="192" green="192" blue="192" />
     </foreground_color>
