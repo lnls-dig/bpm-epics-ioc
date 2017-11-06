@@ -6,7 +6,7 @@
   <show_grid>false</show_grid>
   <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <scripts />
-  <height>1000</height>
+  <height>900</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
     <MODULE>MONIT</MODULE>
@@ -133,7 +133,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_maximum>100.0</axis_0_maximum>
     <trace_1_y_axis_index>1</trace_1_y_axis_index>
     <trace_2_name>C</trace_2_name>
-    <height>446</height>
+    <height>380</height>
     <trace_2_visible>true</trace_2_visible>
     <trigger_pv_value />
     <trace_3_y_pv>$(P)$(R)AmplD-Mon</trace_3_y_pv>
@@ -289,9 +289,9 @@ $(trace_0_y_pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>120</width>
-    <x>461</x>
+    <x>206</x>
     <name>Label</name>
-    <y>933</y>
+    <y>833</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -678,7 +678,7 @@ $(trace_0_y_pv_value)</tooltip>
     </background_color>
     <trace_3_update_mode>0</trace_3_update_mode>
     <x>1</x>
-    <y>456</y>
+    <y>418</y>
     <trace_3_x_axis_index>0</trace_3_x_axis_index>
     <trace_0_x_axis_index>0</trace_0_x_axis_index>
     <axis_count>2</axis_count>
@@ -748,7 +748,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_maximum>100.0</axis_0_maximum>
     <trace_1_y_axis_index>1</trace_1_y_axis_index>
     <trace_2_name>Q</trace_2_name>
-    <height>446</height>
+    <height>380</height>
     <trace_2_visible>true</trace_2_visible>
     <trigger_pv_value />
     <trace_3_y_pv>$(P)$(R)Sum-Mon</trace_3_y_pv>
@@ -913,7 +913,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>793</x>
     <name>Check Box_4</name>
-    <y>589</y>
+    <y>551</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -953,7 +953,7 @@ $(pv_value)</tooltip>
     <width>16</width>
     <x>814</x>
     <name>Label_6</name>
-    <y>588</y>
+    <y>550</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1000,7 +1000,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>793</x>
     <name>Check Box_5</name>
-    <y>619</y>
+    <y>581</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1040,7 +1040,7 @@ $(pv_value)</tooltip>
     <width>16</width>
     <x>814</x>
     <name>Label_7</name>
-    <y>618</y>
+    <y>580</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1087,7 +1087,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>793</x>
     <name>Check Box_6</name>
-    <y>648</y>
+    <y>610</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1127,7 +1127,7 @@ $(pv_value)</tooltip>
     <width>16</width>
     <x>814</x>
     <name>Label_8</name>
-    <y>647</y>
+    <y>609</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1167,7 +1167,7 @@ $(pv_value)</tooltip>
     <width>29</width>
     <x>814</x>
     <name>Label_9</name>
-    <y>676</y>
+    <y>638</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1214,7 +1214,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>793</x>
     <name>Check Box_7</name>
-    <y>677</y>
+    <y>639</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1261,7 +1261,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>671</x>
     <name>Check Box_16</name>
-    <y>410</y>
+    <y>344</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1301,7 +1301,7 @@ $(pv_value)</tooltip>
     <width>87</width>
     <x>692</x>
     <name>Label_10</name>
-    <y>410</y>
+    <y>344</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1348,7 +1348,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>671</x>
     <name>Check Box_17</name>
-    <y>440</y>
+    <y>374</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1388,7 +1388,7 @@ $(pv_value)</tooltip>
     <width>87</width>
     <x>692</x>
     <name>Label_18</name>
-    <y>440</y>
+    <y>374</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1435,7 +1435,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>671</x>
     <name>Check Box_20</name>
-    <y>862</y>
+    <y>767</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1475,7 +1475,7 @@ $(pv_value)</tooltip>
     <width>87</width>
     <x>692</x>
     <name>Label_21</name>
-    <y>862</y>
+    <y>767</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1522,7 +1522,7 @@ $(pv_value)</tooltip>
     <width>22</width>
     <x>671</x>
     <name>Check Box_21</name>
-    <y>892</y>
+    <y>797</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1562,7 +1562,7 @@ $(pv_value)</tooltip>
     <width>87</width>
     <x>692</x>
     <name>Label_22</name>
-    <y>892</y>
+    <y>797</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1617,8 +1617,8 @@ $(pv_value)</tooltip>
       <color red="255" green="255" blue="255" />
     </background_color>
     <width>80</width>
-    <x>613</x>
-    <y>939</y>
+    <x>358</x>
+    <y>839</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1667,9 +1667,9 @@ $(pv_value)</tooltip>
       <color red="240" green="240" blue="240" />
     </background_color>
     <width>80</width>
-    <x>714</x>
+    <x>459</x>
     <name>Text Update_49</name>
-    <y>939</y>
+    <y>839</y>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
