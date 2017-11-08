@@ -4369,7 +4369,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidSpAC</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpAC-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4478,7 +4478,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidSpBD</pv_name>
+    <pv_name>$(P)$(R)RFFEPidSpBD-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4627,7 +4627,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEHeaterAC</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterAC-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4776,7 +4776,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEHeaterBD</pv_name>
+    <pv_name>$(P)$(R)RFFEHeaterBD-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4925,7 +4925,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidACKp</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACKp-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5074,7 +5074,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidACTi</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTi-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5372,7 +5372,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEAtt</pv_name>
+    <pv_name>$(P)$(R)RFFEAtt-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5771,7 +5771,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFETempCtl</pv_name>
+    <pv_name>$(P)$(R)RFFETempCtl-SP</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -5855,7 +5855,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidACTd</pv_name>
+    <pv_name>$(P)$(R)RFFEPidACTd-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6004,7 +6004,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidBDKp</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDKp-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6153,7 +6153,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidBDTi</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTi-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6302,7 +6302,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)RFFEPidBDTd</pv_name>
+    <pv_name>$(P)$(R)RFFEPidBDTd-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
