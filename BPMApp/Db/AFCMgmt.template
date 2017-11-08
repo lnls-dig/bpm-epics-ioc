@@ -1,4 +1,4 @@
-record(ao,"$(P)$(R)AFCSi57xFreq"){
+record(ao,"$(P)$(R)AFCSi57xFreq-SP"){
     field(DTYP,"asynFloat64")
     field(DESC,"set si57x frequency")
     field(PINI,"YES")
@@ -17,7 +17,7 @@ record(ai,"$(P)$(R)AFCSi57xFreq-RB"){
     field(EGU, "Hz")
 }
 
-record(ao,"$(P)$(R)AFCSi57xFStartup"){
+record(ao,"$(P)$(R)AFCSi57xFStartup-SP"){
     field(DTYP,"asynFloat64")
     field(DESC,"set si57x startup frequency")
     field(PINI,"YES")
@@ -36,7 +36,7 @@ record(ai,"$(P)$(R)AFCSi57xFStartup-RB"){
     field(EGU, "Hz")
 }
 
-record(mbbo,"$(P)$(R)AFCSi57xOe"){
+record(mbbo,"$(P)$(R)AFCSi57xOe-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Si57x output enable")
     field(PINI,"YES")
@@ -50,7 +50,7 @@ record(mbbo,"$(P)$(R)AFCSi57xOe"){
     field(VAL,"1")
 }
 
-record(mbbi,"$(P)$(R)AFCSi57xOe-RB"){
+record(mbbi,"$(P)$(R)AFCSi57xOe-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get Si57x output enable")
     field(SCAN,"I/O Intr")

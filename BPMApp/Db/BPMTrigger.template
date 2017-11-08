@@ -2,7 +2,7 @@
 # Trigger parameters
 #########################
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Chan"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Chan-SP"){
     field(DTYP,"asynInt32")
     field(PINI,"YES")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
@@ -16,7 +16,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Chan-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
 }
 
-record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir"){
+record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction")
     field(PINI,"YES")
@@ -29,7 +29,7 @@ record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
 }
 
-record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB"){
+record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction")
     field(PINI,"YES")
@@ -42,7 +42,7 @@ record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
 }
 
-record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol"){
+record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger direction polarity")
     field(PINI,"YES")
@@ -55,7 +55,7 @@ record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
 }
 
-record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB"){
+record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction polarity")
     field(PINI,"YES")
@@ -68,7 +68,7 @@ record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)DirPol-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR_POL")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive counter reset")
     field(PINI,"YES")
@@ -85,7 +85,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCntRst-RB"){
     field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvCnt-Mon")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit counter reset")
     field(PINI,"YES")
@@ -102,7 +102,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCntRst-RB"){
     field(FLNK,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-Mon")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive debounce length")
     field(PINI,"YES")
@@ -118,7 +118,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvLen-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_LEN")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit extension length")
     field(PINI,"YES")
@@ -150,7 +150,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnCnt-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_CNT_TRN")
 }
 
-record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc"){
+record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive source")
     field(PINI,"YES")
@@ -163,7 +163,7 @@ record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
 }
 
-record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-RB"){
+record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger receive source")
     field(PINI,"YES")
@@ -176,7 +176,7 @@ record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_SRC")
 }
 
-record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc"){
+record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit source")
     field(PINI,"YES")
@@ -189,7 +189,7 @@ record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
 }
 
-record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-RB"){
+record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit source")
     field(PINI,"YES")
@@ -202,7 +202,7 @@ record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_SRC")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvInSel"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvInSel-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger receive selection mux")
     field(PINI,"YES")
@@ -218,7 +218,7 @@ record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvInSel-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_RCV_IN_SEL")
 }
 
-record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnOutSel"){
+record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnOutSel-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set trigger transmit selection mux")
     field(PINI,"YES")

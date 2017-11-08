@@ -10,7 +10,7 @@
 # Amplitude and phase compensation
 #######################################
 
-record(mbbo,"$(P)$(R)ADCRandEn"){
+record(mbbo,"$(P)$(R)ADCRandEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC RAND")
     field(SCAN,"Passive")
@@ -22,7 +22,7 @@ record(mbbo,"$(P)$(R)ADCRandEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCRandEn-RB"){
+record(mbbi,"$(P)$(R)ADCRandEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC RAND")
     field(SCAN,"I/O Intr")
@@ -34,7 +34,7 @@ record(mbbi,"$(P)$(R)ADCRandEn-RB"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)$(R)ADCDithEn"){
+record(mbbo,"$(P)$(R)ADCDithEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC DITH")
     field(SCAN,"Passive")
@@ -46,7 +46,7 @@ record(mbbo,"$(P)$(R)ADCDithEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCDithEn-RB"){
+record(mbbi,"$(P)$(R)ADCDithEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC DITH")
     field(SCAN,"I/O Intr")
@@ -58,7 +58,7 @@ record(mbbi,"$(P)$(R)ADCDithEn-RB"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)$(R)ADCShdnEn"){
+record(mbbo,"$(P)$(R)ADCShdnEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC SHDN")
     field(SCAN,"Passive")
@@ -70,7 +70,7 @@ record(mbbo,"$(P)$(R)ADCShdnEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCShdnEn-RB"){
+record(mbbi,"$(P)$(R)ADCShdnEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC SHDN")
     field(SCAN,"I/O Intr")
@@ -82,7 +82,7 @@ record(mbbi,"$(P)$(R)ADCShdnEn-RB"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)$(R)ADCPgaEn"){
+record(mbbo,"$(P)$(R)ADCPgaEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC PGA")
     field(SCAN,"Passive")
@@ -94,7 +94,7 @@ record(mbbo,"$(P)$(R)ADCPgaEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCPgaEn-RB"){
+record(mbbi,"$(P)$(R)ADCPgaEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get LT2208 ADC PGA")
     field(SCAN,"I/O Intr")

@@ -6,7 +6,7 @@
 # Created Mar. 21, 2017
 #
 
-record(mbbo,"$(P)$(R)ADCTrigDir"){
+record(mbbo,"$(P)$(R)ADCTrigDir-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC trigger direction")
     field(PINI,"YES")
@@ -19,7 +19,7 @@ record(mbbo,"$(P)$(R)ADCTrigDir"){
     field(ONST,"input")
 }
 
-record(mbbi,"$(P)$(R)ADCTrigDir-RB"){
+record(mbbi,"$(P)$(R)ADCTrigDir-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC trigger direction")
     field(PINI,"YES")
@@ -32,7 +32,7 @@ record(mbbi,"$(P)$(R)ADCTrigDir-RB"){
     field(ONST,"input")
 }
 
-record(mbbo,"$(P)$(R)ADCTrigTerm"){
+record(mbbo,"$(P)$(R)ADCTrigTerm-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC trigger 50ohm termination")
     field(PINI,"YES")
@@ -45,7 +45,7 @@ record(mbbo,"$(P)$(R)ADCTrigTerm"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCTrigTerm-RB"){
+record(mbbi,"$(P)$(R)ADCTrigTerm-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC trigger 50ogm termination")
     field(PINI,"YES")
@@ -58,7 +58,7 @@ record(mbbi,"$(P)$(R)ADCTrigTerm-RB"){
     field(ONST,"enable")
 }
 
-record(mbbo,"$(P)$(R)ADCTestDataEn"){
+record(mbbo,"$(P)$(R)ADCTestDataEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC test ramp data")
     field(PINI,"YES")
@@ -71,7 +71,7 @@ record(mbbo,"$(P)$(R)ADCTestDataEn"){
     field(ONST,"enable")
 }
 
-record(mbbi,"$(P)$(R)ADCTestDataEn-RB"){
+record(mbbi,"$(P)$(R)ADCTestDataEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC test ramp data")
     field(PINI,"YES")

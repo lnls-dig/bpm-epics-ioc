@@ -1,4 +1,4 @@
-$(P)$(R)ADCRandEn
-$(P)$(R)ADCDithEn
-$(P)$(R)ADCShdnEn
-$(P)$(R)ADCPgaEn
+$(P)$(R)ADCRandEn-Sel
+$(P)$(R)ADCDithEn-Sel
+$(P)$(R)ADCShdnEn-Sel
+$(P)$(R)ADCPgaEn-Sel

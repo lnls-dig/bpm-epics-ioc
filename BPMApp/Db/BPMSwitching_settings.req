@@ -1,4 +1,3 @@
-$(P)$(R)INFOClkFreq
-$(P)$(R)SwMode
-$(P)$(R)SwDly
-$(P)$(R)SwDivClk
+$(P)$(R)SwMode-Sel
+$(P)$(R)SwDly-SP
+$(P)$(R)SwDivClk-SP

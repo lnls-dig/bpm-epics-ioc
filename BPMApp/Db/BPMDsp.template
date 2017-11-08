@@ -11,7 +11,7 @@
 # DSP parameters
 #########################
 
-record(longout,"$(P)$(R)PosKx"){
+record(longout,"$(P)$(R)PosKx-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kx")
     field(PINI,"YES")
@@ -29,7 +29,7 @@ record(longin,"$(P)$(R)PosKx-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKy"){
+record(longout,"$(P)$(R)PosKy-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ky")
     field(PINI,"YES")
@@ -47,7 +47,7 @@ record(longin,"$(P)$(R)PosKy-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKq"){
+record(longout,"$(P)$(R)PosKq-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kq")
     field(PINI,"YES")
@@ -65,7 +65,7 @@ record(longin,"$(P)$(R)PosKq-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKsum"){
+record(longout,"$(P)$(R)PosKsum-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ksum")
     field(PINI,"YES")
@@ -81,7 +81,7 @@ record(longin,"$(P)$(R)PosKsum-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KSUM")
 }
 
-record(longout,"$(P)$(R)PosXOffset"){
+record(longout,"$(P)$(R)PosXOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set X offset")
     field(PINI,"YES")
@@ -99,7 +99,7 @@ record(longin,"$(P)$(R)PosXOffset-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosYOffset"){
+record(longout,"$(P)$(R)PosYOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Y offset")
     field(PINI,"YES")
@@ -117,7 +117,7 @@ record(longin,"$(P)$(R)PosYOffset-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosQOffset"){
+record(longout,"$(P)$(R)PosQOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Q offset")
     field(PINI,"YES")
@@ -135,7 +135,7 @@ record(longin,"$(P)$(R)PosQOffset-RB"){
     field(EGU, "nm")
 }
 
-record(ao,"$(P)$(R)MONITUpdtTime"){
+record(ao,"$(P)$(R)MONITUpdtTime-SP"){
     field(DTYP,"asynFloat64")
     field(DESC,"set MONIT AMP/POS update time")
     field(PINI,"YES")

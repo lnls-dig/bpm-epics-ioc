@@ -10,7 +10,7 @@
 # Amplitude and phase compensation
 #######################################
 
-record(longout,"$(P)$(R)ADC$(ADC_CHAN)TestMode"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)TestMode-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ISLA216P25 test mode")
     field(PINI,"YES")
@@ -26,7 +26,7 @@ record(longout,"$(P)$(R)ADC$(ADC_CHAN)TestMode"){
 #    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEST_MODE")
 #}
 
-record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes"){
+record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ISLA216P25 reset mode")
     field(PINI,"YES")
@@ -44,7 +44,7 @@ record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes"){
 }
 
 # Not implemented yet
-#record(mbbi,"$(P)$(R)ADC$(ADC_CHAN)RstModes-RB"){
+#record(mbbi,"$(P)$(R)ADC$(ADC_CHAN)RstModes-Sts"){
 #    field(DTYP,"asynUInt32Digital")
 #    field(DESC,"get ISLA216P25 reset mode")
 #    field(SCAN,"I/O Intr")
@@ -60,7 +60,7 @@ record(mbbo,"$(P)$(R)ADC$(ADC_CHAN)RstModes"){
 #    field(THST,"sleep")
 #}
 
-record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-RB"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ISLA216P25 temperature code")
     field(PINI,"YES")
@@ -70,7 +70,7 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)Temp-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_TEMP")
 }
 
-record(longin,"$(P)$(R)ADC$(ADC_CHAN)CalStatus-RB"){
+record(longin,"$(P)$(R)ADC$(ADC_CHAN)CalStatus-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ISLA216P25 calibration status")
     field(PINI,"YES")
@@ -78,7 +78,7 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)CalStatus-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_CAL_STATUS")
 }
 
-record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegRead"){
+record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegRead-Sel"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register read")
     field(PINI,"YES")
@@ -91,7 +91,7 @@ record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegRead"){
     field(ONST,"read")
 }
 
-record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegRead-RB"){
+record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegRead-Sts"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register read status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ")
@@ -110,7 +110,7 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadData-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_DATA")
 }
 
-record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set addr to be read to ADC")
     field(PINI,"YES")
@@ -125,7 +125,7 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegReadAddr-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_READ_ADDR")
 }
 
-record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegWrite"){
+record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-Sel"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set ADC register write")
     field(PINI,"YES")
@@ -138,7 +138,7 @@ record(mbbo, "$(P)$(R)ADC$(ADC_CHAN)RegWrite"){
     field(ONST,"write")
 }
 
-record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-RB"){
+record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-Sts"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get ADC register write status")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE")
@@ -150,7 +150,7 @@ record(mbbi, "$(P)$(R)ADC$(ADC_CHAN)RegWrite-RB"){
     field(ONST,"write")
 }
 
-record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set data to be written to ADC")
     field(PINI,"YES")
@@ -165,7 +165,7 @@ record(longin,"$(P)$(R)ADC$(ADC_CHAN)RegWriteData-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_REG_WRITE_DATA")
 }
 
-record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr"){
+record(longout,"$(P)$(R)ADC$(ADC_CHAN)RegWriteAddr-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set addr to be written to ADC")
     field(PINI,"YES")

@@ -11,7 +11,7 @@
 # Amplitude and phase compensation
 #######################################
 
-record(mbbo,"$(P)$(R)SwMode"){
+record(mbbo,"$(P)$(R)SwMode-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching")
     field(PINI,"YES")
@@ -28,7 +28,7 @@ record(mbbo,"$(P)$(R)SwMode"){
     field(THST,"switching")
 }
 
-record(mbbi,"$(P)$(R)SwMode-RB"){
+record(mbbi,"$(P)$(R)SwMode-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching")
     field(PINI,"YES")
@@ -45,7 +45,7 @@ record(mbbi,"$(P)$(R)SwMode-RB"){
     field(THST,"switching")
 }
 
-record(longout,"$(P)$(R)SwDly"){
+record(longout,"$(P)$(R)SwDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching delay")
     field(PINI,"YES")
@@ -63,7 +63,7 @@ record(longin,"$(P)$(R)SwDly-RB"){
     field(EGU, "clks")
 }
 
-record(longout,"$(P)$(R)SwDivClk"){
+record(longout,"$(P)$(R)SwDivClk-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching divider clock")
     field(PINI,"YES")

@@ -1,7 +1,6 @@
-# Nothing needs to be saved here
-$(P)$(R)INFOHarmonicNumber
-$(P)$(R)INFOClkFreq
-$(P)$(R)INFOClkProp
-$(P)$(R)INFOTBTRate
-$(P)$(R)INFOFOFBRate
-$(P)$(R)INFOMONITRate
+$(P)$(R)INFOHarmonicNumber-SP
+$(P)$(R)INFOClkFreq-SP
+$(P)$(R)INFOClkProp-SP
+$(P)$(R)INFOTBTRate-SP
+$(P)$(R)INFOFOFBRate-SP
+$(P)$(R)INFOMONITRate-SP

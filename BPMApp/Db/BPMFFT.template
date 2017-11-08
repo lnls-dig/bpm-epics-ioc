@@ -1,4 +1,4 @@
-record(RFFT,"$(P)$(R)$(ARRAY_NAME)FFTData")
+record(RFFT,"$(P)$(R)$(ARRAY_NAME)FFTData-RB")
 {
     field(INP, "$(P)$(R)$(ARRAY_NAME)ArrayData.VAL CP MS")
     field(NELM,"$(NELEMENTS)")
@@ -6,7 +6,7 @@ record(RFFT,"$(P)$(R)$(ARRAY_NAME)FFTData")
     field(PREC,"3")
 }
 
-record(acalcout,"$(P)$(R)$(ARRAY_NAME)FFTFreq")
+record(acalcout,"$(P)$(R)$(ARRAY_NAME)FFTFreq-RB")
 {
     field(DESC, "FFT Frequency Vector")
     field(DTYP, "Soft Channel")
@@ -15,7 +15,7 @@ record(acalcout,"$(P)$(R)$(ARRAY_NAME)FFTFreq")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)INFOClkFreq.VAL")
+    field(INPA, "$(P)$(R)INFOClkFreq-RB.VAL")
     field(INPB, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB.VAL")
     field(INAA, "$(P)$(R)$(ARRAY_NAME)FFTData.WAVN CP MS")
     field(WAIT, "Wait")

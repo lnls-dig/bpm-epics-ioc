@@ -6,7 +6,7 @@
 # Created Mar. 21, 2017
 #
 
-record(mbbo,"$(P)$(R)FMCPICORngR0"){
+record(mbbo,"$(P)$(R)FMCPICORngR0-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set FMCPICO ADC0 Range")
     field(PINI,"YES")
@@ -19,7 +19,7 @@ record(mbbo,"$(P)$(R)FMCPICORngR0"){
     field(ONST,"1mA range")
 }
 
-record(mbbi,"$(P)$(R)FMCPICORngR0-RB"){
+record(mbbi,"$(P)$(R)FMCPICORngR0-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC0 Range")
     field(PINI,"YES")
@@ -32,7 +32,7 @@ record(mbbi,"$(P)$(R)FMCPICORngR0-RB"){
     field(ONST,"1mA range")
 }
 
-record(mbbo,"$(P)$(R)FMCPICORngR1"){
+record(mbbo,"$(P)$(R)FMCPICORngR1-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set FMCPICO ADC1 Range")
     field(PINI,"YES")
@@ -45,7 +45,7 @@ record(mbbo,"$(P)$(R)FMCPICORngR1"){
     field(ONST,"1mA range")
 }
 
-record(mbbi,"$(P)$(R)FMCPICORngR1-RB"){
+record(mbbi,"$(P)$(R)FMCPICORngR1-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC1 Range")
     field(PINI,"YES")
@@ -58,7 +58,7 @@ record(mbbi,"$(P)$(R)FMCPICORngR1-RB"){
     field(ONST,"1mA range")
 }
 
-record(mbbo,"$(P)$(R)FMCPICORngR2"){
+record(mbbo,"$(P)$(R)FMCPICORngR2-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set FMCPICO ADC2 Range")
     field(PINI,"YES")
@@ -71,7 +71,7 @@ record(mbbo,"$(P)$(R)FMCPICORngR2"){
     field(ONST,"1mA range")
 }
 
-record(mbbi,"$(P)$(R)FMCPICORngR2-RB"){
+record(mbbi,"$(P)$(R)FMCPICORngR2-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC2 Range")
     field(PINI,"YES")
@@ -84,7 +84,7 @@ record(mbbi,"$(P)$(R)FMCPICORngR2-RB"){
     field(ONST,"1mA range")
 }
 
-record(mbbo,"$(P)$(R)FMCPICORngR3"){
+record(mbbo,"$(P)$(R)FMCPICORngR3-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set FMCPICO ADC3 Range")
     field(PINI,"YES")
@@ -97,7 +97,7 @@ record(mbbo,"$(P)$(R)FMCPICORngR3"){
     field(ONST,"1mA range")
 }
 
-record(mbbi,"$(P)$(R)FMCPICORngR3-RB"){
+record(mbbi,"$(P)$(R)FMCPICORngR3-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC3 Range")
     field(PINI,"YES")

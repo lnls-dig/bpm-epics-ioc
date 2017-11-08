@@ -2,7 +2,7 @@
 # Timing Receiver parameters
 #########################
 
-record(longout,"$(P)$(R)TimRcvPhaseMeasNavg"){
+record(longout,"$(P)$(R)TimRcvPhaseMeasNavg-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set number of averages")
     field(PINI,"YES")
@@ -18,7 +18,7 @@ record(longin,"$(P)$(R)TimRcvPhaseMeasNavg-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TIM_RCV_PHASE_MEAS_NAVG")
 }
 
-record(longout,"$(P)$(R)TimRcvDMTDADeglitch"){
+record(longout,"$(P)$(R)TimRcvDMTDADeglitch-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set DMTD A deglitcher")
     field(PINI,"YES")
@@ -34,7 +34,7 @@ record(longin,"$(P)$(R)TimRcvDMTDADeglitch-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TIM_RCV_DMTD_A_DEGLITCH")
 }
 
-record(longout,"$(P)$(R)TimRcvDMTDBDeglitch"){
+record(longout,"$(P)$(R)TimRcvDMTDBDeglitch-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set DMTD B deglitcher")
     field(PINI,"YES")

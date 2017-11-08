@@ -1,7 +1,7 @@
-$(P)$(R)PosKx
-$(P)$(R)PosKy
-$(P)$(R)PosKq
-$(P)$(R)PosKsum
-$(P)$(R)PosXOffset
-$(P)$(R)PosYOffset
-$(P)$(R)PosQOffset
+$(P)$(R)PosKx-SP
+$(P)$(R)PosKy-SP
+$(P)$(R)PosKq-SP
+$(P)$(R)PosKsum-SP
+$(P)$(R)PosXOffset-SP
+$(P)$(R)PosYOffset-SP
+$(P)$(R)PosQOffset-SP
