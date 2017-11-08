@@ -51747,7 +51747,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT01_AREA)$(CRATE01-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT01_AREA)$(CRATE01-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -51819,7 +51819,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT01_AREA)$(CRATE02-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT01_AREA)$(CRATE02-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -51891,7 +51891,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT01_AREA)$(CRATE01-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT01_AREA)$(CRATE01-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -51963,7 +51963,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT02_AREA)$(CRATE01-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT02_AREA)$(CRATE01-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52035,7 +52035,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT03_AREA)$(CRATE01-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT03_AREA)$(CRATE01-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52107,7 +52107,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT04_AREA)$(CRATE01-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT04_AREA)$(CRATE01-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52179,7 +52179,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT05_AREA)$(CRATE01-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT05_AREA)$(CRATE01-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52251,7 +52251,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT06_AREA)$(CRATE01-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT06_AREA)$(CRATE01-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52323,7 +52323,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT07_AREA)$(CRATE01-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT07_AREA)$(CRATE01-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52395,7 +52395,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT08_AREA)$(CRATE01-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT08_AREA)$(CRATE01-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52467,7 +52467,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT09_AREA)$(CRATE01-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT09_AREA)$(CRATE01-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52539,7 +52539,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT10_AREA)$(CRATE01-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT10_AREA)$(CRATE01-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52611,7 +52611,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT11_AREA)$(CRATE01-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT11_AREA)$(CRATE01-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52683,7 +52683,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT12_AREA)$(CRATE01-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT12_AREA)$(CRATE01-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52755,7 +52755,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT13_AREA)$(CRATE01-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT13_AREA)$(CRATE01-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52827,7 +52827,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT14_AREA)$(CRATE01-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT14_AREA)$(CRATE01-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52899,7 +52899,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT15_AREA)$(CRATE01-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT15_AREA)$(CRATE01-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -52971,7 +52971,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT16_AREA)$(CRATE01-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT16_AREA)$(CRATE01-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53043,7 +53043,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT17_AREA)$(CRATE01-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT17_AREA)$(CRATE01-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53115,7 +53115,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT18_AREA)$(CRATE01-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT18_AREA)$(CRATE01-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53187,7 +53187,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT19_AREA)$(CRATE01-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT19_AREA)$(CRATE01-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53259,7 +53259,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT20_AREA)$(CRATE01-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT20_AREA)$(CRATE01-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53331,7 +53331,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT21_AREA)$(CRATE01-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT21_AREA)$(CRATE01-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53403,7 +53403,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT22_AREA)$(CRATE01-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT22_AREA)$(CRATE01-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53475,7 +53475,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT23_AREA)$(CRATE01-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT23_AREA)$(CRATE01-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53547,7 +53547,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE01-SLOT24_AREA)$(CRATE01-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE01-SLOT24_AREA)$(CRATE01-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53619,7 +53619,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT01_AREA)$(CRATE02-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT01_AREA)$(CRATE02-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53691,7 +53691,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT02_AREA)$(CRATE02-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT02_AREA)$(CRATE02-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53763,7 +53763,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT03_AREA)$(CRATE02-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT03_AREA)$(CRATE02-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53835,7 +53835,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT04_AREA)$(CRATE02-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT04_AREA)$(CRATE02-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53907,7 +53907,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT05_AREA)$(CRATE02-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT05_AREA)$(CRATE02-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -53979,7 +53979,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT06_AREA)$(CRATE02-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT06_AREA)$(CRATE02-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54051,7 +54051,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT07_AREA)$(CRATE02-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT07_AREA)$(CRATE02-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54123,7 +54123,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT08_AREA)$(CRATE02-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT08_AREA)$(CRATE02-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54195,7 +54195,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT09_AREA)$(CRATE02-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT09_AREA)$(CRATE02-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54267,7 +54267,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT10_AREA)$(CRATE02-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT10_AREA)$(CRATE02-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54339,7 +54339,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT11_AREA)$(CRATE02-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT11_AREA)$(CRATE02-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54411,7 +54411,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT12_AREA)$(CRATE02-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT12_AREA)$(CRATE02-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54483,7 +54483,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT13_AREA)$(CRATE02-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT13_AREA)$(CRATE02-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54555,7 +54555,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT14_AREA)$(CRATE02-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT14_AREA)$(CRATE02-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54627,7 +54627,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT15_AREA)$(CRATE02-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT15_AREA)$(CRATE02-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54699,7 +54699,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT16_AREA)$(CRATE02-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT16_AREA)$(CRATE02-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54771,7 +54771,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT17_AREA)$(CRATE02-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT17_AREA)$(CRATE02-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54843,7 +54843,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT18_AREA)$(CRATE02-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT18_AREA)$(CRATE02-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54915,7 +54915,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT19_AREA)$(CRATE02-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT19_AREA)$(CRATE02-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -54987,7 +54987,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT20_AREA)$(CRATE02-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT20_AREA)$(CRATE02-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55059,7 +55059,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT21_AREA)$(CRATE02-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT21_AREA)$(CRATE02-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55131,7 +55131,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT22_AREA)$(CRATE02-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT22_AREA)$(CRATE02-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55203,7 +55203,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT23_AREA)$(CRATE02-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT23_AREA)$(CRATE02-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55275,7 +55275,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE02-SLOT24_AREA)$(CRATE02-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE02-SLOT24_AREA)$(CRATE02-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55347,7 +55347,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT01_AREA)$(CRATE03-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT01_AREA)$(CRATE03-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55419,7 +55419,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT02_AREA)$(CRATE03-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT02_AREA)$(CRATE03-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55491,7 +55491,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT03_AREA)$(CRATE03-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT03_AREA)$(CRATE03-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55563,7 +55563,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT04_AREA)$(CRATE03-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT04_AREA)$(CRATE03-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55635,7 +55635,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT05_AREA)$(CRATE03-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT05_AREA)$(CRATE03-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55707,7 +55707,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT06_AREA)$(CRATE03-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT06_AREA)$(CRATE03-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55779,7 +55779,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT07_AREA)$(CRATE03-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT07_AREA)$(CRATE03-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55851,7 +55851,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT08_AREA)$(CRATE03-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT08_AREA)$(CRATE03-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55923,7 +55923,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT09_AREA)$(CRATE03-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT09_AREA)$(CRATE03-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -55995,7 +55995,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT10_AREA)$(CRATE03-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT10_AREA)$(CRATE03-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56067,7 +56067,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT11_AREA)$(CRATE03-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT11_AREA)$(CRATE03-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56139,7 +56139,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT12_AREA)$(CRATE03-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT12_AREA)$(CRATE03-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56211,7 +56211,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT13_AREA)$(CRATE03-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT13_AREA)$(CRATE03-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56283,7 +56283,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT14_AREA)$(CRATE03-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT14_AREA)$(CRATE03-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56355,7 +56355,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT15_AREA)$(CRATE03-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT15_AREA)$(CRATE03-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56427,7 +56427,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT16_AREA)$(CRATE03-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT16_AREA)$(CRATE03-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56499,7 +56499,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT17_AREA)$(CRATE03-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT17_AREA)$(CRATE03-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56571,7 +56571,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT18_AREA)$(CRATE03-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT18_AREA)$(CRATE03-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56643,7 +56643,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT19_AREA)$(CRATE03-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT19_AREA)$(CRATE03-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56715,7 +56715,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT20_AREA)$(CRATE03-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT20_AREA)$(CRATE03-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56787,7 +56787,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT21_AREA)$(CRATE03-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT21_AREA)$(CRATE03-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56859,7 +56859,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT22_AREA)$(CRATE03-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT22_AREA)$(CRATE03-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -56931,7 +56931,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT23_AREA)$(CRATE03-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT23_AREA)$(CRATE03-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57003,7 +57003,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE03-SLOT24_AREA)$(CRATE03-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE03-SLOT24_AREA)$(CRATE03-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57075,7 +57075,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT01_AREA)$(CRATE04-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT01_AREA)$(CRATE04-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57147,7 +57147,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT02_AREA)$(CRATE04-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT02_AREA)$(CRATE04-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57219,7 +57219,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT03_AREA)$(CRATE04-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT03_AREA)$(CRATE04-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57291,7 +57291,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT04_AREA)$(CRATE04-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT04_AREA)$(CRATE04-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57363,7 +57363,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT05_AREA)$(CRATE04-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT05_AREA)$(CRATE04-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57435,7 +57435,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT06_AREA)$(CRATE04-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT06_AREA)$(CRATE04-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57507,7 +57507,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT07_AREA)$(CRATE04-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT07_AREA)$(CRATE04-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57579,7 +57579,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT08_AREA)$(CRATE04-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT08_AREA)$(CRATE04-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57651,7 +57651,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT09_AREA)$(CRATE04-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT09_AREA)$(CRATE04-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57723,7 +57723,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT10_AREA)$(CRATE04-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT10_AREA)$(CRATE04-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57795,7 +57795,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT11_AREA)$(CRATE04-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT11_AREA)$(CRATE04-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57867,7 +57867,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT12_AREA)$(CRATE04-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT12_AREA)$(CRATE04-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -57939,7 +57939,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT13_AREA)$(CRATE04-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT13_AREA)$(CRATE04-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58011,7 +58011,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT14_AREA)$(CRATE04-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT14_AREA)$(CRATE04-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58083,7 +58083,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT15_AREA)$(CRATE04-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT15_AREA)$(CRATE04-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58155,7 +58155,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT16_AREA)$(CRATE04-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT16_AREA)$(CRATE04-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58227,7 +58227,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT17_AREA)$(CRATE04-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT17_AREA)$(CRATE04-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58299,7 +58299,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT18_AREA)$(CRATE04-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT18_AREA)$(CRATE04-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58371,7 +58371,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT19_AREA)$(CRATE04-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT19_AREA)$(CRATE04-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58443,7 +58443,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT20_AREA)$(CRATE04-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT20_AREA)$(CRATE04-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58515,7 +58515,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT21_AREA)$(CRATE04-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT21_AREA)$(CRATE04-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58587,7 +58587,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT22_AREA)$(CRATE04-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT22_AREA)$(CRATE04-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58659,7 +58659,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT23_AREA)$(CRATE04-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT23_AREA)$(CRATE04-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58731,7 +58731,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE04-SLOT24_AREA)$(CRATE04-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE04-SLOT24_AREA)$(CRATE04-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58803,7 +58803,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT01_AREA)$(CRATE05-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT01_AREA)$(CRATE05-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58875,7 +58875,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT02_AREA)$(CRATE05-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT02_AREA)$(CRATE05-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -58947,7 +58947,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT03_AREA)$(CRATE05-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT03_AREA)$(CRATE05-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59019,7 +59019,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT04_AREA)$(CRATE05-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT04_AREA)$(CRATE05-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59091,7 +59091,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT05_AREA)$(CRATE05-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT05_AREA)$(CRATE05-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59163,7 +59163,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT06_AREA)$(CRATE05-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT06_AREA)$(CRATE05-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59235,7 +59235,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT07_AREA)$(CRATE05-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT07_AREA)$(CRATE05-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59307,7 +59307,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT08_AREA)$(CRATE05-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT08_AREA)$(CRATE05-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59379,7 +59379,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT09_AREA)$(CRATE05-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT09_AREA)$(CRATE05-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59451,7 +59451,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT10_AREA)$(CRATE05-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT10_AREA)$(CRATE05-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59523,7 +59523,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT11_AREA)$(CRATE05-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT11_AREA)$(CRATE05-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59595,7 +59595,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT12_AREA)$(CRATE05-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT12_AREA)$(CRATE05-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59667,7 +59667,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT13_AREA)$(CRATE05-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT13_AREA)$(CRATE05-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59739,7 +59739,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT14_AREA)$(CRATE05-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT14_AREA)$(CRATE05-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59811,7 +59811,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT15_AREA)$(CRATE05-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT15_AREA)$(CRATE05-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59883,7 +59883,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT16_AREA)$(CRATE05-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT16_AREA)$(CRATE05-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -59955,7 +59955,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT17_AREA)$(CRATE05-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT17_AREA)$(CRATE05-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60027,7 +60027,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT18_AREA)$(CRATE05-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT18_AREA)$(CRATE05-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60099,7 +60099,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT19_AREA)$(CRATE05-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT19_AREA)$(CRATE05-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60171,7 +60171,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT20_AREA)$(CRATE05-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT20_AREA)$(CRATE05-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60243,7 +60243,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT21_AREA)$(CRATE05-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT21_AREA)$(CRATE05-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60315,7 +60315,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT22_AREA)$(CRATE05-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT22_AREA)$(CRATE05-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60387,7 +60387,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT23_AREA)$(CRATE05-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT23_AREA)$(CRATE05-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60459,7 +60459,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE05-SLOT24_AREA)$(CRATE05-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE05-SLOT24_AREA)$(CRATE05-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60531,7 +60531,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT01_AREA)$(CRATE06-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT01_AREA)$(CRATE06-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60603,7 +60603,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT02_AREA)$(CRATE06-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT02_AREA)$(CRATE06-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60675,7 +60675,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT03_AREA)$(CRATE06-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT03_AREA)$(CRATE06-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60747,7 +60747,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT04_AREA)$(CRATE06-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT04_AREA)$(CRATE06-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60819,7 +60819,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT05_AREA)$(CRATE06-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT05_AREA)$(CRATE06-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60891,7 +60891,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT06_AREA)$(CRATE06-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT06_AREA)$(CRATE06-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -60963,7 +60963,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT07_AREA)$(CRATE06-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT07_AREA)$(CRATE06-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61035,7 +61035,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT08_AREA)$(CRATE06-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT08_AREA)$(CRATE06-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61107,7 +61107,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT09_AREA)$(CRATE06-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT09_AREA)$(CRATE06-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61179,7 +61179,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT10_AREA)$(CRATE06-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT10_AREA)$(CRATE06-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61251,7 +61251,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT11_AREA)$(CRATE06-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT11_AREA)$(CRATE06-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61323,7 +61323,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT12_AREA)$(CRATE06-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT12_AREA)$(CRATE06-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61395,7 +61395,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT13_AREA)$(CRATE06-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT13_AREA)$(CRATE06-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61467,7 +61467,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT14_AREA)$(CRATE06-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT14_AREA)$(CRATE06-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61539,7 +61539,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT15_AREA)$(CRATE06-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT15_AREA)$(CRATE06-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61611,7 +61611,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT16_AREA)$(CRATE06-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT16_AREA)$(CRATE06-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61683,7 +61683,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT17_AREA)$(CRATE06-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT17_AREA)$(CRATE06-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61755,7 +61755,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT18_AREA)$(CRATE06-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT18_AREA)$(CRATE06-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61827,7 +61827,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT19_AREA)$(CRATE06-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT19_AREA)$(CRATE06-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61899,7 +61899,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT20_AREA)$(CRATE06-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT20_AREA)$(CRATE06-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -61971,7 +61971,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT21_AREA)$(CRATE06-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT21_AREA)$(CRATE06-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62043,7 +62043,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT22_AREA)$(CRATE06-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT22_AREA)$(CRATE06-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62115,7 +62115,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT23_AREA)$(CRATE06-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT23_AREA)$(CRATE06-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62187,7 +62187,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE06-SLOT24_AREA)$(CRATE06-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE06-SLOT24_AREA)$(CRATE06-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62259,7 +62259,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT01_AREA)$(CRATE07-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT01_AREA)$(CRATE07-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62331,7 +62331,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT02_AREA)$(CRATE07-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT02_AREA)$(CRATE07-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62403,7 +62403,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT03_AREA)$(CRATE07-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT03_AREA)$(CRATE07-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62475,7 +62475,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT04_AREA)$(CRATE07-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT04_AREA)$(CRATE07-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62547,7 +62547,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT05_AREA)$(CRATE07-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT05_AREA)$(CRATE07-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62619,7 +62619,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT06_AREA)$(CRATE07-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT06_AREA)$(CRATE07-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62691,7 +62691,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT07_AREA)$(CRATE07-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT07_AREA)$(CRATE07-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62763,7 +62763,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT08_AREA)$(CRATE07-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT08_AREA)$(CRATE07-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62835,7 +62835,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT09_AREA)$(CRATE07-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT09_AREA)$(CRATE07-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62907,7 +62907,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT10_AREA)$(CRATE07-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT10_AREA)$(CRATE07-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -62979,7 +62979,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT11_AREA)$(CRATE07-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT11_AREA)$(CRATE07-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63051,7 +63051,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT12_AREA)$(CRATE07-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT12_AREA)$(CRATE07-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63123,7 +63123,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT13_AREA)$(CRATE07-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT13_AREA)$(CRATE07-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63195,7 +63195,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT14_AREA)$(CRATE07-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT14_AREA)$(CRATE07-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63267,7 +63267,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT15_AREA)$(CRATE07-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT15_AREA)$(CRATE07-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63339,7 +63339,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT16_AREA)$(CRATE07-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT16_AREA)$(CRATE07-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63411,7 +63411,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT17_AREA)$(CRATE07-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT17_AREA)$(CRATE07-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63483,7 +63483,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT18_AREA)$(CRATE07-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT18_AREA)$(CRATE07-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63555,7 +63555,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT19_AREA)$(CRATE07-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT19_AREA)$(CRATE07-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63627,7 +63627,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT20_AREA)$(CRATE07-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT20_AREA)$(CRATE07-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63699,7 +63699,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT21_AREA)$(CRATE07-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT21_AREA)$(CRATE07-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63771,7 +63771,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT22_AREA)$(CRATE07-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT22_AREA)$(CRATE07-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63843,7 +63843,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT23_AREA)$(CRATE07-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT23_AREA)$(CRATE07-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63915,7 +63915,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE07-SLOT24_AREA)$(CRATE07-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE07-SLOT24_AREA)$(CRATE07-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -63987,7 +63987,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT01_AREA)$(CRATE08-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT01_AREA)$(CRATE08-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64059,7 +64059,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT02_AREA)$(CRATE08-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT02_AREA)$(CRATE08-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64131,7 +64131,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT03_AREA)$(CRATE08-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT03_AREA)$(CRATE08-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64203,7 +64203,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT04_AREA)$(CRATE08-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT04_AREA)$(CRATE08-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64275,7 +64275,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT05_AREA)$(CRATE08-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT05_AREA)$(CRATE08-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64347,7 +64347,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT06_AREA)$(CRATE08-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT06_AREA)$(CRATE08-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64419,7 +64419,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT07_AREA)$(CRATE08-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT07_AREA)$(CRATE08-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64491,7 +64491,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT08_AREA)$(CRATE08-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT08_AREA)$(CRATE08-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64563,7 +64563,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT09_AREA)$(CRATE08-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT09_AREA)$(CRATE08-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64635,7 +64635,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT10_AREA)$(CRATE08-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT10_AREA)$(CRATE08-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64707,7 +64707,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT11_AREA)$(CRATE08-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT11_AREA)$(CRATE08-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64779,7 +64779,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT12_AREA)$(CRATE08-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT12_AREA)$(CRATE08-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64851,7 +64851,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT13_AREA)$(CRATE08-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT13_AREA)$(CRATE08-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64923,7 +64923,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT14_AREA)$(CRATE08-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT14_AREA)$(CRATE08-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -64995,7 +64995,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT15_AREA)$(CRATE08-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT15_AREA)$(CRATE08-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65067,7 +65067,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT16_AREA)$(CRATE08-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT16_AREA)$(CRATE08-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65139,7 +65139,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT17_AREA)$(CRATE08-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT17_AREA)$(CRATE08-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65211,7 +65211,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT18_AREA)$(CRATE08-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT18_AREA)$(CRATE08-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65283,7 +65283,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT19_AREA)$(CRATE08-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT19_AREA)$(CRATE08-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65355,7 +65355,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT20_AREA)$(CRATE08-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT20_AREA)$(CRATE08-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65427,7 +65427,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT21_AREA)$(CRATE08-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT21_AREA)$(CRATE08-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65499,7 +65499,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT22_AREA)$(CRATE08-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT22_AREA)$(CRATE08-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65571,7 +65571,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT23_AREA)$(CRATE08-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT23_AREA)$(CRATE08-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65643,7 +65643,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE08-SLOT24_AREA)$(CRATE08-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE08-SLOT24_AREA)$(CRATE08-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65715,7 +65715,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT01_AREA)$(CRATE09-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT01_AREA)$(CRATE09-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65787,7 +65787,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT02_AREA)$(CRATE09-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT02_AREA)$(CRATE09-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65859,7 +65859,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT03_AREA)$(CRATE09-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT03_AREA)$(CRATE09-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -65931,7 +65931,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT04_AREA)$(CRATE09-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT04_AREA)$(CRATE09-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66003,7 +66003,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT05_AREA)$(CRATE09-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT05_AREA)$(CRATE09-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66075,7 +66075,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT06_AREA)$(CRATE09-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT06_AREA)$(CRATE09-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66147,7 +66147,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT07_AREA)$(CRATE09-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT07_AREA)$(CRATE09-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66219,7 +66219,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT08_AREA)$(CRATE09-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT08_AREA)$(CRATE09-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66291,7 +66291,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT09_AREA)$(CRATE09-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT09_AREA)$(CRATE09-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66363,7 +66363,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT10_AREA)$(CRATE09-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT10_AREA)$(CRATE09-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66435,7 +66435,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT11_AREA)$(CRATE09-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT11_AREA)$(CRATE09-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66507,7 +66507,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT12_AREA)$(CRATE09-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT12_AREA)$(CRATE09-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66579,7 +66579,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT13_AREA)$(CRATE09-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT13_AREA)$(CRATE09-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66651,7 +66651,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT14_AREA)$(CRATE09-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT14_AREA)$(CRATE09-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66723,7 +66723,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT15_AREA)$(CRATE09-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT15_AREA)$(CRATE09-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66795,7 +66795,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT16_AREA)$(CRATE09-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT16_AREA)$(CRATE09-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66867,7 +66867,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT17_AREA)$(CRATE09-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT17_AREA)$(CRATE09-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -66939,7 +66939,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT18_AREA)$(CRATE09-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT18_AREA)$(CRATE09-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67011,7 +67011,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT19_AREA)$(CRATE09-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT19_AREA)$(CRATE09-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67083,7 +67083,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT20_AREA)$(CRATE09-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT20_AREA)$(CRATE09-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67155,7 +67155,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT21_AREA)$(CRATE09-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT21_AREA)$(CRATE09-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67227,7 +67227,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT22_AREA)$(CRATE09-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT22_AREA)$(CRATE09-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67299,7 +67299,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT23_AREA)$(CRATE09-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT23_AREA)$(CRATE09-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67371,7 +67371,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE09-SLOT24_AREA)$(CRATE09-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE09-SLOT24_AREA)$(CRATE09-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67443,7 +67443,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT01_AREA)$(CRATE10-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT01_AREA)$(CRATE10-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67515,7 +67515,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT02_AREA)$(CRATE10-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT02_AREA)$(CRATE10-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67587,7 +67587,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT03_AREA)$(CRATE10-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT03_AREA)$(CRATE10-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67659,7 +67659,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT04_AREA)$(CRATE10-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT04_AREA)$(CRATE10-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67731,7 +67731,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT05_AREA)$(CRATE10-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT05_AREA)$(CRATE10-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67803,7 +67803,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT06_AREA)$(CRATE10-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT06_AREA)$(CRATE10-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67875,7 +67875,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT07_AREA)$(CRATE10-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT07_AREA)$(CRATE10-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -67947,7 +67947,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT08_AREA)$(CRATE10-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT08_AREA)$(CRATE10-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68019,7 +68019,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT09_AREA)$(CRATE10-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT09_AREA)$(CRATE10-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68091,7 +68091,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT10_AREA)$(CRATE10-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT10_AREA)$(CRATE10-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68163,7 +68163,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT11_AREA)$(CRATE10-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT11_AREA)$(CRATE10-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68235,7 +68235,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT12_AREA)$(CRATE10-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT12_AREA)$(CRATE10-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68307,7 +68307,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT13_AREA)$(CRATE10-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT13_AREA)$(CRATE10-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68379,7 +68379,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT14_AREA)$(CRATE10-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT14_AREA)$(CRATE10-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68451,7 +68451,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT15_AREA)$(CRATE10-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT15_AREA)$(CRATE10-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68523,7 +68523,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT16_AREA)$(CRATE10-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT16_AREA)$(CRATE10-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68595,7 +68595,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT17_AREA)$(CRATE10-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT17_AREA)$(CRATE10-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68667,7 +68667,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT18_AREA)$(CRATE10-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT18_AREA)$(CRATE10-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68739,7 +68739,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT19_AREA)$(CRATE10-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT19_AREA)$(CRATE10-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68811,7 +68811,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT20_AREA)$(CRATE10-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT20_AREA)$(CRATE10-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68883,7 +68883,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT21_AREA)$(CRATE10-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT21_AREA)$(CRATE10-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -68955,7 +68955,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT22_AREA)$(CRATE10-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT22_AREA)$(CRATE10-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69027,7 +69027,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT23_AREA)$(CRATE10-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT23_AREA)$(CRATE10-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69099,7 +69099,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE10-SLOT24_AREA)$(CRATE10-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE10-SLOT24_AREA)$(CRATE10-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69171,7 +69171,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT01_AREA)$(CRATE11-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT01_AREA)$(CRATE11-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69243,7 +69243,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT02_AREA)$(CRATE11-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT02_AREA)$(CRATE11-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69315,7 +69315,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT03_AREA)$(CRATE11-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT03_AREA)$(CRATE11-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69387,7 +69387,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT04_AREA)$(CRATE11-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT04_AREA)$(CRATE11-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69459,7 +69459,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT05_AREA)$(CRATE11-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT05_AREA)$(CRATE11-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69531,7 +69531,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT06_AREA)$(CRATE11-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT06_AREA)$(CRATE11-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69603,7 +69603,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT07_AREA)$(CRATE11-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT07_AREA)$(CRATE11-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69675,7 +69675,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT08_AREA)$(CRATE11-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT08_AREA)$(CRATE11-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69747,7 +69747,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT09_AREA)$(CRATE11-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT09_AREA)$(CRATE11-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69819,7 +69819,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT10_AREA)$(CRATE11-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT10_AREA)$(CRATE11-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69891,7 +69891,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT11_AREA)$(CRATE11-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT11_AREA)$(CRATE11-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -69963,7 +69963,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT12_AREA)$(CRATE11-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT12_AREA)$(CRATE11-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70035,7 +70035,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT13_AREA)$(CRATE11-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT13_AREA)$(CRATE11-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70107,7 +70107,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT14_AREA)$(CRATE11-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT14_AREA)$(CRATE11-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70179,7 +70179,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT15_AREA)$(CRATE11-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT15_AREA)$(CRATE11-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70251,7 +70251,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT16_AREA)$(CRATE11-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT16_AREA)$(CRATE11-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70323,7 +70323,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT17_AREA)$(CRATE11-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT17_AREA)$(CRATE11-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70395,7 +70395,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT18_AREA)$(CRATE11-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT18_AREA)$(CRATE11-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70467,7 +70467,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT19_AREA)$(CRATE11-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT19_AREA)$(CRATE11-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70539,7 +70539,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT20_AREA)$(CRATE11-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT20_AREA)$(CRATE11-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70611,7 +70611,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT21_AREA)$(CRATE11-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT21_AREA)$(CRATE11-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70683,7 +70683,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT22_AREA)$(CRATE11-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT22_AREA)$(CRATE11-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70755,7 +70755,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT23_AREA)$(CRATE11-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT23_AREA)$(CRATE11-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70827,7 +70827,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE11-SLOT24_AREA)$(CRATE11-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE11-SLOT24_AREA)$(CRATE11-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70899,7 +70899,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT01_AREA)$(CRATE12-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT01_AREA)$(CRATE12-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -70971,7 +70971,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT02_AREA)$(CRATE12-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT02_AREA)$(CRATE12-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71043,7 +71043,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT03_AREA)$(CRATE12-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT03_AREA)$(CRATE12-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71115,7 +71115,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT04_AREA)$(CRATE12-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT04_AREA)$(CRATE12-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71187,7 +71187,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT05_AREA)$(CRATE12-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT05_AREA)$(CRATE12-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71259,7 +71259,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT06_AREA)$(CRATE12-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT06_AREA)$(CRATE12-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71331,7 +71331,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT07_AREA)$(CRATE12-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT07_AREA)$(CRATE12-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71403,7 +71403,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT08_AREA)$(CRATE12-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT08_AREA)$(CRATE12-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71475,7 +71475,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT09_AREA)$(CRATE12-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT09_AREA)$(CRATE12-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71547,7 +71547,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT10_AREA)$(CRATE12-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT10_AREA)$(CRATE12-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71619,7 +71619,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT11_AREA)$(CRATE12-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT11_AREA)$(CRATE12-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71691,7 +71691,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT12_AREA)$(CRATE12-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT12_AREA)$(CRATE12-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71763,7 +71763,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT13_AREA)$(CRATE12-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT13_AREA)$(CRATE12-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71835,7 +71835,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT14_AREA)$(CRATE12-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT14_AREA)$(CRATE12-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71907,7 +71907,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT15_AREA)$(CRATE12-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT15_AREA)$(CRATE12-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -71979,7 +71979,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT16_AREA)$(CRATE12-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT16_AREA)$(CRATE12-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72051,7 +72051,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT17_AREA)$(CRATE12-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT17_AREA)$(CRATE12-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72123,7 +72123,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT18_AREA)$(CRATE12-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT18_AREA)$(CRATE12-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72195,7 +72195,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT19_AREA)$(CRATE12-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT19_AREA)$(CRATE12-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72267,7 +72267,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT20_AREA)$(CRATE12-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT20_AREA)$(CRATE12-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72339,7 +72339,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT21_AREA)$(CRATE12-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT21_AREA)$(CRATE12-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72411,7 +72411,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT22_AREA)$(CRATE12-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT22_AREA)$(CRATE12-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72483,7 +72483,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT23_AREA)$(CRATE12-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT23_AREA)$(CRATE12-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72555,7 +72555,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE12-SLOT24_AREA)$(CRATE12-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE12-SLOT24_AREA)$(CRATE12-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72627,7 +72627,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT01_AREA)$(CRATE13-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT01_AREA)$(CRATE13-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72699,7 +72699,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT02_AREA)$(CRATE13-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT02_AREA)$(CRATE13-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72771,7 +72771,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT03_AREA)$(CRATE13-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT03_AREA)$(CRATE13-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72843,7 +72843,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT04_AREA)$(CRATE13-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT04_AREA)$(CRATE13-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72915,7 +72915,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT05_AREA)$(CRATE13-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT05_AREA)$(CRATE13-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -72987,7 +72987,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT06_AREA)$(CRATE13-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT06_AREA)$(CRATE13-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73059,7 +73059,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT07_AREA)$(CRATE13-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT07_AREA)$(CRATE13-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73131,7 +73131,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT08_AREA)$(CRATE13-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT08_AREA)$(CRATE13-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73203,7 +73203,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT09_AREA)$(CRATE13-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT09_AREA)$(CRATE13-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73275,7 +73275,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT10_AREA)$(CRATE13-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT10_AREA)$(CRATE13-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73347,7 +73347,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT11_AREA)$(CRATE13-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT11_AREA)$(CRATE13-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73419,7 +73419,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT12_AREA)$(CRATE13-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT12_AREA)$(CRATE13-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73491,7 +73491,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT13_AREA)$(CRATE13-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT13_AREA)$(CRATE13-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73563,7 +73563,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT14_AREA)$(CRATE13-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT14_AREA)$(CRATE13-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73635,7 +73635,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT15_AREA)$(CRATE13-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT15_AREA)$(CRATE13-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73707,7 +73707,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT16_AREA)$(CRATE13-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT16_AREA)$(CRATE13-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73779,7 +73779,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT17_AREA)$(CRATE13-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT17_AREA)$(CRATE13-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73851,7 +73851,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT18_AREA)$(CRATE13-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT18_AREA)$(CRATE13-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73923,7 +73923,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT19_AREA)$(CRATE13-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT19_AREA)$(CRATE13-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -73995,7 +73995,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT20_AREA)$(CRATE13-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT20_AREA)$(CRATE13-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74067,7 +74067,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT21_AREA)$(CRATE13-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT21_AREA)$(CRATE13-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74139,7 +74139,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT22_AREA)$(CRATE13-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT22_AREA)$(CRATE13-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74211,7 +74211,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT23_AREA)$(CRATE13-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT23_AREA)$(CRATE13-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74283,7 +74283,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE13-SLOT24_AREA)$(CRATE13-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE13-SLOT24_AREA)$(CRATE13-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74355,7 +74355,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT01_AREA)$(CRATE14-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT01_AREA)$(CRATE14-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74427,7 +74427,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT02_AREA)$(CRATE14-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT02_AREA)$(CRATE14-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74499,7 +74499,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT03_AREA)$(CRATE14-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT03_AREA)$(CRATE14-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74571,7 +74571,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT04_AREA)$(CRATE14-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT04_AREA)$(CRATE14-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74643,7 +74643,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT05_AREA)$(CRATE14-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT05_AREA)$(CRATE14-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74715,7 +74715,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT06_AREA)$(CRATE14-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT06_AREA)$(CRATE14-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74787,7 +74787,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT07_AREA)$(CRATE14-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT07_AREA)$(CRATE14-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74859,7 +74859,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT08_AREA)$(CRATE14-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT08_AREA)$(CRATE14-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -74931,7 +74931,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT09_AREA)$(CRATE14-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT09_AREA)$(CRATE14-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75003,7 +75003,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT10_AREA)$(CRATE14-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT10_AREA)$(CRATE14-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75075,7 +75075,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT11_AREA)$(CRATE14-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT11_AREA)$(CRATE14-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75147,7 +75147,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT12_AREA)$(CRATE14-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT12_AREA)$(CRATE14-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75219,7 +75219,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT13_AREA)$(CRATE14-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT13_AREA)$(CRATE14-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75291,7 +75291,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT14_AREA)$(CRATE14-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT14_AREA)$(CRATE14-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75363,7 +75363,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT15_AREA)$(CRATE14-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT15_AREA)$(CRATE14-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75435,7 +75435,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT16_AREA)$(CRATE14-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT16_AREA)$(CRATE14-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75507,7 +75507,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT17_AREA)$(CRATE14-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT17_AREA)$(CRATE14-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75579,7 +75579,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT18_AREA)$(CRATE14-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT18_AREA)$(CRATE14-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75651,7 +75651,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT19_AREA)$(CRATE14-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT19_AREA)$(CRATE14-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75723,7 +75723,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT20_AREA)$(CRATE14-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT20_AREA)$(CRATE14-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75795,7 +75795,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT21_AREA)$(CRATE14-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT21_AREA)$(CRATE14-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75867,7 +75867,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT22_AREA)$(CRATE14-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT22_AREA)$(CRATE14-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -75939,7 +75939,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT23_AREA)$(CRATE14-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT23_AREA)$(CRATE14-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76011,7 +76011,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE14-SLOT24_AREA)$(CRATE14-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE14-SLOT24_AREA)$(CRATE14-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76083,7 +76083,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT01_AREA)$(CRATE15-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT01_AREA)$(CRATE15-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76155,7 +76155,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT02_AREA)$(CRATE15-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT02_AREA)$(CRATE15-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76227,7 +76227,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT03_AREA)$(CRATE15-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT03_AREA)$(CRATE15-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76299,7 +76299,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT04_AREA)$(CRATE15-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT04_AREA)$(CRATE15-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76371,7 +76371,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT05_AREA)$(CRATE15-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT05_AREA)$(CRATE15-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76443,7 +76443,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT06_AREA)$(CRATE15-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT06_AREA)$(CRATE15-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76515,7 +76515,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT07_AREA)$(CRATE15-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT07_AREA)$(CRATE15-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76587,7 +76587,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT08_AREA)$(CRATE15-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT08_AREA)$(CRATE15-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76659,7 +76659,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT09_AREA)$(CRATE15-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT09_AREA)$(CRATE15-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76731,7 +76731,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT10_AREA)$(CRATE15-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT10_AREA)$(CRATE15-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76803,7 +76803,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT11_AREA)$(CRATE15-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT11_AREA)$(CRATE15-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76875,7 +76875,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT12_AREA)$(CRATE15-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT12_AREA)$(CRATE15-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -76947,7 +76947,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT13_AREA)$(CRATE15-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT13_AREA)$(CRATE15-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77019,7 +77019,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT14_AREA)$(CRATE15-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT14_AREA)$(CRATE15-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77091,7 +77091,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT15_AREA)$(CRATE15-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT15_AREA)$(CRATE15-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77163,7 +77163,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT16_AREA)$(CRATE15-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT16_AREA)$(CRATE15-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77235,7 +77235,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT17_AREA)$(CRATE15-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT17_AREA)$(CRATE15-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77307,7 +77307,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT18_AREA)$(CRATE15-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT18_AREA)$(CRATE15-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77379,7 +77379,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT19_AREA)$(CRATE15-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT19_AREA)$(CRATE15-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77451,7 +77451,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT20_AREA)$(CRATE15-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT20_AREA)$(CRATE15-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77523,7 +77523,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT21_AREA)$(CRATE15-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT21_AREA)$(CRATE15-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77595,7 +77595,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT22_AREA)$(CRATE15-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT22_AREA)$(CRATE15-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77667,7 +77667,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT23_AREA)$(CRATE15-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT23_AREA)$(CRATE15-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77739,7 +77739,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE15-SLOT24_AREA)$(CRATE15-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE15-SLOT24_AREA)$(CRATE15-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77811,7 +77811,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT01_AREA)$(CRATE16-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT01_AREA)$(CRATE16-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77883,7 +77883,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT02_AREA)$(CRATE16-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT02_AREA)$(CRATE16-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -77955,7 +77955,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT03_AREA)$(CRATE16-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT03_AREA)$(CRATE16-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78027,7 +78027,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT04_AREA)$(CRATE16-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT04_AREA)$(CRATE16-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78099,7 +78099,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT05_AREA)$(CRATE16-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT05_AREA)$(CRATE16-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78171,7 +78171,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT06_AREA)$(CRATE16-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT06_AREA)$(CRATE16-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78243,7 +78243,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT07_AREA)$(CRATE16-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT07_AREA)$(CRATE16-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78315,7 +78315,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT08_AREA)$(CRATE16-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT08_AREA)$(CRATE16-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78387,7 +78387,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT09_AREA)$(CRATE16-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT09_AREA)$(CRATE16-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78459,7 +78459,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT10_AREA)$(CRATE16-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT10_AREA)$(CRATE16-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78531,7 +78531,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT11_AREA)$(CRATE16-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT11_AREA)$(CRATE16-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78603,7 +78603,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT12_AREA)$(CRATE16-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT12_AREA)$(CRATE16-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78675,7 +78675,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT13_AREA)$(CRATE16-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT13_AREA)$(CRATE16-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78747,7 +78747,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT14_AREA)$(CRATE16-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT14_AREA)$(CRATE16-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78819,7 +78819,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT15_AREA)$(CRATE16-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT15_AREA)$(CRATE16-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78891,7 +78891,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT16_AREA)$(CRATE16-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT16_AREA)$(CRATE16-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -78963,7 +78963,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT17_AREA)$(CRATE16-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT17_AREA)$(CRATE16-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79035,7 +79035,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT18_AREA)$(CRATE16-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT18_AREA)$(CRATE16-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79107,7 +79107,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT19_AREA)$(CRATE16-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT19_AREA)$(CRATE16-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79179,7 +79179,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT20_AREA)$(CRATE16-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT20_AREA)$(CRATE16-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79251,7 +79251,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT21_AREA)$(CRATE16-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT21_AREA)$(CRATE16-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79323,7 +79323,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT22_AREA)$(CRATE16-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT22_AREA)$(CRATE16-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79395,7 +79395,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT23_AREA)$(CRATE16-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT23_AREA)$(CRATE16-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79467,7 +79467,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE16-SLOT24_AREA)$(CRATE16-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE16-SLOT24_AREA)$(CRATE16-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79539,7 +79539,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT01_AREA)$(CRATE17-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT01_AREA)$(CRATE17-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79611,7 +79611,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT02_AREA)$(CRATE17-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT02_AREA)$(CRATE17-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79683,7 +79683,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT03_AREA)$(CRATE17-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT03_AREA)$(CRATE17-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79755,7 +79755,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT04_AREA)$(CRATE17-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT04_AREA)$(CRATE17-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79827,7 +79827,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT05_AREA)$(CRATE17-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT05_AREA)$(CRATE17-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79899,7 +79899,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT06_AREA)$(CRATE17-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT06_AREA)$(CRATE17-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -79971,7 +79971,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT07_AREA)$(CRATE17-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT07_AREA)$(CRATE17-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80043,7 +80043,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT08_AREA)$(CRATE17-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT08_AREA)$(CRATE17-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80115,7 +80115,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT09_AREA)$(CRATE17-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT09_AREA)$(CRATE17-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80187,7 +80187,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT10_AREA)$(CRATE17-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT10_AREA)$(CRATE17-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80259,7 +80259,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT11_AREA)$(CRATE17-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT11_AREA)$(CRATE17-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80331,7 +80331,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT12_AREA)$(CRATE17-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT12_AREA)$(CRATE17-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80403,7 +80403,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT13_AREA)$(CRATE17-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT13_AREA)$(CRATE17-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80475,7 +80475,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT14_AREA)$(CRATE17-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT14_AREA)$(CRATE17-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80547,7 +80547,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT15_AREA)$(CRATE17-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT15_AREA)$(CRATE17-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80619,7 +80619,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT16_AREA)$(CRATE17-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT16_AREA)$(CRATE17-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80691,7 +80691,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT17_AREA)$(CRATE17-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT17_AREA)$(CRATE17-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80763,7 +80763,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT18_AREA)$(CRATE17-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT18_AREA)$(CRATE17-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80835,7 +80835,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT19_AREA)$(CRATE17-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT19_AREA)$(CRATE17-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80907,7 +80907,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT20_AREA)$(CRATE17-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT20_AREA)$(CRATE17-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -80979,7 +80979,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT21_AREA)$(CRATE17-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT21_AREA)$(CRATE17-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81051,7 +81051,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT22_AREA)$(CRATE17-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT22_AREA)$(CRATE17-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81123,7 +81123,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT23_AREA)$(CRATE17-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT23_AREA)$(CRATE17-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81195,7 +81195,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE17-SLOT24_AREA)$(CRATE17-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE17-SLOT24_AREA)$(CRATE17-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81267,7 +81267,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT01_AREA)$(CRATE18-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT01_AREA)$(CRATE18-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81339,7 +81339,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT02_AREA)$(CRATE18-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT02_AREA)$(CRATE18-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81411,7 +81411,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT03_AREA)$(CRATE18-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT03_AREA)$(CRATE18-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81483,7 +81483,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT04_AREA)$(CRATE18-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT04_AREA)$(CRATE18-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81555,7 +81555,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT05_AREA)$(CRATE18-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT05_AREA)$(CRATE18-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81627,7 +81627,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT06_AREA)$(CRATE18-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT06_AREA)$(CRATE18-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81699,7 +81699,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT07_AREA)$(CRATE18-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT07_AREA)$(CRATE18-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81771,7 +81771,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT08_AREA)$(CRATE18-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT08_AREA)$(CRATE18-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81843,7 +81843,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT09_AREA)$(CRATE18-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT09_AREA)$(CRATE18-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81915,7 +81915,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT10_AREA)$(CRATE18-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT10_AREA)$(CRATE18-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -81987,7 +81987,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT11_AREA)$(CRATE18-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT11_AREA)$(CRATE18-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82059,7 +82059,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT12_AREA)$(CRATE18-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT12_AREA)$(CRATE18-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82131,7 +82131,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT13_AREA)$(CRATE18-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT13_AREA)$(CRATE18-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82203,7 +82203,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT14_AREA)$(CRATE18-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT14_AREA)$(CRATE18-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82275,7 +82275,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT15_AREA)$(CRATE18-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT15_AREA)$(CRATE18-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82347,7 +82347,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT16_AREA)$(CRATE18-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT16_AREA)$(CRATE18-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82419,7 +82419,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT17_AREA)$(CRATE18-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT17_AREA)$(CRATE18-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82491,7 +82491,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT18_AREA)$(CRATE18-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT18_AREA)$(CRATE18-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82563,7 +82563,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT19_AREA)$(CRATE18-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT19_AREA)$(CRATE18-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82635,7 +82635,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT20_AREA)$(CRATE18-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT20_AREA)$(CRATE18-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82707,7 +82707,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT21_AREA)$(CRATE18-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT21_AREA)$(CRATE18-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82779,7 +82779,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT22_AREA)$(CRATE18-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT22_AREA)$(CRATE18-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82851,7 +82851,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT23_AREA)$(CRATE18-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT23_AREA)$(CRATE18-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82923,7 +82923,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE18-SLOT24_AREA)$(CRATE18-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE18-SLOT24_AREA)$(CRATE18-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -82995,7 +82995,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT01_AREA)$(CRATE19-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT01_AREA)$(CRATE19-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83067,7 +83067,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT02_AREA)$(CRATE19-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT02_AREA)$(CRATE19-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83139,7 +83139,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT03_AREA)$(CRATE19-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT03_AREA)$(CRATE19-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83211,7 +83211,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT04_AREA)$(CRATE19-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT04_AREA)$(CRATE19-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83283,7 +83283,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT05_AREA)$(CRATE19-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT05_AREA)$(CRATE19-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83355,7 +83355,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT06_AREA)$(CRATE19-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT06_AREA)$(CRATE19-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83427,7 +83427,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT07_AREA)$(CRATE19-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT07_AREA)$(CRATE19-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83499,7 +83499,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT08_AREA)$(CRATE19-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT08_AREA)$(CRATE19-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83571,7 +83571,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT09_AREA)$(CRATE19-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT09_AREA)$(CRATE19-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83643,7 +83643,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT10_AREA)$(CRATE19-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT10_AREA)$(CRATE19-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83715,7 +83715,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT11_AREA)$(CRATE19-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT11_AREA)$(CRATE19-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83787,7 +83787,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT12_AREA)$(CRATE19-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT12_AREA)$(CRATE19-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83859,7 +83859,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT13_AREA)$(CRATE19-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT13_AREA)$(CRATE19-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -83931,7 +83931,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT14_AREA)$(CRATE19-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT14_AREA)$(CRATE19-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84003,7 +84003,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT15_AREA)$(CRATE19-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT15_AREA)$(CRATE19-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84075,7 +84075,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT16_AREA)$(CRATE19-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT16_AREA)$(CRATE19-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84147,7 +84147,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT17_AREA)$(CRATE19-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT17_AREA)$(CRATE19-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84219,7 +84219,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT18_AREA)$(CRATE19-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT18_AREA)$(CRATE19-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84291,7 +84291,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT19_AREA)$(CRATE19-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT19_AREA)$(CRATE19-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84363,7 +84363,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT20_AREA)$(CRATE19-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT20_AREA)$(CRATE19-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84435,7 +84435,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT21_AREA)$(CRATE19-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT21_AREA)$(CRATE19-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84507,7 +84507,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT22_AREA)$(CRATE19-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT22_AREA)$(CRATE19-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84579,7 +84579,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT23_AREA)$(CRATE19-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT23_AREA)$(CRATE19-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84651,7 +84651,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE19-SLOT24_AREA)$(CRATE19-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE19-SLOT24_AREA)$(CRATE19-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84723,7 +84723,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT01_AREA)$(CRATE20-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT01_AREA)$(CRATE20-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84795,7 +84795,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT02_AREA)$(CRATE20-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT02_AREA)$(CRATE20-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84867,7 +84867,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT03_AREA)$(CRATE20-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT03_AREA)$(CRATE20-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -84939,7 +84939,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT04_AREA)$(CRATE20-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT04_AREA)$(CRATE20-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85011,7 +85011,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT05_AREA)$(CRATE20-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT05_AREA)$(CRATE20-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85083,7 +85083,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT06_AREA)$(CRATE20-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT06_AREA)$(CRATE20-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85155,7 +85155,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT07_AREA)$(CRATE20-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT07_AREA)$(CRATE20-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85227,7 +85227,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT08_AREA)$(CRATE20-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT08_AREA)$(CRATE20-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85299,7 +85299,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT09_AREA)$(CRATE20-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT09_AREA)$(CRATE20-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85371,7 +85371,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT10_AREA)$(CRATE20-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT10_AREA)$(CRATE20-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85443,7 +85443,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT11_AREA)$(CRATE20-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT11_AREA)$(CRATE20-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85515,7 +85515,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT12_AREA)$(CRATE20-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT12_AREA)$(CRATE20-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85587,7 +85587,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT13_AREA)$(CRATE20-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT13_AREA)$(CRATE20-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85659,7 +85659,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT14_AREA)$(CRATE20-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT14_AREA)$(CRATE20-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85731,7 +85731,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT15_AREA)$(CRATE20-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT15_AREA)$(CRATE20-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85803,7 +85803,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT16_AREA)$(CRATE20-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT16_AREA)$(CRATE20-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85875,7 +85875,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT17_AREA)$(CRATE20-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT17_AREA)$(CRATE20-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -85947,7 +85947,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT18_AREA)$(CRATE20-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT18_AREA)$(CRATE20-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86019,7 +86019,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT19_AREA)$(CRATE20-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT19_AREA)$(CRATE20-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86091,7 +86091,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT20_AREA)$(CRATE20-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT20_AREA)$(CRATE20-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86163,7 +86163,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT21_AREA)$(CRATE20-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT21_AREA)$(CRATE20-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86235,7 +86235,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT22_AREA)$(CRATE20-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT22_AREA)$(CRATE20-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86307,7 +86307,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT23_AREA)$(CRATE20-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT23_AREA)$(CRATE20-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86379,7 +86379,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE20-SLOT24_AREA)$(CRATE20-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE20-SLOT24_AREA)$(CRATE20-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86451,7 +86451,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT01_AREA)$(CRATE21-SLOT01_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT01_AREA)$(CRATE21-SLOT01_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86523,7 +86523,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT02_AREA)$(CRATE21-SLOT02_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT02_AREA)$(CRATE21-SLOT02_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86595,7 +86595,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT03_AREA)$(CRATE21-SLOT03_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT03_AREA)$(CRATE21-SLOT03_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86667,7 +86667,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT04_AREA)$(CRATE21-SLOT04_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT04_AREA)$(CRATE21-SLOT04_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86739,7 +86739,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT05_AREA)$(CRATE21-SLOT05_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT05_AREA)$(CRATE21-SLOT05_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86811,7 +86811,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT06_AREA)$(CRATE21-SLOT06_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT06_AREA)$(CRATE21-SLOT06_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86883,7 +86883,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT07_AREA)$(CRATE21-SLOT07_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT07_AREA)$(CRATE21-SLOT07_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -86955,7 +86955,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT08_AREA)$(CRATE21-SLOT08_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT08_AREA)$(CRATE21-SLOT08_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87027,7 +87027,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT09_AREA)$(CRATE21-SLOT09_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT09_AREA)$(CRATE21-SLOT09_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87099,7 +87099,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT10_AREA)$(CRATE21-SLOT10_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT10_AREA)$(CRATE21-SLOT10_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87171,7 +87171,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT11_AREA)$(CRATE21-SLOT11_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT11_AREA)$(CRATE21-SLOT11_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87243,7 +87243,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT12_AREA)$(CRATE21-SLOT12_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT12_AREA)$(CRATE21-SLOT12_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87315,7 +87315,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT13_AREA)$(CRATE21-SLOT13_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT13_AREA)$(CRATE21-SLOT13_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87387,7 +87387,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT14_AREA)$(CRATE21-SLOT14_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT14_AREA)$(CRATE21-SLOT14_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87459,7 +87459,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT15_AREA)$(CRATE21-SLOT15_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT15_AREA)$(CRATE21-SLOT15_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87531,7 +87531,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT16_AREA)$(CRATE21-SLOT16_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT16_AREA)$(CRATE21-SLOT16_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87603,7 +87603,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT17_AREA)$(CRATE21-SLOT17_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT17_AREA)$(CRATE21-SLOT17_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87675,7 +87675,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT18_AREA)$(CRATE21-SLOT18_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT18_AREA)$(CRATE21-SLOT18_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87747,7 +87747,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT19_AREA)$(CRATE21-SLOT19_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT19_AREA)$(CRATE21-SLOT19_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87819,7 +87819,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT20_AREA)$(CRATE21-SLOT20_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT20_AREA)$(CRATE21-SLOT20_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87891,7 +87891,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT21_AREA)$(CRATE21-SLOT21_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT21_AREA)$(CRATE21-SLOT21_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -87963,7 +87963,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT22_AREA)$(CRATE21-SLOT22_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT22_AREA)$(CRATE21-SLOT22_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -88035,7 +88035,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT23_AREA)$(CRATE21-SLOT23_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT23_AREA)$(CRATE21-SLOT23_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>
@@ -88107,7 +88107,7 @@ $(pv_value)</tooltip>
             <color red="0" green="255" blue="0" />
           </value>
         </exp>
-        <pv trig="true">$(CRATE21-SLOT24_AREA)$(CRATE21-SLOT24_DEVICE)ADCAD9510PllStatus-RB</pv>
+        <pv trig="true">$(CRATE21-SLOT24_AREA)$(CRATE21-SLOT24_DEVICE)ADCAD9510PllStatus-Mon</pv>
       </rule>
     </rules>
     <enabled>true</enabled>

@@ -1238,7 +1238,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)UpdateTime</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)UpdateTime-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1373,7 +1373,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPre</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPre-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1466,7 +1466,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>27</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -1475,7 +1475,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Trigger</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Trigger-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -1516,7 +1516,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("stop")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Stop(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -1651,7 +1651,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataThres</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataThres-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1788,7 +1788,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataSel</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataSel-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1845,7 +1845,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerHwDly</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerHwDly-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -1982,7 +1982,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataHyst</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataHyst-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -2050,7 +2050,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Status-RB</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Status-Sts</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2131,7 +2131,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPost</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPost-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -2268,7 +2268,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Shots</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Shots-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -2342,11 +2342,11 @@ pvs[5].setValue("start")
 for i in range(4):
     display.getWidget("XY Graph_1").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples);]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Start(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPre</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPost</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Shots</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Channel</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPre-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPost-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)Shots-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)Channel-Sel</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -2437,7 +2437,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>27</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -2446,7 +2446,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)DataTrigChan</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2479,7 +2479,7 @@ $(pv_value)</tooltip>
       <pv_value />
       <scripts />
       <border_alarm_sensitive>true</border_alarm_sensitive>
-      <height>29</height>
+      <height>27</height>
       <border_width>1</border_width>
       <scale_options>
         <width_scalable>true</width_scalable>
@@ -2488,7 +2488,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataPol</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataPol-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -2569,7 +2569,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("abort")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Abort(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -2675,7 +2675,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)BPMMode-RB</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)BPMMode-Sts</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -2765,7 +2765,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerRep</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerRep-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>

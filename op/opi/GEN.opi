@@ -624,7 +624,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fa</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv>$(P)$(R)$(MODULE)_BFFTFreq.AVAL</trace_1_x_pv>
+    <trace_1_x_pv>$(P)$(R)$(MODULE)_BFFTFreq-RB.AVAL</trace_1_x_pv>
     <wuid>2dce1549:14effa31136:-7c43</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -682,7 +682,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv>$(P)$(R)$(MODULE)_DFFTFreq.AVAL</trace_3_x_pv>
+    <trace_3_x_pv>$(P)$(R)$(MODULE)_DFFTFreq-RB.AVAL</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -699,7 +699,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(P)$(R)$(MODULE)_BFFTData.AMP</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_BFFTData-RB.AMP</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -710,7 +710,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>380</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(P)$(R)$(MODULE)_DFFTData.AMP</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_DFFTData-RB.AMP</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -779,17 +779,17 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(P)$(R)$(MODULE)_CFFTData.AMP</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_CFFTData-RB.AMP</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(P)$(R)$(MODULE)_AFFTData.AMP</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_AFFTData-RB.AMP</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv>$(P)$(R)$(MODULE)_AFFTFreq.AVAL</trace_0_x_pv>
+    <trace_0_x_pv>$(P)$(R)$(MODULE)_AFFTFreq-RB.AVAL</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -829,7 +829,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv>$(P)$(R)$(MODULE)_CFFTFreq.AVAL</trace_2_x_pv>
+    <trace_2_x_pv>$(P)$(R)$(MODULE)_CFFTFreq-RB.AVAL</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
@@ -1774,7 +1774,7 @@ $(trace_0_y_pv_value)</tooltip>
     </axis_0_grid_color>
     <trace_0_name>Fx</trace_0_name>
     <trace_0_update_mode>0</trace_0_update_mode>
-    <trace_1_x_pv>$(P)$(R)$(MODULE)_YFFTFreq.AVAL</trace_1_x_pv>
+    <trace_1_x_pv>$(P)$(R)$(MODULE)_YFFTFreq-RB.AVAL</trace_1_x_pv>
     <wuid>5baac38b:14f02d40895:-6f69</wuid>
     <transparent>false</transparent>
     <trace_1_update_mode>0</trace_1_update_mode>
@@ -1832,7 +1832,7 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_0_time_format>0</axis_0_time_format>
     <trace_count>4</trace_count>
     <axis_1_show_grid>true</axis_1_show_grid>
-    <trace_3_x_pv>$(P)$(R)$(MODULE)_SUMFFTFreq.AVAL</trace_3_x_pv>
+    <trace_3_x_pv>$(P)$(R)$(MODULE)_SUMFFTFreq-RB.AVAL</trace_3_x_pv>
     <trace_2_trace_color>
       <color red="33" green="179" blue="33" />
     </trace_2_trace_color>
@@ -1849,7 +1849,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <trace_1_y_pv>$(P)$(R)$(MODULE)_YFFTData.AMP</trace_1_y_pv>
+    <trace_1_y_pv>$(P)$(R)$(MODULE)_YFFTData-RB.AMP</trace_1_y_pv>
     <trace_2_concatenate_data>false</trace_2_concatenate_data>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <trace_2_y_pv_value />
@@ -1860,7 +1860,7 @@ $(trace_0_y_pv_value)</tooltip>
     <height>380</height>
     <trace_2_visible>false</trace_2_visible>
     <trigger_pv_value />
-    <trace_3_y_pv>$(P)$(R)$(MODULE)_SUMFFTData.AMP</trace_3_y_pv>
+    <trace_3_y_pv>$(P)$(R)$(MODULE)_SUMFFTData-RB.AMP</trace_3_y_pv>
     <axis_1_grid_color>
       <color red="200" green="200" blue="200" />
     </axis_1_grid_color>
@@ -1929,17 +1929,17 @@ $(trace_0_y_pv_value)</tooltip>
     <axis_1_auto_scale>false</axis_1_auto_scale>
     <trace_1_line_width>1</trace_1_line_width>
     <trace_3_trace_type>0</trace_3_trace_type>
-    <trace_2_y_pv>$(P)$(R)$(MODULE)_QFFTData.AMP</trace_2_y_pv>
+    <trace_2_y_pv>$(P)$(R)$(MODULE)_QFFTData-RB.AMP</trace_2_y_pv>
     <trace_1_plot_mode>0</trace_1_plot_mode>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
     <trace_3_point_style>0</trace_3_point_style>
-    <trace_0_y_pv>$(P)$(R)$(MODULE)_XFFTData.AMP</trace_0_y_pv>
+    <trace_0_y_pv>$(P)$(R)$(MODULE)_XFFTData-RB.AMP</trace_0_y_pv>
     <trace_2_point_style>0</trace_2_point_style>
     <trace_0_plot_mode>0</trace_0_plot_mode>
     <enabled>true</enabled>
-    <trace_0_x_pv>$(P)$(R)$(MODULE)_XFFTFreq.AVAL</trace_0_x_pv>
+    <trace_0_x_pv>$(P)$(R)$(MODULE)_XFFTFreq-RB.AVAL</trace_0_x_pv>
     <axis_1_scale_font>
       <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
     </axis_1_scale_font>
@@ -1979,7 +1979,7 @@ $(trace_0_y_pv_value)</tooltip>
     <trace_0_anti_alias>true</trace_0_anti_alias>
     <axis_1_auto_scale_threshold>0.0</axis_1_auto_scale_threshold>
     <trace_2_plot_mode>0</trace_2_plot_mode>
-    <trace_2_x_pv>$(P)$(R)$(MODULE)_QFFTFreq.AVAL</trace_2_x_pv>
+    <trace_2_x_pv>$(P)$(R)$(MODULE)_QFFTFreq-RB.AVAL</trace_2_x_pv>
     <foreground_color>
       <color red="0" green="0" blue="255" />
     </foreground_color>
@@ -5544,7 +5544,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)UpdateTime</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)UpdateTime-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -5679,7 +5679,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPre</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPre-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -5781,7 +5781,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Trigger</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Trigger-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -5822,7 +5822,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("stop")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Stop(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -5957,7 +5957,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataThres</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataThres-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6094,7 +6094,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataSel</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataSel-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6151,7 +6151,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerHwDly</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerHwDly-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6288,7 +6288,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataHyst</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataHyst-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6356,7 +6356,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Status-RB</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Status-Sts</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -6437,7 +6437,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPost</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)SamplesPost-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6574,7 +6574,7 @@ $(pv_value)</tooltip>
       <multiline_input>false</multiline_input>
       <border_width>1</border_width>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Shots</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Shots-SP</pv_name>
       <selector_type>0</selector_type>
       <border_color>
         <color name="Text_ForeGround" red="0" green="0" blue="0" />
@@ -6672,19 +6672,19 @@ for i in range(4):
     display.getWidget("XY Graph_3").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);
     display.getWidget("XY Graph_4").setPropertyValue("trace_%d_buffer_size"%(i), totalSamples/2);]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Start(1)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPre</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPost</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Shots</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)Channel</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_AFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_BFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_CFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_DFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_XFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_YFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_QFFTData.SPAN</pv>
-          <pv trig="false">$(P)$(R)$(MODULE)_SUMFFTData.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPre-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)SamplesPost-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)Shots-SP</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)Channel-Sel</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_AFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_BFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_CFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_DFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_XFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_YFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_QFFTData-RB.SPAN</pv>
+          <pv trig="false">$(P)$(R)$(MODULE)_SUMFFTData-RB.SPAN</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -6784,7 +6784,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)DataTrigChan</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6826,7 +6826,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataPol</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerDataPol-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -6907,7 +6907,7 @@ $(pv_value)</tooltip>
 
 pvs[1].setValue("abort")]]></scriptText>
           <pv trig="true">loc://$(P)$(R)$(MODULE)Abort(0)</pv>
-          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent</pv>
+          <pv trig="false">$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel</pv>
         </path>
       </scripts>
       <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -7013,7 +7013,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)BPMMode-RB</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)BPMMode-Sts</pv_name>
       <vertical_alignment>1</vertical_alignment>
       <border_color>
         <color red="0" green="128" blue="255" />
@@ -7099,7 +7099,7 @@ $(pv_value)</tooltip>
       </scale_options>
       <items_from_pv>true</items_from_pv>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)Channel</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)Channel-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>
@@ -7185,7 +7185,7 @@ $(pv_value)</tooltip>
         <keep_wh_ratio>false</keep_wh_ratio>
       </scale_options>
       <visible>true</visible>
-      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerRep</pv_name>
+      <pv_name>$(P)$(R)$(ACQ_NAME)TriggerRep-Sel</pv_name>
       <border_color>
         <color red="0" green="128" blue="255" />
       </border_color>

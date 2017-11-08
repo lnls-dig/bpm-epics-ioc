@@ -498,7 +498,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTrigDir-RB</pv_name>
+    <pv_name>$(P)$(R)ADCTrigDir-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -590,7 +590,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTrigTerm-RB</pv_name>
+    <pv_name>$(P)$(R)ADCTrigTerm-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -843,7 +843,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RegWriteData</pv_name>
+    <pv_name>$(P)$(R)ADC0RegWriteData-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1032,7 +1032,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510CpCurrent</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510CpCurrent-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1221,7 +1221,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510MuxStatus</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510MuxStatus-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1370,7 +1370,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510Outputs</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510Outputs-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1559,7 +1559,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510Prescaler</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510Prescaler-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1719,7 +1719,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510PllStatus-RB</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510PllStatus-Mon</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1800,7 +1800,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510PllFunc</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510PllFunc-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -1949,7 +1949,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510RDiv</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510RDiv-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -2063,7 +2063,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTrigDir</pv_name>
+    <pv_name>$(P)$(R)ADCTrigDir-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2105,7 +2105,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTrigTerm</pv_name>
+    <pv_name>$(P)$(R)ADCTrigTerm-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2373,7 +2373,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTestDataEn-RB</pv_name>
+    <pv_name>$(P)$(R)ADCTestDataEn-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2449,7 +2449,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCTestDataEn</pv_name>
+    <pv_name>$(P)$(R)ADCTestDataEn-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2528,7 +2528,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCRandEn-RB</pv_name>
+    <pv_name>$(P)$(R)ADCRandEn-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2604,7 +2604,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCRandEn</pv_name>
+    <pv_name>$(P)$(R)ADCRandEn-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2683,7 +2683,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCDithEn-RB</pv_name>
+    <pv_name>$(P)$(R)ADCDithEn-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2759,7 +2759,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCDithEn</pv_name>
+    <pv_name>$(P)$(R)ADCDithEn-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2838,7 +2838,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCShdnEn-RB</pv_name>
+    <pv_name>$(P)$(R)ADCShdnEn-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2914,7 +2914,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCShdnEn</pv_name>
+    <pv_name>$(P)$(R)ADCShdnEn-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -2993,7 +2993,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCPgaEn-RB</pv_name>
+    <pv_name>$(P)$(R)ADCPgaEn-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3069,7 +3069,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCPgaEn</pv_name>
+    <pv_name>$(P)$(R)ADCPgaEn-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3124,7 +3124,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCClkSel-RB</pv_name>
+    <pv_name>$(P)$(R)ADCClkSel-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3210,7 +3210,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCClkSel</pv_name>
+    <pv_name>$(P)$(R)ADCClkSel-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3264,7 +3264,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510Defaults</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510Defaults-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3319,7 +3319,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510ClkSel-RB</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510ClkSel-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3365,7 +3365,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510ClkSel</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510ClkSel-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3413,7 +3413,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510PllPDown-RB</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510PllPDown-Sel</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -3459,7 +3459,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510PllPDown</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510PllPDown-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -3496,7 +3496,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCSi57xFreq</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xFreq-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4166,7 +4166,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2TestMode</pv_name>
+    <pv_name>$(P)$(R)ADC2TestMode-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4418,7 +4418,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2Temp-RB</pv_name>
+    <pv_name>$(P)$(R)ADC2Temp-Mon</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4464,7 +4464,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RstModes</pv_name>
+    <pv_name>$(P)$(R)ADC2RstModes-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -4598,7 +4598,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1TestMode</pv_name>
+    <pv_name>$(P)$(R)ADC1TestMode-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4850,7 +4850,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1Temp-RB</pv_name>
+    <pv_name>$(P)$(R)ADC1Temp-Mon</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -4896,7 +4896,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RstModes</pv_name>
+    <pv_name>$(P)$(R)ADC1RstModes-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -5128,7 +5128,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0TestMode</pv_name>
+    <pv_name>$(P)$(R)ADC0TestMode-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5380,7 +5380,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0Temp-RB</pv_name>
+    <pv_name>$(P)$(R)ADC0Temp-Mon</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5426,7 +5426,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RstModes</pv_name>
+    <pv_name>$(P)$(R)ADC0RstModes-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -5560,7 +5560,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3TestMode</pv_name>
+    <pv_name>$(P)$(R)ADC3TestMode-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5812,7 +5812,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3Temp-RB</pv_name>
+    <pv_name>$(P)$(R)ADC3Temp-Mon</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -5858,7 +5858,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RstModes</pv_name>
+    <pv_name>$(P)$(R)ADC3RstModes-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -5935,7 +5935,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RegWriteAddr</pv_name>
+    <pv_name>$(P)$(R)ADC0RegWriteAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6084,7 +6084,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RegReadAddr</pv_name>
+    <pv_name>$(P)$(R)ADC0RegReadAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6210,7 +6210,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RegRead</pv_name>
+    <pv_name>$(P)$(R)ADC0RegRead-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -6311,7 +6311,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0RegWrite</pv_name>
+    <pv_name>$(P)$(R)ADC0RegWrite-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -6527,7 +6527,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RegWriteData</pv_name>
+    <pv_name>$(P)$(R)ADC1RegWriteData-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6676,7 +6676,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RegWriteAddr</pv_name>
+    <pv_name>$(P)$(R)ADC1RegWriteAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6825,7 +6825,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RegReadAddr</pv_name>
+    <pv_name>$(P)$(R)ADC1RegReadAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -6951,7 +6951,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RegRead</pv_name>
+    <pv_name>$(P)$(R)ADC1RegRead-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7052,7 +7052,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1RegWrite</pv_name>
+    <pv_name>$(P)$(R)ADC1RegWrite-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7268,7 +7268,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RegWriteData</pv_name>
+    <pv_name>$(P)$(R)ADC2RegWriteData-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -7417,7 +7417,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RegWriteAddr</pv_name>
+    <pv_name>$(P)$(R)ADC2RegWriteAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -7566,7 +7566,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RegReadAddr</pv_name>
+    <pv_name>$(P)$(R)ADC2RegReadAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -7692,7 +7692,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RegRead</pv_name>
+    <pv_name>$(P)$(R)ADC2RegRead-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -7793,7 +7793,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2RegWrite</pv_name>
+    <pv_name>$(P)$(R)ADC2RegWrite-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -8009,7 +8009,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RegWriteData</pv_name>
+    <pv_name>$(P)$(R)ADC3RegWriteData-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -8158,7 +8158,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RegWriteAddr</pv_name>
+    <pv_name>$(P)$(R)ADC3RegWriteAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -8307,7 +8307,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RegReadAddr</pv_name>
+    <pv_name>$(P)$(R)ADC3RegReadAddr-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -8433,7 +8433,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RegRead</pv_name>
+    <pv_name>$(P)$(R)ADC3RegRead-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -8534,7 +8534,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3RegWrite</pv_name>
+    <pv_name>$(P)$(R)ADC3RegWrite-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -8698,7 +8698,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510BDiv</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510BDiv-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -8807,7 +8807,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCAD9510ADiv</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510ADiv-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -9065,7 +9065,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR0-RB</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR0-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -9111,7 +9111,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR0</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR0-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9199,7 +9199,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR1-RB</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR1-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -9245,7 +9245,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR1</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR1-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9333,7 +9333,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR2-RB</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR2-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -9379,7 +9379,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR2</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR2-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9467,7 +9467,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR3-RB</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR3-Sts</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -9513,7 +9513,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <items_from_pv>true</items_from_pv>
     <visible>true</visible>
-    <pv_name>$(P)$(R)FMCPICORngR3</pv_name>
+    <pv_name>$(P)$(R)FMCPICORngR3-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9607,7 +9607,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ActiveClkRstAdcs</pv_name>
+    <pv_name>$(P)$(R)ActiveClkRstAdcs-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9784,7 +9784,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCSi57xOe-RB</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xOe-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9860,7 +9860,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCSi57xOe</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xOe-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9940,7 +9940,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC0CalStatus-RB</pv_name>
+    <pv_name>$(P)$(R)ADC0CalStatus-Mon</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -9994,7 +9994,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC1CalStatus-RB</pv_name>
+    <pv_name>$(P)$(R)ADC1CalStatus-Mon</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -10048,7 +10048,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC2CalStatus-RB</pv_name>
+    <pv_name>$(P)$(R)ADC2CalStatus-Mon</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -10102,7 +10102,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADC3CalStatus-RB</pv_name>
+    <pv_name>$(P)$(R)ADC3CalStatus-Mon</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -10201,7 +10201,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkFreq</pv_name>
+    <pv_name>$(P)$(R)INFOClkFreq-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -10345,7 +10345,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkProp-RB</pv_name>
+    <pv_name>$(P)$(R)INFOClkProp-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -10421,7 +10421,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)INFOClkProp</pv_name>
+    <pv_name>$(P)$(R)INFOClkProp-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -11011,7 +11011,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)AFCSi57xFreq</pv_name>
+    <pv_name>$(P)$(R)AFCSi57xFreq-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -11155,7 +11155,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)AFCSi57xOe-RB</pv_name>
+    <pv_name>$(P)$(R)AFCSi57xOe-Sts</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -11231,7 +11231,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>true</keep_wh_ratio>
     </scale_options>
     <visible>true</visible>
-    <pv_name>$(P)$(R)AFCSi57xOe</pv_name>
+    <pv_name>$(P)$(R)AFCSi57xOe-Sel</pv_name>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
@@ -11527,7 +11527,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)TimRcvPhaseMeasNavg</pv_name>
+    <pv_name>$(P)$(R)TimRcvPhaseMeasNavg-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -11676,7 +11676,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)TimRcvDMTDADeglitch</pv_name>
+    <pv_name>$(P)$(R)TimRcvDMTDADeglitch-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -11825,7 +11825,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)TimRcvDMTDBDeglitch</pv_name>
+    <pv_name>$(P)$(R)TimRcvDMTDBDeglitch-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -12251,7 +12251,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)AFCSi57xFStartup</pv_name>
+    <pv_name>$(P)$(R)AFCSi57xFStartup-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
@@ -12401,7 +12401,7 @@ $(pv_value)</tooltip>
     <multiline_input>false</multiline_input>
     <border_width>1</border_width>
     <visible>true</visible>
-    <pv_name>$(P)$(R)ADCSi57xFStartup</pv_name>
+    <pv_name>$(P)$(R)ADCSi57xFStartup-SP</pv_name>
     <selector_type>0</selector_type>
     <border_color>
       <color red="0" green="128" blue="255" />
