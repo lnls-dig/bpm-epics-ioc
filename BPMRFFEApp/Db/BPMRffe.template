@@ -11,7 +11,7 @@
 # RFFE parameters
 #########################
 
-record(ao,"$(P)$(R)RFFEAtt"){
+record(ao,"$(P)$(R)RFFEAtt-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE attenuator")
     field(PINI,"YES")
@@ -47,13 +47,13 @@ record(ai,"$(P)$(R)RFFETempBD-Mon"){
     field(EGU, "oC")
 }
 
-record(dfanout, "$(P)$(R)RFFEPidSp") {
+record(dfanout, "$(P)$(R)RFFEPidSp-SP") {
     field(OMSL, "supervisory")
     field(OUTA, "$(P)$(R)RFFEPidSpAC PP")
     field(OUTB, "$(P)$(R)RFFEPidSpBD PP")
 }
 
-record(ao,"$(P)$(R)RFFEPidSpAC"){
+record(ao,"$(P)$(R)RFFEPidSpAC-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC setpoint")
     field(PINI,"YES")
@@ -71,7 +71,7 @@ record(ai,"$(P)$(R)RFFEPidSpAC-RB"){
     field(EGU, "oC")
 }
 
-record(ao,"$(P)$(R)RFFEPidSpBD"){
+record(ao,"$(P)$(R)RFFEPidSpBD-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD setpoint")
     field(PINI,"YES")
@@ -89,7 +89,7 @@ record(ai,"$(P)$(R)RFFEPidSpBD-RB"){
     field(EGU, "oC")
 }
 
-record(bo,"$(P)$(R)RFFETempCtl"){
+record(bo,"$(P)$(R)RFFETempCtl-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set RFFE temperature control")
     field(PINI,"YES")
@@ -110,13 +110,13 @@ record(bi,"$(P)$(R)RFFETempCtl-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_TEMP_CTL")
 }
 
-record(dfanout, "$(P)$(R)RFFEHeater") {
+record(dfanout, "$(P)$(R)RFFEHeater-SP") {
     field(OMSL, "supervisory")
     field(OUTA, "$(P)$(R)RFFEHeaterAC PP")
     field(OUTB, "$(P)$(R)RFFEHeaterBD PP")
 }
 
-record(ao,"$(P)$(R)RFFEHeaterAC"){
+record(ao,"$(P)$(R)RFFEHeaterAC-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC heater")
     field(PINI,"YES")
@@ -134,7 +134,7 @@ record(ai,"$(P)$(R)RFFEHeaterAC-RB"){
     field(EGU, "V")
 }
 
-record(ao,"$(P)$(R)RFFEHeaterBD"){
+record(ao,"$(P)$(R)RFFEHeaterBD-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD heater")
     field(PINI,"YES")
@@ -152,7 +152,7 @@ record(ai,"$(P)$(R)RFFEHeaterBD-RB"){
     field(EGU, "V")
 }
 
-record(bo,"$(P)$(R)RFFERst"){
+record(bo,"$(P)$(R)RFFERst-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"reset RFFE")
     field(PINI,"YES")
@@ -173,13 +173,13 @@ record(bi,"$(P)$(R)RFFERst-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RFFE_RST")
 }
 
-record(dfanout, "$(P)$(R)RFFEPidKp") {
+record(dfanout, "$(P)$(R)RFFEPidKp-SP") {
     field(OMSL, "supervisory")
     field(OUTA, "$(P)$(R)RFFEPidACKp PP")
     field(OUTB, "$(P)$(R)RFFEPidBDKp PP")
 }
 
-record(ao,"$(P)$(R)RFFEPidACKp"){
+record(ao,"$(P)$(R)RFFEPidACKp-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC PID Kp")
     field(PINI,"YES")
@@ -195,13 +195,13 @@ record(ai,"$(P)$(R)RFFEPidACKp-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_KP")
 }
 
-record(dfanout, "$(P)$(R)RFFEPidTi") {
+record(dfanout, "$(P)$(R)RFFEPidTi-SP") {
     field(OMSL, "supervisory")
     field(OUTA, "$(P)$(R)RFFEPidACTi PP")
     field(OUTB, "$(P)$(R)RFFEPidBDTi PP")
 }
 
-record(ao,"$(P)$(R)RFFEPidACTi"){
+record(ao,"$(P)$(R)RFFEPidACTi-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC PID Ti")
     field(PINI,"YES")
@@ -217,13 +217,13 @@ record(ai,"$(P)$(R)RFFEPidACTi-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TI")
 }
 
-record(dfanout, "$(P)$(R)RFFEPidTd") {
+record(dfanout, "$(P)$(R)RFFEPidTd-SP") {
     field(OMSL, "supervisory")
     field(OUTA, "$(P)$(R)RFFEPidACTd PP")
     field(OUTB, "$(P)$(R)RFFEPidBDTd PP")
 }
 
-record(ao,"$(P)$(R)RFFEPidACTd"){
+record(ao,"$(P)$(R)RFFEPidACTd-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE AC PID Td")
     field(PINI,"YES")
@@ -239,7 +239,7 @@ record(ai,"$(P)$(R)RFFEPidACTd-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_AC_TD")
 }
 
-record(ao,"$(P)$(R)RFFEPidBDKp"){
+record(ao,"$(P)$(R)RFFEPidBDKp-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD PID Kp")
     field(PINI,"YES")
@@ -255,7 +255,7 @@ record(ai,"$(P)$(R)RFFEPidBDKp-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_KP")
 }
 
-record(ao,"$(P)$(R)RFFEPidBDTi"){
+record(ao,"$(P)$(R)RFFEPidBDTi-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD PID Ti")
     field(PINI,"YES")
@@ -271,7 +271,7 @@ record(ai,"$(P)$(R)RFFEPidBDTi-RB"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))RFFE_PID_BD_TI")
 }
 
-record(ao,"$(P)$(R)RFFEPidBDTd"){
+record(ao,"$(P)$(R)RFFEPidBDTd-SP"){
     field(DTYP, "asynFloat64")
     field(DESC,"set RFFE BD PID Td")
     field(PINI,"YES")
