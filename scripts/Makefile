@@ -25,7 +25,13 @@ install:
 uninstall:
 	$(foreach script,$(SCRIPTS),rm -f ${SCRITS_PREFIX}/$(script) $(CMDSEP))
 
+realuninstall: uninstall
+
 clean:
+
+realclean: clean
+
+distclean: realclean realuninstall
 
 mrproper: clean
 
