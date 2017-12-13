@@ -27,12 +27,10 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 #SUPPORT=/opt/epics/base/../synApps_5_7/support
 ##SUPPORT=/usr/local/epics/synApps_5_7/support
 #
-## Specify the standard synApps configuration.
-#include $(SUPPORT)/configure/RELEASE
+#EPICS_BASE=/opt/epics/base
 #
 ## Paths must be below $(SUPPORT)/configure/RELEASE so we can override
 ## them
-#AREA_DETECTOR=$(SUPPORT)/areaDetector-1-9-1
 #ASYN=$(SUPPORT)/asyn-4-21
 #MCA=$(SUPPORT)/mca-7-4
 #SSCAN=$(SUPPORT)/sscan-2-9
@@ -40,9 +38,9 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 #AUTOSAVE=$(SUPPORT)/autosave-5-1
 #BUSY=$(SUPPORT)/busy-1-6
 #FFT=FFTRecordsApp
-#
+#AREA_DETECTOR=$(SUPPORT)/areaDetector-1-9-1
 ## Set our custom variable so Area Detector path remains the same
-## for synApps_5_8 and synApps_5_8
+## for synApps_5_7 and synApps_5_8
 #AREA_DETECTOR_COMPAT=$(AREA_DETECTOR)
 
 ###################### Paths for synApps_5_8 ##################################
@@ -51,13 +49,10 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 SUPPORT=/opt/epics/base/../synApps_5_8/support
 #SUPPORT=/usr/local/epics/synApps_5_8/support
 
-# Specify the standard synApps configuration.
-include $(SUPPORT)/configure/RELEASE
+EPICS_BASE=/opt/epics/base
 
 # Paths must be below $(SUPPORT)/configure/RELEASE so we can override
 # them
-AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
-ADCORE=$(AREA_DETECTOR)/ADCore-R2-2
 ASYN=$(SUPPORT)/asyn-4-26
 MCA=$(SUPPORT)/mca-7-6
 SSCAN=$(SUPPORT)/sscan-2-10-1
@@ -65,9 +60,10 @@ CALC=$(SUPPORT)/calc-3-4-2-1
 AUTOSAVE=$(SUPPORT)/autosave-5-6-1
 BUSY=$(SUPPORT)/busy-1-6-1
 FFT=FFTRecordsApp
-
-# Set our custom variable so Area Detector path remains the same
-# for synApps_5_8 and synApps_5_8
+AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
+ADCORE=$(AREA_DETECTOR)/ADCore-R2-2
+## Set our custom variable so Area Detector path remains the same
+## for synApps_5_7 and synApps_5_8
 AREA_DETECTOR_COMPAT=$(ADCORE)
 
 # Set RULES here if you want to take build rules from somewhere
