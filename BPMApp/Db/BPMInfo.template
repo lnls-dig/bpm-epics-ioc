@@ -48,17 +48,17 @@ record(ai,"$(P)$(R)INFOClkFreq-RB"){
     field(EGU, "Hz")
 }
 
-record(bo,"$(P)$(R)INFOClkProp-SP") {
+record(bo,"$(P)$(R)INFOClkProp-Sel") {
     field(DESC, "Set INFO Clk propagation to oscillator")
     field(PINI, "YES")
     field(ZNAM, "0")
     field(ONAM, "1")
-    field(FLNK, "$(P)$(R)INFOClkProp-RB")
+    field(FLNK, "$(P)$(R)INFOClkProp-Sts")
 }
 
-record(bi,"$(P)$(R)INFOClkProp-RB") {
+record(bi,"$(P)$(R)INFOClkProp-Sts") {
     field(DESC, "Get INFO Clk propagation to oscillator")
-    field(INP, "$(P)$(R)INFOClkProp-SP")
+    field(INP, "$(P)$(R)INFOClkProp-Sel")
     field(SCAN, "Passive")
     field(ZNAM, "0")
     field(ONAM, "1")
@@ -69,7 +69,7 @@ record(bi,"$(P)$(R)INFOClkProp-RB") {
 record(calc, "$(P)$(R)INFOClkPropIdx-RB"){
     field(DESC, "get INFO Clk propagation index")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)INFOClkProp-RB.VAL CP NMS")
+    field(INPA, "$(P)$(R)INFOClkProp-Sts.VAL CP NMS")
     field(CALC, "A+1")
 }
 
@@ -90,7 +90,7 @@ record(sseq, "$(P)$(R)INFOClkPropAllTypes-RB"){
 # on INFOClkProp
 record(calcout, "$(P)$(R)INFOClkFreqFilter-SP"){
     field(DESC, "Set FLNK to Si57x if INFOClkProp")
-    field(INPA, "$(P)$(R)INFOClkProp-RB NPP NMS")
+    field(INPA, "$(P)$(R)INFOClkProp-Sts NPP NMS")
     field(CALC, "A>0")
     field(OOPT, "When Non-zero")
     field(OUT, "$(P)$(R)ADCSi57xFreq.PROC-SP")
