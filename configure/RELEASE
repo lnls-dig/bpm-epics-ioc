@@ -32,7 +32,6 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 ## Paths must be below $(SUPPORT)/configure/RELEASE so we can override
 ## them
 #ASYN=$(SUPPORT)/asyn-4-21
-#MCA=$(SUPPORT)/mca-7-4
 #SSCAN=$(SUPPORT)/sscan-2-9
 #CALC=$(SUPPORT)/calc-3-2
 #AUTOSAVE=$(SUPPORT)/autosave-5-1
@@ -54,7 +53,6 @@ EPICS_BASE=/opt/epics/base
 # Paths must be below $(SUPPORT)/configure/RELEASE so we can override
 # them
 ASYN=$(SUPPORT)/asyn-4-26
-MCA=$(SUPPORT)/mca-7-6
 SSCAN=$(SUPPORT)/sscan-2-10-1
 CALC=$(SUPPORT)/calc-3-4-2-1
 AUTOSAVE=$(SUPPORT)/autosave-5-6-1
