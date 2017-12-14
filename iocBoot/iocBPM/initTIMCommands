@@ -2,4 +2,4 @@
 < initCommonCommands
 
 # Disable Monit Task
-dbpf "${P}${R}MonitEnable" No
+dbpf "${P}${R}MonitEnable-Sel" No

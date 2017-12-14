@@ -2,4 +2,4 @@
 < initCommonCommands
 
 # Enable Monit Task
-dbpf "${P}${R}MonitEnable" Yes
+dbpf "${P}${R}MonitEnable-Sel" Yes
