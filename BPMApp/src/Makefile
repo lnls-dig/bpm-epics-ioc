@@ -63,8 +63,8 @@ BPM_SYS_LIBS += rt
 BPM_SYS_LIBS += dl
 BPM_SYS_LIBS += gcc
 
-# System header files
-BPM_INCLUDES += -I/usr/include
+# System header files and "any" implementation.
+USR_CXXFLAGS += -I/usr/include -I$(TOP)/foreign/any
 
 # Compile test program
 PROD += BPMCheckInit
