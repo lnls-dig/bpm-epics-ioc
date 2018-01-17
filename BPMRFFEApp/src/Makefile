@@ -58,7 +58,8 @@ BPMRFFE_SYS_LIBS += gcc
 USR_CXXFLAGS += -I/usr/include -I$(TOP)/foreign/any
 
 # CXX Compiler flags
-USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CXXFLAGS += -std=gnu++11 -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CFLAGS += -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
 #===========================
 
