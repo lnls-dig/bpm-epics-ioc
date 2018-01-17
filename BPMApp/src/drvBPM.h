@@ -18,6 +18,13 @@
 #include <acq_client.h>
 #include <bpm_client.h>
 
+// any implementation for non c++-17 compilers
+#include "any.hpp"
+
+using linb::any;
+using linb::any_cast;
+using linb::bad_any_cast;
+
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 /* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
 #define MAX_ARRAY_POINTS            200000
@@ -310,6 +317,81 @@ typedef struct {
     readInt32ChanFp read;
 } functionsInt32Chan_t;
 
+typedef struct {
+    union {
+        epicsUInt32 argUInt32;
+        epicsFloat64 argFloat64;
+    };
+} functionsArgs_t;
+
+/* Forward declaration as struct functionsAny_t needs it */
+class drvBPM;
+
+/* Idea based on https://stackoverflow.com/questions/15102139/boostany-and-templates*/
+
+/* Generic Function Structure for "any" function pointer */
+struct functionsAny_t {
+    template<typename T>
+        functionsAny_t(T const& functionFp) :
+            _functionFp(functionFp),
+            _executeHwReadFunction(&functionsAny_t::executeHwReadFunction<T>),
+            _executeHwWriteFunction(&functionsAny_t::executeHwWriteFunction<T>),
+            _getServiceNameFromFunc(&functionsAny_t::getServiceNameFromFunc<T>) {}
+
+    asynStatus executeHwRead(const drvBPM& drvBPM, char *service,
+        int addr, functionsArgs_t &functionParam)
+    {
+        return (this->*_executeHwReadFunction)(drvBPM, _functionFp,
+                service, addr, functionParam);
+    }
+
+    asynStatus executeHwWrite(const drvBPM& drvBPM, char *service,
+        int addr, functionsArgs_t &functionParam)
+    {
+        return (this->*_executeHwWriteFunction)(drvBPM, _functionFp,
+                service, addr, functionParam);
+    }
+
+    const char *getServiceName(const drvBPM& drvBPM)
+    {
+        return (this->*_getServiceNameFromFunc)(drvBPM, _functionFp);
+    }
+
+private:
+    any _functionFp;
+    /* Read template function for Hw execution */
+    typedef asynStatus (functionsAny_t::*executeHwReadFunctionFp)
+        (const drvBPM& drvBPM, const any& functionFp, char *service,
+            int addr, functionsArgs_t &functionParam);
+    executeHwReadFunctionFp _executeHwReadFunction;
+    /* Write template function for Hw execution */
+    typedef asynStatus (functionsAny_t::*executeHwWriteFunctionFp)
+        (const drvBPM& drvBPM, const any& functionFp, char *service,
+            int addr, functionsArgs_t &functionParam);
+    executeHwWriteFunctionFp _executeHwWriteFunction;
+    /* Service name utilities */
+    typedef const char * (functionsAny_t::*getServiceNameFromFuncFp)
+        (const drvBPM& drvBPM, const any& functionFp) const;
+    getServiceNameFromFuncFp _getServiceNameFromFunc;
+
+    /* Read function for Hw execution */
+    template<typename T>
+    asynStatus executeHwReadFunction(const drvBPM& drvBPM,
+            const any& functionFp, char *service, int addr,
+            functionsArgs_t &functionParam);
+
+    /* Write function for Hw execution */
+    template<typename T>
+    asynStatus executeHwWriteFunction(const drvBPM& drvBPM,
+            const any& functionFp, char *service, int addr,
+            functionsArgs_t &functionParam);
+
+    /* Service name utilities */
+    template<typename T>
+    const char *getServiceNameFromFunc(const drvBPM& drvBPM,
+            const any& functionFp) const;
+};
+
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_BPMModeString             "BPM_MODE"              /* asynInt32,              r/w */
@@ -364,7 +446,7 @@ typedef struct {
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
-#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */ 
+#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasString     "TIM_RCV_PHASE_MEAS"    /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDAFreqString     "TIM_RCV_DMTD_A_FREQ"   /* asynUInt32Digital,      r/w */
@@ -464,6 +546,67 @@ class drvBPM : public asynNDArrayDriver {
         void acqSPTask(int coreID, double pollTime, bool autoStart);
         void acqMonitTask();
 
+        /* Overloaded functions for extracting service name*/
+        const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        const char *doGetServiceNameFromFunc (functionsInt32Acq_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        const char *doGetServiceNameFromFunc (functions2Int32_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        const char *doGetServiceNameFromFunc (functionsFloat64_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        const char *doGetServiceNameFromFunc (functionsInt32Chan_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        /* Overloaded function mappings called by functionsAny_t */
+        asynStatus doExecuteHwWriteFunction(functionsInt32Acq_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functions2Int32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus executeHwWriteFunction(int functionId, int addr,
+                functionsArgs_t &functionParam);
+
+        asynStatus doExecuteHwReadFunction(functionsInt32Acq_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functions2Int32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus executeHwReadFunction(int functionId, int addr,
+                functionsArgs_t &functionParam);
+
+        /* General service name handling utilities */
+        asynStatus getServiceChan (int bpmNumber, int addr, const char *serviceName,
+                epicsUInt32 *chanArg) const;
+        asynStatus getServiceID (int bpmNumber, int addr, const char *serviceName,
+                int *serviceIDArg) const;
+        asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
+                char *fullServiceName, int fullServiceNameSize) const;
+
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
         int P_BPMMode;
@@ -520,8 +663,8 @@ class drvBPM : public asynNDArrayDriver {
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
         int P_TimRcvPhaseMeas;
-        int P_TimRcvDMTDAFreq;        
-        int P_TimRcvDMTDBFreq;        
+        int P_TimRcvDMTDAFreq;
+        int P_TimRcvDMTDBFreq;
         int P_SamplesPre;
         int P_SamplesPost;
         int P_NumShots;
@@ -543,12 +686,12 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitAmpB;
         int P_MonitAmpC;
         int P_MonitAmpD;
-        int P_MonitPosX;    
+        int P_MonitPosX;
         int P_MonitPosXFake;
-        int P_MonitPosY;    
+        int P_MonitPosY;
         int P_MonitPosYFake;
-        int P_MonitPosQ;    
-        int P_MonitPosSum;  
+        int P_MonitPosQ;
+        int P_MonitPosSum;
         int P_MonitUpdt;
         int P_MonitUpdtTime;
         int P_MonitEnable;
@@ -605,21 +748,15 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId abortAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeMonitEnableEventId;
-        std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
-        std::unordered_map<int, functionsInt32Acq_t> bpmHwInt32AcqFunc;
-        std::unordered_map<int, functions2Int32_t> bpmHw2Int32Func;
-        std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
-        std::unordered_map<int, functionsInt32Chan_t> bpmHwInt32ChanFunc;
+        std::unordered_map<int, functionsAny_t> bpmHwFunc;
 
         /* Our private methods */
+
+        /* Client connection management */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
-        asynStatus getServiceChan (int bpmNumber, int addr, const char *serviceName,
-                epicsUInt32 *chanArg);
-        asynStatus getServiceID (int bpmNumber, int addr, const char *serviceName,
-                int *serviceIDArg);
-        asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
-                char *fullServiceName, int fullServiceNameSize);
+
+        /* Acquisition functions */
         asynStatus setAcqEvent(epicsUInt32 mask, int addr);
         asynStatus getAcqNDArrayType(int coreID, int channel, epicsUInt32 atomWidth, NDDataType_t *NDType);
         asynStatus getChannelProperties(int coreID, int channel, channelProp_t *channelProp);
@@ -643,12 +780,17 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
         asynStatus deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
                 int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
+
+        /* General set/get hardware functions */
         asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
+
+        /* Specific hardware functions that need extra processing and don't
+         * fit into the general set/get template */
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus setAdcClkSel(epicsUInt32 mask, int addr);
         asynStatus setAdcAD9510ClkSel(epicsUInt32 mask, int addr);
@@ -676,3 +818,42 @@ class drvBPM : public asynNDArrayDriver {
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)
+
+/********************************************************************/
+/*************** fucntionsAny_t template functions ******************/
+/********************************************************************/
+
+/* Read function for Hw execution */
+template<typename T>
+asynStatus functionsAny_t::executeHwReadFunction(const drvBPM& drvBPM,
+        const any& functionFp, char *service,
+    int addr, functionsArgs_t &functionParam)
+{
+    if(!any_cast<T>(functionFp).read) {
+        return asynSuccess;
+    }
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPM.doExecuteHwReadFunction(functionFpCast, service, addr, functionParam);
+}
+
+/* Write function for Hw execution */
+template<typename T>
+asynStatus functionsAny_t::executeHwWriteFunction(const drvBPM& drvBPM,
+        const any& functionFp, char *service,
+    int addr, functionsArgs_t &functionParam)
+{
+    if(!any_cast<T>(functionFp).write) {
+        return asynSuccess;
+    }
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPM.doExecuteHwWriteFunction(functionFpCast, service, addr, functionParam);
+}
+
+/* Service name utilities */
+template<typename T>
+const char *functionsAny_t::getServiceNameFromFunc(const drvBPM& drvBPM,
+        const any& functionFp) const
+{
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPM.doGetServiceNameFromFunc(functionFpCast);
+}
