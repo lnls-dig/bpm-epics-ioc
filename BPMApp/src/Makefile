@@ -63,8 +63,8 @@ BPM_SYS_LIBS += rt
 BPM_SYS_LIBS += dl
 BPM_SYS_LIBS += gcc
 
-# System header files
-BPM_INCLUDES += -I/usr/include
+# System header files and "any" implementation.
+USR_CXXFLAGS += -I/usr/include -I$(TOP)/foreign/any
 
 # Compile test program
 PROD += BPMCheckInit
@@ -88,8 +88,8 @@ BPMCheckInit_SYS_LIBS += dl
 BPMCheckInit_SYS_LIBS += gcc
 
 # CXX Compiler flags
-USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
-USR_CFLAGS = -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CXXFLAGS += -std=gnu++11 -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CFLAGS += -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
 include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
 

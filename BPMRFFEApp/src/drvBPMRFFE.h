@@ -13,6 +13,13 @@
 #include <unordered_map>
 #include <halcs_client.h>
 
+// any implementation for non c++-17 compilers
+#include "any.hpp"
+
+using linb::any;
+using linb::any_cast;
+using linb::bad_any_cast;
+
 #define ARRAY_SIZE(ARRAY)           (sizeof(ARRAY)/sizeof((ARRAY)[0]))
 
 #define MAX_SLOTS                   12
@@ -58,6 +65,81 @@ typedef struct {
     readInt32Fp read;
 } functionsInt32_t;
 
+typedef struct {
+    union {
+        epicsUInt32 argUInt32;
+        epicsFloat64 argFloat64;
+    };
+} functionsArgs_t;
+
+/* Forward declaration as struct functionsAny_t needs it */
+class drvBPMRFFE;
+
+/* Idea based on https://stackoverflow.com/questions/15102139/boostany-and-templates*/
+
+/* Generic Function Structure for "any" function pointer */
+struct functionsAny_t {
+    template<typename T>
+        functionsAny_t(T const& functionFp) :
+            _functionFp(functionFp),
+            _executeHwReadFunction(&functionsAny_t::executeHwReadFunction<T>),
+            _executeHwWriteFunction(&functionsAny_t::executeHwWriteFunction<T>),
+            _getServiceNameFromFunc(&functionsAny_t::getServiceNameFromFunc<T>) {}
+
+    asynStatus executeHwRead(const drvBPMRFFE& drvBPMRFFE, char *service,
+        int addr, functionsArgs_t &functionParam)
+    {
+        return (this->*_executeHwReadFunction)(drvBPMRFFE, _functionFp,
+                service, addr, functionParam);
+    }
+
+    asynStatus executeHwWrite(const drvBPMRFFE& drvBPMRFFE, char *service,
+        int addr, functionsArgs_t &functionParam)
+    {
+        return (this->*_executeHwWriteFunction)(drvBPMRFFE, _functionFp,
+                service, addr, functionParam);
+    }
+
+    const char *getServiceName(const drvBPMRFFE& drvBPMRFFE)
+    {
+        return (this->*_getServiceNameFromFunc)(drvBPMRFFE, _functionFp);
+    }
+
+private:
+    any _functionFp;
+    /* Read template function for Hw execution */
+    typedef asynStatus (functionsAny_t::*executeHwReadFunctionFp)
+        (const drvBPMRFFE& drvBPMRFFE, const any& functionFp,
+         char *service, int addr, functionsArgs_t &functionParam);
+    executeHwReadFunctionFp _executeHwReadFunction;
+    /* Write template function for Hw execution */
+    typedef asynStatus (functionsAny_t::*executeHwWriteFunctionFp)
+        (const drvBPMRFFE& drvBPMRFFE, const any& functionFp,
+         char *service, int addr, functionsArgs_t &functionParam);
+    executeHwWriteFunctionFp _executeHwWriteFunction;
+    /* Service name utilities */
+    typedef const char * (functionsAny_t::*getServiceNameFromFuncFp)
+        (const drvBPMRFFE& drvBPMRFFE, const any& functionFp) const;
+    getServiceNameFromFuncFp _getServiceNameFromFunc;
+
+    /* Read function for Hw execution */
+    template<typename T>
+    asynStatus executeHwReadFunction(const drvBPMRFFE& drvBPMRFFE,
+            const any& functionFp, char *service, int addr,
+            functionsArgs_t &functionParam);
+
+    /* Write function for Hw execution */
+    template<typename T>
+    asynStatus executeHwWriteFunction(const drvBPMRFFE& drvBPMRFFE,
+            const any& functionFp, char *service, int addr,
+            functionsArgs_t &functionParam);
+
+    /* Service name utilities */
+    template<typename T>
+    const char *getServiceNameFromFunc(const drvBPMRFFE& drvBPMRFFE,
+            const any& functionFp) const;
+};
+
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 #define P_RffeAttString              "RFFE_ATT"              /* asynFloat64,        r/w */
@@ -100,6 +182,38 @@ class drvBPMRFFE : public asynPortDriver {
         virtual asynStatus connect(asynUser* pasynUser);
         virtual asynStatus disconnect(asynUser* pasynUser);
 
+        /* Overloaded functions for extracting service name*/
+        const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        const char *doGetServiceNameFromFunc (functionsFloat64_t &func) const
+        {
+            return func.serviceName;
+        }
+
+        /* Overloaded function mappings called by functionsAny_t */
+        asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus executeHwWriteFunction(int functionId, int addr,
+                functionsArgs_t &functionParam);
+
+        asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus executeHwReadFunction(int functionId, int addr,
+                functionsArgs_t &functionParam);
+
+        /* General service name handling utilities */
+        asynStatus getServiceID (int bpmNumber, int addr, const char *serviceName,
+                int *serviceIDArg) const;
+        asynStatus getFullServiceName (int bpmNumber, int addr, const char *serviceName,
+                char *fullServiceName, int fullServiceNameSize) const;
+
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
         int P_RffeAtt;
@@ -133,12 +247,15 @@ class drvBPMRFFE : public asynPortDriver {
         int verbose;
         int timeout;
         char *bpmPortName;
-        std::unordered_map<int, functionsFloat64_t> bpmHwFloat64Func;
-        std::unordered_map<int, functionsInt32_t> bpmHwInt32Func;
+        std::unordered_map<int, functionsAny_t> bpmRFFEHwFunc;
 
         /* Our private methods */
+
+        /* Client connection management */
         asynStatus bpmClientConnect(void);
         asynStatus bpmClientDisconnect(void);
+
+        /* General set/get hardware functions */
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
@@ -147,3 +264,43 @@ class drvBPMRFFE : public asynPortDriver {
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)
+
+
+/********************************************************************/
+/*************** fucntionsAny_t template functions ******************/
+/********************************************************************/
+
+/* Read function for Hw execution */
+template<typename T>
+asynStatus functionsAny_t::executeHwReadFunction(const drvBPMRFFE& drvBPMRFFE,
+        const any& functionFp, char *service,
+    int addr, functionsArgs_t &functionParam)
+{
+    if(!any_cast<T>(functionFp).read) {
+        return asynSuccess;
+    }
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPMRFFE.doExecuteHwReadFunction(functionFpCast, service, addr, functionParam);
+}
+
+/* Write function for Hw execution */
+template<typename T>
+asynStatus functionsAny_t::executeHwWriteFunction(const drvBPMRFFE& drvBPMRFFE,
+        const any& functionFp, char *service,
+    int addr, functionsArgs_t &functionParam)
+{
+    if(!any_cast<T>(functionFp).write) {
+        return asynSuccess;
+    }
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPMRFFE.doExecuteHwWriteFunction(functionFpCast, service, addr, functionParam);
+}
+
+/* Service name utilities */
+template<typename T>
+const char *functionsAny_t::getServiceNameFromFunc(const drvBPMRFFE& drvBPMRFFE,
+        const any& functionFp) const
+{
+    auto functionFpCast = any_cast<T>(functionFp);
+    return drvBPMRFFE.doGetServiceNameFromFunc(functionFpCast);
+}

@@ -428,79 +428,79 @@ static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *
 }
 
 /* Int32 functions mapping */
-static const functionsInt32_t bpmSetGetKxFunc = {"DSP", halcs_set_kx, halcs_get_kx};
-static const functionsInt32_t bpmSetGetKyFunc = {"DSP", halcs_set_ky, halcs_get_ky};
-static const functionsInt32_t bpmSetGetKsumFunc = {"DSP", halcs_set_ksum, halcs_get_ksum};
-static const functionsInt32_t bpmSetGetAdcSwFunc = {"SWAP", halcs_set_sw, halcs_get_sw};
-static const functionsInt32_t bpmSetGetAdcSwDlyFunc = {"SWAP", halcs_set_sw_dly, halcs_get_sw_dly};
-static const functionsInt32_t bpmSetGetAdcSwDivClkFunc = {"SWAP", halcs_set_div_clk, halcs_get_div_clk};
-static const functionsInt32_t bpmSetGetAdcTrigDirFunc = {"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir};
-static const functionsInt32_t bpmSetGetAdcTrigTermFunc = {"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term};
-static const functionsInt32_t bpmSetGetAdcRandFunc = {"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand};
-static const functionsInt32_t bpmSetGetAdcDithFunc = {"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith};
-static const functionsInt32_t bpmSetGetAdcShdnFunc = {"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn};
-static const functionsInt32_t bpmSetGetAdcPgaFunc = {"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga};
-static const functionsInt32Chan_t bpmSetGetAdcTestModeFunc = {"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32};
-static const functionsInt32Chan_t bpmSetGetAdcRstModesFunc = {"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32};
-static const functionsInt32Chan_t bpmSetGetAdcTempFunc = {"FMC250M_4CH", NULL, halcs_get_temp_adc};
-static const functionsInt32Chan_t bpmSetGetAdcCalStatusFunc = {"FMC250M_4CH", NULL, halcs_get_cal_status_adc};
-static const functionsInt32_t bpmSetGetAdcTestDataFunc = {"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en};
-static const functionsInt32_t bpmSetGetAdcClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel};
-static const functionsInt32_t bpmSetGetAdcAD9510DefaultsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32};
-static const functionsInt32_t bpmSetGetAdcAD9510PllFunctionFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function};
-static const functionsInt32_t bpmSetGetAdcAD9510PllStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status};
-static const functionsInt32_t bpmSetGetAdcAD9510ClkSelFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel};
-static const functionsInt32_t bpmSetGetAdcAD9510ADivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_a_div, halcs_get_ad9510_pll_a_div};
-static const functionsInt32_t bpmSetGetAdcAD9510BDivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_b_div, halcs_get_ad9510_pll_b_div};
-static const functionsInt32_t bpmSetGetAdcAD9510PrescalerFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_prescaler, halcs_get_ad9510_pll_prescaler};
-static const functionsInt32_t bpmSetGetAdcAD9510RDivFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_r_div, halcs_get_ad9510_r_div};
-static const functionsInt32_t bpmSetGetAdcAD9510PllPDownFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_pdown, halcs_get_ad9510_pll_pdown};
-static const functionsInt32_t bpmSetGetAdcAD9510MuxStatusFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status};
-static const functionsInt32_t bpmSetGetAdcAD9510CPCurrentFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current};
-static const functionsInt32_t bpmSetGetAdcAD9510OutputsFunc = {"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs};
-static const functionsInt32_t bpmSetGetActiveClkRstADCsFunc = {"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32};
-static const functionsInt32_t bpmSetGetActiveClkSi571OeFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe};
-static const functionsInt32_t bpmSetGetAfcSi57xOeFunc = {"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe};
+static const functionsAny_t bpmSetGetKxFunc =                    {functionsInt32_t{"DSP", halcs_set_kx, halcs_get_kx}};
+static const functionsAny_t bpmSetGetKyFunc =                    {functionsInt32_t{"DSP", halcs_set_ky, halcs_get_ky}};
+static const functionsAny_t bpmSetGetKsumFunc =                  {functionsInt32_t{"DSP", halcs_set_ksum, halcs_get_ksum}};
+static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
+static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
+static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
+static const functionsAny_t bpmSetGetAdcTrigDirFunc =            {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir}};
+static const functionsAny_t bpmSetGetAdcTrigTermFunc =           {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term}};
+static const functionsAny_t bpmSetGetAdcRandFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand}};
+static const functionsAny_t bpmSetGetAdcDithFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith}};
+static const functionsAny_t bpmSetGetAdcShdnFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn}};
+static const functionsAny_t bpmSetGetAdcPgaFunc =                {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga}};
+static const functionsAny_t bpmSetGetAdcTestModeFunc =           {functionsInt32Chan_t{"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32}};
+static const functionsAny_t bpmSetGetAdcRstModesFunc =           {functionsInt32Chan_t{"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32}};
+static const functionsAny_t bpmSetGetAdcTempFunc =               {functionsInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_temp_adc}};
+static const functionsAny_t bpmSetGetAdcCalStatusFunc =          {functionsInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_cal_status_adc}};
+static const functionsAny_t bpmSetGetAdcTestDataFunc =           {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en}};
+static const functionsAny_t bpmSetGetAdcClkSelFunc =             {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel}};
+static const functionsAny_t bpmSetGetAdcAD9510DefaultsFunc =     {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32}};
+static const functionsAny_t bpmSetGetAdcAD9510PllFunctionFunc =  {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function}};
+static const functionsAny_t bpmSetGetAdcAD9510PllStatusFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status}};
+static const functionsAny_t bpmSetGetAdcAD9510ClkSelFunc =       {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel}};
+static const functionsAny_t bpmSetGetAdcAD9510ADivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_a_div, halcs_get_ad9510_pll_a_div}};
+static const functionsAny_t bpmSetGetAdcAD9510BDivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_b_div, halcs_get_ad9510_pll_b_div}};
+static const functionsAny_t bpmSetGetAdcAD9510PrescalerFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_prescaler, halcs_get_ad9510_pll_prescaler}};
+static const functionsAny_t bpmSetGetAdcAD9510RDivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_r_div, halcs_get_ad9510_r_div}};
+static const functionsAny_t bpmSetGetAdcAD9510PllPDownFunc =     {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_pdown, halcs_get_ad9510_pll_pdown}};
+static const functionsAny_t bpmSetGetAdcAD9510MuxStatusFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status}};
+static const functionsAny_t bpmSetGetAdcAD9510CPCurrentFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current}};
+static const functionsAny_t bpmSetGetAdcAD9510OutputsFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs}};
+static const functionsAny_t bpmSetGetActiveClkRstADCsFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32}};
+static const functionsAny_t bpmSetGetActiveClkSi571OeFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe}};
+static const functionsAny_t bpmSetGetAfcSi57xOeFunc =            {functionsInt32_t{"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe}};
 
-static const functionsInt32_t bpmSetGetFmcPicoRngR0Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0};
-static const functionsInt32_t bpmSetGetFmcPicoRngR1Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1};
-static const functionsInt32_t bpmSetGetFmcPicoRngR2Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r2, halcs_get_fmcpico_rng_r2};
-static const functionsInt32_t bpmSetGetFmcPicoRngR3Func = {"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r3, halcs_get_fmcpico_rng_r3};
+static const functionsAny_t bpmSetGetFmcPicoRngR0Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0}};
+static const functionsAny_t bpmSetGetFmcPicoRngR1Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1}};
+static const functionsAny_t bpmSetGetFmcPicoRngR2Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r2, halcs_get_fmcpico_rng_r2}};
+static const functionsAny_t bpmSetGetFmcPicoRngR3Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r3, halcs_get_fmcpico_rng_r3}};
 
-static const functionsInt32Acq_t bpmSetGetAcqDataTrigThresFunc = {"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres};
-static const functionsInt32Acq_t bpmSetGetAcqDataTrigPolFunc = {"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol};
-static const functionsInt32Acq_t bpmSetGetAcqDataTrigSelFunc = {"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel};
-static const functionsInt32Acq_t bpmSetGetAcqDataTrigFiltFunc = {"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt};
-static const functionsInt32Acq_t bpmSetGetAcqHwDlyFunc = {"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly};
-static const functionsInt32Acq_t bpmSetGetAcqDataTrigChanFunc = {"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan};
+static const functionsAny_t bpmSetGetAcqDataTrigThresFunc =      {functionsInt32Acq_t{"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres}};
+static const functionsAny_t bpmSetGetAcqDataTrigPolFunc =        {functionsInt32Acq_t{"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol}};
+static const functionsAny_t bpmSetGetAcqDataTrigSelFunc =        {functionsInt32Acq_t{"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel}};
+static const functionsAny_t bpmSetGetAcqDataTrigFiltFunc =       {functionsInt32Acq_t{"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt}};
+static const functionsAny_t bpmSetGetAcqHwDlyFunc =              {functionsInt32Acq_t{"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly}};
+static const functionsAny_t bpmSetGetAcqDataTrigChanFunc =       {functionsInt32Acq_t{"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan}};
 
-static const functionsInt32_t timRcvSetGetPhaseMeasNavgFunc = {"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg};
-static const functionsInt32_t timRcvSetGetDMTDADeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
-static const functionsInt32_t timRcvSetGetDMTDBDeglitchThresFunc = {"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres};
-static const functionsInt32_t timRcvSetGetPhaseMeasFunc = {"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas};
-static const functionsInt32_t timRcvSetGetDMTDAFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_a_freq};
-static const functionsInt32_t timRcvSetGetDMTDBFreqFunc = {"TIM_RCV", NULL, halcs_get_dmtd_b_freq};
+static const functionsAny_t timRcvSetGetPhaseMeasNavgFunc =      {functionsInt32_t{"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg}};
+static const functionsAny_t timRcvSetGetDMTDADeglitchThresFunc = {functionsInt32_t{"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
+static const functionsAny_t timRcvSetGetDMTDBDeglitchThresFunc = {functionsInt32_t{"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
+static const functionsAny_t timRcvSetGetPhaseMeasFunc =          {functionsInt32_t{"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas}};
+static const functionsAny_t timRcvSetGetDMTDAFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_a_freq}};
+static const functionsAny_t timRcvSetGetDMTDBFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_b_freq}};
 
-/* Double functions mapping */
-static const functionsFloat64_t bpmSetGetAdcSi57xFreqFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq};
-static const functionsFloat64_t bpmSetGetAdcSi57xFStartupFunc = {"FMC_ACTIVE_CLK", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
-static const functionsFloat64_t bpmSetGetAfcSi57xFreqFunc = {"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq};
-static const functionsFloat64_t bpmSetGetAfcSi57xFStartupFunc = {"AFC_MGMT", halcs_set_si571_fstartup, halcs_get_si571_fstartup};
+/* Double funfunctionsAny_t ctions mapping */
+static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
+static const functionsAny_t bpmSetGetAdcSi57xFStartupFunc =      {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_fstartup, halcs_get_si571_fstartup}};
+static const functionsAny_t bpmSetGetAfcSi57xFreqFunc =          {functionsFloat64_t{"AFC_MGMT", halcs_set_si571_freq, halcs_get_si571_freq}};
+static const functionsAny_t bpmSetGetAfcSi57xFStartupFunc =      {functionsFloat64_t{"AFC_MGMT", halcs_set_si571_fstartup, halcs_get_si571_fstartup}};
 
-/* Int32 with channel selection functions mapping */
-static const functionsInt32Chan_t bpmSetGetTrigDirFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir};
-static const functionsInt32Chan_t bpmSetGetTrigDirPolFunc = {"TRIGGER_IFACE", halcs_set_trigger_dir_pol, halcs_get_trigger_dir_pol};
-static const functionsInt32Chan_t bpmSetGetTrigRcvCntRstFunc = {"TRIGGER_IFACE", halcs_set_trigger_rcv_count_rst, halcs_get_trigger_rcv_count_rst};
-static const functionsInt32Chan_t bpmSetGetTrigTrnCntRstFunc = {"TRIGGER_IFACE", halcs_set_trigger_transm_count_rst, halcs_get_trigger_transm_count_rst};
-static const functionsInt32Chan_t bpmSetGetTrigRcvLenFunc = {"TRIGGER_IFACE", halcs_set_trigger_rcv_len, halcs_get_trigger_rcv_len};
-static const functionsInt32Chan_t bpmSetGetTrigTrnLenFunc = {"TRIGGER_IFACE", halcs_set_trigger_transm_len, halcs_get_trigger_transm_len};
-static const functionsInt32Chan_t bpmSetGetTrigCntRcvFunc = {"TRIGGER_IFACE", halcs_set_trigger_count_rcv, halcs_get_trigger_count_rcv};
-static const functionsInt32Chan_t bpmSetGetTrigCntTrnFunc = {"TRIGGER_IFACE", halcs_set_trigger_count_transm, halcs_get_trigger_count_transm};
+/* Int32 withfunctionsAny_t  channel selection functions mapping */
+static const functionsAny_t bpmSetGetTrigDirFunc =               {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir}};
+static const functionsAny_t bpmSetGetTrigDirPolFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir_pol, halcs_get_trigger_dir_pol}};
+static const functionsAny_t bpmSetGetTrigRcvCntRstFunc =         {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_count_rst, halcs_get_trigger_rcv_count_rst}};
+static const functionsAny_t bpmSetGetTrigTrnCntRstFunc =         {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_count_rst, halcs_get_trigger_transm_count_rst}};
+static const functionsAny_t bpmSetGetTrigRcvLenFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_len, halcs_get_trigger_rcv_len}};
+static const functionsAny_t bpmSetGetTrigTrnLenFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_len, halcs_get_trigger_transm_len}};
+static const functionsAny_t bpmSetGetTrigCntRcvFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_rcv, halcs_get_trigger_count_rcv}};
+static const functionsAny_t bpmSetGetTrigCntTrnFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_transm, halcs_get_trigger_count_transm}};
 
-static const functionsInt32Chan_t bpmSetGetTrigRcvSrcFunc = {"TRIGGER_MUX", halcs_set_trigger_rcv_src, halcs_get_trigger_rcv_src};
-static const functionsInt32Chan_t bpmSetGetTrigTrnSrcFunc = {"TRIGGER_MUX", halcs_set_trigger_transm_src, halcs_get_trigger_transm_src};
-static const functionsInt32Chan_t bpmSetGetTrigRcvSelFunc = {"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel};
-static const functionsInt32Chan_t bpmSetGetTrigTrnSelFunc = {"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel};
+static const functionsAny_t bpmSetGetTrigRcvSrcFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_src, halcs_get_trigger_rcv_src}};
+static const functionsAny_t bpmSetGetTrigTrnSrcFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_src, halcs_get_trigger_transm_src}};
+static const functionsAny_t bpmSetGetTrigRcvSelFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel}};
+static const functionsAny_t bpmSetGetTrigTrnSelFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel}};
 
 static const char *driverName="drvBPM";
 static taskParams_t taskParams[NUM_ACQ_CORES_PER_BPM] = {
@@ -554,7 +554,7 @@ static void exitHandlerC(void *pPvt)
 }
 
 asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceName,
-        epicsUInt32 *chanArg)
+        epicsUInt32 *chanArg) const
 {
     static const char *functionName = "getServiceChan";
     asynStatus status = asynSuccess;
@@ -573,7 +573,7 @@ asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceN
 }
 
 asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceName,
-        int *serviceIDArg)
+        int *serviceIDArg) const
 {
     static const char *functionName = "getServiceID";
     asynStatus status = asynSuccess;
@@ -614,7 +614,7 @@ err_exit:
 }
 
 asynStatus drvBPM::getFullServiceName (int bpmNumber, int addr, const char *serviceName,
-        char *fullServiceName, int fullServiceNameSize)
+        char *fullServiceName, int fullServiceNameSize) const
 {
     static const char *functionName = "getFullServiceName";
     int coreID = 0;
@@ -940,86 +940,86 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
-    bpmHwInt32Func[P_Kx] = bpmSetGetKxFunc;
-    bpmHwInt32Func[P_Ky] = bpmSetGetKyFunc;
+    bpmHwFunc.emplace(P_Kx, bpmSetGetKxFunc);
+    bpmHwFunc.emplace(P_Ky, bpmSetGetKyFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
-    bpmHwInt32Func[P_Kq] = bpmSetGetKqFunc;
+    bpmHwFunc.emplace(P_Kq, bpmSetGetKqFunc);
 #endif
-    bpmHwInt32Func[P_Ksum] = bpmSetGetKsumFunc;
-    bpmHwInt32Func[P_SwMode] = bpmSetGetAdcSwFunc;
-    bpmHwInt32Func[P_SwDly] = bpmSetGetAdcSwDlyFunc;
-    bpmHwInt32Func[P_SwDivClk] = bpmSetGetAdcSwDivClkFunc;
-    bpmHwInt32Func[P_AdcTrigDir] = bpmSetGetAdcTrigDirFunc;
-    bpmHwInt32Func[P_AdcTrigTerm] = bpmSetGetAdcTrigTermFunc;
-    bpmHwInt32Func[P_AdcRand] = bpmSetGetAdcRandFunc;
-    bpmHwInt32Func[P_AdcDith] = bpmSetGetAdcDithFunc;
-    bpmHwInt32Func[P_AdcShdn] = bpmSetGetAdcShdnFunc;
-    bpmHwInt32Func[P_AdcPga] = bpmSetGetAdcPgaFunc;
-    bpmHwInt32Func[P_AdcTestData] = bpmSetGetAdcTestDataFunc;
-    bpmHwInt32Func[P_AdcClkSel] = bpmSetGetAdcClkSelFunc;
-    bpmHwInt32Func[P_AdcAD9510Dflt] = bpmSetGetAdcAD9510DefaultsFunc;
-    bpmHwInt32Func[P_AdcAD9510PllFunc] = bpmSetGetAdcAD9510PllFunctionFunc;
-    bpmHwInt32Func[P_AdcAD9510PllStatus] = bpmSetGetAdcAD9510PllStatusFunc;
-    bpmHwInt32Func[P_AdcAD9510ClkSel] = bpmSetGetAdcAD9510ClkSelFunc;
-    bpmHwInt32Func[P_AdcAD9510ADiv] = bpmSetGetAdcAD9510ADivFunc;
-    bpmHwInt32Func[P_AdcAD9510BDiv] = bpmSetGetAdcAD9510BDivFunc;
-    bpmHwInt32Func[P_AdcAD9510Prescaler] = bpmSetGetAdcAD9510PrescalerFunc;
-    bpmHwInt32Func[P_AdcAD9510RDiv] = bpmSetGetAdcAD9510RDivFunc;
-    bpmHwInt32Func[P_AdcAD9510PllPDown] = bpmSetGetAdcAD9510PllPDownFunc;
-    bpmHwInt32Func[P_AdcAD9510MuxStatus] = bpmSetGetAdcAD9510MuxStatusFunc;
-    bpmHwInt32Func[P_AdcAD9510CpCurrent] = bpmSetGetAdcAD9510CPCurrentFunc;
-    bpmHwInt32Func[P_AdcAD9510Outputs] = bpmSetGetAdcAD9510OutputsFunc;
-    bpmHwInt32Func[P_ActiveClkRstADCs] = bpmSetGetActiveClkRstADCsFunc;
-    bpmHwInt32Func[P_ActiveClkSi571Oe] = bpmSetGetActiveClkSi571OeFunc;
-    bpmHwInt32Func[P_AfcSi57xOe] = bpmSetGetAfcSi57xOeFunc;
-    bpmHwInt32Func[P_FmcPicoRngR0] = bpmSetGetFmcPicoRngR0Func;
-    bpmHwInt32Func[P_FmcPicoRngR1] = bpmSetGetFmcPicoRngR1Func;
-    bpmHwInt32Func[P_FmcPicoRngR2] = bpmSetGetFmcPicoRngR2Func;
-    bpmHwInt32Func[P_FmcPicoRngR3] = bpmSetGetFmcPicoRngR3Func;
+    bpmHwFunc.emplace(P_Ksum, bpmSetGetKsumFunc);
+    bpmHwFunc.emplace(P_SwMode, bpmSetGetAdcSwFunc);
+    bpmHwFunc.emplace(P_SwDly, bpmSetGetAdcSwDlyFunc);
+    bpmHwFunc.emplace(P_SwDivClk, bpmSetGetAdcSwDivClkFunc);
+    bpmHwFunc.emplace(P_AdcTrigDir, bpmSetGetAdcTrigDirFunc);
+    bpmHwFunc.emplace(P_AdcTrigTerm, bpmSetGetAdcTrigTermFunc);
+    bpmHwFunc.emplace(P_AdcRand, bpmSetGetAdcRandFunc);
+    bpmHwFunc.emplace(P_AdcDith, bpmSetGetAdcDithFunc);
+    bpmHwFunc.emplace(P_AdcShdn, bpmSetGetAdcShdnFunc);
+    bpmHwFunc.emplace(P_AdcPga, bpmSetGetAdcPgaFunc);
+    bpmHwFunc.emplace(P_AdcTestData, bpmSetGetAdcTestDataFunc);
+    bpmHwFunc.emplace(P_AdcClkSel, bpmSetGetAdcClkSelFunc);
+    bpmHwFunc.emplace(P_AdcAD9510Dflt, bpmSetGetAdcAD9510DefaultsFunc);
+    bpmHwFunc.emplace(P_AdcAD9510PllFunc, bpmSetGetAdcAD9510PllFunctionFunc);
+    bpmHwFunc.emplace(P_AdcAD9510PllStatus, bpmSetGetAdcAD9510PllStatusFunc);
+    bpmHwFunc.emplace(P_AdcAD9510ClkSel, bpmSetGetAdcAD9510ClkSelFunc);
+    bpmHwFunc.emplace(P_AdcAD9510ADiv, bpmSetGetAdcAD9510ADivFunc);
+    bpmHwFunc.emplace(P_AdcAD9510BDiv, bpmSetGetAdcAD9510BDivFunc);
+    bpmHwFunc.emplace(P_AdcAD9510Prescaler, bpmSetGetAdcAD9510PrescalerFunc);
+    bpmHwFunc.emplace(P_AdcAD9510RDiv, bpmSetGetAdcAD9510RDivFunc);
+    bpmHwFunc.emplace(P_AdcAD9510PllPDown, bpmSetGetAdcAD9510PllPDownFunc);
+    bpmHwFunc.emplace(P_AdcAD9510MuxStatus, bpmSetGetAdcAD9510MuxStatusFunc);
+    bpmHwFunc.emplace(P_AdcAD9510CpCurrent, bpmSetGetAdcAD9510CPCurrentFunc);
+    bpmHwFunc.emplace(P_AdcAD9510Outputs, bpmSetGetAdcAD9510OutputsFunc);
+    bpmHwFunc.emplace(P_ActiveClkRstADCs, bpmSetGetActiveClkRstADCsFunc);
+    bpmHwFunc.emplace(P_ActiveClkSi571Oe, bpmSetGetActiveClkSi571OeFunc);
+    bpmHwFunc.emplace(P_AfcSi57xOe, bpmSetGetAfcSi57xOeFunc);
+    bpmHwFunc.emplace(P_FmcPicoRngR0, bpmSetGetFmcPicoRngR0Func);
+    bpmHwFunc.emplace(P_FmcPicoRngR1, bpmSetGetFmcPicoRngR1Func);
+    bpmHwFunc.emplace(P_FmcPicoRngR2, bpmSetGetFmcPicoRngR2Func);
+    bpmHwFunc.emplace(P_FmcPicoRngR3, bpmSetGetFmcPicoRngR3Func);
 
-    bpmHwInt32Func[P_TimRcvPhaseMeasNavg] = timRcvSetGetPhaseMeasNavgFunc;
-    bpmHwInt32Func[P_TimRcvDMTDADeglitchThres] = timRcvSetGetDMTDADeglitchThresFunc;
-    bpmHwInt32Func[P_TimRcvDMTDBDeglitchThres] = timRcvSetGetDMTDBDeglitchThresFunc;
-    bpmHwInt32Func[P_TimRcvPhaseMeas] = timRcvSetGetPhaseMeasFunc;
-    bpmHwInt32Func[P_TimRcvDMTDAFreq] = timRcvSetGetDMTDAFreqFunc;
-    bpmHwInt32Func[P_TimRcvDMTDBFreq] = timRcvSetGetDMTDBFreqFunc;
+    bpmHwFunc.emplace(P_TimRcvPhaseMeasNavg, timRcvSetGetPhaseMeasNavgFunc);
+    bpmHwFunc.emplace(P_TimRcvDMTDADeglitchThres, timRcvSetGetDMTDADeglitchThresFunc);
+    bpmHwFunc.emplace(P_TimRcvDMTDBDeglitchThres, timRcvSetGetDMTDBDeglitchThresFunc);
+    bpmHwFunc.emplace(P_TimRcvPhaseMeas, timRcvSetGetPhaseMeasFunc);
+    bpmHwFunc.emplace(P_TimRcvDMTDAFreq, timRcvSetGetDMTDAFreqFunc);
+    bpmHwFunc.emplace(P_TimRcvDMTDBFreq, timRcvSetGetDMTDBFreqFunc);
 
-    bpmHwInt32AcqFunc[P_DataTrigChan] = bpmSetGetAcqDataTrigChanFunc;
+    bpmHwFunc.emplace(P_DataTrigChan, bpmSetGetAcqDataTrigChanFunc);
 
-    bpmHwInt32AcqFunc[P_TriggerDataThres] = bpmSetGetAcqDataTrigThresFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataPol] = bpmSetGetAcqDataTrigPolFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataSel] = bpmSetGetAcqDataTrigSelFunc;
-    bpmHwInt32AcqFunc[P_TriggerDataFilt] = bpmSetGetAcqDataTrigFiltFunc;
-    bpmHwInt32AcqFunc[P_TriggerHwDly] = bpmSetGetAcqHwDlyFunc;
+    bpmHwFunc.emplace(P_TriggerDataThres, bpmSetGetAcqDataTrigThresFunc);
+    bpmHwFunc.emplace(P_TriggerDataPol, bpmSetGetAcqDataTrigPolFunc);
+    bpmHwFunc.emplace(P_TriggerDataSel, bpmSetGetAcqDataTrigSelFunc);
+    bpmHwFunc.emplace(P_TriggerDataFilt, bpmSetGetAcqDataTrigFiltFunc);
+    bpmHwFunc.emplace(P_TriggerHwDly, bpmSetGetAcqHwDlyFunc);
 
     /* BPM HW Double Functions mapping. Functions not mapped here are just written
      * to the parameter library */
-    bpmHwFloat64Func[P_AdcSi57xFreq] = bpmSetGetAdcSi57xFreqFunc;
-    bpmHwFloat64Func[P_AdcSi57xFStartup] = bpmSetGetAdcSi57xFStartupFunc;
-    bpmHwFloat64Func[P_AfcSi57xFreq] = bpmSetGetAfcSi57xFreqFunc;
-    bpmHwFloat64Func[P_AfcSi57xFStartup] = bpmSetGetAfcSi57xFStartupFunc;
+    bpmHwFunc.emplace(P_AdcSi57xFreq, bpmSetGetAdcSi57xFreqFunc);
+    bpmHwFunc.emplace(P_AdcSi57xFStartup, bpmSetGetAdcSi57xFStartupFunc);
+    bpmHwFunc.emplace(P_AfcSi57xFreq, bpmSetGetAfcSi57xFreqFunc);
+    bpmHwFunc.emplace(P_AfcSi57xFStartup, bpmSetGetAfcSi57xFStartupFunc);
 
     /* BPM HW Int32 with channel selection. Functions not mapped here are just written
      * to the parameter library */
-    bpmHwInt32ChanFunc[P_AdcTestMode] = bpmSetGetAdcTestModeFunc;
-    bpmHwInt32ChanFunc[P_AdcRstModes] =  bpmSetGetAdcRstModesFunc;
-    bpmHwInt32ChanFunc[P_AdcTemp] = bpmSetGetAdcTempFunc;
-    bpmHwInt32ChanFunc[P_AdcCalStatus] = bpmSetGetAdcCalStatusFunc;
+    bpmHwFunc.emplace(P_AdcTestMode, bpmSetGetAdcTestModeFunc);
+    bpmHwFunc.emplace(P_AdcRstModes,  bpmSetGetAdcRstModesFunc);
+    bpmHwFunc.emplace(P_AdcTemp, bpmSetGetAdcTempFunc);
+    bpmHwFunc.emplace(P_AdcCalStatus, bpmSetGetAdcCalStatusFunc);
 
-    bpmHwInt32ChanFunc[P_TriggerDir] = bpmSetGetTrigDirFunc;
-    bpmHwInt32ChanFunc[P_TriggerDirPol] = bpmSetGetTrigDirPolFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvCntRst] = bpmSetGetTrigRcvCntRstFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnCntRst] = bpmSetGetTrigTrnCntRstFunc;
-    bpmHwInt32ChanFunc[P_TriggerCntRcv] = bpmSetGetTrigCntRcvFunc;
-    bpmHwInt32ChanFunc[P_TriggerCntTrn] = bpmSetGetTrigCntTrnFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvLen] = bpmSetGetTrigRcvLenFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnLen] = bpmSetGetTrigTrnLenFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvSrc] = bpmSetGetTrigRcvSrcFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnSrc] = bpmSetGetTrigTrnSrcFunc;
-    bpmHwInt32ChanFunc[P_TriggerRcvInSel] = bpmSetGetTrigRcvSelFunc;
-    bpmHwInt32ChanFunc[P_TriggerTrnOutSel] = bpmSetGetTrigTrnSelFunc;
+    bpmHwFunc.emplace(P_TriggerDir, bpmSetGetTrigDirFunc);
+    bpmHwFunc.emplace(P_TriggerDirPol, bpmSetGetTrigDirPolFunc);
+    bpmHwFunc.emplace(P_TriggerRcvCntRst, bpmSetGetTrigRcvCntRstFunc);
+    bpmHwFunc.emplace(P_TriggerTrnCntRst, bpmSetGetTrigTrnCntRstFunc);
+    bpmHwFunc.emplace(P_TriggerCntRcv, bpmSetGetTrigCntRcvFunc);
+    bpmHwFunc.emplace(P_TriggerCntTrn, bpmSetGetTrigCntTrnFunc);
+    bpmHwFunc.emplace(P_TriggerRcvLen, bpmSetGetTrigRcvLenFunc);
+    bpmHwFunc.emplace(P_TriggerTrnLen, bpmSetGetTrigTrnLenFunc);
+    bpmHwFunc.emplace(P_TriggerRcvSrc, bpmSetGetTrigRcvSrcFunc);
+    bpmHwFunc.emplace(P_TriggerTrnSrc, bpmSetGetTrigTrnSrcFunc);
+    bpmHwFunc.emplace(P_TriggerRcvInSel, bpmSetGetTrigRcvSelFunc);
+    bpmHwFunc.emplace(P_TriggerTrnOutSel, bpmSetGetTrigTrnSelFunc);
 
     lock();
     status = bpmClientConnect();
@@ -1117,14 +1117,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
 
-    setUIntDigitalParam(P_TimRcvPhaseMeasNavg, 
-                                        TIMRCV_DFLT_PHASE_MEAS_NAVG,  
+    setUIntDigitalParam(P_TimRcvPhaseMeasNavg,
+                                        TIMRCV_DFLT_PHASE_MEAS_NAVG,
                                                             0xFFFFFFFF);
-    setUIntDigitalParam(P_TimRcvDMTDADeglitchThres, 
-                                        TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES,  
+    setUIntDigitalParam(P_TimRcvDMTDADeglitchThres,
+                                        TIMRCV_DFLT_DMTD_A_DEGLITCH_THRES,
                                                             0xFFFFFFFF);
-    setUIntDigitalParam(P_TimRcvDMTDBDeglitchThres, 
-                                        TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES,  
+    setUIntDigitalParam(P_TimRcvDMTDBDeglitchThres,
+                                        TIMRCV_DFLT_DMTD_B_DEGLITCH_THRES,
                                                             0xFFFFFFFF);
     setUIntDigitalParam(P_TimRcvPhaseMeas,
                                         0,                  0xFFFFFFFF);
@@ -3606,6 +3606,430 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 }
 
 /********************************************************************/
+/************ Function Mapping Overloaded Write functions ***********/
+/********************************************************************/
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Acq_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32Acq_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    int serviceID = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->bpmNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* Execute registered function */
+    err = func.write(bpmClientAcqParam[serviceID], service, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functions2Int32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functions2Int32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    epicsUInt32 param1 = 0;
+    epicsUInt32 param2 = 0;
+
+    /* Silently exit if no function is registered */
+    if(!func.read) {
+        status = asynSuccess;
+        goto no_registered_read_func_err;
+    }
+
+    /* Read the HW values first as we need to update
+       only one of the parameters */
+    err = func.read(bpmClient, service, &param1, &param2);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+    /* Determine if we want to change the first or second parameter in HW */
+    if (func.parameterPos == 1) {
+        err = func.write(bpmClient, service, functionParam.argUInt32, param2);
+    }
+    else if (func.parameterPos == 2) {
+        err = func.write(bpmClient, service, param1, functionParam.argUInt32);
+    }
+
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+halcs_get_func_param_err:
+no_registered_read_func_err:
+        return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClient, service, functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %f\n",
+                driverName, functionName, service, functionParam.argFloat64);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32Chan_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    char serviceChanStr[SERVICE_NAME_SIZE];
+    int serviceID = 0;
+    epicsUInt32 serviceChan = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->bpmNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
+     * a single instance. So, we must ignore the service ID */
+    if (streq(func.serviceName, "TRIGGER_IFACE")) {
+        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
+                boardMap[this->bpmNumber].board, func.serviceName);
+    }
+    else {
+        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
+                boardMap[this->bpmNumber].board, func.serviceName,
+                serviceID);
+    }
+
+    /* Get correct service channel */
+    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+
+    /* Execute registered function */
+    err = func.write(bpmClient, serviceChanStr, serviceChan, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, serviceChanStr,
+                functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClient, service, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::executeHwWriteFunction(int functionId, int addr,
+        functionsArgs_t &functionParam)
+{
+    int status = asynSuccess;
+    const char *functionName = "executeHwWriteFunction";
+    const char *funcService = NULL;
+    char service[SERVICE_NAME_SIZE];
+    std::unordered_map<int,functionsAny_t>::iterator func;
+
+    /* Lookup function on map */
+    func = bpmHwFunc.find (functionId);
+    if (func == bpmHwFunc.end()) {
+        /* This is not an error. Exit silently */
+        status = asynSuccess;
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: no registered function for functionID = %d\n",
+                driverName, functionName, functionId);
+        goto get_reg_func_err;
+    }
+
+    /* Get service name from structure */
+    funcService = func->second.getServiceName(*this);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, funcService,
+            service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Execute overloaded function for each function type we know of */
+    status = func->second.executeHwWrite(*this, service, addr, functionParam);
+
+get_reg_func_err:
+get_service_err:
+        return (asynStatus)status;
+}
+
+/********************************************************************/
+/************ Function Mapping Overloaded Read functions ************/
+/********************************************************************/
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Acq_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsInt32Acq_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    int serviceID = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->bpmNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* Execute registered function */
+    err = func.read(bpmClientAcqParam[serviceID], service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functions2Int32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functions2Int32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    epicsUInt32 param1 = 0;
+    epicsUInt32 param2 = 0;
+
+    /* Read the HW values first as we need to update
+       only one of the parameters */
+    err = func.read(bpmClient, service, &param1, &param2);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+    /* Determine if we want to read the first or second parameter */
+    if (func.parameterPos == 1) {
+        functionParam.argUInt32 = param1;
+    }
+    else if (func.parameterPos == 2) {
+        functionParam.argUInt32 = param2;
+    }
+
+halcs_get_func_param_err:
+        return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClient, service, &functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsInt32Chan_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char serviceChanStr[SERVICE_NAME_SIZE];
+    int status = asynSuccess;
+    int serviceID = 0;
+    epicsUInt32 serviceChan = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->bpmNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
+     * a single instance. So, we must ignore the service ID */
+    if (streq(func.serviceName, "TRIGGER_IFACE")) {
+        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
+                boardMap[this->bpmNumber].board, func.serviceName);
+    }
+    else {
+        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
+                boardMap[this->bpmNumber].board, func.serviceName,
+                serviceID);
+    }
+
+    /* Get correct service channel */
+    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+
+    /* Execute registered function */
+    err = func.read(bpmClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, serviceChanStr);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClient, service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::executeHwReadFunction(int functionId, int addr,
+        functionsArgs_t &functionParam)
+{
+    int status = asynSuccess;
+    const char *functionName = "executeHwReadFunction";
+    const char *funcService = NULL;
+    char service[SERVICE_NAME_SIZE];
+    std::unordered_map<int,functionsAny_t>::iterator func;
+
+    /* Lookup function on map */
+    func = bpmHwFunc.find (functionId);
+    if (func == bpmHwFunc.end()) {
+        /* This is not an error. Exit silently */
+        status = asynSuccess;
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: no registered function for functionID = %d\n",
+                driverName, functionName, functionId);
+        goto get_reg_func_err;
+    }
+
+    /* Get service name from structure */
+    funcService = func->second.getServiceName(*this);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, funcService,
+            service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Execute overloaded function for each function type we know of */
+    status = func->second.executeHwRead(*this, service, addr, functionParam);
+
+get_reg_func_err:
+get_service_err:
+        return (asynStatus)status;
+}
+
+/********************************************************************/
 /*************** Generic 32-bit/Double BPM Operations ***************/
 /********************************************************************/
 
@@ -3618,20 +4042,10 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsUInt32 paramLib = 0;
-    epicsUInt32 param1 = 0;
-    epicsUInt32 param2 = 0;
-    epicsUInt32 serviceChan = 0;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "setParam32";
-    int coreID = 0;
-    char service[SERVICE_NAME_SIZE];
-    std::unordered_map<int,functionsInt32_t>::const_iterator func;
-    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
-    std::unordered_map<int,functions2Int32_t>::const_iterator func2;
-    std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
-    status = getUIntDigitalParam(addr, functionId, &paramLib, mask);
+    status = getUIntDigitalParam(addr, functionId, &functionArgs.argUInt32, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -3639,185 +4053,8 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
         goto get_param_err;
     }
 
-    /* Lookup function on 32-bit map */
-    func = bpmHwInt32Func.find (functionId);
-    if (func != bpmHwInt32Func.end()) {
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, func->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err;
-        }
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.write) {
-            goto no_registered_write_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.write(bpmClient, service, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure for service %s, function %d, paramLib = %u\n",
-                    driverName, functionName, service, functionId, paramLib);
-            status = asynError;
-            goto halcs_set_func1_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function on 32-bit map for acquisition */
-    funcAcq = bpmHwInt32AcqFunc.find (functionId);
-    if (funcAcq != bpmHwInt32AcqFunc.end()) {
-        int serviceID = 0;
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
-                service, sizeof(service));
-        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
-                &serviceID);
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_acq_err;
-        }
-
-        /* Silently exit if no function is registered */
-        if(!funcAcq->second.write) {
-            goto no_registered_write_acq_func;
-        }
-
-        /* Function found. Execute it */
-        err = funcAcq->second.write(bpmClientAcqParam[serviceID], service, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcAcq->second.write() failure for service %s, function %d, paramLib = %u\n",
-                    driverName, functionName, service, functionId, paramLib);
-            status = asynError;
-            goto halcs_set_func1_param_acq_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function on 2 32-bit map */
-    func2 = bpmHw2Int32Func.find (functionId);
-    if (func2 != bpmHw2Int32Func.end()) {
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, func2->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err2;
-        }
-
-        /* Silently exit if no function is registered */
-        if(!func2->second.read) {
-            goto no_registered_read_func2;
-        }
-
-        /* Function found. Read the HW values first as we need to update
-           only one of the parameters */
-        err = func2->second.read(bpmClient, service, &param1, &param2);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func2_param_err;
-        }
-
-        /* Silently exit if no function is registered */
-        if(!func2->second.write) {
-            goto no_registered_write_func2;
-        }
-
-        /* Determine if we want to change the first or second parameter in HW */
-        if (func2->second.parameterPos == 1) {
-            err = func2->second.write(bpmClient, service, paramLib, param2);
-        }
-        else if (func2->second.parameterPos == 2) {
-            err = func2->second.write(bpmClient, service, param1, paramLib);
-        }
-
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.write() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_set_func2_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function on 32-bit with channel selection map */
-    funcChan = bpmHwInt32ChanFunc.find (functionId);
-    if (funcChan != bpmHwInt32ChanFunc.end()) {
-        /* Get correct service name. If we are dealing with TRIGGER_IFACE
-         * service, the correct index for it is always 0, as it's the same
-         * for both BPMs */
-        status = getServiceID (this->bpmNumber, addr, funcChan->second.serviceName,
-                &coreID);
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getServiceID, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err3;
-        }
-
-        if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
-            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s0",
-                    boardMap[this->bpmNumber].board, funcChan->second.serviceName);
-        }
-        else {
-            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                    boardMap[this->bpmNumber].board, funcChan->second.serviceName,
-                    coreID);
-        }
-
-        /* Silently exit if no function is registered */
-        if(!funcChan->second.write) {
-            goto no_registered_write_func_chan;
-        }
-
-        /* Get correct service channel */
-        getServiceChan (this->bpmNumber, addr, funcChan->second.serviceName,
-                &serviceChan);
-
-        /* Function found. Execute it */
-        err = funcChan->second.write(bpmClient, service, serviceChan, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcChan->second.write() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_set_func_chan_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-halcs_set_func_chan_param_err:
-no_registered_write_func_chan:
-get_service_err3:
-halcs_set_func2_param_err:
-no_registered_write_func2:
-halcs_get_func2_param_err:
-no_registered_read_func2:
-get_service_err2:
-halcs_set_func1_param_acq_err:
-no_registered_write_acq_func:
-get_service_acq_err:
-halcs_set_func1_param_err:
-no_registered_write_func:
-get_service_err:
 get_param_err:
     return (asynStatus)status;
 }
@@ -3826,18 +4063,8 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsUInt32 paramHw = 0;
-    epicsUInt32 param1 = 0;
-    epicsUInt32 param2 = 0;
-    epicsUInt32 serviceChan = 0;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "getParam32";
-    int coreID = 0;
-    char service[SERVICE_NAME_SIZE];
-    std::unordered_map<int,functionsInt32_t>::const_iterator func;
-    std::unordered_map<int,functionsInt32Acq_t>::const_iterator funcAcq;
-    std::unordered_map<int,functions2Int32_t>::const_iterator func2;
-    std::unordered_map<int,functionsInt32Chan_t>::const_iterator funcChan;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(addr, functionId, param, mask);
@@ -3848,177 +4075,11 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         goto get_param_err;
     }
 
-    /* Lookup function */
-    func = bpmHwInt32Func.find (functionId);
-    if (func != bpmHwInt32Func.end()) {
-        *param = 0;
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, func->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err;
-        }
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    /* Mask parameter according to the received mask */
+    functionArgs.argUInt32 &= mask;
+    *param = functionArgs.argUInt32;
 
-        /* Function found. Execute it */
-        err = func->second.read(bpmClient, service, &paramHw);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func1_param_err;
-        }
-
-        /* Mask parameter according to the received mask */
-        paramHw &= mask;
-        *param = paramHw;
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function */
-    funcAcq = bpmHwInt32AcqFunc.find (functionId);
-    if (funcAcq != bpmHwInt32AcqFunc.end()) {
-        int serviceID = 0;
-        *param = 0;
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, funcAcq->second.serviceName,
-                service, sizeof(service));
-        status |= getServiceID (this->bpmNumber, addr, funcAcq->second.serviceName,
-                &serviceID);
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_acq_err;
-        }
-
-        /* Function found. Execute it */
-        err = funcAcq->second.read(bpmClientAcqParam[serviceID], service, &paramHw);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcAcq->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func1_param_acq_err;
-        }
-
-        /* Mask parameter according to the received mask */
-        paramHw &= mask;
-        *param = paramHw;
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function */
-    func2 = bpmHw2Int32Func.find (functionId);
-    if (func2 != bpmHw2Int32Func.end()) {
-        *param = 0;
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, func2->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err2;
-        }
-
-        /* Silently exit if no function is registered */
-        if(!func2->second.read) {
-            goto no_registered_read_func2;
-        }
-
-        /* Function found. Execute it */
-        err = func2->second.read(bpmClient, service, &param1, &param2);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func2->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func2_param_err;
-        }
-
-        /* Determine if we want to read the first or second parameter in HW */
-        if (func2->second.parameterPos == 1) {
-            paramHw = param1;
-        }
-        else if (func2->second.parameterPos == 2) {
-            paramHw = param2;
-        }
-
-        /* Mask parameter according to the received mask */
-        paramHw &= mask;
-        *param = paramHw;
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-    /* Lookup function */
-    funcChan = bpmHwInt32ChanFunc.find (functionId);
-    if (funcChan != bpmHwInt32ChanFunc.end()) {
-        *param = 0;
-        /* Get correct service name. If we are dealing with TRIGGER_IFACE
-         * service, the correct index for it is always 0, as it's the same
-         * for both BPMs */
-        status = getServiceID (this->bpmNumber, addr, funcChan->second.serviceName,
-                &coreID);
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getServiceID, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err3;
-        }
-
-        if (streq(funcChan->second.serviceName, "TRIGGER_IFACE")) {
-            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s0",
-                    boardMap[this->bpmNumber].board, funcChan->second.serviceName);
-        }
-        else {
-            snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                    boardMap[this->bpmNumber].board, funcChan->second.serviceName,
-                    coreID);
-        }
-
-        /* Silently exit if no function is registered */
-        if(!funcChan->second.read) {
-            goto no_registered_read_func_chan;
-        }
-
-        /* Get correct service channel */
-        getServiceChan (this->bpmNumber, addr, funcChan->second.serviceName,
-                &serviceChan);
-
-        /* Function found. Execute it */
-        err = funcChan->second.read(bpmClient, service, serviceChan, &paramHw);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: funcChan->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func_chan_param_err;
-        }
-
-        /* Mask parameter according to the received mask */
-        paramHw &= mask;
-        *param = paramHw;
-        /* We've done our job here. No need to check other maps */
-        return (asynStatus)status;
-    }
-
-halcs_get_func_chan_param_err:
-no_registered_read_func_chan:
-get_service_err3:
-halcs_get_func2_param_err:
-no_registered_read_func2:
-get_service_err2:
-halcs_get_func1_param_acq_err:
-get_service_acq_err:
-halcs_get_func1_param_err:
-get_service_err:
 get_param_err:
     return (asynStatus)status;
 }
@@ -4026,13 +4087,10 @@ get_param_err:
 asynStatus drvBPM::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsFloat64 paramLib = 0;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "setParamDouble";
-    char service[SERVICE_NAME_SIZE];
-    std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
-    status = getDoubleParam(addr, functionId, &paramLib);
+    status = getDoubleParam(addr, functionId, &functionArgs.argFloat64);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -4040,40 +4098,8 @@ asynStatus drvBPM::setParamDouble(int functionId, int addr)
         goto get_param_err;
     }
 
-    /* Lookup function on float64 map */
-    func = bpmHwFloat64Func.find (functionId);
-    if (func != bpmHwFloat64Func.end()) {
-        /* Get correct service name*/
-        status = getFullServiceName (this->bpmNumber, addr, func->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err;
-        }
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.write) {
-            goto no_registered_write_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.write(bpmClient, service, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_set_func_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_set_func_param_err:
-no_registered_write_func:
-get_service_err:
 get_param_err:
     return status;
 }
@@ -4081,10 +4107,8 @@ get_param_err:
 asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 {
     asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "getParamDouble";
-    char service[SERVICE_NAME_SIZE];
-    std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getDoubleParam(addr, functionId, param);
@@ -4095,41 +4119,8 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
         goto get_param_err;
     }
 
-    /* Lookup function */
-    func = bpmHwFloat64Func.find (functionId);
-    if (func != bpmHwFloat64Func.end()) {
-        *param = 0;
-        status = getFullServiceName (this->bpmNumber, addr, func->second.serviceName,
-                service, sizeof(service));
-        if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error calling getFullServiceName, status=%d\n",
-                    driverName, functionName, status);
-            goto get_service_err;
-        }
+    status = executeHwReadFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.read) {
-            goto no_registered_read_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.read(bpmClient, service, param);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure for service %s, function %d\n",
-                    driverName, functionName, service, functionId);
-            status = asynError;
-            goto halcs_get_func_param_err;
-        }
-
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_get_func_param_err:
-no_registered_read_func:
-get_service_err:
 get_param_err:
     return status;
 }
@@ -4191,7 +4182,6 @@ halcs_inv_channel:
 
 asynStatus drvBPM::setAdcClkSel(epicsUInt32 mask, int addr)
 {
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     const char* functionName = "setAdcClkSel";
 
@@ -4232,7 +4222,6 @@ set_adc_clk_sel_err:
 
 asynStatus drvBPM::setAdcAD9510ClkSel(epicsUInt32 mask, int addr)
 {
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     epicsUInt32 ad9510ClkSel = 0;
     const char* functionName = "setAdcAD9510ClkSel";

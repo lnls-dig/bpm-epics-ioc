@@ -24,6 +24,8 @@
 #include "drvBPMRFFE.h"
 #include <epicsExport.h>
 
+#define SERVICE_NAME_SIZE               50
+
 static const boardMap_t boardMap[MAX_BPMS+1] = {
          /* board, bpm*/
     /* 0 (INVALID)  */ {-1, -1},
@@ -54,20 +56,19 @@ static const boardMap_t boardMap[MAX_BPMS+1] = {
 };
 
 /* Double functions mapping */
-static const functionsFloat64_t bpmSetGetRffeAttFunc = {"RFFE", halcs_set_rffe_att, halcs_get_rffe_att};
-static const functionsFloat64_t bpmSetGetRffeTempACFunc = {"RFFE", NULL, halcs_get_rffe_temp_ac};
-static const functionsFloat64_t bpmSetGetRffeTempBDFunc = {"RFFE", NULL, halcs_get_rffe_temp_bd};
-static const functionsFloat64_t bpmSetGetRffeSetPointACFunc = {"RFFE", halcs_set_rffe_set_point_ac, halcs_get_rffe_set_point_ac};
-static const functionsFloat64_t bpmSetGetRffeSetPointBDFunc = {"RFFE", halcs_set_rffe_set_point_bd, halcs_get_rffe_set_point_bd};
-static const functionsFloat64_t bpmSetGetRffeHeaterACFunc = {"RFFE", halcs_set_rffe_heater_ac, halcs_get_rffe_heater_ac};
-static const functionsFloat64_t bpmSetGetRffeHeaterBDFunc = {"RFFE", halcs_set_rffe_heater_bd, halcs_get_rffe_heater_bd};
-static const functionsFloat64_t bpmSetGetRffePidACKpFunc = {"RFFE", halcs_set_rffe_pid_ac_kp, halcs_get_rffe_pid_ac_kp};
-static const functionsFloat64_t bpmSetGetRffePidACTiFunc = {"RFFE", halcs_set_rffe_pid_ac_ti, halcs_get_rffe_pid_ac_ti};
-static const functionsFloat64_t bpmSetGetRffePidACTdFunc = {"RFFE", halcs_set_rffe_pid_ac_td, halcs_get_rffe_pid_ac_td};
-static const functionsFloat64_t bpmSetGetRffePidBDKpFunc = {"RFFE", halcs_set_rffe_pid_bd_kp, halcs_get_rffe_pid_bd_kp};
-static const functionsFloat64_t bpmSetGetRffePidBDTiFunc = {"RFFE", halcs_set_rffe_pid_bd_ti, halcs_get_rffe_pid_bd_ti};
-static const functionsFloat64_t bpmSetGetRffePidBDTdFunc = {"RFFE", halcs_set_rffe_pid_bd_td, halcs_get_rffe_pid_bd_td};
-
+static const functionsAny_t bpmSetGetRffeAttFunc =        {functionsFloat64_t{"RFFE", halcs_set_rffe_att, halcs_get_rffe_att}};
+static const functionsAny_t bpmSetGetRffeTempACFunc =     {functionsFloat64_t{"RFFE", NULL, halcs_get_rffe_temp_ac}};
+static const functionsAny_t bpmSetGetRffeTempBDFunc =     {functionsFloat64_t{"RFFE", NULL, halcs_get_rffe_temp_bd}};
+static const functionsAny_t bpmSetGetRffeSetPointACFunc = {functionsFloat64_t{"RFFE", halcs_set_rffe_set_point_ac, halcs_get_rffe_set_point_ac}};
+static const functionsAny_t bpmSetGetRffeSetPointBDFunc = {functionsFloat64_t{"RFFE", halcs_set_rffe_set_point_bd, halcs_get_rffe_set_point_bd}};
+static const functionsAny_t bpmSetGetRffeHeaterACFunc =   {functionsFloat64_t{"RFFE", halcs_set_rffe_heater_ac, halcs_get_rffe_heater_ac}};
+static const functionsAny_t bpmSetGetRffeHeaterBDFunc =   {functionsFloat64_t{"RFFE", halcs_set_rffe_heater_bd, halcs_get_rffe_heater_bd}};
+static const functionsAny_t bpmSetGetRffePidACKpFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_ac_kp, halcs_get_rffe_pid_ac_kp}};
+static const functionsAny_t bpmSetGetRffePidACTiFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_ac_ti, halcs_get_rffe_pid_ac_ti}};
+static const functionsAny_t bpmSetGetRffePidACTdFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_ac_td, halcs_get_rffe_pid_ac_td}};
+static const functionsAny_t bpmSetGetRffePidBDKpFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_bd_kp, halcs_get_rffe_pid_bd_kp}};
+static const functionsAny_t bpmSetGetRffePidBDTiFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_bd_ti, halcs_get_rffe_pid_bd_ti}};
+static const functionsAny_t bpmSetGetRffePidBDTdFunc =    {functionsFloat64_t{"RFFE", halcs_set_rffe_pid_bd_td, halcs_get_rffe_pid_bd_td}};
 
 /* Compatibility version for uint8_t functions types */
 halcs_client_err_e halcs_set_rffe_temp_control_compat (halcs_client_t *self, char *service,
@@ -95,8 +96,8 @@ halcs_client_err_e halcs_get_rffe_reset_compat (halcs_client_t *self, char *serv
 }
 
 /* Int32 functions mapping */
-static const functionsInt32_t bpmSetGetRffeTempCtlFunc = {"RFFE", halcs_set_rffe_temp_control_compat, halcs_get_rffe_temp_control_compat};
-static const functionsInt32_t bpmSetGetRffeRstFunc = {"RFFE", halcs_set_rffe_reset_compat, halcs_get_rffe_reset_compat};
+static const functionsAny_t bpmSetGetRffeTempCtlFunc = {functionsInt32_t{"RFFE", halcs_set_rffe_temp_control_compat, halcs_get_rffe_temp_control_compat}};
+static const functionsAny_t bpmSetGetRffeRstFunc =     {functionsInt32_t{"RFFE", halcs_set_rffe_reset_compat, halcs_get_rffe_reset_compat}};
 
 static const char *driverName="drvBPMRFFE";
 void acqTask(void *drvPvt);
@@ -105,6 +106,48 @@ static void exitHandlerC(void *pPvt)
 {
     drvBPMRFFE *pdrvBPMRFFE = (drvBPMRFFE *)pPvt;
     pdrvBPMRFFE->~drvBPMRFFE();
+}
+
+asynStatus drvBPMRFFE::getServiceID (int bpmNumber, int addr, const char *serviceName,
+        int *serviceIDArg) const
+{
+    static const char *functionName = "getServiceID";
+    asynStatus status = asynSuccess;
+
+    *serviceIDArg = boardMap[bpmNumber].bpm;
+
+    return status;
+}
+
+asynStatus drvBPMRFFE::getFullServiceName (int bpmNumber, int addr, const char *serviceName,
+        char *fullServiceName, int fullServiceNameSize) const
+{
+    static const char *functionName = "getFullServiceName";
+    int coreID = 0;
+    int errs = 0;
+    asynStatus status = asynSuccess;
+
+    status = getServiceID (bpmNumber, addr, serviceName, &coreID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getServiceID, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    errs = snprintf(fullServiceName, fullServiceNameSize, "HALCS%d:DEVIO:%s%d",
+            boardMap[bpmNumber].board, serviceName, coreID);
+    if (errs < 0 || errs >= fullServiceNameSize){
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error generating fullServiceName, errs=%d\n",
+            driverName, functionName, errs);
+        status = asynError;
+        goto gen_full_service_name;
+    }
+
+gen_full_service_name:
+get_service_id_err:
+    return status;
 }
 
 /** Constructor for the drvBPMRFFE class.
@@ -194,22 +237,22 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
 
     /* BPM Float64 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
-    bpmHwFloat64Func[P_RffeAtt] = bpmSetGetRffeAttFunc;
-    bpmHwFloat64Func[P_RffeTempAC] = bpmSetGetRffeTempACFunc;
-    bpmHwFloat64Func[P_RffeTempBD] = bpmSetGetRffeTempBDFunc;
-    bpmHwFloat64Func[P_RffeSetPointAC] = bpmSetGetRffeSetPointACFunc;
-    bpmHwFloat64Func[P_RffeSetPointBD] = bpmSetGetRffeSetPointBDFunc;
-    bpmHwFloat64Func[P_RffeHeaterAC] = bpmSetGetRffeHeaterACFunc;
-    bpmHwFloat64Func[P_RffeHeaterBD] = bpmSetGetRffeHeaterBDFunc;
-    bpmHwFloat64Func[P_RffePidACKp] = bpmSetGetRffePidACKpFunc;
-    bpmHwFloat64Func[P_RffePidACTi] = bpmSetGetRffePidACTiFunc;
-    bpmHwFloat64Func[P_RffePidACTd] = bpmSetGetRffePidACTdFunc;
-    bpmHwFloat64Func[P_RffePidBDKp] = bpmSetGetRffePidBDKpFunc;
-    bpmHwFloat64Func[P_RffePidBDTi] = bpmSetGetRffePidBDTiFunc;
-    bpmHwFloat64Func[P_RffePidBDTd] = bpmSetGetRffePidBDTdFunc;
+    bpmRFFEHwFunc.emplace(P_RffeAtt, bpmSetGetRffeAttFunc);
+    bpmRFFEHwFunc.emplace(P_RffeTempAC, bpmSetGetRffeTempACFunc);
+    bpmRFFEHwFunc.emplace(P_RffeTempBD, bpmSetGetRffeTempBDFunc);
+    bpmRFFEHwFunc.emplace(P_RffeSetPointAC, bpmSetGetRffeSetPointACFunc);
+    bpmRFFEHwFunc.emplace(P_RffeSetPointBD, bpmSetGetRffeSetPointBDFunc);
+    bpmRFFEHwFunc.emplace(P_RffeHeaterAC, bpmSetGetRffeHeaterACFunc);
+    bpmRFFEHwFunc.emplace(P_RffeHeaterBD, bpmSetGetRffeHeaterBDFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidACKp, bpmSetGetRffePidACKpFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidACTi, bpmSetGetRffePidACTiFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidACTd, bpmSetGetRffePidACTdFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidBDKp, bpmSetGetRffePidBDKpFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidBDTi, bpmSetGetRffePidBDTiFunc);
+    bpmRFFEHwFunc.emplace(P_RffePidBDTd, bpmSetGetRffePidBDTdFunc);
 
-    bpmHwInt32Func[P_RffeTempCtl] = bpmSetGetRffeTempCtlFunc;
-    bpmHwInt32Func[P_RffeRst] = bpmSetGetRffeRstFunc;
+    bpmRFFEHwFunc.emplace(P_RffeTempCtl, bpmSetGetRffeTempCtlFunc);
+    bpmRFFEHwFunc.emplace(P_RffeRst, bpmSetGetRffeRstFunc);
 
     lock();
     status = bpmClientConnect();
@@ -478,6 +521,180 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 }
 
 /********************************************************************/
+/************ Function Mapping Overloaded Write functions ***********/
+/********************************************************************/
+
+asynStatus drvBPMRFFE::doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClientRFFE, service, functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %f\n",
+                driverName, functionName, service, functionParam.argFloat64);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPMRFFE::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClientRFFE, service, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPMRFFE::executeHwWriteFunction(int functionId, int addr,
+        functionsArgs_t &functionParam)
+{
+    int status = asynSuccess;
+    const char *functionName = "executeHwWriteFunction";
+    const char *funcService = NULL;
+    char service[SERVICE_NAME_SIZE];
+    std::unordered_map<int,functionsAny_t>::iterator func;
+
+    /* Lookup function on map */
+    func = bpmRFFEHwFunc.find (functionId);
+    if (func == bpmRFFEHwFunc.end()) {
+        /* This is not an error. Exit silently */
+        status = asynSuccess;
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: no registered function for functionID = %d\n",
+                driverName, functionName, functionId);
+        goto get_reg_func_err;
+    }
+
+    /* Get service name from structure */
+    funcService = func->second.getServiceName(*this);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, funcService,
+            service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Execute overloaded function for each function type we know of */
+    status = func->second.executeHwWrite(*this, service, addr, functionParam);
+
+get_reg_func_err:
+get_service_err:
+        return (asynStatus)status;
+}
+
+/********************************************************************/
+/************ Function Mapping Overloaded Read functions ************/
+/********************************************************************/
+
+asynStatus drvBPMRFFE::doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClientRFFE, service, &functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvBPMRFFE::doExecuteHwReadFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClientRFFE, service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPMRFFE::executeHwReadFunction(int functionId, int addr,
+        functionsArgs_t &functionParam)
+{
+    int status = asynSuccess;
+    const char *functionName = "executeHwReadFunction";
+    const char *funcService = NULL;
+    char service[SERVICE_NAME_SIZE];
+    std::unordered_map<int,functionsAny_t>::iterator func;
+
+    /* Lookup function on map */
+    func = bpmRFFEHwFunc.find (functionId);
+    if (func == bpmRFFEHwFunc.end()) {
+        /* This is not an error. Exit silently */
+        status = asynSuccess;
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: no registered function for functionID = %d\n",
+                driverName, functionName, functionId);
+        goto get_reg_func_err;
+    }
+
+    /* Get service name from structure */
+    funcService = func->second.getServiceName(*this);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, funcService,
+            service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Execute overloaded function for each function type we know of */
+    status = func->second.executeHwRead(*this, service, addr, functionParam);
+
+get_reg_func_err:
+get_service_err:
+        return (asynStatus)status;
+}
+
+/********************************************************************/
 /*************** Generic 32-bit/Double BPM Operations ***************/
 /********************************************************************/
 
@@ -486,16 +703,14 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 * functions defined in the structures. e.g., functionsInt32_t
 * and functionsFloat64_t
 */
+
 asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
-    asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsUInt32 paramLib = 0;
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "setParam32";
-    char service[50];
-    std::unordered_map<int,functionsInt32_t>::const_iterator func;
 
-    status = getUIntDigitalParam(addr, functionId, &paramLib, mask);
+    status = getUIntDigitalParam(addr, functionId, &functionArgs.argUInt32, mask);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -503,47 +718,18 @@ asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
         goto get_param_err;
     }
 
-    /* Lookup function on 32-bit map */
-    func = bpmHwInt32Func.find (functionId);
-    if (func != bpmHwInt32Func.end()) {
-        /* Get correct service name*/
-        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func->second.serviceName,
-                boardMap[this->bpmNumber].bpm);
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.write) {
-            goto no_registered_write_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.write(bpmClientRFFE, service, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure\n",
-                    driverName, functionName);
-            status = asynError;
-            goto halcs_set_func1_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_set_func1_param_err:
-no_registered_write_func:
 get_param_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
         epicsUInt32 mask, int addr)
 {
-    asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsUInt32 paramHw = 0;
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "getParam32";
-    char service[50];
-    std::unordered_map<int,functionsInt32_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(addr, functionId, param, mask);
@@ -554,53 +740,22 @@ asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
         goto get_param_err;
     }
 
-    /* Lookup function */
-    func = bpmHwInt32Func.find (functionId);
-    if (func != bpmHwInt32Func.end()) {
-        *param = 0;
-        /* Get correct service name*/
-        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func->second.serviceName,
-                boardMap[this->bpmNumber].bpm);
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    /* Mask parameter according to the received mask */
+    functionArgs.argUInt32 &= mask;
+    *param = functionArgs.argUInt32;
 
-        /* Silently exit if no function is registered */
-        if(!func->second.read) {
-            goto no_registered_read_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.read(bpmClientRFFE, service, &paramHw);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure\n",
-                    driverName, functionName);
-            status = asynError;
-            goto halcs_get_func1_param_err;
-        }
-
-        /* Mask parameter according to the received mask */
-        paramHw &= mask;
-        *param = paramHw;
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_get_func1_param_err:
-no_registered_read_func:
 get_param_err:
-    return status;
+    return (asynStatus)status;
 }
 
 asynStatus drvBPMRFFE::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
-    epicsFloat64 paramLib = 0;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "setParamDouble";
-    char service[50];
-    std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
-    status = getDoubleParam(addr, functionId, &paramLib);
+    status = getDoubleParam(addr, functionId, &functionArgs.argFloat64);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
@@ -608,34 +763,8 @@ asynStatus drvBPMRFFE::setParamDouble(int functionId, int addr)
         goto get_param_err;
     }
 
-    /* Lookup function on float64 map */
-    func = bpmHwFloat64Func.find (functionId);
-    if (func != bpmHwFloat64Func.end()) {
-        /* Get correct service name*/
-        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func->second.serviceName,
-                boardMap[this->bpmNumber].bpm);
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.write) {
-            goto no_registered_write_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.write(bpmClientRFFE, service, paramLib);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.write() failure\n",
-                    driverName, functionName);
-            status = asynError;
-            goto halcs_set_func_param_err;
-        }
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_set_func_param_err:
-no_registered_write_func:
 get_param_err:
     return status;
 }
@@ -643,10 +772,8 @@ get_param_err:
 asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int addr)
 {
     asynStatus status = asynSuccess;
-    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    functionsArgs_t functionArgs = {0};
     const char *functionName = "getParamDouble";
-    char service[50];
-    std::unordered_map<int,functionsFloat64_t>::const_iterator func;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getDoubleParam(addr, functionId, param);
@@ -657,36 +784,8 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
         goto get_param_err;
     }
 
-    /* Lookup function */
-    func = bpmHwFloat64Func.find (functionId);
-    if (func != bpmHwFloat64Func.end()) {
-        *param = 0;
-        /* Get correct service name*/
-        snprintf(service, sizeof(service), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func->second.serviceName,
-                boardMap[this->bpmNumber].bpm);
+    status = executeHwReadFunction(functionId, addr, functionArgs);
 
-        /* Silently exit if no function is registered */
-        if(!func->second.read) {
-            goto no_registered_read_func;
-        }
-
-        /* Function found. Execute it */
-        err = func->second.read(bpmClientRFFE, service, param);
-        if (err != HALCS_CLIENT_SUCCESS) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: func->second.read() failure\n",
-                    driverName, functionName);
-            status = asynError;
-            goto halcs_get_func_param_err;
-        }
-
-        /* We've done our job here. No need to check other maps */
-        return status;
-    }
-
-halcs_get_func_param_err:
-no_registered_read_func:
 get_param_err:
     return status;
 }

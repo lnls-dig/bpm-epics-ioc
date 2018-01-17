@@ -54,11 +54,12 @@ BPMRFFE_SYS_LIBS += rt
 BPMRFFE_SYS_LIBS += dl
 BPMRFFE_SYS_LIBS += gcc
 
-# System header files
-BPMRFFE_INCLUDES += -I/usr/include
+# System header files and "any" implementation.
+USR_CXXFLAGS += -I/usr/include -I$(TOP)/foreign/any
 
 # CXX Compiler flags
-USR_CXXFLAGS = -std=gnu++0x -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CXXFLAGS += -std=gnu++11 -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
+USR_CFLAGS += -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
 #===========================
 
