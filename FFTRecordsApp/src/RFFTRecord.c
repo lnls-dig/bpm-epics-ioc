@@ -283,14 +283,10 @@ static long cvt_dbaddr(paddr)
     if (indx > self->mxix){
       indx=self->indx=self->mxix;
     }
-    if(paddr->pfield == &(self->val)){
-      paddr->pfield = self->bptr;
-      paddr->no_elements = self->nord;
-      paddr->field_type = paddr->dbr_field_type = DBF_DOUBLE;
-      paddr->field_size = sizeof(double);
-      return(0);
-    }
-    else if(paddr->pfield == &(self->amp)){
+    /* Use the same information as self->amp for self->val,
+     * as it's convenient to have the FFT amplitude in the
+     * default record field */
+    if(paddr->pfield == &(self->val) || paddr->pfield == &(self->amp)){
       paddr->pfield = &self->bamp[0];
       paddr->no_elements = sz+sz*self->mxix;
       paddr->field_type = paddr->dbr_field_type = DBF_DOUBLE;
