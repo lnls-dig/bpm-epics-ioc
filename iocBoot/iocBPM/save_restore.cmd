@@ -1,6 +1,6 @@
 ### save_restore setup
 # status-PV prefix
-save_restoreSet_status_prefix("BPM:")
+save_restoreSet_status_prefix("${P}${R}")
 # Debug-output level
 save_restoreSet_Debug(0)
 
