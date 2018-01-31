@@ -1,7 +1,7 @@
 /* RFFTRecord.c */
-/* RFFTRecord.c - Record Support Routines for Real FFT record 
+/* RFFTRecord.c - Record Support Routines for Real FFT record
  *
- *      
+ *
  *      Author:         Noboru Yamamoto @KEK.JAPAN
  *      Date:           Jan. 5, 1998
  *                      based on subArrayRecord.c by
@@ -127,7 +127,7 @@ static long alloc_buffer(struct RECORDTYPE *precord)
   self->bsin = (double *)calloc(sz,sizeof(double));
   self->bwvn = (double *)calloc(sz,sizeof(double));
   self->wsav = (double *)calloc(3*nelm+15,sizeof(double));
-  
+
   if (self->bptr == NULL ||
       self->bamp == NULL ||
       self->bpha == NULL ||
@@ -202,7 +202,7 @@ static long process(self)
 	long r,i,j;
 	double *rptr, norm,av;
 
-        if ( pact ) return(0); 
+        if ( pact ) return(0);
 	status=readValue(self); /* read the new value */
         self->pact = TRUE;
 
@@ -211,12 +211,12 @@ static long process(self)
 	norm=2.0/self->span;
 
 	for (r = 0, j=0;
-	     r <=(self->nelm - self->span); 
+	     r <=(self->nelm - self->span);
 	     r += self->span, 	  j += (self->span +1)/2 ){
 
 	  rptr=self->wsav;
-	  memmove((void *)rptr, 
-		  (void *)&self->bptr[r], 
+	  memmove((void *)rptr,
+		  (void *)&self->bptr[r],
 		  self->span*sizeof(double));
 	  av=0.0;
 	  if(self->asub == FAS_AverageSubtraction){
@@ -381,7 +381,7 @@ static long get_graphic_double(struct dbAddr *paddr,struct dbr_grDouble *pgd)
     if((paddr->pfield==(void *)self->bptr) || (paddr->pfield== &(self->val))){
         pgd->upper_disp_limit = self->hopr;
         pgd->lower_disp_limit = self->lopr;
-    } else 
+    } else
       recGblGetGraphicDouble(paddr,pgd);
     return(0);
 }
