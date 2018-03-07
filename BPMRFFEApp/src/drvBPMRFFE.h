@@ -261,6 +261,12 @@ class drvBPMRFFE : public asynPortDriver {
                 epicsUInt32 mask, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
+        asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
+                int lastParam, bool acceptErrors);
+        asynStatus updateDoubleParams(int addr, int firstParam, int lastParam,
+                bool acceptErrors);
+        asynStatus readUInt32Params(int mask, int addr);
+        asynStatus readFloat64Params(int addr);
 };
 
 #define NUM_PARAMS (&LAST_COMMAND - &FIRST_COMMAND + 1)

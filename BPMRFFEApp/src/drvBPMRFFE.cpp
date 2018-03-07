@@ -389,6 +389,8 @@ asynStatus drvBPMRFFE::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParam32(function, mask, addr);
+    /* Readback all parameters from Hw */
+    readUInt32Params(mask, addr);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -469,6 +471,8 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParamDouble(function, addr);
+    /* Readback all parameters from Hw */
+    readFloat64Params(addr);
 
     /* Do callbacks so higher layers see any changes */
     callParamCallbacks(addr);
@@ -788,6 +792,86 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
 
 get_param_err:
     return status;
+}
+
+asynStatus drvBPMRFFE::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
+        int lastParam, bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateUInt32Params";
+    epicsUInt32 param = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating UInt32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParam32(i, &param, mask, addr);
+        /* Only write values if there is no error */
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error getting UInt32 parameter for function = %d, "
+                    "addr = %d status = %d\n",
+                    driverName, functionName, i, addr, status);
+            ++errs;
+        }
+        else {
+            setUIntDigitalParam(addr, i, param, mask);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvBPMRFFE::updateDoubleParams(int addr, int firstParam, int lastParam,
+        bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateDoubleParams";
+    epicsFloat64 param = 0.0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating Double parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamDouble(i, &param, addr);
+        /* Only write values is there is no error */
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error getting Double parameter for function = %d, "
+                    "addr = %d status = %d\n",
+                    driverName, functionName, i, addr, status);
+            ++errs;
+        }
+        else {
+            setDoubleParam(addr, i, param);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvBPMRFFE::readUInt32Params(int mask, int addr)
+{
+    return updateUInt32Params(mask, addr, P_RffeTempCtl, P_RffeRst, false);
+}
+
+asynStatus drvBPMRFFE::readFloat64Params(int addr)
+{
+    return updateDoubleParams(addr, P_RffeAtt, P_RffePidBDTd, false);
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
