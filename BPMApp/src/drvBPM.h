@@ -806,6 +806,8 @@ class drvBPM : public asynNDArrayDriver {
                 int lastParam, bool acceptErrors);
         asynStatus updateDoubleParams(int addr, int firstParam, int lastParam,
                 bool acceptErrors);
+        asynStatus readUInt32Params(epicsUInt32 mask, int addr);
+        asynStatus readFloat64Params(int addr);
         asynStatus readAD9510AndADCsParams(epicsUInt32 mask, int addr);
         asynStatus readAD9510Params(epicsUInt32 mask, int addr);
         asynStatus readADCsParams(epicsUInt32 mask, int addr);

@@ -3333,6 +3333,8 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
             status = setParam32(function, mask, addr);
+            /* Readback all parameters from Hw */
+            readUInt32Params(mask, addr);
         }
     }
     else {
@@ -3542,6 +3544,8 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
         else {
             /* Do operation on HW. Some functions do not set anything on hardware */
             status = setParamDouble(function, addr);
+            /* Readback all parameters from Hw */
+            readFloat64Params(addr);
         }
     }
     else {
@@ -4687,6 +4691,29 @@ asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam,
     }
 
     return (errs == 0)? asynSuccess : asynError;
+}
+
+
+asynStatus drvBPM::readUInt32Params(epicsUInt32 mask, int addr)
+{
+    int status = 0;
+
+    status |= readAD9510Params(mask, addr);
+    status |= readADCsParams(mask, addr);
+    status |= readGenParams(mask, addr);
+    status |= readDSPParams(mask, addr);
+    status |= readGenDSPParams(mask, addr);
+
+    return (asynStatus) status;
+}
+
+asynStatus drvBPM::readFloat64Params(int addr)
+{
+    int status = 0;
+
+    status |= readSi57xParams(addr);
+
+    return (asynStatus) status;
 }
 
 asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
