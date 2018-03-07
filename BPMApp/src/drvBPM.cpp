@@ -4749,7 +4749,7 @@ asynStatus drvBPM::readFMCPicoParams(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_HarmonicNumber, P_SwDivClk, true);
+    return updateUInt32Params(mask, addr, P_SwMode, P_SwDivClk, true);
 }
 
 /* Some DSP parameters are only available in software. Som, only update
