@@ -908,9 +908,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_AdcTestMode);
     createParam(P_AdcRstModesString,
                                     asynParamUInt32Digital,         &P_AdcRstModes);
-    createParam(P_AdcTempString,    asynParamUInt32Digital,         &P_AdcTemp);
     createParam(P_AdcCalStatusString,
                                     asynParamUInt32Digital,         &P_AdcCalStatus);
+
+    /* FIXME. This must come after P_AdcCalStatus, as we don't want to update this value
+     * everytime a new write on ADC parameter occurs. ADC temperature is already
+     * SCAN = 1 second  on Database level */
+    createParam(P_AdcTempString,    asynParamUInt32Digital,         &P_AdcTemp);
     createParam(P_AdcRegReadString, asynParamUInt32Digital,         &P_AdcRegRead);
     createParam(P_AdcRegReadDataString,
                                     asynParamUInt32Digital,         &P_AdcRegReadData);
@@ -1005,8 +1009,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
      * to the parameter library */
     bpmHwFunc.emplace(P_AdcTestMode, bpmSetGetAdcTestModeFunc);
     bpmHwFunc.emplace(P_AdcRstModes,  bpmSetGetAdcRstModesFunc);
-    bpmHwFunc.emplace(P_AdcTemp, bpmSetGetAdcTempFunc);
     bpmHwFunc.emplace(P_AdcCalStatus, bpmSetGetAdcCalStatusFunc);
+    bpmHwFunc.emplace(P_AdcTemp, bpmSetGetAdcTempFunc);
 
     bpmHwFunc.emplace(P_TriggerDir, bpmSetGetTrigDirFunc);
     bpmHwFunc.emplace(P_TriggerDirPol, bpmSetGetTrigDirPolFunc);
@@ -1216,8 +1220,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int addr = 0; addr < ADC_NUM_CHANNELS; ++addr) {
         setUIntDigitalParam(addr, P_AdcTestMode,  0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRstModes,  ADC_RST_NORMAL_OP,  0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_AdcTemp,      0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcCalStatus, 0,                  0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_AdcTemp,      0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRegRead,   0,                  0xFFFFFFFF);
         setUIntDigitalParam(addr, P_AdcRegReadData,
                                                   0,                  0xFFFFFFFF);
