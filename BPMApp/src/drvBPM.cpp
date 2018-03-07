@@ -824,8 +824,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_FmcPicoRngR3);
     createParam(P_KxString,         asynParamUInt32Digital,         &P_Kx);
     createParam(P_KyString,         asynParamUInt32Digital,         &P_Ky);
-    createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
+    createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
     createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
@@ -946,12 +946,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
      * to the parameter library */
     bpmHwFunc.emplace(P_Kx, bpmSetGetKxFunc);
     bpmHwFunc.emplace(P_Ky, bpmSetGetKyFunc);
+    bpmHwFunc.emplace(P_Ksum, bpmSetGetKsumFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
     bpmHwFunc.emplace(P_Kq, bpmSetGetKqFunc);
 #endif
-    bpmHwFunc.emplace(P_Ksum, bpmSetGetKsumFunc);
     bpmHwFunc.emplace(P_SwMode, bpmSetGetAdcSwFunc);
     bpmHwFunc.emplace(P_SwDly, bpmSetGetAdcSwDlyFunc);
     bpmHwFunc.emplace(P_SwDivClk, bpmSetGetAdcSwDivClkFunc);
@@ -1115,8 +1115,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     setUIntDigitalParam(P_Kx,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ky,           10000000,           0xFFFFFFFF);
-    setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ksum,         1,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
@@ -4752,9 +4752,11 @@ asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
     return updateUInt32Params(mask, addr, P_HarmonicNumber, P_SwDivClk, true);
 }
 
+/* Some DSP parameters are only available in software. Som, only update
+ * the ones in Hw here, otherwise we will have 0 for those */
 asynStatus drvBPM::readDSPParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_Kx, P_QOffset, true);
+    return updateUInt32Params(mask, addr, P_Kx, P_Ksum, true);
 }
 
 asynStatus drvBPM::readGenDSPParams(epicsUInt32 mask, int addr)
