@@ -4706,7 +4706,6 @@ asynStatus drvBPM::readUInt32Params(epicsUInt32 mask, int addr)
     status |= readADCsParams(mask, addr);
     status |= readGenParams(mask, addr);
     status |= readDSPParams(mask, addr);
-    status |= readGenDSPParams(mask, addr);
 
     return (asynStatus) status;
 }
