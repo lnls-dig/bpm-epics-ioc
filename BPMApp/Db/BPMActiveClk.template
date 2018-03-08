@@ -280,20 +280,54 @@ record(longin,"$(P)$(R)ADCAD9510MuxStatus-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
 }
 
-record(longout,"$(P)$(R)ADCAD9510CpCurrent-SP"){
+record(mbbo,"$(P)$(R)ADCAD9510CpCurrent-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 CP current")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CPCURRENT")
     field(VAL,"600")
+    field(NOBT,"3")
+    field(ZRVL,"600")
+    field(ONVL,"1200")
+    field(TWVL,"1800")
+    field(THVL,"2400")
+    field(FRVL,"3000")
+    field(FVVL,"3600")
+    field(SXVL,"4200")
+    field(SVVL,"4800")
+    field(ZRST,"600")
+    field(ONST,"1200")
+    field(TWST,"1800")
+    field(THST,"2400")
+    field(FRST,"3000")
+    field(FVST,"3600")
+    field(SXST,"4200")
+    field(SVST,"4800")
 }
 
-record(longin,"$(P)$(R)ADCAD9510CpCurrent-RB"){
+record(mbbi,"$(P)$(R)ADCAD9510CpCurrent-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 CP current")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510CPCURRENT")
+    field(NOBT,"3")
+    field(ZRVL,"600")
+    field(ONVL,"1200")
+    field(TWVL,"1800")
+    field(THVL,"2400")
+    field(FRVL,"3000")
+    field(FVVL,"3600")
+    field(SXVL,"4200")
+    field(SVVL,"4800")
+    field(ZRST,"600")
+    field(ONST,"1200")
+    field(TWST,"1800")
+    field(THST,"2400")
+    field(FRST,"3000")
+    field(FVST,"3600")
+    field(SXST,"4200")
+    field(SVST,"4800")
 }
 
 record(longout,"$(P)$(R)ADCAD9510Outputs-SP"){
