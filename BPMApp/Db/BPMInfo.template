@@ -76,8 +76,8 @@ record(sseq, "$(P)$(R)INFOClkPropAllTypes-RB"){
     field(PINI, "YES")
     field(STR1, "supervisory")
     field(STR2, "closed_loop")
-    field(LNK1, "$(P)$(R)ADCSi57xFreq.OMSL NPP NMS-SP")
-    field(LNK2, "$(P)$(R)ADCSi57xFreq.OMSL NPP NMS-SP")
+    field(LNK1, "$(P)$(R)ADCSi57xFreq-SP.OMSL NPP NMS")
+    field(LNK2, "$(P)$(R)ADCSi57xFreq-SP.OMSL NPP NMS")
     field(SELL, "$(P)$(R)INFOClkPropIdx-RB CP MS")
     field(SELM, "Specified")
     field(SELN, "1")
@@ -91,7 +91,7 @@ record(calcout, "$(P)$(R)INFOClkFreqFilter-SP"){
     field(INPA, "$(P)$(R)INFOClkProp-Sts NPP NMS")
     field(CALC, "A>0")
     field(OOPT, "When Non-zero")
-    field(OUT, "$(P)$(R)ADCSi57xFreq.PROC-SP")
+    field(OUT, "$(P)$(R)ADCSi57xFreq-SP.PROC")
 }
 
 record(longout,"$(P)$(R)INFOADCRate-SP"){
