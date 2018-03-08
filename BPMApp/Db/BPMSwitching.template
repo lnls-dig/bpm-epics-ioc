@@ -31,7 +31,6 @@ record(mbbo,"$(P)$(R)SwMode-Sel"){
 record(mbbi,"$(P)$(R)SwMode-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_MODE")
     field(NOBT,"2")
@@ -57,7 +56,6 @@ record(longout,"$(P)$(R)SwDly-SP"){
 record(longin,"$(P)$(R)SwDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching delay")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DLY")
     field(EGU, "clks")
@@ -74,7 +72,6 @@ record(longout,"$(P)$(R)SwDivClk-SP"){
 record(longin,"$(P)$(R)SwDivClk-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching divider clock")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DIVCLK")
 }

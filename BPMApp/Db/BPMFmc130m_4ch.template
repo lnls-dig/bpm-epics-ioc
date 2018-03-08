@@ -13,6 +13,7 @@
 record(mbbo,"$(P)$(R)ADCRandEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC RAND")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_RAND")
     field(NOBT,"1")
@@ -37,6 +38,7 @@ record(mbbi,"$(P)$(R)ADCRandEn-Sts"){
 record(mbbo,"$(P)$(R)ADCDithEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC DITH")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_DITH")
     field(NOBT,"1")
@@ -61,6 +63,7 @@ record(mbbi,"$(P)$(R)ADCDithEn-Sts"){
 record(mbbo,"$(P)$(R)ADCShdnEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC SHDN")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_SHDN")
     field(NOBT,"1")
@@ -85,6 +88,7 @@ record(mbbi,"$(P)$(R)ADCShdnEn-Sts"){
 record(mbbo,"$(P)$(R)ADCPgaEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set LT2208 ADC PGA")
+    field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_PGA")
     field(NOBT,"1")

@@ -22,7 +22,6 @@ record(mbbo,"$(P)$(R)FMCPICORngR0-Sel"){
 record(mbbi,"$(P)$(R)FMCPICORngR0-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC0 Range")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FMCPICO_RNG_R0")
     field(NOBT,"1")
@@ -48,7 +47,6 @@ record(mbbo,"$(P)$(R)FMCPICORngR1-Sel"){
 record(mbbi,"$(P)$(R)FMCPICORngR1-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC1 Range")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FMCPICO_RNG_R1")
     field(NOBT,"1")
@@ -74,7 +72,6 @@ record(mbbo,"$(P)$(R)FMCPICORngR2-Sel"){
 record(mbbi,"$(P)$(R)FMCPICORngR2-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC2 Range")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FMCPICO_RNG_R2")
     field(NOBT,"1")
@@ -100,7 +97,6 @@ record(mbbo,"$(P)$(R)FMCPICORngR3-Sel"){
 record(mbbi,"$(P)$(R)FMCPICORngR3-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get FMCPICO ADC3 Range")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FMCPICO_RNG_R3")
     field(NOBT,"1")

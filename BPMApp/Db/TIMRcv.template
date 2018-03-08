@@ -13,7 +13,6 @@ record(longout,"$(P)$(R)TimRcvPhaseMeasNavg-SP"){
 record(longin,"$(P)$(R)TimRcvPhaseMeasNavg-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get number of averages")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TIM_RCV_PHASE_MEAS_NAVG")
 }
@@ -29,7 +28,6 @@ record(longout,"$(P)$(R)TimRcvDMTDADeglitch-SP"){
 record(longin,"$(P)$(R)TimRcvDMTDADeglitch-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get DMTD B deglitcher")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TIM_RCV_DMTD_A_DEGLITCH")
 }
@@ -45,7 +43,6 @@ record(longout,"$(P)$(R)TimRcvDMTDBDeglitch-SP"){
 record(longin,"$(P)$(R)TimRcvDMTDBDeglitch-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get DMTD B deglitcher")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TIM_RCV_DMTD_B_DEGLITCH")
 }

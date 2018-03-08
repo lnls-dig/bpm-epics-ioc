@@ -37,7 +37,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPre-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPre-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of pre samples for waveforms")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
 }
@@ -53,7 +52,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPost-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPost-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of post samples for waveforms")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
 }
@@ -69,7 +67,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)Shots-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)Shots-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get number of shots for waveforms")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
 }
@@ -99,7 +96,6 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
     field(DTYP, "asynInt32")
     field(DESC, "Get acquisition's channel")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_CHANNEL")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(NOBT,"3")
     field(ZRVL,"0")
@@ -219,7 +215,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)TriggerDataThres-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)TriggerDataThres-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger threshold")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_THRES")
 }
@@ -240,7 +235,6 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)TriggerDataPol-Sel"){
 record(mbbi,"$(P)$(R)$(ACQ_NAME)TriggerDataPol-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger polarity")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(NOBT,"1")
     field(ZRVL,"0")
@@ -261,7 +255,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger selection")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
 }
@@ -277,7 +270,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)TriggerDataHyst-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)TriggerDataHyst-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger hysteresis")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_FILT")
 }
@@ -293,7 +285,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)TriggerHwDly-SP"){
 record(longin,"$(P)$(R)$(ACQ_NAME)TriggerHwDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get trigger delay")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_HWDLY")
 }
@@ -322,7 +313,6 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel"){
 record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data-driven trigger channel")
-    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(NOBT,"3")
     field(ZRVL,"0")
@@ -387,7 +377,6 @@ record(ao, "$(P)$(R)$(ACQ_NAME)UpdateTime-SP"){
 record(ai, "$(P)$(R)$(ACQ_NAME)UpdateTime-RB"){
     field(DTYP, "asynFloat64")
     field(DESC, "Get repetitive mode update time")
-    field(PINI,"YES")
     field(PREC,"3")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_UPDATE_TIME")
