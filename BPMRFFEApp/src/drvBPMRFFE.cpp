@@ -195,9 +195,9 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     this->timeout = timeout;
 
     /* Create parameters */
-    createParam(P_RffeAttString,         asynParamFloat64,               &P_RffeAtt);
     createParam(P_RffeTempACString,      asynParamFloat64,               &P_RffeTempAC);
     createParam(P_RffeTempBDString,      asynParamFloat64,               &P_RffeTempBD);
+    createParam(P_RffeAttString,         asynParamFloat64,               &P_RffeAtt);
     createParam(P_RffeSetPointACString,  asynParamFloat64,               &P_RffeSetPointAC);
     createParam(P_RffeSetPointBDString,  asynParamFloat64,               &P_RffeSetPointBD);
     createParam(P_RffeHeaterACString,    asynParamFloat64,               &P_RffeHeaterAC);
@@ -213,9 +213,9 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     createParam(P_RffeRstString,         asynParamUInt32Digital,         &P_RffeRst);
 
     /* Set the initial values of some parameters */
-    setDoubleParam(P_RffeAtt,                               31.5);
     setDoubleParam(P_RffeTempAC,                             0.0);
     setDoubleParam(P_RffeTempBD,                             0.0);
+    setDoubleParam(P_RffeAtt,                               31.5);
     setDoubleParam(P_RffeSetPointAC,                         0.0);
     setDoubleParam(P_RffeSetPointBD,                         0.0);
     setDoubleParam(P_RffeHeaterAC,                           0.0);
@@ -237,9 +237,9 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
 
     /* BPM Float64 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
-    bpmRFFEHwFunc.emplace(P_RffeAtt, bpmSetGetRffeAttFunc);
     bpmRFFEHwFunc.emplace(P_RffeTempAC, bpmSetGetRffeTempACFunc);
     bpmRFFEHwFunc.emplace(P_RffeTempBD, bpmSetGetRffeTempBDFunc);
+    bpmRFFEHwFunc.emplace(P_RffeAtt, bpmSetGetRffeAttFunc);
     bpmRFFEHwFunc.emplace(P_RffeSetPointAC, bpmSetGetRffeSetPointACFunc);
     bpmRFFEHwFunc.emplace(P_RffeSetPointBD, bpmSetGetRffeSetPointBDFunc);
     bpmRFFEHwFunc.emplace(P_RffeHeaterAC, bpmSetGetRffeHeaterACFunc);
