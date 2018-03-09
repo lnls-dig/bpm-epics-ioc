@@ -789,6 +789,7 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
+    *param = functionArgs.argFloat64;
 
 get_param_err:
     return status;
