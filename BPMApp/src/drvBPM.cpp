@@ -3232,7 +3232,7 @@ asynStatus drvBPM::getChannelProperties(int coreID, int channel, channelProp_t *
 {
     asynStatus status = asynSuccess;
     int err = HALCS_CLIENT_SUCCESS;
-    const char* functionName = "getChannelSampleSize";
+    const char* functionName = "getChannelProperties";
     char service[SERVICE_NAME_SIZE];
 
     /* Get correct service name*/
