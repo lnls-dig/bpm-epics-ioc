@@ -9,5 +9,5 @@ $(P)$(R)ADCAD9510Prescaler-SP
 $(P)$(R)ADCAD9510RDiv-SP
 $(P)$(R)ADCAD9510PllPDown-Sel
 $(P)$(R)ADCAD9510MuxStatus-SP
-$(P)$(R)ADCAD9510CpCurrent-SP
+$(P)$(R)ADCAD9510CpCurrent-Sel
 $(P)$(R)ADCAD9510Outputs-SP

@@ -280,7 +280,7 @@ record(longin,"$(P)$(R)ADCAD9510MuxStatus-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ADC_AD9510MUXSTATUS")
 }
 
-record(mbbo,"$(P)$(R)ADCAD9510CpCurrent-SP"){
+record(mbbo,"$(P)$(R)ADCAD9510CpCurrent-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC AD9510 CP current")
     field(PINI,"YES")
@@ -306,7 +306,7 @@ record(mbbo,"$(P)$(R)ADCAD9510CpCurrent-SP"){
     field(SVST,"4800")
 }
 
-record(mbbi,"$(P)$(R)ADCAD9510CpCurrent-RB"){
+record(mbbi,"$(P)$(R)ADCAD9510CpCurrent-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC AD9510 CP current")
     field(SCAN,"I/O Intr")
