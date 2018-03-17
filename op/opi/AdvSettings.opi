@@ -1040,7 +1040,7 @@ $(pv_value)</tooltip>
     <height>27</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_13</name>
-    <pv_name>$(P)$(R)ADCAD9510CpCurrent-SP</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510CpCurrent-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1086,7 +1086,7 @@ $(pv_value)</tooltip>
     <name>Text Update_178</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)ADCAD9510CpCurrent-RB</pv_name>
+    <pv_name>$(P)$(R)ADCAD9510CpCurrent-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
