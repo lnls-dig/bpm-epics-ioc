@@ -1,8 +1,8 @@
 TOP = ..
 include $(TOP)/configure/CONFIG
 
-ioc_name=$(shell basename $(realpath ${TOP}))
- 
+ioc_name := $(shell basename $(realpath ${TOP}))
+
 SCRIPTS_FOLDER = ../scripts
 IOC_NAME ?= ${ioc_name}
 INSTALL_PREFIX ?= /opt/epics/startup/ioc
