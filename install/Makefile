@@ -15,6 +15,12 @@ install: scripts_install
 uninstall: scripts_uninstall
 	$(TOP)/install/uninstall.sh ${INSTALL_PREFIX}/${IOC_NAME} $(TOP)
 
+scripts_install:
+	$(MAKE) -C ${SCRIPTS_FOLDER} install
+
+scripts_uninstall:
+	$(MAKE) -C ${SCRIPTS_FOLDER} uninstall
+
 realuninstall: uninstall
 
 clean:
