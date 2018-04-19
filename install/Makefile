@@ -8,7 +8,6 @@ IOC_NAME ?= ${ioc_name}
 INSTALL_PREFIX ?= /opt/epics/startup/ioc
 export IOC_NAME
 export INSTALL_PREFIX
-all:
 
 install: scripts_install
 	$(TOP)/install/install.sh ${INSTALL_PREFIX}/${IOC_NAME} $(TOP)
