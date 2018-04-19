@@ -1,13 +1,20 @@
 TOP = ..
 include $(TOP)/configure/CONFIG
 
+ioc_name=$(shell basename $(realpath ${TOP}))
+ 
+SCRIPTS_FOLDER = ../scripts
+IOC_NAME ?= ${ioc_name}
+INSTALL_PREFIX ?= /opt/epics/startup/ioc
+export IOC_NAME
+export INSTALL_PREFIX
 all:
 
-install:
-	$(TOP)/install/install.sh /opt/epics/startup/ioc/bpm-epics-ioc $(TOP)
+install: scripts_install
+	$(TOP)/install/install.sh ${INSTALL_PREFIX}/${IOC_NAME} $(TOP)
 
-uninstall:
-	$(TOP)/install/uninstall.sh /opt/epics/startup/ioc/bpm-epics-ioc $(TOP)
+uninstall: scripts_uninstall
+	$(TOP)/install/uninstall.sh ${INSTALL_PREFIX}/${IOC_NAME} $(TOP)
 
 realuninstall: uninstall
 
