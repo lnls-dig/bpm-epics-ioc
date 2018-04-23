@@ -3,6 +3,7 @@
 # Override default TOP variable
 epicsEnvSet("TOP","../..")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+epicsEnvSet("BPM_TYPE","FMCPICO_1M_4CH")
 
 < BPM.config
 
@@ -10,7 +11,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 dbLoadDatabase("${TOP}/dbd/BPM.dbd")
 BPM_registerRecordDeviceDriver (pdbbase)
 
-drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOSE)", "$(BPM_TIMEOUT)", "$(WAVEFORM_MAX_POINTS)", "$(MAXBUFFERS)", "$(MAXMEMORY)")
+drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_TYPE)", "$(BPM_VERBOSE)", "$(BPM_TIMEOUT)", "$(WAVEFORM_MAX_POINTS)", "$(MAXBUFFERS)", "$(MAXMEMORY)")
 
 ## Load record instances
 dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ, PORT=$(PORT), ADDR=0, TIMEOUT=1")
@@ -29,18 +30,6 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0
 < waveformFFTRecords.cmd
 < statsPlugins.cmd
 < save_restore.cmd
-
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-#  dataString  = drvInfo string for position data
-#  intervalString  = drvInfo string for time interval per point
-#initFastSweep("$(PORT)TBT_TS", "$(PORT)", 4, 1000000, "POS_TBT_ARRAY", "POS_TBT_SAMPLE_TIME")
-#dbLoadRecords("${TOP}/BPMApp/Db/BPM_TimeSeries.template", "P=${P}, R=${R},R=TBT,NUM_TS=1000000,NUM_FREQ=1000000,PORT=$(PORT)TBT_TS")
-#initFastSweep("$(PORT)FOFB_TS", "$(PORT)", 4, 1000000, "POS_FOFB_ARRAY", "POS_FOFB_SAMPLE_TIME")
-#dbLoadRecords("${TOP}/BPMApp/Db/BPM_TimeSeries.template", "P=${P}, R=${R},R=FOFB,NUM_TS=1000000,NUM_FREQ=1000000,PORT=$(PORT)FOFB_TS")
 
 # Turn on asynTraceFlow and asynTraceError for global trace, i.e. no connected asynUser.
 asynSetTraceIOMask("$(BPM_NAME)",0,0x2)

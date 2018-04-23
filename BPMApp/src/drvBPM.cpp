@@ -650,7 +650,8 @@ get_service_id_err:
  * \param[in] endpoint The device address string ]
  * */
 drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
-        int verbose, int timeout, int maxPoints, int maxBuffers, size_t maxMemory)
+        const char *type, int verbose, int timeout, int maxPoints,
+        int maxBuffers, size_t maxMemory)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     (int)NUM_PARAMS,
@@ -669,6 +670,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     /* Create portName so we can create a new AsynUser later */
     bpmPortName = epicsStrDup(portName);
+    bpmType = epicsStrDup(type);
     bpmMaxPoints = maxPoints;
 
     this->endpoint = strdup(endpoint);
@@ -1383,6 +1385,8 @@ drvBPM::~drvBPM()
 
     free (this->endpoint);
     this->endpoint = NULL;
+    free (this->bpmType);
+    this->bpmType = NULL;
     free (this->bpmPortName);
     this->bpmPortName = NULL;
 }
@@ -4703,10 +4707,17 @@ asynStatus drvBPM::readUInt32Params(epicsUInt32 mask, int addr)
 {
     int status = 0;
 
-    status |= readAD9510Params(mask, addr);
-    status |= readADCsParams(mask, addr);
-    status |= readGenParams(mask, addr);
-    status |= readDSPParams(mask, addr);
+    /* Only FMC130M_4CH and FMC250M_4CH have these */
+    if (streq(this->bpmType, "FMC130M_4CH") ||
+            streq(this->bpmType, "FMC250M_4CH")) {
+        status |= readAD9510Params(mask, addr);
+        status |= readADCsParams(mask, addr);
+    }
+    /* All types, but FMCPOF_5CH have these */
+    if (!streq(this->bpmType, "FMCPOF_5CH")) {
+        status |= readGenParams(mask, addr);
+        status |= readDSPParams(mask, addr);
+    }
 
     return (asynStatus) status;
 }
@@ -4715,7 +4726,11 @@ asynStatus drvBPM::readFloat64Params(int addr)
 {
     int status = 0;
 
-    status |= readSi57xParams(addr);
+    /* Only FMC130M_4CH and FMC250M_4CH have these */
+    if (streq(this->bpmType, "FMC130M_4CH") ||
+            streq(this->bpmType, "FMC250M_4CH")) {
+        status |= readSi57xParams(addr);
+    }
 
     return (asynStatus) status;
 }
@@ -4775,11 +4790,11 @@ extern "C" {
      * \param[in] portName The name of the asyn port driver to be created.
      * \param[in] endpoint The address device string */
     int drvBPMConfigure(const char *portName, const char *endpoint,
-            int bpmNumber, int verbose, int timeout, int maxPoints,
-            int maxBuffers, size_t maxMemory)
+            int bpmNumber, const char *type, int verbose, int timeout,
+            int maxPoints, int maxBuffers, size_t maxMemory)
     {
-        new drvBPM(portName, endpoint, bpmNumber, verbose, timeout,
-                maxPoints, maxBuffers, maxMemory);
+        new drvBPM(portName, endpoint, bpmNumber, type, verbose,
+                timeout, maxPoints, maxBuffers, maxMemory);
         return(asynSuccess);
     }
 
@@ -4787,11 +4802,12 @@ extern "C" {
     static const iocshArg initArg0 = { "portName", iocshArgString};
     static const iocshArg initArg1 = { "endpoint", iocshArgString};
     static const iocshArg initArg2 = { "bpmNumber", iocshArgInt};
-    static const iocshArg initArg3 = { "verbose", iocshArgInt};
-    static const iocshArg initArg4 = { "timeout", iocshArgInt};
-    static const iocshArg initArg5 = { "maxPoints", iocshArgInt};
-    static const iocshArg initArg6 = { "maxBuffers", iocshArgInt};
-    static const iocshArg initArg7 = { "maxMemory", iocshArgInt};
+    static const iocshArg initArg3 = { "type", iocshArgString};
+    static const iocshArg initArg4 = { "verbose", iocshArgInt};
+    static const iocshArg initArg5 = { "timeout", iocshArgInt};
+    static const iocshArg initArg6 = { "maxPoints", iocshArgInt};
+    static const iocshArg initArg7 = { "maxBuffers", iocshArgInt};
+    static const iocshArg initArg8 = { "maxMemory", iocshArgInt};
     static const iocshArg * const initArgs[] = {&initArg0,
         &initArg1,
         &initArg2,
@@ -4799,13 +4815,14 @@ extern "C" {
         &initArg4,
         &initArg5,
         &initArg6,
-        &initArg7};
-    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",8,initArgs};
+        &initArg7,
+        &initArg8};
+    static const iocshFuncDef initFuncDef = {"drvBPMConfigure",9,initArgs};
     static void initCallFunc(const iocshArgBuf *args)
     {
         drvBPMConfigure(args[0].sval, args[1].sval, args[2].ival,
-                args[3].ival, args[4].ival, args[5].ival,
-                args[6].ival, args[7].ival);
+                args[3].sval, args[4].ival, args[5].ival, args[6].ival,
+                args[7].ival, args[8].ival);
     }
 
     void drvBPMRegister(void)

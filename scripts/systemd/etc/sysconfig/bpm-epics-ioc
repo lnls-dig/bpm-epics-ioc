@@ -1,6 +1,4 @@
 # General configuration
-BPM_BE_IOC_STARTUP=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM
-BPM_FE_IOC_STARTUP=/opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE
 BPM_ENDPOINT="ipc:///tmp/malamute"
 EPICS_HOST_ARCH=linux-x86_64
 PROCSERV_BE_PORT_PREFIX=200
