@@ -522,8 +522,8 @@ typedef enum {
 
 class drvBPM : public asynNDArrayDriver {
     public:
-        drvBPM(const char *portName, const char *endpoint,
-                int bpmNumber, int verbose, int timeout,
+        drvBPM(const char *portName, const char *endpoint, int bpmNumber,
+                const char *type, int verbose, int timeout,
                 int maxPoints, int maxBuffers, size_t maxMemory);
         ~drvBPM();
 
@@ -741,6 +741,7 @@ class drvBPM : public asynNDArrayDriver {
         int verbose;
         int timeout;
         char *bpmPortName;
+        char *bpmType;
         int readingActive[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         int repetitiveTrigger[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId startAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
