@@ -4707,10 +4707,17 @@ asynStatus drvBPM::readUInt32Params(epicsUInt32 mask, int addr)
 {
     int status = 0;
 
-    status |= readAD9510Params(mask, addr);
-    status |= readADCsParams(mask, addr);
-    status |= readGenParams(mask, addr);
-    status |= readDSPParams(mask, addr);
+    /* Only FMC130M_4CH and FMC250M_4CH have these */
+    if (streq(this->bpmType, "FMC130M_4CH") ||
+            streq(this->bpmType, "FMC250M_4CH")) {
+        status |= readAD9510Params(mask, addr);
+        status |= readADCsParams(mask, addr);
+    }
+    /* All types, but FMCPOF_5CH have these */
+    if (!streq(this->bpmType, "FMCPOF_5CH")) {
+        status |= readGenParams(mask, addr);
+        status |= readDSPParams(mask, addr);
+    }
 
     return (asynStatus) status;
 }
@@ -4719,7 +4726,11 @@ asynStatus drvBPM::readFloat64Params(int addr)
 {
     int status = 0;
 
-    status |= readSi57xParams(addr);
+    /* Only FMC130M_4CH and FMC250M_4CH have these */
+    if (streq(this->bpmType, "FMC130M_4CH") ||
+            streq(this->bpmType, "FMC250M_4CH")) {
+        status |= readSi57xParams(addr);
+    }
 
     return (asynStatus) status;
 }
