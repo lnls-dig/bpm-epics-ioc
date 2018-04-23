@@ -134,12 +134,13 @@ record(ao,"$(P)$(R)MONITUpdtTime-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(DRVH,"1")
-    field(DRVL,"0.001")
+    field(DRVL,"0.05")
     field(HOPR,"1")
-    field(LOPR,"0.001")
+    field(LOPR,"0.05")
     field(PREC,"3")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_UPDTTIME")
     field(EGU, "s")
+    field(VAL, "0.05")
 }
 
 record(ai,"$(P)$(R)MONITUpdtTime-RB"){
@@ -147,7 +148,7 @@ record(ai,"$(P)$(R)MONITUpdtTime-RB"){
     field(DESC,"get MONIT AMP/POS update time")
     field(SCAN,"I/O Intr")
     field(HOPR,"1")
-    field(LOPR,"0.001")
+    field(LOPR,"0.05")
     field(PREC,"3")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_UPDTTIME")
     field(EGU, "s")
