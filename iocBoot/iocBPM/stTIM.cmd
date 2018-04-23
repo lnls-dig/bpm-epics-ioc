@@ -28,18 +28,6 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0
 < statsPlugins.cmd
 < save_restore.cmd
 
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-#  dataString  = drvInfo string for position data
-#  intervalString  = drvInfo string for time interval per point
-#initFastSweep("$(PORT)TBT_TS", "$(PORT)", 4, 1000000, "POS_TBT_ARRAY", "POS_TBT_SAMPLE_TIME")
-#dbLoadRecords("${TOP}/BPMApp/Db/BPM_TimeSeries.template", "P=${P}, R=${R},R=TBT,NUM_TS=1000000,NUM_FREQ=1000000,PORT=$(PORT)TBT_TS")
-#initFastSweep("$(PORT)FOFB_TS", "$(PORT)", 4, 1000000, "POS_FOFB_ARRAY", "POS_FOFB_SAMPLE_TIME")
-#dbLoadRecords("${TOP}/BPMApp/Db/BPM_TimeSeries.template", "P=${P}, R=${R},R=FOFB,NUM_TS=1000000,NUM_FREQ=1000000,PORT=$(PORT)FOFB_TS")
-
 # Turn on asynTraceFlow and asynTraceError for global trace, i.e. no connected asynUser.
 asynSetTraceIOMask("$(BPM_NAME)",0,0x2)
 #asynSetTraceMask("", 0, 17)
