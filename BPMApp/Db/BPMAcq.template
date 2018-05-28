@@ -84,12 +84,14 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Channel-Sel"){
     field(THVL,"3")
     field(FRVL,"4")
     field(FVVL,"5")
+    field(SXVL,"6")
     field(ZRST,"adc")
     field(ONST,"adcswap")
     field(TWST,"tbt")
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
+    field(SXST,"monit1")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
@@ -104,12 +106,14 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
     field(THVL,"3")
     field(FRVL,"4")
     field(FVVL,"5")
+    field(SXVL,"6")
     field(ZRST,"adc")
     field(ONST,"adcswap")
     field(TWST,"tbt")
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
+    field(SXST,"monit1")
 }
 
 # For use with rate seq record defined in FFTRecords.template
@@ -301,12 +305,14 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel"){
     field(THVL,"3")
     field(FRVL,"4")
     field(FVVL,"5")
+    field(SXVL,"6")
     field(ZRST,"adc")
     field(ONST,"adcswap")
     field(TWST,"tbt")
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
+    field(SXST,"monit1")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
@@ -321,12 +327,14 @@ record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
     field(THVL,"3")
     field(FRVL,"4")
     field(FVVL,"5")
+    field(SXVL,"6")
     field(ZRST,"adc")
     field(ONST,"adcswap")
     field(TWST,"tbt")
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
+    field(SXST,"monit1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
