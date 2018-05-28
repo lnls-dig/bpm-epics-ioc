@@ -64,7 +64,7 @@
 #define CH_DFLT_TRIGGER_CHAN            0
 #define ADC_RST_NORMAL_OP               1
 #define ADC_NUM_CHANNELS                4
-#define CH_DFLT_TRIGGER_SW_CHAN         17
+#define CH_DFLT_TRIGGER_SW_CHAN         18
 
 #define CH_DEFAULT_PM                   CH_TBT
 #define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
