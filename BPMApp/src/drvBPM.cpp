@@ -4053,8 +4053,8 @@ asynStatus drvBPM::executeHwReadFunction(int functionId, int addr,
     /* Lookup function on map */
     func = bpmHwFunc.find (functionId);
     if (func == bpmHwFunc.end()) {
-        /* This is not an error. Exit silently */
-        status = asynSuccess;
+        /* We use disabled to indicate the function was not found on Hw mapping */
+        status = asynDisabled;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                 "%s:%s: no registered function for functionID = %d\n",
                 driverName, functionName, functionId);
@@ -4128,9 +4128,16 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
-    /* Mask parameter according to the received mask */
-    functionArgs.argUInt32 &= mask;
-    *param = functionArgs.argUInt32;
+    if (status == asynSuccess) {
+        /* Mask parameter according to the received mask */
+        functionArgs.argUInt32 &= mask;
+        *param = functionArgs.argUInt32;
+    }
+    /* We recover from asynDisabled just by retrieving
+     * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
 
 get_param_err:
     return (asynStatus)status;
@@ -4172,7 +4179,14 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
-    *param = functionArgs.argFloat64;
+    if (status == asynSuccess) {
+        *param = functionArgs.argFloat64;
+    }
+    /* We recover from asynDisabled just by retrieving
+     * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
 
 get_param_err:
     return status;
