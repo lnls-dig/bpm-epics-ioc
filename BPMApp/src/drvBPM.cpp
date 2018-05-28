@@ -345,6 +345,44 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_POS_PM_ALL},
                           },
                           },
+    /* [CH_MONIT1] =  */ {CH_HW_MONIT1,                          // HwAmpChannel
+                          -1,                                    // HwPhaseChannel
+                          -1,                                    // HwPosChannel
+                          1,                                     // CalcPos
+                          {{WVF_GENAMP_A,                        // NDArrayAmp
+                            WVF_GENAMP_B,
+                            WVF_GENAMP_C,
+                            WVF_GENAMP_D,
+                            WVF_GENAMP_ALL},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                          },
+                          {{-1,                                 // NDArrayPhase
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                            {-1,
+                             -1,
+                             -1,
+                             -1,
+                             -1},
+                          },
+                          {{WVF_GENPOS_A,                        // NDArrayPos
+                            WVF_GENPOS_B,
+                            WVF_GENPOS_C,
+                            WVF_GENPOS_D,
+                            WVF_GENPOS_ALL},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                          },
+                          },
     /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
                           -1,                                  // HwPhaseChannel
                           -1,                                  // HwPosChannel
@@ -400,7 +438,9 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
      /* 9 = Unavailable     */  {-1},
      /* 10 = Unavailable    */  {-1},
      /* [CH_HW_FOFB] =      */  {CH_FOFB},
-     /* [CH_HW_FOFBPHA] =   */  {CH_FOFBPHA}
+     /* [CH_HW_FOFBPHA] =   */  {CH_FOFBPHA},
+     /* 13 = Unavailable    */  {-1},
+     /* [CH_HW_MONIT1] =    */  {CH_MONIT1},
 };
 
 /* This function should not be called, as there is no client function to replace it and
