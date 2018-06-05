@@ -273,3 +273,48 @@ record(ai,"$(P)$(R)Sum-Mon"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_SUM")
     field(EGU, "au")
 }
+
+record(longout,"$(P)$(R)SwTagEn-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Switching Tag Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_EN")
+}
+
+record(longin,"$(P)$(R)SwTagEn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Switching Tag Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_EN")
+}
+
+record(longout,"$(P)$(R)SwDataMaskEn-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_EN")
+}
+
+record(longin,"$(P)$(R)SwDataMaskEn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_EN")
+}
+
+record(longout,"$(P)$(R)SwDataMaskSamples-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Samples")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
+}
+
+record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Samples")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
+}
