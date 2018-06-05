@@ -447,6 +447,9 @@ private:
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_YOffsetString             "DSP_YOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
+#define P_SwTagEnString             "DSP_SW_TAG_EN"         /* asynUInt32Digital,      r/w */
+#define P_SwDataMaskEnString        "DSP_SW_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
+#define P_SwDataMaskSamplesString   "DSP_SW_DATA_MASK_SAMPLES"  /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
@@ -661,6 +664,9 @@ class drvBPM : public asynNDArrayDriver {
         int P_XOffset;
         int P_YOffset;
         int P_QOffset;
+        int P_SwTagEn;
+        int P_SwDataMaskEn;
+        int P_SwDataMaskSamples;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
