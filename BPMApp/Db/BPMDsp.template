@@ -273,3 +273,68 @@ record(ai,"$(P)$(R)Sum-Mon"){
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_SUM")
     field(EGU, "au")
 }
+
+record(mbbo,"$(P)$(R)SwTagEn-Sel"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Switching Tag Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(mbbi,"$(P)$(R)SwTagEn-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Switching Tag Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(mbbo,"$(P)$(R)SwDataMaskEn-Sel"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(mbbi,"$(P)$(R)SwDataMaskEn-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(longout,"$(P)$(R)SwDataMaskSamples-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Samples")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
+}
+
+record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Samples")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
+}
