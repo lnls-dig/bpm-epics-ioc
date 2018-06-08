@@ -471,6 +471,11 @@ static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *
 static const functionsAny_t bpmSetGetKxFunc =                    {functionsInt32_t{"DSP", halcs_set_kx, halcs_get_kx}};
 static const functionsAny_t bpmSetGetKyFunc =                    {functionsInt32_t{"DSP", halcs_set_ky, halcs_get_ky}};
 static const functionsAny_t bpmSetGetKsumFunc =                  {functionsInt32_t{"DSP", halcs_set_ksum, halcs_get_ksum}};
+static const functionsAny_t bpmSetGetSwTagEnFunc =               {functionsInt32_t{"DSP", halcs_set_sw_tag_en, halcs_get_sw_tag_en}};
+static const functionsAny_t bpmSetGetSwDataMaskEnFunc =          {functionsInt32_t{"DSP", halcs_set_sw_data_mask_en,
+                                                                                            halcs_get_sw_data_mask_en}};
+static const functionsAny_t bpmSetGetSwDataMaskSamplesFunc =     {functionsInt32_t{"DSP", halcs_set_sw_data_mask_samples,
+                                                                                            halcs_get_sw_data_mask_samples}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -867,6 +872,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_KxString,         asynParamUInt32Digital,         &P_Kx);
     createParam(P_KyString,         asynParamUInt32Digital,         &P_Ky);
     createParam(P_KsumString,       asynParamUInt32Digital,         &P_Ksum);
+    createParam(P_SwTagEnString,
+                                    asynParamUInt32Digital,         &P_SwTagEn);
+    createParam(P_SwDataMaskEnString,
+                                    asynParamUInt32Digital,         &P_SwDataMaskEn);
+    createParam(P_SwDataMaskSamplesString,
+                                    asynParamUInt32Digital,         &P_SwDataMaskSamples);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
@@ -989,6 +1000,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_Kx, bpmSetGetKxFunc);
     bpmHwFunc.emplace(P_Ky, bpmSetGetKyFunc);
     bpmHwFunc.emplace(P_Ksum, bpmSetGetKsumFunc);
+    bpmHwFunc.emplace(P_SwTagEn, bpmSetGetSwTagEnFunc);
+    bpmHwFunc.emplace(P_SwDataMaskEn, bpmSetGetSwDataMaskEnFunc);
+    bpmHwFunc.emplace(P_SwDataMaskSamples, bpmSetGetSwDataMaskSamplesFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1158,6 +1172,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_Kx,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ky,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_Ksum,         1,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_SwTagEn,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_SwDataMaskEn, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_SwDataMaskSamples,
+                                        382,                0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
@@ -4826,7 +4844,7 @@ asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
  * the ones in Hw here, otherwise we will have 0 for those */
 asynStatus drvBPM::readDSPParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_Kx, P_Ksum, true);
+    return updateUInt32Params(mask, addr, P_Kx, P_SwDataMaskSamples, true);
 }
 
 asynStatus drvBPM::readGenDSPParams(epicsUInt32 mask, int addr)
