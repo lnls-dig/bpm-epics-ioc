@@ -238,7 +238,12 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
         uint32_t B = abs(abcd.B /* >> 2*/);
         uint32_t C = abs(abcd.C /* >> 2*/);
         uint32_t D = abs(abcd.D /* >> 2*/);
-        uint32_t S = A + B + C + D;
+
+        /* --- Experimental implementation of partial diffence-over-sum mehtod ---
+         * Only meant for tests. Author: Daniel Tavares */
+        uint32_t S_AC = A + C;
+        uint32_t S_BD = B + D;
+        uint32_t S = S_AC + S_BD;
 
         /* Now compute the positions according to the model.  As this is an
          * inner loop function we take some time to optimise its execution by
@@ -247,26 +252,35 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
          * of 1/S.  (InvS,shift) = Reciprocal(S) returns InvS=2^shift/S,
          * where shift derives from a bit normalisation count on S so that
          * 2^31 <= InvS < 2^32. */
-        int shift = 0;
-        int InvS = Reciprocal(S, shift);
+        int shift_AC = 0;
+        int InvS_AC = Reciprocal(S_AC, shift_AC);
+
+        int shift_BD = 0;
+        int InvS_BD = Reciprocal(S_BD, shift_BD);
+
+        /* KX and XY should be divided by 2 in partial difference-over-sum. Shift partial sums by 1 bit to implement it. */
+        uint32_t partial_AC_pos = DeltaToPosition(k_factors.KX, A - C, InvS_AC << 1, shift_AC);
+        uint32_t partial_BD_pos = DeltaToPosition(k_factors.KY, B - D, InvS_BD << 1, shift_BD);
+
         /* Compute X and Y according to the currently selected detector
          * orientation. */
         if (Diagonal)
         {
-            xyqs.X = DeltaToPosition(k_factors.KX, A - B - C + D, InvS, shift) - pos_offsets.XOFFSET;
-            xyqs.Y = DeltaToPosition(k_factors.KY, A + B - C - D, InvS, shift) - pos_offsets.YOFFSET;
+            xyqs.X = partial_AC_pos - partial_BD_pos - pos_offsets.XOFFSET;
+            xyqs.Y = partial_AC_pos + partial_BD_pos - pos_offsets.YOFFSET;
         }
         else
         {
-            xyqs.X = (DeltaToPosition(k_factors.KX, D - B, InvS, shift) << 1) - pos_offsets.XOFFSET;
-            xyqs.Y = (DeltaToPosition(k_factors.KY, A - C, InvS, shift) << 1) - pos_offsets.YOFFSET;
+            xyqs.X = -partial_BD_pos - pos_offsets.XOFFSET;
+            xyqs.Y = partial_AC_pos - pos_offsets.YOFFSET;
         }
         /* We scale Q up quite a bit more so that we have access to as much
          * information as possible: the values can be quite small,
          * particulary after Q_0 correction. */
         /* xyqs.Q = DeltaToPosition(
             100 * K_SCALE, A - B + C - D, InvS, shift) - Q_0; */
-        xyqs.Q = DeltaToPosition(k_factors.KQ, A - B + C - D, InvS, shift) - pos_offsets.QOFFSET;
+        xyqs.Q = partial_AC_pos + partial_BD_pos - pos_offsets.QOFFSET;
+        /* --- Experimental implementation of partial diffence-over-sum mehtod end here --- */
         /* xyqs.S = S; */
         xyqs.S = k_factors.KSUM * S;
     }
