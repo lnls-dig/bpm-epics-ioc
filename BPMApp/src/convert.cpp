@@ -253,14 +253,14 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
          * where shift derives from a bit normalisation count on S so that
          * 2^31 <= InvS < 2^32. */
         int shift_AC = 0;
-        int InvS_AC = Reciprocal(S_AC, shift_AC);
+        int InvS_AC = Reciprocal(S_AC << 1, shift_AC);
 
         int shift_BD = 0;
-        int InvS_BD = Reciprocal(S_BD, shift_BD);
+        int InvS_BD = Reciprocal(S_BD << 1, shift_BD);
 
         /* KX and XY should be divided by 2 in partial difference-over-sum. Shift partial sums by 1 bit to implement it. */
-        uint32_t partial_AC_pos = DeltaToPosition(k_factors.KX, A - C, InvS_AC << 1, shift_AC);
-        uint32_t partial_BD_pos = DeltaToPosition(k_factors.KY, B - D, InvS_BD << 1, shift_BD);
+        uint32_t partial_AC_pos = DeltaToPosition(k_factors.KX, A - C, InvS_AC, shift_AC);
+        uint32_t partial_BD_pos = DeltaToPosition(k_factors.KY, B - D, InvS_BD, shift_BD);
 
         /* Compute X and Y according to the currently selected detector
          * orientation. */
