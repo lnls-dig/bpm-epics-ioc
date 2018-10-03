@@ -134,6 +134,9 @@ typedef struct
 #define use_offset(Type, Struct, Field) \
     ((Type *)(void*)((char *)(Struct) + (Field)))
 
+/* Wrapper function to ABCD to WYQS with different methods */
+void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+        int Count, bool Diagonal = true, bool PartialDelta = false);
 
 /* Converts Count rows of IQ data into ABCD format by applying Cordic
  * conversion on each I,Q pair. */
@@ -142,7 +145,12 @@ void IQtoABCD(const IQ_ROW *IQ, ABCD_ROW *ABCD, int Count);
 /* Converts Count rows of ABCD button data into XYQS position and intensity
  * data via the configured conversion function. */
 /* void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, int Count); */
-void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+        int Count, bool Diagonal = true);
+
+/* Converts Count rows of ABCD button data into XYQS position and intensity
+ * using Partial Delta-over-Sum algorithm */
+void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
         int Count, bool Diagonal = true);
 
 /* Gain correction on a single column of data from a single channel.  Note

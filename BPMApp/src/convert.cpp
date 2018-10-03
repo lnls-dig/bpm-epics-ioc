@@ -217,6 +217,73 @@ static int DeltaToPosition(int K, int M, int InvS, int shift)
  */
 
 void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+        int Count, bool Diagonal, bool PartialDelta)
+{
+    if (PartialDelta) {
+        ABCDtoXYQSPartial(ABCD, XYQS, K, OFFSETS, Count, Diagonal);
+    }
+    else {
+        ABCDtoXYQSStd(ABCD, XYQS, K, OFFSETS, Count, Diagonal);
+    }
+}
+
+void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+        int Count, bool Diagonal)
+{
+    K_FACTORS k_factors = *K;
+    POS_OFFSETS pos_offsets = *OFFSETS;
+
+    for (int i = 0; i < Count; i++)
+    {
+        const ABCD_ROW & abcd = ABCD[i];
+        XYQS_ROW & xyqs = XYQS[i];
+
+        /* First compute the total intensity S.  To avoid overflow we
+         * prescale by 4.  This can involve loss of bits when the intensity
+         * is extremely low, but in fact the bottom bits are pretty well pure
+         * noise and can be cheaply discarded.
+         *    The button values A,B,C,D are known to lie in the range 0 to
+         * 2^31 - 1 so we similarly know that 0 <= S < 2^31. */
+        /* *FIXME: we are not scaling down the amplitudes as it was before */
+        uint32_t A = abs(abcd.A /* >> 2*/);
+        uint32_t B = abs(abcd.B /* >> 2*/);
+        uint32_t C = abs(abcd.C /* >> 2*/);
+        uint32_t D = abs(abcd.D /* >> 2*/);
+        uint32_t S = A + B + C + D;
+
+        /* Now compute the positions according to the model.  As this is an
+         * inner loop function we take some time to optimise its execution by
+         * precomputing as much as possible.
+         *    Start by precomputing 1/S, or more precisely, a scaled version
+         * of 1/S.  (InvS,shift) = Reciprocal(S) returns InvS=2^shift/S,
+         * where shift derives from a bit normalisation count on S so that
+         * 2^31 <= InvS < 2^32. */
+        int shift = 0;
+        int InvS = Reciprocal(S, shift);
+        /* Compute X and Y according to the currently selected detector
+         * orientation. */
+        if (Diagonal)
+        {
+            xyqs.X = DeltaToPosition(k_factors.KX, A - B - C + D, InvS, shift) - pos_offsets.XOFFSET;
+            xyqs.Y = DeltaToPosition(k_factors.KY, A + B - C - D, InvS, shift) - pos_offsets.YOFFSET;
+        }
+        else
+        {
+            xyqs.X = (DeltaToPosition(k_factors.KX, D - B, InvS, shift) << 1) - pos_offsets.XOFFSET;
+            xyqs.Y = (DeltaToPosition(k_factors.KY, A - C, InvS, shift) << 1) - pos_offsets.YOFFSET;
+        }
+        /* We scale Q up quite a bit more so that we have access to as much
+         * information as possible: the values can be quite small,
+         * particulary after Q_0 correction. */
+        /* xyqs.Q = DeltaToPosition(
+            100 * K_SCALE, A - B + C - D, InvS, shift) - Q_0; */
+        xyqs.Q = DeltaToPosition(k_factors.KQ, A - B + C - D, InvS, shift) - pos_offsets.QOFFSET;
+        /* xyqs.S = S; */
+        xyqs.S = k_factors.KSUM * S;
+    }
+}
+
+void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
         int Count, bool Diagonal)
 {
     K_FACTORS k_factors = *K;
@@ -239,8 +306,6 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
         uint32_t C = abs(abcd.C /* >> 2*/);
         uint32_t D = abs(abcd.D /* >> 2*/);
 
-        /* --- Experimental implementation of partial diffence-over-sum mehtod ---
-         * Only meant for tests. Author: Daniel Tavares */
         uint32_t S_AC = A + C;
         uint32_t S_BD = B + D;
         uint32_t S = S_AC + S_BD;
@@ -277,14 +342,11 @@ void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS 
         /* We scale Q up quite a bit more so that we have access to as much
          * information as possible: the values can be quite small,
          * particulary after Q_0 correction. */
-        /* xyqs.Q = DeltaToPosition(
-            100 * K_SCALE, A - B + C - D, InvS, shift) - Q_0; */
         xyqs.Q = partial_AC_pos + partial_BD_pos - pos_offsets.QOFFSET;
-        /* --- Experimental implementation of partial diffence-over-sum mehtod end here --- */
-        /* xyqs.S = S; */
         xyqs.S = k_factors.KSUM * S;
     }
 }
+
 
 void GainCorrect(int Channel, int *Column, int Count)
 {
