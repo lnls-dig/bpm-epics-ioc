@@ -10,7 +10,7 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)BPMMode-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"MultiBunch")
+    field(ZRST,"MultiPass")
     field(ONST,"SinglePass")
 }
 
@@ -22,7 +22,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)BPMMode-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"MultiBunch")
+    field(ZRST,"MultiPass")
     field(ONST,"SinglePass")
 }
 
