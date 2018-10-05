@@ -326,7 +326,7 @@ $(pv_value)</tooltip>
     <wuid>4b176946:14ef51d6cd0:-5574</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>$(P)$(R) Advanced Settings</text>
+    <text>$(P)$(R) Advanced Settings Hardware</text>
     <scripts />
     <height>31</height>
     <border_width>1</border_width>
@@ -3754,7 +3754,7 @@ $(pv_value)</tooltip>
     <wuid>40d46e63:15795ecaf01:-7c21</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>$(P)$(R) Advanced Settings</text>
+    <text>$(P)$(R) Advanced Settings Hardware</text>
     <scripts />
     <height>31</height>
     <border_width>1</border_width>
@@ -9882,7 +9882,7 @@ $(pv_value)</tooltip>
     <wuid>-29657ec1:15b638daf48:-7330</wuid>
     <transparent>true</transparent>
     <auto_size>false</auto_size>
-    <text>Calibration 
+    <text>Calibration
 Done</text>
     <scripts />
     <height>39</height>
