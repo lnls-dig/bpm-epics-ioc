@@ -590,7 +590,7 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>140</width>
     <wuid>4b176946:14ef51d6cd0:-5723</wuid>
-    <x>194</x>
+    <x>191</x>
     <y>242</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
@@ -731,7 +731,7 @@ $(pv_value)</tooltip>
     <width>140</width>
     <wuid>2dce1549:14effa31136:-7aa8</wuid>
     <x>37</x>
-    <y>144</y>
+    <y>148</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -840,7 +840,7 @@ $(pv_value)</tooltip>
     <width>140</width>
     <wuid>-5a2d2d0f:159db0c4e2f:-379c</wuid>
     <x>345</x>
-    <y>144</y>
+    <y>148</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="false">
@@ -891,8 +891,8 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>140</width>
     <wuid>-3892db84:15ac88e1c6b:-3369</wuid>
-    <x>188</x>
-    <y>144</y>
+    <x>191</x>
+    <y>148</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
     <actions hook="true" hook_all="false">
@@ -4063,8 +4063,8 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>140</width>
     <wuid>1bfb5439:1663ed9170b:40b</wuid>
-    <x>344</x>
-    <y>241</y>
+    <x>345</x>
+    <y>242</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.xyGraph" version="1.0.0">
     <actions hook="false" hook_all="false" />
