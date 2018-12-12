@@ -258,36 +258,18 @@ record(mbbi,"$(P)$(R)$(ACQ_NAME)TriggerDataPol-Sts"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_POL")
 }
 
-record(mbbo,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-Sel"){
+record(longout,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set data trigger selection")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(NOBT,"5")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(TWVL,"2")
-    field(THVL,"3")
-    field(ZRST,"A")
-    field(ONST,"B")
-    field(TWST,"C")
-    field(THST,"D")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
 }
 
-record(mbbi,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-Sts"){
+record(longin,"$(P)$(R)$(ACQ_NAME)TriggerDataSel-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data trigger selection")
     field(SCAN,"I/O Intr")
-    field(NOBT,"5")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(TWVL,"2")
-    field(THVL,"3")
-    field(ZRST,"A")
-    field(ONST,"B")
-    field(TWST,"C")
-    field(THST,"D")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_SEL")
 }
 
