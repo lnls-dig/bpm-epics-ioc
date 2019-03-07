@@ -324,20 +324,26 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_O
         int InvS_BD = Reciprocal(S_BD << 1, shift_BD);
 
         /* KX and XY should be divided by 2 in partial difference-over-sum. Shift partial sums by 1 bit to implement it. */
-        uint32_t partial_AC_pos = DeltaToPosition(k_factors.KX, A - C, InvS_AC, shift_AC);
-        uint32_t partial_BD_pos = DeltaToPosition(k_factors.KY, B - D, InvS_BD, shift_BD);
+        uint32_t partial_AC_pos_x = DeltaToPosition(k_factors.KX, A - C, InvS_AC, shift_AC);
+        uint32_t partial_BD_pos_x = DeltaToPosition(k_factors.KX, B - D, InvS_BD, shift_BD);
+
+        uint32_t partial_AC_pos_y = DeltaToPosition(k_factors.KY, A - C, InvS_AC, shift_AC);
+        uint32_t partial_BD_pos_y = DeltaToPosition(k_factors.KY, B - D, InvS_BD, shift_BD);
+
+        uint32_t partial_AB_pos_q = DeltaToPosition(k_factors.KQ, A - B, InvS_AB, shift_AB);
+        uint32_t partial_CD_pos_q = DeltaToPosition(k_factors.KQ, C - D, InvS_CD, shift_CD);
 
         /* Compute X and Y according to the currently selected detector
          * orientation. */
         if (Diagonal)
         {
-            xyqs.X = partial_AC_pos - partial_BD_pos - pos_offsets.XOFFSET;
-            xyqs.Y = partial_AC_pos + partial_BD_pos - pos_offsets.YOFFSET;
+            xyqs.X = partial_AC_pos_x - partial_BD_pos_x - pos_offsets.XOFFSET;
+            xyqs.Y = partial_AC_pos_y + partial_BD_pos_y - pos_offsets.YOFFSET;
         }
         else
         {
-            xyqs.X = -partial_BD_pos - pos_offsets.XOFFSET;
-            xyqs.Y = partial_AC_pos - pos_offsets.YOFFSET;
+            xyqs.X = -partial_BD_pos_x - pos_offsets.XOFFSET;
+            xyqs.Y = partial_AC_pos_y  - pos_offsets.YOFFSET;
         }
         /* We scale Q up quite a bit more so that we have access to as much
          * information as possible: the values can be quite small,
