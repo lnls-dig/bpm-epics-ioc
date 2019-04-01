@@ -404,6 +404,7 @@ private:
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
+#define P_Monit1RateString          "INFO_MONIT1RATE"       /* asynUInt32Digital,      r/o */
 #define P_SwModeString              "SW_MODE"               /* asynUInt32Digital,      r/w */
 #define P_SwDlyString               "SW_DLY"                /* asynUInt32Digital,      r/w */
 #define P_SwDivClkString            "SW_DIVCLK"             /* asynUInt32Digital,      r/w */
@@ -623,6 +624,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
+        int P_Monit1Rate;
         int P_SwMode;
         int P_SwDly;
         int P_SwDivClk;

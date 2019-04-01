@@ -43,6 +43,7 @@
 #define TBT_RATE_FACTOR                 35
 #define FOFB_RATE_FACTOR                980
 #define MONIT_RATE_FACTOR               9800000
+#define MONIT1_RATE_FACTOR              98000
 
 #define ADC_DFLT_SW                     0x1             /* No switching. Direct state */
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
@@ -805,6 +806,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
+    createParam(P_Monit1RateString, asynParamUInt32Digital,         &P_Monit1Rate);
 
     createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
@@ -1108,6 +1110,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1Rate,   MONIT1_RATE_FACTOR, 0xFFFFFFFF);
     setUIntDigitalParam(P_SwMode,       ADC_DFLT_SW,        0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
