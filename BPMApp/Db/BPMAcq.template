@@ -140,10 +140,10 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Trigger-Sel"){
     field(ONVL,"1")
     field(TWVL,"2")
     field(THVL,"3")
-    field(ZRST,"Now")
-    field(ONST,"External")
-    field(TWST,"Data")
-    field(THST,"Software")
+    field(ZRST,"now")
+    field(ONST,"external")
+    field(TWST,"data")
+    field(THST,"software")
     alias("$(P)$(R)$(ACQ_NAME)TriggerType-Sel")
 }
 
@@ -157,10 +157,10 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Trigger-Sts"){
     field(ONVL,"1")
     field(TWVL,"2")
     field(THVL,"3")
-    field(ZRST,"Now")
-    field(ONST,"External")
-    field(TWST,"Data")
-    field(THST,"Software")
+    field(ZRST,"now")
+    field(ONST,"external")
+    field(TWST,"data")
+    field(THST,"software")
     alias("$(P)$(R)$(ACQ_NAME)TriggerType-Sts")
 }
 
@@ -173,9 +173,9 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel"){
     field(ZRVL,"0")
     field(ONVL,"1")
     field(TWVL,"2")
-    field(ZRST,"Start")
-    field(ONST,"Stop")
-    field(TWST,"Abort")
+    field(ZRST,"start")
+    field(ONST,"stop")
+    field(TWST,"abort")
     alias("$(P)$(R)$(ACQ_NAME)Ctrl-Sel")
 }
 
@@ -188,9 +188,9 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sts"){
     field(ZRVL,"0")
     field(ONVL,"1")
     field(TWVL,"2")
-    field(ZRST,"Start")
-    field(ONST,"Stop")
-    field(TWST,"Abort")
+    field(ZRST,"start")
+    field(ONST,"stop")
+    field(TWST,"abort")
     alias("$(P)$(R)$(ACQ_NAME)Ctrl-Sts")
 }
 
