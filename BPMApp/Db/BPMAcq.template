@@ -32,7 +32,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPre-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
-    alias("$(P)$(R)$(ACQ_NAME)NrSamplesPre-SP")
 }
 
 record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPre-RB"){
@@ -40,7 +39,6 @@ record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPre-RB"){
     field(DESC,"Get number of pre samples for waveforms")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_PRE")
-    alias("$(P)$(R)$(ACQ_NAME)NrSamplesPre-RB")
 }
 
 record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPost-SP"){
@@ -49,7 +47,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPost-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
-    alias("$(P)$(R)$(ACQ_NAME)NrSamplesPost-SP")
 }
 
 record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPost-RB"){
@@ -57,7 +54,6 @@ record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPost-RB"){
     field(DESC,"Get number of post samples for waveforms")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
-    alias("$(P)$(R)$(ACQ_NAME)NrSamplesPost-RB")
 }
 
 record(longout,"$(P)$(R)$(ACQ_NAME)Shots-SP"){
@@ -66,7 +62,6 @@ record(longout,"$(P)$(R)$(ACQ_NAME)Shots-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
-    alias("$(P)$(R)$(ACQ_NAME)NrShots-SP")
 }
 
 record(longin,"$(P)$(R)$(ACQ_NAME)Shots-RB"){
@@ -74,7 +69,6 @@ record(longin,"$(P)$(R)$(ACQ_NAME)Shots-RB"){
     field(DESC,"Get number of shots for waveforms")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_NUM_SHOTS")
-    alias("$(P)$(R)$(ACQ_NAME)NrShots-RB")
 }
 
 record(mbbo, "$(P)$(R)$(ACQ_NAME)Channel-Sel"){
@@ -144,7 +138,6 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Trigger-Sel"){
     field(ONST,"external")
     field(TWST,"data")
     field(THST,"software")
-    alias("$(P)$(R)$(ACQ_NAME)TriggerType-Sel")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Trigger-Sts"){
@@ -161,7 +154,6 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Trigger-Sts"){
     field(ONST,"external")
     field(TWST,"data")
     field(THST,"software")
-    alias("$(P)$(R)$(ACQ_NAME)TriggerType-Sts")
 }
 
 record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel"){
@@ -176,7 +168,6 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sel"){
     field(ZRST,"start")
     field(ONST,"stop")
     field(TWST,"abort")
-    alias("$(P)$(R)$(ACQ_NAME)Ctrl-Sel")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sts"){
@@ -191,7 +182,6 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sts"){
     field(ZRST,"start")
     field(ONST,"stop")
     field(TWST,"abort")
-    alias("$(P)$(R)$(ACQ_NAME)Ctrl-Sts")
 }
 
 record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerRep-Sel"){
@@ -324,7 +314,6 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel"){
     field(FVST,"fofbpha")
     field(SXST,"monit1")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
-    alias("$(P)$(R)$(ACQ_NAME)TriggerDataChan-Sel")
 }
 
 record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
@@ -347,7 +336,6 @@ record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
     field(FVST,"fofbpha")
     field(SXST,"monit1")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
-    alias("$(P)$(R)$(ACQ_NAME)TriggerDataChan-Sts")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-Sts"){
