@@ -364,29 +364,19 @@ record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(mbbo,"$(P)$(R)TbtTagDly-Sel"){
+record(longout,"$(P)$(R)TbtTagDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Tbt Tag Delay")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
-    field(NOBT,"1")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(ZRST,"disabled")
-    field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbtTagDly-Sts"){
+record(longin,"$(P)$(R)TbtTagDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Tbt Tag Delay")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
-    field(NOBT,"1")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(ZRST,"disabled")
-    field(ONST,"enabled")
 }
 
 record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
