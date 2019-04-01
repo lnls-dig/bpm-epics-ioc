@@ -477,6 +477,14 @@ static const functionsAny_t bpmSetGetSwDataMaskEnFunc =          {functionsInt32
                                                                                             halcs_get_sw_data_mask_en}};
 static const functionsAny_t bpmSetGetSwDataMaskSamplesFunc =     {functionsInt32_t{"DSP", halcs_set_sw_data_mask_samples,
                                                                                             halcs_get_sw_data_mask_samples}};
+static const functionsAny_t bpmSetGetTbtTagEnFunc =              {functionsInt32_t{"DSP", halcs_set_tbt_tag_en, halcs_get_tbt_tag_en}};
+static const functionsAny_t bpmSetGetTbtTagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_tbt_tag_dly, halcs_get_tbt_tag_dly}};
+static const functionsAny_t bpmSetGetTbtDataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_en,
+                                                                                            halcs_get_tbt_data_mask_en}};
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_beg,
+                                                                                         halcs_get_tbt_data_mask_samples_beg}};
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_end,
+                                                                                            halcs_get_tbt_data_mask_samples_end}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -880,6 +888,16 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_SwDataMaskEn);
     createParam(P_SwDataMaskSamplesString,
                                     asynParamUInt32Digital,         &P_SwDataMaskSamples);
+    createParam(P_TbtTagEnString,
+                                    asynParamUInt32Digital,         &P_TbtTagEn);
+    createParam(P_TbtTagDlyString,
+                                    asynParamUInt32Digital,         &P_TbtTagDly);
+    createParam(P_TbtDataMaskEnString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskEn);
+    createParam(P_TbtDataMaskSamplesBegString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskSamplesBeg);
+    createParam(P_TbtDataMaskSamplesEndString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskSamplesEnd);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
@@ -1005,6 +1023,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagEn, bpmSetGetSwTagEnFunc);
     bpmHwFunc.emplace(P_SwDataMaskEn, bpmSetGetSwDataMaskEnFunc);
     bpmHwFunc.emplace(P_SwDataMaskSamples, bpmSetGetSwDataMaskSamplesFunc);
+    bpmHwFunc.emplace(P_TbtTagEn, bpmSetGetTbtTagEnFunc);
+    bpmHwFunc.emplace(P_TbtTagDly, bpmSetGetTbtTagDlyFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskEn, bpmSetGetTbtDataMaskEnFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskSamplesBeg, bpmSetGetTbtDataMaskSamplesBegFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskSamplesEnd, bpmSetGetTbtDataMaskSamplesEndFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1179,6 +1202,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_SwDataMaskEn, 0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDataMaskSamples,
                                         382,                0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagEn,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagDly,     0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskEn, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
@@ -4847,7 +4877,7 @@ asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
  * the ones in Hw here, otherwise we will have 0 for those */
 asynStatus drvBPM::readDSPParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_Kx, P_SwDataMaskSamples, true);
+    return updateUInt32Params(mask, addr, P_Kx, P_TbtDataMaskSamplesEnd, true);
 }
 
 asynStatus drvBPM::readGenDSPParams(epicsUInt32 mask, int addr)
