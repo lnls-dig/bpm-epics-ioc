@@ -2817,7 +2817,7 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
 
     /* Compute position for all array positions */
     ABCDtoXYQS(abcdRow, xyqsRow, &kFactors, &posOffsets,
-            arraySingleElements);
+            arraySingleElements, true);
 
     /* Do callbacks on the full waveform (all channels interleaved) */
     unlock();
