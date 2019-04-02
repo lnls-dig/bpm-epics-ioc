@@ -3550,7 +3550,7 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
             }
         }
         else if (function == P_BPMMode) {
-            status = setBPMMode(addr);
+            status = setBPMMode(addr, function);
         }
     }
     else {
@@ -4258,7 +4258,7 @@ get_param_err:
  * to our generic handlers get/setParam[32/Double]
  */
 
-asynStatus drvBPM::setBPMMode(int addr)
+asynStatus drvBPM::setBPMMode(int addr, int function)
 {
     int status = asynSuccess;
     int bpmMode = 0;
@@ -4276,8 +4276,9 @@ asynStatus drvBPM::setBPMMode(int addr)
         bpmModeOther = BPMModeSinglePass;
     }
 
-    /* Wait until the thread ends */
+    /* Check if an acquisition is running while trying to change mode */
     if (readingActive[bpmModeOther][addr]) {
+        setIntegerParam(addr, function, bpmModeOther);
         status = asynError;
         goto other_acq_acquiring_err;
     }
