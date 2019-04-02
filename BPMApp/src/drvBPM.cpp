@@ -3549,6 +3549,9 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
                 epicsEventSignal(this->activeMonitEnableEventId);
             }
         }
+        else if (function == P_BPMMode) {
+            status = setBPMMode(addr);
+        }
     }
     else {
         /* Call base class */
@@ -4254,6 +4257,34 @@ get_param_err:
  * Miscellaneous functions that don't map easily
  * to our generic handlers get/setParam[32/Double]
  */
+
+asynStatus drvBPM::setBPMMode(int addr)
+{
+    int status = asynSuccess;
+    int bpmMode = 0;
+    int bpmModeOther = 0;
+
+    /* Get BPMMode previously set */
+    getIntegerParam(addr, P_BPMMode, &bpmMode);
+
+    /* Throw an error if we are acquiring in the other mode 
+     * and we tried to change BPM mode */
+    if (bpmMode == BPMModeSinglePass) {
+        bpmModeOther = BPMModeMultiBunch;
+    }
+    else {
+        bpmModeOther = BPMModeSinglePass;
+    }
+
+    /* Wait until the thread ends */
+    if (readingActive[bpmModeOther][addr]) {
+        status = asynError;
+        goto other_acq_acquiring_err;
+    }
+
+other_acq_acquiring_err:
+    return (asynStatus) status;
+}
 
 asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 {

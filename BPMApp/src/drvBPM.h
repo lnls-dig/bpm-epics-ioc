@@ -812,6 +812,7 @@ class drvBPM : public asynNDArrayDriver {
 
         /* Specific hardware functions that need extra processing and don't
          * fit into the general set/get template */
+        asynStatus setBPMMode(int addr);
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus setAdcClkSel(epicsUInt32 mask, int addr);
         asynStatus setAdcAD9510ClkSel(epicsUInt32 mask, int addr);
