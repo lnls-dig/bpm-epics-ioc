@@ -1863,15 +1863,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             pArrayAllChannels->release ();
             pArrayAllChannels = NULL;
         }
-        /* Wait until we are in MultiBunch mode */
-        getIntegerParam(coreID, P_BPMMode, &bpmMode);
-        if (bpmMode != BPMModeMultiBunch) {
-            unlock ();
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
-            epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
-            lock ();
-        }
 
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
@@ -1880,6 +1871,17 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID] || acqIsBPMStatusErr(bpmStatus)) {
             /* We got a stop event, stop repetitive acquisition */
             readingActive[BPMModeMultiBunch][coreID] = 0;
+
+            /* Wait until we are in MultiBunch mode */
+            getIntegerParam(coreID, P_BPMMode, &bpmMode);
+            if (bpmMode != BPMModeMultiBunch) {
+                unlock ();
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
+                epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
+                lock ();
+            }
+
             /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
             newAcq = 1;
@@ -2204,16 +2206,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             pArrayAllChannels = NULL;
         }
 
-        /* Wait until we are in SinglePass mode */
-        getIntegerParam(coreID, P_BPMMode, &bpmMode);
-        if (bpmMode != BPMModeSinglePass) {
-            unlock ();
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
-        epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
-            lock ();
-        }
-
         /* Clear out any flags*/
         interrupted = 0;
 
@@ -2224,6 +2216,17 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         /* We got a stop event, stop acquisition */
         readingActive[BPMModeSinglePass][coreID] = 0;
+
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(coreID, P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeSinglePass) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
+            epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
+            lock ();
+        }
+
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
