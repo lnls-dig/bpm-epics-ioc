@@ -2069,6 +2069,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 acqCompleted = checkAcqCompletion(coreID);
             }
 
+            /* Acquisition overflow */
+            if (acqCompleted == -1) {
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcqOFlow);
+                callParamCallbacks(coreID);
+                break;
+            }
+
             if (acqCompleted == 1) {
                 /* Get curve */
                 unlock();
@@ -2473,6 +2480,12 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                 }
                 else {
                     acqCompleted = checkSPAcqCompletion (bpm_single_pass);
+                }
+
+                if (acqCompleted == -1) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcqOFlow);
+                    callParamCallbacks(coreID);
+                    break;
                 }
 
                 if (acqCompleted == 1) {
@@ -3189,6 +3202,12 @@ int drvBPM::checkAcqCompletion(int coreID)
     }
 
     err = acq_check (bpmClientAcq[coreID], service);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -3208,6 +3227,12 @@ int drvBPM::checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass)
     const char* functionName = "checkSPAcqCompletion";
 
     err = bpm_single_pass_check (bpm_single_pass);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;

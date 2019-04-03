@@ -61,6 +61,7 @@ typedef enum {
     BPMStatusErrTooManyPoints,
     BPMStatusErrTooFewPoints,
     BPMStatusErrNoMem,
+    BPMStatusErrAcqOFlow,
 } bpm_status_types;
 
 /* Waveform IDs */
