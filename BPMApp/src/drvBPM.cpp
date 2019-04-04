@@ -1796,7 +1796,8 @@ static bool acqIsBPMStatusErr(int bpmStatus)
         bpmStatus == BPMStatusAborted ||
         bpmStatus == BPMStatusErrTooManyPoints ||
         bpmStatus == BPMStatusErrTooFewPoints ||
-        bpmStatus == BPMStatusErrNoMem) {
+        bpmStatus == BPMStatusErrNoMem ||
+        bpmStatus == BPMStatusErrAcqOFlow) {
         return true;
     }
 
