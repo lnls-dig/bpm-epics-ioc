@@ -43,6 +43,7 @@
 #define TBT_RATE_FACTOR                 35
 #define FOFB_RATE_FACTOR                980
 #define MONIT_RATE_FACTOR               9800000
+#define MONIT1_RATE_FACTOR              98000
 
 #define ADC_DFLT_SW                     0x1             /* No switching. Direct state */
 #define ADC_DFLT_DIV_CLK                980             /* in ADC counts */
@@ -476,6 +477,14 @@ static const functionsAny_t bpmSetGetSwDataMaskEnFunc =          {functionsInt32
                                                                                             halcs_get_sw_data_mask_en}};
 static const functionsAny_t bpmSetGetSwDataMaskSamplesFunc =     {functionsInt32_t{"DSP", halcs_set_sw_data_mask_samples,
                                                                                             halcs_get_sw_data_mask_samples}};
+static const functionsAny_t bpmSetGetTbtTagEnFunc =              {functionsInt32_t{"DSP", halcs_set_tbt_tag_en, halcs_get_tbt_tag_en}};
+static const functionsAny_t bpmSetGetTbtTagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_tbt_tag_dly, halcs_get_tbt_tag_dly}};
+static const functionsAny_t bpmSetGetTbtDataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_en,
+                                                                                            halcs_get_tbt_data_mask_en}};
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_beg,
+                                                                                         halcs_get_tbt_data_mask_samples_beg}};
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_end,
+                                                                                            halcs_get_tbt_data_mask_samples_end}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -805,6 +814,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TbtRateString,    asynParamUInt32Digital,         &P_TbtRate);
     createParam(P_FofbRateString,   asynParamUInt32Digital,         &P_FofbRate);
     createParam(P_MonitRateString,  asynParamUInt32Digital,         &P_MonitRate);
+    createParam(P_Monit1RateString, asynParamUInt32Digital,         &P_Monit1Rate);
 
     createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
@@ -878,6 +888,16 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_SwDataMaskEn);
     createParam(P_SwDataMaskSamplesString,
                                     asynParamUInt32Digital,         &P_SwDataMaskSamples);
+    createParam(P_TbtTagEnString,
+                                    asynParamUInt32Digital,         &P_TbtTagEn);
+    createParam(P_TbtTagDlyString,
+                                    asynParamUInt32Digital,         &P_TbtTagDly);
+    createParam(P_TbtDataMaskEnString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskEn);
+    createParam(P_TbtDataMaskSamplesBegString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskSamplesBeg);
+    createParam(P_TbtDataMaskSamplesEndString,
+                                    asynParamUInt32Digital,         &P_TbtDataMaskSamplesEnd);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
@@ -1003,6 +1023,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagEn, bpmSetGetSwTagEnFunc);
     bpmHwFunc.emplace(P_SwDataMaskEn, bpmSetGetSwDataMaskEnFunc);
     bpmHwFunc.emplace(P_SwDataMaskSamples, bpmSetGetSwDataMaskSamplesFunc);
+    bpmHwFunc.emplace(P_TbtTagEn, bpmSetGetTbtTagEnFunc);
+    bpmHwFunc.emplace(P_TbtTagDly, bpmSetGetTbtTagDlyFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskEn, bpmSetGetTbtDataMaskEnFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskSamplesBeg, bpmSetGetTbtDataMaskSamplesBegFunc);
+    bpmHwFunc.emplace(P_TbtDataMaskSamplesEnd, bpmSetGetTbtDataMaskSamplesEndFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1108,6 +1133,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtRate,      TBT_RATE_FACTOR,    0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,     FOFB_RATE_FACTOR,   0xFFFFFFFF);
     setUIntDigitalParam(P_MonitRate,    MONIT_RATE_FACTOR,  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1Rate,   MONIT1_RATE_FACTOR, 0xFFFFFFFF);
     setUIntDigitalParam(P_SwMode,       ADC_DFLT_SW,        0xFFFFFFFF);
     setUIntDigitalParam(P_SwDly,        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDivClk,     ADC_DFLT_DIV_CLK,   0xFFFFFFFF);
@@ -1176,6 +1202,13 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_SwDataMaskEn, 0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_SwDataMaskSamples,
                                         382,                0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagEn,      0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagDly,     0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskEn, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtDataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
@@ -1763,7 +1796,8 @@ static bool acqIsBPMStatusErr(int bpmStatus)
         bpmStatus == BPMStatusAborted ||
         bpmStatus == BPMStatusErrTooManyPoints ||
         bpmStatus == BPMStatusErrTooFewPoints ||
-        bpmStatus == BPMStatusErrNoMem) {
+        bpmStatus == BPMStatusErrNoMem ||
+        bpmStatus == BPMStatusErrAcqOFlow) {
         return true;
     }
 
@@ -1830,15 +1864,6 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             pArrayAllChannels->release ();
             pArrayAllChannels = NULL;
         }
-        /* Wait until we are in MultiBunch mode */
-        getIntegerParam(coreID, P_BPMMode, &bpmMode);
-        if (bpmMode != BPMModeMultiBunch) {
-            unlock ();
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
-            epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
-            lock ();
-        }
 
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
@@ -1847,6 +1872,17 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         if (status == epicsEventWaitOK || !repetitiveTrigger[BPMModeMultiBunch][coreID] || acqIsBPMStatusErr(bpmStatus)) {
             /* We got a stop event, stop repetitive acquisition */
             readingActive[BPMModeMultiBunch][coreID] = 0;
+
+            /* Wait until we are in MultiBunch mode */
+            getIntegerParam(coreID, P_BPMMode, &bpmMode);
+            if (bpmMode != BPMModeMultiBunch) {
+                unlock ();
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for BPMMode = MultiBunch\n", driverName, functionName);
+                epicsEventWait(activeAcqEventId[BPMModeMultiBunch][coreID]);
+                lock ();
+            }
+
             /* Default to new acquisition. If we are waiting for a trigger
              * we will change this */
             newAcq = 1;
@@ -2034,6 +2070,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                 acqCompleted = checkAcqCompletion(coreID);
             }
 
+            /* Acquisition overflow */
+            if (acqCompleted == -1) {
+                setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcqOFlow);
+                callParamCallbacks(coreID);
+                break;
+            }
+
             if (acqCompleted == 1) {
                 /* Get curve */
                 unlock();
@@ -2171,16 +2214,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             pArrayAllChannels = NULL;
         }
 
-        /* Wait until we are in SinglePass mode */
-        getIntegerParam(coreID, P_BPMMode, &bpmMode);
-        if (bpmMode != BPMModeSinglePass) {
-            unlock ();
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
-        epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
-            lock ();
-        }
-
         /* Clear out any flags*/
         interrupted = 0;
 
@@ -2191,6 +2224,17 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         /* We got a stop event, stop acquisition */
         readingActive[BPMModeSinglePass][coreID] = 0;
+
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(coreID, P_BPMMode, &bpmMode);
+        if (bpmMode != BPMModeSinglePass) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for BPMMode = SinglePass\n", driverName, functionName);
+            epicsEventWait(activeAcqEventId[BPMModeSinglePass][coreID]);
+            lock ();
+        }
+
         getIntegerParam(coreID, P_BPMStatus, &bpmStatus);
 
         /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
@@ -2437,6 +2481,12 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                 }
                 else {
                     acqCompleted = checkSPAcqCompletion (bpm_single_pass);
+                }
+
+                if (acqCompleted == -1) {
+                    setIntegerParam(coreID, P_BPMStatus, BPMStatusErrAcqOFlow);
+                    callParamCallbacks(coreID);
+                    break;
                 }
 
                 if (acqCompleted == 1) {
@@ -3153,6 +3203,12 @@ int drvBPM::checkAcqCompletion(int coreID)
     }
 
     err = acq_check (bpmClientAcq[coreID], service);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -3172,6 +3228,12 @@ int drvBPM::checkSPAcqCompletion(bpm_single_pass_t *bpm_single_pass)
     const char* functionName = "checkSPAcqCompletion";
 
     err = bpm_single_pass_check (bpm_single_pass);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
     if (err != HALCS_CLIENT_SUCCESS) {
         complete = 0;
         goto halcs_acq_not_finished;
@@ -3512,6 +3574,9 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
                         driverName, functionName);
                 epicsEventSignal(this->activeMonitEnableEventId);
             }
+        }
+        else if (function == P_BPMMode) {
+            status = setBPMMode(addr, function);
         }
     }
     else {
@@ -4219,6 +4284,35 @@ get_param_err:
  * to our generic handlers get/setParam[32/Double]
  */
 
+asynStatus drvBPM::setBPMMode(int addr, int function)
+{
+    int status = asynSuccess;
+    int bpmMode = 0;
+    int bpmModeOther = 0;
+
+    /* Get BPMMode previously set */
+    getIntegerParam(addr, P_BPMMode, &bpmMode);
+
+    /* Throw an error if we are acquiring in the other mode 
+     * and we tried to change BPM mode */
+    if (bpmMode == BPMModeSinglePass) {
+        bpmModeOther = BPMModeMultiBunch;
+    }
+    else {
+        bpmModeOther = BPMModeSinglePass;
+    }
+
+    /* Check if an acquisition is running while trying to change mode */
+    if (readingActive[bpmModeOther][addr]) {
+        setIntegerParam(addr, function, bpmModeOther);
+        status = asynError;
+        goto other_acq_acquiring_err;
+    }
+
+other_acq_acquiring_err:
+    return (asynStatus) status;
+}
+
 asynStatus drvBPM::setDataTrigChan(epicsUInt32 mask, int addr)
 {
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
@@ -4844,7 +4938,7 @@ asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
  * the ones in Hw here, otherwise we will have 0 for those */
 asynStatus drvBPM::readDSPParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_Kx, P_SwDataMaskSamples, true);
+    return updateUInt32Params(mask, addr, P_Kx, P_TbtDataMaskSamplesEnd, true);
 }
 
 asynStatus drvBPM::readGenDSPParams(epicsUInt32 mask, int addr)

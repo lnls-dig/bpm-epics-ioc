@@ -8,3 +8,8 @@ $(P)$(R)PosQOffset-SP
 $(P)$(R)SwTagEn-Sel
 $(P)$(R)SwDataMaskEn-Sel
 $(P)$(R)SwDataMaskSamples-SP
+$(P)$(R)TbtTagEn-Sel
+$(P)$(R)TbtTagDly-SP
+$(P)$(R)TbtDataMaskEn-Sel
+$(P)$(R)TbtDataMaskSamplesBeg-SP
+$(P)$(R)TbtDataMaskSamplesEnd-SP

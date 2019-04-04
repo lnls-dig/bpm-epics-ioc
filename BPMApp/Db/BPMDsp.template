@@ -338,3 +338,98 @@ record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
 }
+
+record(mbbo,"$(P)$(R)TbtTagEn-Sel"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Tbt Tag Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Tbt Tag Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(longout,"$(P)$(R)TbtTagDly-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Tbt Tag Delay")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
+}
+
+record(longin,"$(P)$(R)TbtTagDly-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Tbt Tag Delay")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
+}
+
+record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set TBT Data Mask Enable")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(mbbi,"$(P)$(R)TbtDataMaskEn-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get TBT Data Mask Enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disabled")
+    field(ONST,"enabled")
+}
+
+record(longout,"$(P)$(R)TbtDataMaskSamplesBeg-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Samples Beg.")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
+}
+
+record(longin,"$(P)$(R)TbtDataMaskSamplesBeg-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Samples Beg.")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
+}
+
+record(longout,"$(P)$(R)TbtDataMaskSamplesEnd-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Set Data Mask Samples End.")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_END")
+}
+
+record(longin,"$(P)$(R)TbtDataMaskSamplesEnd-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Get Data Mask Samples End.")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_END")
+}
