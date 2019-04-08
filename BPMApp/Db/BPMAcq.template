@@ -139,6 +139,7 @@ record(calc, "$(P)$(R)$(ACQ_NAME)ChannelRateIdx-RB"){
 record(mbbo, "$(P)$(R)$(ACQ_NAME)Trigger-Sel"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition's trigger")
+    field(PINI,"YES")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER")
     field(SCAN,"Passive")
     field(NOBT,"2")
