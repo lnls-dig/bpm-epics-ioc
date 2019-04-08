@@ -2600,9 +2600,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>100000.0</maximum>
-        <minimum>0.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -2697,9 +2695,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>1000000.0</maximum>
-        <minimum>0.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -2878,9 +2874,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>2.0E9</maximum>
-        <minimum>-2.0E9</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -3276,9 +3270,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>100000.0</maximum>
-        <minimum>0.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -3640,9 +3632,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>100000.0</maximum>
-        <minimum>4.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -3697,9 +3687,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>100000.0</maximum>
-        <minimum>0.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -3834,9 +3822,7 @@ $(pv_value)</tooltip>
         <format_type>1</format_type>
         <height>30</height>
         <horizontal_alignment>1</horizontal_alignment>
-        <limits_from_pv>false</limits_from_pv>
-        <maximum>100000.0</maximum>
-        <minimum>1.0</minimum>
+        <limits_from_pv>true</limits_from_pv>
         <multiline_input>false</multiline_input>
         <name>Text Update_48</name>
         <precision>0</precision>
@@ -4468,7 +4454,7 @@ $(pv_value)</tooltip>
       <color red="192" green="192" blue="192" />
     </foreground_color>
     <height>176</height>
-    <lock_children>false</lock_children>
+    <lock_children>true</lock_children>
     <macros>
       <include_parent_macros>true</include_parent_macros>
     </macros>
