@@ -29,6 +29,7 @@ record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)WvfElemSeq"){
 record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayCoeff-SP")
 {
     field(DESC, "Polynomial coefficients for $(ACQ)$(ARRAY_NAME)")
+    field(PINI,"YES")
     field(NELM, "$(COEFF_ARRAY_SIZE)")
     field(FTVL, "$(FTVL)")
     field(PREC, 3)
