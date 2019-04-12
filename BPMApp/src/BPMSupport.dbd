@@ -2,3 +2,5 @@ registrar("drvBPMRegister")
 
 function(bpmPolyCalInitAsub)
 function(bpmPolyCalXYProcessAsub)
+function(bpmPolyCalQProcessAsub)
+function(bpmPolyCalSUMProcessAsub)
