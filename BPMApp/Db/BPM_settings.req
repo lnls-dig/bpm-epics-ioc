@@ -7,6 +7,14 @@ file "BPMActiveClk_settings.req",   P=$(P), R=$(R)
 file "BPMAdcCommon_settings.req",   P=$(P), R=$(R)
 file "BPMDsp_settings.req",         P=$(P), R=$(R)
 file "BPMFFT_settings.req",         P=$(P), R=$(R)
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_X, ARRAY_NAME_UNCAL=_UncalX, ARRAY_NAME_CAL=_CalX
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Y, ARRAY_NAME_UNCAL=_UncalY, ARRAY_NAME_CAL=_CalY
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Q, ARRAY_NAME_UNCAL=_UncalQ, ARRAY_NAME_CAL=_CalQ
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_SUM, ARRAY_NAME_UNCAL=_UncalSUM, ARRAY_NAME_CAL=_CalSUM
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_X, ARRAY_NAME_UNCAL=_UncalX, ARRAY_NAME_CAL=_CalX
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Y, ARRAY_NAME_UNCAL=_UncalY, ARRAY_NAME_CAL=_CalY
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Q, ARRAY_NAME_UNCAL=_UncalQ, ARRAY_NAME_CAL=_CalQ
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_SUM, ARRAY_NAME_UNCAL=_UncalSUM, ARRAY_NAME_CAL=_CalSUM
 file "BPMFmc130m_4ch_settings.req", P=$(P), R=$(R)
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=0
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=1
