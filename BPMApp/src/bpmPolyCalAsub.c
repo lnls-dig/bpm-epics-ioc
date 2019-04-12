@@ -38,7 +38,7 @@ static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
     double *in_q = (double *) prec->c;
     double *in_sum = (double *) prec->d;
     double *in_coeff_x = (double *) prec->e;
-    double coeffx1_x = in_coeff_x[0];
+    double coeffx1y0_x = in_coeff_x[0];
     double coeffx1y2_x = in_coeff_x[1];
     double coeffx1y4_x = in_coeff_x[2];
     double coeffx1y6_x = in_coeff_x[3];
@@ -54,7 +54,7 @@ static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
     double coeffx7y2_x = in_coeff_x[13];
     double coeffx9y0_x = in_coeff_x[14];
     double *in_coeff_y = (double *) prec->f;
-    double coeffy1_y = in_coeff_y[0];
+    double coeffy1x0_y = in_coeff_y[0];
     double coeffy1x2_y = in_coeff_y[1];
     double coeffy1x4_y = in_coeff_y[2];
     double coeffy1x6_y = in_coeff_y[3];
@@ -94,12 +94,12 @@ static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
         double x8 = x6*x2; 
         double x9 = x6*x3;
 
-        out_x[i] = coeffx1_x*x*(1+coeffx1y2_x*y2+coeffx1y4_x*y4+coeffx1y6_x*y6+coeffx1y8_x*y8) + 
+        out_x[i] = coeffx1y0_x*x*(1+coeffx1y2_x*y2+coeffx1y4_x*y4+coeffx1y6_x*y6+coeffx1y8_x*y8) + 
                    coeffx3y0_x*x3*(1+coeffx3y2_x*y2+coeffx3y4_x*y4+coeffx3y6_x*y6) +
                    coeffx5y0_x*x5*(1+coeffx5y2_x*y2+coeffx5y4_x*y4) + 
                    coeffx7y0_x*x7*(1+coeffx7y2_x*y2) + 
                    coeffx9y0_x*x9;
-        out_y[i] = coeffy1_y*y*(1+coeffy1x2_y*x2+coeffy1x4_y*x4+coeffy1x6_y*x6+coeffy1x8_y*x8) + 
+        out_y[i] = coeffy1x0_y*y*(1+coeffy1x2_y*x2+coeffy1x4_y*x4+coeffy1x6_y*x6+coeffy1x8_y*x8) +
                    coeffy3x0_y*y3*(1+coeffy3x2_y*x2+coeffy3x4_y*x4+coeffy3x6_y*x6) +
                    coeffy5x0_y*y5*(1+coeffy5x2_y*x2+coeffy5x4_y*x4) + 
                    coeffy7x0_y*y7*(1+coeffy7x2_y*x2) + 
