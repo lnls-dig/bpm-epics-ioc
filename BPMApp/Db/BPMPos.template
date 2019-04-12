@@ -1,14 +1,14 @@
-record(bo,"$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sel") {
+record(bo,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sel") {
     field(DESC, "Set position $(ACQ)$(ARRAY_NAME) calibration")
     field(PINI, "YES")
     field(ZNAM, "Off")
     field(ONAM, "On")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sts")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts")
 }
 
-record(bi,"$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sts") {
+record(bi,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts") {
     field(DESC, "Get position $(ACQ)$(ARRAY_NAME) calibration")
-    field(INP, "$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sel")
+    field(INP, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sel")
     field(SCAN, "Passive")
     field(ZNAM, "Off")
     field(ONAM, "On")
@@ -68,7 +68,7 @@ record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
     field(NELM,"$(NELEMENTS)")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sts.VAL CPP NMS")
+    field(INPA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts.VAL CPP NMS")
     field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.VAL CPP NMS")
     field(INBB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData.VAL CPP NMS")
     field(WAIT, "Wait")
