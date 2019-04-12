@@ -31,7 +31,7 @@ static long bpmPolyCalInitAsub(aSubRecord *precord,processMethod process)
     return 0;
 }
 
-static long bpmPolyCalProcessAsub(aSubRecord *prec)
+static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
 {
     double *in_x = (double *) prec->a;
     double *in_y = (double *) prec->b;
@@ -111,4 +111,4 @@ static long bpmPolyCalProcessAsub(aSubRecord *prec)
 
 /* Register these symbols for use by IOC code: */
 epicsRegisterFunction(bpmPolyCalInitAsub);
-epicsRegisterFunction(bpmPolyCalProcessAsub);
+epicsRegisterFunction(bpmPolyCalXYProcessAsub);
