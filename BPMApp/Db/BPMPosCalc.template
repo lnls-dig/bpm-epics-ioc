@@ -2,7 +2,7 @@ record(aSub,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataCalc")
 {
     field(DESC, "Position calibrated Calc $(ACQ)$(ARRAY_NAME)")
     field(INAM,"bpmPolyCalInitAsub")
-    field(SNAM,"bpmPolyCalProcessAsub")
+    field(SNAM,"$(ASUB_ROUTINE)")
     field(SDIS, "$(P)$(R)$(ACQ)$(ARRAY_NAME)PosCal-Sts")
     field(DISV, "0")
     field(INPA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_XUNCAL)ArrayData.VAL CPP NMS")
