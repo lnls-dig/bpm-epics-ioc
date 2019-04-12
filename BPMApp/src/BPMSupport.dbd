@@ -1,1 +1,4 @@
 registrar("drvBPMRegister")
+
+function(bpmPolyCalInitAsub)
+function(bpmPolyCalProcessAsub)
