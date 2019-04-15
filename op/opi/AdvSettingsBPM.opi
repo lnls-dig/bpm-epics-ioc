@@ -5775,63 +5775,6 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>863</height>
-    <horizontal_fill>true</horizontal_fill>
-    <line_style>0</line_style>
-    <line_width>1</line_width>
-    <name>Polyline_37</name>
-    <points>
-      <point x="2004" y="36" />
-      <point x="2004" y="273" />
-      <point x="2004" y="898" />
-    </points>
-    <pv_name></pv_name>
-    <pv_value />
-    <rotation_angle>0.0</rotation_angle>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <transparent>false</transparent>
-    <visible>true</visible>
-    <widget_type>Polyline</widget_type>
-    <width>1</width>
-    <wuid>-41d74957:16a080de79e:-744f</wuid>
-    <x>2004</x>
-    <y>36</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <alpha>255</alpha>
-    <anti_alias>true</anti_alias>
-    <arrow_length>20</arrow_length>
-    <arrows>0</arrows>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="0" green="0" blue="0" />
-    </background_color>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <fill_arrow>true</fill_arrow>
-    <fill_level>0.0</fill_level>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="255" green="0" blue="0" />
-    </foreground_color>
     <height>1</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
@@ -8516,12 +8459,12 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="192" green="192" blue="192" />
     </foreground_color>
-    <height>661</height>
+    <height>682</height>
     <lock_children>true</lock_children>
     <macros>
       <include_parent_macros>true</include_parent_macros>
     </macros>
-    <name>Grouping Container_2</name>
+    <name>Grouping Container_3</name>
     <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -8534,19 +8477,19 @@ $(pv_value)</tooltip>
     <transparent>false</transparent>
     <visible>true</visible>
     <widget_type>Grouping Container</widget_type>
-    <width>453</width>
-    <wuid>-41d74957:16a080de79e:-450</wuid>
+    <width>458</width>
+    <wuid>-2561fa58:16a20b97e6e:-4958</wuid>
     <x>510</x>
-    <y>220</y>
+    <y>211</y>
     <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
       <actions hook="false" hook_all="false" />
       <background_color>
         <color red="240" green="240" blue="240" />
       </background_color>
       <border_color>
-        <color red="0" green="128" blue="255" />
+        <color red="0" green="0" blue="0" />
       </border_color>
-      <border_style>0</border_style>
+      <border_style>1</border_style>
       <border_width>1</border_width>
       <enabled>true</enabled>
       <font>
@@ -8556,16 +8499,17 @@ $(pv_value)</tooltip>
         <color red="192" green="192" blue="192" />
       </foreground_color>
       <group_name></group_name>
-      <height>81</height>
+      <height>171</height>
       <macros>
         <include_parent_macros>true</include_parent_macros>
-        <TEXT>GEN X Coeff.</TEXT>
-        <MODULE_CAL>GEN_CalX</MODULE_CAL>
-        <MODULE>GEN_X</MODULE>
-        <MODULE_CAL_CALC>GEN_CalXY</MODULE_CAL_CALC>
+        <TEXT>X Coeff.</TEXT>
+        <MODULE_CAL>_CalX</MODULE_CAL>
+        <MODULE>_X</MODULE>
+        <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
+        <GLOBAL_MODULE_NAME>X</GLOBAL_MODULE_NAME>
       </macros>
-      <name>GEN_X_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
+      <name>Linking Container_2</name>
+      <opi_file>BPMPolyGENPM.opi</opi_file>
       <resize_behaviour>1</resize_behaviour>
       <rules />
       <scale_options>
@@ -8577,8 +8521,8 @@ $(pv_value)</tooltip>
       <tooltip></tooltip>
       <visible>true</visible>
       <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-70f4</wuid>
+      <width>457</width>
+      <wuid>-2561fa58:16a20b97e6e:-37e3</wuid>
       <x>0</x>
       <y>0</y>
     </widget>
@@ -8588,9 +8532,9 @@ $(pv_value)</tooltip>
         <color red="240" green="240" blue="240" />
       </background_color>
       <border_color>
-        <color red="0" green="128" blue="255" />
+        <color red="0" green="0" blue="0" />
       </border_color>
-      <border_style>0</border_style>
+      <border_style>1</border_style>
       <border_width>1</border_width>
       <enabled>true</enabled>
       <font>
@@ -8600,16 +8544,17 @@ $(pv_value)</tooltip>
         <color red="192" green="192" blue="192" />
       </foreground_color>
       <group_name></group_name>
-      <height>81</height>
+      <height>171</height>
       <macros>
         <include_parent_macros>true</include_parent_macros>
-        <TEXT>GEN Y Coeff.</TEXT>
-        <MODULE_CAL>GEN_CalY</MODULE_CAL>
-        <MODULE>GEN_Y</MODULE>
-        <MODULE_CAL_CALC>GEN_CalXY</MODULE_CAL_CALC>
+        <TEXT>Y Coeff.</TEXT>
+        <MODULE_CAL>_CalY</MODULE_CAL>
+        <MODULE>_Y</MODULE>
+        <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
+        <GLOBAL_MODULE_NAME>Y</GLOBAL_MODULE_NAME>
       </macros>
-      <name>GEN_Y_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
+      <name>Linking Container_1</name>
+      <opi_file>BPMPolyGENPM.opi</opi_file>
       <resize_behaviour>1</resize_behaviour>
       <rules />
       <scale_options>
@@ -8621,10 +8566,10 @@ $(pv_value)</tooltip>
       <tooltip></tooltip>
       <visible>true</visible>
       <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-7001</wuid>
+      <width>457</width>
+      <wuid>-2561fa58:16a20b97e6e:-3833</wuid>
       <x>0</x>
-      <y>83</y>
+      <y>170</y>
     </widget>
     <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
       <actions hook="false" hook_all="false" />
@@ -8632,9 +8577,9 @@ $(pv_value)</tooltip>
         <color red="240" green="240" blue="240" />
       </background_color>
       <border_color>
-        <color red="0" green="128" blue="255" />
+        <color red="0" green="0" blue="0" />
       </border_color>
-      <border_style>0</border_style>
+      <border_style>1</border_style>
       <border_width>1</border_width>
       <enabled>true</enabled>
       <font>
@@ -8644,16 +8589,17 @@ $(pv_value)</tooltip>
         <color red="192" green="192" blue="192" />
       </foreground_color>
       <group_name></group_name>
-      <height>81</height>
+      <height>171</height>
       <macros>
         <include_parent_macros>true</include_parent_macros>
-        <TEXT>GEN Q Coeff.</TEXT>
-        <MODULE_CAL>GEN_CalQ</MODULE_CAL>
-        <MODULE>GEN_Q</MODULE>
-        <MODULE_CAL_CALC>GEN_CalQ</MODULE_CAL_CALC>
+        <TEXT>Q Coeff.</TEXT>
+        <MODULE_CAL>_CalQ</MODULE_CAL>
+        <MODULE>_Q</MODULE>
+        <MODULE_CAL_CALC>_CalQ</MODULE_CAL_CALC>
+        <GLOBAL_MODULE_NAME>Q</GLOBAL_MODULE_NAME>
       </macros>
-      <name>GEN_Q_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
+      <name>Linking Container</name>
+      <opi_file>BPMPolyGENPM.opi</opi_file>
       <resize_behaviour>1</resize_behaviour>
       <rules />
       <scale_options>
@@ -8665,10 +8611,10 @@ $(pv_value)</tooltip>
       <tooltip></tooltip>
       <visible>true</visible>
       <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6fea</wuid>
+      <width>457</width>
+      <wuid>-2561fa58:16a20b97e6e:-4865</wuid>
       <x>0</x>
-      <y>166</y>
+      <y>340</y>
     </widget>
     <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
       <actions hook="false" hook_all="false" />
@@ -8676,9 +8622,9 @@ $(pv_value)</tooltip>
         <color red="240" green="240" blue="240" />
       </background_color>
       <border_color>
-        <color red="0" green="128" blue="255" />
+        <color red="0" green="0" blue="0" />
       </border_color>
-      <border_style>0</border_style>
+      <border_style>1</border_style>
       <border_width>1</border_width>
       <enabled>true</enabled>
       <font>
@@ -8688,16 +8634,17 @@ $(pv_value)</tooltip>
         <color red="192" green="192" blue="192" />
       </foreground_color>
       <group_name></group_name>
-      <height>81</height>
+      <height>171</height>
       <macros>
         <include_parent_macros>true</include_parent_macros>
-        <TEXT>GEN SUM Coeff.</TEXT>
-        <MODULE_CAL>GEN_CalSUM</MODULE_CAL>
-        <MODULE>GEN_SUM</MODULE>
-        <MODULE_CAL_CALC>GEN_CalSUM</MODULE_CAL_CALC>
+        <TEXT>SUM Coeff.</TEXT>
+        <MODULE_CAL>_CalSUM</MODULE_CAL>
+        <MODULE>_SUM</MODULE>
+        <MODULE_CAL_CALC>_CalSUM</MODULE_CAL_CALC>
+        <GLOBAL_MODULE_NAME>SUM</GLOBAL_MODULE_NAME>
       </macros>
-      <name>GEN_SUM_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
+      <name>Linking Container_3</name>
+      <opi_file>BPMPolyGENPM.opi</opi_file>
       <resize_behaviour>1</resize_behaviour>
       <rules />
       <scale_options>
@@ -8709,186 +8656,10 @@ $(pv_value)</tooltip>
       <tooltip></tooltip>
       <visible>true</visible>
       <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6fd0</wuid>
+      <width>457</width>
+      <wuid>-2561fa58:16a20b97e6e:-3751</wuid>
       <x>0</x>
-      <y>249</y>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-      <actions hook="false" hook_all="false" />
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <border_style>0</border_style>
-      <border_width>1</border_width>
-      <enabled>true</enabled>
-      <font>
-        <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-      </font>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <group_name></group_name>
-      <height>81</height>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-        <TEXT>PM X Coeff.</TEXT>
-        <MODULE_CAL>PM_CalX</MODULE_CAL>
-        <MODULE>PM_X</MODULE>
-        <MODULE_CAL_CALC>PM_CalXY</MODULE_CAL_CALC>
-      </macros>
-      <name>PM_X_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
-      <resize_behaviour>1</resize_behaviour>
-      <rules />
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <scripts />
-      <tooltip></tooltip>
-      <visible>true</visible>
-      <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6f5e</wuid>
-      <x>0</x>
-      <y>332</y>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-      <actions hook="false" hook_all="false" />
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <border_style>0</border_style>
-      <border_width>1</border_width>
-      <enabled>true</enabled>
-      <font>
-        <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-      </font>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <group_name></group_name>
-      <height>81</height>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-        <TEXT>PM Y Coeff.</TEXT>
-        <MODULE_CAL>PM_CalY</MODULE_CAL>
-        <MODULE>PM_Y</MODULE>
-        <MODULE_CAL_CALC>PM_CalXY</MODULE_CAL_CALC>
-      </macros>
-      <name>PM_Y_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
-      <resize_behaviour>1</resize_behaviour>
-      <rules />
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <scripts />
-      <tooltip></tooltip>
-      <visible>true</visible>
-      <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6f44</wuid>
-      <x>0</x>
-      <y>415</y>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-      <actions hook="false" hook_all="false" />
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <border_style>0</border_style>
-      <border_width>1</border_width>
-      <enabled>true</enabled>
-      <font>
-        <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-      </font>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <group_name></group_name>
-      <height>81</height>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-        <TEXT>PM Q Coeff.</TEXT>
-        <MODULE_CAL>PM_CalQ</MODULE_CAL>
-        <MODULE>PM_Q</MODULE>
-        <MODULE_CAL_CALC>PM_CalQ</MODULE_CAL_CALC>
-      </macros>
-      <name>PM_Q_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
-      <resize_behaviour>1</resize_behaviour>
-      <rules />
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <scripts />
-      <tooltip></tooltip>
-      <visible>true</visible>
-      <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6f2a</wuid>
-      <x>0</x>
-      <y>498</y>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-      <actions hook="false" hook_all="false" />
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <border_style>0</border_style>
-      <border_width>1</border_width>
-      <enabled>true</enabled>
-      <font>
-        <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-      </font>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <group_name></group_name>
-      <height>81</height>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-        <TEXT>PM SUM Coeff.</TEXT>
-        <MODULE_CAL>PM_CalSUM</MODULE_CAL>
-        <MODULE>PM_SUM</MODULE>
-        <MODULE_CAL_CALC>PM_CalSUM</MODULE_CAL_CALC>
-      </macros>
-      <name>PM_SUM_Coeff_grouping_container</name>
-      <opi_file>BPMPoly.opi</opi_file>
-      <resize_behaviour>1</resize_behaviour>
-      <rules />
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <scripts />
-      <tooltip></tooltip>
-      <visible>true</visible>
-      <widget_type>Linking Container</widget_type>
-      <width>454</width>
-      <wuid>-2561fa58:16a20b97e6e:-6f08</wuid>
-      <x>0</x>
-      <y>581</y>
+      <y>510</y>
     </widget>
   </widget>
 </display>
