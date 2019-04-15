@@ -16,12 +16,13 @@ record(longout,"$(P)$(R)PosKx-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosKx-RB")
 }
 
 record(longin,"$(P)$(R)PosKx-RB"){
     field(DESC,"get kx")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosKx-RB CPP MSS")
+    field(INP,"$(P)$(R)PosKx-SP")
     field(EGU, "nm")
 }
 
@@ -30,12 +31,13 @@ record(longout,"$(P)$(R)PosKy-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosKy-RB")
 }
 
 record(longin,"$(P)$(R)PosKy-RB"){
     field(DESC,"get ky")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosKy-RB CPP MSS")
+    field(INP,"$(P)$(R)PosKy-SP")
     field(EGU, "nm")
 }
 
@@ -44,12 +46,13 @@ record(longout,"$(P)$(R)PosKq-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosKq-RB")
 }
 
 record(longin,"$(P)$(R)PosKq-RB"){
     field(DESC,"get kq")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosKq-RB CPP MSS")
+    field(INP,"$(P)$(R)PosKq-SP")
     field(EGU, "nm")
 }
 
@@ -58,12 +61,13 @@ record(longout,"$(P)$(R)PosKsum-SP"){
     field(SCAN,"Passive")
     field(PINI,"YES")
     field(SCAN,"Passive")
+    field(FLNK,"$(P)$(R)PosKsum-RB")
 }
 
 record(longin,"$(P)$(R)PosKsum-RB"){
     field(DESC,"get ksum")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosKsum-RB CPP MSS")
+    field(INP, "$(P)$(R)PosKsum-SP")
 }
 
 record(longout,"$(P)$(R)PosXOffset-SP"){
@@ -71,12 +75,13 @@ record(longout,"$(P)$(R)PosXOffset-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosXOffset-RB")
 }
 
 record(longin,"$(P)$(R)PosXOffset-RB"){
     field(DESC,"get X Offset")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosXOffset-RB CPP MSS")
+    field(INP,"$(P)$(R)PosXOffset-SP")
     field(EGU, "nm")
 }
 
@@ -85,12 +90,13 @@ record(longout,"$(P)$(R)PosYOffset-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosYOffset-RB")
 }
 
 record(longin,"$(P)$(R)PosYOffset-RB"){
     field(DESC,"get Y Offset")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosYOffset-RB CPP MSS")
+    field(INP,"$(P)$(R)PosYOffset-SP")
     field(EGU, "nm")
 }
 
@@ -99,12 +105,13 @@ record(longout,"$(P)$(R)PosQOffset-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosQOffset-RB")
 }
 
 record(longin,"$(P)$(R)PosQOffset-RB"){
     field(DESC,"get Q Offset")
     field(SCAN,"Passive")
-    field(INP,"$(P)$(R)HwPosQOffset-RB CPP MSS")
+    field(INP,"$(P)$(R)PosQOffset-SP")
     field(EGU, "nm")
 }
 
