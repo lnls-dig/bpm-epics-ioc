@@ -259,7 +259,7 @@ $(pv_value)</tooltip>
         <color red="255" green="0" blue="0" />
       </on_color>
       <on_label>ON</on_label>
-      <pv_name>$(P)$(R)$(ACQ)$(MODULE_CAL_CALC)ASubCalc</pv_name>
+      <pv_name>$(P)$(R)$(ACQ)$(MODULE_CAL_CALC)ASubCalc.SEVR</pv_name>
       <pv_value />
       <rules />
       <scale_options>
