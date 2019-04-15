@@ -136,7 +136,7 @@ typedef struct
 
 /* Wrapper function to ABCD to WYQS with different methods */
 void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count, bool Diagonal = true, bool PartialDelta = false);
+        int Count, bool Diagonal = true, bool PartialDelta = true);
 
 /* Converts Count rows of IQ data into ABCD format by applying Cordic
  * conversion on each I,Q pair. */
