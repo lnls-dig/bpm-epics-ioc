@@ -1,8 +1,8 @@
 record(calc, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts"){
     field(DESC, "Get PosCal enable from X/Y")
     field(SCAN,"Passive")
-    field(INPA,"$(P)$(R)$(ACQ)$(ARRAY_NAME_XCAL)PosCal-Sts CPP NMS")
-    field(INPB,"$(P)$(R)$(ACQ)$(ARRAY_NAME_YCAL)PosCal-Sts CPP NMS")
+    field(INPA,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts CPP NMS")
+    field(INPB,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts CPP NMS")
     field(CALC,"(A||B)?1:0")
 }
 
@@ -31,6 +31,12 @@ record(aSub,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ASubCalc")
     field(INPF, "$(P)$(R)$(ACQ)$(ARRAY_NAME_YCAL)ArrayCoeff-RB.VAL CPP NMS")
     field(FTF, "DOUBLE")
     field(NOF, "$(COEFF_ARRAY_SIZE)")
+    field(INPG, "$(P)$(R)$(HW_POS_XOFFSET)Offset-RB CPP NMS")
+    field(FTG, "LONG")
+    field(NOG, "1")
+    field(INPH, "$(P)$(R)$(HW_POS_YOFFSET)Offset-RB CPP NMS")
+    field(FTH, "LONG")
+    field(NOH, "1")
     field(OUTA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_XCAL)ArrayDataWvf CA NMS")
     field(FTVA, "DOUBLE")
     field(NOVA, "$(NELEMENTS)")

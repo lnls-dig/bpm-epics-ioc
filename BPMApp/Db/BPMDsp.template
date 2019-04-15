@@ -12,6 +12,107 @@
 #########################
 
 record(longout,"$(P)$(R)PosKx-SP"){
+    field(DESC,"set kx")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosKx-RB"){
+    field(DESC,"get kx")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosKx-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+record(longout,"$(P)$(R)PosKy-SP"){
+    field(DESC,"set ky")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosKy-RB"){
+    field(DESC,"get ky")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosKy-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+record(longout,"$(P)$(R)PosKq-SP"){
+    field(DESC,"set kq")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosKq-RB"){
+    field(DESC,"get kq")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosKq-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+record(longout,"$(P)$(R)PosKsum-SP"){
+    field(DESC,"set ksum")
+    field(SCAN,"Passive")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+}
+
+record(longin,"$(P)$(R)PosKsum-RB"){
+    field(DESC,"get ksum")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosKsum-RB CPP MSS")
+}
+
+record(longout,"$(P)$(R)PosXOffset-SP"){
+    field(DESC,"set X offset")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosXOffset-RB"){
+    field(DESC,"get X Offset")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosXOffset-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+record(longout,"$(P)$(R)PosYOffset-SP"){
+    field(DESC,"set Y offset")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosYOffset-RB"){
+    field(DESC,"get Y Offset")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosYOffset-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+record(longout,"$(P)$(R)PosQOffset-SP"){
+    field(DESC,"set Q offset")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+}
+
+record(longin,"$(P)$(R)PosQOffset-RB"){
+    field(DESC,"get Q Offset")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)HwPosQOffset-RB CPP MSS")
+    field(EGU, "nm")
+}
+
+############################################################################
+## Hardware K factors and Offsets
+############################################################################
+
+record(longout,"$(P)$(R)HwPosKx-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kx")
     field(PINI,"YES")
@@ -20,7 +121,7 @@ record(longout,"$(P)$(R)PosKx-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosKx-RB"){
+record(longin,"$(P)$(R)HwPosKx-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get kx")
     field(SCAN,"I/O Intr")
@@ -28,7 +129,7 @@ record(longin,"$(P)$(R)PosKx-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKy-SP"){
+record(longout,"$(P)$(R)HwPosKy-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ky")
     field(PINI,"YES")
@@ -37,7 +138,7 @@ record(longout,"$(P)$(R)PosKy-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosKy-RB"){
+record(longin,"$(P)$(R)HwPosKy-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ky")
     field(SCAN,"I/O Intr")
@@ -45,7 +146,7 @@ record(longin,"$(P)$(R)PosKy-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKq-SP"){
+record(longout,"$(P)$(R)HwPosKq-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set kq")
     field(PINI,"YES")
@@ -54,7 +155,7 @@ record(longout,"$(P)$(R)PosKq-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosKq-RB"){
+record(longin,"$(P)$(R)HwPosKq-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get kq")
     field(SCAN,"I/O Intr")
@@ -62,7 +163,7 @@ record(longin,"$(P)$(R)PosKq-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosKsum-SP"){
+record(longout,"$(P)$(R)HwPosKsum-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ksum")
     field(PINI,"YES")
@@ -70,14 +171,14 @@ record(longout,"$(P)$(R)PosKsum-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KSUM")
 }
 
-record(longin,"$(P)$(R)PosKsum-RB"){
+record(longin,"$(P)$(R)HwPosKsum-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ksum")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KSUM")
 }
 
-record(longout,"$(P)$(R)PosXOffset-SP"){
+record(longout,"$(P)$(R)HwPosXOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set X offset")
     field(PINI,"YES")
@@ -86,7 +187,7 @@ record(longout,"$(P)$(R)PosXOffset-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosXOffset-RB"){
+record(longin,"$(P)$(R)HwPosXOffset-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get X Offset")
     field(SCAN,"I/O Intr")
@@ -94,7 +195,7 @@ record(longin,"$(P)$(R)PosXOffset-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosYOffset-SP"){
+record(longout,"$(P)$(R)HwPosYOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Y offset")
     field(PINI,"YES")
@@ -103,7 +204,7 @@ record(longout,"$(P)$(R)PosYOffset-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosYOffset-RB"){
+record(longin,"$(P)$(R)HwPosYOffset-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get Y Offset")
     field(SCAN,"I/O Intr")
@@ -111,7 +212,7 @@ record(longin,"$(P)$(R)PosYOffset-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)PosQOffset-SP"){
+record(longout,"$(P)$(R)HwPosQOffset-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set Q offset")
     field(PINI,"YES")
@@ -120,13 +221,208 @@ record(longout,"$(P)$(R)PosQOffset-SP"){
     field(EGU, "nm")
 }
 
-record(longin,"$(P)$(R)PosQOffset-RB"){
+record(longin,"$(P)$(R)HwPosQOffset-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get Q Offset")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
     field(EGU, "nm")
 }
+
+# Only for compatibility
+record(longout,"$(P)$(R)HwPosSUMOffset-SP"){
+    field(DESC,"set Sum offset")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+    field(VAL, "0")
+}
+
+# Only for compatibility
+record(longin,"$(P)$(R)HwPosSUMOffset-RB"){
+    field(DESC,"get Sum Offset")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+    field(VAL, "0")
+    #field(SCAN,"I/O Intr")
+    #field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SUMOFFSET")
+}
+
+############################################################################
+## Hw K factors and Offset parameters 
+############################################################################
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_X) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_X) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_Y) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_Y) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_Q) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_Q) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_SUM) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_SUM) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(calcout,"$(P)$(R)HwPosKxCalc")
+{
+    field(DESC, "Set Hardware Kx")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosKx-SP.VAL CPP NMS")
+    field(INPC, "1")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosKx-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosKyCalc")
+{
+    field(DESC, "Set Hardware Ky")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosKy-SP.VAL CPP NMS")
+    field(INPC, "1")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosKy-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosKqCalc")
+{
+    field(DESC, "Set Hardware Kq")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosKq-SP.VAL CPP NMS")
+    field(INPC, "1")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosKq-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosKsumCalc")
+{
+    field(DESC, "Set Hardware Ksum")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosKsum-SP.VAL CPP NMS")
+    field(INPC, "1")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosKsum-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosXOffsetCalc")
+{
+    field(DESC, "Set Hardware XOffset")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosXOffset-SP.VAL CPP NMS")
+    field(INPC, "0")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosXOffset-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosYOffsetCalc")
+{
+    field(DESC, "Set Hardware YOffset")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosYOffset-SP.VAL CPP NMS")
+    field(INPC, "0")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosYOffset-SP CA NMS")
+}
+
+record(calcout,"$(P)$(R)HwPosQOffsetCalc")
+{
+    field(DESC, "Set Hardware QOffset")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts.VAL CPP NMS")
+    field(INPB, "$(P)$(R)PosQOffset-SP.VAL CPP NMS")
+    field(INPC, "0")
+    field(OOPT, "Every Time")
+    field(CALC, "(A)==(0)?B:C")
+    field(OUT, "$(P)$(R)HwPosQOffset-SP CA NMS")
+}
+
+#record(calcout,"$(P)$(R)HwPosSUMOffsetCalc")
+#{
+#    field(DESC, "Set Hardware SUMOffset")
+#    field(PINI, "YES")
+#    field(SCAN, "Passive")
+#    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts.VAL CPP NMS")
+#    field(INPB, "0")
+#    field(INPC, "0")
+#    field(OOPT, "Every Time")
+#    field(CALC, "(A)==(0)?B:C")
+#    field(OUT, "$(P)$(R)HwPosSUMOffset-SP CA NMS")
+#}
+
+############################################################################
+## General parameters 
+############################################################################
 
 record(ao,"$(P)$(R)MONITUpdtTime-SP"){
     field(DTYP,"asynFloat64")
