@@ -2681,6 +2681,8 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
     NDDataType_t NDType;
     size_t arrayYStride = 0;
     NDArray *pArraySingleChannel;
+    epicsFloat64 *pInFloat64;
+    epicsFloat64 *pOutFloat64;
     epicsUInt32 *pIn32;
     epicsUInt32 *pOut32;
     epicsUInt16 *pIn16;
@@ -2719,6 +2721,8 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
         pOut16 = (epicsUInt16 *)pArraySingleChannel->pData;
         pIn32 = (epicsUInt32 *)pArrayAllChannels->pData;
         pOut32 = (epicsUInt32 *)pArraySingleChannel->pData;
+        pInFloat64 = (epicsFloat64 *)pArrayAllChannels->pData;
+        pOutFloat64 = (epicsFloat64 *)pArraySingleChannel->pData;
 
         /* Get only a single channel samples from a multi-channel
          * array */
@@ -2734,6 +2738,13 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
                 for (size_t j = 0; j < dims[0]; ++j) {
                     pOut32[j] = pIn32[i];
                     pIn32 += arrayYStride;
+                }
+                break;
+
+            case NDFloat64:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOutFloat64[j] = pInFloat64[i];
+                    pInFloat64 += arrayYStride;
                 }
                 break;
 
@@ -2790,6 +2801,7 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     epicsTimeStamp now;
     epicsFloat64 timeStamp;
     int arrayCounter;
+    size_t dims[MAX_WVF_DIMS];
     static const char *functionName = "computePositions";
 
     /* Check if we need to compute position for this channel */
@@ -2837,7 +2849,10 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     setIntegerParam(NDArrayCounter, arrayCounter);
 
     /* Alloc destination array */
-    pArrayPosAllChannels = pNDArrayPool->copy(pArrayAllChannels, NULL, 0);
+    dims[0] = arrayInfo.xSize;
+    dims[1] = arrayInfo.ySize;
+    NDType = NDFloat64;
+    pArrayPosAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
     if (pArrayPosAllChannels == NULL) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArrayPosAllChannels\n",

@@ -88,10 +88,10 @@ typedef struct
 /* Computed X, Y values in nm, S in arbitrary units. */
 typedef struct
 {
-    int32_t X;
-    int32_t Y;
-    int32_t Q;
-    int32_t S;
+    double X;
+    double Y;
+    double Q;
+    double S;
 } XYQSRow_t;
 
 #define XYQS_ROW XYQSRow_t

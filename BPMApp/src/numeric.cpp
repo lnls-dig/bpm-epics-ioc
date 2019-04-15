@@ -144,6 +144,11 @@ unsigned int Reciprocal(unsigned int D, int &shift)
 }
 
 
+double Reciprocal(double X, int &shift)
+{
+    (void) shift;
+    return (1 / X);
+}
 
 /* Denormalising, the conversion of a number together with its shift, into a
  * simple integer, is on the face of it as simple as returning X >> shift.
