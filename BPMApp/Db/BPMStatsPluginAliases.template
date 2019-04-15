@@ -6,4 +6,4 @@
 
 # Statistics plugin
 
-alias( "${P}{R}${STATS_P}MeanValue_RBV",      "$(NEW_P)$(NEW_R)$(NEW_FIELD)")
+alias( "${P}${R}${STATS_P}MeanValue_RBV",      "$(NEW_P)$(NEW_R)$(NEW_FIELD)")
