@@ -13,3 +13,7 @@ $(P)$(R)TbtTagDly-SP
 $(P)$(R)TbtDataMaskEn-Sel
 $(P)$(R)TbtDataMaskSamplesBeg-SP
 $(P)$(R)TbtDataMaskSamplesEnd-SP
+$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel
+$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sel
+$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel
+$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel

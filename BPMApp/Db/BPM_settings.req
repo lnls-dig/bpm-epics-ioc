@@ -5,7 +5,7 @@ file "BPMAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
 file "BPMSwitching_settings.req",   P=$(P), R=$(R)
 file "BPMActiveClk_settings.req",   P=$(P), R=$(R)
 file "BPMAdcCommon_settings.req",   P=$(P), R=$(R)
-file "BPMDsp_settings.req",         P=$(P), R=$(R)
+file "BPMDsp_settings.req",         P=$(P), R=$(R), GLOBAL_ARRAY_NAME_X=X, GLOBAL_ARRAY_NAME_Y=Y, GLOBAL_ARRAY_NAME_Q=Q, GLOBAL_ARRAY_NAME_SUM=SUM
 file "BPMFFT_settings.req",         P=$(P), R=$(R)
 file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_X, ARRAY_NAME_UNCAL=_UncalX, ARRAY_NAME_CAL=_CalX
 file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Y, ARRAY_NAME_UNCAL=_UncalY, ARRAY_NAME_CAL=_CalY
