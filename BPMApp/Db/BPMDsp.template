@@ -115,6 +115,21 @@ record(longin,"$(P)$(R)PosQOffset-RB"){
     field(EGU, "nm")
 }
 
+record(longout,"$(P)$(R)PosSUMOffset-SP"){
+    field(DESC,"set SUM offset")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(EGU, "nm")
+    field(FLNK,"$(P)$(R)PosSUMOffset-RB")
+}
+
+record(longin,"$(P)$(R)PosSUMOffset-RB"){
+    field(DESC,"get SUM Offset")
+    field(SCAN,"Passive")
+    field(INP,"$(P)$(R)PosSUMOffset-SP")
+    field(EGU, "nm")
+}
+
 ############################################################################
 ## Hardware K factors and Offsets
 ############################################################################
