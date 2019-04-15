@@ -37,4 +37,5 @@ record(aSub,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ASubCalc")
     field(OUTB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_YCAL)ArrayDataWvf CA NMS")
     field(FTVB, "DOUBLE")
     field(NOVB, "$(NELEMENTS)")
+    field(BRSV, "INVALID")
 }

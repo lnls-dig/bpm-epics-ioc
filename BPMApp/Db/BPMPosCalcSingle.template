@@ -23,4 +23,5 @@ record(aSub,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ASubCalc")
     field(OUTA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataWvf CA NMS")
     field(FTVA, "DOUBLE")
     field(NOVA, "$(NELEMENTS)")
+    field(BRSV, "INVALID")
 }
