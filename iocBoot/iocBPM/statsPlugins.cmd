@@ -24,25 +24,25 @@ NDStatsConfigure("STATSGEN_X", $(QSIZE), 0, "$(PORT)", 6, 0, 0)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_X_STATS, PORT=STATSGEN_X,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=6")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStats.template",     "P=${P},R=${R}GEN_X_STATS, PORT=STATSGEN_X,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),HIST_SIZE=256,XSIZE=$(RING_SIZE),YSIZE=0,NCHANS=$(TSPOINTS)")
 # Alias
-dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=${GEN_X_STATS}, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosX-Mon")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=GEN_X_STATS, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosX-Mon")
 
 NDStatsConfigure("STATSGEN_Y", $(QSIZE), 0, "$(PORT)", 7, 0, 0)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_Y_STATS, PORT=STATSGEN_Y,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=7")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStats.template",     "P=${P},R=${R}GEN_Y_STATS, PORT=STATSGEN_Y,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),HIST_SIZE=256,XSIZE=$(RING_SIZE),YSIZE=0,NCHANS=$(TSPOINTS)")
 # Alias
-dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=${GEN_Y_STATS}, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosY-Mon")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=GEN_Y_STATS, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosY-Mon")
 
 NDStatsConfigure("STATSGEN_Q", $(QSIZE), 0, "$(PORT)", 8, 0, 0)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_Q_STATS, PORT=STATSGEN_Q,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=8")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStats.template",     "P=${P},R=${R}GEN_Q_STATS, PORT=STATSGEN_Q,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),HIST_SIZE=256,XSIZE=$(RING_SIZE),YSIZE=0,NCHANS=$(TSPOINTS)")
 # Alias
-dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=${GEN_Q_STATS}, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosQ-Mon")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=GEN_Q_STATS, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQPosQ-Mon")
 
 NDStatsConfigure("STATSGEN_SUM", $(QSIZE), 0, "$(PORT)", 9, 0, 0)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDPluginBase.template","P=${P},R=${R}GEN_SUM_STATS, PORT=STATSGEN_SUM,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=9")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/ADApp/Db/NDStats.template",     "P=${P},R=${R}GEN_SUM_STATS, PORT=STATSGEN_SUM,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),HIST_SIZE=256,XSIZE=$(RING_SIZE),YSIZE=0,NCHANS=$(TSPOINTS)")
 # Alias
-dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=${GEN_SUM_STATS}, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQSum-Mon")
+dbLoadRecords("${TOP}/BPMApp/Db/BPMStatsPluginAliases.template", "P=${P}, R=${R}, STATS_P=GEN_SUM_STATS, NEW_P=${P}, NEW_R=${R}, NEW_FIELD=ACQSum-Mon")
 
 ##################### PM AMP Statistics ##########################
 
