@@ -190,11 +190,15 @@ static long bpmPolyCalSUMProcessAsub(aSubRecord *prec)
         double x4 = x2*x2;
         double x6 = x4*x2;
 
-        out_sum[i] = sum1 /
-                     (1 *(coeffx0y0_sum + coeffx0y2_sum*y2 + coeffx0y4_sum*y4 + coeffx0y6_sum*y6) +
-                      x2*(coeffx2y0_sum + coeffx2y2_sum*y2 + coeffx2y4_sum*y4 + coeffx2y6_sum*y6) +
-                      x4*(coeffx4y0_sum + coeffx4y2_sum*y2 + coeffx4y4_sum*y4 + coeffx4y6_sum*y6) +
-                      x6*(coeffx6y0_sum + coeffx6y2_sum*y2 + coeffx6y4_sum*y4 + coeffx6y6_sum*y6));
+        double sum_poly = 1 *(coeffx0y0_sum + coeffx0y2_sum*y2 + coeffx0y4_sum*y4 + coeffx0y6_sum*y6) +
+                          x2*(coeffx2y0_sum + coeffx2y2_sum*y2 + coeffx2y4_sum*y4 + coeffx2y6_sum*y6) +
+                          x4*(coeffx4y0_sum + coeffx4y2_sum*y2 + coeffx4y4_sum*y4 + coeffx4y6_sum*y6) +
+                          x6*(coeffx6y0_sum + coeffx6y2_sum*y2 + coeffx6y4_sum*y4 + coeffx6y6_sum*y6);
+        if(sum_poly == 0) {
+            return -1;
+        }
+
+        out_sum[i] = sum1 / sum_poly;
     }
 
     return 0;
