@@ -12,7 +12,7 @@ BPMRFFE_registerRecordDeviceDriver (pdbbase)
 drvBPMRFFEConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VERBOSE)", "$(BPM_TIMEOUT)")
 
 ## Load record instances
-dbLoadRecords("${TOP}/BPMRFFEApp/Db/BPMRffe.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/BPMRffe.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}RFFEasyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
 
 < save_restore.cmd

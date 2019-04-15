@@ -14,11 +14,11 @@ BPM_registerRecordDeviceDriver (pdbbase)
 drvBPMConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_TYPE)", "$(BPM_VERBOSE)", "$(BPM_TIMEOUT)", "$(WAVEFORM_MAX_POINTS)", "$(MAXBUFFERS)", "$(MAXMEMORY)")
 
 ## Load record instances
-dbLoadRecords("${TOP}/BPMApp/Db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/AFCMgmt.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
-dbLoadRecords("${TOP}/BPMApp/Db/TIMRcv.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/BPMAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/AFCMgmt.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/TIMRcv.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
 
 < triggerTIM.cmd
