@@ -1,0 +1,9 @@
+######################################################################
+# Plugin aliases
+#
+# Description: These aliases provide more semantic names for plugin
+#       standard PVs
+
+# Statistics plugin
+
+alias( "${P}${R}${STATS_P}MeanValue_RBV",      "$(NEW_P)$(NEW_R)$(NEW_FIELD)")

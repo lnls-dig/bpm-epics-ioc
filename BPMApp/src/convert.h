@@ -88,10 +88,10 @@ typedef struct
 /* Computed X, Y values in nm, S in arbitrary units. */
 typedef struct
 {
-    int32_t X;
-    int32_t Y;
-    int32_t Q;
-    int32_t S;
+    double X;
+    double Y;
+    double Q;
+    double S;
 } XYQSRow_t;
 
 #define XYQS_ROW XYQSRow_t
@@ -136,7 +136,7 @@ typedef struct
 
 /* Wrapper function to ABCD to WYQS with different methods */
 void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count, bool Diagonal = true, bool PartialDelta = false);
+        int Count, bool Diagonal = true, bool PartialDelta = true);
 
 /* Converts Count rows of IQ data into ABCD format by applying Cordic
  * conversion on each I,Q pair. */

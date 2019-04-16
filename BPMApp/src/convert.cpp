@@ -84,20 +84,6 @@
 //static int GOLDEN_X = 0;
 //static int GOLDEN_Y = 0;
 
-/* Button gain adjustments.  By default we start with gain of 1.  See
- * SCALE_GAIN macro below. */
-#define DEFAULT_GAIN    (1 << 30)
-static int ChannelGain[4] =
-    { DEFAULT_GAIN, DEFAULT_GAIN, DEFAULT_GAIN, DEFAULT_GAIN };
-
-/* Rescales value by gain factor making use of the GAIN_OFFSET defined above.
- * The gain factors are scaled by a factor of 2^31, and are intended to
- * always be <= 1.  The value to be scaled derives from a CORDIC computation,
- * and will be comfortably less that 2^31. */
-#define SCALE_GAIN(gain, value) \
-    ((int) (((long long int) (gain) * (value)) >> 30))
-
-
 /* This flag determines the beam orientation: either diagonal or vertical.
  * Note that the Z axis (or S, as accelerator physicists call it) is *into*
  * the page, and X points out of the ring.
@@ -190,6 +176,12 @@ static int DeltaToPosition(int K, int M, int InvS, int shift)
     return MulUS(MulUU(K << 2, InvS), M << (62 - shift));
 }
 
+static double DeltaToPosition(double K, double M, double InvS, int shift = 0)
+{
+    (void) shift;
+    return ((K * InvS) * M);
+}
+
 
 /* Converts Count rows of ABCD button data into XYQS position and intensity
  * data via the configured conversion function.  The underlying model for the
@@ -245,11 +237,11 @@ void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSE
          *    The button values A,B,C,D are known to lie in the range 0 to
          * 2^31 - 1 so we similarly know that 0 <= S < 2^31. */
         /* *FIXME: we are not scaling down the amplitudes as it was before */
-        uint32_t A = abs(abcd.A /* >> 2*/);
-        uint32_t B = abs(abcd.B /* >> 2*/);
-        uint32_t C = abs(abcd.C /* >> 2*/);
-        uint32_t D = abs(abcd.D /* >> 2*/);
-        uint32_t S = A + B + C + D;
+        double A = abs(abcd.A /* >> 2*/);
+        double B = abs(abcd.B /* >> 2*/);
+        double C = abs(abcd.C /* >> 2*/);
+        double D = abs(abcd.D /* >> 2*/);
+        double S = A + B + C + D;
 
         /* Now compute the positions according to the model.  As this is an
          * inner loop function we take some time to optimise its execution by
@@ -259,7 +251,7 @@ void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSE
          * where shift derives from a bit normalisation count on S so that
          * 2^31 <= InvS < 2^32. */
         int shift = 0;
-        int InvS = Reciprocal(S, shift);
+        double InvS = Reciprocal(S, shift);
         /* Compute X and Y according to the currently selected detector
          * orientation. */
         if (Diagonal)
@@ -269,8 +261,8 @@ void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSE
         }
         else
         {
-            xyqs.X = (DeltaToPosition(k_factors.KX, D - B, InvS, shift) << 1) - pos_offsets.XOFFSET;
-            xyqs.Y = (DeltaToPosition(k_factors.KY, A - C, InvS, shift) << 1) - pos_offsets.YOFFSET;
+            xyqs.X = (DeltaToPosition(k_factors.KX, D - B, InvS, shift) * 2.0) - pos_offsets.XOFFSET;
+            xyqs.Y = (DeltaToPosition(k_factors.KY, A - C, InvS, shift) * 2.0) - pos_offsets.YOFFSET;
         }
         /* We scale Q up quite a bit more so that we have access to as much
          * information as possible: the values can be quite small,
@@ -301,16 +293,16 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_O
          *    The button values A,B,C,D are known to lie in the range 0 to
          * 2^31 - 1 so we similarly know that 0 <= S < 2^31. */
         /* *FIXME: we are not scaling down the amplitudes as it was before */
-        uint32_t A = abs(abcd.A /* >> 2*/);
-        uint32_t B = abs(abcd.B /* >> 2*/);
-        uint32_t C = abs(abcd.C /* >> 2*/);
-        uint32_t D = abs(abcd.D /* >> 2*/);
+        double A = abs(abcd.A /* >> 2*/);
+        double B = abs(abcd.B /* >> 2*/);
+        double C = abs(abcd.C /* >> 2*/);
+        double D = abs(abcd.D /* >> 2*/);
 
-        uint32_t S_AC = A + C;
-        uint32_t S_BD = B + D;
-        uint32_t S_AB = A + B;
-        uint32_t S_CD = C + D;
-        uint32_t S = S_AC + S_BD;
+        double S_AC = A + C;
+        double S_BD = B + D;
+        double S_AB = A + B;
+        double S_CD = C + D;
+        double S = S_AC + S_BD;
 
         /* Now compute the positions according to the model.  As this is an
          * inner loop function we take some time to optimise its execution by
@@ -320,26 +312,26 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_O
          * where shift derives from a bit normalisation count on S so that
          * 2^31 <= InvS < 2^32. */
         int shift_AC = 0;
-        int InvS_AC = Reciprocal(S_AC << 1, shift_AC);
+        double InvS_AC = Reciprocal(S_AC * 2.0, shift_AC);
 
         int shift_BD = 0;
-        int InvS_BD = Reciprocal(S_BD << 1, shift_BD);
+        double InvS_BD = Reciprocal(S_BD * 2.0, shift_BD);
 
         int shift_AB = 0;
-        int InvS_AB = Reciprocal(S_AB << 1, shift_AB);
+        double InvS_AB = Reciprocal(S_AB * 2.0, shift_AB);
 
         int shift_CD = 0;
-        int InvS_CD = Reciprocal(S_CD << 1, shift_CD);
+        double InvS_CD = Reciprocal(S_CD * 2.0, shift_CD);
 
         /* KX and XY should be divided by 2 in partial difference-over-sum. Shift partial sums by 1 bit to implement it. */
-        uint32_t partial_AC_pos_x = DeltaToPosition(k_factors.KX, A - C, InvS_AC, shift_AC);
-        uint32_t partial_BD_pos_x = DeltaToPosition(k_factors.KX, B - D, InvS_BD, shift_BD);
+        double partial_AC_pos_x = DeltaToPosition(k_factors.KX, A - C, InvS_AC, shift_AC);
+        double partial_BD_pos_x = DeltaToPosition(k_factors.KX, B - D, InvS_BD, shift_BD);
 
-        uint32_t partial_AC_pos_y = DeltaToPosition(k_factors.KY, A - C, InvS_AC, shift_AC);
-        uint32_t partial_BD_pos_y = DeltaToPosition(k_factors.KY, B - D, InvS_BD, shift_BD);
+        double partial_AC_pos_y = DeltaToPosition(k_factors.KY, A - C, InvS_AC, shift_AC);
+        double partial_BD_pos_y = DeltaToPosition(k_factors.KY, B - D, InvS_BD, shift_BD);
 
-        uint32_t partial_AB_pos_q = DeltaToPosition(k_factors.KQ, A - B, InvS_AB, shift_AB);
-        uint32_t partial_CD_pos_q = DeltaToPosition(k_factors.KQ, C - D, InvS_CD, shift_CD);
+        double partial_AB_pos_q = DeltaToPosition(k_factors.KQ, A - B, InvS_AB, shift_AB);
+        double partial_CD_pos_q = DeltaToPosition(k_factors.KQ, C - D, InvS_CD, shift_CD);
 
         /* Compute X and Y according to the currently selected detector
          * orientation. */
@@ -359,12 +351,4 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_O
         xyqs.Q = partial_AB_pos_q + partial_CD_pos_q - pos_offsets.QOFFSET;
         xyqs.S = k_factors.KSUM * S;
     }
-}
-
-
-void GainCorrect(int Channel, int *Column, int Count)
-{
-    int Gain = ChannelGain[Channel];
-    for (int i = 0; i < Count; i ++)
-        Column[i] = SCALE_GAIN(Gain, Column[i]);
 }

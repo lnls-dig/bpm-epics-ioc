@@ -32,6 +32,7 @@ BPM_DBD += FFTRecords.dbd
 
 # BPM_registerRecordDeviceDriver.cpp derives from BPM.dbd
 BPM_SRCS += BPM_registerRecordDeviceDriver.cpp
+BPM_SRCS += bpmPolyCalAsub.c
 
 # Build the main IOC entry point on workstation OSs.
 BPM_SRCS_DEFAULT += BPMMain.cpp

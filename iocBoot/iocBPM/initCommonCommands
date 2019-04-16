@@ -5,20 +5,20 @@ dbpf "${P}${R}GEN_BEnableCallbacks" 1
 dbpf "${P}${R}GEN_CEnableCallbacks" 1
 dbpf "${P}${R}GEN_DEnableCallbacks" 1
 
-dbpf "${P}${R}GEN_XEnableCallbacks" 1
-dbpf "${P}${R}GEN_YEnableCallbacks" 1
-dbpf "${P}${R}GEN_QEnableCallbacks" 1
-dbpf "${P}${R}GEN_SUMEnableCallbacks" 1
+dbpf "${P}${R}GEN_UncalXEnableCallbacks" 1
+dbpf "${P}${R}GEN_UncalYEnableCallbacks" 1
+dbpf "${P}${R}GEN_UncalQEnableCallbacks" 1
+dbpf "${P}${R}GEN_UncalSUMEnableCallbacks" 1
 
 dbpf "${P}${R}PM_AEnableCallbacks" 1
 dbpf "${P}${R}PM_BEnableCallbacks" 1
 dbpf "${P}${R}PM_CEnableCallbacks" 1
 dbpf "${P}${R}PM_DEnableCallbacks" 1
 
-dbpf "${P}${R}PM_XEnableCallbacks" 1
-dbpf "${P}${R}PM_YEnableCallbacks" 1
-dbpf "${P}${R}PM_QEnableCallbacks" 1
-dbpf "${P}${R}PM_SUMEnableCallbacks" 1
+dbpf "${P}${R}PM_UncalXEnableCallbacks" 1
+dbpf "${P}${R}PM_UncalYEnableCallbacks" 1
+dbpf "${P}${R}PM_UncalQEnableCallbacks" 1
+dbpf "${P}${R}PM_UncalSUMEnableCallbacks" 1
 
 dbpf "${P}${R}SP_AEnableCallbacks" 1
 dbpf "${P}${R}SP_BEnableCallbacks" 1

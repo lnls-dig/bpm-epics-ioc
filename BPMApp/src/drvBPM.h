@@ -61,6 +61,7 @@ typedef enum {
     BPMStatusErrTooManyPoints,
     BPMStatusErrTooFewPoints,
     BPMStatusErrNoMem,
+    BPMStatusErrAcqOFlow,
 } bpm_status_types;
 
 /* Waveform IDs */
@@ -404,6 +405,7 @@ private:
 #define P_TbtRateString             "INFO_TBTRATE"          /* asynUInt32Digital,      r/o */
 #define P_FofbRateString            "INFO_FOFBRATE"         /* asynUInt32Digital,      r/o */
 #define P_MonitRateString           "INFO_MONITRATE"        /* asynUInt32Digital,      r/o */
+#define P_Monit1RateString          "INFO_MONIT1RATE"       /* asynUInt32Digital,      r/o */
 #define P_SwModeString              "SW_MODE"               /* asynUInt32Digital,      r/w */
 #define P_SwDlyString               "SW_DLY"                /* asynUInt32Digital,      r/w */
 #define P_SwDivClkString            "SW_DIVCLK"             /* asynUInt32Digital,      r/w */
@@ -450,6 +452,11 @@ private:
 #define P_SwTagEnString             "DSP_SW_TAG_EN"         /* asynUInt32Digital,      r/w */
 #define P_SwDataMaskEnString        "DSP_SW_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
 #define P_SwDataMaskSamplesString   "DSP_SW_DATA_MASK_SAMPLES"  /* asynUInt32Digital,      r/w */
+#define P_TbtTagEnString            "DSP_TBT_TAG_EN"         /* asynUInt32Digital,      r/w */
+#define P_TbtTagDlyString           "DSP_TBT_TAG_DLY"       /* asynUInt32Digital,      r/w */
+#define P_TbtDataMaskEnString       "DSP_TBT_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
+#define P_TbtDataMaskSamplesBegString  "DSP_TBT_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
+#define P_TbtDataMaskSamplesEndString  "DSP_TBT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
@@ -623,6 +630,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtRate;
         int P_FofbRate;
         int P_MonitRate;
+        int P_Monit1Rate;
         int P_SwMode;
         int P_SwDly;
         int P_SwDivClk;
@@ -667,6 +675,11 @@ class drvBPM : public asynNDArrayDriver {
         int P_SwTagEn;
         int P_SwDataMaskEn;
         int P_SwDataMaskSamples;
+        int P_TbtTagEn;
+        int P_TbtTagDly;
+        int P_TbtDataMaskEn;
+        int P_TbtDataMaskSamplesBeg;
+        int P_TbtDataMaskSamplesEnd;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
@@ -800,6 +813,7 @@ class drvBPM : public asynNDArrayDriver {
 
         /* Specific hardware functions that need extra processing and don't
          * fit into the general set/get template */
+        asynStatus setBPMMode(int addr, int function);
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus setAdcClkSel(epicsUInt32 mask, int addr);
         asynStatus setAdcAD9510ClkSel(epicsUInt32 mask, int addr);

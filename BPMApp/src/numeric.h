@@ -102,6 +102,10 @@ inline int MulSS(int x, int y)
 #endif
 }
 
+inline double MulDD(double x, double y)
+{
+    return x * y;
+}
 
 /* To retain the maximum possible number of bits we have to take a bit of
  * care when multiplying a signed by an unsigned integer.  This routine works
@@ -180,7 +184,7 @@ unsigned int Denormalise(unsigned int x, int shift);
  * expressions. */
 unsigned int Reciprocal(unsigned int X, int &shift);
 
-
+double Reciprocal(double X, int &shift);
 
 /* Fast fixed point computation of logarithm base 2 with about 20 bits of
  * precision using pure integer arithmetic.  The input has 16 bits after the
