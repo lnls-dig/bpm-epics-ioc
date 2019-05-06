@@ -200,6 +200,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)TriggerEvent-Sts"){
 record(mbbo, "$(P)$(R)$(ACQ_NAME)TriggerRep-Sel"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set acquisition's trigger repetitive")
+    field(PINI,"YES")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_TRIGGER_REP")
     field(SCAN,"Passive")
     field(NOBT,"1")
