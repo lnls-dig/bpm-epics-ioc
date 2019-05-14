@@ -2112,7 +2112,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             }
 
             /* Calculate positions and call callbacks */
-            status = computePositions(coreID, pArrayAllChannels, channel);
+            status = computePositions(coreID, pArrayAllChannels, channel, timeStamp);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to compute positions\n",
@@ -2780,7 +2780,8 @@ get_info_array_err:
   * \param[in] NDArray of amplitudes interleaved (A1, B1, C1, D1,
   * A2, B2, C2, D2, ...)
   */
-asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel)
+asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
+        epicsFloat64 timeStamp)
 {
     int status = asynSuccess;
     epicsUInt32 XOffset;
@@ -2802,7 +2803,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     K_FACTORS kFactors;
     NDArray *pArrayPosAllChannels = NULL;
     epicsTimeStamp now;
-    epicsFloat64 timeStamp;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
     static const char *functionName = "computePositions";
@@ -2846,7 +2846,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     arraySingleElements = arrayElements/arrayYStride;
 
     /* Waveform statistics */
-    epicsTimeGetCurrent(&now);
     getIntegerParam(NDArrayCounter, &arrayCounter);
     arrayCounter++;
     setIntegerParam(NDArrayCounter, arrayCounter);
@@ -2864,8 +2863,8 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
         goto array_pool_copy_err;
     }
     pArrayPosAllChannels->uniqueId = arrayCounter;
-    timeStamp = now.secPastEpoch + now.nsec / 1.e9;
     pArrayPosAllChannels->timeStamp = timeStamp;
+    updateTimeStamp(&pArrayPosAllChannels->epicsTS);
     getAttributes(pArrayPosAllChannels->pAttributeList);
 
     /* FIXME: we must be sure that we are dealing with 32-bit data here and
