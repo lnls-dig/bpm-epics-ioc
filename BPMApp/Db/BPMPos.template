@@ -5,8 +5,8 @@ record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)WvfElemSeq"){
     field(DOL2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.NORD NPP NMS")
     field(DOL3, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.NORD NPP NMS")
     field(LNK1, "")
-    field(LNK2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData.NELM PP NMS")
-    field(LNK3, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM PP NMS")
+    field(LNK2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData.NELM NPP NMS")
+    field(LNK3, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM NPP NMS")
     field(SELM, "All")
 }
 
