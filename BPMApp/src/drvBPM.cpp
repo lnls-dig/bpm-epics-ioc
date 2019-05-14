@@ -2009,6 +2009,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
+        updateTimeStamp(&pArrayAllChannels->epicsTS);
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Just start the acquisition if we are not already acquiring */
@@ -2352,6 +2353,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
+        updateTimeStamp(&pArrayAllChannels->epicsTS);
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Tell we are acquiring just before we actually start it */
@@ -2715,6 +2717,7 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
 
         pArraySingleChannel->uniqueId = arrayCounter;
         pArraySingleChannel->timeStamp = timeStamp;
+        updateTimeStamp(&pArraySingleChannel->epicsTS);
         getAttributes(pArraySingleChannel->pAttributeList);
 
         pIn16 = (epicsUInt16 *)pArrayAllChannels->pData;
