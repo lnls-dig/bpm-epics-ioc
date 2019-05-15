@@ -2009,7 +2009,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
-        updateTimeStamp(&pArrayAllChannels->epicsTS);
+        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+        pArrayAllChannels->epicsTS.nsec = now.nsec;
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Just start the acquisition if we are not already acquiring */
@@ -2103,7 +2104,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                    dims[0], arrayCounter, timeStamp);
+                    dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to deinterleave NDArray\n",
@@ -2112,7 +2113,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             }
 
             /* Calculate positions and call callbacks */
-            status = computePositions(coreID, pArrayAllChannels, channel, timeStamp);
+            status = computePositions(coreID, pArrayAllChannels, channel, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to compute positions\n",
@@ -2353,7 +2354,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
-        updateTimeStamp(&pArrayAllChannels->epicsTS);
+        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+        pArrayAllChannels->epicsTS.nsec = now.nsec;
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Tell we are acquiring just before we actually start it */
@@ -2513,7 +2515,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                        dims[0], arrayCounter, timeStamp);
+                        dims[0], arrayCounter, &now);
                 if (status != asynSuccess) {
                     asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                             "%s:%s: unable to deinterleave NDArray\n",
@@ -2675,7 +2677,7 @@ get_service_err:
 }
 
 asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
-        int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp)
+        int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp)
 {
     int status = asynSuccess;
     size_t dims[MAX_WVF_DIMS];
@@ -2716,8 +2718,9 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
         }
 
         pArraySingleChannel->uniqueId = arrayCounter;
-        pArraySingleChannel->timeStamp = timeStamp;
-        updateTimeStamp(&pArraySingleChannel->epicsTS);
+        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;;
+        pArraySingleChannel->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
+        pArraySingleChannel->epicsTS.nsec = timeStamp->nsec;
         getAttributes(pArraySingleChannel->pAttributeList);
 
         pIn16 = (epicsUInt16 *)pArrayAllChannels->pData;
@@ -2781,7 +2784,7 @@ get_info_array_err:
   * A2, B2, C2, D2, ...)
   */
 asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
-        epicsFloat64 timeStamp)
+        epicsTimeStamp *timeStamp)
 {
     int status = asynSuccess;
     epicsUInt32 XOffset;
@@ -2863,8 +2866,9 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
         goto array_pool_copy_err;
     }
     pArrayPosAllChannels->uniqueId = arrayCounter;
-    pArrayPosAllChannels->timeStamp = timeStamp;
-    updateTimeStamp(&pArrayPosAllChannels->epicsTS);
+    pArrayPosAllChannels->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;
+    pArrayPosAllChannels->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
+    pArrayPosAllChannels->epicsTS.nsec = timeStamp->nsec;
     getAttributes(pArrayPosAllChannels->pAttributeList);
 
     /* FIXME: we must be sure that we are dealing with 32-bit data here and

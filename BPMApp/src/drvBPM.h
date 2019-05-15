@@ -801,11 +801,11 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels);
         asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
         asynStatus deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
-                int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
+                int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp);
 
         /* General set/get hardware functions */
         asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
-                epicsFloat64 timeStamp);
+                epicsTimeStamp *timeStamp);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
