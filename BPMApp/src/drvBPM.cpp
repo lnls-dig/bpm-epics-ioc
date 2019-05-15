@@ -2805,7 +2805,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     POS_OFFSETS posOffsets;
     K_FACTORS kFactors;
     NDArray *pArrayPosAllChannels = NULL;
-    epicsTimeStamp now;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
     static const char *functionName = "computePositions";
