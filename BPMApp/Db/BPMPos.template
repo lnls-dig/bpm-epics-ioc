@@ -34,6 +34,7 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataWvf")
     field(DESC, "Position calibrated waveform $(ACQ)$(ARRAY_NAME)")
     field(NELM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
     field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData")
 }
 
@@ -41,6 +42,7 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData")
 {
     field(DESC, "Position calibrated $(ACQ)$(ARRAY_NAME)")
     field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
 }
@@ -50,6 +52,7 @@ record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
     field(DESC, "Use uncal/cal. position $(ACQ)$(ARRAY_NAME)")
     field(DTYP, "Soft Channel")
     field(NELM,"$(NELEMENTS)")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME)PosCal-Sts.VAL")
@@ -66,6 +69,7 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf")
     field(DESC, "Position waveform $(ACQ)$(ARRAY_NAME)")
     field(NELM,"$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
     field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
 }
 
@@ -73,6 +77,7 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
 {
     field(DESC, "Position $(ACQ)$(ARRAY_NAME)")
     field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
 }
