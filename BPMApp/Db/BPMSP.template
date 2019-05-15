@@ -10,6 +10,7 @@ record(ai,"$(P)$(R)SPAmplA-Mon"){
     field(SCAN,"I/O Intr")
     field(MDEL, "-1")
     field(ADEL, "-1")
+    field(TSEL, "$(P)$(R)SP_AArrayData.TIME")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_AMP_A")
     field(EGU, "au")
 }
