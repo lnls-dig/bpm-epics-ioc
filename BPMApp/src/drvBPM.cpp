@@ -2592,7 +2592,7 @@ void drvBPM::acqMonitTask()
 
         err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
         if(err == HALCS_CLIENT_SUCCESS) {
-            if (dsp_data.new_amp_data || dsp_data.new_pos_data) {
+            if (dsp_data.new_amp_data) {
                 /* Get offsets and scaling factors */
                 getUIntDigitalParam(P_XOffset, &XOffset, mask);
                 getUIntDigitalParam(P_YOffset, &YOffset, mask);
