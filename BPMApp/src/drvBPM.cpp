@@ -2547,6 +2547,7 @@ void drvBPM::acqMonitTask()
 {
     asynStatus status = asynSuccess;
     int err = HALCS_CLIENT_SUCCESS;
+    size_t dims[MAX_WVF_DIMS];
     epicsUInt32 XOffset;
     epicsUInt32 YOffset;
     epicsUInt32 QOffset;
@@ -2562,6 +2563,11 @@ void drvBPM::acqMonitTask()
     K_FACTORS kFactors;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
+    NDArray *pArrayMonitData[MAX_MONIT_DATA];
+    double monitData[MAX_MONIT_DATA];
+    NDDataType_t NDType = NDFloat64;
+    int NDArrayAddrInit = WVF_MONIT_AMP_A;
+    epicsTimeStamp now;
     int monitEnable = 0;
     double elapsedTime;
     double monitUpdtTime = 0.05; // 20 Hz
@@ -2576,6 +2582,18 @@ void drvBPM::acqMonitTask()
             "%s:%s: error calling getFullServiceName, status=%d\n",
             driverName, functionName, status);
         goto get_service_err;
+    }
+
+    dims[0] = 1;
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        if (pArrayMonitData == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayMonitData\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
     }
 
     smio_dsp_data_t dsp_data;
@@ -2611,7 +2629,6 @@ void drvBPM::acqMonitTask()
                 kFactors.KY = Ky;
                 kFactors.KQ = Kq;
                 kFactors.KSUM = Ksum;
-
                 abcdRow.A = dsp_data.amp_ch0;
                 abcdRow.B = dsp_data.amp_ch1;
                 abcdRow.C = dsp_data.amp_ch2;
@@ -2620,34 +2637,30 @@ void drvBPM::acqMonitTask()
                 ABCDtoXYQS(&abcdRow, &xyqsRow, &kFactors, &posOffsets, 1, true);
                 ABCDtoXYQS(&abcdRow, &xyqsFakeRow, &kFactors, &posOffsets, 1, false);
 
-                /* Force callbacks to happen by setting the value two times, so it detect
-                 * a change in the value. Otherwise, the same value will not trigger a
-                 * callback */
-                lock ();
-                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3,   0xFFFFFFFF);
-                setDoubleParam(P_MonitPosX,      xyqsRow.X+1.);
-                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X);
-                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X+1.);
-                setDoubleParam(P_MonitPosX,      xyqsRow.X);
-                setDoubleParam(P_MonitPosY,      xyqsRow.Y+1.);
-                setDoubleParam(P_MonitPosY,      xyqsRow.Y);
-                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y+1.);
-                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y);
-                setDoubleParam(P_MonitPosQ,      xyqsRow.Q+1.);
-                setDoubleParam(P_MonitPosQ,      xyqsRow.Q);
-                setDoubleParam(P_MonitPosSum,    xyqsRow.S+1.);
-                setDoubleParam(P_MonitPosSum,    xyqsRow.S);
-                /* Updates all records with TSE=-2 with the current timestamp */
-                updateTimeStamp ();
-                callParamCallbacks();
-                unlock ();
+                monitData[0] = dsp_data.amp_ch0;
+                monitData[1] = dsp_data.amp_ch1;
+                monitData[2] = dsp_data.amp_ch2;
+                monitData[3] = dsp_data.amp_ch3;
+                monitData[4] = xyqsRow.X;
+                monitData[5] = xyqsRow.Y;
+                monitData[6] = xyqsRow.Q;
+                monitData[7] = xyqsRow.S;
+                monitData[8] = xyqsFakeRow.X;
+                monitData[9] = xyqsFakeRow.Y;
+                monitData[10] = xyqsFakeRow.Q;
+                monitData[11] = xyqsFakeRow.S;
+
+                epicsTimeGetCurrent(&now);
+                for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                    /* NDArray atributtes */
+                    pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                    pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                    pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                    getAttributes(pArrayMonitData[i]->pAttributeList);
+                    /* NDArray data */
+                    *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                    doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
+                }
             }
             else {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -2672,6 +2685,10 @@ void drvBPM::acqMonitTask()
         }
     }
 
+alloc_ndarray_err:
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i]->release();
+    }
 get_service_err:
     return;
 }

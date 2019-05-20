@@ -96,6 +96,18 @@ typedef enum {
     WVF_AMP_SP_D,
     WVF_AMP_SP_ALL,
     WVF_UNUSED_5,
+    WVF_MONIT_AMP_A,
+    WVF_MONIT_AMP_B,
+    WVF_MONIT_AMP_C,
+    WVF_MONIT_AMP_D,
+    WVF_MONIT_POS_X,
+    WVF_MONIT_POS_Y,
+    WVF_MONIT_POS_Q,
+    WVF_MONIT_POS_SUM,
+    WVF_MONIT_POSFAKE_X,
+    WVF_MONIT_POSFAKE_Y,
+    WVF_MONIT_POSFAKE_Q,
+    WVF_MONIT_POSFAKE_SUM,
     WVF_END
 } wvf_types;
 
@@ -116,6 +128,8 @@ typedef enum {
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_BPM*MAX_TRIGGERS)
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
+/* Number of Monitoring waveforms */
+#define MAX_MONIT_DATA              12
 
 /* Channel IDs */
 typedef enum {
