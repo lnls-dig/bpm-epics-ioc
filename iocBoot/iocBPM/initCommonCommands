@@ -45,6 +45,31 @@ dbpf "${P}${R}SP_CArrayData.TSE" -2
 dbpf "${P}${R}SP_DEnableCallbacks" 1
 dbpf "${P}${R}SP_DArrayData.TSE" -2
 
+dbpf "${P}${R}MONIT_AEnableCallbacks" 1
+dbpf "${P}${R}MONIT_AArrayData.TSE" -2
+dbpf "${P}${R}MONIT_BEnableCallbacks" 1
+dbpf "${P}${R}MONIT_BArrayData.TSE" -2
+dbpf "${P}${R}MONIT_CEnableCallbacks" 1
+dbpf "${P}${R}MONIT_CArrayData.TSE" -2
+dbpf "${P}${R}MONIT_DEnableCallbacks" 1
+dbpf "${P}${R}MONIT_DArrayData.TSE" -2
+dbpf "${P}${R}MONIT_XEnableCallbacks" 1
+dbpf "${P}${R}MONIT_XArrayData.TSE" -2
+dbpf "${P}${R}MONIT_YEnableCallbacks" 1
+dbpf "${P}${R}MONIT_YArrayData.TSE" -2
+dbpf "${P}${R}MONIT_QEnableCallbacks" 1
+dbpf "${P}${R}MONIT_QArrayData.TSE" -2
+dbpf "${P}${R}MONIT_SUMEnableCallbacks" 1
+dbpf "${P}${R}MONIT_SUMArrayData.TSE" -2
+dbpf "${P}${R}MONIT_FAKEXEnableCallbacks" 1
+dbpf "${P}${R}MONIT_FAKEXArrayData.TSE" -2
+dbpf "${P}${R}MONIT_FAKEYEnableCallbacks" 1
+dbpf "${P}${R}MONIT_FAKEYArrayData.TSE" -2
+dbpf "${P}${R}MONIT_FAKEQEnableCallbacks" 1
+dbpf "${P}${R}MONIT_FAKEQArrayData.TSE" -2
+dbpf "${P}${R}MONIT_FAKESUMEnableCallbacks" 1
+dbpf "${P}${R}MONIT_FAKESUMArrayData.TSE" -2
+
 # File Saving Plugin
 
 dbpf "${P}${R}GEN_ABCD_NETCDFEnableCallbacks" 1
