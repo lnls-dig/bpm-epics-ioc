@@ -106,8 +106,6 @@ typedef enum {
     WVF_MONIT_POS_SUM,
     WVF_MONIT_POSFAKE_X,
     WVF_MONIT_POSFAKE_Y,
-    WVF_MONIT_POSFAKE_Q,
-    WVF_MONIT_POSFAKE_SUM,
     WVF_END
 } wvf_types;
 
@@ -129,7 +127,7 @@ typedef enum {
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
 /* Number of Monitoring waveforms */
-#define MAX_MONIT_DATA              12
+#define MAX_MONIT_DATA              10
 
 /* Channel IDs */
 typedef enum {

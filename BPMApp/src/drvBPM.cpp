@@ -2624,8 +2624,6 @@ void drvBPM::acqMonitTask()
                 monitData[7] = xyqsRow.S;
                 monitData[8] = xyqsFakeRow.X;
                 monitData[9] = xyqsFakeRow.Y;
-                monitData[10] = xyqsFakeRow.Q;
-                monitData[11] = xyqsFakeRow.S;
 
                 epicsTimeGetCurrent(&now);
                 for (int i = 0; i < MAX_MONIT_DATA; ++i) {

@@ -65,10 +65,6 @@ dbpf "${P}${R}MONIT_FAKEXEnableCallbacks" 1
 dbpf "${P}${R}MONIT_FAKEXArrayData.TSE" -2
 dbpf "${P}${R}MONIT_FAKEYEnableCallbacks" 1
 dbpf "${P}${R}MONIT_FAKEYArrayData.TSE" -2
-dbpf "${P}${R}MONIT_FAKEQEnableCallbacks" 1
-dbpf "${P}${R}MONIT_FAKEQArrayData.TSE" -2
-dbpf "${P}${R}MONIT_FAKESUMEnableCallbacks" 1
-dbpf "${P}${R}MONIT_FAKESUMArrayData.TSE" -2
 
 # File Saving Plugin
 
