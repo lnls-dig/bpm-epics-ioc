@@ -494,16 +494,6 @@ private:
 #define P_ChannelSampleSizeString   "ACQ_CH_SAMPLE_SIZE"    /* asynUInt32Digital,      r/o */
 #define P_ChannelNumAtomsString     "ACQ_CH_NUM_ATOMS"      /* asynUInt32Digital,      r/o */
 #define P_ChannelAtomWidthString    "ACQ_CH_ATOM_WIDTH"     /* asynUInt32Digital,      r/o */
-#define P_MonitAmpAString           "MONITAMP_A"            /* asynUInt32Digital,      r/o */
-#define P_MonitAmpBString           "MONITAMP_B"            /* asynUInt32Digital,      r/o */
-#define P_MonitAmpCString           "MONITAMP_C"            /* asynUInt32Digital,      r/o */
-#define P_MonitAmpDString           "MONITAMP_D"            /* asynUInt32Digital,      r/o */
-#define P_MonitPosXString           "MONITPOS_X"            /* asynFloat64,            r/o */
-#define P_MonitPosXFakeString       "MONITPOS_XFAKE"        /* asynFloat64,            r/o */
-#define P_MonitPosYString           "MONITPOS_Y"            /* asynFloat64,            r/o */
-#define P_MonitPosYFakeString       "MONITPOS_YFAKE"        /* asynFloat64,            r/o */
-#define P_MonitPosQString           "MONITPOS_Q"            /* asynFloat64,            r/o */
-#define P_MonitPosSumString         "MONITPOS_SUM"          /* asynFloat64,            r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
 #define P_MonitUpdtTimeString       "MONIT_UPDTTIME"        /* asynFloat64,            r/w */
 #define P_MonitEnableString         "MONIT_ENABLE"          /* asynInt32,              r/w */
@@ -717,16 +707,6 @@ class drvBPM : public asynNDArrayDriver {
         int P_ChannelSampleSize;
         int P_ChannelNumAtoms;
         int P_ChannelAtomWidth;
-        int P_MonitAmpA;
-        int P_MonitAmpB;
-        int P_MonitAmpC;
-        int P_MonitAmpD;
-        int P_MonitPosX;
-        int P_MonitPosXFake;
-        int P_MonitPosY;
-        int P_MonitPosYFake;
-        int P_MonitPosQ;
-        int P_MonitPosSum;
         int P_MonitUpdt;
         int P_MonitUpdtTime;
         int P_MonitEnable;
