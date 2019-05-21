@@ -472,6 +472,126 @@ record(ai,"$(P)$(R)MONITUpdtTime-RB"){
     field(EGU, "s")
 }
 
+record(longin,"$(P)$(R)AmplA-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Monitoring Ampltitude A")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_A")
+    field(EGU, "au")
+}
+
+record(longin,"$(P)$(R)AmplB-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Monitoring Ampltitude B")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_B")
+    field(EGU, "au")
+}
+
+record(longin,"$(P)$(R)AmplC-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Monitoring Ampltitude C")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_C")
+    field(EGU, "au")
+}
+
+record(longin,"$(P)$(R)AmplD-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"Monitoring Ampltitude D")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_D")
+    field(EGU, "au")
+}
+
+record(ai,"$(P)$(R)PosX-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Position X")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_X")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)PosXFake-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Position X Fake")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(EGU, "nm")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_XFAKE")
+}
+
+record(ai,"$(P)$(R)PosY-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Position Y")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_Y")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)PosYFake-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Position Y Fake")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_YFAKE")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)PosQ-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Position Q")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_Q")
+    field(EGU, "nm")
+}
+
+record(ai,"$(P)$(R)Sum-Mon"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"Monitoring Sum")
+    field(PINI,"YES")
+    field(SCAN,"I/O Intr")
+    field(MDEL, "-1")
+    field(ADEL, "-1")
+    field(TSE, "-2")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_SUM")
+    field(EGU, "au")
+}
+
 record(mbbo,"$(P)$(R)SwTagEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Switching Tag Enable")
