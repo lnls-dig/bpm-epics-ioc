@@ -271,7 +271,7 @@ record(longin,"$(P)$(R)HwPosSUMOffset-RB"){
 }
 
 ############################################################################
-## Hw K factors and Offset parameters 
+## Hw K factors and Offset parameters
 ############################################################################
 
 record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel") {
@@ -443,7 +443,7 @@ record(calcout,"$(P)$(R)HwPosQOffsetCalc")
 #}
 
 ############################################################################
-## General parameters 
+## General parameters
 ############################################################################
 
 record(ao,"$(P)$(R)MONITUpdtTime-SP"){
@@ -473,122 +473,112 @@ record(ai,"$(P)$(R)MONITUpdtTime-RB"){
 }
 
 record(longin,"$(P)$(R)AmplA-Mon"){
-    field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude A")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_A")
+    field(TSEL, "$(P)$(R)MONIT_AArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_AArrayData CPP NMS")
     field(EGU, "au")
 }
 
 record(longin,"$(P)$(R)AmplB-Mon"){
-    field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude B")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_B")
+    field(TSEL, "$(P)$(R)MONIT_BArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_BArrayData CPP NMS")
     field(EGU, "au")
 }
 
 record(longin,"$(P)$(R)AmplC-Mon"){
-    field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude C")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_C")
+    field(TSEL, "$(P)$(R)MONIT_CArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_CArrayData CPP NMS")
     field(EGU, "au")
 }
 
 record(longin,"$(P)$(R)AmplD-Mon"){
-    field(DTYP,"asynUInt32Digital")
     field(DESC,"Monitoring Ampltitude D")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONITAMP_D")
+    field(TSEL, "$(P)$(R)MONIT_DArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_DArrayData CPP NMS")
     field(EGU, "au")
 }
 
 record(ai,"$(P)$(R)PosX-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Position X")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_X")
+    field(TSEL, "$(P)$(R)MONIT_XArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_XArrayData CPP NMS")
     field(EGU, "nm")
 }
 
 record(ai,"$(P)$(R)PosXFake-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Position X Fake")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
     field(EGU, "nm")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_XFAKE")
+    field(TSEL, "$(P)$(R)MONIT_FAKEXArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_FAKEXArrayData CPP NMS")
 }
 
 record(ai,"$(P)$(R)PosY-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Position Y")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_Y")
+    field(TSEL, "$(P)$(R)MONIT_YArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_YArrayData CPP NMS")
     field(EGU, "nm")
 }
 
 record(ai,"$(P)$(R)PosYFake-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Position Y Fake")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_YFAKE")
+    field(TSEL, "$(P)$(R)MONIT_FAKEYArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_FAKEYArrayData CPP NMS")
     field(EGU, "nm")
 }
 
 record(ai,"$(P)$(R)PosQ-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Position Q")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_Q")
+    field(TSEL, "$(P)$(R)MONIT_QArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_QArrayData CPP NMS")
     field(EGU, "nm")
 }
 
 record(ai,"$(P)$(R)Sum-Mon"){
-    field(DTYP,"asynFloat64")
     field(DESC,"Monitoring Sum")
     field(PINI,"YES")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(TSE, "-2")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONITPOS_SUM")
+    field(TSEL, "$(P)$(R)MONIT_SUMArrayData.TIME")
+    field(INP,  "$(P)$(R)MONIT_SUMArrayData CPP NMS")
     field(EGU, "au")
 }
 

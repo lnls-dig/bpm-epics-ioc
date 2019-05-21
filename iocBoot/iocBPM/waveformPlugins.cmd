@@ -113,52 +113,52 @@ dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}S
 NDStdArraysConfigure("MONIT_A_Array", $(QSIZE), 0, "$(PORT)", 30)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_A,PORT=MONIT_A_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=30")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_A,PORT=MONIT_A_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_AArrayData", "$(P)$(R)AmplA-Mon")
+#alias( "${P}${R}MONIT_AArrayData", "$(P)$(R)AmplA-Mon")
 
 NDStdArraysConfigure("MONIT_B_Array", $(QSIZE), 0, "$(PORT)", 31)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_B,PORT=MONIT_B_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=31")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_B,PORT=MONIT_B_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_BArrayData", "$(P)$(R)AmplB-Mon")
+#alias( "${P}${R}MONIT_BArrayData", "$(P)$(R)AmplB-Mon")
 
 NDStdArraysConfigure("MONIT_C_Array", $(QSIZE), 0, "$(PORT)", 32)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_C,PORT=MONIT_C_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=32")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_C,PORT=MONIT_C_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_CArrayData", "$(P)$(R)AmplC-Mon")
+#alias( "${P}${R}MONIT_CArrayData", "$(P)$(R)AmplC-Mon")
 
 NDStdArraysConfigure("MONIT_D_Array", $(QSIZE), 0, "$(PORT)", 33)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_D,PORT=MONIT_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=33")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_D,PORT=MONIT_D_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_DArrayData", "$(P)$(R)AmplD-Mon")
+# alias( "${P}${R}MONIT_DArrayData", "$(P)$(R)AmplD-Mon")
 
 NDStdArraysConfigure("MONIT_X_Array", $(QSIZE), 0, "$(PORT)", 34)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_X,PORT=MONIT_X_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=34")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_X,PORT=MONIT_X_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_XArrayData", "$(P)$(R)PosX-Mon")
+# alias( "${P}${R}MONIT_XArrayData", "$(P)$(R)PosX-Mon")
 
 NDStdArraysConfigure("MONIT_Y_Array", $(QSIZE), 0, "$(PORT)", 35)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_Y,PORT=MONIT_Y_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=35")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_Y,PORT=MONIT_Y_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_YArrayData", "$(P)$(R)PosY-Mon")
+# alias( "${P}${R}MONIT_YArrayData", "$(P)$(R)PosY-Mon")
 
 NDStdArraysConfigure("MONIT_Q_Array", $(QSIZE), 0, "$(PORT)", 36)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_Q,PORT=MONIT_Q_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=36")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_Q,PORT=MONIT_Q_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_QArrayData", "$(P)$(R)PosQ-Mon")
+# alias( "${P}${R}MONIT_QArrayData", "$(P)$(R)PosQ-Mon")
 
 NDStdArraysConfigure("MONIT_SUM_Array", $(QSIZE), 0, "$(PORT)", 37)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_SUM,PORT=MONIT_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=37")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_SUM,PORT=MONIT_SUM_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_SUMArrayData", "$(P)$(R)Sum-Mon")
+# alias( "${P}${R}MONIT_SUMArrayData", "$(P)$(R)Sum-Mon")
 
 NDStdArraysConfigure("MONIT_FAKEX_Array", $(QSIZE), 0, "$(PORT)", 38)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_FAKEX,PORT=MONIT_FAKEX_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=38")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_FAKEX,PORT=MONIT_FAKEX_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_FAKEXArrayData", "$(P)$(R)PosXFake-Mon")
+# alias( "${P}${R}MONIT_FAKEXArrayData", "$(P)$(R)PosXFake-Mon")
 
 NDStdArraysConfigure("MONIT_FAKEY_Array", $(QSIZE), 0, "$(PORT)", 39)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDPluginBase.template","P=${P},R=${R}MONIT_FAKEY,PORT=MONIT_FAKEY_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=39")
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}MONIT_FAKEY,PORT=MONIT_FAKEY_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1")
-alias( "${P}${R}MONIT_FAKEYArrayData", "$(P)$(R)PosYFake-Mon")
+# alias( "${P}${R}MONIT_FAKEYArrayData", "$(P)$(R)PosYFake-Mon")
 
 ##################### DSP configuration ##########################
 
