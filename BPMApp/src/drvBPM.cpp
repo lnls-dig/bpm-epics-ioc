@@ -485,6 +485,14 @@ static const functionsAny_t bpmSetGetTbtDataMaskSamplesBegFunc = {functionsInt32
                                                                                          halcs_get_tbt_data_mask_samples_beg}};
 static const functionsAny_t bpmSetGetTbtDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_end,
                                                                                             halcs_get_tbt_data_mask_samples_end}};
+static const functionsAny_t bpmSetGetSwTagDesyncCntRstFunc =     {functionsInt32_t{"DSP", halcs_set_sw_tag_desync_cnt_rst,
+                                                                                            halcs_get_sw_tag_desync_cnt_rst}};
+static const functionsAny_t bpmSetGetSwTagDesyncCntFunc =        {functionsInt32_t{"DSP", NULL,
+                                                                                            halcs_get_sw_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_tbt_tag_desync_cnt_rst,
+                                                                                           halcs_get_tbt_tag_desync_cnt_rst}};
+static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+                                                                                            halcs_get_tbt_tag_desync_cnt}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -898,6 +906,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_TbtDataMaskSamplesBeg);
     createParam(P_TbtDataMaskSamplesEndString,
                                     asynParamUInt32Digital,         &P_TbtDataMaskSamplesEnd);
+    createParam(P_SwTagDesyncCntRstString,
+                                    asynParamUInt32Digital,         &P_SwTagDesyncCntRst);
+    createParam(P_SwTagDesyncCntString,
+                                    asynParamUInt32Digital,         &P_SwTagDesyncCnt);
+    createParam(P_TbtTagDesyncCntRstString,
+                                    asynParamUInt32Digital,         &P_TbtTagDesyncCntRst);
+    createParam(P_TbtTagDesyncCntString,
+                                    asynParamUInt32Digital,         &P_TbtTagDesyncCnt);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
@@ -1028,6 +1044,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TbtDataMaskEn, bpmSetGetTbtDataMaskEnFunc);
     bpmHwFunc.emplace(P_TbtDataMaskSamplesBeg, bpmSetGetTbtDataMaskSamplesBegFunc);
     bpmHwFunc.emplace(P_TbtDataMaskSamplesEnd, bpmSetGetTbtDataMaskSamplesEndFunc);
+    bpmHwFunc.emplace(P_SwTagDesyncCntRst, bpmSetGetSwTagDesyncCntRstFunc);
+    bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
+    bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1208,6 +1228,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtDataMaskSamplesBeg,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_TbtDataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_SwTagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_SwTagDesyncCnt,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtTagDesyncCnt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
@@ -2009,6 +2037,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
+        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+        pArrayAllChannels->epicsTS.nsec = now.nsec;
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Just start the acquisition if we are not already acquiring */
@@ -2102,7 +2132,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                    dims[0], arrayCounter, timeStamp);
+                    dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to deinterleave NDArray\n",
@@ -2111,7 +2141,7 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
             }
 
             /* Calculate positions and call callbacks */
-            status = computePositions(coreID, pArrayAllChannels, channel);
+            status = computePositions(coreID, pArrayAllChannels, channel, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                         "%s:%s: unable to compute positions\n",
@@ -2352,6 +2382,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         pArrayAllChannels->uniqueId = arrayCounter;
         timeStamp = now.secPastEpoch + now.nsec / 1.e9;
         pArrayAllChannels->timeStamp = timeStamp;
+        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+        pArrayAllChannels->epicsTS.nsec = now.nsec;
         getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Tell we are acquiring just before we actually start it */
@@ -2511,7 +2543,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
-                        dims[0], arrayCounter, timeStamp);
+                        dims[0], arrayCounter, &now);
                 if (status != asynSuccess) {
                     asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                             "%s:%s: unable to deinterleave NDArray\n",
@@ -2543,6 +2575,7 @@ void drvBPM::acqMonitTask()
 {
     asynStatus status = asynSuccess;
     int err = HALCS_CLIENT_SUCCESS;
+    size_t dims[MAX_WVF_DIMS];
     epicsUInt32 XOffset;
     epicsUInt32 YOffset;
     epicsUInt32 QOffset;
@@ -2558,6 +2591,11 @@ void drvBPM::acqMonitTask()
     K_FACTORS kFactors;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
+    NDArray *pArrayMonitData[MAX_MONIT_DATA];
+    double monitData[MAX_MONIT_DATA];
+    NDDataType_t NDType = NDFloat64;
+    int NDArrayAddrInit = WVF_MONIT_AMP_A;
+    epicsTimeStamp now;
     int monitEnable = 0;
     double elapsedTime;
     double monitUpdtTime = 0.05; // 20 Hz
@@ -2574,6 +2612,18 @@ void drvBPM::acqMonitTask()
         goto get_service_err;
     }
 
+    dims[0] = 1;
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        if (pArrayMonitData == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayMonitData\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
+    }
+
     smio_dsp_data_t dsp_data;
     while (1) {
 
@@ -2588,7 +2638,7 @@ void drvBPM::acqMonitTask()
 
         err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
         if(err == HALCS_CLIENT_SUCCESS) {
-            if (dsp_data.new_amp_data || dsp_data.new_pos_data) {
+            if (dsp_data.new_amp_data) {
                 /* Get offsets and scaling factors */
                 getUIntDigitalParam(P_XOffset, &XOffset, mask);
                 getUIntDigitalParam(P_YOffset, &YOffset, mask);
@@ -2607,7 +2657,6 @@ void drvBPM::acqMonitTask()
                 kFactors.KY = Ky;
                 kFactors.KQ = Kq;
                 kFactors.KSUM = Ksum;
-
                 abcdRow.A = dsp_data.amp_ch0;
                 abcdRow.B = dsp_data.amp_ch1;
                 abcdRow.C = dsp_data.amp_ch2;
@@ -2616,34 +2665,28 @@ void drvBPM::acqMonitTask()
                 ABCDtoXYQS(&abcdRow, &xyqsRow, &kFactors, &posOffsets, 1, true);
                 ABCDtoXYQS(&abcdRow, &xyqsFakeRow, &kFactors, &posOffsets, 1, false);
 
-                /* Force callbacks to happen by setting the value two times, so it detect
-                 * a change in the value. Otherwise, the same value will not trigger a
-                 * callback */
-                lock ();
-                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpA, dsp_data.amp_ch0,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpB, dsp_data.amp_ch1,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpC, dsp_data.amp_ch2,   0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3+1, 0xFFFFFFFF);
-                setUIntDigitalParam(P_MonitAmpD, dsp_data.amp_ch3,   0xFFFFFFFF);
-                setDoubleParam(P_MonitPosX,      xyqsRow.X+1.);
-                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X);
-                setDoubleParam(P_MonitPosXFake,  xyqsFakeRow.X+1.);
-                setDoubleParam(P_MonitPosX,      xyqsRow.X);
-                setDoubleParam(P_MonitPosY,      xyqsRow.Y+1.);
-                setDoubleParam(P_MonitPosY,      xyqsRow.Y);
-                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y+1.);
-                setDoubleParam(P_MonitPosYFake,  xyqsFakeRow.Y);
-                setDoubleParam(P_MonitPosQ,      xyqsRow.Q+1.);
-                setDoubleParam(P_MonitPosQ,      xyqsRow.Q);
-                setDoubleParam(P_MonitPosSum,    xyqsRow.S+1.);
-                setDoubleParam(P_MonitPosSum,    xyqsRow.S);
-                /* Updates all records with TSE=-2 with the current timestamp */
-                updateTimeStamp ();
-                callParamCallbacks();
-                unlock ();
+                monitData[0] = dsp_data.amp_ch0;
+                monitData[1] = dsp_data.amp_ch1;
+                monitData[2] = dsp_data.amp_ch2;
+                monitData[3] = dsp_data.amp_ch3;
+                monitData[4] = xyqsRow.X;
+                monitData[5] = xyqsRow.Y;
+                monitData[6] = xyqsRow.Q;
+                monitData[7] = xyqsRow.S;
+                monitData[8] = xyqsFakeRow.X;
+                monitData[9] = xyqsFakeRow.Y;
+
+                epicsTimeGetCurrent(&now);
+                for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                    /* NDArray atributtes */
+                    pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                    pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                    pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                    getAttributes(pArrayMonitData[i]->pAttributeList);
+                    /* NDArray data */
+                    *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                    doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
+                }
             }
             else {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
@@ -2668,12 +2711,16 @@ void drvBPM::acqMonitTask()
         }
     }
 
+alloc_ndarray_err:
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i]->release();
+    }
 get_service_err:
     return;
 }
 
 asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
-        int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp)
+        int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp)
 {
     int status = asynSuccess;
     size_t dims[MAX_WVF_DIMS];
@@ -2714,7 +2761,9 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
         }
 
         pArraySingleChannel->uniqueId = arrayCounter;
-        pArraySingleChannel->timeStamp = timeStamp;
+        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;;
+        pArraySingleChannel->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
+        pArraySingleChannel->epicsTS.nsec = timeStamp->nsec;
         getAttributes(pArraySingleChannel->pAttributeList);
 
         pIn16 = (epicsUInt16 *)pArrayAllChannels->pData;
@@ -2777,7 +2826,8 @@ get_info_array_err:
   * \param[in] NDArray of amplitudes interleaved (A1, B1, C1, D1,
   * A2, B2, C2, D2, ...)
   */
-asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel)
+asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
+        epicsTimeStamp *timeStamp)
 {
     int status = asynSuccess;
     epicsUInt32 XOffset;
@@ -2798,8 +2848,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     POS_OFFSETS posOffsets;
     K_FACTORS kFactors;
     NDArray *pArrayPosAllChannels = NULL;
-    epicsTimeStamp now;
-    epicsFloat64 timeStamp;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
     static const char *functionName = "computePositions";
@@ -2843,7 +2891,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     arraySingleElements = arrayElements/arrayYStride;
 
     /* Waveform statistics */
-    epicsTimeGetCurrent(&now);
     getIntegerParam(NDArrayCounter, &arrayCounter);
     arrayCounter++;
     setIntegerParam(NDArrayCounter, arrayCounter);
@@ -2861,8 +2908,9 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
         goto array_pool_copy_err;
     }
     pArrayPosAllChannels->uniqueId = arrayCounter;
-    timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-    pArrayPosAllChannels->timeStamp = timeStamp;
+    pArrayPosAllChannels->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;
+    pArrayPosAllChannels->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
+    pArrayPosAllChannels->epicsTS.nsec = timeStamp->nsec;
     getAttributes(pArrayPosAllChannels->pAttributeList);
 
     /* FIXME: we must be sure that we are dealing with 32-bit data here and
@@ -4308,7 +4356,7 @@ asynStatus drvBPM::setBPMMode(int addr, int function)
     /* Get BPMMode previously set */
     getIntegerParam(addr, P_BPMMode, &bpmMode);
 
-    /* Throw an error if we are acquiring in the other mode 
+    /* Throw an error if we are acquiring in the other mode
      * and we tried to change BPM mode */
     if (bpmMode == BPMModeSinglePass) {
         bpmModeOther = BPMModeMultiBunch;

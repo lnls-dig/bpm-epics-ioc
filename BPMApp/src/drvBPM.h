@@ -96,6 +96,16 @@ typedef enum {
     WVF_AMP_SP_D,
     WVF_AMP_SP_ALL,
     WVF_UNUSED_5,
+    WVF_MONIT_AMP_A,
+    WVF_MONIT_AMP_B,
+    WVF_MONIT_AMP_C,
+    WVF_MONIT_AMP_D,
+    WVF_MONIT_POS_X,
+    WVF_MONIT_POS_Y,
+    WVF_MONIT_POS_Q,
+    WVF_MONIT_POS_SUM,
+    WVF_MONIT_POSFAKE_X,
+    WVF_MONIT_POSFAKE_Y,
     WVF_END
 } wvf_types;
 
@@ -116,6 +126,8 @@ typedef enum {
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_BPM*MAX_TRIGGERS)
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
+/* Number of Monitoring waveforms */
+#define MAX_MONIT_DATA              10
 
 /* Channel IDs */
 typedef enum {
@@ -457,6 +469,10 @@ private:
 #define P_TbtDataMaskEnString       "DSP_TBT_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesBegString  "DSP_TBT_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesEndString  "DSP_TBT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntRstString   "DSP_SW_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntString      "DSP_SW_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
+#define P_TbtTagDesyncCntRstString   "DSP_TBT_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
+#define P_TbtTagDesyncCntString      "DSP_TBT_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
@@ -680,6 +696,10 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtDataMaskEn;
         int P_TbtDataMaskSamplesBeg;
         int P_TbtDataMaskSamplesEnd;
+        int P_SwTagDesyncCntRst;
+        int P_SwTagDesyncCnt;
+        int P_TbtTagDesyncCntRst;
+        int P_TbtTagDesyncCnt;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
@@ -801,10 +821,11 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus getAcqSPCurve(bpm_single_pass_t *bpm_single_pass, NDArray *pArrayAllChannels);
         asynStatus getAcqSPSamples(bpm_single_pass_t *bpm_single_pass, bpm_sample_t *bpm_sample);
         asynStatus deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
-                int pNDArrayAddrSize, int arrayCounter, epicsFloat64 timeStamp);
+                int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp);
 
         /* General set/get hardware functions */
-        asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel);
+        asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
+                epicsTimeStamp *timeStamp);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
