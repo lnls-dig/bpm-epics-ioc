@@ -469,6 +469,10 @@ private:
 #define P_TbtDataMaskEnString       "DSP_TBT_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesBegString  "DSP_TBT_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesEndString  "DSP_TBT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntRstString   "DSP_SW_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntString      "DSP_SW_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
+#define P_TbtTagDesyncCntRstString   "DSP_TBT_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
+#define P_TbtTagDesyncCntString      "DSP_TBT_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
@@ -692,6 +696,10 @@ class drvBPM : public asynNDArrayDriver {
         int P_TbtDataMaskEn;
         int P_TbtDataMaskSamplesBeg;
         int P_TbtDataMaskSamplesEnd;
+        int P_SwTagDesyncCntRst;
+        int P_SwTagDesyncCnt;
+        int P_TbtTagDesyncCntRst;
+        int P_TbtTagDesyncCnt;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
