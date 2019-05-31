@@ -747,11 +747,11 @@ record(mbbo,"$(P)$(R)SwTagDesyncCntRst-Sel") {
     field(DESC, "Set Sw Counter Reset")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(NOBT,"1")
+    field(NOBT, "1")
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(ZNAM, "No Change")
-    field(ONAM, "Reset")
+    field(ZRST, "No Change")
+    field(ONST, "Reset")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT_RST")
 }
 
@@ -759,11 +759,11 @@ record(mbbi,"$(P)$(R)SwTagDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get Sw Counter Reset")
     field(SCAN, "I/O Intr")
-    field(NOBT,"1")
+    field(NOBT, "1")
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(ZNAM, "No Change")
-    field(ONAM, "Reset")
+    field(ZRST, "No Change")
+    field(ONST, "Reset")
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT_RST")
 }
 
@@ -779,11 +779,11 @@ record(mbbo,"$(P)$(R)TbtTagDesyncCntRst-Sel") {
     field(DESC, "Set Tbt Counter Reset")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(NOBT,"1")
+    field(NOBT, "1")
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(ZNAM, "No Change")
-    field(ONAM, "Reset")
+    field(ZRST, "No Change")
+    field(ONST, "Reset")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
@@ -791,11 +791,11 @@ record(mbbi,"$(P)$(R)TbtTagDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get Tbt Counter Reset")
     field(SCAN, "I/O Intr")
-    field(NOBT,"1")
+    field(NOBT, "1")
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(ZNAM, "No Change")
-    field(ONAM, "Reset")
+    field(ZRST, "No Change")
+    field(ONST, "Reset")
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
