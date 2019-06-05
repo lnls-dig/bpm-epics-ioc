@@ -2356,12 +2356,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             continue;
         }
 
-        /* Waveform statistics */
-        epicsTimeGetCurrent(&now);
-        getIntegerParam(NDArrayCounter, &arrayCounter);
-        arrayCounter++;
-        setIntegerParam(NDArrayCounter, arrayCounter);
-
         status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
@@ -2379,12 +2373,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             callParamCallbacks(coreID);
             continue;
         }
-        pArrayAllChannels->uniqueId = arrayCounter;
-        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-        pArrayAllChannels->timeStamp = timeStamp;
-        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
-        pArrayAllChannels->epicsTS.nsec = now.nsec;
-        getAttributes(pArrayAllChannels->pAttributeList);
 
         /* Tell we are acquiring just before we actually start it */
         setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
@@ -2463,6 +2451,19 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             if (interrupted) {
                 break;
             }
+
+            /* Waveform statistics */
+            epicsTimeGetCurrent(&now);
+            getIntegerParam(NDArrayCounter, &arrayCounter);
+            arrayCounter++;
+            setIntegerParam(NDArrayCounter, arrayCounter);
+            pArrayAllChannels->uniqueId = arrayCounter;
+            timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+            pArrayAllChannels->timeStamp = timeStamp;
+            pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+            pArrayAllChannels->epicsTS.nsec = now.nsec;
+            getAttributes(pArrayAllChannels->pAttributeList);
+
             unlock();
             pasynManager->lockPort(pasynUser);
             status = startSPAcq(bpm_single_pass);
