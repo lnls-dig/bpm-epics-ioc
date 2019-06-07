@@ -44,22 +44,43 @@ TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
 
 ###################### Paths for synApps_5_8 ##################################
 #
+## EPICS_BASE usually appears last so other apps can override stuff:
+#SUPPORT=/opt/epics/base/../synApps_5_8/support
+##SUPPORT=/usr/local/epics/synApps_5_8/support
+#
+#EPICS_BASE=/opt/epics/base
+#
+## Paths must be below $(SUPPORT)/configure/RELEASE so we can override
+## them
+#ASYN=$(SUPPORT)/asyn-4-26
+#SSCAN=$(SUPPORT)/sscan-2-10-1
+#CALC=$(SUPPORT)/calc-3-4-2-1
+#AUTOSAVE=$(SUPPORT)/autosave-5-6-1
+#BUSY=$(SUPPORT)/busy-1-6-1
+#FFT=FFTRecordsApp
+#AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
+#ADCORE=$(AREA_DETECTOR)/ADCore-R2-2
+### Set our custom variable so Area Detector path remains the same
+### for synApps_5_7 and synApps_5_8
+#AREA_DETECTOR_COMPAT=$(ADCORE)
+
+##################### Paths for synApps_5_8 ##################################
+#
 # EPICS_BASE usually appears last so other apps can override stuff:
-SUPPORT=/opt/epics/base/../synApps_5_8/support
-#SUPPORT=/usr/local/epics/synApps_5_8/support
+SUPPORT=/opt/epics/synApps-lnls-R1-2-1/support
 
 EPICS_BASE=/opt/epics/base
 
 # Paths must be below $(SUPPORT)/configure/RELEASE so we can override
 # them
-ASYN=$(SUPPORT)/asyn-4-26
-SSCAN=$(SUPPORT)/sscan-2-10-1
-CALC=$(SUPPORT)/calc-3-4-2-1
-AUTOSAVE=$(SUPPORT)/autosave-5-6-1
-BUSY=$(SUPPORT)/busy-1-6-1
+ASYN=$(SUPPORT)/asyn-R4-35
+SSCAN=$(SUPPORT)/sscan-R2-11-2
+CALC=$(SUPPORT)/calc-R3-7-2
+AUTOSAVE=$(SUPPORT)/autosave-R5-9
+BUSY=$(SUPPORT)/busy-R1-7-1
 FFT=FFTRecordsApp
-AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
-ADCORE=$(AREA_DETECTOR)/ADCore-R2-2
+AREA_DETECTOR=$(SUPPORT)/areaDetector-R3-6
+ADCORE=$(AREA_DETECTOR)/ADCore
 ## Set our custom variable so Area Detector path remains the same
 ## for synApps_5_7 and synApps_5_8
 AREA_DETECTOR_COMPAT=$(ADCORE)
