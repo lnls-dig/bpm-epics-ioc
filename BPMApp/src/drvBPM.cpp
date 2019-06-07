@@ -2122,12 +2122,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
          * data */
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
-            unlock();
-            /* We must do the callbacks with mutex unlocked ad the plugin
-             * can call us and a deadlock would occur */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
                     channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
-            lock();
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
@@ -2534,12 +2530,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                 /* Get SinglePass Raw Data for the user */
                 getAcqSPCurve(bpm_single_pass, pArrayAllChannels);
                 /* Do callbacks on the full waveform (all channels interleaved) */
-                unlock();
-                /* We must do the callbacks with mutex unlocked ad the plugin
-                 * can call us and a deadlock would occur */
                 doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
                         channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
-                lock();
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
@@ -2805,13 +2797,9 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
                 goto unsup_ndtype_err;
         }
 
-        unlock();
-        /* We must do the callbacks with mutex unlocked ad the plugin
-         * can call us and a deadlock would occur */
         doCallbacksGenericPointer(pArraySingleChannel, NDArrayData,
                 channelAddr);
         pArraySingleChannel->release();
-        lock();
     }
 
     return (asynStatus)status;
@@ -2933,12 +2921,8 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
             arraySingleElements, true);
 
     /* Do callbacks on the full waveform (all channels interleaved) */
-    unlock();
-    /* We must do the callbacks with mutex unlocked ad the plugin
-     * can call us and a deadlock would occur */
     doCallbacksGenericPointer(pArrayPosAllChannels, NDArrayData,
             channelMap[channel].NDArrayPos[coreID][WVF_POS_ALL]);
-    lock();
 
     /* Copy data to arrays for each type of data, do callbacks on that */
     status = deinterleaveNDArray(pArrayPosAllChannels, channelMap[channel].NDArrayPos[coreID],
