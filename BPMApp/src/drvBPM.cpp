@@ -716,7 +716,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         int maxBuffers, size_t maxMemory)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
-                    (int)NUM_PARAMS,
                     maxBuffers, maxMemory, /* maxBuffers, maxMemory */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
