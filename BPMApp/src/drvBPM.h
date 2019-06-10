@@ -826,6 +826,7 @@ class drvBPM : public asynNDArrayDriver {
         /* General set/get hardware functions */
         asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
                 epicsTimeStamp *timeStamp);
+        asynStatus setParamGeneric(int funcionId, int addr);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
