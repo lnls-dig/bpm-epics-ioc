@@ -964,19 +964,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,        &P_ChannelAtomWidth);
 
     /* Create MONIT/SP parameters */
-    createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
-    createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
-    createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
-    createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(P_MonitPosXString,  asynParamFloat64,               &P_MonitPosX);
-    createParam(P_MonitPosXFakeString,
-                                    asynParamFloat64,               &P_MonitPosXFake);
-    createParam(P_MonitPosYString,  asynParamFloat64,               &P_MonitPosY);
-    createParam(P_MonitPosYFakeString,
-                                    asynParamFloat64,               &P_MonitPosYFake);
-    createParam(P_MonitPosQString,  asynParamFloat64,               &P_MonitPosQ);
-    createParam(P_MonitPosSumString,
-                                    asynParamFloat64,               &P_MonitPosSum);
     createParam(P_MonitUpdtTimeString,
                                     asynParamFloat64,               &P_MonitUpdtTime);
     createParam(P_MonitEnableString,
@@ -1314,16 +1301,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                0,                  0xFFFFFFFF);
 
     /* Set MONIT/SP parameters */
-    setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
-    setDoubleParam(P_MonitPosX,         0.0);
-    setDoubleParam(P_MonitPosXFake,     0.0);
-    setDoubleParam(P_MonitPosY,         0.0);
-    setDoubleParam(P_MonitPosYFake,     0.0);
-    setDoubleParam(P_MonitPosQ,         0.0);
-    setDoubleParam(P_MonitPosSum,       0.0);
     setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
     setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
