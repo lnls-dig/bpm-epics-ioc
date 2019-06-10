@@ -67,6 +67,10 @@
 #define ADC_NUM_CHANNELS                4
 #define CH_DFLT_TRIGGER_SW_CHAN         18
 
+#define CH_DFLT_TRIGGER_SEL_PM_CHAN     1
+/* Number fo triggers that are relative to waveform acquisition */
+#define MAX_WAVEFORM_TRIGGERS           17
+
 #define CH_DEFAULT_PM                   CH_TBT
 #define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
                                         (maxPoints/2)
@@ -1286,7 +1290,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(BPMIDPM, P_Trigger,    ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
-    setUIntDigitalParam(BPMIDPM, P_TriggerRep, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerRep, 1,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataPol,
@@ -1299,6 +1303,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                                0,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_DataTrigChan,
                                                0,                  0xFFFFFFFF);
+
+    /* Write to HW */
+    for (int i = P_SamplesPre; i < P_DataTrigChan+1; ++i) {
+        setParamGeneric(i, BPMIDPM);
+    }
 
     /* Set MONIT/SP parameters */
     setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
@@ -1349,6 +1358,30 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
             setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
             setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerRcvInSel,  0,              0xFFFFFFFF);
             setUIntDigitalParam(i*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+        }
+    }
+
+    /* Set trigger parameters for PM */
+    for (int addr = 0; addr < MAX_WAVEFORM_TRIGGERS; ++addr) {
+        setIntegerParam(    BPMIDPM*MAX_TRIGGERS + addr, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerCntRcv,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerCntTrn,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvInSel,  CH_DFLT_TRIGGER_SEL_PM_CHAN, 0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    }
+
+    /* Write to HW */
+    for (int i = P_TriggerChan; i < P_TriggerTrnOutSel+1; ++i) {
+        for (int addr = 0; addr < MAX_WAVEFORM_TRIGGERS; ++addr) {
+            setParamGeneric(i, BPMIDPM*MAX_TRIGGERS + addr);
         }
     }
 
@@ -1658,7 +1691,7 @@ asynStatus drvBPM::initAcqPM(int coreID)
     setUIntDigitalParam(coreID, P_Trigger,     ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
-    setUIntDigitalParam(coreID, P_TriggerRep,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerRep,  1,                  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataPol,
