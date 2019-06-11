@@ -2031,8 +2031,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to determine NDArray type for acquisition\n",
-                    driverName, functionName);
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
             continue;
         }
 
@@ -2366,8 +2366,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to determine NDArray type for acquisition\n",
-                    driverName, functionName);
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
             continue;
         }
 
