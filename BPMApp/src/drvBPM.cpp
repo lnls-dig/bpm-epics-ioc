@@ -1378,13 +1378,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
-    /* Write to HW */
-    for (int i = P_TriggerChan; i < P_TriggerTrnOutSel+1; ++i) {
-        for (int addr = 0; addr < MAX_WAVEFORM_TRIGGERS; ++addr) {
-            setParamGeneric(i, BPMIDPM*MAX_TRIGGERS + addr);
-        }
-    }
-
     /* Set Switching Trigger values */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         setIntegerParam(    i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
@@ -1400,6 +1393,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvInSel,  1,              0xFFFFFFFF);
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    }
+
+    /* Write to HW */
+    for (int trig_core = 0; trig_core < NUM_TRIG_CORES_PER_BPM; ++trig_core) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            for (int i = P_TriggerChan; i < P_TriggerTrnOutSel+1; ++i) {
+                setParamGeneric(i, trig_core*MAX_TRIGGERS + addr);
+            }
+        }
     }
 
 #if 0
