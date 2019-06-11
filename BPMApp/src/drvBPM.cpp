@@ -3989,16 +3989,18 @@ asynStatus drvBPM::executeHwWriteFunction(int functionId, int addr,
     const char *functionName = "executeHwWriteFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmHwFunc.find (functionId);
     if (func == bpmHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* This is not an error. Exit silently */
         status = asynSuccess;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -4190,16 +4192,18 @@ asynStatus drvBPM::executeHwReadFunction(int functionId, int addr,
     const char *functionName = "executeHwReadFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmHwFunc.find (functionId);
     if (func == bpmHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* We use disabled to indicate the function was not found on Hw mapping */
         status = asynDisabled;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -4237,13 +4241,16 @@ asynStatus drvBPM::setParamGeneric(int functionId, int addr)
 {
     int status = asynSuccess;
     const char *functionName = "setParamGeneric";
+    const char *paramName = NULL;
     asynParamType asynType = asynParamNotDefined;
 
+    getParamName(functionId, &paramName);
     status = getParamType(addr, functionId, &asynType);
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getParamType failure retrieving asynParamType\n",
-                driverName, functionName);
+                "%s:%s: getParamType failure retrieving asynParamType, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_type_err;
     }
 
@@ -4258,16 +4265,18 @@ asynStatus drvBPM::setParamGeneric(int functionId, int addr)
 
         default:
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unsupported type for asynParamType: %d\n",
-                    driverName, functionName, asynType);
+                    "%s:%s: unsupported type for asynParamType: %d, "
+                    "functionId = %d, paramName = %s\n",
+                    driverName, functionName, asynType, 
+                    functionId, paramName);
             goto unsup_asyn_type;
     }
 
     if (status != asynSuccess) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: setParam32/setParamDouble failure setting value %d, "
-                "for functionId = %d\n",
-                driverName, functionName, status, functionId);
+                "for functionId = %d, paramName = %s\n",
+                driverName, functionName, status, functionId, paramName);
         goto set_type_err;
     }
 
