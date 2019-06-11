@@ -132,7 +132,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
 record(calc, "$(P)$(R)$(ACQ_NAME)ChannelRateIdx-RB"){
     field(DESC, "get acquisition's channel index")
     field(SCAN,"Passive")
-    field(INPA,"$(P)$(R)$(ACQ_NAME)Channel-RB.RVAL CP NMS")
+    field(INPA,"$(P)$(R)$(ACQ_NAME)Channel-Sts.RVAL CP NMS")
     field(CALC,"A+1")
 }
 
