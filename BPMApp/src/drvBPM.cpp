@@ -67,6 +67,10 @@
 #define ADC_NUM_CHANNELS                4
 #define CH_DFLT_TRIGGER_SW_CHAN         18
 
+#define CH_DFLT_TRIGGER_SEL_PM_CHAN     1
+/* Number fo triggers that are relative to waveform acquisition */
+#define MAX_WAVEFORM_TRIGGERS           17
+
 #define CH_DEFAULT_PM                   CH_TBT
 #define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
                                         (maxPoints/2)
@@ -716,7 +720,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         int maxBuffers, size_t maxMemory)
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
-                    (int)NUM_PARAMS,
                     maxBuffers, maxMemory, /* maxBuffers, maxMemory */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
                     asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
@@ -965,19 +968,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,        &P_ChannelAtomWidth);
 
     /* Create MONIT/SP parameters */
-    createParam(P_MonitAmpAString,  asynParamUInt32Digital,         &P_MonitAmpA);
-    createParam(P_MonitAmpBString,  asynParamUInt32Digital,         &P_MonitAmpB);
-    createParam(P_MonitAmpCString,  asynParamUInt32Digital,         &P_MonitAmpC);
-    createParam(P_MonitAmpDString,  asynParamUInt32Digital,         &P_MonitAmpD);
-    createParam(P_MonitPosXString,  asynParamFloat64,               &P_MonitPosX);
-    createParam(P_MonitPosXFakeString,
-                                    asynParamFloat64,               &P_MonitPosXFake);
-    createParam(P_MonitPosYString,  asynParamFloat64,               &P_MonitPosY);
-    createParam(P_MonitPosYFakeString,
-                                    asynParamFloat64,               &P_MonitPosYFake);
-    createParam(P_MonitPosQString,  asynParamFloat64,               &P_MonitPosQ);
-    createParam(P_MonitPosSumString,
-                                    asynParamFloat64,               &P_MonitPosSum);
     createParam(P_MonitUpdtTimeString,
                                     asynParamFloat64,               &P_MonitUpdtTime);
     createParam(P_MonitEnableString,
@@ -1127,7 +1117,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TriggerTrnOutSel, bpmSetGetTrigTrnSelFunc);
 
     lock();
-    status = bpmClientConnect();
+    status = bpmClientConnect(this->pasynUserSelf);
     unlock();
 
     /* If we correct connect for this first time, libbpmclient
@@ -1300,7 +1290,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(BPMIDPM, P_Trigger,    ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
-    setUIntDigitalParam(BPMIDPM, P_TriggerRep, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(BPMIDPM, P_TriggerRep, 1,                  0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(BPMIDPM, P_TriggerDataPol,
@@ -1314,17 +1304,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(BPMIDPM, P_DataTrigChan,
                                                0,                  0xFFFFFFFF);
 
+    /* Write to HW */
+    for (int i = P_SamplesPre; i < P_DataTrigChan+1; ++i) {
+        setParamGeneric(i, BPMIDPM);
+    }
+
     /* Set MONIT/SP parameters */
-    setUIntDigitalParam(P_MonitAmpA,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpB,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpC,    0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitAmpD,    0,                  0xFFFFFFFF);
-    setDoubleParam(P_MonitPosX,         0.0);
-    setDoubleParam(P_MonitPosXFake,     0.0);
-    setDoubleParam(P_MonitPosY,         0.0);
-    setDoubleParam(P_MonitPosYFake,     0.0);
-    setDoubleParam(P_MonitPosQ,         0.0);
-    setDoubleParam(P_MonitPosSum,       0.0);
     setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
     setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
@@ -1376,6 +1361,23 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         }
     }
 
+    /* Set trigger parameters for PM */
+    for (int addr = 0; addr < MAX_WAVEFORM_TRIGGERS; ++addr) {
+        setIntegerParam(    BPMIDPM*MAX_TRIGGERS + addr, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerDir,       1,              0xFFFFFFFF); /* FPGA Input */
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerDirPol,    1,              0xFFFFFFFF); /* Reverse Direction Polarity */
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnCntRst, 0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerCntRcv,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerCntTrn,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnLen,    1,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerRcvInSel,  CH_DFLT_TRIGGER_SEL_PM_CHAN, 0xFFFFFFFF);
+        setUIntDigitalParam(BPMIDPM*MAX_TRIGGERS + addr, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    }
+
     /* Set Switching Trigger values */
     for (int i = 0; i < NUM_TRIG_CORES_PER_BPM; ++i) {
         setIntegerParam(    i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerChan,                      CH_DFLT_TRIGGER_CHAN);
@@ -1391,6 +1393,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnSrc,    0,              0xFFFFFFFF);
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvInSel,  1,              0xFFFFFFFF);
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
+    }
+
+    /* Write to HW */
+    for (int trig_core = 0; trig_core < NUM_TRIG_CORES_PER_BPM; ++trig_core) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            for (int i = P_TriggerChan; i < P_TriggerTrnOutSel+1; ++i) {
+                setParamGeneric(i, trig_core*MAX_TRIGGERS + addr);
+            }
+        }
     }
 
 #if 0
@@ -1494,7 +1505,7 @@ drvBPM::~drvBPM()
     const char *functionName = "~drvBPM";
 
     lock();
-    status = bpmClientDisconnect();
+    status = bpmClientDisconnect(this->pasynUserSelf);
     unlock();
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1512,10 +1523,10 @@ drvBPM::~drvBPM()
 
 asynStatus drvBPM::connect(asynUser* pasynUser)
 {
-    return bpmClientConnect();
+    return bpmClientConnect(pasynUser);
 }
 
-asynStatus drvBPM::bpmClientConnect(void)
+asynStatus drvBPM::bpmClientConnect(asynUser* pasynUser)
 {
     asynStatus status = asynSuccess;
     const char *bpmLogFile = "stdout";
@@ -1525,7 +1536,7 @@ asynStatus drvBPM::bpmClientConnect(void)
     if (bpmClient == NULL) {
         bpmClient = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClient == NULL) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClient instance\n",
                     driverName, functionName);
             status = asynError;
@@ -1537,7 +1548,7 @@ asynStatus drvBPM::bpmClientConnect(void)
     if (bpmClientMonit == NULL) {
         bpmClientMonit = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClientMonit == NULL) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClientMonit instance\n",
                     driverName, functionName);
             status = asynError;
@@ -1550,7 +1561,7 @@ asynStatus drvBPM::bpmClientConnect(void)
         if (bpmClientAcqParam[i] == NULL) {
             bpmClientAcqParam[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcqParam[i] == NULL) {
-                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcqParam[%d] instance\n",
                         driverName, functionName, i);
                 status = asynError;
@@ -1564,7 +1575,7 @@ asynStatus drvBPM::bpmClientConnect(void)
         if (bpmClientAcq[i] == NULL) {
             bpmClientAcq[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcq[i] == NULL) {
-                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcq[%d] instance\n",
                         driverName, functionName, i);
                 status = asynError;
@@ -1573,11 +1584,11 @@ asynStatus drvBPM::bpmClientConnect(void)
         }
     }
 
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+    asynPrint(pasynUser, ASYN_TRACE_FLOW,
         "%s:%s: BPM client connected\n",
         driverName, functionName);
 
-    pasynManager->exceptionConnect(this->pasynUserSelf);
+    pasynManager->exceptionConnect(pasynUser);
 
     return status;
 
@@ -1605,12 +1616,12 @@ create_halcs_client_err:
 
 asynStatus drvBPM::disconnect(asynUser* pasynUser)
 {
-    return bpmClientDisconnect();
+    return bpmClientDisconnect(pasynUser);
 }
 
-asynStatus drvBPM::bpmClientDisconnect(void)
+asynStatus drvBPM::bpmClientDisconnect(asynUser *pasynUser)
 {
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+    asynPrint(pasynUser, ASYN_TRACE_FLOW,
             "%s: calling bpmClientDisconnect\n",
             driverName);
     asynStatus status = asynSuccess;
@@ -1635,7 +1646,7 @@ asynStatus drvBPM::bpmClientDisconnect(void)
         }
     }
 
-    pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    pasynManager->exceptionDisconnect(pasynUser);
     return status;
 }
 
@@ -1682,7 +1693,7 @@ asynStatus drvBPM::initAcqPM(int coreID)
     setUIntDigitalParam(coreID, P_Trigger,     ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerEvent,
                                                TRIG_ACQ_START,     0xFFFFFFFF);
-    setUIntDigitalParam(coreID, P_TriggerRep,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerRep,  1,                  0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataThres,
                                                100,                0xFFFFFFFF);
     setUIntDigitalParam(coreID, P_TriggerDataPol,
@@ -2020,8 +2031,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
         status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to determine NDArray type for acquisition\n",
-                    driverName, functionName);
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
             continue;
         }
 
@@ -2123,12 +2134,8 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
          * data */
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
-            unlock();
-            /* We must do the callbacks with mutex unlocked ad the plugin
-             * can call us and a deadlock would occur */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
                     channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
-            lock();
 
             /* Copy AMP data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
@@ -2359,8 +2366,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: unable to determine NDArray type for acquisition\n",
-                    driverName, functionName);
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
             continue;
         }
 
@@ -2535,12 +2542,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
                 /* Get SinglePass Raw Data for the user */
                 getAcqSPCurve(bpm_single_pass, pArrayAllChannels);
                 /* Do callbacks on the full waveform (all channels interleaved) */
-                unlock();
-                /* We must do the callbacks with mutex unlocked ad the plugin
-                 * can call us and a deadlock would occur */
                 doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
                         channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
-                lock();
 
                 /* Copy AMP data to arrays for each type of data, do callbacks on that */
                 status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
@@ -2806,13 +2809,9 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
                 goto unsup_ndtype_err;
         }
 
-        unlock();
-        /* We must do the callbacks with mutex unlocked ad the plugin
-         * can call us and a deadlock would occur */
         doCallbacksGenericPointer(pArraySingleChannel, NDArrayData,
                 channelAddr);
         pArraySingleChannel->release();
-        lock();
     }
 
     return (asynStatus)status;
@@ -2934,12 +2933,8 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
             arraySingleElements, true);
 
     /* Do callbacks on the full waveform (all channels interleaved) */
-    unlock();
-    /* We must do the callbacks with mutex unlocked ad the plugin
-     * can call us and a deadlock would occur */
     doCallbacksGenericPointer(pArrayPosAllChannels, NDArrayData,
             channelMap[channel].NDArrayPos[coreID][WVF_POS_ALL]);
-    lock();
 
     /* Copy data to arrays for each type of data, do callbacks on that */
     status = deinterleaveNDArray(pArrayPosAllChannels, channelMap[channel].NDArrayPos[coreID],
@@ -3994,16 +3989,18 @@ asynStatus drvBPM::executeHwWriteFunction(int functionId, int addr,
     const char *functionName = "executeHwWriteFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmHwFunc.find (functionId);
     if (func == bpmHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* This is not an error. Exit silently */
         status = asynSuccess;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -4195,16 +4192,18 @@ asynStatus drvBPM::executeHwReadFunction(int functionId, int addr,
     const char *functionName = "executeHwReadFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmHwFunc.find (functionId);
     if (func == bpmHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* We use disabled to indicate the function was not found on Hw mapping */
         status = asynDisabled;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -4238,6 +4237,55 @@ get_service_err:
  * and functionsFloat64_t
  */
 
+asynStatus drvBPM::setParamGeneric(int functionId, int addr)
+{
+    int status = asynSuccess;
+    const char *functionName = "setParamGeneric";
+    const char *paramName = NULL;
+    asynParamType asynType = asynParamNotDefined;
+
+    getParamName(functionId, &paramName);
+    status = getParamType(addr, functionId, &asynType);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getParamType failure retrieving asynParamType, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, functionId, paramName);
+        goto get_type_err;
+    }
+
+    switch (asynType) {
+        case asynParamUInt32Digital:
+            status = setParam32(functionId, 0xFFFFFFFF, addr);
+        break;
+
+        case asynParamFloat64:
+            status = setParamDouble(functionId, addr);
+        break;
+
+        default:
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported type for asynParamType: %d, "
+                    "functionId = %d, paramName = %s\n",
+                    driverName, functionName, asynType, 
+                    functionId, paramName);
+            goto unsup_asyn_type;
+    }
+
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: setParam32/setParamDouble failure setting value %d, "
+                "for functionId = %d, paramName = %s\n",
+                driverName, functionName, status, functionId, paramName);
+        goto set_type_err;
+    }
+
+set_type_err:
+unsup_asyn_type:
+get_type_err:
+    return (asynStatus)status;
+}
+
 asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
@@ -4264,13 +4312,17 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
     int status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "getParam32";
+    const char *paramName;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(addr, functionId, param, mask);
     if (status != asynSuccess) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
-                driverName, functionName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getUIntDigitalParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
         goto get_param_err;
     }
 
@@ -4315,13 +4367,17 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
     asynStatus status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "getParamDouble";
+    const char *paramName;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getDoubleParam(addr, functionId, param);
     if (status != asynSuccess) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
-                driverName, functionName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
+                    driverName, functionName, paramName);
+        }
         goto get_param_err;
     }
 
@@ -4879,10 +4935,12 @@ asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam
         status = getParam32(i, &param, mask, addr);
         /* Only write values if there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting UInt32 parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting UInt32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
@@ -4914,10 +4972,12 @@ asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam,
         status = getParamDouble(i, &param, addr);
         /* Only write values is there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting Double parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Double parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
@@ -4972,7 +5032,7 @@ asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcCalStatus, true);
+    return updateUInt32Params(mask, addr, P_AdcCalStatus, P_AdcCalStatus, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)

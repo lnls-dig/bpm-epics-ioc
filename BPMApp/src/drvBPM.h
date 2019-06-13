@@ -795,8 +795,8 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
 
         /* Client connection management */
-        asynStatus bpmClientConnect(void);
-        asynStatus bpmClientDisconnect(void);
+        asynStatus bpmClientConnect(asynUser* pasynUser);
+        asynStatus bpmClientDisconnect(asynUser* pasynUser);
 
         /* Acquisition functions */
         asynStatus setAcqEvent(epicsUInt32 mask, int addr);
@@ -826,6 +826,7 @@ class drvBPM : public asynNDArrayDriver {
         /* General set/get hardware functions */
         asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
                 epicsTimeStamp *timeStamp);
+        asynStatus setParamGeneric(int funcionId, int addr);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
