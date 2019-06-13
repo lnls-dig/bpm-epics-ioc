@@ -5032,7 +5032,7 @@ asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_AdcTestMode, P_AdcCalStatus, true);
+    return updateUInt32Params(mask, addr, P_AdcCalStatus, P_AdcCalStatus, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)
