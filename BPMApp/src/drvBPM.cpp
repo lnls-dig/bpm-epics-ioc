@@ -1117,7 +1117,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TriggerTrnOutSel, bpmSetGetTrigTrnSelFunc);
 
     lock();
-    status = bpmClientConnect();
+    status = bpmClientConnect(this->pasynUserSelf);
     unlock();
 
     /* If we correct connect for this first time, libbpmclient
@@ -1505,7 +1505,7 @@ drvBPM::~drvBPM()
     const char *functionName = "~drvBPM";
 
     lock();
-    status = bpmClientDisconnect();
+    status = bpmClientDisconnect(this->pasynUserSelf);
     unlock();
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1523,10 +1523,10 @@ drvBPM::~drvBPM()
 
 asynStatus drvBPM::connect(asynUser* pasynUser)
 {
-    return bpmClientConnect();
+    return bpmClientConnect(pasynUser);
 }
 
-asynStatus drvBPM::bpmClientConnect(void)
+asynStatus drvBPM::bpmClientConnect(asynUser* pasynUser)
 {
     asynStatus status = asynSuccess;
     const char *bpmLogFile = "stdout";
@@ -1536,7 +1536,7 @@ asynStatus drvBPM::bpmClientConnect(void)
     if (bpmClient == NULL) {
         bpmClient = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClient == NULL) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClient instance\n",
                     driverName, functionName);
             status = asynError;
@@ -1548,7 +1548,7 @@ asynStatus drvBPM::bpmClientConnect(void)
     if (bpmClientMonit == NULL) {
         bpmClientMonit = halcs_client_new_time (endpoint, verbose, bpmLogFile, timeout);
         if (bpmClientMonit == NULL) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
                     "%s:%s bpmClientConnect failure to create bpmClientMonit instance\n",
                     driverName, functionName);
             status = asynError;
@@ -1561,7 +1561,7 @@ asynStatus drvBPM::bpmClientConnect(void)
         if (bpmClientAcqParam[i] == NULL) {
             bpmClientAcqParam[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcqParam[i] == NULL) {
-                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcqParam[%d] instance\n",
                         driverName, functionName, i);
                 status = asynError;
@@ -1575,7 +1575,7 @@ asynStatus drvBPM::bpmClientConnect(void)
         if (bpmClientAcq[i] == NULL) {
             bpmClientAcq[i] = acq_client_new_time (endpoint, verbose, bpmLogFile, timeout);
             if (bpmClientAcq[i] == NULL) {
-                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
                         "%s:%s bpmClientConnect failure to create bpmClientAcq[%d] instance\n",
                         driverName, functionName, i);
                 status = asynError;
@@ -1584,11 +1584,11 @@ asynStatus drvBPM::bpmClientConnect(void)
         }
     }
 
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+    asynPrint(pasynUser, ASYN_TRACE_FLOW,
         "%s:%s: BPM client connected\n",
         driverName, functionName);
 
-    pasynManager->exceptionConnect(this->pasynUserSelf);
+    pasynManager->exceptionConnect(pasynUser);
 
     return status;
 
@@ -1616,12 +1616,12 @@ create_halcs_client_err:
 
 asynStatus drvBPM::disconnect(asynUser* pasynUser)
 {
-    return bpmClientDisconnect();
+    return bpmClientDisconnect(pasynUser);
 }
 
-asynStatus drvBPM::bpmClientDisconnect(void)
+asynStatus drvBPM::bpmClientDisconnect(asynUser *pasynUser)
 {
-    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+    asynPrint(pasynUser, ASYN_TRACE_FLOW,
             "%s: calling bpmClientDisconnect\n",
             driverName);
     asynStatus status = asynSuccess;
@@ -1646,7 +1646,7 @@ asynStatus drvBPM::bpmClientDisconnect(void)
         }
     }
 
-    pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    pasynManager->exceptionDisconnect(pasynUser);
     return status;
 }
 

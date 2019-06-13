@@ -795,8 +795,8 @@ class drvBPM : public asynNDArrayDriver {
         /* Our private methods */
 
         /* Client connection management */
-        asynStatus bpmClientConnect(void);
-        asynStatus bpmClientDisconnect(void);
+        asynStatus bpmClientConnect(asynUser* pasynUser);
+        asynStatus bpmClientDisconnect(asynUser* pasynUser);
 
         /* Acquisition functions */
         asynStatus setAcqEvent(epicsUInt32 mask, int addr);
