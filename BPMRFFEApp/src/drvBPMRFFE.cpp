@@ -159,7 +159,6 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
         int verbose, int timeout)
    : asynPortDriver(portName,
                     MAX_ADDR, /* maxAddr */
-                    (int)NUM_PARAMS,
                     asynUInt32DigitalMask | asynFloat64Mask  | asynDrvUserMask,    /* Interface mask     */
                     asynUInt32DigitalMask | asynFloat64Mask ,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
@@ -255,7 +254,7 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     bpmRFFEHwFunc.emplace(P_RffeRst, bpmSetGetRffeRstFunc);
 
     lock();
-    status = bpmClientConnect();
+    status = bpmClientConnect(this->pasynUserSelf);
     unlock();
 
     /* If we correct connect for this first time, libbpmclient
@@ -284,7 +283,7 @@ drvBPMRFFE::~drvBPMRFFE()
     const char *functionName = "~drvBPMRFFE";
 
     lock();
-    status = bpmClientDisconnect();
+    status = bpmClientDisconnect(this->pasynUserSelf);
     unlock();
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -300,10 +299,10 @@ drvBPMRFFE::~drvBPMRFFE()
 
 asynStatus drvBPMRFFE::connect(asynUser* pasynUser)
 {
-    return bpmClientConnect();
+    return bpmClientConnect(pasynUser);
 }
 
-asynStatus drvBPMRFFE::bpmClientConnect(void)
+asynStatus drvBPMRFFE::bpmClientConnect(asynUser *pasynUser)
 {
     asynStatus status = asynSuccess;
     const char *bpmLogFile = "stdout";
@@ -325,7 +324,7 @@ asynStatus drvBPMRFFE::bpmClientConnect(void)
         "%s:%s: BPM client connected\n",
         driverName, functionName);
 
-    pasynManager->exceptionConnect(this->pasynUserSelf);
+    pasynManager->exceptionConnect(pasynUser);
 
     return status;
 
@@ -335,10 +334,10 @@ create_halcs_client_err:
 
 asynStatus drvBPMRFFE::disconnect(asynUser* pasynUser)
 {
-    return bpmClientDisconnect();
+    return bpmClientDisconnect(pasynUser);
 }
 
-asynStatus drvBPMRFFE::bpmClientDisconnect(void)
+asynStatus drvBPMRFFE::bpmClientDisconnect(asynUser *pasynUser)
 {
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
             "%s: calling bpmClientDisconnect\n",
@@ -349,7 +348,7 @@ asynStatus drvBPMRFFE::bpmClientDisconnect(void)
         halcs_client_destroy (&bpmClientRFFE);
     }
 
-    pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    pasynManager->exceptionDisconnect(pasynUser);
     return status;
 }
 
@@ -417,8 +416,10 @@ asynStatus drvBPMRFFE::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value
     asynStatus status = asynSuccess;
     int addr = 0;
     const char *functionName = "readUInt32Digital";
-    const char *paramName;
+    const char *paramName = NULL;
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -427,8 +428,6 @@ asynStatus drvBPMRFFE::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value
                 driverName, functionName, status, function, paramName);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     /* Get parameter, possibly from HW */
     status = getParam32(function, value, mask, addr);
@@ -453,9 +452,11 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "writeFloat64";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -466,8 +467,6 @@ asynStatus drvBPMRFFE::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     }
     /* Set the parameter in the parameter library. */
     setDoubleParam(addr, function, value);
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     /* Do operation on HW. Some functions do not set anything on hardware */
     status = setParamDouble(function, addr);
@@ -496,9 +495,11 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "readFloat64";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -507,8 +508,6 @@ asynStatus drvBPMRFFE::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
                 driverName, functionName, status, function, paramName);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     /* Get double param, possibly from HW */
     status = getParamDouble(function, value, addr);
@@ -579,16 +578,18 @@ asynStatus drvBPMRFFE::executeHwWriteFunction(int functionId, int addr,
     const char *functionName = "executeHwWriteFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmRFFEHwFunc.find (functionId);
     if (func == bpmRFFEHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* This is not an error. Exit silently */
         status = asynSuccess;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name = %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -665,16 +666,18 @@ asynStatus drvBPMRFFE::executeHwReadFunction(int functionId, int addr,
     const char *functionName = "executeHwReadFunction";
     const char *funcService = NULL;
     char service[SERVICE_NAME_SIZE];
+    const char *paramName = NULL;
     std::unordered_map<int,functionsAny_t>::iterator func;
 
     /* Lookup function on map */
     func = bpmRFFEHwFunc.find (functionId);
     if (func == bpmRFFEHwFunc.end()) {
+        getParamName(functionId, &paramName);
         /* We use disabled to indicate the function was not found on Hw mapping */
         status = asynDisabled;
         asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: no registered function for functionID = %d\n",
-                driverName, functionName, functionId);
+                "%s:%s: no registered function for functionID = %d, name = %s\n",
+                driverName, functionName, functionId, paramName);
         goto get_reg_func_err;
     }
 
@@ -707,18 +710,68 @@ get_service_err:
 * functions defined in the structures. e.g., functionsInt32_t
 * and functionsFloat64_t
 */
+asynStatus drvBPMRFFE::setParamGeneric(int functionId, int addr)
+{
+    int status = asynSuccess;
+    const char *functionName = "setParamGeneric";
+    const char *paramName = NULL;
+    asynParamType asynType = asynParamNotDefined;
+
+    getParamName(functionId, &paramName);
+    status = getParamType(addr, functionId, &asynType);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getParamType failure retrieving asynParamType, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, functionId, paramName);
+        goto get_type_err;
+    }
+
+    switch (asynType) {
+        case asynParamUInt32Digital:
+            status = setParam32(functionId, 0xFFFFFFFF, addr);
+        break;
+
+        case asynParamFloat64:
+            status = setParamDouble(functionId, addr);
+        break;
+
+        default:
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unsupported type for asynParamType: %d, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, asynType,
+                functionId, paramName);
+        goto unsup_asyn_type;
+    }
+
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: setParam32/setParamDouble failure setting value %d, "
+                "for functionId = %d, paramName = %s\n",
+                driverName, functionName, status, functionId, paramName);
+        goto set_type_err;
+    }
+
+set_type_err:
+unsup_asyn_type:
+get_type_err:
+    return (asynStatus)status;
+}
 
 asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "setParam32";
+    const char *paramName = NULL;
 
     status = getUIntDigitalParam(addr, functionId, &functionArgs.argUInt32, mask);
     if (status != asynSuccess) {
+        getParamName(functionId, &paramName);
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
-                driverName, functionName);
+                "%s:%s: getUIntDigitalParam failure for retrieving parameter %s\n",
+                driverName, functionName, paramName);
         goto get_param_err;
     }
 
@@ -734,13 +787,17 @@ asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
     int status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "getParam32";
+    const char *paramName = NULL;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(addr, functionId, param, mask);
     if (status != asynSuccess) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
-                driverName, functionName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getUIntDigitalParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
         goto get_param_err;
     }
 
@@ -765,12 +822,14 @@ asynStatus drvBPMRFFE::setParamDouble(int functionId, int addr)
     asynStatus status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "setParamDouble";
+    const char *paramName = NULL;
 
     status = getDoubleParam(addr, functionId, &functionArgs.argFloat64);
     if (status != asynSuccess) {
+        getParamName(functionId, &paramName);
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
-                driverName, functionName);
+                "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
+                driverName, functionName, paramName);
         goto get_param_err;
     }
 
@@ -785,13 +844,17 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
     asynStatus status = asynSuccess;
     functionsArgs_t functionArgs = {0};
     const char *functionName = "getParamDouble";
+    const char *paramName = NULL;
 
     /* Get parameter in library, as some parameters are not written in HW */
     status = getDoubleParam(addr, functionId, param);
     if (status != asynSuccess) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving parameter\n",
-                driverName, functionName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
+                    driverName, functionName, paramName);
+        }
         goto get_param_err;
     }
 
@@ -826,10 +889,12 @@ asynStatus drvBPMRFFE::updateUInt32Params(epicsUInt32 mask, int addr, int firstP
         status = getParam32(i, &param, mask, addr);
         /* Only write values if there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting UInt32 parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting UInt32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
@@ -861,10 +926,12 @@ asynStatus drvBPMRFFE::updateDoubleParams(int addr, int firstParam, int lastPara
         status = getParamDouble(i, &param, addr);
         /* Only write values is there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting Double parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Double parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
