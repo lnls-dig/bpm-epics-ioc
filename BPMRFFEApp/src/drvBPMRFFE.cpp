@@ -792,10 +792,12 @@ asynStatus drvBPMRFFE::getParam32(int functionId, epicsUInt32 *param,
     /* Get parameter in library, as some parameters are not written in HW */
     status = getUIntDigitalParam(addr, functionId, param, mask);
     if (status != asynSuccess) {
-        getParamName(functionId, &paramName);
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getUIntDigitalParam failure for retrieving parameter %s\n",
-                driverName, functionName, paramName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getUIntDigitalParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
         goto get_param_err;
     }
 
@@ -847,10 +849,12 @@ asynStatus drvBPMRFFE::getParamDouble(int functionId, epicsFloat64 *param, int a
     /* Get parameter in library, as some parameters are not written in HW */
     status = getDoubleParam(addr, functionId, param);
     if (status != asynSuccess) {
-        getParamName(functionId, &paramName);
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
-                driverName, functionName, paramName);
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
+                    driverName, functionName, paramName);
+        }
         goto get_param_err;
     }
 
@@ -885,10 +889,12 @@ asynStatus drvBPMRFFE::updateUInt32Params(epicsUInt32 mask, int addr, int firstP
         status = getParam32(i, &param, mask, addr);
         /* Only write values if there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting UInt32 parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting UInt32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
@@ -920,10 +926,12 @@ asynStatus drvBPMRFFE::updateDoubleParams(int addr, int firstParam, int lastPara
         status = getParamDouble(i, &param, addr);
         /* Only write values is there is no error */
         if (status) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: error getting Double parameter for function = %d, "
-                    "addr = %d status = %d\n",
-                    driverName, functionName, i, addr, status);
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Double parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
             ++errs;
         }
         else {
