@@ -159,7 +159,6 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
         int verbose, int timeout)
    : asynPortDriver(portName,
                     MAX_ADDR, /* maxAddr */
-                    (int)NUM_PARAMS,
                     asynUInt32DigitalMask | asynFloat64Mask  | asynDrvUserMask,    /* Interface mask     */
                     asynUInt32DigitalMask | asynFloat64Mask ,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
