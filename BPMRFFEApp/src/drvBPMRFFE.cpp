@@ -706,6 +706,54 @@ get_service_err:
 * functions defined in the structures. e.g., functionsInt32_t
 * and functionsFloat64_t
 */
+asynStatus drvBPMRFFE::setParamGeneric(int functionId, int addr)
+{
+    int status = asynSuccess;
+    const char *functionName = "setParamGeneric";
+    const char *paramName = NULL;
+    asynParamType asynType = asynParamNotDefined;
+
+    getParamName(functionId, &paramName);
+    status = getParamType(addr, functionId, &asynType);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getParamType failure retrieving asynParamType, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, functionId, paramName);
+        goto get_type_err;
+    }
+
+    switch (asynType) {
+        case asynParamUInt32Digital:
+            status = setParam32(functionId, 0xFFFFFFFF, addr);
+        break;
+
+        case asynParamFloat64:
+            status = setParamDouble(functionId, addr);
+        break;
+
+        default:
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unsupported type for asynParamType: %d, "
+                "functionId = %d, paramName = %s\n",
+                driverName, functionName, asynType,
+                functionId, paramName);
+        goto unsup_asyn_type;
+    }
+
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: setParam32/setParamDouble failure setting value %d, "
+                "for functionId = %d, paramName = %s\n",
+                driverName, functionName, status, functionId, paramName);
+        goto set_type_err;
+    }
+
+set_type_err:
+unsup_asyn_type:
+get_type_err:
+    return (asynStatus)status;
+}
 
 asynStatus drvBPMRFFE::setParam32(int functionId, epicsUInt32 mask, int addr)
 {

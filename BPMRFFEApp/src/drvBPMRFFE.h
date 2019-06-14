@@ -256,6 +256,7 @@ class drvBPMRFFE : public asynPortDriver {
         asynStatus bpmClientDisconnect(void);
 
         /* General set/get hardware functions */
+        asynStatus setParamGeneric(int funcionId, int addr);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
