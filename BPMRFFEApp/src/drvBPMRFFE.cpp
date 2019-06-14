@@ -254,7 +254,7 @@ drvBPMRFFE::drvBPMRFFE(const char *portName, const char *endpoint, int bpmNumber
     bpmRFFEHwFunc.emplace(P_RffeRst, bpmSetGetRffeRstFunc);
 
     lock();
-    status = bpmClientConnect();
+    status = bpmClientConnect(this->pasynUserSelf);
     unlock();
 
     /* If we correct connect for this first time, libbpmclient
@@ -283,7 +283,7 @@ drvBPMRFFE::~drvBPMRFFE()
     const char *functionName = "~drvBPMRFFE";
 
     lock();
-    status = bpmClientDisconnect();
+    status = bpmClientDisconnect(this->pasynUserSelf);
     unlock();
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -299,10 +299,10 @@ drvBPMRFFE::~drvBPMRFFE()
 
 asynStatus drvBPMRFFE::connect(asynUser* pasynUser)
 {
-    return bpmClientConnect();
+    return bpmClientConnect(pasynUser);
 }
 
-asynStatus drvBPMRFFE::bpmClientConnect(void)
+asynStatus drvBPMRFFE::bpmClientConnect(asynUser *pasynUser)
 {
     asynStatus status = asynSuccess;
     const char *bpmLogFile = "stdout";
@@ -324,7 +324,7 @@ asynStatus drvBPMRFFE::bpmClientConnect(void)
         "%s:%s: BPM client connected\n",
         driverName, functionName);
 
-    pasynManager->exceptionConnect(this->pasynUserSelf);
+    pasynManager->exceptionConnect(pasynUser);
 
     return status;
 
@@ -334,10 +334,10 @@ create_halcs_client_err:
 
 asynStatus drvBPMRFFE::disconnect(asynUser* pasynUser)
 {
-    return bpmClientDisconnect();
+    return bpmClientDisconnect(pasynUser);
 }
 
-asynStatus drvBPMRFFE::bpmClientDisconnect(void)
+asynStatus drvBPMRFFE::bpmClientDisconnect(asynUser *pasynUser)
 {
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
             "%s: calling bpmClientDisconnect\n",
@@ -348,7 +348,7 @@ asynStatus drvBPMRFFE::bpmClientDisconnect(void)
         halcs_client_destroy (&bpmClientRFFE);
     }
 
-    pasynManager->exceptionDisconnect(this->pasynUserSelf);
+    pasynManager->exceptionDisconnect(pasynUser);
     return status;
 }
 

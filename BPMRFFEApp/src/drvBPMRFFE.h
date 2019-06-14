@@ -252,8 +252,8 @@ class drvBPMRFFE : public asynPortDriver {
         /* Our private methods */
 
         /* Client connection management */
-        asynStatus bpmClientConnect(void);
-        asynStatus bpmClientDisconnect(void);
+        asynStatus bpmClientConnect(asynUser* pasynUser);
+        asynStatus bpmClientDisconnect(asynUser* pasynUser);
 
         /* General set/get hardware functions */
         asynStatus setParamGeneric(int funcionId, int addr);
