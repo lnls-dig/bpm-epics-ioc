@@ -3469,9 +3469,11 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "writeUInt32Digital";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3480,8 +3482,6 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
@@ -3556,8 +3556,10 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     asynStatus status = asynSuccess;
     int addr = 0;
     const char *functionName = "readUInt32Digital";
-    const char *paramName;
+    const char *paramName = NULL;
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3566,8 +3568,6 @@ asynStatus drvBPM::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
                 driverName, functionName, status, function, paramName);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     if (function >= FIRST_COMMAND) {
         if (function == P_DataTrigChan) {
@@ -3607,9 +3607,11 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "writeInt32";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3618,8 +3620,6 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
                 driverName, functionName, status, function, paramName, value);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
@@ -3667,9 +3667,11 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "readInt32";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3678,8 +3680,6 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
                 driverName, functionName, status, function, paramName);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     if (function >= FIRST_COMMAND) {
         /* Get parameter in library, as some parameters are not written in HW */
@@ -3709,9 +3709,11 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "writeFloat64";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3724,8 +3726,6 @@ asynStatus drvBPM::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     if (function >= FIRST_COMMAND) {
         /* Set the parameter in the parameter library. */
         setDoubleParam(addr, function, value);
-        /* Fetch the parameter string name for possible use in debugging */
-        getParamName(function, &paramName);
 
         /* Some operations need some special handling*/
         if (function == P_AdcSi57xFreq) {
@@ -3765,9 +3765,11 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     int addr = 0;
-    const char *paramName;
+    const char *paramName = NULL;
     const char* functionName = "readFloat64";
 
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
     /* Get channel for possible use */
     status = getAddress(pasynUser, &addr);
     if (status) {
@@ -3776,8 +3778,6 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
                 driverName, functionName, status, function, paramName);
         return status;
     }
-    /* Fetch the parameter string name for possible use in debugging */
-    getParamName(function, &paramName);
 
     /* Get double param, possibly from HW */
     if (function >= FIRST_COMMAND) {
@@ -4267,7 +4267,7 @@ asynStatus drvBPM::setParamGeneric(int functionId, int addr)
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported type for asynParamType: %d, "
                     "functionId = %d, paramName = %s\n",
-                    driverName, functionName, asynType, 
+                    driverName, functionName, asynType,
                     functionId, paramName);
             goto unsup_asyn_type;
     }
