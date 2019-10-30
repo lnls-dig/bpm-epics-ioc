@@ -7187,7 +7187,7 @@ channel =  PVUtil.getString(pvs[4])
 #ConsoleUtil.writeInfo("shots "+str(shots))
 pvs[5].setValue("start")
 
-# TODO. If multiple shots, FFT will be calculated based on all shots 
+# TODO. If multiple shots, FFT will be calculated based on all shots
 # joined together
 # Set FFT SPAN
 fftSpan = totalSamples/shots
@@ -7205,7 +7205,7 @@ if channel == 'adc' or channel == 'adcswap':
     display.getWidget("XY Graph_2").clearGraph();
     display.getWidget("XY Graph_4").clearGraph();
 
-# TODO. If multiple shots, FFT will be calculated based on all shots 
+# TODO. If multiple shots, FFT will be calculated based on all shots
 # joined together
 #Resize Graphs
 for i in range(4):
@@ -7784,7 +7784,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -7792,7 +7793,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -7810,10 +7811,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -7955,7 +7958,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -7963,7 +7967,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -7981,10 +7985,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -8126,7 +8132,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -8134,7 +8141,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_112</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8152,10 +8159,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -8337,7 +8346,8 @@ $(pv_value)</tooltip>
           </foreground_color>
           <height>29</height>
           <items>
-            <s>Injection</s>
+            <s>Machine 1</s>
+            <s>Machine 2</s>
             <s>Beam Loss</s>
             <s>SR TbT Clock</s>
             <s>BO TbT Clock</s>
@@ -8345,7 +8355,7 @@ $(pv_value)</tooltip>
           </items>
           <items_from_pv>false</items_from_pv>
           <name>Combo_111</name>
-          <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+          <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
           <pv_value />
           <rules />
           <scale_options>
@@ -8363,10 +8373,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -8509,7 +8521,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -8517,7 +8530,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8535,10 +8548,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -8680,7 +8695,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -8688,7 +8704,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8706,10 +8722,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
@@ -8851,7 +8869,8 @@ $(pv_value)</tooltip>
         </foreground_color>
         <height>29</height>
         <items>
-          <s>Injection</s>
+          <s>Machine 1</s>
+          <s>Machine 2</s>
           <s>Beam Loss</s>
           <s>SR TbT Clock</s>
           <s>BO TbT Clock</s>
@@ -8859,7 +8878,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Injection")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8877,10 +8896,12 @@ channel =  PVUtil.getString(pvs[0])
 
 #ConsoleUtil.writeInfo("channel: "+str(channel))
 
-if channel == 'Injection':
+if channel == 'Machine 1':
     extTrigger = 0
-elif channel == 'Beam Loss':
+elif channel == 'Machine 2':
     extTrigger = 1
+elif channel == 'Beam Loss':
+    extTrigger = 2
 elif channel == 'SR TbT Clock':
     extTrigger = 4
 elif channel == 'BO TbT Clock':
