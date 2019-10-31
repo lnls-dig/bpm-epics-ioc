@@ -7793,7 +7793,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -7967,7 +7967,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8141,7 +8141,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_112</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8355,7 +8355,7 @@ $(pv_value)</tooltip>
           </items>
           <items_from_pv>false</items_from_pv>
           <name>Combo_111</name>
-          <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+          <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
           <pv_value />
           <rules />
           <scale_options>
@@ -8530,7 +8530,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8704,7 +8704,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
@@ -8878,7 +8878,7 @@ $(pv_value)</tooltip>
         </items>
         <items_from_pv>false</items_from_pv>
         <name>Combo_111</name>
-        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc("Machine 1")</pv_name>
+        <pv_name>loc://$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc</pv_name>
         <pv_value />
         <rules />
         <scale_options>
