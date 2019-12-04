@@ -28,6 +28,7 @@
 
 /** The polling interval when checking to see if acquisition is complete */
 #define BPM_POLL_TIME                   .1
+#define BPM_SP_POLL_TIME                .01
 #define BPM_PM_POLL_TIME                1
 
 #define PI                              3.14159265
@@ -590,7 +591,7 @@ static taskParams_t taskSPParams[NUM_ACQ_CORES_PER_BPM] = {
     {
         NULL,                          // drvBPMp
         BPMIDReg,                      // coreID
-        BPM_POLL_TIME,                 // pollTime
+        BPM_SP_POLL_TIME,              // pollTime
         false                          // autoStart
     },
 #if 0
@@ -2508,8 +2509,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             /* Wait for acquisition to complete, but allow acquire stop events to be handled */
             while (1) {
                 unlock();
-                /* Don't wait. If there is no event, just exit directly */
-                status = epicsEventTryWait(this->abortAcqEventId[BPMModeSinglePass][coreID]);
+                status = epicsEventWaitWithTimeout(this->abortAcqEventId[BPMModeSinglePass][coreID], pollTime);
                 lock();
                 if (status == epicsEventWaitOK) {
                     /* We got a stop event, abort acquisition */
