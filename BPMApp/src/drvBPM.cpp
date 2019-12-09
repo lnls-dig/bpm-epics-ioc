@@ -767,6 +767,14 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     for (int i = 0; i < NUM_BPM_MODES; ++i) {
+
+        this->reconfSPassAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
+        if (!this->reconfSPassAcqEventId[i]) {
+            printf("%s:%s: epicsEventCreate[%d] failure for SP reconfig. event\n",
+                    driverName, functionName, i);
+            return;
+        }
+
         for (int j = 0; j < NUM_ACQ_CORES_PER_BPM; ++j) {
             /* Create events for signalling acquisition thread */
             this->startAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
@@ -2255,11 +2263,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         /* Clear out any flags*/
         interrupted = 0;
 
-        /* Destroy bpm_single_pass instance, if any */
-        if (bpm_single_pass != NULL) {
-            bpm_single_pass_destroy (&bpm_single_pass);
-        }
-
         /* We got a stop event, stop acquisition */
         readingActive[BPMModeSinglePass][coreID] = 0;
 
@@ -2424,14 +2427,24 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             continue;
         }
 
-        bpm_single_pass_t *bpm_single_pass = bpm_single_pass_new (this->endpoint,
-            this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post,
-            num_shots);
+        /* Reconfigure acquisition */
+        status = epicsEventTryWait(this->reconfSPassAcqEventId[coreID]);
+        if (status == epicsEventWaitOK) {
+            if (bpm_single_pass != NULL) {
+                bpm_single_pass_destroy (&bpm_single_pass);
+            }
+        }
+
         if (bpm_single_pass == NULL) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: bpm_single_pass could not be created, status=%d\n",
-                driverName, functionName, status);
-            continue;
+            bpm_single_pass = bpm_single_pass_new (this->endpoint,
+                    this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post,
+                    num_shots);
+            if (bpm_single_pass == NULL) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: bpm_single_pass could not be created, status=%d\n",
+                        driverName, functionName, status);
+                continue;
+            }
         }
 
         bpm_single_pass_configure_trigger (bpm_single_pass, TriggerDataFilt,
@@ -2572,6 +2585,10 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         /* Release buffers */
         pArrayAllChannels->release();
         pArrayAllChannels = NULL;
+    }
+
+    if (bpm_single_pass != NULL) {
+        bpm_single_pass_destroy (&bpm_single_pass);
     }
 }
 
@@ -3518,6 +3535,24 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
             status = resetADCs(mask, addr);
         }
         else {
+            int bpmMode = 0;
+            getIntegerParam(addr, P_BPMMode, &bpmMode);
+
+            // Theese parameters will trigger a change in Single Pass configuration
+            if (bpmMode == BPMModeSinglePass &&
+                    (function == P_Kx || function == P_Ky || function == P_Kq ||
+                     function == P_Ksum || function == P_XOffset || function == P_YOffset ||
+                     function == P_QOffset ||
+                     function == P_SamplesPre || function == P_SamplesPost ||
+                     function == P_NumShots)) {
+
+                /* Send the reconfig. event */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: trigger SP_ACQ_RECONF called for coreID = %d\n",
+                        driverName, functionName, addr);
+                epicsEventSignal(this->reconfSPassAcqEventId[addr]);
+            }
+
             /* Do operation on HW. Some functions do not set anything on hardware */
             status = setParam32(function, mask, addr);
             /* Readback all parameters from Hw */
