@@ -3544,7 +3544,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
                      function == P_Ksum || function == P_XOffset || function == P_YOffset ||
                      function == P_QOffset ||
                      function == P_SamplesPre || function == P_SamplesPost ||
-                     fucntion == P_NumShots)) {
+                     function == P_NumShots)) {
 
                 /* Send the reconfig. event */
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
