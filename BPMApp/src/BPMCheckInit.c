@@ -17,6 +17,7 @@ void print_help (char *program_name)
             "\t-v Verbose output\n"
             "\t-board <AMC board = [0|1|2|3|4|5]>\n"
             "\t-halcs <HALCS number = [0|1]>\n"
+            "\t-devio_name <DEVIO mailbox name = [default = DEVIO]>\n"
             "\t-b <broker_endpoint> Broker endpoint\n"
             , program_name);
 }
@@ -28,6 +29,7 @@ int main (int argc, char *argv [])
     char *broker_endp = NULL;
     char *board_number_str = NULL;
     char *halcs_number_str = NULL;
+    char *devio_name_str = NULL;
     char **str_p = NULL;
 
     if (argc < 3) {
@@ -56,6 +58,10 @@ int main (int argc, char *argv [])
         else if (streq(argv[i], "-halcs"))
         {
             str_p = &halcs_number_str;
+        }
+        else if (streq(argv[i], "-devio_name"))
+        {
+            str_p = &devio_name_str;
         }
         else if (streq (argv[i], "-b")) {
             str_p = &broker_endp;
@@ -99,12 +105,18 @@ int main (int argc, char *argv [])
         }
     }
 
+    /* Set default devio_name */
+    if (devio_name_str == NULL) {
+        devio_name_str = strdup ("DEVIO");
+    }
+
     /* unused parameter */
     (void) halcs_number;
 
     /* Generate the service names for each SMIO */
     char service_init[50];
-    snprintf (service_init, sizeof (service_init), "HALCS%u:DEVIO:INIT0", board_number);
+    snprintf (service_init, sizeof (service_init), "HALCS%u:%s:INIT0", board_number, 
+        devio_name_str);
 
     halcs_client_t *halcs_client = halcs_client_new (broker_endp, verbose, NULL);
     if (halcs_client == NULL) {
@@ -133,5 +145,8 @@ err_halcs_get:
     str_p = &halcs_number_str;
     free (*str_p);
     halcs_number_str = NULL;
+    str_p = &devio_name_str;
+    free (*str_p);
+    devio_name_str = NULL;
     return err;
 }
