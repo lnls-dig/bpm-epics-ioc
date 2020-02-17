@@ -37,7 +37,7 @@ fi
 
 for i in `seq 1 ${TRIES}`;
 do
-    ../../bin/${EPICS_HOST_ARCH}/BPMRFFECheckInit -b ipc:///tmp/malamute -board ${BOARD_NUMBER} -halcs ${HALCS_NUMBER}
+    ../../bin/${EPICS_HOST_ARCH}/BPMRFFECheckInit -b ipc:///tmp/malamute -board ${BOARD_NUMBER} -halcs ${HALCS_NUMBER} -devio_name "DEVIORFFE"
     if [ $? -eq 0 ]; then
         exit 0
     fi
