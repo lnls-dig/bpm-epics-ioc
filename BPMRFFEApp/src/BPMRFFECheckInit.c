@@ -110,13 +110,10 @@ int main (int argc, char *argv [])
         devio_name_str = strdup ("DEVIO");
     }
 
-    /* unused parameter */
-    (void) halcs_number;
-
     /* Generate the service names for each SMIO */
     char service_init[50];
-    snprintf (service_init, sizeof (service_init), "HALCS%u:%s:INIT0", board_number, 
-        devio_name_str);
+    snprintf (service_init, sizeof (service_init), "HALCS%u:%s:INIT%u", board_number, 
+        devio_name_str, halcs_number);
 
     halcs_client_t *halcs_client = halcs_client_new (broker_endp, verbose, NULL);
     if (halcs_client == NULL) {

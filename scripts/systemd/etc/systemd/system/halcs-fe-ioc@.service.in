@@ -18,7 +18,7 @@ ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 ExecStartPre=/bin/sh -c " \
     BOARD_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2;}'); \
     HALCS_NUMBER=$$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3;}'); \
-    /opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPM/BPMCheckInitTries.sh ipc:///tmp/malamute $${BOARD_NUMBER} $${HALCS_NUMBER} $${BPM_TRY_READ} \
+    /opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE/BPMRFFECheckInitTries.sh ipc:///tmp/malamute $${BOARD_NUMBER} $${HALCS_NUMBER} $${BPM_TRY_READ} \
 "
 WorkingDirectory=<INSTALL_PREFIX>/<IOC_NAME>/iocBoot/iocBPMRFFE
 # Run procServ with user ioc

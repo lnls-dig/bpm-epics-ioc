@@ -54,6 +54,27 @@ BPMRFFE_SYS_LIBS += rt
 BPMRFFE_SYS_LIBS += dl
 BPMRFFE_SYS_LIBS += gcc
 
+# Compile test program
+PROD += BPMRFFECheckInit
+BPMRFFECheckInit_SRCS += BPMRFFECheckInit.c
+
+# Link to system libraries
+BPMRFFECheckInit_SYS_LIBS += bpmclient
+BPMRFFECheckInit_SYS_LIBS += acqclient
+BPMRFFECheckInit_SYS_LIBS += halcsclient
+BPMRFFECheckInit_SYS_LIBS += errhand
+BPMRFFECheckInit_SYS_LIBS += hutils
+BPMRFFECheckInit_SYS_LIBS += mlm
+BPMRFFECheckInit_SYS_LIBS += czmq
+BPMRFFECheckInit_SYS_LIBS += zmq
+# FIXME: Why does epics does not include these libs?
+BPMRFFECheckInit_SYS_LIBS += pthread
+BPMRFFECheckInit_SYS_LIBS += readline
+BPMRFFECheckInit_SYS_LIBS += m
+BPMRFFECheckInit_SYS_LIBS += rt
+BPMRFFECheckInit_SYS_LIBS += dl
+BPMRFFECheckInit_SYS_LIBS += gcc
+
 # System header files and "any" implementation.
 USR_CXXFLAGS += -I/usr/include -I$(TOP)/foreign/any
 
