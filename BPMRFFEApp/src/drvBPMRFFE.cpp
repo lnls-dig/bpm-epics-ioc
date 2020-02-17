@@ -135,7 +135,7 @@ asynStatus drvBPMRFFE::getFullServiceName (int bpmNumber, int addr, const char *
         goto get_service_id_err;
     }
 
-    errs = snprintf(fullServiceName, fullServiceNameSize, "HALCS%d:DEVIO:%s%d",
+    errs = snprintf(fullServiceName, fullServiceNameSize, "HALCS%d:DEVIORFFE:%s%d",
             boardMap[bpmNumber].board, serviceName, coreID);
     if (errs < 0 || errs >= fullServiceNameSize){
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
