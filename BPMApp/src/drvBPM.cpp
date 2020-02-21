@@ -2751,10 +2751,10 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
     NDArray *pArraySingleChannel;
     epicsFloat64 *pInFloat64;
     epicsFloat64 *pOutFloat64;
-    epicsUInt32 *pIn32;
-    epicsUInt32 *pOut32;
-    epicsUInt16 *pIn16;
-    epicsUInt16 *pOut16;
+    epicsInt32 *pIn32;
+    epicsInt32 *pOut32;
+    epicsInt16 *pIn16;
+    epicsInt16 *pOut16;
     int channelAddr;
     static const char *functionName = "deinterleaveNDArray";
 
@@ -2782,15 +2782,15 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
         }
 
         pArraySingleChannel->uniqueId = arrayCounter;
-        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;;
+        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;
         pArraySingleChannel->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
         pArraySingleChannel->epicsTS.nsec = timeStamp->nsec;
         getAttributes(pArraySingleChannel->pAttributeList);
 
-        pIn16 = (epicsUInt16 *)pArrayAllChannels->pData;
-        pOut16 = (epicsUInt16 *)pArraySingleChannel->pData;
-        pIn32 = (epicsUInt32 *)pArrayAllChannels->pData;
-        pOut32 = (epicsUInt32 *)pArraySingleChannel->pData;
+        pIn16 = (epicsInt16 *)pArrayAllChannels->pData;
+        pOut16 = (epicsInt16 *)pArraySingleChannel->pData;
+        pIn32 = (epicsInt32 *)pArrayAllChannels->pData;
+        pOut32 = (epicsInt32 *)pArraySingleChannel->pData;
         pInFloat64 = (epicsFloat64 *)pArrayAllChannels->pData;
         pOutFloat64 = (epicsFloat64 *)pArraySingleChannel->pData;
 
