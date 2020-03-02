@@ -2747,14 +2747,15 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
     size_t dims[MAX_WVF_DIMS];
     NDArrayInfo_t arrayInfo;
     NDDataType_t NDType;
+    NDDataType_t NDTypeSingle;
     size_t arrayYStride = 0;
     NDArray *pArraySingleChannel;
     epicsFloat64 *pInFloat64;
     epicsFloat64 *pOutFloat64;
-    epicsUInt32 *pIn32;
-    epicsUInt32 *pOut32;
-    epicsUInt16 *pIn16;
-    epicsUInt16 *pOut16;
+    epicsInt32 *pIn32;
+    epicsInt32 *pOut32;
+    epicsInt16 *pIn16;
+    epicsInt8 *pIn8;
     int channelAddr;
     static const char *functionName = "deinterleaveNDArray";
 
@@ -2770,9 +2771,15 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
     arrayYStride = arrayInfo.yStride;
     dims[0] = arrayInfo.ySize;
     NDType = pArrayAllChannels->dataType;
+    NDTypeSingle = NDType;
+    /* Convert all integer types to 32-bit */
+    if (NDTypeSingle == NDInt8 || NDTypeSingle == NDInt16) {
+        NDTypeSingle = NDInt32;
+    }
+
     for (int i = 0; i < pNDArrayAddrSize; ++i) {
         channelAddr = pNDArrayAddr[i];
-        pArraySingleChannel = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        pArraySingleChannel = pNDArrayPool->alloc(1, dims, NDTypeSingle, 0, 0);
         if (pArraySingleChannel == NULL) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to alloc pArraySingleChannel\n",
@@ -2782,24 +2789,31 @@ asynStatus drvBPM::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *p
         }
 
         pArraySingleChannel->uniqueId = arrayCounter;
-        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;;
+        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;
         pArraySingleChannel->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
         pArraySingleChannel->epicsTS.nsec = timeStamp->nsec;
         getAttributes(pArraySingleChannel->pAttributeList);
 
-        pIn16 = (epicsUInt16 *)pArrayAllChannels->pData;
-        pOut16 = (epicsUInt16 *)pArraySingleChannel->pData;
-        pIn32 = (epicsUInt32 *)pArrayAllChannels->pData;
-        pOut32 = (epicsUInt32 *)pArraySingleChannel->pData;
+        pIn8 = (epicsInt8 *)pArrayAllChannels->pData;
+        pIn16 = (epicsInt16 *)pArrayAllChannels->pData;
+        pIn32 = (epicsInt32 *)pArrayAllChannels->pData;
+        pOut32 = (epicsInt32 *)pArraySingleChannel->pData;
         pInFloat64 = (epicsFloat64 *)pArrayAllChannels->pData;
         pOutFloat64 = (epicsFloat64 *)pArraySingleChannel->pData;
 
         /* Get only a single channel samples from a multi-channel
          * array */
         switch (NDType) {
+            case NDInt8:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut32[j] = pIn8[i];
+                    pIn8 += arrayYStride;
+                }
+                break;
+
             case NDInt16:
                 for (size_t j = 0; j < dims[0]; ++j) {
-                    pOut16[j] = pIn16[i];
+                    pOut32[j] = pIn16[i];
                     pIn16 += arrayYStride;
                 }
                 break;
