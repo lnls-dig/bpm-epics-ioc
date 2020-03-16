@@ -8331,7 +8331,7 @@ $(pv_value)</tooltip>
         <MODULE_CAL>_CalX</MODULE_CAL>
         <MODULE>_X</MODULE>
         <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
-        <GLOBAL_MODULE_NAME>X</GLOBAL_MODULE_NAME>
+        <GLOBAL_MODULE_NAME>XY</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container_2</name>
       <opi_file>BPMPolyGENPM.opi</opi_file>
@@ -8376,7 +8376,7 @@ $(pv_value)</tooltip>
         <MODULE_CAL>_CalY</MODULE_CAL>
         <MODULE>_Y</MODULE>
         <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
-        <GLOBAL_MODULE_NAME>Y</GLOBAL_MODULE_NAME>
+        <GLOBAL_MODULE_NAME>XY</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container_1</name>
       <opi_file>BPMPolyGENPM.opi</opi_file>
