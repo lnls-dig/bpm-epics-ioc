@@ -1,17 +1,9 @@
-record(calc, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts"){
-    field(DESC, "Get PosCal enable from X/Y")
-    field(SCAN,"Passive")
-    field(INPA,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts CPP NMS")
-    field(INPB,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts CPP NMS")
-    field(CALC,"(A||B)?1:0")
-}
-
 record(aSub,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ASubCalc")
 {
     field(DESC, "Position calibrated Calc $(ACQ)$(ARRAY_NAME)")
     field(INAM,"bpmPolyCalInitAsub")
     field(SNAM,"$(ASUB_ROUTINE)")
-    field(SDIS, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)PosCal-Sts CPP NMS")
+    field(SDIS, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts CPP NMS")
     field(DISV, "0")
     field(INPA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_XUNCAL)ArrayData.VAL CPP NMS")
     field(FTA, "DOUBLE")

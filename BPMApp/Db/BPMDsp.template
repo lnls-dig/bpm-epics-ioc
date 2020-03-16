@@ -274,33 +274,17 @@ record(longin,"$(P)$(R)HwPosSUMOffset-RB"){
 ## Hw K factors and Offset parameters
 ############################################################################
 
-record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel") {
-    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_X) calibration")
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_XY) calibration")
     field(PINI, "YES")
     field(ZNAM, "Off")
     field(ONAM, "On")
-    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts")
 }
 
-record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts") {
-    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_X) calibration")
-    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sel")
-    field(SCAN, "Passive")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-}
-
-record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sel") {
-    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_Y) calibration")
-    field(PINI, "YES")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts")
-}
-
-record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts") {
-    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_Y) calibration")
-    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sel")
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_XY) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sel")
     field(SCAN, "Passive")
     field(ZNAM, "Off")
     field(ONAM, "On")
@@ -343,7 +327,7 @@ record(calcout,"$(P)$(R)HwPosKxCalc")
     field(DESC, "Set Hardware Kx")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts.VAL CPP NMS")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts.VAL CPP NMS")
     field(INPB, "$(P)$(R)PosKx-SP.VAL CPP NMS")
     field(INPC, "1")
     field(OOPT, "Every Time")
@@ -356,7 +340,7 @@ record(calcout,"$(P)$(R)HwPosKyCalc")
     field(DESC, "Set Hardware Ky")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts.VAL CPP NMS")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts.VAL CPP NMS")
     field(INPB, "$(P)$(R)PosKy-SP.VAL CPP NMS")
     field(INPC, "1")
     field(OOPT, "Every Time")
@@ -395,7 +379,7 @@ record(calcout,"$(P)$(R)HwPosXOffsetCalc")
     field(DESC, "Set Hardware XOffset")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_X)PosCal-Sts.VAL CPP NMS")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts.VAL CPP NMS")
     field(INPB, "$(P)$(R)PosXOffset-SP.VAL CPP NMS")
     field(INPC, "0")
     field(OOPT, "Every Time")
@@ -408,7 +392,7 @@ record(calcout,"$(P)$(R)HwPosYOffsetCalc")
     field(DESC, "Set Hardware YOffset")
     field(PINI, "YES")
     field(SCAN, "Passive")
-    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Y)PosCal-Sts.VAL CPP NMS")
+    field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts.VAL CPP NMS")
     field(INPB, "$(P)$(R)PosYOffset-SP.VAL CPP NMS")
     field(INPC, "0")
     field(OOPT, "Every Time")
