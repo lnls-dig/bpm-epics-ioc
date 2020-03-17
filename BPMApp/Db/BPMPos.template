@@ -1,63 +1,66 @@
-record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)WvfElemSeq"){
-    field(DESC,"Get NORD from $(ACQ)$(ARRAY_NAME_UNCAL) waveform")
+record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)WvfElemSeq"){
+    field(DESC,"Get NORD from $(ACQ)$(ARRAY_NAME_RAW) waveform")
     field(PINI,"YES")
-    field(DOL1, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.VAL CPP NMS")
-    field(DOL2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.NORD NPP NMS")
-    field(DOL3, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.NORD NPP NMS")
+    field(DOL1, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.VAL CPP NMS")
+    field(DOL2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.NORD NPP NMS")
+    field(DOL3, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.NORD NPP NMS")
     field(LNK1, "")
-    field(LNK2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData.NELM NPP NMS")
+    field(LNK2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData.NELM NPP NMS")
     field(LNK3, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM NPP NMS")
     field(SELM, "All")
 }
 
-record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayCoeff-SP")
+record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayCoeff-SP")
 {
     field(DESC, "Polynomial coefficients for $(ACQ)$(ARRAY_NAME)")
     field(PINI,"YES")
     field(NELM, "$(COEFF_ARRAY_SIZE)")
     field(FTVL, "$(FTVL)")
     field(PREC, 3)
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayCoeff-RB")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayCoeff-RB")
 }
 
-record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayCoeff-RB")
+record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayCoeff-RB")
 {
     field(DESC, "Polynomial coefficients for $(ACQ)$(ARRAY_NAME)")
-    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayCoeff-SP NPP NMS")
+    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayCoeff-SP NPP NMS")
     field(NELM, "$(COEFF_ARRAY_SIZE)")
     field(PREC, 3)
     field(FTVL, "$(FTVL)")
 }
 
-record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataWvf")
+record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayDataWvf")
 {
     field(DESC, "Position calibrated waveform $(ACQ)$(ARRAY_NAME)")
     field(NELM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
-    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData")
 }
 
-record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData")
+record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData")
 {
     field(DESC, "Position calibrated $(ACQ)$(ARRAY_NAME)")
-    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayDataWvf NPP NMS")
-    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
+    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
 }
 
+# Apply K and Offsets if we are not using polynomial correction.
+# Otherwise, K and offsets are already taken into calculated in
+# BPMPosCalcXY.template or BPMPosCalcSingle.template
 record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
 {
     field(DESC, "Use uncal/cal. position $(ACQ)$(ARRAY_NAME)")
     field(DTYP, "Soft Channel")
     field(NELM,"$(NELEMENTS)")
-    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME)PosCal-Sts.VAL CPP NMS")
-    field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.VAL CPP NMS")
-    field(INBB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_CAL)ArrayData.VAL CPP NMS")
+    field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.VAL CPP NMS")
+    field(INBB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData.VAL CPP NMS")
     field(WAIT, "Wait")
     field(OOPT, "Every Time")
     field(CALC, "(A)==(0)?AA:BB")
@@ -69,7 +72,7 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf")
     field(DESC, "Position waveform $(ACQ)$(ARRAY_NAME)")
     field(NELM,"$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
-    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
 }
 
@@ -77,7 +80,7 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
 {
     field(DESC, "Position $(ACQ)$(ARRAY_NAME)")
     field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf NPP NMS")
-    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_UNCAL)ArrayData.TIME")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
 }
