@@ -146,6 +146,58 @@ record(longin,"$(P)$(R)PosSumOffset-RB"){
 }
 
 ############################################################################
+## Hw K factors and Offset parameters
+############################################################################
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_XY) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_XY) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_Q) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_Q) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo,"$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel") {
+    field(DESC, "Set position $(GLOBAL_ARRAY_NAME_SUM) calibration")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts")
+}
+
+record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts") {
+    field(DESC, "Get position $(GLOBAL_ARRAY_NAME_SUM) calibration")
+    field(INP, "$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+############################################################################
 ## General parameters
 ############################################################################
 
