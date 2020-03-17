@@ -4,9 +4,11 @@ record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)WvfElemSeq"){
     field(DOL1, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.VAL CPP NMS")
     field(DOL2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.NORD NPP NMS")
     field(DOL3, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.NORD NPP NMS")
+    field(DOL4, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.NORD NPP NMS")
     field(LNK1, "")
     field(LNK2, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData.NELM NPP NMS")
-    field(LNK3, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM NPP NMS")
+    field(LNK3, "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData.NELM NPP NMS")
+    field(LNK4, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM NPP NMS")
     field(SELM, "All")
 }
 
@@ -50,7 +52,7 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData")
 }
 
 # Gain and Offset corrected waveform.
-record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData")
+record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayDataC")
 {
     field(DESC, "gain/offset position $(ACQ)$(ARRAY_NAME_GOFF)")
     field(DTYP, "Soft Channel")
@@ -64,6 +66,29 @@ record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData")
     field(WAIT, "Wait")
     field(OOPT, "Every Time")
     field(CALC, "A*AA-B")
+    field(OUT,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayDataWvf CA NMS")
+}
+
+record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayDataWvf")
+{
+    field(DESC, "Position calibrated waveform $(ACQ)$(ARRAY_NAME)")
+    field(SDIS, "$(P)$(R)$(GLOBAL_ARRAY_NAME)PosCal-Sts CPP NMS")
+    field(DISV, "1")
+    field(NELM, "$(NELEMENTS)")
+    field(FTVL, "$(FTVL)")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData")
+}
+
+record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData")
+{
+    field(DESC, "Position calibrated $(ACQ)$(ARRAY_NAME)")
+    field(SDIS, "$(P)$(R)$(GLOBAL_ARRAY_NAME)PosCal-Sts CPP NMS")
+    field(DISV, "1")
+    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
+    field(MALM, "$(NELEMENTS)")
+    field(FTVL, "$(FTVL)")
 }
 
 # Select between GOff (Gain and Offset waveforms) or Poly (Polinomial
@@ -77,7 +102,7 @@ record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(INPA, "$(P)$(R)$(GLOBAL_ARRAY_NAME)PosCal-Sts.VAL CPP NMS")
-    field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.VAL CPP NMS")
+    field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData.VAL CPP NMS")
     field(INBB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData.VAL CPP NMS")
     field(WAIT, "Wait")
     field(OOPT, "Every Time")
