@@ -8,9 +8,7 @@ include $(TOP)/configure/CONFIG
 PYTHON=python
 
 LIBRARY_IOC += BPMSupport
-BPMSupport_SRCS += convert.cpp
-BPMSupport_SRCS += cordic.cpp
-BPMSupport_SRCS += numeric.cpp
+BPMSupport_SRCS += position.cpp
 BPMSupport_SRCS += drvBPM.cpp
 BPMSupport_LIBS += asyn
 BPMSupport_LIBS += ADBase
@@ -100,8 +98,3 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-# The numeric module uses a pre-built lookup table.
-numeric.o: numeric-lookup.h
-
-%.h: ../%.py
-	$(PYTHON) $< > $@

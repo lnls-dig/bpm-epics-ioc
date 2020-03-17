@@ -23,7 +23,7 @@
 #include <iocsh.h>
 
 #include "drvBPM.h"
-#include "convert.h"
+#include "position.h"
 #include <epicsExport.h>
 
 /** The polling interval when checking to see if acquisition is complete */
