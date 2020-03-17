@@ -21,9 +21,9 @@ double Reciprocal(double X)
 
 /* Computes the Dela-over-Sigma algotithm */
 
-static double DeltaToPosition(double K, double M, double InvS)
+static double DeltaToPosition(double M, double InvS)
 {
-    return ((K * InvS) * M);
+    return (InvS * M);
 }
 
 /* Converts Count rows of ABCD button data into XYQS position and intensity
@@ -51,23 +51,20 @@ static double DeltaToPosition(double K, double M, double InvS)
  *              Y = 2 * (A - C) / S           X = (A + B - C - D) / S .
  */
 
-void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         int Count, bool Diagonal, bool PartialDelta)
 {
     if (PartialDelta) {
-        ABCDtoXYQSPartial(ABCD, XYQS, K, OFFSETS, Count, Diagonal);
+        ABCDtoXYQSPartial(ABCD, XYQS, Count, Diagonal);
     }
     else {
-        ABCDtoXYQSStd(ABCD, XYQS, K, OFFSETS, Count, Diagonal);
+        ABCDtoXYQSStd(ABCD, XYQS, Count, Diagonal);
     }
 }
 
-void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         int Count, bool Diagonal)
 {
-    K_FACTORS k_factors = *K;
-    POS_OFFSETS pos_offsets = *OFFSETS;
-
     for (int i = 0; i < Count; i++)
     {
         const ABCD_ROW & abcd = ABCD[i];
@@ -87,26 +84,23 @@ void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSE
          * orientation. */
         if (Diagonal)
         {
-            xyqs.X = DeltaToPosition(k_factors.KX, A - B - C + D, InvS) - pos_offsets.XOFFSET;
-            xyqs.Y = DeltaToPosition(k_factors.KY, A + B - C - D, InvS) - pos_offsets.YOFFSET;
+            xyqs.X = DeltaToPosition(A - B - C + D, InvS);
+            xyqs.Y = DeltaToPosition(A + B - C - D, InvS);
         }
         else
         {
-            xyqs.X = (DeltaToPosition(k_factors.KX, D - B, InvS) * 2.0) - pos_offsets.XOFFSET;
-            xyqs.Y = (DeltaToPosition(k_factors.KY, A - C, InvS) * 2.0) - pos_offsets.YOFFSET;
+            xyqs.X = (DeltaToPosition(D - B, InvS) * 2.0);
+            xyqs.Y = (DeltaToPosition(A - C, InvS) * 2.0);
         }
 
-        xyqs.Q = DeltaToPosition(k_factors.KQ, A - B + C - D, InvS) - pos_offsets.QOFFSET;
-        xyqs.S = k_factors.KSUM * S;
+        xyqs.Q = DeltaToPosition(A - B + C - D, InvS);
+        xyqs.S = S;
     }
 }
 
-void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         int Count, bool Diagonal)
 {
-    K_FACTORS k_factors = *K;
-    POS_OFFSETS pos_offsets = *OFFSETS;
-
     for (int i = 0; i < Count; i++)
     {
         const ABCD_ROW & abcd = ABCD[i];
@@ -132,29 +126,29 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_O
         double InvS_CD = Reciprocal(S_CD * 2.0);
 
         /* KX and XY should be divided by 2 in partial difference-over-sum. Shift partial sums by 1 bit to implement it. */
-        double partial_AC_pos_x = DeltaToPosition(k_factors.KX, A - C, InvS_AC);
-        double partial_BD_pos_x = DeltaToPosition(k_factors.KX, B - D, InvS_BD);
+        double partial_AC_pos_x = DeltaToPosition(A - C, InvS_AC);
+        double partial_BD_pos_x = DeltaToPosition(B - D, InvS_BD);
 
-        double partial_AC_pos_y = DeltaToPosition(k_factors.KY, A - C, InvS_AC);
-        double partial_BD_pos_y = DeltaToPosition(k_factors.KY, B - D, InvS_BD);
+        double partial_AC_pos_y = DeltaToPosition(A - C, InvS_AC);
+        double partial_BD_pos_y = DeltaToPosition(B - D, InvS_BD);
 
-        double partial_AB_pos_q = DeltaToPosition(k_factors.KQ, A - B, InvS_AB);
-        double partial_CD_pos_q = DeltaToPosition(k_factors.KQ, C - D, InvS_CD);
+        double partial_AB_pos_q = DeltaToPosition(A - B, InvS_AB);
+        double partial_CD_pos_q = DeltaToPosition(C - D, InvS_CD);
 
         /* Compute X and Y according to the currently selected detector
          * orientation. */
         if (Diagonal)
         {
-            xyqs.X = partial_AC_pos_x - partial_BD_pos_x - pos_offsets.XOFFSET;
-            xyqs.Y = partial_AC_pos_y + partial_BD_pos_y - pos_offsets.YOFFSET;
+            xyqs.X = partial_AC_pos_x - partial_BD_pos_x;
+            xyqs.Y = partial_AC_pos_y + partial_BD_pos_y;
         }
         else
         {
-            xyqs.X = -partial_BD_pos_x - pos_offsets.XOFFSET;
-            xyqs.Y = partial_AC_pos_y  - pos_offsets.YOFFSET;
+            xyqs.X = -partial_BD_pos_x;
+            xyqs.Y = partial_AC_pos_y;
         }
 
-        xyqs.Q = partial_AB_pos_q + partial_CD_pos_q - pos_offsets.QOFFSET;
-        xyqs.S = k_factors.KSUM * S;
+        xyqs.Q = partial_AB_pos_q + partial_CD_pos_q;
+        xyqs.S = S;
     }
 }

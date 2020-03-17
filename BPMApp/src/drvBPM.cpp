@@ -2207,13 +2207,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     int channel;
     int bpmMode;
     epicsUInt32 trigger;
-    epicsUInt32 XOffset;
-    epicsUInt32 YOffset;
-    epicsUInt32 QOffset;
-    epicsUInt32 Kx;
-    epicsUInt32 Ky;
-    epicsUInt32 Kq;
-    epicsUInt32 Ksum;
     epicsUInt32 TriggerDataThres;
     epicsUInt32 TriggerDataPol;
     epicsUInt32 TriggerDataSel;
@@ -2389,13 +2382,6 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
         setIntegerParam(coreID, P_BPMStatus, BPMStatusAcquire);
         callParamCallbacks(coreID);
 
-        getUIntDigitalParam(        P_XOffset,          &XOffset,             0xFFFFFFFF);
-        getUIntDigitalParam(        P_YOffset,          &YOffset,             0xFFFFFFFF);
-        getUIntDigitalParam(        P_QOffset,          &QOffset,             0xFFFFFFFF);
-        getUIntDigitalParam(        P_Kx,               &Kx,                  0xFFFFFFFF);
-        getUIntDigitalParam(        P_Ky,               &Ky,                  0xFFFFFFFF);
-        getUIntDigitalParam(        P_Kq,               &Kq,                  0xFFFFFFFF);
-        getUIntDigitalParam(        P_Ksum,             &Ksum,                0xFFFFFFFF);
         getUIntDigitalParam(coreID, P_TriggerDataThres, &TriggerDataThres,    0xFFFFFFFF);
         getUIntDigitalParam(coreID, P_TriggerDataPol,   &TriggerDataPol,      0xFFFFFFFF);
         getUIntDigitalParam(coreID, P_TriggerDataSel,   &TriggerDataSel,      0xFFFFFFFF);
@@ -2409,13 +2395,16 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
          * avoid warning of the type: warning: narrowing conversion of ...
          * This just comes from the fact that in a particular architecture,
          * epicsUInt32 is unsigned int, but epics types are portable */
-        bpm_parameters_t bpm_parameters = {.kx       = (double) Kx,
-                                           .ky       = (double) Ky,
-                                           .kq       = (double) Kq,
-                                           .ksum     = (double) Ksum,
-                                           .offset_x = (double) XOffset,
-                                           .offset_y = (double) YOffset,
-                                           .offset_q = (double) QOffset
+        /* We use K = 1 and Offsets = 0, as we apply those number at the record
+         * level to give more flexibility. Later we can convert the SP calculation
+         * to the IOC level, as well */
+        bpm_parameters_t bpm_parameters = {.kx       = 1.0,
+                                           .ky       = 1.0,
+                                           .kq       = 1.0,
+                                           .ksum     = 1.0,
+                                           .offset_x = 0.0,
+                                           .offset_y = 0.0,
+                                           .offset_q = 0.0
                                            };
 
         /* Get correct service name*/
@@ -2597,19 +2586,10 @@ void drvBPM::acqMonitTask()
     asynStatus status = asynSuccess;
     int err = HALCS_CLIENT_SUCCESS;
     size_t dims[MAX_WVF_DIMS];
-    epicsUInt32 XOffset;
-    epicsUInt32 YOffset;
-    epicsUInt32 QOffset;
-    epicsUInt32 Kx;
-    epicsUInt32 Ky;
-    epicsUInt32 Kq;
-    epicsUInt32 Ksum;
     epicsUInt32 mask = 0xFFFFFFFF;
     ABCD_ROW abcdRow;
     XYQS_ROW xyqsRow;
     XYQS_ROW xyqsFakeRow;
-    POS_OFFSETS posOffsets;
-    K_FACTORS kFactors;
     epicsTimeStamp startTime;
     epicsTimeStamp endTime;
     NDArray *pArrayMonitData[MAX_MONIT_DATA];
@@ -2661,30 +2641,16 @@ void drvBPM::acqMonitTask()
         if(err == HALCS_CLIENT_SUCCESS) {
             if (dsp_data.new_amp_data) {
                 /* Get offsets and scaling factors */
-                getUIntDigitalParam(P_XOffset, &XOffset, mask);
-                getUIntDigitalParam(P_YOffset, &YOffset, mask);
-                getUIntDigitalParam(P_QOffset, &QOffset, mask);
-                getUIntDigitalParam(P_Kx, &Kx, mask);
-                getUIntDigitalParam(P_Ky, &Ky, mask);
-                getUIntDigitalParam(P_Kq, &Kq, mask);
-                getUIntDigitalParam(P_Ksum, &Ksum, mask);
                 getDoubleParam(P_MonitUpdtTime, &monitUpdtTime);
 
                 /* Prepare for position calculation */
-                posOffsets.XOFFSET = (epicsInt32)XOffset;
-                posOffsets.YOFFSET = (epicsInt32)YOffset;
-                posOffsets.QOFFSET = (epicsInt32)QOffset;
-                kFactors.KX = Kx;
-                kFactors.KY = Ky;
-                kFactors.KQ = Kq;
-                kFactors.KSUM = Ksum;
                 abcdRow.A = dsp_data.amp_ch0;
                 abcdRow.B = dsp_data.amp_ch1;
                 abcdRow.C = dsp_data.amp_ch2;
                 abcdRow.D = dsp_data.amp_ch3;
 
-                ABCDtoXYQS(&abcdRow, &xyqsRow, &kFactors, &posOffsets, 1, true);
-                ABCDtoXYQS(&abcdRow, &xyqsFakeRow, &kFactors, &posOffsets, 1, false);
+                ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
+                ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
 
                 monitData[0] = dsp_data.amp_ch0;
                 monitData[1] = dsp_data.amp_ch1;
@@ -2861,13 +2827,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
         epicsTimeStamp *timeStamp)
 {
     int status = asynSuccess;
-    epicsUInt32 XOffset;
-    epicsUInt32 YOffset;
-    epicsUInt32 QOffset;
-    epicsUInt32 Kx;
-    epicsUInt32 Ky;
-    epicsUInt32 Kq;
-    epicsUInt32 Ksum;
     epicsUInt32 mask = 0xFFFFFFFF;
     NDArrayInfo_t arrayInfo;
     size_t arrayElements = 0;
@@ -2876,8 +2835,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     NDDataType_t NDType;
     ABCD_ROW *abcdRow;
     XYQS_ROW *xyqsRow;
-    POS_OFFSETS posOffsets;
-    K_FACTORS kFactors;
     NDArray *pArrayPosAllChannels = NULL;
     int arrayCounter;
     size_t dims[MAX_WVF_DIMS];
@@ -2888,24 +2845,6 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
         status = asynSuccess;
         goto no_calc_pos;
     }
-
-    /* Get offsets and scaling factors */
-    getUIntDigitalParam(P_XOffset, &XOffset, mask);
-    getUIntDigitalParam(P_YOffset, &YOffset, mask);
-    getUIntDigitalParam(P_QOffset, &QOffset, mask);
-    getUIntDigitalParam(P_Kx, &Kx, mask);
-    getUIntDigitalParam(P_Ky, &Ky, mask);
-    getUIntDigitalParam(P_Kq, &Kq, mask);
-    getUIntDigitalParam(P_Ksum, &Ksum, mask);
-
-    /* FIXME: Interpret bits as signed */
-    posOffsets.XOFFSET = (epicsInt32)XOffset;
-    posOffsets.YOFFSET = (epicsInt32)YOffset;
-    posOffsets.QOFFSET = (epicsInt32)QOffset;
-    kFactors.KX = Kx;
-    kFactors.KY = Ky;
-    kFactors.KQ = Kq;
-    kFactors.KSUM = Ksum;
 
     /* Get NDArray info */
     status = pArrayAllChannels->getInfo(&arrayInfo);
@@ -2960,8 +2899,7 @@ asynStatus drvBPM::computePositions(int coreID, NDArray *pArrayAllChannels, int 
     xyqsRow = (XYQS_ROW *) pArrayPosAllChannels->pData;
 
     /* Compute position for all array positions */
-    ABCDtoXYQS(abcdRow, xyqsRow, &kFactors, &posOffsets,
-            arraySingleElements, true);
+    ABCDtoXYQS(abcdRow, xyqsRow, arraySingleElements, true);
 
     /* Do callbacks on the full waveform (all channels interleaved) */
     doCallbacksGenericPointer(pArrayPosAllChannels, NDArrayData,
@@ -3554,10 +3492,7 @@ asynStatus drvBPM::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
 
             // Theese parameters will trigger a change in Single Pass configuration
             if (bpmMode == BPMModeSinglePass &&
-                    (function == P_Kx || function == P_Ky || function == P_Kq ||
-                     function == P_Ksum || function == P_XOffset || function == P_YOffset ||
-                     function == P_QOffset ||
-                     function == P_SamplesPre || function == P_SamplesPost ||
+                    (function == P_SamplesPre || function == P_SamplesPost ||
                      function == P_NumShots)) {
 
                 /* Send the reconfig. event */

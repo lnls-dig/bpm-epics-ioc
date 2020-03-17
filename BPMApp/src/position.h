@@ -30,41 +30,19 @@ typedef struct
 
 #define XYQS_ROW XYQSRow_t
 
-/* K factors, in nm. */
-typedef struct
-{
-    uint32_t KX;
-    uint32_t KY;
-    uint32_t KQ;
-    uint32_t KSUM;
-} KFactors_t;
-
-#define K_FACTORS KFactors_t
-
-/* Postion offset, in nm. */
-typedef struct
-{
-    int32_t XOFFSET;
-    int32_t YOFFSET;
-    int32_t QOFFSET;
-} PosOffsets_t;
-
-#define POS_OFFSETS PosOffsets_t
-
 /* Calculates the reciprocal */
 double Reciprocal(double X);
 
 /* Wrapper function to ABCD to WYQS with different methods */
-void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
+void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         int Count, bool Diagonal = true, bool PartialDelta = true);
 
 /* Converts Count rows of ABCD button data into XYQS position and intensity
  * data via the configured conversion function. */
-/* void ABCDtoXYQS(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, int Count); */
-void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count, bool Diagonal = true);
+void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, int Count,
+        bool Diagonal = true);
 
 /* Converts Count rows of ABCD button data into XYQS position and intensity
  * using Partial Delta-over-Sum algorithm */
-void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, K_FACTORS *K, POS_OFFSETS *OFFSETS,
-        int Count, bool Diagonal = true);
+void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS, int Count,
+        bool Diagonal = true);
