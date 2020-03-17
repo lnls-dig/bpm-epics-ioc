@@ -29,6 +29,8 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayCoeff-RB")
     field(FTVL, "$(FTVL)")
 }
 
+# Polynomial corrected waveform. Set by BPMPosCalcXY.template or
+# BPMPosCalcSingle.template.
 record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayDataWvf")
 {
     field(DESC, "Position calibrated waveform $(ACQ)$(ARRAY_NAME)")
@@ -47,12 +49,28 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData")
     field(FTVL, "$(FTVL)")
 }
 
-# Apply K and Offsets if we are not using polynomial correction.
-# Otherwise, K and offsets are already taken into calculated in
-# BPMPosCalcXY.template or BPMPosCalcSingle.template
+# Gain and Offset corrected waveform.
+record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData")
+{
+    field(DESC, "gain/offset position $(ACQ)$(ARRAY_NAME_GOFF)")
+    field(DTYP, "Soft Channel")
+    field(NELM,"$(NELEMENTS)")
+    field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)$(POS_GAIN).VAL CPP NMS")
+    field(INPB, "$(P)$(R)$(POS_OFFSET).VAL CPP NMS")
+    field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.VAL CPP NMS")
+    field(WAIT, "Wait")
+    field(OOPT, "Every Time")
+    field(CALC, "A*AA-B")
+}
+
+# Select between GOff (Gain and Offset waveforms) or Poly (Polinomial
+# corrected)
 record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
 {
-    field(DESC, "Use uncal/cal. position $(ACQ)$(ARRAY_NAME)")
+    field(DESC, "Use raw/poly. position $(ACQ)$(ARRAY_NAME)")
     field(DTYP, "Soft Channel")
     field(NELM,"$(NELEMENTS)")
     field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
