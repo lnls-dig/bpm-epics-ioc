@@ -9,14 +9,14 @@ dbpf "${P}${R}GEN_CArrayData.TSE" -2
 dbpf "${P}${R}GEN_DEnableCallbacks" 1
 dbpf "${P}${R}GEN_DArrayData.TSE" -2
 
-dbpf "${P}${R}GEN_UncalXEnableCallbacks" 1
-dbpf "${P}${R}GEN_UncalXArrayData.TSE" -2
-dbpf "${P}${R}GEN_UncalYEnableCallbacks" 1
-dbpf "${P}${R}GEN_UncalYArrayData.TSE" -2
-dbpf "${P}${R}GEN_UncalQEnableCallbacks" 1
-dbpf "${P}${R}GEN_UncalQArrayData.TSE" -2
-dbpf "${P}${R}GEN_UncalSUMEnableCallbacks" 1
-dbpf "${P}${R}GEN_UncalSUMArrayData.TSE" -2
+dbpf "${P}${R}GEN_RawXEnableCallbacks" 1
+dbpf "${P}${R}GEN_RawXArrayData.TSE" -2
+dbpf "${P}${R}GEN_RawYEnableCallbacks" 1
+dbpf "${P}${R}GEN_RawYArrayData.TSE" -2
+dbpf "${P}${R}GEN_RawQEnableCallbacks" 1
+dbpf "${P}${R}GEN_RawQArrayData.TSE" -2
+dbpf "${P}${R}GEN_RawSUMEnableCallbacks" 1
+dbpf "${P}${R}GEN_RawSUMArrayData.TSE" -2
 
 dbpf "${P}${R}PM_AEnableCallbacks" 1
 dbpf "${P}${R}PM_AArrayData.TSE" -2
@@ -27,14 +27,14 @@ dbpf "${P}${R}PM_CArrayData.TSE" -2
 dbpf "${P}${R}PM_DEnableCallbacks" 1
 dbpf "${P}${R}PM_DArrayData.TSE" -2
 
-dbpf "${P}${R}PM_UncalXEnableCallbacks" 1
-dbpf "${P}${R}PM_UncalXArrayData.TSE" -2
-dbpf "${P}${R}PM_UncalYEnableCallbacks" 1
-dbpf "${P}${R}PM_UncalYArrayData.TSE" -2
-dbpf "${P}${R}PM_UncalQEnableCallbacks" 1
-dbpf "${P}${R}PM_UncalQArrayData.TSE" -2
-dbpf "${P}${R}PM_UncalSUMEnableCallbacks" 1
-dbpf "${P}${R}PM_UncalSUMArrayData.TSE" -2
+dbpf "${P}${R}PM_RawXEnableCallbacks" 1
+dbpf "${P}${R}PM_RawXArrayData.TSE" -2
+dbpf "${P}${R}PM_RawYEnableCallbacks" 1
+dbpf "${P}${R}PM_RawYArrayData.TSE" -2
+dbpf "${P}${R}PM_RawQEnableCallbacks" 1
+dbpf "${P}${R}PM_RawQArrayData.TSE" -2
+dbpf "${P}${R}PM_RawSUMEnableCallbacks" 1
+dbpf "${P}${R}PM_RawSUMArrayData.TSE" -2
 
 dbpf "${P}${R}SP_AEnableCallbacks" 1
 dbpf "${P}${R}SP_AArrayData.TSE" -2
