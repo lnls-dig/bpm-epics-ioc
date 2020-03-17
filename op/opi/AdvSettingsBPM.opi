@@ -5710,8 +5710,8 @@ $(pv_value)</tooltip>
     <macros>
       <include_parent_macros>true</include_parent_macros>
       <ACQ>GEN</ACQ>
-      <MODULE_UNCAL>_Uncal</MODULE_UNCAL>
-      <MODULE_CAL>_Cal</MODULE_CAL>
+      <MODULE_RAW>_Raw</MODULE_RAW>
+      <MODULE_POLY>_Poly</MODULE_POLY>
     </macros>
     <name>Grouping Container</name>
     <rules />
@@ -5810,7 +5810,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxX(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxX(1)</pv>
         </rule>
         <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5819,7 +5819,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxY(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxY(1)</pv>
         </rule>
         <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5828,7 +5828,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxQ(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxQ(1)</pv>
         </rule>
         <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5837,7 +5837,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxSUM(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxSUM(1)</pv>
         </rule>
         <rule name="trace4Visibility" prop_id="trace_4_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5846,7 +5846,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxX(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxX(1)</pv>
         </rule>
         <rule name="trace5Visibility" prop_id="trace_5_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5855,7 +5855,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxY(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxY(1)</pv>
         </rule>
         <rule name="trace6Visibility" prop_id="trace_6_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5864,7 +5864,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxQ(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxQ(1)</pv>
         </rule>
         <rule name="trace7Visibility" prop_id="trace_7_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -5873,7 +5873,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxSUM(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxSUM(1)</pv>
         </rule>
       </rules>
       <scale_options>
@@ -5902,7 +5902,7 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_0_buffer_size>10000</trace_0_buffer_size>
       <trace_0_concatenate_data>false</trace_0_concatenate_data>
       <trace_0_line_width>1</trace_0_line_width>
-      <trace_0_name>X$(MODULE_UNCAL)</trace_0_name>
+      <trace_0_name>X$(MODULE_RAW)</trace_0_name>
       <trace_0_plot_mode>0</trace_0_plot_mode>
       <trace_0_point_size>4</trace_0_point_size>
       <trace_0_point_style>0</trace_0_point_style>
@@ -5917,13 +5917,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_0_x_pv></trace_0_x_pv>
       <trace_0_x_pv_value />
       <trace_0_y_axis_index>1</trace_0_y_axis_index>
-      <trace_0_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)XArrayData</trace_0_y_pv>
+      <trace_0_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)XArrayData</trace_0_y_pv>
       <trace_0_y_pv_value />
       <trace_1_anti_alias>true</trace_1_anti_alias>
       <trace_1_buffer_size>10000</trace_1_buffer_size>
       <trace_1_concatenate_data>false</trace_1_concatenate_data>
       <trace_1_line_width>1</trace_1_line_width>
-      <trace_1_name>Y$(MODULE_UNCAL)</trace_1_name>
+      <trace_1_name>Y$(MODULE_RAW)</trace_1_name>
       <trace_1_plot_mode>0</trace_1_plot_mode>
       <trace_1_point_size>4</trace_1_point_size>
       <trace_1_point_style>0</trace_1_point_style>
@@ -5938,13 +5938,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_1_x_pv></trace_1_x_pv>
       <trace_1_x_pv_value />
       <trace_1_y_axis_index>1</trace_1_y_axis_index>
-      <trace_1_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)YArrayData</trace_1_y_pv>
+      <trace_1_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)YArrayData</trace_1_y_pv>
       <trace_1_y_pv_value />
       <trace_2_anti_alias>true</trace_2_anti_alias>
       <trace_2_buffer_size>10000</trace_2_buffer_size>
       <trace_2_concatenate_data>false</trace_2_concatenate_data>
       <trace_2_line_width>1</trace_2_line_width>
-      <trace_2_name>Q$(MODULE_UNCAL)</trace_2_name>
+      <trace_2_name>Q$(MODULE_RAW)</trace_2_name>
       <trace_2_plot_mode>0</trace_2_plot_mode>
       <trace_2_point_size>4</trace_2_point_size>
       <trace_2_point_style>0</trace_2_point_style>
@@ -5959,13 +5959,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_2_x_pv></trace_2_x_pv>
       <trace_2_x_pv_value />
       <trace_2_y_axis_index>1</trace_2_y_axis_index>
-      <trace_2_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)QArrayData</trace_2_y_pv>
+      <trace_2_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)QArrayData</trace_2_y_pv>
       <trace_2_y_pv_value />
       <trace_3_anti_alias>true</trace_3_anti_alias>
       <trace_3_buffer_size>10000</trace_3_buffer_size>
       <trace_3_concatenate_data>false</trace_3_concatenate_data>
       <trace_3_line_width>1</trace_3_line_width>
-      <trace_3_name>SUM$(MODULE_UNCAL)</trace_3_name>
+      <trace_3_name>SUM$(MODULE_RAW)</trace_3_name>
       <trace_3_plot_mode>0</trace_3_plot_mode>
       <trace_3_point_size>4</trace_3_point_size>
       <trace_3_point_style>0</trace_3_point_style>
@@ -5980,13 +5980,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_3_x_pv></trace_3_x_pv>
       <trace_3_x_pv_value />
       <trace_3_y_axis_index>1</trace_3_y_axis_index>
-      <trace_3_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)SUMArrayData</trace_3_y_pv>
+      <trace_3_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)SUMArrayData</trace_3_y_pv>
       <trace_3_y_pv_value />
       <trace_4_anti_alias>true</trace_4_anti_alias>
       <trace_4_buffer_size>10000</trace_4_buffer_size>
       <trace_4_concatenate_data>false</trace_4_concatenate_data>
       <trace_4_line_width>1</trace_4_line_width>
-      <trace_4_name>X$(MODULE_CAL)</trace_4_name>
+      <trace_4_name>X$(MODULE_POLY)</trace_4_name>
       <trace_4_plot_mode>0</trace_4_plot_mode>
       <trace_4_point_size>4</trace_4_point_size>
       <trace_4_point_style>0</trace_4_point_style>
@@ -6001,13 +6001,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_4_x_pv></trace_4_x_pv>
       <trace_4_x_pv_value />
       <trace_4_y_axis_index>1</trace_4_y_axis_index>
-      <trace_4_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)XArrayData</trace_4_y_pv>
+      <trace_4_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)XArrayData</trace_4_y_pv>
       <trace_4_y_pv_value />
       <trace_5_anti_alias>true</trace_5_anti_alias>
       <trace_5_buffer_size>10000</trace_5_buffer_size>
       <trace_5_concatenate_data>false</trace_5_concatenate_data>
       <trace_5_line_width>1</trace_5_line_width>
-      <trace_5_name>Y$(MODULE_CAL)</trace_5_name>
+      <trace_5_name>Y$(MODULE_POLY)</trace_5_name>
       <trace_5_plot_mode>0</trace_5_plot_mode>
       <trace_5_point_size>4</trace_5_point_size>
       <trace_5_point_style>0</trace_5_point_style>
@@ -6022,13 +6022,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_5_x_pv></trace_5_x_pv>
       <trace_5_x_pv_value />
       <trace_5_y_axis_index>1</trace_5_y_axis_index>
-      <trace_5_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)YArrayData</trace_5_y_pv>
+      <trace_5_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)YArrayData</trace_5_y_pv>
       <trace_5_y_pv_value />
       <trace_6_anti_alias>true</trace_6_anti_alias>
       <trace_6_buffer_size>10000</trace_6_buffer_size>
       <trace_6_concatenate_data>false</trace_6_concatenate_data>
       <trace_6_line_width>1</trace_6_line_width>
-      <trace_6_name>Q$(MODULE_CAL)</trace_6_name>
+      <trace_6_name>Q$(MODULE_POLY)</trace_6_name>
       <trace_6_plot_mode>0</trace_6_plot_mode>
       <trace_6_point_size>4</trace_6_point_size>
       <trace_6_point_style>0</trace_6_point_style>
@@ -6043,13 +6043,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_6_x_pv></trace_6_x_pv>
       <trace_6_x_pv_value />
       <trace_6_y_axis_index>1</trace_6_y_axis_index>
-      <trace_6_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)QArrayData</trace_6_y_pv>
+      <trace_6_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)QArrayData</trace_6_y_pv>
       <trace_6_y_pv_value />
       <trace_7_anti_alias>true</trace_7_anti_alias>
       <trace_7_buffer_size>10000</trace_7_buffer_size>
       <trace_7_concatenate_data>false</trace_7_concatenate_data>
       <trace_7_line_width>1</trace_7_line_width>
-      <trace_7_name>SUM$(MODULE_CAL)</trace_7_name>
+      <trace_7_name>SUM$(MODULE_POLY)</trace_7_name>
       <trace_7_plot_mode>0</trace_7_plot_mode>
       <trace_7_point_size>4</trace_7_point_size>
       <trace_7_point_style>0</trace_7_point_style>
@@ -6064,7 +6064,7 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_7_x_pv></trace_7_x_pv>
       <trace_7_x_pv_value />
       <trace_7_y_axis_index>1</trace_7_y_axis_index>
-      <trace_7_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)SUMArrayData</trace_7_y_pv>
+      <trace_7_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)SUMArrayData</trace_7_y_pv>
       <trace_7_y_pv_value />
       <trace_count>8</trace_count>
       <transparent>false</transparent>
@@ -6103,7 +6103,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_8</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxX(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxX(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6190,7 +6190,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_9</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxY(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxY(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6237,7 +6237,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_10</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxQ(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxQ(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6284,7 +6284,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_11</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxSUM(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxSUM(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6585,7 +6585,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_8</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxX(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxX(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6672,7 +6672,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_9</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxY(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxY(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6719,7 +6719,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_10</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxQ(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxQ(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -6766,7 +6766,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_11</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxSUM(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxSUM(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7028,8 +7028,8 @@ $(pv_value)</tooltip>
     <macros>
       <include_parent_macros>true</include_parent_macros>
       <ACQ>PM</ACQ>
-      <MODULE_UNCAL>_Uncal</MODULE_UNCAL>
-      <MODULE_CAL>_Cal</MODULE_CAL>
+      <MODULE_RAW>_Raw</MODULE_RAW>
+      <MODULE_POLY>_Poly</MODULE_POLY>
     </macros>
     <name>Grouping Container_1</name>
     <rules />
@@ -7128,7 +7128,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxX(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxX(1)</pv>
         </rule>
         <rule name="trace1Visibility" prop_id="trace_1_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7137,7 +7137,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxY(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxY(1)</pv>
         </rule>
         <rule name="trace2Visibility" prop_id="trace_2_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7146,7 +7146,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxQ(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxQ(1)</pv>
         </rule>
         <rule name="trace3Visibility" prop_id="trace_3_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7155,7 +7155,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxSUM(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxSUM(1)</pv>
         </rule>
         <rule name="trace4Visibility" prop_id="trace_4_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7164,7 +7164,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxX(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxX(1)</pv>
         </rule>
         <rule name="trace5Visibility" prop_id="trace_5_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7173,7 +7173,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxY(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxY(1)</pv>
         </rule>
         <rule name="trace6Visibility" prop_id="trace_6_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7182,7 +7182,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxQ(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxQ(1)</pv>
         </rule>
         <rule name="trace7Visibility" prop_id="trace_7_visible" out_exp="false">
           <exp bool_exp="pv0 == 0">
@@ -7191,7 +7191,7 @@ $(pv_value)</tooltip>
           <exp bool_exp="pv0 == 1">
             <value>true</value>
           </exp>
-          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxSUM(1)</pv>
+          <pv trig="true">loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxSUM(1)</pv>
         </rule>
       </rules>
       <scale_options>
@@ -7220,7 +7220,7 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_0_buffer_size>10000</trace_0_buffer_size>
       <trace_0_concatenate_data>false</trace_0_concatenate_data>
       <trace_0_line_width>1</trace_0_line_width>
-      <trace_0_name>X$(MODULE_UNCAL)</trace_0_name>
+      <trace_0_name>X$(MODULE_RAW)</trace_0_name>
       <trace_0_plot_mode>0</trace_0_plot_mode>
       <trace_0_point_size>4</trace_0_point_size>
       <trace_0_point_style>0</trace_0_point_style>
@@ -7235,13 +7235,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_0_x_pv></trace_0_x_pv>
       <trace_0_x_pv_value />
       <trace_0_y_axis_index>1</trace_0_y_axis_index>
-      <trace_0_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)XArrayData</trace_0_y_pv>
+      <trace_0_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)XArrayData</trace_0_y_pv>
       <trace_0_y_pv_value />
       <trace_1_anti_alias>true</trace_1_anti_alias>
       <trace_1_buffer_size>10000</trace_1_buffer_size>
       <trace_1_concatenate_data>false</trace_1_concatenate_data>
       <trace_1_line_width>1</trace_1_line_width>
-      <trace_1_name>Y$(MODULE_UNCAL)</trace_1_name>
+      <trace_1_name>Y$(MODULE_RAW)</trace_1_name>
       <trace_1_plot_mode>0</trace_1_plot_mode>
       <trace_1_point_size>4</trace_1_point_size>
       <trace_1_point_style>0</trace_1_point_style>
@@ -7256,13 +7256,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_1_x_pv></trace_1_x_pv>
       <trace_1_x_pv_value />
       <trace_1_y_axis_index>1</trace_1_y_axis_index>
-      <trace_1_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)YArrayData</trace_1_y_pv>
+      <trace_1_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)YArrayData</trace_1_y_pv>
       <trace_1_y_pv_value />
       <trace_2_anti_alias>true</trace_2_anti_alias>
       <trace_2_buffer_size>10000</trace_2_buffer_size>
       <trace_2_concatenate_data>false</trace_2_concatenate_data>
       <trace_2_line_width>1</trace_2_line_width>
-      <trace_2_name>Q$(MODULE_UNCAL)</trace_2_name>
+      <trace_2_name>Q$(MODULE_RAW)</trace_2_name>
       <trace_2_plot_mode>0</trace_2_plot_mode>
       <trace_2_point_size>4</trace_2_point_size>
       <trace_2_point_style>0</trace_2_point_style>
@@ -7277,13 +7277,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_2_x_pv></trace_2_x_pv>
       <trace_2_x_pv_value />
       <trace_2_y_axis_index>1</trace_2_y_axis_index>
-      <trace_2_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)QArrayData</trace_2_y_pv>
+      <trace_2_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)QArrayData</trace_2_y_pv>
       <trace_2_y_pv_value />
       <trace_3_anti_alias>true</trace_3_anti_alias>
       <trace_3_buffer_size>10000</trace_3_buffer_size>
       <trace_3_concatenate_data>false</trace_3_concatenate_data>
       <trace_3_line_width>1</trace_3_line_width>
-      <trace_3_name>SUM$(MODULE_UNCAL)</trace_3_name>
+      <trace_3_name>SUM$(MODULE_RAW)</trace_3_name>
       <trace_3_plot_mode>0</trace_3_plot_mode>
       <trace_3_point_size>4</trace_3_point_size>
       <trace_3_point_style>0</trace_3_point_style>
@@ -7298,13 +7298,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_3_x_pv></trace_3_x_pv>
       <trace_3_x_pv_value />
       <trace_3_y_axis_index>1</trace_3_y_axis_index>
-      <trace_3_y_pv>$(P)$(R)$(ACQ)$(MODULE_UNCAL)SUMArrayData</trace_3_y_pv>
+      <trace_3_y_pv>$(P)$(R)$(ACQ)$(MODULE_RAW)SUMArrayData</trace_3_y_pv>
       <trace_3_y_pv_value />
       <trace_4_anti_alias>true</trace_4_anti_alias>
       <trace_4_buffer_size>10000</trace_4_buffer_size>
       <trace_4_concatenate_data>false</trace_4_concatenate_data>
       <trace_4_line_width>1</trace_4_line_width>
-      <trace_4_name>X$(MODULE_CAL)</trace_4_name>
+      <trace_4_name>X$(MODULE_POLY)</trace_4_name>
       <trace_4_plot_mode>0</trace_4_plot_mode>
       <trace_4_point_size>4</trace_4_point_size>
       <trace_4_point_style>0</trace_4_point_style>
@@ -7319,13 +7319,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_4_x_pv></trace_4_x_pv>
       <trace_4_x_pv_value />
       <trace_4_y_axis_index>1</trace_4_y_axis_index>
-      <trace_4_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)XArrayData</trace_4_y_pv>
+      <trace_4_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)XArrayData</trace_4_y_pv>
       <trace_4_y_pv_value />
       <trace_5_anti_alias>true</trace_5_anti_alias>
       <trace_5_buffer_size>10000</trace_5_buffer_size>
       <trace_5_concatenate_data>false</trace_5_concatenate_data>
       <trace_5_line_width>1</trace_5_line_width>
-      <trace_5_name>Y$(MODULE_CAL)</trace_5_name>
+      <trace_5_name>Y$(MODULE_POLY)</trace_5_name>
       <trace_5_plot_mode>0</trace_5_plot_mode>
       <trace_5_point_size>4</trace_5_point_size>
       <trace_5_point_style>0</trace_5_point_style>
@@ -7340,13 +7340,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_5_x_pv></trace_5_x_pv>
       <trace_5_x_pv_value />
       <trace_5_y_axis_index>1</trace_5_y_axis_index>
-      <trace_5_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)YArrayData</trace_5_y_pv>
+      <trace_5_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)YArrayData</trace_5_y_pv>
       <trace_5_y_pv_value />
       <trace_6_anti_alias>true</trace_6_anti_alias>
       <trace_6_buffer_size>10000</trace_6_buffer_size>
       <trace_6_concatenate_data>false</trace_6_concatenate_data>
       <trace_6_line_width>1</trace_6_line_width>
-      <trace_6_name>Q$(MODULE_CAL)</trace_6_name>
+      <trace_6_name>Q$(MODULE_POLY)</trace_6_name>
       <trace_6_plot_mode>0</trace_6_plot_mode>
       <trace_6_point_size>4</trace_6_point_size>
       <trace_6_point_style>0</trace_6_point_style>
@@ -7361,13 +7361,13 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_6_x_pv></trace_6_x_pv>
       <trace_6_x_pv_value />
       <trace_6_y_axis_index>1</trace_6_y_axis_index>
-      <trace_6_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)QArrayData</trace_6_y_pv>
+      <trace_6_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)QArrayData</trace_6_y_pv>
       <trace_6_y_pv_value />
       <trace_7_anti_alias>true</trace_7_anti_alias>
       <trace_7_buffer_size>10000</trace_7_buffer_size>
       <trace_7_concatenate_data>false</trace_7_concatenate_data>
       <trace_7_line_width>1</trace_7_line_width>
-      <trace_7_name>SUM$(MODULE_CAL)</trace_7_name>
+      <trace_7_name>SUM$(MODULE_POLY)</trace_7_name>
       <trace_7_plot_mode>0</trace_7_plot_mode>
       <trace_7_point_size>4</trace_7_point_size>
       <trace_7_point_style>0</trace_7_point_style>
@@ -7382,7 +7382,7 @@ $(trace_0_y_pv_value)</tooltip>
       <trace_7_x_pv></trace_7_x_pv>
       <trace_7_x_pv_value />
       <trace_7_y_axis_index>1</trace_7_y_axis_index>
-      <trace_7_y_pv>$(P)$(R)$(ACQ)$(MODULE_CAL)SUMArrayData</trace_7_y_pv>
+      <trace_7_y_pv>$(P)$(R)$(ACQ)$(MODULE_POLY)SUMArrayData</trace_7_y_pv>
       <trace_7_y_pv_value />
       <trace_count>8</trace_count>
       <transparent>false</transparent>
@@ -7421,7 +7421,7 @@ $(trace_0_y_pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_8</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxX(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxX(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7508,7 +7508,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_9</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxY(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxY(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7555,7 +7555,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_10</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxQ(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxQ(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7602,7 +7602,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_11</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_UNCAL)CheckBoxSUM(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_RAW)CheckBoxSUM(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7903,7 +7903,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_8</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxX(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxX(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -7990,7 +7990,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_9</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxY(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxY(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -8037,7 +8037,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_10</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxQ(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxQ(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -8084,7 +8084,7 @@ $(pv_value)</tooltip>
       <height>30</height>
       <label></label>
       <name>Check Box_11</name>
-      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_CAL)CheckBoxSUM(1)</pv_name>
+      <pv_name>loc://$(P)$(R)$(ACQ)$(MODULE_POLY)CheckBoxSUM(1)</pv_name>
       <pv_value />
       <rules />
       <scale_options>
@@ -8328,9 +8328,9 @@ $(pv_value)</tooltip>
       <macros>
         <include_parent_macros>true</include_parent_macros>
         <TEXT>X Coeff.</TEXT>
-        <MODULE_CAL>_CalX</MODULE_CAL>
+        <MODULE_POLY>_PolyX</MODULE_POLY>
         <MODULE>_X</MODULE>
-        <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
+        <MODULE_POLY_ASUBCALC>_PolyXY</MODULE_POLY_ASUBCALC>
         <GLOBAL_MODULE_NAME>XY</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container_2</name>
@@ -8373,9 +8373,9 @@ $(pv_value)</tooltip>
       <macros>
         <include_parent_macros>true</include_parent_macros>
         <TEXT>Y Coeff.</TEXT>
-        <MODULE_CAL>_CalY</MODULE_CAL>
+        <MODULE_POLY>_PolyY</MODULE_POLY>
         <MODULE>_Y</MODULE>
-        <MODULE_CAL_CALC>_CalXY</MODULE_CAL_CALC>
+        <MODULE_POLY_ASUBCALC>_PolyXY</MODULE_POLY_ASUBCALC>
         <GLOBAL_MODULE_NAME>XY</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container_1</name>
@@ -8418,9 +8418,9 @@ $(pv_value)</tooltip>
       <macros>
         <include_parent_macros>true</include_parent_macros>
         <TEXT>Q Coeff.</TEXT>
-        <MODULE_CAL>_CalQ</MODULE_CAL>
+        <MODULE_POLY>_PolyQ</MODULE_POLY>
         <MODULE>_Q</MODULE>
-        <MODULE_CAL_CALC>_CalQ</MODULE_CAL_CALC>
+        <MODULE_POLY_ASUBCALC>_PolyQ</MODULE_POLY_ASUBCALC>
         <GLOBAL_MODULE_NAME>Q</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container</name>
@@ -8463,9 +8463,9 @@ $(pv_value)</tooltip>
       <macros>
         <include_parent_macros>true</include_parent_macros>
         <TEXT>SUM Coeff.</TEXT>
-        <MODULE_CAL>_CalSUM</MODULE_CAL>
+        <MODULE_POLY>_PolySUM</MODULE_POLY>
         <MODULE>_SUM</MODULE>
-        <MODULE_CAL_CALC>_CalSUM</MODULE_CAL_CALC>
+        <MODULE_POLY_ASUBCALC>_PolySUM</MODULE_POLY_ASUBCALC>
         <GLOBAL_MODULE_NAME>SUM</GLOBAL_MODULE_NAME>
       </macros>
       <name>Linking Container_3</name>
