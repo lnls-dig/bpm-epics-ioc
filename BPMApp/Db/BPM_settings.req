@@ -7,14 +7,14 @@ file "BPMActiveClk_settings.req",   P=$(P), R=$(R)
 file "BPMAdcCommon_settings.req",   P=$(P), R=$(R)
 file "BPMDsp_settings.req",         P=$(P), R=$(R), GLOBAL_ARRAY_NAME_XY=XY, GLOBAL_ARRAY_NAME_Q=Q, GLOBAL_ARRAY_NAME_SUM=SUM
 file "BPMFFT_settings.req",         P=$(P), R=$(R)
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_X, ARRAY_NAME_UNCAL=_UncalX, ARRAY_NAME_CAL=_CalX
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Y, ARRAY_NAME_UNCAL=_UncalY, ARRAY_NAME_CAL=_CalY
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Q, ARRAY_NAME_UNCAL=_UncalQ, ARRAY_NAME_CAL=_CalQ
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_SUM, ARRAY_NAME_UNCAL=_UncalSUM, ARRAY_NAME_CAL=_CalSUM
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_X, ARRAY_NAME_UNCAL=_UncalX, ARRAY_NAME_CAL=_CalX
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Y, ARRAY_NAME_UNCAL=_UncalY, ARRAY_NAME_CAL=_CalY
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Q, ARRAY_NAME_UNCAL=_UncalQ, ARRAY_NAME_CAL=_CalQ
-file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_SUM, ARRAY_NAME_UNCAL=_UncalSUM, ARRAY_NAME_CAL=_CalSUM
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_X, ARRAY_NAME_GOFF=_GOffX, ARRAY_NAME_POLY=_PolyX
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Y, ARRAY_NAME_GOFF=_GOffY, ARRAY_NAME_POLY=_PolyY
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_Q, ARRAY_NAME_GOFF=_GOffQ, ARRAY_NAME_POLY=_PolyQ
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=_SUM, ARRAY_NAME_GOFF=_GOffSUM, ARRAY_NAME_POLY=_PolySUM
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_X, ARRAY_NAME_GOFF=_GOffX, ARRAY_NAME_POLY=_PolyX
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Y, ARRAY_NAME_GOFF=_GOffY, ARRAY_NAME_POLY=_PolyY
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_Q, ARRAY_NAME_GOFF=_GOffQ, ARRAY_NAME_POLY=_PolyQ
+file "BPMPos_settings.req",         P=$(P), R=$(R), ACQ=PM, ARRAY_NAME=_SUM, ARRAY_NAME_GOFF=_GOffSUM, ARRAY_NAME_POLY=_PolySUM
 file "BPMFmc130m_4ch_settings.req", P=$(P), R=$(R)
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=0
 file "BPMFmc250m_4ch_settings.req", P=$(P), R=$(R), ADC_CHAN=1
