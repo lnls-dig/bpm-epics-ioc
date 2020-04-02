@@ -271,69 +271,86 @@ record(longin,"$(P)$(R)AmplD-Mon"){
     field(EGU, "au")
 }
 
-record(ai,"$(P)$(R)PosX-Mon"){
+record(calc,"$(P)$(R)PosX-Mon"){
     field(DESC,"Monitoring Position X")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)MONIT_XArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_XArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_XArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKx-RB.VAL NPP NMS")
+    field(INPC, "$(P)$(R)PosXOffset-RB.VAL NPP NMS")
+    field(CALC, "B*A-C")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)PosXFake-Mon"){
+record(calc,"$(P)$(R)PosXFake-Mon"){
     field(DESC,"Monitoring Position X Fake")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
-    field(EGU, "nm")
     field(TSEL, "$(P)$(R)MONIT_FAKEXArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_FAKEXArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_FAKEXArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKx-RB.VAL NPP NMS")
+    field(INPC, "$(P)$(R)PosXOffset-RB.VAL NPP NMS")
+    field(CALC, "B*A-C")
+    field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)PosY-Mon"){
+record(calc,"$(P)$(R)PosY-Mon"){
     field(DESC,"Monitoring Position Y")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)MONIT_YArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_YArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_YArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKy-RB.VAL NPP NMS")
+    field(INPC, "$(P)$(R)PosYOffset-RB.VAL NPP NMS")
+    field(CALC, "B*A-C")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)PosYFake-Mon"){
+record(calc,"$(P)$(R)PosYFake-Mon"){
     field(DESC,"Monitoring Position Y Fake")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)MONIT_FAKEYArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_FAKEYArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_FAKEYArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKy-RB.VAL NPP NMS")
+    field(INPC, "$(P)$(R)PosYOffset-RB.VAL NPP NMS")
+    field(CALC, "B*A-C")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)PosQ-Mon"){
+record(calc,"$(P)$(R)PosQ-Mon"){
     field(DESC,"Monitoring Position Q")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)MONIT_QArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_QArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_QArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKq-RB.VAL NPP NMS")
+    field(INPC, "$(P)$(R)PosQOffset-RB.VAL NPP NMS")
+    field(CALC, "B*A-C")
     field(EGU, "nm")
 }
 
-record(ai,"$(P)$(R)Sum-Mon"){
+record(calc,"$(P)$(R)Sum-Mon"){
     field(DESC,"Monitoring Sum")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(MDEL, "-1")
     field(ADEL, "-1")
     field(TSEL, "$(P)$(R)MONIT_SUMArrayData.TIME")
-    field(INP,  "$(P)$(R)MONIT_SUMArrayData CPP NMS")
+    field(INPA, "$(P)$(R)MONIT_SUMArrayData CPP NMS")
+    field(INPB, "$(P)$(R)PosKsum-RB.VAL NPP NMS")
+    field(CALC, "B*A")
     field(EGU, "au")
 }
 
