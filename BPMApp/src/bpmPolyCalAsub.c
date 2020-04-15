@@ -100,13 +100,13 @@ static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
                     x3*(coeffx3y0_x + coeffx3y2_x*y2  + coeffx3y4_x*y4  + coeffx3y6_x*y6) +
                     x5*(coeffx5y0_x + coeffx5y2_x*y2  + coeffx5y4_x*y4) +
                     x7*(coeffx7y0_x + coeffx7y2_x*y2) +
-                    x9*(coeffx9y0_x)) - 
+                    x9*(coeffx9y0_x)) -
                    in_offs_x;
         out_y[i] = (y1*(coeffx0y1_y + coeffx2y1_y*x2  + coeffx4y1_y*x4  + coeffx6y1_y*x6  + coeffx8y1_y*x8) +
                     y3*(coeffx0y3_y + coeffx2y3_y*x2  + coeffx4y3_y*x4  + coeffx6y3_y*x6) +
                     y5*(coeffx0y5_y + coeffx2y5_y*x2  + coeffx4y5_y*x4) +
                     y7*(coeffx0y7_y + coeffx2y7_y*x2) +
-                    y9*(coeffx0y9_y)) - 
+                    y9*(coeffx0y9_y)) -
                    in_offs_y;
     }
 
