@@ -69,8 +69,8 @@ static long bpmPolyCalXYProcessAsub(aSubRecord *prec)
     double coeffx0y7_y = in_coeff_y[12];
     double coeffx2y7_y = in_coeff_y[13];
     double coeffx0y9_y = in_coeff_y[14];
-    long in_offs_x = *(long *) prec->g;
-    long in_offs_y = *(long *) prec->h;
+    double in_offs_x = *(double *) prec->g;
+    double in_offs_y = *(double *) prec->h;
     double *out_x = (double *) prec->vala;
     double *out_y = (double *) prec->valb;
     int i = 0;
@@ -129,7 +129,7 @@ static long bpmPolyCalQProcessAsub(aSubRecord *prec)
     double coeffx5y1_q = in_coeff_q[6];
     double coeffx5y3_q = in_coeff_q[7];
     double coeffx5y5_q = in_coeff_q[8];
-    long in_offs_q = *(long *) prec->f;
+    double in_offs_q = *(double *) prec->f;
     double *out_q = (double *) prec->vala;
     int i = 0;
 
@@ -177,7 +177,7 @@ static long bpmPolyCalSUMProcessAsub(aSubRecord *prec)
     double coeffx6y2_sum = in_coeff_sum[13];
     double coeffx6y4_sum = in_coeff_sum[14];
     double coeffx6y6_sum = in_coeff_sum[15];
-    long in_offs_sum = *(long *) prec->f;
+    double in_offs_sum = *(double *) prec->f;
     double *out_sum = (double *) prec->vala;
     int i = 0;
 
