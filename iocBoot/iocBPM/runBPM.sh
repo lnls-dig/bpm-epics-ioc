@@ -36,8 +36,9 @@ SDB_FILENAME_TYPE=be
 SDB_FILENAME_SUFFIX=info
 SDB_FILENAME_HALCS_IDX=0
 
-BOARD_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $2}')
-HALCS_IDX=$(/usr/local/share/halcs/scripts/generate-board-halcs-idx.sh ${BPM_NUMBER} | awk '{print $3}')
+INSTANCE_IDX=$(echo ${BPM_NUMBER} | sed 's|.*-||g')
+BOARD_IDX=$(expr ${INSTANCE_IDX} / 2 + ${INSTANCE_IDX} % 2)
+HALCS_IDX=$(expr 1 - ${INSTANCE_IDX} % 2)
 # Compose filename as example: halcsd8_be0_info.log
 SDB_FILENAME=${SDB_FILENAME_PATH}/${SDB_FILENAME_PREFIX}${BOARD_IDX}_${SDB_FILENAME_TYPE}${SDB_FILENAME_HALCS_IDX}_${SDB_FILENAME_SUFFIX}.log
 

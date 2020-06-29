@@ -5,6 +5,7 @@ $(P)$(R)PosKsum-SP
 $(P)$(R)PosXOffset-SP
 $(P)$(R)PosYOffset-SP
 $(P)$(R)PosQOffset-SP
+$(P)$(R)MONITUpdtTime-SP
 $(P)$(R)SwTagEn-Sel
 $(P)$(R)SwDataMaskEn-Sel
 $(P)$(R)SwDataMaskSamples-SP
