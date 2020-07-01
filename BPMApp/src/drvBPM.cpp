@@ -2590,17 +2590,13 @@ void drvBPM::acqMonitTask()
     ABCD_ROW abcdRow;
     XYQS_ROW xyqsRow;
     XYQS_ROW xyqsFakeRow;
-    epicsTimeStamp startTime;
-    epicsTimeStamp endTime;
     NDArray *pArrayMonitData[MAX_MONIT_DATA];
     double monitData[MAX_MONIT_DATA];
     NDDataType_t NDType = NDFloat64;
     int NDArrayAddrInit = WVF_MONIT_AMP_A;
     epicsTimeStamp now;
     int monitEnable = 0;
-    double elapsedTime;
     double monitUpdtTime = 0.05; // 20 Hz
-    double delay;
     static const char *functionName = "acqMonitTask";
     char service[SERVICE_NAME_SIZE];
 
@@ -2625,7 +2621,13 @@ void drvBPM::acqMonitTask()
         }
     }
 
-    smio_dsp_data_t dsp_data;
+    err = halcs_set_monit_subscription (bpmClientMonit, "MONIT_DATA", "MONIT_AMP");
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto set_monit_subscription_err;
+    }
+
+    smio_dsp_monit_data_t monit_data;
     while (1) {
 
         getIntegerParam(P_MonitEnable, &monitEnable);
@@ -2635,50 +2637,39 @@ void drvBPM::acqMonitTask()
             epicsEventWait(activeMonitEnableEventId);
         }
 
-        epicsTimeGetCurrent(&startTime);
-
-        err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
+        err = halcs_get_monit_stream (bpmClientMonit, "MONIT_AMP", &monit_data);
         if(err == HALCS_CLIENT_SUCCESS) {
-            if (dsp_data.new_amp_data) {
-                /* Get offsets and scaling factors */
-                getDoubleParam(P_MonitUpdtTime, &monitUpdtTime);
+            /* Prepare for position calculation */
+            abcdRow.A = monit_data.amp_ch0;
+            abcdRow.B = monit_data.amp_ch1;
+            abcdRow.C = monit_data.amp_ch2;
+            abcdRow.D = monit_data.amp_ch3;
 
-                /* Prepare for position calculation */
-                abcdRow.A = dsp_data.amp_ch0;
-                abcdRow.B = dsp_data.amp_ch1;
-                abcdRow.C = dsp_data.amp_ch2;
-                abcdRow.D = dsp_data.amp_ch3;
+            ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
+            ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
 
-                ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
-                ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
+            monitData[0] = monit_data.amp_ch0;
+            monitData[1] = monit_data.amp_ch1;
+            monitData[2] = monit_data.amp_ch2;
+            monitData[3] = monit_data.amp_ch3;
+            monitData[4] = xyqsRow.X;
+            monitData[5] = xyqsRow.Y;
+            monitData[6] = xyqsRow.Q;
+            monitData[7] = xyqsRow.S;
+            monitData[8] = xyqsFakeRow.X;
+            monitData[9] = xyqsFakeRow.Y;
 
-                monitData[0] = dsp_data.amp_ch0;
-                monitData[1] = dsp_data.amp_ch1;
-                monitData[2] = dsp_data.amp_ch2;
-                monitData[3] = dsp_data.amp_ch3;
-                monitData[4] = xyqsRow.X;
-                monitData[5] = xyqsRow.Y;
-                monitData[6] = xyqsRow.Q;
-                monitData[7] = xyqsRow.S;
-                monitData[8] = xyqsFakeRow.X;
-                monitData[9] = xyqsFakeRow.Y;
+            epicsTimeGetCurrent(&now);
 
-                epicsTimeGetCurrent(&now);
-                for (int i = 0; i < MAX_MONIT_DATA; ++i) {
-                    /* NDArray atributtes */
-                    pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-                    pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
-                    pArrayMonitData[i]->epicsTS.nsec = now.nsec;
-                    getAttributes(pArrayMonitData[i]->pAttributeList);
-                    /* NDArray data */
-                    *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
-                    doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
-                }
-            }
-            else {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: no new Monit. data AMP/POS.\n",
-                        driverName, functionName);
+            for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                /* NDArray atributtes */
+                pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                getAttributes(pArrayMonitData[i]->pAttributeList);
+                /* NDArray data */
+                *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
             }
         }
         else {
@@ -2686,17 +2677,9 @@ void drvBPM::acqMonitTask()
                     "%s:%s: Could not get Monit. AMP/POS data. Status = %d\n",
                     driverName, functionName, err);
         }
-
-        epicsTimeGetCurrent(&endTime);
-        elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
-        delay = monitUpdtTime - elapsedTime;
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: Some time has passed (%f) out of our budget (%f). Sleeping for %f s\n",
-                driverName, functionName, elapsedTime, monitUpdtTime, delay);
-        if (delay >= 0.0) {
-            epicsThreadSleep(delay);
-        }
     }
+
+set_monit_subscription_err:
 
 alloc_ndarray_err:
     for (int i = 0; i < MAX_MONIT_DATA; ++i) {
