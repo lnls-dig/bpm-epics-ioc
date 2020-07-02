@@ -2609,6 +2609,9 @@ void drvBPM::acqMonitTask()
         goto get_service_err;
     }
 
+    /* Format channel name */
+    strncat (service, ":DATA_PRODUCER", sizeof(service));
+
     dims[0] = 1;
     for (int i = 0; i < MAX_MONIT_DATA; ++i) {
         pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
@@ -2621,7 +2624,7 @@ void drvBPM::acqMonitTask()
         }
     }
 
-    err = halcs_set_monit_subscription (bpmClientMonit, "MONIT_DATA", "MONIT_AMP");
+    err = halcs_set_monit_subscription (bpmClientMonit, service, "MONIT_AMP");
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto set_monit_subscription_err;
