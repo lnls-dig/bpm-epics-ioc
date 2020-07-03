@@ -498,6 +498,7 @@ static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32
                                                                                            halcs_get_tbt_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
                                                                                             halcs_get_tbt_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -977,8 +978,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,        &P_ChannelAtomWidth);
 
     /* Create MONIT/SP parameters */
-    createParam(P_MonitUpdtTimeString,
-                                    asynParamFloat64,               &P_MonitUpdtTime);
+    createParam(P_MonitPollTimeString,
+                                    asynParamUInt32Digital,        &P_MonitPollTime);
     createParam(P_MonitEnableString,
                                     asynParamInt32,                 &P_MonitEnable);
 
@@ -1047,6 +1048,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_MonitPollTime, bpmSetGetMonitPollTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1319,7 +1321,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Set MONIT/SP parameters */
-    setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
+    setUIntDigitalParam(P_MonitPollTime, 4, 0xFFFFFFFF); // 4ms = 250 Hz
     setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
     setDoubleParam(P_SPAmpA,            0.0);
@@ -2590,17 +2592,12 @@ void drvBPM::acqMonitTask()
     ABCD_ROW abcdRow;
     XYQS_ROW xyqsRow;
     XYQS_ROW xyqsFakeRow;
-    epicsTimeStamp startTime;
-    epicsTimeStamp endTime;
     NDArray *pArrayMonitData[MAX_MONIT_DATA];
     double monitData[MAX_MONIT_DATA];
     NDDataType_t NDType = NDFloat64;
     int NDArrayAddrInit = WVF_MONIT_AMP_A;
     epicsTimeStamp now;
     int monitEnable = 0;
-    double elapsedTime;
-    double monitUpdtTime = 0.05; // 20 Hz
-    double delay;
     static const char *functionName = "acqMonitTask";
     char service[SERVICE_NAME_SIZE];
 
@@ -2612,6 +2609,9 @@ void drvBPM::acqMonitTask()
             driverName, functionName, status);
         goto get_service_err;
     }
+
+    /* Format channel name */
+    strncat (service, ":DATA_PRODUCER", sizeof(service));
 
     dims[0] = 1;
     for (int i = 0; i < MAX_MONIT_DATA; ++i) {
@@ -2625,60 +2625,58 @@ void drvBPM::acqMonitTask()
         }
     }
 
-    smio_dsp_data_t dsp_data;
+    err = halcs_set_monit_subscription (bpmClientMonit, service, "MONIT_AMP");
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto set_monit_subscription_err;
+    }
+
+    smio_dsp_monit_data_t monit_data;
     while (1) {
 
         getIntegerParam(P_MonitEnable, &monitEnable);
         if (!monitEnable) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            /* remove subscription to avoid burst of old data when enabling */
+            halcs_remove_monit_subscription (bpmClientMonit, service);
             epicsEventWait(activeMonitEnableEventId);
+            halcs_set_monit_subscription (bpmClientMonit, service, "MONIT_AMP");
         }
 
-        epicsTimeGetCurrent(&startTime);
-
-        err = halcs_get_monit_amp_pos (bpmClientMonit, service, &dsp_data);
+        err = halcs_get_monit_stream (bpmClientMonit, "MONIT_AMP", &monit_data);
         if(err == HALCS_CLIENT_SUCCESS) {
-            if (dsp_data.new_amp_data) {
-                /* Get offsets and scaling factors */
-                getDoubleParam(P_MonitUpdtTime, &monitUpdtTime);
+            /* Prepare for position calculation */
+            abcdRow.A = monit_data.amp_ch0;
+            abcdRow.B = monit_data.amp_ch1;
+            abcdRow.C = monit_data.amp_ch2;
+            abcdRow.D = monit_data.amp_ch3;
 
-                /* Prepare for position calculation */
-                abcdRow.A = dsp_data.amp_ch0;
-                abcdRow.B = dsp_data.amp_ch1;
-                abcdRow.C = dsp_data.amp_ch2;
-                abcdRow.D = dsp_data.amp_ch3;
+            ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
+            ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
 
-                ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
-                ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
+            monitData[0] = monit_data.amp_ch0;
+            monitData[1] = monit_data.amp_ch1;
+            monitData[2] = monit_data.amp_ch2;
+            monitData[3] = monit_data.amp_ch3;
+            monitData[4] = xyqsRow.X;
+            monitData[5] = xyqsRow.Y;
+            monitData[6] = xyqsRow.Q;
+            monitData[7] = xyqsRow.S;
+            monitData[8] = xyqsFakeRow.X;
+            monitData[9] = xyqsFakeRow.Y;
 
-                monitData[0] = dsp_data.amp_ch0;
-                monitData[1] = dsp_data.amp_ch1;
-                monitData[2] = dsp_data.amp_ch2;
-                monitData[3] = dsp_data.amp_ch3;
-                monitData[4] = xyqsRow.X;
-                monitData[5] = xyqsRow.Y;
-                monitData[6] = xyqsRow.Q;
-                monitData[7] = xyqsRow.S;
-                monitData[8] = xyqsFakeRow.X;
-                monitData[9] = xyqsFakeRow.Y;
+            epicsTimeGetCurrent(&now);
 
-                epicsTimeGetCurrent(&now);
-                for (int i = 0; i < MAX_MONIT_DATA; ++i) {
-                    /* NDArray atributtes */
-                    pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-                    pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
-                    pArrayMonitData[i]->epicsTS.nsec = now.nsec;
-                    getAttributes(pArrayMonitData[i]->pAttributeList);
-                    /* NDArray data */
-                    *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
-                    doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
-                }
-            }
-            else {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                        "%s:%s: no new Monit. data AMP/POS.\n",
-                        driverName, functionName);
+            for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                /* NDArray atributtes */
+                pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                getAttributes(pArrayMonitData[i]->pAttributeList);
+                /* NDArray data */
+                *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
             }
         }
         else {
@@ -2686,17 +2684,9 @@ void drvBPM::acqMonitTask()
                     "%s:%s: Could not get Monit. AMP/POS data. Status = %d\n",
                     driverName, functionName, err);
         }
-
-        epicsTimeGetCurrent(&endTime);
-        elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
-        delay = monitUpdtTime - elapsedTime;
-        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                "%s:%s: Some time has passed (%f) out of our budget (%f). Sleeping for %f s\n",
-                driverName, functionName, elapsedTime, monitUpdtTime, delay);
-        if (delay >= 0.0) {
-            epicsThreadSleep(delay);
-        }
     }
+
+set_monit_subscription_err:
 
 alloc_ndarray_err:
     for (int i = 0; i < MAX_MONIT_DATA; ++i) {

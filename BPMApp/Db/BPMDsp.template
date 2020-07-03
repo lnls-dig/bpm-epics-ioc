@@ -202,28 +202,63 @@ record(bi,"$(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sts") {
 ############################################################################
 
 record(ao,"$(P)$(R)MONITUpdtTime-SP"){
-    field(DTYP,"asynFloat64")
     field(DESC,"set MONIT AMP/POS update time")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(DRVH,"1")
-    field(DRVL,"0.0001")
+    field(DRVL,"0.001")
     field(HOPR,"1")
-    field(LOPR,"0.0001")
-    field(PREC,"4")
-    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_UPDTTIME")
+    field(LOPR,"0.001")
+    field(PREC,"3")
     field(EGU, "s")
+    field(FLNK,"$(P)$(R)MONITUpdtTimeConv PP NMS")
     field(VAL, "0.01")
 }
 
-record(ai,"$(P)$(R)MONITUpdtTime-RB"){
-    field(DTYP,"asynFloat64")
-    field(DESC,"get MONIT AMP/POS update time")
+record(calcout,"$(P)$(R)MONITUpdtTimeConv"){
+    field(DESC,"MONIT AMP/POS update time conv")
+    field(SCAN,"Passive")
+    field(INPA, "$(P)$(R)MONITUpdtTime-SP NPP NMS")
+    field(INPB, "1000")
+    field(CALC, "FLOOR(A*B)")
+    field(OOPT, "On Change")
+    field(OUT, "$(P)$(R)MONITPollTime-SP PP NMS")
+}
+
+record(longout,"$(P)$(R)MONITPollTime-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set MONIT AMP/POS poll time")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_POLL_TIME")
+    field(EGU, "ms")
+}
+
+record(longin,"$(P)$(R)MONITPollTime-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get MONIT AMP/POS poll time")
     field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_POLL_TIME")
+    field(EGU, "ms")
+    field(FLNK, "$(P)$(R)MONITPollTimeConv PP NMS")
+}
+
+record(calcout,"$(P)$(R)MONITPollTimeConv"){
+    field(DESC,"MONIT AMP/POS poll time conv")
+    field(SCAN,"Passive")
+    field(INPA, "$(P)$(R)MONITPollTime-RB NPP NMS")
+    field(INPB, "1000")
+    field(CALC, "A/B")
+    field(OOPT, "On Change")
+    field(OUT, "$(P)$(R)MONITUpdtTime-RB PP NMS")
+}
+
+record(ai,"$(P)$(R)MONITUpdtTime-RB"){
+    field(DESC,"get MONIT AMP/POS update time")
+    field(SCAN,"Passive")
     field(HOPR,"1")
-    field(LOPR,"0.0001")
-    field(PREC,"4")
-    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MONIT_UPDTTIME")
+    field(LOPR,"0.001")
+    field(PREC,"3")
     field(EGU, "s")
 }
 

@@ -507,7 +507,7 @@ private:
 #define P_MonitPosQString           "MONITPOS_Q"            /* asynFloat64,            r/o */
 #define P_MonitPosSumString         "MONITPOS_SUM"          /* asynFloat64,            r/o */
 #define P_MonitUpdtString           "MONIT_UPDT"            /* asynUInt32Digital,      r/w */
-#define P_MonitUpdtTimeString       "MONIT_UPDTTIME"        /* asynFloat64,            r/w */
+#define P_MonitPollTimeString       "MONIT_POLL_TIME"       /* asynUInt32Digital,      r/w */
 #define P_MonitEnableString         "MONIT_ENABLE"          /* asynInt32,              r/w */
 #define P_SPAmpAString              "SP_AMP_A"              /* asynFloat64,            r/o */
 #define P_SPAmpBString              "SP_AMP_B"              /* asynFloat64,            r/o */
@@ -734,7 +734,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitPosQ;
         int P_MonitPosSum;
         int P_MonitUpdt;
-        int P_MonitUpdtTime;
+        int P_MonitPollTime;
         int P_MonitEnable;
         int P_SPAmpA;
         int P_SPAmpB;
