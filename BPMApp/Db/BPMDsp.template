@@ -230,7 +230,7 @@ record(longout,"$(P)$(R)MONITPollTime-SP"){
     field(DESC,"set MONIT AMP/POS poll time")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDTTIME")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_POLL_TIME")
     field(EGU, "ms")
 }
 
@@ -238,7 +238,7 @@ record(longin,"$(P)$(R)MONITPollTime-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get MONIT AMP/POS poll time")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_UPDTTIME")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))MONIT_POLL_TIME")
     field(EGU, "ms")
     field(FLNK, "$(P)$(R)MONITPollTimeConv PP NMS")
 }

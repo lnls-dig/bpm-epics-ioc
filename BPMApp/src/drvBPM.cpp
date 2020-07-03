@@ -498,7 +498,7 @@ static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32
                                                                                            halcs_get_tbt_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
                                                                                             halcs_get_tbt_tag_desync_cnt}};
-static const functionsAny_t bpmSetGetMonitUpdtTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
+static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -978,8 +978,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,        &P_ChannelAtomWidth);
 
     /* Create MONIT/SP parameters */
-    createParam(P_MonitUpdtTimeString,
-                                    asynParamUInt32Digital,        &P_MonitUpdtTime);
+    createParam(P_MonitPollTimeString,
+                                    asynParamUInt32Digital,        &P_MonitPollTime);
     createParam(P_MonitEnableString,
                                     asynParamInt32,                 &P_MonitEnable);
 
@@ -1048,7 +1048,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
-    bpmHwFunc.emplace(P_MonitUpdtTime, bpmSetGetMonitUpdtTimeFunc);
+    bpmHwFunc.emplace(P_MonitPollTime, bpmSetGetMonitPollTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1321,7 +1321,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Set MONIT/SP parameters */
-    setUIntDigitalParam(P_MonitUpdtTime, 4, 0xFFFFFFFF); // 4ms = 250 Hz
+    setUIntDigitalParam(P_MonitPollTime, 4, 0xFFFFFFFF); // 4ms = 250 Hz
     setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
     setDoubleParam(P_SPAmpA,            0.0);
