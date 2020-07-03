@@ -498,6 +498,7 @@ static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32
                                                                                            halcs_get_tbt_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
                                                                                             halcs_get_tbt_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetMonitUpdtTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -978,7 +979,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
 
     /* Create MONIT/SP parameters */
     createParam(P_MonitUpdtTimeString,
-                                    asynParamFloat64,               &P_MonitUpdtTime);
+                                    asynParamUInt32Digital,        &P_MonitUpdtTime);
     createParam(P_MonitEnableString,
                                     asynParamInt32,                 &P_MonitEnable);
 
@@ -1047,6 +1048,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_MonitUpdtTime, bpmSetGetMonitUpdtTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
 #if 0
@@ -1319,7 +1321,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     }
 
     /* Set MONIT/SP parameters */
-    setDoubleParam(P_MonitUpdtTime,     0.05); //20 Hz
+    setUIntDigitalParam(P_MonitUpdtTime, 4, 0xFFFFFFFF); // 4ms = 250 Hz
     setIntegerParam(P_MonitEnable,      0);    // Disable by default
 
     setDoubleParam(P_SPAmpA,            0.0);
@@ -2596,7 +2598,6 @@ void drvBPM::acqMonitTask()
     int NDArrayAddrInit = WVF_MONIT_AMP_A;
     epicsTimeStamp now;
     int monitEnable = 0;
-    double monitUpdtTime = 0.05; // 20 Hz
     static const char *functionName = "acqMonitTask";
     char service[SERVICE_NAME_SIZE];
 
@@ -2637,7 +2638,10 @@ void drvBPM::acqMonitTask()
         if (!monitEnable) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            /* remove subscription to avoid burst of old data when enabling */
+            halcs_remove_monit_subscription (bpmClientMonit, service);
             epicsEventWait(activeMonitEnableEventId);
+            halcs_set_monit_subscription (bpmClientMonit, service, "MONIT_AMP");
         }
 
         err = halcs_get_monit_stream (bpmClientMonit, "MONIT_AMP", &monit_data);
