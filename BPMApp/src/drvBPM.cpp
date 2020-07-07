@@ -1304,6 +1304,30 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_TbtTagDesyncCnt,
                                         0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagEn,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDly, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskEn, 
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDesyncCnt,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagEn,   0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDly,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskEn, 
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDesyncCnt,
+                                        0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
