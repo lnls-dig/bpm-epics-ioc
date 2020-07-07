@@ -463,19 +463,33 @@ private:
 #define P_QOffsetString             "DSP_QOFFSET"           /* asynUInt32Digital,      r/w */
 #define P_SwTagEnString             "DSP_SW_TAG_EN"         /* asynUInt32Digital,      r/w */
 #define P_SwDataMaskEnString        "DSP_SW_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
-#define P_SwDataMaskSamplesString   "DSP_SW_DATA_MASK_SAMPLES"  /* asynUInt32Digital,      r/w */
-#define P_TbtTagEnString            "DSP_TBT_TAG_EN"         /* asynUInt32Digital,      r/w */
-#define P_TbtTagDlyString           "DSP_TBT_TAG_DLY"       /* asynUInt32Digital,      r/w */
-#define P_TbtDataMaskEnString       "DSP_TBT_DATA_MASK_EN"   /* asynUInt32Digital,      r/w */
+#define P_SwDataMaskSamplesString   "DSP_SW_DATA_MASK_SAMPLES"          /* asynUInt32Digital,      r/w */
+#define P_TbtTagEnString            "DSP_TBT_TAG_EN"                    /* asynUInt32Digital,      r/w */
+#define P_TbtTagDlyString           "DSP_TBT_TAG_DLY"                   /* asynUInt32Digital,      r/w */
+#define P_TbtDataMaskEnString       "DSP_TBT_DATA_MASK_EN"              /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesBegString  "DSP_TBT_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
 #define P_TbtDataMaskSamplesEndString  "DSP_TBT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
-#define P_SwTagDesyncCntRstString   "DSP_SW_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
-#define P_SwTagDesyncCntString      "DSP_SW_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntRstString   "DSP_SW_TAG_DESYNC_CNT_RST"         /* asynUInt32Digital,      r/w */
+#define P_SwTagDesyncCntString      "DSP_SW_TAG_DESYNC_CNT"             /* asynUInt32Digital,      r/w */
 #define P_TbtTagDesyncCntRstString   "DSP_TBT_TAG_DESYNC_CNT_RST"  /* asynUInt32Digital,      r/w */
-#define P_TbtTagDesyncCntString      "DSP_TBT_TAG_DESYNC_CNT"   /* asynUInt32Digital,      r/w */
-#define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG" /* asynUInt32Digital,      r/w */
-#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH" /* asynUInt32Digital,      r/w */
-#define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH" /* asynUInt32Digital,      r/w */
+#define P_TbtTagDesyncCntString      "DSP_TBT_TAG_DESYNC_CNT"      /* asynUInt32Digital,      r/w */
+#define P_Monit1TagEnString            "DSP_MONIT1_TAG_EN"            /* asynUInt32Digital,      r/w */
+#define P_Monit1TagDlyString           "DSP_MONIT1_TAG_DLY"           /* asynUInt32Digital,      r/w */
+#define P_Monit1DataMaskEnString       "DSP_MONIT1_DATA_MASK_EN"      /* asynUInt32Digital,      r/w */
+#define P_Monit1DataMaskSamplesBegString  "DSP_MONIT1_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
+#define P_Monit1DataMaskSamplesEndString  "DSP_MONIT1_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
+#define P_Monit1TagDesyncCntRstString   "DSP_MONIT1_TAG_DESYNC_CNT_RST" /* asynUInt32Digital,      r/w */
+#define P_Monit1TagDesyncCntString      "DSP_MONIT1_TAG_DESYNC_CNT"     /* asynUInt32Digital,      r/w */
+#define P_MonitTagEnString            "DSP_MONIT_TAG_EN"            /* asynUInt32Digital,      r/w */
+#define P_MonitTagDlyString           "DSP_MONIT_TAG_DLY"           /* asynUInt32Digital,      r/w */
+#define P_MonitDataMaskEnString       "DSP_MONIT_DATA_MASK_EN"      /* asynUInt32Digital,      r/w */
+#define P_MonitDataMaskSamplesBegString  "DSP_MONIT_DATA_MASK_SAMPLES_BEG"  /* asynUInt32Digital,      r/w */
+#define P_MonitDataMaskSamplesEndString  "DSP_MONIT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
+#define P_MonitTagDesyncCntRstString   "DSP_MONIT_TAG_DESYNC_CNT_RST" /* asynUInt32Digital,      r/w */
+#define P_MonitTagDesyncCntString      "DSP_MONIT_TAG_DESYNC_CNT"     /* asynUInt32Digital,      r/w */
+#define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG"        /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH"   /* asynUInt32Digital,      r/w */
+#define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH"   /* asynUInt32Digital,      r/w */
 #define P_TimRcvPhaseMeasString     "TIM_RCV_PHASE_MEAS"    /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDAFreqString     "TIM_RCV_DMTD_A_FREQ"   /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBFreqString     "TIM_RCV_DMTD_B_FREQ"   /* asynUInt32Digital,      r/w */
@@ -700,6 +714,20 @@ class drvBPM : public asynNDArrayDriver {
         int P_SwTagDesyncCnt;
         int P_TbtTagDesyncCntRst;
         int P_TbtTagDesyncCnt;
+        int P_Monit1TagEn;
+        int P_Monit1TagDly;
+        int P_Monit1DataMaskEn;
+        int P_Monit1DataMaskSamplesBeg;
+        int P_Monit1DataMaskSamplesEnd;
+        int P_Monit1TagDesyncCntRst;
+        int P_Monit1TagDesyncCnt;
+        int P_MonitTagEn;
+        int P_MonitTagDly;
+        int P_MonitDataMaskEn;
+        int P_MonitDataMaskSamplesBeg;
+        int P_MonitDataMaskSamplesEnd;
+        int P_MonitTagDesyncCntRst;
+        int P_MonitTagDesyncCnt;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;
