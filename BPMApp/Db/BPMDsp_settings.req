@@ -14,6 +14,16 @@ $(P)$(R)TbtTagDly-SP
 $(P)$(R)TbtDataMaskEn-Sel
 $(P)$(R)TbtDataMaskSamplesBeg-SP
 $(P)$(R)TbtDataMaskSamplesEnd-SP
+$(P)$(R)Monit1TagEn-Sel
+$(P)$(R)Monit1TagDly-SP
+$(P)$(R)Monit1DataMaskEn-Sel
+$(P)$(R)Monit1DataMaskSamplesBeg-SP
+$(P)$(R)Monit1DataMaskSamplesEnd-SP
+$(P)$(R)MonitTagEn-Sel
+$(P)$(R)MonitTagDly-SP
+$(P)$(R)MonitDataMaskEn-Sel
+$(P)$(R)MonitDataMaskSamplesBeg-SP
+$(P)$(R)MonitDataMaskSamplesEnd-SP
 $(P)$(R)$(GLOBAL_ARRAY_NAME_XY)PosCal-Sel
 $(P)$(R)$(GLOBAL_ARRAY_NAME_Q)PosCal-Sel
 $(P)$(R)$(GLOBAL_ARRAY_NAME_SUM)PosCal-Sel

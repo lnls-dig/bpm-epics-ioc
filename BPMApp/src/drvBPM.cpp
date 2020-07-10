@@ -498,6 +498,30 @@ static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32
                                                                                            halcs_get_tbt_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
                                                                                             halcs_get_tbt_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetMonit1TagEnFunc =              {functionsInt32_t{"DSP", halcs_set_monit1_tag_en, halcs_get_monit1_tag_en}};
+static const functionsAny_t bpmSetGetMonit1TagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_monit1_tag_dly, halcs_get_monit1_tag_dly}};
+static const functionsAny_t bpmSetGetMonit1DataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_en,
+                                                                                            halcs_get_monit1_data_mask_en}};
+static const functionsAny_t bpmSetGetMonit1DataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_samples_beg,
+                                                                                         halcs_get_monit1_data_mask_samples_beg}};
+static const functionsAny_t bpmSetGetMonit1DataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_samples_end,
+                                                                                            halcs_get_monit1_data_mask_samples_end}};
+static const functionsAny_t bpmSetGetMonit1TagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_monit1_tag_desync_cnt_rst,
+                                                                                           halcs_get_monit1_tag_desync_cnt_rst}};
+static const functionsAny_t bpmSetGetMonit1TagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+                                                                                            halcs_get_monit1_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetMonitTagEnFunc =              {functionsInt32_t{"DSP", halcs_set_monit_tag_en, halcs_get_monit_tag_en}};
+static const functionsAny_t bpmSetGetMonitTagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_monit_tag_dly, halcs_get_monit_tag_dly}};
+static const functionsAny_t bpmSetGetMonitDataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_monit_data_mask_en,
+                                                                                            halcs_get_monit_data_mask_en}};
+static const functionsAny_t bpmSetGetMonitDataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_monit_data_mask_samples_beg,
+                                                                                         halcs_get_monit_data_mask_samples_beg}};
+static const functionsAny_t bpmSetGetMonitDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_monit_data_mask_samples_end,
+                                                                                            halcs_get_monit_data_mask_samples_end}};
+static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_monit_tag_desync_cnt_rst,
+                                                                                           halcs_get_monit_tag_desync_cnt_rst}};
+static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+                                                                                            halcs_get_monit_tag_desync_cnt}};
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
@@ -927,6 +951,34 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_TbtTagDesyncCntRst);
     createParam(P_TbtTagDesyncCntString,
                                     asynParamUInt32Digital,         &P_TbtTagDesyncCnt);
+    createParam(P_Monit1TagEnString,
+                                    asynParamUInt32Digital,         &P_Monit1TagEn);
+    createParam(P_Monit1TagDlyString,
+                                    asynParamUInt32Digital,         &P_Monit1TagDly);
+    createParam(P_Monit1DataMaskEnString,
+                                    asynParamUInt32Digital,         &P_Monit1DataMaskEn);
+    createParam(P_Monit1DataMaskSamplesBegString,
+                                    asynParamUInt32Digital,         &P_Monit1DataMaskSamplesBeg);
+    createParam(P_Monit1DataMaskSamplesEndString,
+                                    asynParamUInt32Digital,         &P_Monit1DataMaskSamplesEnd);
+    createParam(P_Monit1TagDesyncCntRstString,
+                                    asynParamUInt32Digital,         &P_Monit1TagDesyncCntRst);
+    createParam(P_Monit1TagDesyncCntString,
+                                    asynParamUInt32Digital,         &P_Monit1TagDesyncCnt);
+    createParam(P_MonitTagEnString,
+                                    asynParamUInt32Digital,         &P_MonitTagEn);
+    createParam(P_MonitTagDlyString,
+                                    asynParamUInt32Digital,         &P_MonitTagDly);
+    createParam(P_MonitDataMaskEnString,
+                                    asynParamUInt32Digital,         &P_MonitDataMaskEn);
+    createParam(P_MonitDataMaskSamplesBegString,
+                                    asynParamUInt32Digital,         &P_MonitDataMaskSamplesBeg);
+    createParam(P_MonitDataMaskSamplesEndString,
+                                    asynParamUInt32Digital,         &P_MonitDataMaskSamplesEnd);
+    createParam(P_MonitTagDesyncCntRstString,
+                                    asynParamUInt32Digital,         &P_MonitTagDesyncCntRst);
+    createParam(P_MonitTagDesyncCntString,
+                                    asynParamUInt32Digital,         &P_MonitTagDesyncCnt);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
     createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
@@ -1048,6 +1100,20 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_Monit1TagEn, bpmSetGetMonit1TagEnFunc);
+    bpmHwFunc.emplace(P_Monit1TagDly, bpmSetGetMonit1TagDlyFunc);
+    bpmHwFunc.emplace(P_Monit1DataMaskEn, bpmSetGetMonit1DataMaskEnFunc);
+    bpmHwFunc.emplace(P_Monit1DataMaskSamplesBeg, bpmSetGetMonit1DataMaskSamplesBegFunc);
+    bpmHwFunc.emplace(P_Monit1DataMaskSamplesEnd, bpmSetGetMonit1DataMaskSamplesEndFunc);
+    bpmHwFunc.emplace(P_Monit1TagDesyncCntRst, bpmSetGetMonit1TagDesyncCntRstFunc);
+    bpmHwFunc.emplace(P_Monit1TagDesyncCnt, bpmSetGetMonit1TagDesyncCntFunc);
+    bpmHwFunc.emplace(P_MonitTagEn, bpmSetGetMonitTagEnFunc);
+    bpmHwFunc.emplace(P_MonitTagDly, bpmSetGetMonitTagDlyFunc);
+    bpmHwFunc.emplace(P_MonitDataMaskEn, bpmSetGetMonitDataMaskEnFunc);
+    bpmHwFunc.emplace(P_MonitDataMaskSamplesBeg, bpmSetGetMonitDataMaskSamplesBegFunc);
+    bpmHwFunc.emplace(P_MonitDataMaskSamplesEnd, bpmSetGetMonitDataMaskSamplesEndFunc);
+    bpmHwFunc.emplace(P_MonitTagDesyncCntRst, bpmSetGetMonitTagDesyncCntRstFunc);
+    bpmHwFunc.emplace(P_MonitTagDesyncCnt, bpmSetGetMonitTagDesyncCntFunc);
     bpmHwFunc.emplace(P_MonitPollTime, bpmSetGetMonitPollTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
@@ -1237,6 +1303,30 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_TbtTagDesyncCntRst,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_TbtTagDesyncCnt,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagEn,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDly, 0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskEn, 
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1DataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1TagDesyncCnt,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagEn,   0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDly,  0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskEn, 
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskSamplesBeg,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitDataMaskSamplesEnd,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDesyncCntRst,
+                                        0,                  0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitTagDesyncCnt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
     setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
