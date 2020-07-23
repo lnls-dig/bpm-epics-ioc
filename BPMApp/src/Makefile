@@ -26,6 +26,7 @@ DBD += BPMSupport.dbd
 # Include dbd files from all support applications:
 BPM_DBD += base.dbd
 BPM_DBD += asyn.dbd
+BPM_DBD += devIocStats.dbd
 BPM_DBD += FFTRecords.dbd
 
 # BPM_registerRecordDeviceDriver.cpp derives from BPM.dbd
@@ -41,6 +42,7 @@ BPM_LIBS += BPMSupport
 BPM_LIBS += asyn
 BPM_LIBS += autosave
 BPM_LIBS += FFTRecords
+BPM_LIBS += devIocStats
 
 # Link to the EPICS Base libraries
 BPM_LIBS += $(EPICS_BASE_IOC_LIBS)
