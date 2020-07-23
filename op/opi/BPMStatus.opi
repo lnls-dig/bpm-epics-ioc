@@ -5486,7 +5486,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>29</height>
+    <height>27</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_1</name>
     <pv_name>$(P)$(R)SwMode-Sel</pv_name>
@@ -6709,7 +6709,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>29</height>
+    <height>27</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_3</name>
     <pv_name>$(P)$(R)$(ACQ_NAME)BPMMode-Sel</pv_name>
@@ -10327,5 +10327,56 @@ $(pv_value)</tooltip>
     <wuid>-3dba0f95:169d9099c4f:-7936</wuid>
     <x>580</x>
     <y>340</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>ioc_stats_soft.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <ioc>$(P)$(R)Stats</ioc>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <image></image>
+    <name>Action Button_18</name>
+    <push_action_index>0</push_action_index>
+    <pv_name></pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <style>1</style>
+    <text>Stats</text>
+    <toggle_button>false</toggle_button>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Action Button</widget_type>
+    <width>74</width>
+    <wuid>-795e279d:1735ed8c5ca:-1ca6</wuid>
+    <x>280</x>
+    <y>36</y>
   </widget>
 </display>
