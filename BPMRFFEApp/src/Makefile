@@ -22,6 +22,7 @@ DBD += BPMRFFESupport.dbd
 # Include dbd files from all support applications:
 BPMRFFE_DBD += base.dbd
 BPMRFFE_DBD += asyn.dbd
+BPMRFFE_DBD += devIocStats.dbd
 
 # BPMRFFE_registerRecordDeviceDriver.cpp derives from BPM.dbd
 BPMRFFE_SRCS += BPMRFFE_registerRecordDeviceDriver.cpp
@@ -35,6 +36,7 @@ BPMRFFE_LIBS += BPMRFFESupport
 BPMRFFE_LIBS += asyn
 BPMRFFE_LIBS += autosave
 BPMRFFE_LIBS += FFTRecords
+BPMRFFE_LIBS += devIocStats
 
 # Link to the EPICS Base libraries
 BPMRFFE_LIBS += $(EPICS_BASE_IOC_LIBS)
