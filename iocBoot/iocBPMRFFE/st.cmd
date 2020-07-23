@@ -3,6 +3,12 @@
 # Override default TOP variable
 epicsEnvSet("TOP","../..")
 
+# devIOCStats vars
+epicsEnvSet("ENGINEER","$(ENGINEER=Lucas Russo)")
+epicsEnvSet("LOCATION","$(LOCATION=DIGS)")
+epicsEnvSet("STARTUP","$(TOP)")
+epicsEnvSet("ST_CMD","st.cmd")
+
 < BPMRFFE.config
 
 ## Register all support components
@@ -14,6 +20,9 @@ drvBPMRFFEConfigure("$(BPM_NAME)", "$(BPM_ENDPOINT)", "$(BPM_NUMBER)", "$(BPM_VE
 ## Load record instances
 dbLoadRecords("${TOP}/db/BPMRffe.template", "P=${P}, R=${R}, PORT=$(BPM_NAME), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}RFFEasyn,PORT=$(BPM_NAME),ADDR=0,OMAX=80,IMAX=80")
+# devIOCStats records
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}RFFEStats")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}RFFEStats")
 
 < save_restore.cmd
 

@@ -5,6 +5,12 @@ epicsEnvSet("TOP","../..")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 epicsEnvSet("BPM_TYPE","FMC250M_4CH")
 
+# devIOCStats vars
+epicsEnvSet("ENGINEER","$(ENGINEER=Lucas Russo)")
+epicsEnvSet("LOCATION","$(LOCATION=DIGS)")
+epicsEnvSet("STARTUP","$(TOP)")
+epicsEnvSet("ST_CMD","stBPM250.cmd")
+
 < BPM.config
 
 ## Register all support components
@@ -23,6 +29,9 @@ dbLoadRecords("${TOP}/db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), A
 dbLoadRecords("${TOP}/db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
+# devIOCStats records
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}Stats")
 
 < triggerBPM.cmd
 < fmc250m_4ch.cmd
