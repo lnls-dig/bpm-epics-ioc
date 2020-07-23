@@ -80,6 +80,7 @@ AUTOSAVE=$(SUPPORT)/autosave-R5-9
 BUSY=$(SUPPORT)/busy-R1-7-1
 FFT=FFTRecordsApp
 AREA_DETECTOR=$(SUPPORT)/areaDetector-R3-6
+DEVIOCSTATS=$(SUPPORT)/iocStats-3-1-15
 ADCORE=$(AREA_DETECTOR)/ADCore
 ## Set our custom variable so Area Detector path remains the same
 ## for synApps_5_7 and synApps_5_8
