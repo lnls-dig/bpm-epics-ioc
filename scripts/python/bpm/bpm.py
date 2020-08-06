@@ -263,16 +263,17 @@ class BPM:
         """ Get acquisition status """
         pvobj = self._config_pvs_rb['ACQStatus']
         stts = bpmEnums.ACQSTATES
-        okay = pvobj.char_value not in {
+        acq_stt = pvobj.get(as_string=True)
+        okay = acq_stt not in {
             stts['Error'], stts['No Memory'], stts['Too Few Samples'],
             stts['Too Many Samples'], stts['Acq Overflow']}
 
         if self.acq_event == bpmEnums.ACQEVENTS['Start']:
-            okay &= pvobj.char_value not in {
+            okay &= acq_stt not in {
                 stts['Waiting'], stts['External Trig'], stts['Data Trig'],
                 stts['Software Trig'], stts['Acquiring']}
         else:
-            okay &= pvobj.char_value in {stts['Idle'], stts['Aborted']}
+            okay &= acq_stt in {stts['Idle'], stts['Aborted']}
         return okay
 
     @property
