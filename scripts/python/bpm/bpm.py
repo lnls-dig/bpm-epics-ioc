@@ -1,4 +1,5 @@
 from epics import PV
+from time import sleep
 
 class BPMEnums:
     """BPM enumerated types"""
@@ -380,6 +381,12 @@ class BPM:
         pvobj = self._config_pvs_sp['ACQTriggerEvent']
         if pvobj.connected:
             pvobj.put(val, wait=False)
+
+            # Wait until acquistion is actually started
+            stts = bpmEnums.ACQSTATES
+            pvobj_sts = self._config_pvs_rb['ACQStatus']
+            while pvobj_sts.get(as_string=True, use_monitor=False) not in {stts['Acquiring']}:
+                sleep(0.1)
 
     @property
     def acq_channel(self):
