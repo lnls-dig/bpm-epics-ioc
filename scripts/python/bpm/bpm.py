@@ -4,16 +4,16 @@ class BPMEnums:
     """BPM enumerated types"""
 
     TRIGDIR = {
-        'Transmitter' : 0,
-        'Receiver'    : 1
+        'Transmitter' : 'trn',
+        'Receiver'    : 'rcv'
     }
     TRIGDIRPOL = {
-        'Same'     : 0,
-        'Reversed' : 1
+        'Same'     : 'same',
+        'Reversed' : 'rev'
     }
     TRIGSRC = {
-        'External' : 0,
-        'Internal' : 1
+        'External' : 'ext',
+        'Internal' : 'int'
     }
     TRIGEXTERN = {
         'Machine1'          : 0,
@@ -56,82 +56,82 @@ class BPMEnums:
         'Unconnected9' : 23
     }
     SWMODES = {
-        'Rffe_switching' : 0,
-        'Direct'         : 1,
-        'Inverted'       : 2,
-        'Wwitching'      : 3
+        'Rffe_switching' : 'rffe_switching',
+        'Direct'         : 'direct',
+        'Inverted'       : 'inverted',
+        'Switching'      : 'switching'
     }
     SWTAGENBL = {
-        'Disabled' : 0,
-        'Enabled'  : 1
+        'Disabled' : 'disabled',
+        'Enabled'  : 'enabled'
     }
     SWDATAMASKENBL = {
-        'Disabled' : 0,
-        'Enabled'  : 1
+        'Disabled' : 'disabled',
+        'Enabled'  : 'enabled'
     }
     MONITENBL = {
-        'No'  : 0,
-        'Yes' : 1
+        'No'  : 'No',
+        'Yes' : 'Yes'
     }
     OPMODES = {
-        'MultiBunch': 0,
-        'SinglePass': 1
+        'MultiBunch': 'MultiBunch',
+        'SinglePass': 'SinglePass'
     }
     POLARITY = {
-        'Positive': 0,
-        'Negative': 1
+        'Positive' : 'positive',
+        'Negative' : 'negative'
     }
     ENBLTYP = {
-        'Disabled' : 0,
-        'Enabled'  : 1
+        'Disabled' : 'disabled',
+        'Enabled'  : 'enabled'
     }
     ENBLDDSBLD = {
-        'Disabled' : 0,
-        'Enabled'  : 1
+        'Disabled' : 'disabled',
+        'Enabled'  : 'enabled'
     }
     ACQREPEAT = {
-        'Normal'     : 0,
-        'Repetitive' : 1
+        'Normal'     : 'normal',
+        'Repetitive' : 'repetitive'
     }
     ACQEVENTS = {
-        'Start' : 0,
-        'Stop'  : 1,
-        'Abort' : 2
+        'Start' : 'start',
+        'Stop'  : 'stop',
+        'Abort' : 'abort'
     }
     ACQDATATYP = {
-        'A': 0,
-        'B': 1,
-        'C': 2,
-        'D': 3
+        'A': 'A',
+        'B': 'B',
+        'C': 'C',
+        'D': 'D'
     }
     ACQCHAN = {
-        'ADC'     : 0,
-        'ADCSwap' : 1,
-        'TbT'     : 2,
-        'FOFB'    : 3,
-        'TbTPha'  : 4,
-        'FOFBPha' : 5,
-        'Monit1'  : 6
+        'ADC'     : 'adc',
+        'ADCSwap' : 'adcswap',
+        'TbT'     : 'tbt',
+        'FOFB'    : 'fofb',
+        'TbTPha'  : 'tbtpha',
+        'FOFBPha' : 'fofbpha',
+        'Monit1'  : 'monit1'
     }
     ACQSTATES = {
-        'Idle'             : 0,
-        'Waiting'          : 1,
-        'External Trig'    : 2,
-        'Data Trig'        : 3,
-        'Software Trig'    : 4,
-        'Acquiring'        : 5,
-        'Error'            : 6,
-        'Aborted'          : 7,
-        'Too Many Samples' : 8,
-        'Too Few Samples'  : 9,
-        'No Memory'        : 10,
-        'Acq Overflow'     : 11
+        'Idle'             : 'Idle',
+        'Waiting'          : 'Waiting',
+        'External Trig'    : 'External Trig',
+        'Data Trig'        : 'Data Trig',
+        'Software Trig'    : 'Software Trig',
+        'Acquiring'        : 'Acquiring',
+        'Error'            : 'Error',
+        'Aborted'          : 'Aborted',
+        'Too Many Samples' : 'Too Many Samples',
+        'Too Few Samples'  : 'Too Few Samples',
+        'No Memory'        : 'No Memory',
+        'Acq Overflow'     : 'Acq. Overflow'
     }
     ACQTRIGTYP = {
-        'Now'      : 0,
-        'External' : 1,
-        'Data'     : 2,
-        'Software' : 3
+        'Now'      : 'now',
+        'External' : 'external',
+        'Data'     : 'data',
+        'Software' : 'software'
     }
 
 bpmEnums = BPMEnums
@@ -263,16 +263,16 @@ class BPM:
         """ Get acquisition status """
         pvobj = self._config_pvs_rb['ACQStatus']
         stts = bpmEnums.ACQSTATES
-        okay = pvobj.value not in {
+        okay = pvobj.char_value not in {
             stts['Error'], stts['No Memory'], stts['Too Few Samples'],
             stts['Too Many Samples'], stts['Acq Overflow']}
 
         if self.acq_event == bpmEnums.ACQEVENTS['Start']:
-            okay &= pvobj.value not in {
+            okay &= pvobj.char_value not in {
                 stts['Waiting'], stts['External Trig'], stts['Data Trig'],
                 stts['Software Trig'], stts['Acquiring']}
         else:
-            okay &= pvobj.value in {stts['Idle'], stts['Aborted']}
+            okay &= pvobj.char_value in {stts['Idle'], stts['Aborted']}
         return okay
 
     @property
@@ -565,13 +565,13 @@ class BPM:
 
     @property
     def poly_x(self):
-        """."""
+        """ Get BPM polynomial coefficientes for X """
         pvobj = self._poly_x
         return pvobj.value if pvobj.connected else None
 
     @property
     def poly_y(self):
-        """."""
+        """ Get BPM polynomial coefficientes for Y """
         pvobj = self._poly_y
         return pvobj.value if pvobj.connected else None
 
