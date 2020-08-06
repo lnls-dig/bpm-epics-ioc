@@ -14,11 +14,11 @@
 ### Read 10 ADC samples from BPM
 
 ```bash
-    ./bpm_acq.py 'SI-04C1:DI-BPM-1:' 10 'ADC'
+    ./bpm_acq.py 'SI-09SAFE:DI-PBPM-1:' 10 'ADC'
 ```
 
 ### Read 10 TbT samples from BPM
 
 ```bash
-    ./bpm_acq.py 'SI-04C1:DI-BPM-1:' 10 'TbT'
+    ./bpm_acq.py 'SI-09SAFE:DI-PBPM-1:' 10 'TbT'
 ```
