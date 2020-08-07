@@ -5,13 +5,18 @@ from time import sleep
 from bpm.bpm import BPM, BPMEnums
 
 parser = argparse.ArgumentParser(description='BPM Acquistion utility')
-parser.add_argument('prefix', type=str, help='EPICS PV prefix')
+parser.add_argument('prefix', type=str, help='EPICS PV prefix (e.g., SI-09SAFE:DI-PBPM-1:)')
 parser.add_argument('nr_samples', type=int, help='Number of acquisition samples')
-parser.add_argument('acq_channel', type=str, help='Acquisition channel')
-parser.add_argument('--acq_trigger_type', type=str, help='Acquisition channel', default='Now')
-parser.add_argument('--nr_post_samples', type=int, help='Number of acquisition post-trigger acquisition samples', default=0)
-parser.add_argument('--nr_shots', type=int, help='Number of acquisition shots', default=1)
-parser.add_argument('--repetitive', type=str, help='Repetitive acquisition', default='Normal')
+parser.add_argument('acq_channel', type=str, help='Acquisition channel',
+                    choices=BPMEnums.ACQCHAN.keys())
+parser.add_argument('--acq_trigger_type', type=str, help='Acquisition trigger type',
+                    default='Now', choices=BPMEnums.ACQTRIGTYP.keys())
+parser.add_argument('--nr_post_samples', type=int, help='Number of acquisition post-trigger samples',
+                    default=0)
+parser.add_argument('--nr_shots', type=int, help='Number of acquisition shots',
+                    default=1)
+parser.add_argument('--repetitive', type=str, help='Repetitive acquisition',
+                    default='Normal', choices=BPMEnums.ACQREPEAT.keys())
 
 args = parser.parse_args()
 
