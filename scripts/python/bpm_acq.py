@@ -17,6 +17,8 @@ parser.add_argument('--nr_shots', type=int, help='Number of acquisition shots',
                     default=1)
 parser.add_argument('--repetitive', type=str, help='Repetitive acquisition',
                     default='Normal', choices=BPMEnums.ACQREPEAT.keys())
+parser.add_argument('--fmcpico_range', type=str, help='FMC PICO range selection (only available for XBPMs)',
+                    nargs='?', const='1 mA', default=None, choices=BPMEnums.FMCPICORANGE.keys())
 
 args = parser.parse_args()
 
@@ -28,6 +30,13 @@ bpm.nr_samples_post = args.nr_post_samples
 bpm.nr_shots = args.nr_shots
 bpm.acq_repeat = BPMEnums.ACQREPEAT[args.repetitive]
 bpm.acq_channel = BPMEnums.ACQCHAN[args.acq_channel]
+
+# Set range if present on command-line
+if args.fmcpico_range is not None:
+    bpm.fmc_pico_range_ch0 = BPMEnums.FMCPICORANGE[args.fmcpico_range]
+    bpm.fmc_pico_range_ch1 = BPMEnums.FMCPICORANGE[args.fmcpico_range]
+    bpm.fmc_pico_range_ch2 = BPMEnums.FMCPICORANGE[args.fmcpico_range]
+    bpm.fmc_pico_range_ch3 = BPMEnums.FMCPICORANGE[args.fmcpico_range]
 
 # Acquistion type
 bpm.acq_trigger = BPMEnums.ACQTRIGTYP[args.acq_trigger_type]
