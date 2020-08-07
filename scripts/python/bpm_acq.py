@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import numpy as np
 from time import sleep
 from bpm.bpm import BPM, BPMEnums
 
@@ -19,6 +20,10 @@ parser.add_argument('--repetitive', type=str, help='Repetitive acquisition',
                     default='Normal', choices=BPMEnums.ACQREPEAT.keys())
 parser.add_argument('--fmcpico_range', type=str, help='FMC PICO range selection (only available for XBPMs)',
                     nargs='?', const='1 mA', default=None, choices=BPMEnums.FMCPICORANGE.keys())
+parser.add_argument('--fmcpico_offset', type=int, help='FMC PICO digital electronics offset (only available for XBPMs)',
+                    default=1000)
+parser.add_argument('--fmcpico_conv', action='store_true', help='FMC PICO conversion to engineering units',
+                    default=False)
 
 args = parser.parse_args()
 
@@ -47,10 +52,53 @@ bpm.acq_event = BPMEnums.ACQEVENTS['Start']
 while not bpm.is_acq_completed:
     sleep(0.5)
 
-print(bpm.array_a)
-print(bpm.array_b)
-print(bpm.array_c)
-print(bpm.array_d)
+# Convert to engineering units if required for FMC PICO
+vals = {
+    'A': {
+        'data'  : np.array(bpm.array_a),
+    },
+    'C': {
+        'data'  : np.array(bpm.array_b),
+    },
+    'B': {
+        'data'  : np.array(bpm.array_c),
+    },
+    'D': {
+        'data'  : np.array(bpm.array_d),
+    }
+}
+
+if args.fmcpico_conv:
+    # Convert range (0, 1) to uA (100, 1000)
+    vals['A']['range'] = 100 if bpm.fmc_pico_range_ch0 == 0 else 1000
+    vals['B']['range'] = 100 if bpm.fmc_pico_range_ch1 == 0 else 1000
+    vals['C']['range'] = 100 if bpm.fmc_pico_range_ch2 == 0 else 1000
+    vals['D']['range'] = 100 if bpm.fmc_pico_range_ch3 == 0 else 1000
+
+    # Offset
+    offset = args.fmcpico_offset
+
+    # Conversion factor
+    conv_factors = {
+        BPMEnums.ACQCHAN['ADC']     : 524288,
+        BPMEnums.ACQCHAN['ADCSwap'] : 524288,
+        BPMEnums.ACQCHAN['TbT']     : 1048576,
+        BPMEnums.ACQCHAN['FOFB']    : 5242880,
+        BPMEnums.ACQCHAN['Monit1']  : 4096000
+    }
+    conv_factor = conv_factors.get(BPMEnums.ACQCHAN[bpm.acq_channel], 524288)
+
+    for _, v in vals.items():
+        range = v['range']
+        data = v['data']
+
+        data = (range/conv_factor) * (data - offset)
+
+# Print values
+print(vals['A']['data'])
+print(vals['B']['data'])
+print(vals['C']['data'])
+print(vals['D']['data'])
 
 if BPMEnums.ACQCHAN[args.acq_channel] not in {
     BPMEnums.ACQCHAN['ADC'], BPMEnums.ACQCHAN['ADCSwap']
