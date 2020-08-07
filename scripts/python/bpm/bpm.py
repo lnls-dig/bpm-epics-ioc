@@ -134,6 +134,10 @@ class BPMEnums:
         'Data'     : 'data',
         'Software' : 'software'
     }
+    FMCPICORANGE = {
+        '100 uA' : 0,
+        '1 mA'   : 1,
+    }
 
 bpmEnums = BPMEnums
 
@@ -187,7 +191,11 @@ class BPM:
             'TbtDataMaskSamplesBeg': 'TbtDataMaskSamplesBeg-SP',
             'TbtDataMaskSamplesEnd': 'TbtDataMaskSamplesEnd-SP',
             'XYPosCal': 'XYPosCal-Sel',
-            'SUMPosCal': 'SUMPosCal-Sel'
+            'SUMPosCal': 'SUMPosCal-Sel',
+            'FMCPICORngR0' : 'FMCPICORngR0-Sel',
+            'FMCPICORngR1' : 'FMCPICORngR1-Sel',
+            'FMCPICORngR2' : 'FMCPICORngR2-Sel',
+            'FMCPICORngR3' : 'FMCPICORngR3-Sel'
         }
         self._config_pvs_sp = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
@@ -229,7 +237,11 @@ class BPM:
             'TbtDataMaskSamplesBeg': 'TbtDataMaskSamplesBeg-RB',
             'TbtDataMaskSamplesEnd': 'TbtDataMaskSamplesEnd-RB',
             'XYPosCal': 'XYPosCal-Sts',
-            'SUMPosCal': 'SUMPosCal-Sts'
+            'SUMPosCal': 'SUMPosCal-Sts',
+            'FMCPICORngR0' : 'FMCPICORngR0-Sts',
+            'FMCPICORngR1' : 'FMCPICORngR1-Sts',
+            'FMCPICORngR2' : 'FMCPICORngR2-Sts',
+            'FMCPICORngR3' : 'FMCPICORngR3-Sts'
         }
         self._config_pvs_rb = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
@@ -637,5 +649,57 @@ class BPM:
     def nr_shots(self, val):
         """ Set BPM number of shots """
         pvobj = self._config_pvs_sp['ACQShots']
+        if pvobj.connected:
+            pvobj.put(val, wait=False)
+
+    @property
+    def fmc_pico_range_ch0(self):
+        """ Get BPM FMCPICO range channel 0 """
+        pvobj = self._config_pvs_rb['FMCPICORngR0']
+        return pvobj.value if pvobj.connected else None
+
+    @fmc_pico_range_ch0.setter
+    def fmc_pico_range_ch0(self, val):
+        """ Set BPM FMC PICO range for channel 0 """
+        pvobj = self._config_pvs_sp['FMCPICORngR0']
+        if pvobj.connected:
+            pvobj.put(val, wait=False)
+
+    @property
+    def fmc_pico_range_ch1(self):
+        """ Get BPM FMCPICO range channel 1 """
+        pvobj = self._config_pvs_rb['FMCPICORngR1']
+        return pvobj.value if pvobj.connected else None
+
+    @fmc_pico_range_ch1.setter
+    def fmc_pico_range_ch1(self, val):
+        """ Set BPM FMC PICO range for channel 1 """
+        pvobj = self._config_pvs_sp['FMCPICORngR1']
+        if pvobj.connected:
+            pvobj.put(val, wait=False)
+
+    @property
+    def fmc_pico_range_ch2(self):
+        """ Get BPM FMCPICO range channel 2 """
+        pvobj = self._config_pvs_rb['FMCPICORngR2']
+        return pvobj.value if pvobj.connected else None
+
+    @fmc_pico_range_ch2.setter
+    def fmc_pico_range_ch2(self, val):
+        """ Set BPM FMC PICO range for channel 2 """
+        pvobj = self._config_pvs_sp['FMCPICORngR2']
+        if pvobj.connected:
+            pvobj.put(val, wait=False)
+
+    @property
+    def fmc_pico_range_ch3(self):
+        """ Get BPM FMCPICO range channel 3 """
+        pvobj = self._config_pvs_rb['FMCPICORngR3']
+        return pvobj.value if pvobj.connected else None
+
+    @fmc_pico_range_ch3.setter
+    def fmc_pico_range_ch3(self, val):
+        """ Set BPM FMC PICO range for channel 3 """
+        pvobj = self._config_pvs_sp['FMCPICORngR3']
         if pvobj.connected:
             pvobj.put(val, wait=False)
