@@ -90,9 +90,7 @@ if args.fmcpico_conv:
 
     for _, v in vals.items():
         range = v['range']
-        data = v['data']
-
-        data = (range/conv_factor) * (data - offset)
+        v['data'] = (range/conv_factor) * (v['data'] - offset)
 
 # Print values
 print(vals['A']['data'])
