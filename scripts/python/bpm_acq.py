@@ -85,7 +85,7 @@ if args.fmcpico_conv:
 
     for _, v in vals.items():
         range = v['range']
-        v['data'] *= (range/conv_factor)
+        v['data'] = (range/conv_factor) * v['data']
 
 # Print values
 print(vals['A']['data'])
