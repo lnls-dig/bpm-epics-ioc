@@ -404,7 +404,16 @@ class BPM:
     def acq_channel(self):
         """ Get BPM acquistion channel """
         pvobj = self._config_pvs_rb['ACQChannel']
-        return pvobj.value if pvobj.connected else None
+
+        if not pvobj.connected:
+            return None
+
+        # return user-facing string
+        for k, v in bpmEnums.ACQCHAN.items():
+            if v == pvobj.char_value:
+                return k
+
+        return 'Invalid'
 
     @acq_channel.setter
     def acq_channel(self, val):
