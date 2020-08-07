@@ -410,7 +410,7 @@ class BPM:
 
         # return user-facing string
         for k, v in bpmEnums.ACQCHAN.items():
-            if v == pvobj.char_value:
+            if v == pvobj.get(as_string=True):
                 return k
 
         return 'Invalid'
