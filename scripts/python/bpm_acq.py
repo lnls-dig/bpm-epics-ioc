@@ -92,10 +92,3 @@ print(vals['A']['data'])
 print(vals['B']['data'])
 print(vals['C']['data'])
 print(vals['D']['data'])
-
-if BPMEnums.ACQCHAN[args.acq_channel] not in {
-    BPMEnums.ACQCHAN['ADC'], BPMEnums.ACQCHAN['ADCSwap']
-}:
-    print(bpm.pos_x)
-    print(bpm.pos_y)
-    print(bpm.pos_sum)
