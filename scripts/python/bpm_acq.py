@@ -51,20 +51,37 @@ while not bpm.is_acq_completed:
     sleep(0.5)
 
 # Convert to engineering units if required for FMC PICO
-vals = {
-    'A': {
-        'data'  : np.array(bpm.array_a),
-    },
-    'C': {
-        'data'  : np.array(bpm.array_b),
-    },
-    'B': {
-        'data'  : np.array(bpm.array_c),
-    },
-    'D': {
-        'data'  : np.array(bpm.array_d),
+if BPMEnums.ACQCHAN[bpm.acq_channel] in {
+    BPMEnums.ACQCHAN['ADC'], BPMEnums.ACQCHAN['ADCSwap']}:
+    vals = {
+        'A': {
+            'data'  : np.array(bpm.array_a),
+        },
+        'B': {
+            'data'  : np.array(bpm.array_b),
+        },
+        'C': {
+            'data'  : np.array(bpm.array_c),
+        },
+        'D': {
+            'data'  : np.array(bpm.array_d),
+        }
     }
-}
+else:
+    vals = {
+        'A': {
+            'data'  : np.array(bpm.array_a),
+        },
+        'B': {
+            'data'  : np.array(bpm.array_c),
+        },
+        'C': {
+            'data'  : np.array(bpm.array_b),
+        },
+        'D': {
+            'data'  : np.array(bpm.array_d),
+        }
+    }
 
 if args.fmcpico_conv:
     # Convert range (0, 1) to uA (100, 1000)
