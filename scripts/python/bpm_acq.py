@@ -20,8 +20,6 @@ parser.add_argument('--repetitive', type=str, help='Repetitive acquisition',
                     default='Normal', choices=BPMEnums.ACQREPEAT.keys())
 parser.add_argument('--fmcpico_range', type=str, help='FMC PICO range selection (only available for XBPMs)',
                     nargs='?', const='1 mA', default=None, choices=BPMEnums.FMCPICORANGE.keys())
-parser.add_argument('--fmcpico_offset', type=int, help='FMC PICO digital electronics offset (only available for XBPMs)',
-                    default=1000)
 parser.add_argument('--fmcpico_conv', action='store_true', help='FMC PICO conversion to engineering units',
                     default=False)
 
@@ -75,9 +73,6 @@ if args.fmcpico_conv:
     vals['C']['range'] = 100 if bpm.fmc_pico_range_ch2 == 0 else 1000
     vals['D']['range'] = 100 if bpm.fmc_pico_range_ch3 == 0 else 1000
 
-    # Offset
-    offset = args.fmcpico_offset
-
     # Conversion factor
     conv_factors = {
         BPMEnums.ACQCHAN['ADC']     : 524288,
@@ -90,7 +85,7 @@ if args.fmcpico_conv:
 
     for _, v in vals.items():
         range = v['range']
-        v['data'] = (range/conv_factor) * (v['data'] - offset)
+        v['data'] *= (range/conv_factor)
 
 # Print values
 print(vals['A']['data'])
