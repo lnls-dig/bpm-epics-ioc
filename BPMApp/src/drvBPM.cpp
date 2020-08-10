@@ -1306,7 +1306,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Monit1TagEn,  0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Monit1TagDly, 0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_Monit1DataMaskEn, 
+    setUIntDigitalParam(P_Monit1DataMaskEn,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Monit1DataMaskSamplesBeg,
                                         0,                  0xFFFFFFFF);
@@ -1318,7 +1318,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitTagEn,   0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitTagDly,  0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_MonitDataMaskEn, 
+    setUIntDigitalParam(P_MonitDataMaskEn,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_MonitDataMaskSamplesBeg,
                                         0,                  0xFFFFFFFF);
