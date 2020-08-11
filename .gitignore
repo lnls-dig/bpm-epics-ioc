@@ -21,3 +21,4 @@ O.*/
 .cproject
 .project
 *.pyc
+*tags
