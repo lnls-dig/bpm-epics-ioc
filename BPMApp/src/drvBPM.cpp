@@ -702,10 +702,15 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
     int addrMod = 0;
 
     /* Static mapping. FIXME? */
+    /* For these services there's only a single core per FPGA, so serviceID is always 0 */
+    if (streq(serviceName, "TRIGGER_IFACE") || streq(serviceName, "ORBIT_INTLK")) {
+        *serviceIDArg = 0;
+        return status;
+    }
     if (streq(serviceName, "ACQ")) {
         addrMod = addr;
     }
-    else if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
+    else if (streq(serviceName, "TRIGGER_MUX")) {
         addrMod = addr/MAX_TRIGGERS;
     }
     else {
@@ -4100,26 +4105,14 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *se
     int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
-    /* Get service ID for correct use with acquisition instance */
-    status = getServiceID (this->bpmNumber, addr, func.serviceName,
-            &serviceID);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: error calling getServiceID, status=%d\n",
+                "%s:%s: error calling getFullServiceName, status=%d\n",
                 driverName, functionName, status);
-        goto get_service_id_err;
-    }
-
-    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
-     * a single instance. So, we must ignore the service ID */
-    if (streq(func.serviceName, "TRIGGER_IFACE")) {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
-                boardMap[this->bpmNumber].board, func.serviceName);
-    }
-    else {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func.serviceName,
-                serviceID);
+        goto get_service_err;
     }
 
     /* Get correct service channel */
@@ -4138,7 +4131,7 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *se
     }
 
 halcs_set_func_param_err:
-get_service_id_err:
+get_service_err:
     return (asynStatus) status;
 }
 
@@ -4306,26 +4299,14 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *ser
     int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
-    /* Get service ID for correct use with acquisition instance */
-    status = getServiceID (this->bpmNumber, addr, func.serviceName,
-            &serviceID);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: error calling getServiceID, status=%d\n",
+                "%s:%s: error calling getFullServiceName, status=%d\n",
                 driverName, functionName, status);
-        goto get_service_id_err;
-    }
-
-    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
-     * a single instance. So, we must ignore the service ID */
-    if (streq(func.serviceName, "TRIGGER_IFACE")) {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
-                boardMap[this->bpmNumber].board, func.serviceName);
-    }
-    else {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func.serviceName,
-                serviceID);
+        goto get_service_err;
     }
 
     /* Get correct service channel */
@@ -4342,7 +4323,7 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *ser
     }
 
 halcs_get_func_param_err:
-get_service_id_err:
+get_service_err:
     return (asynStatus) status;
 }
 
