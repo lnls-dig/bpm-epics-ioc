@@ -1072,7 +1072,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -1114,7 +1114,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -2342,7 +2342,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -2384,7 +2384,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -2927,7 +2927,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -2969,7 +2969,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -3512,7 +3512,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -3554,7 +3554,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -4097,7 +4097,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -4139,7 +4139,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -4682,7 +4682,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -4724,7 +4724,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -5267,7 +5267,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -5309,7 +5309,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -5852,7 +5852,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -5894,7 +5894,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -6437,7 +6437,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -6479,7 +6479,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -7022,7 +7022,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -7064,7 +7064,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -7607,7 +7607,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -7649,7 +7649,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -8192,7 +8192,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)RcvSrc-Sel</pv_name>
@@ -8234,7 +8234,7 @@ $(pv_value)</tooltip>
       <foreground_color>
         <color red="0" green="0" blue="0" />
       </foreground_color>
-      <height>29</height>
+      <height>27</height>
       <items_from_pv>true</items_from_pv>
       <name>Combo_111</name>
       <pv_name>$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnSrc-Sel</pv_name>
@@ -9144,7 +9144,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>222</height>
+    <height>201</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9152,7 +9152,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="1567" y="60" />
       <point x="1567" y="173" />
-      <point x="1567" y="281" />
+      <point x="1567" y="260" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9264,9 +9264,9 @@ $(pv_value)</tooltip>
     <line_width>1</line_width>
     <name>Polyline_39</name>
     <points>
-      <point x="1688" y="281" />
-      <point x="1694" y="281" />
-      <point x="1567" y="281" />
+      <point x="1688" y="260" />
+      <point x="1694" y="260" />
+      <point x="1567" y="260" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9286,7 +9286,7 @@ $(pv_value)</tooltip>
     <width>128</width>
     <wuid>-57cdac8b:15a052f6efd:-25df</wuid>
     <x>1567</x>
-    <y>281</y>
+    <y>260</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.polyline" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -9315,7 +9315,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>222</height>
+    <height>201</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9323,7 +9323,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="1694" y="60" />
       <point x="1694" y="206" />
-      <point x="1694" y="281" />
+      <point x="1694" y="260" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9372,7 +9372,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>222</height>
+    <height>201</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9380,7 +9380,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="1590" y="60" />
       <point x="1590" y="202" />
-      <point x="1590" y="281" />
+      <point x="1590" y="260" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9567,7 +9567,7 @@ trig. in</text>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>83</height>
+    <height>103</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9575,7 +9575,7 @@ trig. in</text>
     <points>
       <point x="1509" y="357" />
       <point x="1509" y="411" />
-      <point x="1509" y="439" />
+      <point x="1509" y="459" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9681,7 +9681,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>83</height>
+    <height>103</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9689,7 +9689,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="1642" y="357" />
       <point x="1642" y="414" />
-      <point x="1642" y="439" />
+      <point x="1642" y="459" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9738,7 +9738,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="255" green="0" blue="0" />
     </foreground_color>
-    <height>83</height>
+    <height>103</height>
     <horizontal_fill>true</horizontal_fill>
     <line_style>0</line_style>
     <line_width>1</line_width>
@@ -9746,7 +9746,7 @@ $(pv_value)</tooltip>
     <points>
       <point x="1532" y="357" />
       <point x="1532" y="414" />
-      <point x="1532" y="439" />
+      <point x="1532" y="459" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -9978,9 +9978,9 @@ $(pv_value)</tooltip>
     <line_width>1</line_width>
     <name>Polyline_49</name>
     <points>
-      <point x="1630" y="439" />
-      <point x="1642" y="439" />
-      <point x="1509" y="439" />
+      <point x="1630" y="459" />
+      <point x="1642" y="459" />
+      <point x="1509" y="459" />
     </points>
     <pv_name></pv_name>
     <pv_value />
@@ -10000,7 +10000,7 @@ $(pv_value)</tooltip>
     <width>134</width>
     <wuid>-57cdac8b:15a052f6efd:-2425</wuid>
     <x>1509</x>
-    <y>439</y>
+    <y>459</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -15458,7 +15458,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>Sw. Sync</text>
+    <text>Slow Sync</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -15498,7 +15498,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>20</text>
+    <text>2</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -15506,9 +15506,9 @@ $(pv_value)</tooltip>
     <widget_type>Label</widget_type>
     <width>24</width>
     <wrap_words>false</wrap_words>
-    <wuid>91e358e:1705901baa2:-7b28</wuid>
-    <x>1567</x>
-    <y>260</y>
+    <wuid>-5ef6a66e:173e382b85f:-3c39</wuid>
+    <x>1509</x>
+    <y>439</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -15538,7 +15538,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>TbT Sync</text>
+    <text>Orbit Interlock</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -15546,8 +15546,8 @@ $(pv_value)</tooltip>
     <widget_type>Label</widget_type>
     <width>92</width>
     <wrap_words>false</wrap_words>
-    <wuid>91e358e:1705901baa2:-7b27</wuid>
-    <x>1594</x>
-    <y>260</y>
+    <wuid>-5ef6a66e:173e382b85f:-3c27</wuid>
+    <x>1536</x>
+    <y>439</y>
   </widget>
 </display>
