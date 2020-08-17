@@ -554,7 +554,34 @@ private:
 #define P_TriggerTrnSrcString       "TRIGGER_TRN_SRC"       /* asynUInt32Digital,      r/w */
 #define P_TriggerRcvInSelString     "TRIGGER_RCV_IN_SEL"    /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString    "TRIGGER_TRN_OUT_SEL"   /* asynUInt32Digital,      r/w */
-
+#define P_IntlkEnString             "INTLK_EN"              /* asynUInt32Digital,      r/w */
+#define P_IntlkClrString            "INTLK_CLR"             /* asynUInt32Digital,      r/w */
+#define P_IntlkMinSumEnString         "INTLK_MIN_SUM_EN"          /* asynUInt32Digital,      r/w */
+#define P_IntlkTransEnString          "INTLK_TRANS_EN"            /* asynUInt32Digital,      r/w */
+#define P_IntlkTransClrString         "INTLK_TRANS_CLR"           /* asynUInt32Digital,      r/w */
+#define P_IntlkAngEnString            "INTLK_ANG_EN"              /* asynUInt32Digital,      r/w */
+#define P_IntlkAngClrString           "INTLK_ANG_CLR"             /* asynUInt32Digital,      r/w */
+#define P_IntlkTransBiggerXString     "INTLK_TRANS_BIGGER_X"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerYString     "INTLK_TRANS_BIGGER_Y"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerLtcXString  "INTLK_TRANS_BIGGER_LTC_X"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerLtcYString  "INTLK_TRANS_BIGGER_LTC_Y"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerAnyString   "INTLK_TRANS_BIGGER_ANY"    /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerString      "INTLK_TRANS_BIGGER"        /* asynUInt32Digital,      ro */
+#define P_IntlkTransBiggerLtcString   "INTLK_TRANS_BIGGER_LTC"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerXString       "INTLK_ANG_BIGGER_X"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerYString       "INTLK_ANG_BIGGER_Y"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerLtcXString    "INTLK_ANG_BIGGER_LTC_X"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerLtcYString    "INTLK_ANG_BIGGER_LTC_Y"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerAnyString     "INTLK_ANG_BIGGER_ANY"      /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerString        "INTLK_ANG_BIGGER"          /* asynUInt32Digital,      ro */
+#define P_IntlkAngBiggerLtcString     "INTLK_ANG_BIGGER_LTC"      /* asynUInt32Digital,      ro */
+#define P_IntlkBiggerString           "INTLK_BIGGER"              /* asynUInt32Digital,      ro */
+#define P_IntlkBiggerLtcString        "INTLK_BIGGER_LTC"          /* asynUInt32Digital,      ro */
+#define P_IntlkMinSumString           "INTLK_MIN_SUM"             /* asynUInt32Digital,      r/w */
+#define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynUInt32Digital,      r/w */
+#define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynUInt32Digital,      r/w */
+#define P_IntlkAngMaxXString          "INTLK_ANG_MAX_X"           /* asynUInt32Digital,      r/w */
+#define P_IntlkAngMaxYString          "INTLK_ANG_MAX_Y"           /* asynUInt32Digital,      r/w */
 
 typedef enum {
     TRIG_ACQ_START,
@@ -795,7 +822,35 @@ class drvBPM : public asynNDArrayDriver {
         int P_TriggerTrnSrc;
         int P_TriggerRcvInSel;
         int P_TriggerTrnOutSel;
-#define LAST_COMMAND P_TriggerTrnOutSel
+        int P_IntlkEn;
+        int P_IntlkClr;
+        int P_IntlkMinSumEn;
+        int P_IntlkTransEn;
+        int P_IntlkTransClr;
+        int P_IntlkAngEn;
+        int P_IntlkAngClr;
+        int P_IntlkTransBiggerX;
+        int P_IntlkTransBiggerY;
+        int P_IntlkTransBiggerLtcX;
+        int P_IntlkTransBiggerLtcY;
+        int P_IntlkTransBiggerAny;
+        int P_IntlkTransBigger;
+        int P_IntlkTransBiggerLtc;
+        int P_IntlkAngBiggerX;
+        int P_IntlkAngBiggerY;
+        int P_IntlkAngBiggerLtcX;
+        int P_IntlkAngBiggerLtcY;
+        int P_IntlkAngBiggerAny;
+        int P_IntlkAngBigger;
+        int P_IntlkAngBiggerLtc;
+        int P_IntlkBigger;
+        int P_IntlkBiggerLtc;
+        int P_IntlkMinSum;
+        int P_IntlkTransMaxX;
+        int P_IntlkTransMaxY;
+        int P_IntlkAngMaxX;
+        int P_IntlkAngMaxY;
+#define LAST_COMMAND P_IntlkAngMaxY
 
     private:
         /* Our data */

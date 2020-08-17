@@ -29,6 +29,7 @@ dbLoadRecords("${TOP}/db/BPMFmc130m_4ch.template", "P=${P}, R=${R}, PORT=$(PORT)
 dbLoadRecords("${TOP}/db/MonitDspCtl.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/db/BPMInfo.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/db/BPMSP.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/db/BPMIntlk.template", "P=${P}, R=${R}, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0,OMAX=80,IMAX=80")
 # devIOCStats records
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")

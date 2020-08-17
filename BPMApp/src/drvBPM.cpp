@@ -573,6 +573,35 @@ static const functionsAny_t timRcvSetGetPhaseMeasFunc =          {functionsInt32
 static const functionsAny_t timRcvSetGetDMTDAFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_a_freq}};
 static const functionsAny_t timRcvSetGetDMTDBFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_b_freq}};
 
+static const functionsAny_t bpmSetGetIntlkEnFunc =                {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_en, halcs_get_orbit_intlk_en}};
+static const functionsAny_t bpmSetGetIntlkClrFunc =               {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_clr, halcs_get_orbit_intlk_clr }};
+static const functionsAny_t bpmSetGetIntlkMinSumEnFunc =          {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum_en, halcs_get_orbit_intlk_min_sum_en}};
+static const functionsAny_t bpmSetGetIntlkTransEnFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_en, halcs_get_orbit_intlk_trans_en}};
+static const functionsAny_t bpmSetGetIntlkTransClrFunc =          {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_clr, halcs_get_orbit_intlk_trans_clr}};
+static const functionsAny_t bpmSetGetIntlkAngEnFunc =             {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_en, halcs_get_orbit_intlk_ang_en}};
+static const functionsAny_t bpmSetGetIntlkAngClrFunc =            {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_clr, halcs_get_orbit_intlk_ang_clr}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerXFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_x}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerYFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_y}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcXFunc =   {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcYFunc =   {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerAnyFunc =    {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_any}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerFunc =       {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcFunc =    {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerXFunc =        {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_x}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerYFunc =        {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_y}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcXFunc =     {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcYFunc =     {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerAnyFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_any}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerFunc =         {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkBiggerFunc =            {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger}};
+static const functionsAny_t bpmSetGetIntlkBiggerLtcFunc =         {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkMinSumFunc =            {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum, halcs_get_orbit_intlk_min_sum}};
+static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_x, halcs_get_orbit_intlk_trans_max_x}};
+static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
+static const functionsAny_t bpmSetGetIntlkAngMaxXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_x, halcs_get_orbit_intlk_ang_max_x}};
+static const functionsAny_t bpmSetGetIntlkAngMaxYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_y, halcs_get_orbit_intlk_ang_max_y}};
+
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
 static const functionsAny_t bpmSetGetAdcSi57xFStartupFunc =      {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_fstartup, halcs_get_si571_fstartup}};
@@ -673,10 +702,15 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
     int addrMod = 0;
 
     /* Static mapping. FIXME? */
+    /* For these services there's only a single core per FPGA, so serviceID is always 0 */
+    if (streq(serviceName, "TRIGGER_IFACE") || streq(serviceName, "ORBIT_INTLK")) {
+        *serviceIDArg = 0;
+        return status;
+    }
     if (streq(serviceName, "ACQ")) {
         addrMod = addr;
     }
-    else if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
+    else if (streq(serviceName, "TRIGGER_MUX")) {
         addrMod = addr/MAX_TRIGGERS;
     }
     else {
@@ -1083,6 +1117,36 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_TriggerRcvInSelString,  asynParamUInt32Digital,   &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString, asynParamUInt32Digital,   &P_TriggerTrnOutSel);
 
+    /* Create Interlock parameters */
+    createParam(P_IntlkEnString,               asynParamUInt32Digital, &P_IntlkEn);
+    createParam(P_IntlkClrString,              asynParamUInt32Digital, &P_IntlkClr);
+    createParam(P_IntlkMinSumEnString,         asynParamUInt32Digital, &P_IntlkMinSumEn);
+    createParam(P_IntlkTransEnString,          asynParamUInt32Digital, &P_IntlkTransEn);
+    createParam(P_IntlkTransClrString,         asynParamUInt32Digital, &P_IntlkTransClr);
+    createParam(P_IntlkAngEnString,            asynParamUInt32Digital, &P_IntlkAngEn);
+    createParam(P_IntlkAngClrString,           asynParamUInt32Digital, &P_IntlkAngClr);
+    createParam(P_IntlkTransBiggerXString,     asynParamUInt32Digital, &P_IntlkTransBiggerX);
+    createParam(P_IntlkTransBiggerYString,     asynParamUInt32Digital, &P_IntlkTransBiggerY);
+    createParam(P_IntlkTransBiggerLtcXString,  asynParamUInt32Digital, &P_IntlkTransBiggerLtcX);
+    createParam(P_IntlkTransBiggerLtcYString,  asynParamUInt32Digital, &P_IntlkTransBiggerLtcY);
+    createParam(P_IntlkTransBiggerAnyString,   asynParamUInt32Digital, &P_IntlkTransBiggerAny);
+    createParam(P_IntlkTransBiggerString,      asynParamUInt32Digital, &P_IntlkTransBigger);
+    createParam(P_IntlkTransBiggerLtcString,   asynParamUInt32Digital, &P_IntlkTransBiggerLtc);
+    createParam(P_IntlkAngBiggerXString,       asynParamUInt32Digital, &P_IntlkAngBiggerX);
+    createParam(P_IntlkAngBiggerYString,       asynParamUInt32Digital, &P_IntlkAngBiggerY);
+    createParam(P_IntlkAngBiggerLtcXString,    asynParamUInt32Digital, &P_IntlkAngBiggerLtcX);
+    createParam(P_IntlkAngBiggerLtcYString,    asynParamUInt32Digital, &P_IntlkAngBiggerLtcY);
+    createParam(P_IntlkAngBiggerAnyString,     asynParamUInt32Digital, &P_IntlkAngBiggerAny);
+    createParam(P_IntlkAngBiggerString,        asynParamUInt32Digital, &P_IntlkAngBigger);
+    createParam(P_IntlkAngBiggerLtcString,     asynParamUInt32Digital, &P_IntlkAngBiggerLtc);
+    createParam(P_IntlkBiggerString,           asynParamUInt32Digital, &P_IntlkBigger);
+    createParam(P_IntlkBiggerLtcString,        asynParamUInt32Digital, &P_IntlkBiggerLtc);
+    createParam(P_IntlkMinSumString,           asynParamUInt32Digital, &P_IntlkMinSum);
+    createParam(P_IntlkTransMaxXString,        asynParamUInt32Digital, &P_IntlkTransMaxX);
+    createParam(P_IntlkTransMaxYString,        asynParamUInt32Digital, &P_IntlkTransMaxY);
+    createParam(P_IntlkAngMaxXString,          asynParamUInt32Digital, &P_IntlkAngMaxX);
+    createParam(P_IntlkAngMaxYString,          asynParamUInt32Digital, &P_IntlkAngMaxY);
+
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFunc.emplace(P_Kx, bpmSetGetKxFunc);
@@ -1192,6 +1256,35 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TriggerTrnSrc, bpmSetGetTrigTrnSrcFunc);
     bpmHwFunc.emplace(P_TriggerRcvInSel, bpmSetGetTrigRcvSelFunc);
     bpmHwFunc.emplace(P_TriggerTrnOutSel, bpmSetGetTrigTrnSelFunc);
+
+    bpmHwFunc.emplace(P_IntlkEn, bpmSetGetIntlkEnFunc);
+    bpmHwFunc.emplace(P_IntlkClr, bpmSetGetIntlkClrFunc);
+    bpmHwFunc.emplace(P_IntlkMinSumEn, bpmSetGetIntlkMinSumEnFunc);
+    bpmHwFunc.emplace(P_IntlkTransEn, bpmSetGetIntlkTransEnFunc);
+    bpmHwFunc.emplace(P_IntlkTransClr, bpmSetGetIntlkTransClrFunc);
+    bpmHwFunc.emplace(P_IntlkAngEn, bpmSetGetIntlkAngEnFunc);
+    bpmHwFunc.emplace(P_IntlkAngClr, bpmSetGetIntlkAngClrFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerX, bpmSetGetIntlkTransBiggerXFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerY, bpmSetGetIntlkTransBiggerYFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerLtcX, bpmSetGetIntlkTransBiggerLtcXFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerLtcY, bpmSetGetIntlkTransBiggerLtcYFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerAny, bpmSetGetIntlkTransBiggerAnyFunc);
+    bpmHwFunc.emplace(P_IntlkTransBigger, bpmSetGetIntlkTransBiggerFunc);
+    bpmHwFunc.emplace(P_IntlkTransBiggerLtc, bpmSetGetIntlkTransBiggerLtcFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerX, bpmSetGetIntlkAngBiggerXFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerY, bpmSetGetIntlkAngBiggerYFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerLtcX, bpmSetGetIntlkAngBiggerLtcXFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerLtcY, bpmSetGetIntlkAngBiggerLtcYFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerAny, bpmSetGetIntlkAngBiggerAnyFunc);
+    bpmHwFunc.emplace(P_IntlkAngBigger, bpmSetGetIntlkAngBiggerFunc);
+    bpmHwFunc.emplace(P_IntlkAngBiggerLtc, bpmSetGetIntlkAngBiggerLtcFunc);
+    bpmHwFunc.emplace(P_IntlkBigger, bpmSetGetIntlkBiggerFunc);
+    bpmHwFunc.emplace(P_IntlkBiggerLtc, bpmSetGetIntlkBiggerLtcFunc);
+    bpmHwFunc.emplace(P_IntlkMinSum, bpmSetGetIntlkMinSumFunc);
+    bpmHwFunc.emplace(P_IntlkTransMaxX, bpmSetGetIntlkTransMaxXFunc);
+    bpmHwFunc.emplace(P_IntlkTransMaxY, bpmSetGetIntlkTransMaxYFunc);
+    bpmHwFunc.emplace(P_IntlkAngMaxX, bpmSetGetIntlkAngMaxXFunc);
+    bpmHwFunc.emplace(P_IntlkAngMaxY, bpmSetGetIntlkAngMaxYFunc);
 
     lock();
     status = bpmClientConnect(this->pasynUserSelf);
@@ -1504,6 +1597,36 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
             }
         }
     }
+
+    /* Initialize interlock parameters */
+    setUIntDigitalParam(P_IntlkEn,                   0,               0x1);
+    setUIntDigitalParam(P_IntlkClr,                  0,               0x1);
+    setUIntDigitalParam(P_IntlkMinSumEn,             0,               0x1);
+    setUIntDigitalParam(P_IntlkTransEn,              0,               0x1);
+    setUIntDigitalParam(P_IntlkTransClr,             0,               0x1);
+    setUIntDigitalParam(P_IntlkAngEn,                0,               0x1);
+    setUIntDigitalParam(P_IntlkAngClr,               0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerX,         0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerY,         0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerLtcX,      0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerLtcY,      0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerAny,       0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBigger,          0,               0x1);
+    setUIntDigitalParam(P_IntlkTransBiggerLtc,       0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerX,           0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerY,           0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerLtcX,        0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerLtcY,        0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerAny,         0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBigger,            0,               0x1);
+    setUIntDigitalParam(P_IntlkAngBiggerLtc,         0,               0x1);
+    setUIntDigitalParam(P_IntlkBigger,               0,               0x1);
+    setUIntDigitalParam(P_IntlkBiggerLtc,            0,               0x1);
+    setUIntDigitalParam(P_IntlkMinSum,               0,               0xFFFFFFFF);
+    setUIntDigitalParam(P_IntlkTransMaxX,            0,               0xFFFFFFFF);
+    setUIntDigitalParam(P_IntlkTransMaxY,            0,               0xFFFFFFFF);
+    setUIntDigitalParam(P_IntlkAngMaxX,              0,               0xFFFFFFFF);
+    setUIntDigitalParam(P_IntlkAngMaxY,              0,               0xFFFFFFFF);
 
 #if 0
     /* Read values from HW */
@@ -3982,26 +4105,14 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *se
     int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
-    /* Get service ID for correct use with acquisition instance */
-    status = getServiceID (this->bpmNumber, addr, func.serviceName,
-            &serviceID);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: error calling getServiceID, status=%d\n",
+                "%s:%s: error calling getFullServiceName, status=%d\n",
                 driverName, functionName, status);
-        goto get_service_id_err;
-    }
-
-    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
-     * a single instance. So, we must ignore the service ID */
-    if (streq(func.serviceName, "TRIGGER_IFACE")) {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
-                boardMap[this->bpmNumber].board, func.serviceName);
-    }
-    else {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func.serviceName,
-                serviceID);
+        goto get_service_err;
     }
 
     /* Get correct service channel */
@@ -4020,7 +4131,7 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *se
     }
 
 halcs_set_func_param_err:
-get_service_id_err:
+get_service_err:
     return (asynStatus) status;
 }
 
@@ -4188,26 +4299,14 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *ser
     int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
-    /* Get service ID for correct use with acquisition instance */
-    status = getServiceID (this->bpmNumber, addr, func.serviceName,
-            &serviceID);
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: error calling getServiceID, status=%d\n",
+                "%s:%s: error calling getFullServiceName, status=%d\n",
                 driverName, functionName, status);
-        goto get_service_id_err;
-    }
-
-    /* FIXME. When dealing with TRIGGER_IFACE module, we only have
-     * a single instance. So, we must ignore the service ID */
-    if (streq(func.serviceName, "TRIGGER_IFACE")) {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s0",
-                boardMap[this->bpmNumber].board, func.serviceName);
-    }
-    else {
-        snprintf(serviceChanStr, sizeof(serviceChanStr), "HALCS%d:DEVIO:%s%d",
-                boardMap[this->bpmNumber].board, func.serviceName,
-                serviceID);
+        goto get_service_err;
     }
 
     /* Get correct service channel */
@@ -4224,7 +4323,7 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *ser
     }
 
 halcs_get_func_param_err:
-get_service_id_err:
+get_service_err:
     return (asynStatus) status;
 }
 
