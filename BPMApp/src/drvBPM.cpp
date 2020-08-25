@@ -3824,6 +3824,12 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
         else if (function == P_BPMMode) {
             status = setBPMMode(addr, function);
         }
+        else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParamInteger(function, addr);
+            /* Readback all parameters from Hw */
+            readIntegerParams(addr);
+        }
     }
     else {
         /* Call base class */
@@ -3870,7 +3876,7 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
 
     if (function >= FIRST_COMMAND) {
         /* Get parameter in library, as some parameters are not written in HW */
-        status = getIntegerParam(addr, function, value);
+        status = getParamInteger(function, value, addr);
     }
     else {
         /* Call base class */
@@ -4548,6 +4554,60 @@ get_param_err:
     return (asynStatus)status;
 }
 
+asynStatus drvBPM::setParamInteger(int functionId, int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "setParamInteger";
+
+    status = getIntegerParam(addr, functionId, &functionArgs.argInt32);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getIntegerParam failure for retrieving Parameter\n",
+                driverName, functionName);
+        goto get_param_err;
+    }
+
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+get_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::getParamInteger(int functionId, epicsInt32 *param,
+        int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "getParamInteger";
+    const char *paramName;
+
+    /* Get parameter in library, as some parameters are not written in HW */
+    status = getIntegerParam(addr, functionId, param);
+    if (status != asynSuccess) {
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getIntegerParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
+        goto get_param_err;
+    }
+
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    if (status == asynSuccess) {
+        *param = functionArgs.argInt32;
+    }
+    /* We recover from asynDisabled just by retrieving
+     * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
+
+get_param_err:
+    return (asynStatus)status;
+}
+
 asynStatus drvBPM::setParamDouble(int functionId, int addr)
 {
     asynStatus status = asynSuccess;
@@ -5161,6 +5221,43 @@ asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam
     return (errs == 0)? asynSuccess : asynError;
 }
 
+asynStatus drvBPM::updateIntegerParams(int addr, int firstParam,
+        int lastParam, bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateIntegerParams";
+    epicsInt32 param = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating Int32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamInteger(i, &param, addr);
+        /* Only write values if there is no error */
+        if (status) {
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Int32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
+            ++errs;
+        }
+        else {
+            setIntegerParam(addr, i, param);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
 asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam,
         bool acceptErrors)
 {
@@ -5231,6 +5328,15 @@ asynStatus drvBPM::readFloat64Params(int addr)
     return (asynStatus) status;
 }
 
+asynStatus drvBPM::readIntegerParams(int addr)
+{
+    int status = 0;
+
+    status = readOffsetParams(addr);
+
+    return (asynStatus) status;
+}
+
 asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 {
     return updateUInt32Params(mask, addr, P_AdcAD9510PllFunc, P_AdcAD9510Outputs, true);
@@ -5239,6 +5345,11 @@ asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
     return updateUInt32Params(mask, addr, P_AdcCalStatus, P_AdcCalStatus, true);
+}
+
+asynStatus drvBPM::readOffsetParams(int addr)
+{
+    return updateIntegerParams(addr, P_XOffset, P_YOffset, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)

@@ -938,6 +938,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
+        asynStatus setParamInteger(int functionId, int addr);
+        asynStatus getParamInteger(int functionId, epicsInt32 *param, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
@@ -957,13 +959,17 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus resetADCs(epicsUInt32 mask, int addr);
         asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
                 int lastParam, bool acceptErrors);
+        asynStatus updateIntegerParams(int addr, int firstParam,
+                int lastParam, bool acceptErrors);
         asynStatus updateDoubleParams(int addr, int firstParam, int lastParam,
                 bool acceptErrors);
         asynStatus readUInt32Params(epicsUInt32 mask, int addr);
+        asynStatus readIntegerParams(int addr);
         asynStatus readFloat64Params(int addr);
         asynStatus readAD9510AndADCsParams(epicsUInt32 mask, int addr);
         asynStatus readAD9510Params(epicsUInt32 mask, int addr);
         asynStatus readADCsParams(epicsUInt32 mask, int addr);
+        asynStatus readOffsetParams(int addr);
         asynStatus readSi57xParams(int addr);
         asynStatus readTriggerParams(epicsUInt32 mask, int addr);
         asynStatus readFMCPicoParams(epicsUInt32 mask, int addr);
