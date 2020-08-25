@@ -597,10 +597,10 @@ static const functionsAny_t bpmSetGetIntlkAngBiggerLtcFunc =      {functionsUInt
 static const functionsAny_t bpmSetGetIntlkBiggerFunc =            {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger}};
 static const functionsAny_t bpmSetGetIntlkBiggerLtcFunc =         {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger_ltc}};
 static const functionsAny_t bpmSetGetIntlkMinSumFunc =            {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum, halcs_get_orbit_intlk_min_sum}};
-static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_x, halcs_get_orbit_intlk_trans_max_x}};
-static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
-static const functionsAny_t bpmSetGetIntlkAngMaxXFunc =           {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_x, halcs_get_orbit_intlk_ang_max_x}};
-static const functionsAny_t bpmSetGetIntlkAngMaxYFunc =           {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_y, halcs_get_orbit_intlk_ang_max_y}};
+static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_x, halcs_get_orbit_intlk_trans_max_x}};
+static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
+static const functionsAny_t bpmSetGetIntlkAngMaxXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_x, halcs_get_orbit_intlk_ang_max_x}};
+static const functionsAny_t bpmSetGetIntlkAngMaxYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_y, halcs_get_orbit_intlk_ang_max_y}};
 
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
