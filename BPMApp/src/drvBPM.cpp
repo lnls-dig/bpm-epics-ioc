@@ -523,6 +523,8 @@ static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsUIn
 static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_monit_tag_desync_cnt}};
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
+static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
+static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -1164,6 +1166,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_XOffset, bpmSetGetXOffsetFunc);
+    bpmHwFunc.emplace(P_YOffset, bpmSetGetYOffsetFunc);
     bpmHwFunc.emplace(P_Monit1TagEn, bpmSetGetMonit1TagEnFunc);
     bpmHwFunc.emplace(P_Monit1TagDly, bpmSetGetMonit1TagDlyFunc);
     bpmHwFunc.emplace(P_Monit1DataMaskEn, bpmSetGetMonit1DataMaskEnFunc);
