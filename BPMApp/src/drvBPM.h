@@ -273,6 +273,20 @@ typedef struct {
     readUInt32Fp read;
 } functionsUInt32_t;
 
+/* Write 32-bit function pointer */
+typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
+    int32_t param);
+/* Read 32-bit function pointer */
+typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
+    int32_t *param);
+
+/* BPM command dispatch table */
+typedef struct {
+    const char *serviceName;
+    writeInt32Fp write;
+    readInt32Fp read;
+} functionsInt32_t;
+
 /* Write 32-bit function pointer with acq_client structure */
 typedef halcs_client_err_e (*writeUInt32AcqFp)(acq_client_t *self, char *service,
     uint32_t param);
@@ -334,6 +348,7 @@ typedef struct {
 
 typedef struct {
     union {
+        epicsInt32 argInt32;
         epicsUInt32 argUInt32;
         epicsFloat64 argFloat64;
     };
@@ -621,6 +636,11 @@ class drvBPM : public asynNDArrayDriver {
             return func.serviceName;
         }
 
+        const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
+        {
+            return func.serviceName;
+        }
+
         const char *doGetServiceNameFromFunc (functionsUInt32Acq_t &func) const
         {
             return func.serviceName;
@@ -652,6 +672,8 @@ class drvBPM : public asynNDArrayDriver {
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwWriteFunction(functionsUInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwWriteFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
 
@@ -664,6 +686,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwReadFunction(functionsUInt32_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwReadFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);

@@ -4157,6 +4157,28 @@ halcs_set_func_param_err:
     return (asynStatus)status;
 }
 
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClient, service, functionParam.argInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus)status;
+}
+
 asynStatus drvBPM::executeHwWriteFunction(int functionId, int addr,
         functionsArgs_t &functionParam)
 {
@@ -4336,6 +4358,27 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32_t &func, char *servic
 
     /* Execute registered function */
     err = func.read(bpmClient, service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClient, service, &functionParam.argInt32);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing read function for service %s\n",
