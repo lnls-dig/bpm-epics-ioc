@@ -78,53 +78,53 @@ record(longin,"$(P)$(R)PosKsum-RB"){
 }
 
 record(longout,"$(P)$(R)PosXOffset-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set X offset")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_XOFFSET")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_XOFFSET")
     field(EGU, "nm")
 }
 
 record(longin,"$(P)$(R)PosXOffset-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get X Offset")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_XOFFSET")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_XOFFSET")
     field(EGU, "nm")
 }
 
 record(longout,"$(P)$(R)PosYOffset-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set Y offset")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_YOFFSET")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_YOFFSET")
     field(EGU, "nm")
 }
 
 record(longin,"$(P)$(R)PosYOffset-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get Y Offset")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_YOFFSET")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_YOFFSET")
     field(EGU, "nm")
 }
 
 record(longout,"$(P)$(R)PosQOffset-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set Q offset")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_QOFFSET")
     field(EGU, "nm")
 }
 
 record(longin,"$(P)$(R)PosQOffset-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get Q Offset")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_QOFFSET")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_QOFFSET")
     field(EGU, "nm")
 }
 

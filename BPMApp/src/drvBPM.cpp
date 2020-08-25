@@ -1014,9 +1014,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitTagDesyncCntString,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCnt);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
-    createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
-    createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
-    createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+    createParam(P_XOffsetString,    asynParamInt32,                 &P_XOffset);
+    createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
+    createParam(P_QOffsetString,    asynParamInt32,                 &P_QOffset);
 
     /* Timing parameters */
     createParam(P_TimRcvPhaseMeasNavgString,
@@ -1422,9 +1422,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitTagDesyncCnt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
-    setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
+    setIntegerParam(P_XOffset,                              0);
+    setIntegerParam(P_YOffset,                              0);
+    setIntegerParam(P_QOffset,                              0);
 
     setUIntDigitalParam(P_TimRcvPhaseMeasNavg,
                                         TIMRCV_DFLT_PHASE_MEAS_NAVG,
