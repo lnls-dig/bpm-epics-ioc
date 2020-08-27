@@ -596,8 +596,8 @@ static const functionsAny_t bpmSetGetIntlkAngBiggerLtcYFunc =     {functionsUInt
 static const functionsAny_t bpmSetGetIntlkAngBiggerAnyFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_any}};
 static const functionsAny_t bpmSetGetIntlkAngBiggerFunc =         {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger}};
 static const functionsAny_t bpmSetGetIntlkAngBiggerLtcFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc}};
-static const functionsAny_t bpmSetGetIntlkBiggerFunc =            {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger}};
-static const functionsAny_t bpmSetGetIntlkBiggerLtcFunc =         {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkFunc =                  {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk}};
+static const functionsAny_t bpmSetGetIntlkLtcFunc =               {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ltc}};
 static const functionsAny_t bpmSetGetIntlkTransSmallerXFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_x}};
 static const functionsAny_t bpmSetGetIntlkTransSmallerYFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_y}};
 static const functionsAny_t bpmSetGetIntlkTransSmallerLtcXFunc =  {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_ltc_x}};
@@ -1159,8 +1159,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkAngBiggerAnyString,     asynParamUInt32Digital, &P_IntlkAngBiggerAny);
     createParam(P_IntlkAngBiggerString,        asynParamUInt32Digital, &P_IntlkAngBigger);
     createParam(P_IntlkAngBiggerLtcString,     asynParamUInt32Digital, &P_IntlkAngBiggerLtc);
-    createParam(P_IntlkBiggerString,           asynParamUInt32Digital, &P_IntlkBigger);
-    createParam(P_IntlkBiggerLtcString,        asynParamUInt32Digital, &P_IntlkBiggerLtc);
+    createParam(P_IntlkString,                 asynParamUInt32Digital, &P_Intlk);
+    createParam(P_IntlkLtcString,              asynParamUInt32Digital, &P_IntlkLtc);
     createParam(P_IntlkTransSmallerXString,    asynParamUInt32Digital, &P_IntlkTransSmallerX);
     createParam(P_IntlkTransSmallerYString,    asynParamUInt32Digital, &P_IntlkTransSmallerY);
     createParam(P_IntlkTransSmallerLtcXString, asynParamUInt32Digital, &P_IntlkTransSmallerLtcX);
@@ -1318,8 +1318,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkAngBiggerAny, bpmSetGetIntlkAngBiggerAnyFunc);
     bpmHwFunc.emplace(P_IntlkAngBigger, bpmSetGetIntlkAngBiggerFunc);
     bpmHwFunc.emplace(P_IntlkAngBiggerLtc, bpmSetGetIntlkAngBiggerLtcFunc);
-    bpmHwFunc.emplace(P_IntlkBigger, bpmSetGetIntlkBiggerFunc);
-    bpmHwFunc.emplace(P_IntlkBiggerLtc, bpmSetGetIntlkBiggerLtcFunc);
+    bpmHwFunc.emplace(P_Intlk, bpmSetGetIntlkFunc);
+    bpmHwFunc.emplace(P_IntlkLtc, bpmSetGetIntlkLtcFunc);
     bpmHwFunc.emplace(P_IntlkTransSmallerX, bpmSetGetIntlkTransSmallerXFunc);
     bpmHwFunc.emplace(P_IntlkTransSmallerY, bpmSetGetIntlkTransSmallerYFunc);
     bpmHwFunc.emplace(P_IntlkTransSmallerLtcX, bpmSetGetIntlkTransSmallerLtcXFunc);
@@ -1678,8 +1678,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_IntlkAngBiggerAny,         0,               0x1);
     setUIntDigitalParam(P_IntlkAngBigger,            0,               0x1);
     setUIntDigitalParam(P_IntlkAngBiggerLtc,         0,               0x1);
-    setUIntDigitalParam(P_IntlkBigger,               0,               0x1);
-    setUIntDigitalParam(P_IntlkBiggerLtc,            0,               0x1);
+    setUIntDigitalParam(P_Intlk,                     0,               0x1);
+    setUIntDigitalParam(P_IntlkLtc,                  0,               0x1);
     setUIntDigitalParam(P_IntlkTransSmallerX,        0,               0x1);
     setUIntDigitalParam(P_IntlkTransSmallerY,        0,               0x1);
     setUIntDigitalParam(P_IntlkTransSmallerLtcX,     0,               0x1);

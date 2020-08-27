@@ -590,8 +590,8 @@ private:
 #define P_IntlkAngBiggerAnyString     "INTLK_ANG_BIGGER_ANY"      /* asynUInt32Digital,      ro */
 #define P_IntlkAngBiggerString        "INTLK_ANG_BIGGER"          /* asynUInt32Digital,      ro */
 #define P_IntlkAngBiggerLtcString     "INTLK_ANG_BIGGER_LTC"      /* asynUInt32Digital,      ro */
-#define P_IntlkBiggerString           "INTLK_BIGGER"              /* asynUInt32Digital,      ro */
-#define P_IntlkBiggerLtcString        "INTLK_BIGGER_LTC"          /* asynUInt32Digital,      ro */
+#define P_IntlkString                 "INTLK"                     /* asynUInt32Digital,      ro */
+#define P_IntlkLtcString              "INTLK_LTC"                 /* asynUInt32Digital,      ro */
 #define P_IntlkTransSmallerXString    "INTLK_TRANS_SMALLER_X"      /* asynUInt32Digital,      ro */
 #define P_IntlkTransSmallerYString    "INTLK_TRANS_SMALLER_Y"      /* asynUInt32Digital,      ro */
 #define P_IntlkTransSmallerLtcXString "INTLK_TRANS_SMALLER_LTC_X"  /* asynUInt32Digital,      ro */
@@ -885,8 +885,8 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkAngBiggerAny;
         int P_IntlkAngBigger;
         int P_IntlkAngBiggerLtc;
-        int P_IntlkBigger;
-        int P_IntlkBiggerLtc;
+        int P_Intlk;
+        int P_IntlkLtc;
         int P_IntlkTransSmallerX;
         int P_IntlkTransSmallerY;
         int P_IntlkTransSmallerLtcX;
