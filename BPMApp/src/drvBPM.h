@@ -592,6 +592,22 @@ private:
 #define P_IntlkAngBiggerLtcString     "INTLK_ANG_BIGGER_LTC"      /* asynUInt32Digital,      ro */
 #define P_IntlkBiggerString           "INTLK_BIGGER"              /* asynUInt32Digital,      ro */
 #define P_IntlkBiggerLtcString        "INTLK_BIGGER_LTC"          /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerXString    "INTLK_TRANS_SMALLER_X"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerYString    "INTLK_TRANS_SMALLER_Y"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcXString "INTLK_TRANS_SMALLER_LTC_X"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcYString "INTLK_TRANS_SMALLER_LTC_Y"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerAnyString  "INTLK_TRANS_SMALLER_ANY"    /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerString     "INTLK_TRANS_SMALLER"        /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcString  "INTLK_TRANS_SMALLER_LTC"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerXString      "INTLK_ANG_SMALLER_X"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerYString      "INTLK_ANG_SMALLER_Y"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcXString   "INTLK_ANG_SMALLER_LTC_X"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcYString   "INTLK_ANG_SMALLER_LTC_Y"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerAnyString    "INTLK_ANG_SMALLER_ANY"      /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerString       "INTLK_ANG_SMALLER"          /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcString    "INTLK_ANG_SMALLER_LTC"      /* asynUInt32Digital,      ro */
+#define P_IntlkSmallerString          "INTLK_SMALLER"              /* asynUInt32Digital,      ro */
+#define P_IntlkSmallerLtcString       "INTLK_SMALLER_LTC"          /* asynUInt32Digital,      ro */
 #define P_IntlkMinSumString           "INTLK_MIN_SUM"             /* asynUInt32Digital,      r/w */
 #define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynInt32,      r/w */
 #define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynInt32,      r/w */
@@ -873,6 +889,22 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkAngBiggerLtc;
         int P_IntlkBigger;
         int P_IntlkBiggerLtc;
+        int P_IntlkTransSmallerX;
+        int P_IntlkTransSmallerY;
+        int P_IntlkTransSmallerLtcX;
+        int P_IntlkTransSmallerLtcY;
+        int P_IntlkTransSmallerAny;
+        int P_IntlkTransSmaller;
+        int P_IntlkTransSmallerLtc;
+        int P_IntlkAngSmallerX;
+        int P_IntlkAngSmallerY;
+        int P_IntlkAngSmallerLtcX;
+        int P_IntlkAngSmallerLtcY;
+        int P_IntlkAngSmallerAny;
+        int P_IntlkAngSmaller;
+        int P_IntlkAngSmallerLtc;
+        int P_IntlkSmaller;
+        int P_IntlkSmallerLtc;
         int P_IntlkMinSum;
         int P_IntlkTransMaxX;
         int P_IntlkTransMaxY;
