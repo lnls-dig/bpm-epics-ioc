@@ -603,6 +603,10 @@ static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsInt3
 static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
 static const functionsAny_t bpmSetGetIntlkAngMaxXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_x, halcs_get_orbit_intlk_ang_max_x}};
 static const functionsAny_t bpmSetGetIntlkAngMaxYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_y, halcs_get_orbit_intlk_ang_max_y}};
+static const functionsAny_t bpmSetGetIntlkTransMinXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_x, halcs_get_orbit_intlk_trans_min_x}};
+static const functionsAny_t bpmSetGetIntlkTransMinYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_y, halcs_get_orbit_intlk_trans_min_y}};
+static const functionsAny_t bpmSetGetIntlkAngMinXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_x, halcs_get_orbit_intlk_ang_min_x}};
+static const functionsAny_t bpmSetGetIntlkAngMinYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_y, halcs_get_orbit_intlk_ang_min_y}};
 
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
@@ -1148,6 +1152,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkTransMaxYString,        asynParamInt32,         &P_IntlkTransMaxY);
     createParam(P_IntlkAngMaxXString,          asynParamInt32,         &P_IntlkAngMaxX);
     createParam(P_IntlkAngMaxYString,          asynParamInt32,         &P_IntlkAngMaxY);
+    createParam(P_IntlkTransMinXString,        asynParamInt32,         &P_IntlkTransMinX);
+    createParam(P_IntlkTransMinYString,        asynParamInt32,         &P_IntlkTransMinY);
+    createParam(P_IntlkAngMinXString,          asynParamInt32,         &P_IntlkAngMinX);
+    createParam(P_IntlkAngMinYString,          asynParamInt32,         &P_IntlkAngMinY);
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1289,6 +1297,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkTransMaxY, bpmSetGetIntlkTransMaxYFunc);
     bpmHwFunc.emplace(P_IntlkAngMaxX, bpmSetGetIntlkAngMaxXFunc);
     bpmHwFunc.emplace(P_IntlkAngMaxY, bpmSetGetIntlkAngMaxYFunc);
+    bpmHwFunc.emplace(P_IntlkTransMinX, bpmSetGetIntlkTransMinXFunc);
+    bpmHwFunc.emplace(P_IntlkTransMinY, bpmSetGetIntlkTransMinYFunc);
+    bpmHwFunc.emplace(P_IntlkAngMinX, bpmSetGetIntlkAngMinXFunc);
+    bpmHwFunc.emplace(P_IntlkAngMinY, bpmSetGetIntlkAngMinYFunc);
 
     lock();
     status = bpmClientConnect(this->pasynUserSelf);
@@ -1631,6 +1643,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_IntlkTransMaxY,                                   0);
     setIntegerParam(P_IntlkAngMaxX,                                     0);
     setIntegerParam(P_IntlkAngMaxY,                                     0);
+    setIntegerParam(P_IntlkTransMinX,                                   0);
+    setIntegerParam(P_IntlkTransMinY,                                   0);
+    setIntegerParam(P_IntlkAngMinX,                                     0);
+    setIntegerParam(P_IntlkAngMinY,                                     0);
 
 #if 0
     /* Read values from HW */

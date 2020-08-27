@@ -593,10 +593,14 @@ private:
 #define P_IntlkBiggerString           "INTLK_BIGGER"              /* asynUInt32Digital,      ro */
 #define P_IntlkBiggerLtcString        "INTLK_BIGGER_LTC"          /* asynUInt32Digital,      ro */
 #define P_IntlkMinSumString           "INTLK_MIN_SUM"             /* asynUInt32Digital,      r/w */
-#define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynUInt32Digital,      r/w */
-#define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynUInt32Digital,      r/w */
-#define P_IntlkAngMaxXString          "INTLK_ANG_MAX_X"           /* asynUInt32Digital,      r/w */
-#define P_IntlkAngMaxYString          "INTLK_ANG_MAX_Y"           /* asynUInt32Digital,      r/w */
+#define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynInt32,      r/w */
+#define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynInt32,      r/w */
+#define P_IntlkAngMaxXString          "INTLK_ANG_MAX_X"           /* asynInt32,      r/w */
+#define P_IntlkAngMaxYString          "INTLK_ANG_MAX_Y"           /* asynInt32,      r/w */
+#define P_IntlkTransMinXString        "INTLK_TRANS_MIN_X"         /* asynInt32,      r/w */
+#define P_IntlkTransMinYString        "INTLK_TRANS_MIN_Y"         /* asynInt32,      r/w */
+#define P_IntlkAngMinXString          "INTLK_ANG_MIN_X"           /* asynInt32,      r/w */
+#define P_IntlkAngMinYString          "INTLK_ANG_MIN_Y"           /* asynInt32,      r/w */
 
 typedef enum {
     TRIG_ACQ_START,
@@ -874,7 +878,11 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkTransMaxY;
         int P_IntlkAngMaxX;
         int P_IntlkAngMaxY;
-#define LAST_COMMAND P_IntlkAngMaxY
+        int P_IntlkTransMinX;
+        int P_IntlkTransMinY;
+        int P_IntlkAngMinX;
+        int P_IntlkAngMinY;
+#define LAST_COMMAND P_IntlkAngMinY
 
     private:
         /* Our data */
