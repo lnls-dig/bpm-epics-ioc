@@ -606,8 +606,6 @@ private:
 #define P_IntlkAngSmallerAnyString    "INTLK_ANG_SMALLER_ANY"      /* asynUInt32Digital,      ro */
 #define P_IntlkAngSmallerString       "INTLK_ANG_SMALLER"          /* asynUInt32Digital,      ro */
 #define P_IntlkAngSmallerLtcString    "INTLK_ANG_SMALLER_LTC"      /* asynUInt32Digital,      ro */
-#define P_IntlkSmallerString          "INTLK_SMALLER"              /* asynUInt32Digital,      ro */
-#define P_IntlkSmallerLtcString       "INTLK_SMALLER_LTC"          /* asynUInt32Digital,      ro */
 #define P_IntlkMinSumString           "INTLK_MIN_SUM"             /* asynUInt32Digital,      r/w */
 #define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynInt32,      r/w */
 #define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynInt32,      r/w */
@@ -903,8 +901,6 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkAngSmallerAny;
         int P_IntlkAngSmaller;
         int P_IntlkAngSmallerLtc;
-        int P_IntlkSmaller;
-        int P_IntlkSmallerLtc;
         int P_IntlkMinSum;
         int P_IntlkTransMaxX;
         int P_IntlkTransMaxY;

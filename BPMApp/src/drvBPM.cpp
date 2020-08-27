@@ -612,8 +612,6 @@ static const functionsAny_t bpmSetGetIntlkAngSmallerLtcYFunc =    {functionsUInt
 static const functionsAny_t bpmSetGetIntlkAngSmallerAnyFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_any}};
 static const functionsAny_t bpmSetGetIntlkAngSmallerFunc =        {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller}};
 static const functionsAny_t bpmSetGetIntlkAngSmallerLtcFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_ltc}};
-static const functionsAny_t bpmSetGetIntlkSmallerFunc =           {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_smaller}};
-static const functionsAny_t bpmSetGetIntlkSmallerLtcFunc =        {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_smaller_ltc}};
 static const functionsAny_t bpmSetGetIntlkMinSumFunc =            {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum, halcs_get_orbit_intlk_min_sum}};
 static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_x, halcs_get_orbit_intlk_trans_max_x}};
 static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
@@ -1177,8 +1175,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkAngSmallerAnyString,    asynParamUInt32Digital, &P_IntlkAngSmallerAny);
     createParam(P_IntlkAngSmallerString,       asynParamUInt32Digital, &P_IntlkAngSmaller);
     createParam(P_IntlkAngSmallerLtcString,    asynParamUInt32Digital, &P_IntlkAngSmallerLtc);
-    createParam(P_IntlkSmallerString,          asynParamUInt32Digital, &P_IntlkSmaller);
-    createParam(P_IntlkSmallerLtcString,       asynParamUInt32Digital, &P_IntlkSmallerLtc);
     createParam(P_IntlkMinSumString,           asynParamInt32,         &P_IntlkMinSum);
     createParam(P_IntlkTransMaxXString,        asynParamInt32,         &P_IntlkTransMaxX);
     createParam(P_IntlkTransMaxYString,        asynParamInt32,         &P_IntlkTransMaxY);
@@ -1338,8 +1334,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkAngSmallerAny, bpmSetGetIntlkAngSmallerAnyFunc);
     bpmHwFunc.emplace(P_IntlkAngSmaller, bpmSetGetIntlkAngSmallerFunc);
     bpmHwFunc.emplace(P_IntlkAngSmallerLtc, bpmSetGetIntlkAngSmallerLtcFunc);
-    bpmHwFunc.emplace(P_IntlkSmaller, bpmSetGetIntlkSmallerFunc);
-    bpmHwFunc.emplace(P_IntlkSmallerLtc, bpmSetGetIntlkSmallerLtcFunc);
     bpmHwFunc.emplace(P_IntlkMinSum, bpmSetGetIntlkMinSumFunc);
     bpmHwFunc.emplace(P_IntlkTransMaxX, bpmSetGetIntlkTransMaxXFunc);
     bpmHwFunc.emplace(P_IntlkTransMaxY, bpmSetGetIntlkTransMaxYFunc);
@@ -1700,8 +1694,6 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_IntlkAngSmallerAny,        0,               0x1);
     setUIntDigitalParam(P_IntlkAngSmaller,           0,               0x1);
     setUIntDigitalParam(P_IntlkAngSmallerLtc,        0,               0x1);
-    setUIntDigitalParam(P_IntlkSmaller,              0,               0x1);
-    setUIntDigitalParam(P_IntlkSmallerLtc,           0,               0x1);
     setIntegerParam(P_IntlkMinSum,                                      0);
     setIntegerParam(P_IntlkTransMaxX,                                   0);
     setIntegerParam(P_IntlkTransMaxY,                                   0);
