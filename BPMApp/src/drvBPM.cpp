@@ -1143,11 +1143,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkAngBiggerLtcString,     asynParamUInt32Digital, &P_IntlkAngBiggerLtc);
     createParam(P_IntlkBiggerString,           asynParamUInt32Digital, &P_IntlkBigger);
     createParam(P_IntlkBiggerLtcString,        asynParamUInt32Digital, &P_IntlkBiggerLtc);
-    createParam(P_IntlkMinSumString,           asynParamUInt32Digital, &P_IntlkMinSum);
-    createParam(P_IntlkTransMaxXString,        asynParamUInt32Digital, &P_IntlkTransMaxX);
-    createParam(P_IntlkTransMaxYString,        asynParamUInt32Digital, &P_IntlkTransMaxY);
-    createParam(P_IntlkAngMaxXString,          asynParamUInt32Digital, &P_IntlkAngMaxX);
-    createParam(P_IntlkAngMaxYString,          asynParamUInt32Digital, &P_IntlkAngMaxY);
+    createParam(P_IntlkMinSumString,           asynParamInt32,         &P_IntlkMinSum);
+    createParam(P_IntlkTransMaxXString,        asynParamInt32,         &P_IntlkTransMaxX);
+    createParam(P_IntlkTransMaxYString,        asynParamInt32,         &P_IntlkTransMaxY);
+    createParam(P_IntlkAngMaxXString,          asynParamInt32,         &P_IntlkAngMaxX);
+    createParam(P_IntlkAngMaxYString,          asynParamInt32,         &P_IntlkAngMaxY);
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1626,11 +1626,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_IntlkAngBiggerLtc,         0,               0x1);
     setUIntDigitalParam(P_IntlkBigger,               0,               0x1);
     setUIntDigitalParam(P_IntlkBiggerLtc,            0,               0x1);
-    setUIntDigitalParam(P_IntlkMinSum,               0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkTransMaxX,            0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkTransMaxY,            0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkAngMaxX,              0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkAngMaxY,              0,               0xFFFFFFFF);
+    setIntegerParam(P_IntlkMinSum,                                      0);
+    setIntegerParam(P_IntlkTransMaxX,                                   0);
+    setIntegerParam(P_IntlkTransMaxY,                                   0);
+    setIntegerParam(P_IntlkAngMaxX,                                     0);
+    setIntegerParam(P_IntlkAngMaxY,                                     0);
 
 #if 0
     /* Read values from HW */
