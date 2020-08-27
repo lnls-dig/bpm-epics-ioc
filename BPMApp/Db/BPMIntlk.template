@@ -359,3 +359,63 @@ record(longin,  "$(P)$(R)IntlkLmtAngMaxY-RB"){
     field(SCAN, "I/O Intr")
     field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MAX_Y")
 }
+
+record(longout, "$(P)$(R)IntlkLmtTransMinX-SP"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set interlock trans. min X threshold")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_X")
+}
+
+record(longin,  "$(P)$(R)IntlkLmtTransMinX-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock trans. min X threshold")
+    field(SCAN, "I/O Intr")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_X")
+}
+
+record(longout, "$(P)$(R)IntlkLmtTransMinY-SP"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set interlock trans. min Y threshold")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_Y")
+}
+
+record(longin,  "$(P)$(R)IntlkLmtTransMinY-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock trans. min Y threshold")
+    field(SCAN, "I/O Intr")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_Y")
+}
+
+record(longout, "$(P)$(R)IntlkLmtAngMinX-SP"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set interlock ang. min X threshold")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_X")
+}
+
+record(longin,  "$(P)$(R)IntlkLmtAngMinX-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock ang. min X threshold")
+    field(SCAN, "I/O Intr")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_X")
+}
+
+record(longout, "$(P)$(R)IntlkLmtAngMinY-SP"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set interlock ang. min Y threshold")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_Y")
+}
+
+record(longin,  "$(P)$(R)IntlkLmtAngMinY-RB"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock ang. min Y threshold")
+    field(SCAN, "I/O Intr")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_Y")
+}
