@@ -4487,6 +4487,10 @@ asynStatus drvBPM::setParamGeneric(int functionId, int addr)
     }
 
     switch (asynType) {
+        case asynParamInt32:
+            status = setParamInteger(functionId, addr);
+        break;
+
         case asynParamUInt32Digital:
             status = setParam32(functionId, 0xFFFFFFFF, addr);
         break;
