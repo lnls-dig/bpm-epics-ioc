@@ -1901,7 +1901,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>25</height>
     <name>Text Update_155</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -1926,10 +1926,10 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <visible>true</visible>
     <widget_type>LED</widget_type>
-    <width>20</width>
+    <width>25</width>
     <wuid>-5ef6a66e:173e382b85f:-5f0c</wuid>
-    <x>342</x>
-    <y>110</y>
+    <x>365</x>
+    <y>143</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -1968,8 +1968,8 @@ $(pv_value)</tooltip>
     <width>69</width>
     <wrap_words>false</wrap_words>
     <wuid>-5ef6a66e:173e382b85f:-5f0b</wuid>
-    <x>275</x>
-    <y>110</y>
+    <x>305</x>
+    <y>143</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -1999,7 +1999,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>25</height>
     <name>Text Update_156</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -2024,10 +2024,10 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <visible>true</visible>
     <widget_type>LED</widget_type>
-    <width>20</width>
+    <width>25</width>
     <wuid>-5ef6a66e:173e382b85f:-5f0a</wuid>
-    <x>373</x>
-    <y>110</y>
+    <x>401</x>
+    <y>143</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -5809,7 +5809,7 @@ Under Min</text>
     <width>98</width>
     <wrap_words>true</wrap_words>
     <wuid>-154db201:174305e9bda:-71e3</wuid>
-    <x>318</x>
-    <y>74</y>
+    <x>348</x>
+    <y>107</y>
   </widget>
 </display>
