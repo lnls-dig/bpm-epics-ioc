@@ -7,3 +7,7 @@ $(P)$(R)IntlkLmtTransMaxX-SP
 $(P)$(R)IntlkLmtTransMaxY-SP
 $(P)$(R)IntlkLmtAngMaxX-SP
 $(P)$(R)IntlkLmtAngMaxY-SP
+$(P)$(R)IntlkLmtTransMinX-SP
+$(P)$(R)IntlkLmtTransMinY-SP
+$(P)$(R)IntlkLmtAngMinX-SP
+$(P)$(R)IntlkLmtAngMinY-SP

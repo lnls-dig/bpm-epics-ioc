@@ -260,11 +260,25 @@ typedef struct {
 } channelProp_t;
 
 /* Write 32-bit function pointer */
-typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*writeUInt32Fp)(halcs_client_t *self, char *service,
     uint32_t param);
 /* Read 32-bit function pointer */
-typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*readUInt32Fp)(halcs_client_t *self, char *service,
     uint32_t *param);
+
+/* BPM command dispatch table */
+typedef struct {
+    const char *serviceName;
+    writeUInt32Fp write;
+    readUInt32Fp read;
+} functionsUInt32_t;
+
+/* Write 32-bit function pointer */
+typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
+    int32_t param);
+/* Read 32-bit function pointer */
+typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
+    int32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
@@ -274,35 +288,35 @@ typedef struct {
 } functionsInt32_t;
 
 /* Write 32-bit function pointer with acq_client structure */
-typedef halcs_client_err_e (*writeInt32AcqFp)(acq_client_t *self, char *service,
+typedef halcs_client_err_e (*writeUInt32AcqFp)(acq_client_t *self, char *service,
     uint32_t param);
 /* Read 32-bit function pointer with acq_client structure */
-typedef halcs_client_err_e (*readInt32AcqFp)(acq_client_t *self, char *service,
+typedef halcs_client_err_e (*readUInt32AcqFp)(acq_client_t *self, char *service,
     uint32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
     const char *serviceName;
-    writeInt32AcqFp write;
-    readInt32AcqFp read;
-} functionsInt32Acq_t;
+    writeUInt32AcqFp write;
+    readUInt32AcqFp read;
+} functionsUInt32Acq_t;
 
 /* Write 2 32-bit function pointer */
-typedef halcs_client_err_e (*write2Int32Fp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*write2UInt32Fp)(halcs_client_t *self, char *service,
     uint32_t param1, uint32_t param2);
 /* Read 32-bit function pointer */
-typedef halcs_client_err_e (*read2Int32Fp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*read2UInt32Fp)(halcs_client_t *self, char *service,
     uint32_t *param1, uint32_t *param2);
 
 /* BPM command dispatch table */
 typedef struct {
     const char *serviceName;
-    write2Int32Fp write;
-    read2Int32Fp read;
+    write2UInt32Fp write;
+    read2UInt32Fp read;
     /* Which parameter (first or second) would trigger this function to be
      * executed on hardware (the other one won't be changed) */
     int parameterPos;
-} functions2Int32_t;
+} functions2UInt32_t;
 
 /* Write 64-bit float function pointer */
 typedef halcs_client_err_e (*writeFloat64Fp)(halcs_client_t *self, char *service,
@@ -319,21 +333,22 @@ typedef struct {
 } functionsFloat64_t;
 
 /* Write 32-bit function pointer with channel selection */
-typedef halcs_client_err_e (*writeInt32ChanFp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*writeUInt32ChanFp)(halcs_client_t *self, char *service,
     uint32_t chan, uint32_t param);
 /* Read 32-bit function pointer with channel selection */
-typedef halcs_client_err_e (*readInt32ChanFp)(halcs_client_t *self, char *service,
+typedef halcs_client_err_e (*readUInt32ChanFp)(halcs_client_t *self, char *service,
     uint32_t chan, uint32_t *param);
 
 /* BPM command dispatch table */
 typedef struct {
     const char *serviceName;
-    writeInt32ChanFp write;
-    readInt32ChanFp read;
-} functionsInt32Chan_t;
+    writeUInt32ChanFp write;
+    readUInt32ChanFp read;
+} functionsUInt32Chan_t;
 
 typedef struct {
     union {
+        epicsInt32 argInt32;
         epicsUInt32 argUInt32;
         epicsFloat64 argFloat64;
     };
@@ -575,13 +590,31 @@ private:
 #define P_IntlkAngBiggerAnyString     "INTLK_ANG_BIGGER_ANY"      /* asynUInt32Digital,      ro */
 #define P_IntlkAngBiggerString        "INTLK_ANG_BIGGER"          /* asynUInt32Digital,      ro */
 #define P_IntlkAngBiggerLtcString     "INTLK_ANG_BIGGER_LTC"      /* asynUInt32Digital,      ro */
-#define P_IntlkBiggerString           "INTLK_BIGGER"              /* asynUInt32Digital,      ro */
-#define P_IntlkBiggerLtcString        "INTLK_BIGGER_LTC"          /* asynUInt32Digital,      ro */
+#define P_IntlkString                 "INTLK"                     /* asynUInt32Digital,      ro */
+#define P_IntlkLtcString              "INTLK_LTC"                 /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerXString    "INTLK_TRANS_SMALLER_X"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerYString    "INTLK_TRANS_SMALLER_Y"      /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcXString "INTLK_TRANS_SMALLER_LTC_X"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcYString "INTLK_TRANS_SMALLER_LTC_Y"  /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerAnyString  "INTLK_TRANS_SMALLER_ANY"    /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerString     "INTLK_TRANS_SMALLER"        /* asynUInt32Digital,      ro */
+#define P_IntlkTransSmallerLtcString  "INTLK_TRANS_SMALLER_LTC"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerXString      "INTLK_ANG_SMALLER_X"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerYString      "INTLK_ANG_SMALLER_Y"        /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcXString   "INTLK_ANG_SMALLER_LTC_X"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcYString   "INTLK_ANG_SMALLER_LTC_Y"    /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerAnyString    "INTLK_ANG_SMALLER_ANY"      /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerString       "INTLK_ANG_SMALLER"          /* asynUInt32Digital,      ro */
+#define P_IntlkAngSmallerLtcString    "INTLK_ANG_SMALLER_LTC"      /* asynUInt32Digital,      ro */
 #define P_IntlkMinSumString           "INTLK_MIN_SUM"             /* asynUInt32Digital,      r/w */
-#define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynUInt32Digital,      r/w */
-#define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynUInt32Digital,      r/w */
-#define P_IntlkAngMaxXString          "INTLK_ANG_MAX_X"           /* asynUInt32Digital,      r/w */
-#define P_IntlkAngMaxYString          "INTLK_ANG_MAX_Y"           /* asynUInt32Digital,      r/w */
+#define P_IntlkTransMaxXString        "INTLK_TRANS_MAX_X"         /* asynInt32,      r/w */
+#define P_IntlkTransMaxYString        "INTLK_TRANS_MAX_Y"         /* asynInt32,      r/w */
+#define P_IntlkAngMaxXString          "INTLK_ANG_MAX_X"           /* asynInt32,      r/w */
+#define P_IntlkAngMaxYString          "INTLK_ANG_MAX_Y"           /* asynInt32,      r/w */
+#define P_IntlkTransMinXString        "INTLK_TRANS_MIN_X"         /* asynInt32,      r/w */
+#define P_IntlkTransMinYString        "INTLK_TRANS_MIN_Y"         /* asynInt32,      r/w */
+#define P_IntlkAngMinXString          "INTLK_ANG_MIN_X"           /* asynInt32,      r/w */
+#define P_IntlkAngMinYString          "INTLK_ANG_MIN_Y"           /* asynInt32,      r/w */
 
 typedef enum {
     TRIG_ACQ_START,
@@ -616,17 +649,22 @@ class drvBPM : public asynNDArrayDriver {
         void acqMonitTask();
 
         /* Overloaded functions for extracting service name*/
+        const char *doGetServiceNameFromFunc (functionsUInt32_t &func) const
+        {
+            return func.serviceName;
+        }
+
         const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
         {
             return func.serviceName;
         }
 
-        const char *doGetServiceNameFromFunc (functionsInt32Acq_t &func) const
+        const char *doGetServiceNameFromFunc (functionsUInt32Acq_t &func) const
         {
             return func.serviceName;
         }
 
-        const char *doGetServiceNameFromFunc (functions2Int32_t &func) const
+        const char *doGetServiceNameFromFunc (functions2UInt32_t &func) const
         {
             return func.serviceName;
         }
@@ -636,32 +674,36 @@ class drvBPM : public asynNDArrayDriver {
             return func.serviceName;
         }
 
-        const char *doGetServiceNameFromFunc (functionsInt32Chan_t &func) const
+        const char *doGetServiceNameFromFunc (functionsUInt32Chan_t &func) const
         {
             return func.serviceName;
         }
 
         /* Overloaded function mappings called by functionsAny_t */
-        asynStatus doExecuteHwWriteFunction(functionsInt32Acq_t &func, char *service,
+        asynStatus doExecuteHwWriteFunction(functionsUInt32Acq_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functions2Int32_t &func, char *service,
+        asynStatus doExecuteHwWriteFunction(functions2UInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *service,
+        asynStatus doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwWriteFunction(functionsUInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwWriteFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
 
-        asynStatus doExecuteHwReadFunction(functionsInt32Acq_t &func, char *service,
+        asynStatus doExecuteHwReadFunction(functionsUInt32Acq_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functions2Int32_t &func, char *service,
+        asynStatus doExecuteHwReadFunction(functions2UInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functionsInt32Chan_t &func, char *service,
+        asynStatus doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
+        asynStatus doExecuteHwReadFunction(functionsUInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
@@ -843,14 +885,32 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkAngBiggerAny;
         int P_IntlkAngBigger;
         int P_IntlkAngBiggerLtc;
-        int P_IntlkBigger;
-        int P_IntlkBiggerLtc;
+        int P_Intlk;
+        int P_IntlkLtc;
+        int P_IntlkTransSmallerX;
+        int P_IntlkTransSmallerY;
+        int P_IntlkTransSmallerLtcX;
+        int P_IntlkTransSmallerLtcY;
+        int P_IntlkTransSmallerAny;
+        int P_IntlkTransSmaller;
+        int P_IntlkTransSmallerLtc;
+        int P_IntlkAngSmallerX;
+        int P_IntlkAngSmallerY;
+        int P_IntlkAngSmallerLtcX;
+        int P_IntlkAngSmallerLtcY;
+        int P_IntlkAngSmallerAny;
+        int P_IntlkAngSmaller;
+        int P_IntlkAngSmallerLtc;
         int P_IntlkMinSum;
         int P_IntlkTransMaxX;
         int P_IntlkTransMaxY;
         int P_IntlkAngMaxX;
         int P_IntlkAngMaxY;
-#define LAST_COMMAND P_IntlkAngMaxY
+        int P_IntlkTransMinX;
+        int P_IntlkTransMinY;
+        int P_IntlkAngMinX;
+        int P_IntlkAngMinY;
+#define LAST_COMMAND P_IntlkAngMinY
 
     private:
         /* Our data */
@@ -914,6 +974,8 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
+        asynStatus setParamInteger(int functionId, int addr);
+        asynStatus getParamInteger(int functionId, epicsInt32 *param, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
@@ -933,13 +995,17 @@ class drvBPM : public asynNDArrayDriver {
         asynStatus resetADCs(epicsUInt32 mask, int addr);
         asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
                 int lastParam, bool acceptErrors);
+        asynStatus updateIntegerParams(int addr, int firstParam,
+                int lastParam, bool acceptErrors);
         asynStatus updateDoubleParams(int addr, int firstParam, int lastParam,
                 bool acceptErrors);
         asynStatus readUInt32Params(epicsUInt32 mask, int addr);
+        asynStatus readIntegerParams(int addr);
         asynStatus readFloat64Params(int addr);
         asynStatus readAD9510AndADCsParams(epicsUInt32 mask, int addr);
         asynStatus readAD9510Params(epicsUInt32 mask, int addr);
         asynStatus readADCsParams(epicsUInt32 mask, int addr);
+        asynStatus readOffsetParams(int addr);
         asynStatus readSi57xParams(int addr);
         asynStatus readTriggerParams(epicsUInt32 mask, int addr);
         asynStatus readFMCPicoParams(epicsUInt32 mask, int addr);

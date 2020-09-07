@@ -474,133 +474,153 @@ static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *
 }
 
 /* Int32 functions mapping */
-static const functionsAny_t bpmSetGetKxFunc =                    {functionsInt32_t{"DSP", halcs_set_kx, halcs_get_kx}};
-static const functionsAny_t bpmSetGetKyFunc =                    {functionsInt32_t{"DSP", halcs_set_ky, halcs_get_ky}};
-static const functionsAny_t bpmSetGetKsumFunc =                  {functionsInt32_t{"DSP", halcs_set_ksum, halcs_get_ksum}};
-static const functionsAny_t bpmSetGetSwTagEnFunc =               {functionsInt32_t{"DSP", halcs_set_sw_tag_en, halcs_get_sw_tag_en}};
-static const functionsAny_t bpmSetGetSwDataMaskEnFunc =          {functionsInt32_t{"DSP", halcs_set_sw_data_mask_en,
+static const functionsAny_t bpmSetGetKxFunc =                    {functionsUInt32_t{"DSP", halcs_set_kx, halcs_get_kx}};
+static const functionsAny_t bpmSetGetKyFunc =                    {functionsUInt32_t{"DSP", halcs_set_ky, halcs_get_ky}};
+static const functionsAny_t bpmSetGetKsumFunc =                  {functionsUInt32_t{"DSP", halcs_set_ksum, halcs_get_ksum}};
+static const functionsAny_t bpmSetGetSwTagEnFunc =               {functionsUInt32_t{"DSP", halcs_set_sw_tag_en, halcs_get_sw_tag_en}};
+static const functionsAny_t bpmSetGetSwDataMaskEnFunc =          {functionsUInt32_t{"DSP", halcs_set_sw_data_mask_en,
                                                                                             halcs_get_sw_data_mask_en}};
-static const functionsAny_t bpmSetGetSwDataMaskSamplesFunc =     {functionsInt32_t{"DSP", halcs_set_sw_data_mask_samples,
+static const functionsAny_t bpmSetGetSwDataMaskSamplesFunc =     {functionsUInt32_t{"DSP", halcs_set_sw_data_mask_samples,
                                                                                             halcs_get_sw_data_mask_samples}};
-static const functionsAny_t bpmSetGetTbtTagEnFunc =              {functionsInt32_t{"DSP", halcs_set_tbt_tag_en, halcs_get_tbt_tag_en}};
-static const functionsAny_t bpmSetGetTbtTagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_tbt_tag_dly, halcs_get_tbt_tag_dly}};
-static const functionsAny_t bpmSetGetTbtDataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_en,
+static const functionsAny_t bpmSetGetTbtTagEnFunc =              {functionsUInt32_t{"DSP", halcs_set_tbt_tag_en, halcs_get_tbt_tag_en}};
+static const functionsAny_t bpmSetGetTbtTagDlyFunc =             {functionsUInt32_t{"DSP", halcs_set_tbt_tag_dly, halcs_get_tbt_tag_dly}};
+static const functionsAny_t bpmSetGetTbtDataMaskEnFunc =         {functionsUInt32_t{"DSP", halcs_set_tbt_data_mask_en,
                                                                                             halcs_get_tbt_data_mask_en}};
-static const functionsAny_t bpmSetGetTbtDataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_beg,
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesBegFunc = {functionsUInt32_t{"DSP", halcs_set_tbt_data_mask_samples_beg,
                                                                                          halcs_get_tbt_data_mask_samples_beg}};
-static const functionsAny_t bpmSetGetTbtDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_tbt_data_mask_samples_end,
+static const functionsAny_t bpmSetGetTbtDataMaskSamplesEndFunc = {functionsUInt32_t{"DSP", halcs_set_tbt_data_mask_samples_end,
                                                                                             halcs_get_tbt_data_mask_samples_end}};
-static const functionsAny_t bpmSetGetSwTagDesyncCntRstFunc =     {functionsInt32_t{"DSP", halcs_set_sw_tag_desync_cnt_rst,
+static const functionsAny_t bpmSetGetSwTagDesyncCntRstFunc =     {functionsUInt32_t{"DSP", halcs_set_sw_tag_desync_cnt_rst,
                                                                                             halcs_get_sw_tag_desync_cnt_rst}};
-static const functionsAny_t bpmSetGetSwTagDesyncCntFunc =        {functionsInt32_t{"DSP", NULL,
+static const functionsAny_t bpmSetGetSwTagDesyncCntFunc =        {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_sw_tag_desync_cnt}};
-static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_tbt_tag_desync_cnt_rst,
+static const functionsAny_t bpmSetGetTbtTagDesyncCntRstFunc =    {functionsUInt32_t{"DSP", halcs_set_tbt_tag_desync_cnt_rst,
                                                                                            halcs_get_tbt_tag_desync_cnt_rst}};
-static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+static const functionsAny_t bpmSetGetTbtTagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_tbt_tag_desync_cnt}};
-static const functionsAny_t bpmSetGetMonit1TagEnFunc =              {functionsInt32_t{"DSP", halcs_set_monit1_tag_en, halcs_get_monit1_tag_en}};
-static const functionsAny_t bpmSetGetMonit1TagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_monit1_tag_dly, halcs_get_monit1_tag_dly}};
-static const functionsAny_t bpmSetGetMonit1DataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_en,
+static const functionsAny_t bpmSetGetMonit1TagEnFunc =              {functionsUInt32_t{"DSP", halcs_set_monit1_tag_en, halcs_get_monit1_tag_en}};
+static const functionsAny_t bpmSetGetMonit1TagDlyFunc =             {functionsUInt32_t{"DSP", halcs_set_monit1_tag_dly, halcs_get_monit1_tag_dly}};
+static const functionsAny_t bpmSetGetMonit1DataMaskEnFunc =         {functionsUInt32_t{"DSP", halcs_set_monit1_data_mask_en,
                                                                                             halcs_get_monit1_data_mask_en}};
-static const functionsAny_t bpmSetGetMonit1DataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_samples_beg,
+static const functionsAny_t bpmSetGetMonit1DataMaskSamplesBegFunc = {functionsUInt32_t{"DSP", halcs_set_monit1_data_mask_samples_beg,
                                                                                          halcs_get_monit1_data_mask_samples_beg}};
-static const functionsAny_t bpmSetGetMonit1DataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_monit1_data_mask_samples_end,
+static const functionsAny_t bpmSetGetMonit1DataMaskSamplesEndFunc = {functionsUInt32_t{"DSP", halcs_set_monit1_data_mask_samples_end,
                                                                                             halcs_get_monit1_data_mask_samples_end}};
-static const functionsAny_t bpmSetGetMonit1TagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_monit1_tag_desync_cnt_rst,
+static const functionsAny_t bpmSetGetMonit1TagDesyncCntRstFunc =    {functionsUInt32_t{"DSP", halcs_set_monit1_tag_desync_cnt_rst,
                                                                                            halcs_get_monit1_tag_desync_cnt_rst}};
-static const functionsAny_t bpmSetGetMonit1TagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+static const functionsAny_t bpmSetGetMonit1TagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_monit1_tag_desync_cnt}};
-static const functionsAny_t bpmSetGetMonitTagEnFunc =              {functionsInt32_t{"DSP", halcs_set_monit_tag_en, halcs_get_monit_tag_en}};
-static const functionsAny_t bpmSetGetMonitTagDlyFunc =             {functionsInt32_t{"DSP", halcs_set_monit_tag_dly, halcs_get_monit_tag_dly}};
-static const functionsAny_t bpmSetGetMonitDataMaskEnFunc =         {functionsInt32_t{"DSP", halcs_set_monit_data_mask_en,
+static const functionsAny_t bpmSetGetMonitTagEnFunc =              {functionsUInt32_t{"DSP", halcs_set_monit_tag_en, halcs_get_monit_tag_en}};
+static const functionsAny_t bpmSetGetMonitTagDlyFunc =             {functionsUInt32_t{"DSP", halcs_set_monit_tag_dly, halcs_get_monit_tag_dly}};
+static const functionsAny_t bpmSetGetMonitDataMaskEnFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_data_mask_en,
                                                                                             halcs_get_monit_data_mask_en}};
-static const functionsAny_t bpmSetGetMonitDataMaskSamplesBegFunc = {functionsInt32_t{"DSP", halcs_set_monit_data_mask_samples_beg,
+static const functionsAny_t bpmSetGetMonitDataMaskSamplesBegFunc = {functionsUInt32_t{"DSP", halcs_set_monit_data_mask_samples_beg,
                                                                                          halcs_get_monit_data_mask_samples_beg}};
-static const functionsAny_t bpmSetGetMonitDataMaskSamplesEndFunc = {functionsInt32_t{"DSP", halcs_set_monit_data_mask_samples_end,
+static const functionsAny_t bpmSetGetMonitDataMaskSamplesEndFunc = {functionsUInt32_t{"DSP", halcs_set_monit_data_mask_samples_end,
                                                                                             halcs_get_monit_data_mask_samples_end}};
-static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsInt32_t{"DSP", halcs_set_monit_tag_desync_cnt_rst,
+static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsUInt32_t{"DSP", halcs_set_monit_tag_desync_cnt_rst,
                                                                                            halcs_get_monit_tag_desync_cnt_rst}};
-static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsInt32_t{"DSP", NULL,
+static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_monit_tag_desync_cnt}};
-static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
-static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
-static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
-static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
-static const functionsAny_t bpmSetGetAdcTrigDirFunc =            {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir}};
-static const functionsAny_t bpmSetGetAdcTrigTermFunc =           {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term}};
-static const functionsAny_t bpmSetGetAdcRandFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand}};
-static const functionsAny_t bpmSetGetAdcDithFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith}};
-static const functionsAny_t bpmSetGetAdcShdnFunc =               {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn}};
-static const functionsAny_t bpmSetGetAdcPgaFunc =                {functionsInt32_t{"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga}};
-static const functionsAny_t bpmSetGetAdcTestModeFunc =           {functionsInt32Chan_t{"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32}};
-static const functionsAny_t bpmSetGetAdcRstModesFunc =           {functionsInt32Chan_t{"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32}};
-static const functionsAny_t bpmSetGetAdcTempFunc =               {functionsInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_temp_adc}};
-static const functionsAny_t bpmSetGetAdcCalStatusFunc =          {functionsInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_cal_status_adc}};
-static const functionsAny_t bpmSetGetAdcTestDataFunc =           {functionsInt32_t{"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en}};
-static const functionsAny_t bpmSetGetAdcClkSelFunc =             {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel}};
-static const functionsAny_t bpmSetGetAdcAD9510DefaultsFunc =     {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32}};
-static const functionsAny_t bpmSetGetAdcAD9510PllFunctionFunc =  {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function}};
-static const functionsAny_t bpmSetGetAdcAD9510PllStatusFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status}};
-static const functionsAny_t bpmSetGetAdcAD9510ClkSelFunc =       {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel}};
-static const functionsAny_t bpmSetGetAdcAD9510ADivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_a_div, halcs_get_ad9510_pll_a_div}};
-static const functionsAny_t bpmSetGetAdcAD9510BDivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_b_div, halcs_get_ad9510_pll_b_div}};
-static const functionsAny_t bpmSetGetAdcAD9510PrescalerFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_prescaler, halcs_get_ad9510_pll_prescaler}};
-static const functionsAny_t bpmSetGetAdcAD9510RDivFunc =         {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_r_div, halcs_get_ad9510_r_div}};
-static const functionsAny_t bpmSetGetAdcAD9510PllPDownFunc =     {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_pdown, halcs_get_ad9510_pll_pdown}};
-static const functionsAny_t bpmSetGetAdcAD9510MuxStatusFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status}};
-static const functionsAny_t bpmSetGetAdcAD9510CPCurrentFunc =    {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current}};
-static const functionsAny_t bpmSetGetAdcAD9510OutputsFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs}};
-static const functionsAny_t bpmSetGetActiveClkRstADCsFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32}};
-static const functionsAny_t bpmSetGetActiveClkSi571OeFunc =      {functionsInt32_t{"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe}};
-static const functionsAny_t bpmSetGetAfcSi57xOeFunc =            {functionsInt32_t{"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe}};
+static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
+static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
+static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
+static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
+static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
+static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
+static const functionsAny_t bpmSetGetAdcTrigDirFunc =            {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir}};
+static const functionsAny_t bpmSetGetAdcTrigTermFunc =           {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term}};
+static const functionsAny_t bpmSetGetAdcRandFunc =               {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand}};
+static const functionsAny_t bpmSetGetAdcDithFunc =               {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_dith, halcs_get_adc_dith}};
+static const functionsAny_t bpmSetGetAdcShdnFunc =               {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_shdn, halcs_get_adc_shdn}};
+static const functionsAny_t bpmSetGetAdcPgaFunc =                {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_pga, halcs_get_adc_pga}};
+static const functionsAny_t bpmSetGetAdcTestModeFunc =           {functionsUInt32Chan_t{"FMC250M_4CH", halcs_set_test_mode_adc, halcs_dummy_read_chan_32}};
+static const functionsAny_t bpmSetGetAdcRstModesFunc =           {functionsUInt32Chan_t{"FMC250M_4CH", halcs_set_rst_modes_adc, halcs_dummy_read_chan_32}};
+static const functionsAny_t bpmSetGetAdcTempFunc =               {functionsUInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_temp_adc}};
+static const functionsAny_t bpmSetGetAdcCalStatusFunc =          {functionsUInt32Chan_t{"FMC250M_4CH", NULL, halcs_get_cal_status_adc}};
+static const functionsAny_t bpmSetGetAdcTestDataFunc =           {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_adc_test_data_en, halcs_get_adc_test_data_en}};
+static const functionsAny_t bpmSetGetAdcClkSelFunc =             {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_clk_sel, halcs_get_fmc_clk_sel}};
+static const functionsAny_t bpmSetGetAdcAD9510DefaultsFunc =     {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_defaults, halcs_dummy_read_32}};
+static const functionsAny_t bpmSetGetAdcAD9510PllFunctionFunc =  {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_function, halcs_get_fmc_pll_function}};
+static const functionsAny_t bpmSetGetAdcAD9510PllStatusFunc =    {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_fmc_pll_status, halcs_get_fmc_pll_status}};
+static const functionsAny_t bpmSetGetAdcAD9510ClkSelFunc =       {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_clk_sel, halcs_get_ad9510_pll_clk_sel}};
+static const functionsAny_t bpmSetGetAdcAD9510ADivFunc =         {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_a_div, halcs_get_ad9510_pll_a_div}};
+static const functionsAny_t bpmSetGetAdcAD9510BDivFunc =         {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_b_div, halcs_get_ad9510_pll_b_div}};
+static const functionsAny_t bpmSetGetAdcAD9510PrescalerFunc =    {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_prescaler, halcs_get_ad9510_pll_prescaler}};
+static const functionsAny_t bpmSetGetAdcAD9510RDivFunc =         {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_r_div, halcs_get_ad9510_r_div}};
+static const functionsAny_t bpmSetGetAdcAD9510PllPDownFunc =     {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_pll_pdown, halcs_get_ad9510_pll_pdown}};
+static const functionsAny_t bpmSetGetAdcAD9510MuxStatusFunc =    {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_mux_status, halcs_get_ad9510_mux_status}};
+static const functionsAny_t bpmSetGetAdcAD9510CPCurrentFunc =    {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_cp_current, halcs_get_ad9510_cp_current}};
+static const functionsAny_t bpmSetGetAdcAD9510OutputsFunc =      {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_ad9510_outputs, halcs_get_ad9510_outputs}};
+static const functionsAny_t bpmSetGetActiveClkRstADCsFunc =      {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_rst_isla216p, halcs_dummy_read_32}};
+static const functionsAny_t bpmSetGetActiveClkSi571OeFunc =      {functionsUInt32_t{"FMC_ACTIVE_CLK", halcs_set_si571_oe, halcs_get_si571_oe}};
+static const functionsAny_t bpmSetGetAfcSi57xOeFunc =            {functionsUInt32_t{"AFC_MGMT", halcs_set_si571_oe, halcs_get_si571_oe}};
 
-static const functionsAny_t bpmSetGetFmcPicoRngR0Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0}};
-static const functionsAny_t bpmSetGetFmcPicoRngR1Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1}};
-static const functionsAny_t bpmSetGetFmcPicoRngR2Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r2, halcs_get_fmcpico_rng_r2}};
-static const functionsAny_t bpmSetGetFmcPicoRngR3Func =          {functionsInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r3, halcs_get_fmcpico_rng_r3}};
+static const functionsAny_t bpmSetGetFmcPicoRngR0Func =          {functionsUInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r0, halcs_get_fmcpico_rng_r0}};
+static const functionsAny_t bpmSetGetFmcPicoRngR1Func =          {functionsUInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r1, halcs_get_fmcpico_rng_r1}};
+static const functionsAny_t bpmSetGetFmcPicoRngR2Func =          {functionsUInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r2, halcs_get_fmcpico_rng_r2}};
+static const functionsAny_t bpmSetGetFmcPicoRngR3Func =          {functionsUInt32_t{"FMCPICO1M_4CH", halcs_set_fmcpico_rng_r3, halcs_get_fmcpico_rng_r3}};
 
-static const functionsAny_t bpmSetGetAcqDataTrigThresFunc =      {functionsInt32Acq_t{"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres}};
-static const functionsAny_t bpmSetGetAcqDataTrigPolFunc =        {functionsInt32Acq_t{"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol}};
-static const functionsAny_t bpmSetGetAcqDataTrigSelFunc =        {functionsInt32Acq_t{"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel}};
-static const functionsAny_t bpmSetGetAcqDataTrigFiltFunc =       {functionsInt32Acq_t{"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt}};
-static const functionsAny_t bpmSetGetAcqHwDlyFunc =              {functionsInt32Acq_t{"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly}};
-static const functionsAny_t bpmSetGetAcqDataTrigChanFunc =       {functionsInt32Acq_t{"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan}};
+static const functionsAny_t bpmSetGetAcqDataTrigThresFunc =      {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres}};
+static const functionsAny_t bpmSetGetAcqDataTrigPolFunc =        {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol, acq_get_data_trig_pol}};
+static const functionsAny_t bpmSetGetAcqDataTrigSelFunc =        {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_sel, acq_get_data_trig_sel}};
+static const functionsAny_t bpmSetGetAcqDataTrigFiltFunc =       {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_filt, acq_get_data_trig_filt}};
+static const functionsAny_t bpmSetGetAcqHwDlyFunc =              {functionsUInt32Acq_t{"ACQ", acq_set_hw_trig_dly, acq_get_hw_trig_dly}};
+static const functionsAny_t bpmSetGetAcqDataTrigChanFunc =       {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_chan, acq_get_data_trig_chan}};
 
-static const functionsAny_t timRcvSetGetPhaseMeasNavgFunc =      {functionsInt32_t{"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg}};
-static const functionsAny_t timRcvSetGetDMTDADeglitchThresFunc = {functionsInt32_t{"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
-static const functionsAny_t timRcvSetGetDMTDBDeglitchThresFunc = {functionsInt32_t{"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
-static const functionsAny_t timRcvSetGetPhaseMeasFunc =          {functionsInt32_t{"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas}};
-static const functionsAny_t timRcvSetGetDMTDAFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_a_freq}};
-static const functionsAny_t timRcvSetGetDMTDBFreqFunc =          {functionsInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_b_freq}};
+static const functionsAny_t timRcvSetGetPhaseMeasNavgFunc =      {functionsUInt32_t{"TIM_RCV", halcs_set_phase_meas_navg, halcs_get_phase_meas_navg}};
+static const functionsAny_t timRcvSetGetDMTDADeglitchThresFunc = {functionsUInt32_t{"TIM_RCV", halcs_set_dmtd_a_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
+static const functionsAny_t timRcvSetGetDMTDBDeglitchThresFunc = {functionsUInt32_t{"TIM_RCV", halcs_set_dmtd_b_deglitcher_thres, halcs_get_dmtd_a_deglitcher_thres}};
+static const functionsAny_t timRcvSetGetPhaseMeasFunc =          {functionsUInt32_t{"TIM_RCV", halcs_set_phase_meas, halcs_get_phase_meas}};
+static const functionsAny_t timRcvSetGetDMTDAFreqFunc =          {functionsUInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_a_freq}};
+static const functionsAny_t timRcvSetGetDMTDBFreqFunc =          {functionsUInt32_t{"TIM_RCV", NULL, halcs_get_dmtd_b_freq}};
 
-static const functionsAny_t bpmSetGetIntlkEnFunc =                {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_en, halcs_get_orbit_intlk_en}};
-static const functionsAny_t bpmSetGetIntlkClrFunc =               {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_clr, halcs_get_orbit_intlk_clr }};
-static const functionsAny_t bpmSetGetIntlkMinSumEnFunc =          {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum_en, halcs_get_orbit_intlk_min_sum_en}};
-static const functionsAny_t bpmSetGetIntlkTransEnFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_en, halcs_get_orbit_intlk_trans_en}};
-static const functionsAny_t bpmSetGetIntlkTransClrFunc =          {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_clr, halcs_get_orbit_intlk_trans_clr}};
-static const functionsAny_t bpmSetGetIntlkAngEnFunc =             {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_en, halcs_get_orbit_intlk_ang_en}};
-static const functionsAny_t bpmSetGetIntlkAngClrFunc =            {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_clr, halcs_get_orbit_intlk_ang_clr}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerXFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_x}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerYFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_y}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerLtcXFunc =   {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_x}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerLtcYFunc =   {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_y}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerAnyFunc =    {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_any}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerFunc =       {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger}};
-static const functionsAny_t bpmSetGetIntlkTransBiggerLtcFunc =    {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerXFunc =        {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_x}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerYFunc =        {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_y}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerLtcXFunc =     {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_x}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerLtcYFunc =     {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_y}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerAnyFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_any}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerFunc =         {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger}};
-static const functionsAny_t bpmSetGetIntlkAngBiggerLtcFunc =      {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc}};
-static const functionsAny_t bpmSetGetIntlkBiggerFunc =            {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger}};
-static const functionsAny_t bpmSetGetIntlkBiggerLtcFunc =         {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_bigger_ltc}};
-static const functionsAny_t bpmSetGetIntlkMinSumFunc =            {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum, halcs_get_orbit_intlk_min_sum}};
+static const functionsAny_t bpmSetGetIntlkEnFunc =                {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_en, halcs_get_orbit_intlk_en}};
+static const functionsAny_t bpmSetGetIntlkClrFunc =               {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_clr, halcs_get_orbit_intlk_clr }};
+static const functionsAny_t bpmSetGetIntlkMinSumEnFunc =          {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum_en, halcs_get_orbit_intlk_min_sum_en}};
+static const functionsAny_t bpmSetGetIntlkTransEnFunc =           {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_en, halcs_get_orbit_intlk_trans_en}};
+static const functionsAny_t bpmSetGetIntlkTransClrFunc =          {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_clr, halcs_get_orbit_intlk_trans_clr}};
+static const functionsAny_t bpmSetGetIntlkAngEnFunc =             {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_en, halcs_get_orbit_intlk_ang_en}};
+static const functionsAny_t bpmSetGetIntlkAngClrFunc =            {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_clr, halcs_get_orbit_intlk_ang_clr}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerXFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_x}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerYFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_y}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcXFunc =   {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcYFunc =   {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerAnyFunc =    {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_any}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerFunc =       {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger}};
+static const functionsAny_t bpmSetGetIntlkTransBiggerLtcFunc =    {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerXFunc =        {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_x}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerYFunc =        {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_y}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcXFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcYFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerAnyFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_any}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerFunc =         {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger}};
+static const functionsAny_t bpmSetGetIntlkAngBiggerLtcFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_bigger_ltc}};
+static const functionsAny_t bpmSetGetIntlkFunc =                  {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk}};
+static const functionsAny_t bpmSetGetIntlkLtcFunc =               {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ltc}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerXFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_x}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerYFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_y}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerLtcXFunc =  {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerLtcYFunc =  {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerAnyFunc =   {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_any}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerFunc =      {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller}};
+static const functionsAny_t bpmSetGetIntlkTransSmallerLtcFunc =   {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_smaller_ltc}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerXFunc =       {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_x}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerYFunc =       {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_y}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerLtcXFunc =    {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_ltc_x}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerLtcYFunc =    {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_ltc_y}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerAnyFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_any}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerFunc =        {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller}};
+static const functionsAny_t bpmSetGetIntlkAngSmallerLtcFunc =     {functionsUInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_smaller_ltc}};
+static const functionsAny_t bpmSetGetIntlkMinSumFunc =            {functionsUInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_min_sum, halcs_get_orbit_intlk_min_sum}};
 static const functionsAny_t bpmSetGetIntlkTransMaxXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_x, halcs_get_orbit_intlk_trans_max_x}};
 static const functionsAny_t bpmSetGetIntlkTransMaxYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_max_y, halcs_get_orbit_intlk_trans_max_y}};
 static const functionsAny_t bpmSetGetIntlkAngMaxXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_x, halcs_get_orbit_intlk_ang_max_x}};
 static const functionsAny_t bpmSetGetIntlkAngMaxYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_max_y, halcs_get_orbit_intlk_ang_max_y}};
+static const functionsAny_t bpmSetGetIntlkTransMinXFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_x, halcs_get_orbit_intlk_trans_min_x}};
+static const functionsAny_t bpmSetGetIntlkTransMinYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_y, halcs_get_orbit_intlk_trans_min_y}};
+static const functionsAny_t bpmSetGetIntlkAngMinXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_x, halcs_get_orbit_intlk_ang_min_x}};
+static const functionsAny_t bpmSetGetIntlkAngMinYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_y, halcs_get_orbit_intlk_ang_min_y}};
 
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
@@ -609,19 +629,19 @@ static const functionsAny_t bpmSetGetAfcSi57xFreqFunc =          {functionsFloat
 static const functionsAny_t bpmSetGetAfcSi57xFStartupFunc =      {functionsFloat64_t{"AFC_MGMT", halcs_set_si571_fstartup, halcs_get_si571_fstartup}};
 
 /* Int32 withfunctionsAny_t  channel selection functions mapping */
-static const functionsAny_t bpmSetGetTrigDirFunc =               {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir}};
-static const functionsAny_t bpmSetGetTrigDirPolFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir_pol, halcs_get_trigger_dir_pol}};
-static const functionsAny_t bpmSetGetTrigRcvCntRstFunc =         {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_count_rst, halcs_get_trigger_rcv_count_rst}};
-static const functionsAny_t bpmSetGetTrigTrnCntRstFunc =         {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_count_rst, halcs_get_trigger_transm_count_rst}};
-static const functionsAny_t bpmSetGetTrigRcvLenFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_len, halcs_get_trigger_rcv_len}};
-static const functionsAny_t bpmSetGetTrigTrnLenFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_len, halcs_get_trigger_transm_len}};
-static const functionsAny_t bpmSetGetTrigCntRcvFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_rcv, halcs_get_trigger_count_rcv}};
-static const functionsAny_t bpmSetGetTrigCntTrnFunc =            {functionsInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_transm, halcs_get_trigger_count_transm}};
+static const functionsAny_t bpmSetGetTrigDirFunc =               {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir, halcs_get_trigger_dir}};
+static const functionsAny_t bpmSetGetTrigDirPolFunc =            {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_dir_pol, halcs_get_trigger_dir_pol}};
+static const functionsAny_t bpmSetGetTrigRcvCntRstFunc =         {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_count_rst, halcs_get_trigger_rcv_count_rst}};
+static const functionsAny_t bpmSetGetTrigTrnCntRstFunc =         {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_count_rst, halcs_get_trigger_transm_count_rst}};
+static const functionsAny_t bpmSetGetTrigRcvLenFunc =            {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_rcv_len, halcs_get_trigger_rcv_len}};
+static const functionsAny_t bpmSetGetTrigTrnLenFunc =            {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_transm_len, halcs_get_trigger_transm_len}};
+static const functionsAny_t bpmSetGetTrigCntRcvFunc =            {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_rcv, halcs_get_trigger_count_rcv}};
+static const functionsAny_t bpmSetGetTrigCntTrnFunc =            {functionsUInt32Chan_t{"TRIGGER_IFACE", halcs_set_trigger_count_transm, halcs_get_trigger_count_transm}};
 
-static const functionsAny_t bpmSetGetTrigRcvSrcFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_src, halcs_get_trigger_rcv_src}};
-static const functionsAny_t bpmSetGetTrigTrnSrcFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_src, halcs_get_trigger_transm_src}};
-static const functionsAny_t bpmSetGetTrigRcvSelFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel}};
-static const functionsAny_t bpmSetGetTrigTrnSelFunc =            {functionsInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel}};
+static const functionsAny_t bpmSetGetTrigRcvSrcFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_src, halcs_get_trigger_rcv_src}};
+static const functionsAny_t bpmSetGetTrigTrnSrcFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_src, halcs_get_trigger_transm_src}};
+static const functionsAny_t bpmSetGetTrigRcvSelFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel}};
+static const functionsAny_t bpmSetGetTrigTrnSelFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel}};
 
 static const char *driverName="drvBPM";
 static taskParams_t taskParams[NUM_ACQ_CORES_PER_BPM] = {
@@ -1014,9 +1034,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_MonitTagDesyncCntString,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCnt);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
-    createParam(P_XOffsetString,    asynParamUInt32Digital,         &P_XOffset);
-    createParam(P_YOffsetString,    asynParamUInt32Digital,         &P_YOffset);
-    createParam(P_QOffsetString,    asynParamUInt32Digital,         &P_QOffset);
+    createParam(P_XOffsetString,    asynParamInt32,                 &P_XOffset);
+    createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
+    createParam(P_QOffsetString,    asynParamInt32,                 &P_QOffset);
 
     /* Timing parameters */
     createParam(P_TimRcvPhaseMeasNavgString,
@@ -1139,13 +1159,31 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkAngBiggerAnyString,     asynParamUInt32Digital, &P_IntlkAngBiggerAny);
     createParam(P_IntlkAngBiggerString,        asynParamUInt32Digital, &P_IntlkAngBigger);
     createParam(P_IntlkAngBiggerLtcString,     asynParamUInt32Digital, &P_IntlkAngBiggerLtc);
-    createParam(P_IntlkBiggerString,           asynParamUInt32Digital, &P_IntlkBigger);
-    createParam(P_IntlkBiggerLtcString,        asynParamUInt32Digital, &P_IntlkBiggerLtc);
-    createParam(P_IntlkMinSumString,           asynParamUInt32Digital, &P_IntlkMinSum);
-    createParam(P_IntlkTransMaxXString,        asynParamUInt32Digital, &P_IntlkTransMaxX);
-    createParam(P_IntlkTransMaxYString,        asynParamUInt32Digital, &P_IntlkTransMaxY);
-    createParam(P_IntlkAngMaxXString,          asynParamUInt32Digital, &P_IntlkAngMaxX);
-    createParam(P_IntlkAngMaxYString,          asynParamUInt32Digital, &P_IntlkAngMaxY);
+    createParam(P_IntlkString,                 asynParamUInt32Digital, &P_Intlk);
+    createParam(P_IntlkLtcString,              asynParamUInt32Digital, &P_IntlkLtc);
+    createParam(P_IntlkTransSmallerXString,    asynParamUInt32Digital, &P_IntlkTransSmallerX);
+    createParam(P_IntlkTransSmallerYString,    asynParamUInt32Digital, &P_IntlkTransSmallerY);
+    createParam(P_IntlkTransSmallerLtcXString, asynParamUInt32Digital, &P_IntlkTransSmallerLtcX);
+    createParam(P_IntlkTransSmallerLtcYString, asynParamUInt32Digital, &P_IntlkTransSmallerLtcY);
+    createParam(P_IntlkTransSmallerAnyString,  asynParamUInt32Digital, &P_IntlkTransSmallerAny);
+    createParam(P_IntlkTransSmallerString,     asynParamUInt32Digital, &P_IntlkTransSmaller);
+    createParam(P_IntlkTransSmallerLtcString,  asynParamUInt32Digital, &P_IntlkTransSmallerLtc);
+    createParam(P_IntlkAngSmallerXString,      asynParamUInt32Digital, &P_IntlkAngSmallerX);
+    createParam(P_IntlkAngSmallerYString,      asynParamUInt32Digital, &P_IntlkAngSmallerY);
+    createParam(P_IntlkAngSmallerLtcXString,   asynParamUInt32Digital, &P_IntlkAngSmallerLtcX);
+    createParam(P_IntlkAngSmallerLtcYString,   asynParamUInt32Digital, &P_IntlkAngSmallerLtcY);
+    createParam(P_IntlkAngSmallerAnyString,    asynParamUInt32Digital, &P_IntlkAngSmallerAny);
+    createParam(P_IntlkAngSmallerString,       asynParamUInt32Digital, &P_IntlkAngSmaller);
+    createParam(P_IntlkAngSmallerLtcString,    asynParamUInt32Digital, &P_IntlkAngSmallerLtc);
+    createParam(P_IntlkMinSumString,           asynParamInt32,         &P_IntlkMinSum);
+    createParam(P_IntlkTransMaxXString,        asynParamInt32,         &P_IntlkTransMaxX);
+    createParam(P_IntlkTransMaxYString,        asynParamInt32,         &P_IntlkTransMaxY);
+    createParam(P_IntlkAngMaxXString,          asynParamInt32,         &P_IntlkAngMaxX);
+    createParam(P_IntlkAngMaxYString,          asynParamInt32,         &P_IntlkAngMaxY);
+    createParam(P_IntlkTransMinXString,        asynParamInt32,         &P_IntlkTransMinX);
+    createParam(P_IntlkTransMinYString,        asynParamInt32,         &P_IntlkTransMinY);
+    createParam(P_IntlkAngMinXString,          asynParamInt32,         &P_IntlkAngMinX);
+    createParam(P_IntlkAngMinYString,          asynParamInt32,         &P_IntlkAngMinY);
 
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
@@ -1164,6 +1202,8 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwTagDesyncCnt, bpmSetGetSwTagDesyncCntFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCntRst, bpmSetGetTbtTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_XOffset, bpmSetGetXOffsetFunc);
+    bpmHwFunc.emplace(P_YOffset, bpmSetGetYOffsetFunc);
     bpmHwFunc.emplace(P_Monit1TagEn, bpmSetGetMonit1TagEnFunc);
     bpmHwFunc.emplace(P_Monit1TagDly, bpmSetGetMonit1TagDlyFunc);
     bpmHwFunc.emplace(P_Monit1DataMaskEn, bpmSetGetMonit1DataMaskEnFunc);
@@ -1278,13 +1318,31 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkAngBiggerAny, bpmSetGetIntlkAngBiggerAnyFunc);
     bpmHwFunc.emplace(P_IntlkAngBigger, bpmSetGetIntlkAngBiggerFunc);
     bpmHwFunc.emplace(P_IntlkAngBiggerLtc, bpmSetGetIntlkAngBiggerLtcFunc);
-    bpmHwFunc.emplace(P_IntlkBigger, bpmSetGetIntlkBiggerFunc);
-    bpmHwFunc.emplace(P_IntlkBiggerLtc, bpmSetGetIntlkBiggerLtcFunc);
+    bpmHwFunc.emplace(P_Intlk, bpmSetGetIntlkFunc);
+    bpmHwFunc.emplace(P_IntlkLtc, bpmSetGetIntlkLtcFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerX, bpmSetGetIntlkTransSmallerXFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerY, bpmSetGetIntlkTransSmallerYFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerLtcX, bpmSetGetIntlkTransSmallerLtcXFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerLtcY, bpmSetGetIntlkTransSmallerLtcYFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerAny, bpmSetGetIntlkTransSmallerAnyFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmaller, bpmSetGetIntlkTransSmallerFunc);
+    bpmHwFunc.emplace(P_IntlkTransSmallerLtc, bpmSetGetIntlkTransSmallerLtcFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerX, bpmSetGetIntlkAngSmallerXFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerY, bpmSetGetIntlkAngSmallerYFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerLtcX, bpmSetGetIntlkAngSmallerLtcXFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerLtcY, bpmSetGetIntlkAngSmallerLtcYFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerAny, bpmSetGetIntlkAngSmallerAnyFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmaller, bpmSetGetIntlkAngSmallerFunc);
+    bpmHwFunc.emplace(P_IntlkAngSmallerLtc, bpmSetGetIntlkAngSmallerLtcFunc);
     bpmHwFunc.emplace(P_IntlkMinSum, bpmSetGetIntlkMinSumFunc);
     bpmHwFunc.emplace(P_IntlkTransMaxX, bpmSetGetIntlkTransMaxXFunc);
     bpmHwFunc.emplace(P_IntlkTransMaxY, bpmSetGetIntlkTransMaxYFunc);
     bpmHwFunc.emplace(P_IntlkAngMaxX, bpmSetGetIntlkAngMaxXFunc);
     bpmHwFunc.emplace(P_IntlkAngMaxY, bpmSetGetIntlkAngMaxYFunc);
+    bpmHwFunc.emplace(P_IntlkTransMinX, bpmSetGetIntlkTransMinXFunc);
+    bpmHwFunc.emplace(P_IntlkTransMinY, bpmSetGetIntlkTransMinYFunc);
+    bpmHwFunc.emplace(P_IntlkAngMinX, bpmSetGetIntlkAngMinXFunc);
+    bpmHwFunc.emplace(P_IntlkAngMinY, bpmSetGetIntlkAngMinYFunc);
 
     lock();
     status = bpmClientConnect(this->pasynUserSelf);
@@ -1422,9 +1480,9 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_MonitTagDesyncCnt,
                                         0,                  0xFFFFFFFF);
     setUIntDigitalParam(P_Kq,           10000000,           0xFFFFFFFF);
-    setUIntDigitalParam(P_XOffset,      0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_YOffset,      0,                  0xFFFFFFFF);
-    setUIntDigitalParam(P_QOffset,      0,                  0xFFFFFFFF);
+    setIntegerParam(P_XOffset,                              0);
+    setIntegerParam(P_YOffset,                              0);
+    setIntegerParam(P_QOffset,                              0);
 
     setUIntDigitalParam(P_TimRcvPhaseMeasNavg,
                                         TIMRCV_DFLT_PHASE_MEAS_NAVG,
@@ -1620,13 +1678,31 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setUIntDigitalParam(P_IntlkAngBiggerAny,         0,               0x1);
     setUIntDigitalParam(P_IntlkAngBigger,            0,               0x1);
     setUIntDigitalParam(P_IntlkAngBiggerLtc,         0,               0x1);
-    setUIntDigitalParam(P_IntlkBigger,               0,               0x1);
-    setUIntDigitalParam(P_IntlkBiggerLtc,            0,               0x1);
-    setUIntDigitalParam(P_IntlkMinSum,               0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkTransMaxX,            0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkTransMaxY,            0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkAngMaxX,              0,               0xFFFFFFFF);
-    setUIntDigitalParam(P_IntlkAngMaxY,              0,               0xFFFFFFFF);
+    setUIntDigitalParam(P_Intlk,                     0,               0x1);
+    setUIntDigitalParam(P_IntlkLtc,                  0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerX,        0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerY,        0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerLtcX,     0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerLtcY,     0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerAny,      0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmaller,         0,               0x1);
+    setUIntDigitalParam(P_IntlkTransSmallerLtc,      0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerX,          0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerY,          0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerLtcX,       0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerLtcY,       0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerAny,        0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmaller,           0,               0x1);
+    setUIntDigitalParam(P_IntlkAngSmallerLtc,        0,               0x1);
+    setIntegerParam(P_IntlkMinSum,                                      0);
+    setIntegerParam(P_IntlkTransMaxX,                                   0);
+    setIntegerParam(P_IntlkTransMaxY,                                   0);
+    setIntegerParam(P_IntlkAngMaxX,                                     0);
+    setIntegerParam(P_IntlkAngMaxY,                                     0);
+    setIntegerParam(P_IntlkTransMinX,                                   0);
+    setIntegerParam(P_IntlkTransMinY,                                   0);
+    setIntegerParam(P_IntlkAngMinX,                                     0);
+    setIntegerParam(P_IntlkAngMinY,                                     0);
 
 #if 0
     /* Read values from HW */
@@ -3824,6 +3900,12 @@ asynStatus drvBPM::writeInt32(asynUser *pasynUser, epicsInt32 value)
         else if (function == P_BPMMode) {
             status = setBPMMode(addr, function);
         }
+        else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParamInteger(function, addr);
+            /* Readback all parameters from Hw */
+            readIntegerParams(addr);
+        }
     }
     else {
         /* Call base class */
@@ -3870,7 +3952,7 @@ asynStatus drvBPM::readInt32(asynUser *pasynUser, epicsInt32 *value)
 
     if (function >= FIRST_COMMAND) {
         /* Get parameter in library, as some parameters are not written in HW */
-        status = getIntegerParam(addr, function, value);
+        status = getParamInteger(function, value, addr);
     }
     else {
         /* Call base class */
@@ -3990,10 +4072,10 @@ asynStatus drvBPM::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 /************ Function Mapping Overloaded Write functions ***********/
 /********************************************************************/
 
-asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Acq_t &func, char *service,
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Acq_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwWriteFunction<functionsInt32Acq_t>";
+    const char *functionName = "doExecuteHwWriteFunction<functionsUInt32Acq_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     int serviceID = 0;
@@ -4024,10 +4106,10 @@ get_service_id_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::doExecuteHwWriteFunction(functions2Int32_t &func, char *service,
+asynStatus drvBPM::doExecuteHwWriteFunction(functions2UInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwWriteFunction<functions2Int32_t>";
+    const char *functionName = "doExecuteHwWriteFunction<functions2UInt32_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     epicsUInt32 param1 = 0;
@@ -4095,10 +4177,10 @@ halcs_set_func_param_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32Chan_t &func, char *service,
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwWriteFunction<functionsInt32Chan_t>";
+    const char *functionName = "doExecuteHwWriteFunction<functionsUInt32Chan_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     char serviceChanStr[SERVICE_NAME_SIZE];
@@ -4135,10 +4217,10 @@ get_service_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwWriteFunction<functionsInt32_t>";
+    const char *functionName = "doExecuteHwWriteFunction<functionsUInt32_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
 
@@ -4149,6 +4231,28 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32_t &func, char *servic
                 "%s:%s: failure executing write function for service %s,"
                 "param = %u\n",
                 driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(bpmClient, service, functionParam.argInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argInt32);
         status = asynError;
         goto halcs_set_func_param_err;
     }
@@ -4203,10 +4307,10 @@ get_service_err:
 /************ Function Mapping Overloaded Read functions ************/
 /********************************************************************/
 
-asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Acq_t &func, char *service,
+asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Acq_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwReadFunction<functionsInt32Acq_t>";
+    const char *functionName = "doExecuteHwReadFunction<functionsUInt32Acq_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     int serviceID = 0;
@@ -4236,10 +4340,10 @@ get_service_id_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::doExecuteHwReadFunction(functions2Int32_t &func, char *service,
+asynStatus drvBPM::doExecuteHwReadFunction(functions2UInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwReadFunction<functions2Int32_t>";
+    const char *functionName = "doExecuteHwReadFunction<functions2UInt32_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     epicsUInt32 param1 = 0;
@@ -4289,10 +4393,10 @@ halcs_get_func_param_err:
     return (asynStatus) status;
 }
 
-asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32Chan_t &func, char *service,
+asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
-    const char *functionName = "doExecuteHwReadFunction<functionsInt32Chan_t>";
+    const char *functionName = "doExecuteHwReadFunction<functionsUInt32Chan_t>";
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char serviceChanStr[SERVICE_NAME_SIZE];
     int status = asynSuccess;
@@ -4327,6 +4431,27 @@ get_service_err:
     return (asynStatus) status;
 }
 
+asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsUInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(bpmClient, service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus)status;
+}
+
 asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
@@ -4335,7 +4460,7 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsInt32_t &func, char *service
     int status = asynSuccess;
 
     /* Execute registered function */
-    err = func.read(bpmClient, service, &functionParam.argUInt32);
+    err = func.read(bpmClient, service, &functionParam.argInt32);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing read function for service %s\n",
@@ -4396,7 +4521,7 @@ get_service_err:
 
 /*
  * 32-bit/Double generic BPM operations. These will map to real
- * functions defined in the structures. e.g., functionsInt32_t
+ * functions defined in the structures. e.g., functionsUInt32_t
  * and functionsFloat64_t
  */
 
@@ -4418,6 +4543,10 @@ asynStatus drvBPM::setParamGeneric(int functionId, int addr)
     }
 
     switch (asynType) {
+        case asynParamInt32:
+            status = setParamInteger(functionId, addr);
+        break;
+
         case asynParamUInt32Digital:
             status = setParam32(functionId, 0xFFFFFFFF, addr);
         break;
@@ -4494,6 +4623,60 @@ asynStatus drvBPM::getParam32(int functionId, epicsUInt32 *param,
         /* Mask parameter according to the received mask */
         functionArgs.argUInt32 &= mask;
         *param = functionArgs.argUInt32;
+    }
+    /* We recover from asynDisabled just by retrieving
+     * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
+
+get_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::setParamInteger(int functionId, int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "setParamInteger";
+
+    status = getIntegerParam(addr, functionId, &functionArgs.argInt32);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getIntegerParam failure for retrieving Parameter\n",
+                driverName, functionName);
+        goto get_param_err;
+    }
+
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+get_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvBPM::getParamInteger(int functionId, epicsInt32 *param,
+        int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "getParamInteger";
+    const char *paramName;
+
+    /* Get parameter in library, as some parameters are not written in HW */
+    status = getIntegerParam(addr, functionId, param);
+    if (status != asynSuccess) {
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getIntegerParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
+        goto get_param_err;
+    }
+
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    if (status == asynSuccess) {
+        *param = functionArgs.argInt32;
     }
     /* We recover from asynDisabled just by retrieving
      * the parameter from the list */
@@ -5118,6 +5301,43 @@ asynStatus drvBPM::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam
     return (errs == 0)? asynSuccess : asynError;
 }
 
+asynStatus drvBPM::updateIntegerParams(int addr, int firstParam,
+        int lastParam, bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateIntegerParams";
+    epicsInt32 param = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating Int32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamInteger(i, &param, addr);
+        /* Only write values if there is no error */
+        if (status) {
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Int32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
+            ++errs;
+        }
+        else {
+            setIntegerParam(addr, i, param);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
 asynStatus drvBPM::updateDoubleParams(int addr, int firstParam, int lastParam,
         bool acceptErrors)
 {
@@ -5188,6 +5408,15 @@ asynStatus drvBPM::readFloat64Params(int addr)
     return (asynStatus) status;
 }
 
+asynStatus drvBPM::readIntegerParams(int addr)
+{
+    int status = 0;
+
+    status = readOffsetParams(addr);
+
+    return (asynStatus) status;
+}
+
 asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 {
     return updateUInt32Params(mask, addr, P_AdcAD9510PllFunc, P_AdcAD9510Outputs, true);
@@ -5196,6 +5425,11 @@ asynStatus drvBPM::readAD9510Params(epicsUInt32 mask, int addr)
 asynStatus drvBPM::readADCsParams(epicsUInt32 mask, int addr)
 {
     return updateUInt32Params(mask, addr, P_AdcCalStatus, P_AdcCalStatus, true);
+}
+
+asynStatus drvBPM::readOffsetParams(int addr)
+{
+    return updateIntegerParams(addr, P_XOffset, P_YOffset, true);
 }
 
 asynStatus drvBPM::readSi57xParams(int addr)
