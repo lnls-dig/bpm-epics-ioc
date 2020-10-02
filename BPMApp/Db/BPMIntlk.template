@@ -417,18 +417,67 @@ record(bi,"$(P)$(R)IntlkLtc-Mon"){
 # Interlock limits
 
 record(longout, "$(P)$(R)IntlkLmtMinSum-SP"){
-    field(DTYP, "asynInt32")
     field(DESC, "Set interlock minimum sum threshold")
     field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)$(R)IntlkLmtMinSumCalc-SP")
+}
+
+# The Sum calculation in the FPGA is done with fixed-point
+# arithmetic with 32-bit Sum * 25-bit KSum and we truncate the result
+# by taking the 32 MSB. The IOC calculates the same with double-precision 
+# with 32-bit Sum * 25-bit KSum. This implies a gain different of
+# 2^24 between the IOC and FPGA. So, convert the minimum sum limit
+# to a number FPGA will understand.
+#
+# We do the conversion with a float division so we can
+# CEIL the result, as for small currents this could be
+# important
+record(calc, "$(P)$(R)IntlkLmtMinSumCalc-SP"){
+    field(DESC, "Interlock minimum sum threshold calc")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)IntlkLmtMinSum-SP")
+    field(INPB, "24")
+    field(CALC, "CEIL(A/2^B)")
+    field(FLNK, "$(P)$(R)IntlkLmtMinSumHw-SP")
+}
+
+record(longout, "$(P)$(R)IntlkLmtMinSumHw-SP"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Set interlock minimum sum threshold hw.")
+    field(DOL,  "$(P)$(R)IntlkLmtMinSumCalc-SP")
+    field(OMSL, "closed_loop")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_MIN_SUM")
 }
 
-record(longin,  "$(P)$(R)IntlkLmtMinSum-RB"){
+record(longin,  "$(P)$(R)IntlkLmtMinSumHw-RB"){
     field(DTYP, "asynInt32")
     field(DESC, "Get interlock minimum sum threshold")
     field(SCAN, "I/O Intr")
     field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_MIN_SUM")
+    field(FLNK, "$(P)$(R)IntlkLmtMinSumCalc-RB")
+}
+
+# The Sum calculation in the FPGA is done with fixed-point
+# arithmetic with 32-bit Sum * 25-bit KSum and we truncate the result
+# by taking the 32 MSB. The IOC calculates the same with double-precision 
+# with 32-bit Sum * 25-bit KSum. This implies a gain different og
+# 2^24 between the IOC and FPGA. So, convert the minimum sum limit
+# to a number FPGA will understand.
+record(calc, "$(P)$(R)IntlkLmtMinSumCalc-RB"){
+    field(DESC, "Interlock minimum sum threshold calc")
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)IntlkLmtMinSumHw-RB")
+    field(INPB, "24")
+    field(CALC, "A<<B")
+    field(FLNK, "$(P)$(R)IntlkLmtMinSum-RB")
+}
+
+record(longin, "$(P)$(R)IntlkLmtMinSum-RB"){
+    field(DESC, "Get interlock minimum sum threshold")
+    field(SCAN, "Passive")
+    field(INP,  "$(P)$(R)IntlkLmtMinSumCalc-RB")
 }
 
 record(longout, "$(P)$(R)IntlkLmtTransMaxX-SP"){
