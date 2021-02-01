@@ -266,9 +266,10 @@ for i, bpm_sector in enumerate(bpms):
     for j, bpm in enumerate(bpm_sector):
         print("    {}".format(bpms[i][j].prefix))
 
-        print("        Disabling BPM interlock generation...", end='')
+        print("        Disabling BPM interlock generation for all BPMs in this sector...", end='')
         # reset BPM to send the trigger
-        bpms[i][j].intlk_en = reset_intlk_en
+        for bpm_in_sector in bpm_sector:
+            bpm_in_sector.intlk_en = reset_intlk_en
         sleep(1)
         print(" Ok")
 
