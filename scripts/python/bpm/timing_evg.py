@@ -18,6 +18,14 @@ class TimingEVG:
             'IntlkEvtIn0': 'IntlkEvtIn0-SP',
             'IntlkEvtIn1': 'IntlkEvtIn1-SP',
             'IntlkEvtIn2': 'IntlkEvtIn2-SP',
+            'RxEnblB0': 'RxEnbl-SP.B0',
+            'RxEnblB1': 'RxEnbl-SP.B1',
+            'RxEnblB2': 'RxEnbl-SP.B2',
+            'RxEnblB3': 'RxEnbl-SP.B3',
+            'RxEnblB4': 'RxEnbl-SP.B4',
+            'RxEnblB5': 'RxEnbl-SP.B5',
+            'RxEnblB6': 'RxEnbl-SP.B6',
+            'RxEnblB7': 'RxEnbl-SP.B7',
         }
         self._config_pvs_sp = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
@@ -35,6 +43,7 @@ class TimingEVG:
             'IntlkEvtIn0': 'IntlkEvtIn0-RB',
             'IntlkEvtIn1': 'IntlkEvtIn1-RB',
             'IntlkEvtIn2': 'IntlkEvtIn2-RB',
+            'RxEnbl': 'RxEnbl-RB',
         }
         self._config_pvs_rb = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
@@ -110,6 +119,21 @@ class TimingEVG:
         pvobj = self._config_pvs_rb['IntlkEvtStatus']
         return pvobj.value if pvobj.connected else None
 
+    @property
+    def rx_enbl(self):
+        pvobj = self._config_pvs_rb['RxEnbl']
+        return pvobj.value if pvobj.connected else None
+
+    @rx_enbl.setter
+    def rx_enbl(self, val):
+        for i in range(7):
+            pvobj = self._config_pvs_sp[f'RxEnblB{i}']
+            if pvobj.connected:
+                if (val & (0x1 << i)):
+                    pvobj.put(1, wait=False)
+                else:
+                    pvobj.put(0, wait=False)
+
     def __str__(self):
         return (
             f'Intlk Ctrl Enbl      : {self.intlk_ctrl_enbl}\n'
@@ -117,4 +141,5 @@ class TimingEVG:
             f'Intlk Evt In 1       : {self.intlk_evt_in1}\n'
             f'Intlk Evt In 2       : {self.intlk_evt_in2}\n'
             f'Intlk Evt Status     : {self.intlk_evt_status}\n'
+            f'RX Enbl              : {self.rx_enbl}\n'
         )
