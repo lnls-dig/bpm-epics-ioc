@@ -95,6 +95,15 @@ timing_evg_evt_status_mapping = {
     TimingEVGParams.INTLK_EVT_IN2: 4,
 }
 
+def bpm_cleanup_test_parameters(bpms):
+    # reset BPM to send the trigger
+    for bpm in bpms:
+        bpm.intlk_en = BPMResetParams.INTLK_EN
+
+def timing_evg_clenup_test_parameters(evg):
+    evg.rx_enbl = TimingEVGResetParams.RX_ENBL
+    evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
+
 ss_names_by_sector = [
     ("SA", 1),
     ("SB", 2),
@@ -307,10 +316,9 @@ for i, bpm_sector in enumerate(bpms):
     for j, bpm in enumerate(bpm_sector):
         print("    {}".format(bpms[i][j].prefix))
 
-        print("        Disabling BPM interlock generation for all BPMs in this sector...", end='')
+        print("        Resetting test parameters for all sector BPMs...", end='')
         # reset BPM to send the trigger
-        for bpm_in_sector in bpm_sector:
-            bpm_in_sector.intlk_en = BPMResetParams.INTLK_EN
+        bpm_cleanup_test_parameters(bpm_sector)
         sleep(1)
         print(" Ok")
 
@@ -329,13 +337,8 @@ for i, bpm_sector in enumerate(bpms):
         sleep(1)
         print(" Ok")
 
-        print("        Resetting Timing EVG RX ({}) Enable...".format(timing_evg.prefix), end='')
-        timing_evg.rx_enbl = TimingEVGResetParams.RX_ENBL
-        sleep(1)
-        print(" Ok")
-
-        print("        Resetting Timing EVG interlock status...", end='')
-        timing_evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
+        print("        Resetting test parameters for EVG ({})...".format(timing_evg.prefix), end='')
+        timing_evg_clenup_test_parameters(timing_evg)
         sleep(1)
         print(" Ok")
 
@@ -373,6 +376,15 @@ for i, bpm_sector in enumerate(bpms):
         else:
             print("        FAILED")
             errs = errs + 1
+
+    else:
+        print("    Cleaning up test parameters... ")
+        print("    Cleaning up sector BPM test parameters... ", end='')
+        bpm_cleanup_test_parameters(bpm_sector)
+        print(" Ok")
+        print("    Cleaning up EVG test parameters... ", end='')
+        timing_evg_clenup_test_parameters(timing_evg)
+        print(" Ok")
 
 if (errs > 0):
     print("Test Failed")
