@@ -89,6 +89,12 @@ class TimingEVGParams(IntEnum):
     INTLK_EVT_IN1 = 118
     INTLK_EVT_IN2 = 119
 
+timing_evg_evt_status_mapping = {
+    TimingEVGParams.INTLK_EVT_IN0: 1,
+    TimingEVGParams.INTLK_EVT_IN1: 2,
+    TimingEVGParams.INTLK_EVT_IN2: 4,
+}
+
 ss_names_by_sector = [
     ("SA", 1),
     ("SB", 2),
@@ -362,7 +368,7 @@ for i, bpm_sector in enumerate(bpms):
 
         print("        Timing EVG Intlk Status: {}".format(timing_evg.intlk_evt_status))
         # check if EVG received the event
-        if (timing_evg.intlk_evt_status == 1):
+        if (timing_evg.intlk_evt_status == timing_evg_evt_status_mapping[TimingEVRParams.AMC4_EVT]):
             print("        PASSED")
         else:
             print("        FAILED")
