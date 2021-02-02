@@ -6,6 +6,7 @@ from bpm.timing_evr import TimingEVR
 from bpm.timing_evg import TimingEVG
 from bpm.timing_fout import TimingFOUT
 from textwrap import indent
+import datetime
 import re
 
 # test parameters
@@ -164,6 +165,11 @@ for _, timing_fout_prefix in enumerate(timing_fout_prefixes):
     timings_fout.append(TimingFOUT(timing_fout_prefix, wait_for_connection=True))
 
 timing_evg = TimingEVG(timing_evg_prefix, wait_for_connection=True)
+
+# Print date
+now = datetime.datetime.now()
+print("Test date and time: ")
+print(now.strftime('%Y-%m-%d %H:%M:%S'))
 
 print("#####################")
 print("BPM status")
