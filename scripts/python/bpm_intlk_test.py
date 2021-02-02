@@ -6,59 +6,68 @@ from bpm.timing_evr import TimingEVR
 from bpm.timing_evg import TimingEVG
 from bpm.timing_fout import TimingFOUT
 from textwrap import indent
+from enum import IntEnum
 import datetime
 import re
 
 # test parameters
 
 # bpm
-reset_intlk_lmt_trans_max_x = 0
-reset_intlk_trans_en = 1
-reset_intlk_en = 0
-reset_trigger4_trn_src = 1       # internal
-reset_trigger4_trn_out_sel = 2   # interlock generator
-reset_trigger4_dir = 0           # transmitter
-reset_trigger4_trn_len = 20      # transmitter length
+class BPMResetParams(IntEnum):
+    INTLK_LMT_TRANS_MAX_X = 0
+    INTLK_TRANS_EN = 1
+    INTLK_EN = 0
+    TRIGGER4_TRN_SRC = 1       # internal
+    TRIGGER4_TRN_OUT_SEL = 2   # interlock generator
+    TRIGGER4_DIR = 0           # transmitter
+    TRIGGER4_TRN_LEN = 20      # transmitter length
 
-intlk_lmt_trans_max_x = 0
-intlk_trans_en = 1
-intlk_en = 1
-trigger4_trn_src = 1             # internal
-trigger4_trn_out_sel = 2         # interlock generator
-trigger4_dir = 0                 # transmitter
-trigger4_trn_len = 20            # transmitter length
+class BPMParams(IntEnum):
+    INTLK_LMT_TRANS_MAX_X = 0
+    INTLK_TRANS_EN = 1
+    INTLK_EN = 1
+    TRIGGER4_TRN_SRC = 1             # internal
+    TRIGGER4_TRN_OUT_SEL = 2         # interlock generator
+    TRIGGER4_DIR = 0                 # transmitter
+    TRIGGER4_TRN_LEN = 20            # transmitter length
 
 # timing
-reset_amc4_state = 0
-reset_amc4_evt = 117
-reset_amc4_nr_pulses = 1
-reset_amc4_src = 0               # trigger
-reset_amc4_dir = 1               # receiver
+class TimingEVRResetParams(IntEnum):
+    AMC4_STATE = 0
+    AMC4_EVT = 118
+    AMC4_NR_PULSES = 1
+    AMC4_SRC = 0               # trigger
+    AMC4_DIR = 1               # receiver
 
-amc4_state = 1
-amc4_evt = 117
-amc4_nr_pulses = 1
-amc4_src = 0                     # trigger
-amc4_dir = 1                     # receiver
+class TimingEVRParams(IntEnum):
+    AMC4_STATE = 1
+    AMC4_EVT = 118
+    AMC4_NR_PULSES = 1
+    AMC4_SRC = 0                     # trigger
+    AMC4_DIR = 1                     # receiver
 
 # fout timing
-reset_fout_rx_enbl = 0
+class TimingFOUTResetParams(IntEnum):
+    RX_ENBL = 0
 
-fout_rx_enbl = 0
+class TimingFOUTParams(IntEnum):
+    RX_ENBL = 0
 
 # timing evg
-reset_evg_rx_enbl = 0
-reset_intlk_ctrl_enbl = 0
-reset_intlk_ctrl_rst = 1
-reset_intlk_evt_in0 = 117
-reset_intlk_evt_in1 = 118
-reset_intlk_evt_in2 = 119
+class TimingEVGResetParams(IntEnum):
+    RX_ENBL = 0
+    INTLK_CTRL_ENBL = 0
+    INTLK_CTRL_RST = 1
+    INTLK_EVT_IN0 = 117
+    INTLK_EVT_IN1 = 118
+    INTLK_EVT_IN2 = 119
 
-intlk_ctrl_enbl = 1
-intlk_ctrl_rst = 1
-intlk_evt_in0 = 117
-intlk_evt_in1 = 118
-intlk_evt_in2 = 119
+class TimingEVGParams(IntEnum):
+    INTLK_CTRL_ENBL = 1
+    INTLK_CTRL_RST = 1
+    INTLK_EVT_IN0 = 117
+    INTLK_EVT_IN1 = 118
+    INTLK_EVT_IN2 = 119
 
 ss_names_by_sector = [
     ("SA", 1),
@@ -210,35 +219,35 @@ print("{}".format(indent(str(timing_evg), '        ')), end='')
 print("Resetting BPM test parameters... ", end='')
 for i, bpm_sector in enumerate(bpms):
     for j, bpm in enumerate(bpm_sector):
-        bpms[i][j].intlk_lmt_trans_max_x = reset_intlk_lmt_trans_max_x
-        bpms[i][j].intlk_trans_en = reset_intlk_trans_en
-        bpms[i][j].intlk_en = reset_intlk_en
-        bpms[i][j].trigger4_trn_src = reset_trigger4_trn_src
-        bpms[i][j].trigger4_trn_out_sel = reset_trigger4_trn_out_sel
-        bpms[i][j].trigger4_dir = reset_trigger4_dir
-        bpms[i][j].trigger4_trn_len = reset_trigger4_trn_len
+        bpms[i][j].intlk_lmt_trans_max_x = BPMResetParams.INTLK_LMT_TRANS_MAX_X
+        bpms[i][j].intlk_trans_en = BPMResetParams.INTLK_TRANS_EN
+        bpms[i][j].intlk_en = BPMResetParams.INTLK_EN
+        bpms[i][j].trigger4_trn_src = BPMResetParams.TRIGGER4_TRN_SRC
+        bpms[i][j].trigger4_trn_out_sel = BPMResetParams.TRIGGER4_TRN_OUT_SEL
+        bpms[i][j].trigger4_dir = BPMResetParams.TRIGGER4_DIR
+        bpms[i][j].trigger4_trn_len = BPMResetParams.TRIGGER4_TRN_LEN
 print("Done")
 
 print("Resetting Timing test parameters... ", end='')
 for i, _ in enumerate(timings):
-    timings[i].amc4_state = reset_amc4_state
-    timings[i].amc4_evt = reset_amc4_evt
-    timings[i].amc4_nr_pulses = reset_amc4_nr_pulses
-    timings[i].amc4_src = reset_amc4_src
-    timings[i].amc4_dir = reset_amc4_dir
+    timings[i].amc4_state = TimingEVRResetParams.AMC4_STATE
+    timings[i].amc4_evt = TimingEVRResetParams.AMC4_EVT
+    timings[i].amc4_nr_pulses = TimingEVRResetParams.AMC4_NR_PULSES
+    timings[i].amc4_src = TimingEVRResetParams.AMC4_SRC
+    timings[i].amc4_dir = TimingEVRResetParams.AMC4_DIR
 print("Done")
 
 print("Resetting Timing Fout test parameters... ", end='')
 for i, _ in enumerate(timings_fout):
-    timings_fout[i].rx_enbl = reset_fout_rx_enbl
+    timings_fout[i].rx_enbl = TimingFOUTResetParams.RX_ENBL
 print("Done")
 
 print("Resetting Timing EVG test parameters... ", end='')
-timing_evg.intlk_ctrl_enbl = reset_intlk_ctrl_enbl
-timing_evg.intlk_ctrl_rst = reset_intlk_ctrl_rst
-timing_evg.intlk_evt_in0 = reset_intlk_evt_in0
-timing_evg.intlk_evt_in1 = reset_intlk_evt_in1
-timing_evg.intlk_evt_in2 = reset_intlk_evt_in2
+timing_evg.intlk_ctrl_enbl = TimingEVGResetParams.INTLK_CTRL_ENBL
+timing_evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
+timing_evg.intlk_evt_in0 = TimingEVGResetParams.INTLK_EVT_IN0
+timing_evg.intlk_evt_in1 = TimingEVGResetParams.INTLK_EVT_IN1
+timing_evg.intlk_evt_in2 = TimingEVGResetParams.INTLK_EVT_IN2
 print("Done")
 
 print("Waiting some time to settle... ", end='')
@@ -247,19 +256,19 @@ print("Done")
 
 print("Setting Timing test parameters... ", end='')
 for i, _ in enumerate(timings):
-    timings[i].amc4_state = amc4_state
-    timings[i].amc4_evt = amc4_evt
-    timings[i].amc4_nr_pulses = amc4_nr_pulses
-    timings[i].amc4_src = amc4_src
-    timings[i].amc4_dir = amc4_dir
+    timings[i].amc4_state = TimingEVRParams.AMC4_STATE
+    timings[i].amc4_evt = TimingEVRParams.AMC4_EVT
+    timings[i].amc4_nr_pulses = TimingEVRParams.AMC4_NR_PULSES
+    timings[i].amc4_src = TimingEVRParams.AMC4_SRC
+    timings[i].amc4_dir = TimingEVRParams.AMC4_DIR
 print("Done")
 
 print("Setting Timing EVG test parameters... ", end='')
-timing_evg.intlk_ctrl_enbl = intlk_ctrl_enbl
-timing_evg.intlk_ctrl_rst = intlk_ctrl_rst
-timing_evg.intlk_evt_in0 = intlk_evt_in0
-timing_evg.intlk_evt_in1 = intlk_evt_in1
-timing_evg.intlk_evt_in2 = intlk_evt_in2
+timing_evg.intlk_ctrl_enbl = TimingEVGParams.INTLK_CTRL_ENBL
+timing_evg.intlk_ctrl_rst = TimingEVGParams.INTLK_CTRL_RST
+timing_evg.intlk_evt_in0 = TimingEVGParams.INTLK_EVT_IN0
+timing_evg.intlk_evt_in1 = TimingEVGParams.INTLK_EVT_IN1
+timing_evg.intlk_evt_in2 = TimingEVGParams.INTLK_EVT_IN2
 print("Done")
 
 print("Waiting some time to settle... ", end='')
@@ -275,7 +284,7 @@ for i, bpm_sector in enumerate(bpms):
         print("        Disabling BPM interlock generation for all BPMs in this sector...", end='')
         # reset BPM to send the trigger
         for bpm_in_sector in bpm_sector:
-            bpm_in_sector.intlk_en = reset_intlk_en
+            bpm_in_sector.intlk_en = BPMResetParams.INTLK_EN
         sleep(1)
         print(" Ok")
 
@@ -290,17 +299,17 @@ for i, bpm_sector in enumerate(bpms):
                 break
 
         print("        Resetting Timing Fout RX ({}) Enable...".format(timing_fout.prefix), end='')
-        timing_fout.rx_enbl = reset_fout_rx_enbl
+        timing_fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
         sleep(1)
         print(" Ok")
 
         print("        Resetting Timing EVG RX ({}) Enable...".format(timing_evg.prefix), end='')
-        timing_evg.rx_enbl = reset_evg_rx_enbl
+        timing_evg.rx_enbl = TimingEVGResetParams.RX_ENBL
         sleep(1)
         print(" Ok")
 
         print("        Resetting Timing EVG interlock status...", end='')
-        timing_evg.intlk_ctrl_rst = reset_intlk_ctrl_rst
+        timing_evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
         sleep(1)
         print(" Ok")
 
@@ -326,7 +335,7 @@ for i, bpm_sector in enumerate(bpms):
 
         print("        Enabling BPM interlock generation...", end='')
         # enable BPM to send the trigger
-        bpms[i][j].intlk_en = intlk_en
+        bpms[i][j].intlk_en = BPMParams.INTLK_EN
         # wait IOC to capture the interlock status
         sleep(1)
         print(" Ok")
