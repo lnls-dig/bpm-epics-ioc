@@ -104,28 +104,28 @@ def timing_evg_clenup_test_parameters(evg):
     evg.rx_enbl = TimingEVGResetParams.RX_ENBL
     evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
 
-ss_names_by_sector = [
-    ("SA", 1),
-    ("SB", 2),
-    ("SP", 3),
-    ("SB", 4),
-    ("SA", 5),
-    ("SB", 6),
-    ("SP", 7),
-    ("SB", 8),
-    ("SA", 9),
-    ("SB", 10),
-    ("SP", 11),
-    ("SB", 12),
-    ("SA", 13),
-    ("SB", 14),
-    ("SP", 15),
-    ("SB", 16),
-    ("SA", 17),
-    ("SB", 18),
-    ("SP", 19),
-    ("SB", 20),
-]
+ss_names_by_sector = {
+    "1":  {"ss_name": "SA"},
+    "2":  {"ss_name": "SB"},
+    "3":  {"ss_name": "SP"},
+    "4":  {"ss_name": "SB"},
+    "5":  {"ss_name": "SA"},
+    "6":  {"ss_name": "SB"},
+    "7":  {"ss_name": "SP"},
+    "8":  {"ss_name": "SB"},
+    "9":  {"ss_name": "SA"},
+    "10": {"ss_name": "SB"},
+    "11": {"ss_name": "SP"},
+    "12": {"ss_name": "SB"},
+    "13": {"ss_name": "SA"},
+    "14": {"ss_name": "SB"},
+    "15": {"ss_name": "SP"},
+    "16": {"ss_name": "SB"},
+    "17": {"ss_name": "SA"},
+    "18": {"ss_name": "SB"},
+    "19": {"ss_name": "SP"},
+    "20": {"ss_name": "SB"},
+}
 
 timing_evr_fout_mapping = {
     # AFC Timing, Fanout, RX input port
@@ -163,26 +163,25 @@ timing_fout_evg_mapping = {
 # Prefix generation
 
 bpm_si_prefixes = []
-for ss in ss_names_by_sector:
-
+for k, v in ss_names_by_sector.items():
     bpm_prefix_item = [
 # Straight sections BPMs are not installed in most sections
-#        "SI-{:02d}{}:DI-BPM-1:".format(idx, ss),
-#        "SI-{:02d}{}:DI-BPM-2:".format(idx, ss),
-        "SI-{:02d}M1:DI-BPM:".format(ss[1]),
-        "SI-{:02d}M2:DI-BPM:".format(ss[1]),
-        "SI-{:02d}C1:DI-BPM-1:".format(ss[1]),
-        "SI-{:02d}C1:DI-BPM-2:".format(ss[1]),
-        "SI-{:02d}C2:DI-BPM:".format(ss[1]),
-        "SI-{:02d}C3:DI-BPM-1:".format(ss[1]),
-        "SI-{:02d}C3:DI-BPM-2:".format(ss[1]),
-        "SI-{:02d}C4:DI-BPM:".format(ss[1]),
+#        "SI-{:02d}{}:DI-BPM-1:".format(int(k), v["ss_name"]),
+#        "SI-{:02d}{}:DI-BPM-2:".format(int(k), v["ss_name"]),
+        "SI-{:02d}M1:DI-BPM:".format(int(k)),
+        "SI-{:02d}M2:DI-BPM:".format(int(k)),
+        "SI-{:02d}C1:DI-BPM-1:".format(int(k)),
+        "SI-{:02d}C1:DI-BPM-2:".format(int(k)),
+        "SI-{:02d}C2:DI-BPM:".format(int(k)),
+        "SI-{:02d}C3:DI-BPM-1:".format(int(k)),
+        "SI-{:02d}C3:DI-BPM-2:".format(int(k)),
+        "SI-{:02d}C4:DI-BPM:".format(int(k)),
     ]
     bpm_si_prefixes.append(bpm_prefix_item)
 
 timing_prefixes = []
-for ss in ss_names_by_sector:
-    timing_prefix_item = "IA-{:02d}RaBPM:TI-AMCFPGAEVR:".format(ss[1])
+for k, v in ss_names_by_sector.items():
+    timing_prefix_item = "IA-{:02d}RaBPM:TI-AMCFPGAEVR:".format(int(k))
     timing_prefixes.append(timing_prefix_item)
 
 timing_fout_prefixes = []
