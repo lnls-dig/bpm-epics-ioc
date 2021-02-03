@@ -54,14 +54,14 @@ class BPMParams(IntEnum):
 # timing
 class TimingEVRResetParams(IntEnum):
     AMC4_STATE = 0
-    AMC4_EVT = 118
+    AMC4_EVT = 117
     AMC4_NR_PULSES = 1
     AMC4_SRC = 0               # trigger
     AMC4_DIR = 1               # receiver
 
 class TimingEVRParams(IntEnum):
     AMC4_STATE = 1
-    AMC4_EVT = 118
+    AMC4_EVT = 117
     AMC4_NR_PULSES = 1
     AMC4_SRC = 0                     # trigger
     AMC4_DIR = 1                     # receiver
