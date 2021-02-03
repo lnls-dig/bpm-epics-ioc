@@ -55,7 +55,7 @@ class TimingFOUT:
 
     @rx_enbl.setter
     def rx_enbl(self, val):
-        for i in range(7):
+        for i in range(8):
             pvobj = self._config_pvs_sp[f'RxEnblB{i}']
             if pvobj.connected:
                 if (val & (0x1 << i)):
