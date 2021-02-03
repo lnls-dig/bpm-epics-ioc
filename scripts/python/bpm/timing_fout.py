@@ -33,6 +33,14 @@ class TimingFOUT:
 
         pvs = {
             'RxEnbl': 'RxEnbl-RB',
+            'OUT0FramePos': 'OUT0FramePos-Mon',
+            'OUT1FramePos': 'OUT1FramePos-Mon',
+            'OUT2FramePos': 'OUT2FramePos-Mon',
+            'OUT3FramePos': 'OUT3FramePos-Mon',
+            'OUT4FramePos': 'OUT4FramePos-Mon',
+            'OUT5FramePos': 'OUT5FramePos-Mon',
+            'OUT6FramePos': 'OUT6FramePos-Mon',
+            'OUT7FramePos': 'OUT7FramePos-Mon',
         }
         self._config_pvs_rb = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
@@ -62,6 +70,14 @@ class TimingFOUT:
                     pvobj.put(1, wait=False)
                 else:
                     pvobj.put(0, wait=False)
+
+    @property
+    def rx_frame_pos(self):
+        out = []
+        for i in range(8):
+            pvobj = self._config_pvs_rb[f'OUT{i}FramePos']
+            out.append(pvobj.value if pvobj.connected else None)
+        return out
 
     def __str__(self):
         return (
