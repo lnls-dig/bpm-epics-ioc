@@ -395,18 +395,18 @@ for i, bpm_sector in enumerate(bpms):
         print(" Ok")
 
 if (errs_bpm > 0):
-    print("Test failed (with {} errors) for BPMs that the EVG could not detect the correct event:".format(errs_bpm))
+    print("Test FAILED (with {} errors) for BPMs that the EVG could not detect the correct event:".format(errs_bpm))
     for err_bpm in errs_bpm_names:
         print("    BPM {:20}".format(err_bpm["bpm"].prefix))
         print("{}".format(indent(str(err_bpm["bpm"]), '        ')), end='')
         print("    Expected event: {}, detected: {}\n".format(err_bpm["event_expected"], err_bpm["event_detected"]))
 
 if (errs_bpm_evg > 0):
-    print("Test failed (with {} errors) for BPMs that the EVG could not reset events:".format(errs_bpm_evg))
+    print("Test FAILED (with {} errors) for BPMs that the EVG could not reset events:".format(errs_bpm_evg))
     for err_bpm_evg in errs_bpm_evg_names:
         print("    BPM {:20}".format(err_bpm_evg["bpm"].prefix))
         print("{}".format(indent(str(err_bpm_evg["bpm"]), '        ')), end='')
         print("    Expected event: {}, detected: {}\n".format(err_bpm_evg["event_expected"], err_bpm_evg["event_detected"]))
 
-else:
-    print("Test Succeeded")
+if (errs_bpm == 0 and errs_bpm_evg == 0):
+    print("Test PASSED")
