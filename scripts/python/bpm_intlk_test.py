@@ -315,6 +315,35 @@ errs_bpm_evg = 0
 errs_bpm_evg_names = []
 print("Testing BPM interlock generation... ")
 for i, bpm_sector in enumerate(bpms):
+
+    sector = re.search("SI-([0-9][0-9]).+:.+", bpms[i][0].prefix).group(1).lstrip("0")
+    print("        Sector: {}".format(sector))
+
+    # search for correct Fanout module
+    timing_fout_num = timing_evr_fout_mapping[sector]["fanout"]
+    for fout in timings_fout:
+        if f'TI-Fout-{timing_fout_num}:' in fout.prefix:
+            timing_fout = fout
+            break
+
+    # check if fanout channel for sector is chaning, This is a bug
+    timing_fout_channel = timing_evr_fout_mapping[sector]["channel"]
+    print("        Checking if Fout ({}) RX enable channel {} is not changing \"comma position\"...".format(
+        timing_fout.prefix, timing_fout_channel), end='')
+
+    timing_fout_rx_frame_pos = timing_fout.rx_frame_pos[timing_fout_channel]
+    # print("            Frame pos baseline: {}".format(timing_fout_rx_frame_pos))
+    for frame_pos_iter in range(2):
+        sleep(1)
+        timing_fout_rx_frame_pos_iter = timing_fout.rx_frame_pos[timing_fout_channel]
+        # print("            Frame pos iteration #{}: {}".format(frame_pos_iter, timing_fout_rx_frame_pos_iter))
+        if timing_fout_rx_frame_pos_iter != timing_fout_rx_frame_pos:
+            print(" Frame pos iteration #{}: {}, differs from baseline {}".format(
+                frame_pos_iter, timing_fout_rx_frame_pos_iter,timing_fout_rx_frame_pos))
+            sys.exit(1)
+
+    print(" Ok")
+
     for j, bpm in enumerate(bpm_sector):
         print("    {}".format(bpms[i][j].prefix))
 
@@ -324,17 +353,7 @@ for i, bpm_sector in enumerate(bpms):
         sleep(1)
         print(" Ok")
 
-        sector = re.search("SI-([0-9][0-9]).+:.+", bpms[i][j].prefix).group(1).lstrip("0")
-        print("        Sector: {}".format(sector))
-
-        # search for correct Fanout module
-        timing_fout_num = timing_evr_fout_mapping[sector]["fanout"]
-        for fout in timings_fout:
-            if f'TI-Fout-{timing_fout_num}:' in fout.prefix:
-                timing_fout = fout
-                break
-
-        print("        Resetting Timing Fout RX ({}) Enable...".format(timing_fout.prefix), end='')
+        print("        Resetting Timing Fout ({}) RX Enable...".format(timing_fout.prefix), end='')
         timing_fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
         sleep(1)
         print(" Ok")
