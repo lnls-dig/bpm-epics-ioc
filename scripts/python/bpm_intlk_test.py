@@ -310,7 +310,10 @@ print("Waiting some time to settle... ", end='')
 sleep(1)
 print("Done")
 
-errs = 0
+errs_bpm = 0
+errs_bpm_names = []
+errs_bpm_evg = 0
+errs_bpm_evg_names = []
 print("Testing BPM interlock generation... ")
 for i, bpm_sector in enumerate(bpms):
     for j, bpm in enumerate(bpm_sector):
@@ -344,11 +347,13 @@ for i, bpm_sector in enumerate(bpms):
 
         print("        Checking if EVG Intlk Status is clear...", end='')
         # check if EVG received the event
-        if (timing_evg.intlk_evt_status == 0):
+        event_detected = timing_evg.intlk_evt_status
+        if (event_detected == 0):
             print(" Ok")
         else:
             print(" Error")
-            errs = errs + 1
+            errs_bpm_evg = errs_bpm_evg + 1
+            errs_bpm_evg_names.append({"bpm": bpms[i][j], "event_expected": 0, "event_detected": event_detected})
 
         rx_evg_enable_param = (0x1 << timing_fout_evg_mapping[str(timing_fout_num)]["channel"])
         print("        Enabling Timing EVG RX ({}) Enable to {}...".format(timing_evg.prefix, rx_evg_enable_param), end='')
@@ -371,11 +376,14 @@ for i, bpm_sector in enumerate(bpms):
 
         print("        Timing EVG Intlk Status: {}".format(timing_evg.intlk_evt_status))
         # check if EVG received the event
-        if (timing_evg.intlk_evt_status == timing_evg_evt_status_mapping[TimingEVRParams.AMC4_EVT]):
+        event_detected = timing_evg.intlk_evt_status
+        event_expected = timing_evg_evt_status_mapping[TimingEVRParams.AMC4_EVT]
+        if (event_detected == event_expected):
             print("        PASSED")
         else:
             print("        FAILED")
-            errs = errs + 1
+            errs_bpm = errs_bpm + 1
+            errs_bpm_names.append({"bpm": bpms[i][j], "event_expected": event_expected, "event_detected": event_detected})
 
     else:
         print("    Cleaning up test parameters... ")
@@ -386,7 +394,19 @@ for i, bpm_sector in enumerate(bpms):
         timing_evg_clenup_test_parameters(timing_evg)
         print(" Ok")
 
-if (errs > 0):
-    print("Test Failed")
+if (errs_bpm > 0):
+    print("Test failed (with {} errors) for BPMs that the EVG could not detect the correct event:".format(errs_bpm))
+    for err_bpm in errs_bpm_names:
+        print("    BPM {:20}".format(err_bpm["bpm"].prefix))
+        print("{}".format(indent(str(err_bpm["bpm"]), '        ')), end='')
+        print("    Expected event: {}, detected: {}\n".format(err_bpm["event_expected"], err_bpm["event_detected"]))
+
+if (errs_bpm_evg > 0):
+    print("Test failed (with {} errors) for BPMs that the EVG could not reset events:".format(errs_bpm_evg))
+    for err_bpm_evg in errs_bpm_evg_names:
+        print("    BPM {:20}".format(err_bpm_evg["bpm"].prefix))
+        print("{}".format(indent(str(err_bpm_evg["bpm"]), '        ')), end='')
+        print("    Expected event: {}, detected: {}\n".format(err_bpm_evg["event_expected"], err_bpm_evg["event_detected"]))
+
 else:
     print("Test Succeeded")
