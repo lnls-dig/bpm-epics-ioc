@@ -410,3 +410,4 @@ if (errs_bpm_evg > 0):
 
 if (errs_bpm == 0 and errs_bpm_evg == 0):
     print("Test PASSED")
+    sys.exit(1)
