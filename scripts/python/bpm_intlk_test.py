@@ -284,7 +284,7 @@ timing_evg.intlk_evt_in1 = TimingEVGResetParams.INTLK_EVT_IN1
 timing_evg.intlk_evt_in2 = TimingEVGResetParams.INTLK_EVT_IN2
 print("Done")
 
-print("Waiting some time to settle... ", end='')
+print("Waiting some time to allow parameters to settle... ", end='')
 sleep(1)
 print("Done")
 
@@ -305,7 +305,7 @@ timing_evg.intlk_evt_in1 = TimingEVGParams.INTLK_EVT_IN1
 timing_evg.intlk_evt_in2 = TimingEVGParams.INTLK_EVT_IN2
 print("Done")
 
-print("Waiting some time to settle... ", end='')
+print("Waiting some time to allow parameters to settle... ", end='')
 sleep(1)
 print("Done")
 
@@ -350,18 +350,20 @@ for i, bpm_sector in enumerate(bpms):
         print("        Resetting test parameters for all sector BPMs...", end='')
         # reset BPM to send the trigger
         bpm_cleanup_test_parameters(bpm_sector)
-        sleep(1)
         print(" Ok")
 
         print("        Resetting Timing Fout ({}) RX Enable...".format(timing_fout.prefix), end='')
         timing_fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
-        sleep(1)
         print(" Ok")
 
         print("        Resetting test parameters for EVG ({})...".format(timing_evg.prefix), end='')
         timing_evg_clenup_test_parameters(timing_evg)
-        sleep(1)
         print(" Ok")
+
+        # Wait some time to check and set things
+        print("        Waiting some time to allow parameters to settle...", end='')
+        sleep(1)
+        print(" Done")
 
         print("        Checking if EVG Intlk Status is clear...", end='')
         # check if EVG received the event
@@ -376,21 +378,22 @@ for i, bpm_sector in enumerate(bpms):
         rx_evg_enable_param = (0x1 << timing_fout_evg_mapping[str(timing_fout_num)]["channel"])
         print("        Enabling Timing EVG RX ({}) Enable to {}...".format(timing_evg.prefix, rx_evg_enable_param), end='')
         timing_evg.rx_enbl = rx_evg_enable_param
-        sleep(1)
         print(" Ok")
 
         rx_fout_enable_param = (0x1 << timing_evr_fout_mapping[sector]["channel"])
         print("        Enabling Timing Fout RX ({}) Enable to {}...".format(timing_fout.prefix, rx_fout_enable_param), end='')
         timing_fout.rx_enbl = rx_fout_enable_param
-        sleep(1)
         print(" Ok")
 
         print("        Enabling BPM interlock generation...", end='')
         # enable BPM to send the trigger
         bpms[i][j].intlk_en = BPMParams.INTLK_EN
         # wait IOC to capture the interlock status
-        sleep(1)
         print(" Ok")
+
+        print("        Waiting some time to allow EVG event to propagate...", end='')
+        sleep(2)
+        print(" Done")
 
         print("        Timing EVG Intlk Status: {}".format(timing_evg.intlk_evt_status))
         # check if EVG received the event
@@ -411,6 +414,10 @@ for i, bpm_sector in enumerate(bpms):
         print("    Cleaning up EVG test parameters... ", end='')
         timing_evg_clenup_test_parameters(timing_evg)
         print(" Ok")
+
+        print("    Waiting some time to allow parameters to settle...", end='')
+        sleep(1)
+        print(" Done")
 
 if (errs_bpm > 0):
     print("Test FAILED (with {} errors) for BPMs that the EVG could not detect the correct event:".format(errs_bpm))
