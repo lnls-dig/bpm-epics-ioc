@@ -100,6 +100,9 @@ def bpm_cleanup_test_parameters(bpms):
     for bpm in bpms:
         bpm.intlk_en = BPMResetParams.INTLK_EN
 
+def timing_fout_clenup_test_parameters(fout):
+    fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
+
 def timing_evg_clenup_test_parameters(evg):
     evg.rx_enbl = TimingEVGResetParams.RX_ENBL
     evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
@@ -352,8 +355,8 @@ for i, bpm_sector in enumerate(bpms):
         bpm_cleanup_test_parameters(bpm_sector)
         print(" Ok")
 
-        print("        Resetting Timing Fout ({}) RX Enable...".format(timing_fout.prefix), end='')
-        timing_fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
+        print("        Resetting test parameters for Fout ({}) RX Enable...".format(timing_fout.prefix), end='')
+        timing_fout_clenup_test_parameters(timing_fout)
         print(" Ok")
 
         print("        Resetting test parameters for EVG ({})...".format(timing_evg.prefix), end='')
