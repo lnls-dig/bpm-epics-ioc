@@ -347,6 +347,28 @@ for i, bpm_sector in enumerate(bpms):
             timing_fout = fout
             break
 
+    print("        Resetting test parameters for Fout ({})...".format(timing_fout.prefix), end='')
+    timing_fout_clenup_test_parameters(timing_fout)
+    print(" Ok")
+
+    print("        Resetting test parameters for EVG ({})...".format(timing_evg.prefix), end='')
+    timing_evg_clenup_test_parameters(timing_evg)
+    print(" Ok")
+
+    rx_evg_enable_param = (0x1 << timing_fout_evg_mapping[str(timing_fout_num)]["channel"])
+    print("        Enabling Timing EVG RX ({}) Enable to {}...".format(timing_evg.prefix, rx_evg_enable_param), end='')
+    timing_evg.rx_enbl = rx_evg_enable_param
+    print(" Ok")
+
+    rx_fout_enable_param = (0x1 << timing_evr_fout_mapping[sector]["channel"])
+    print("        Enabling Timing Fout RX ({}) Enable to {}...".format(timing_fout.prefix, rx_fout_enable_param), end='')
+    timing_fout.rx_enbl = rx_fout_enable_param
+    print(" Ok")
+
+    print("        Waiting some time to allow parameters to settle...", end='')
+    sleep(2)
+    print(" Done")
+
     # check if fanout channel for sector is chaning, This is a bug
     timing_fout_channel = timing_evr_fout_mapping[sector]["channel"]
     print("        Checking if Fout ({}) RX enable channel {} is not changing \"comma position\"...".format(
@@ -360,10 +382,6 @@ for i, bpm_sector in enumerate(bpms):
         print("        Resetting test parameters for all sector BPMs...", end='')
         # reset BPM to send the trigger
         bpm_cleanup_test_parameters(bpm_sector)
-        print(" Ok")
-
-        print("        Resetting test parameters for Fout ({}) RX Enable...".format(timing_fout.prefix), end='')
-        timing_fout_clenup_test_parameters(timing_fout)
         print(" Ok")
 
         print("        Resetting interlock status for EVG ({})...".format(timing_evg.prefix), end='')
@@ -384,16 +402,6 @@ for i, bpm_sector in enumerate(bpms):
             print(" Error")
             errs_bpm_evg = errs_bpm_evg + 1
             errs_bpm_evg_names.append({"bpm": bpms[i][j], "event_expected": 0, "event_detected": event_detected})
-
-        rx_evg_enable_param = (0x1 << timing_fout_evg_mapping[str(timing_fout_num)]["channel"])
-        print("        Enabling Timing EVG RX ({}) Enable to {}...".format(timing_evg.prefix, rx_evg_enable_param), end='')
-        timing_evg.rx_enbl = rx_evg_enable_param
-        print(" Ok")
-
-        rx_fout_enable_param = (0x1 << timing_evr_fout_mapping[sector]["channel"])
-        print("        Enabling Timing Fout RX ({}) Enable to {}...".format(timing_fout.prefix, rx_fout_enable_param), end='')
-        timing_fout.rx_enbl = rx_fout_enable_param
-        print(" Ok")
 
         print("        Enabling BPM interlock generation...", end='')
         # enable BPM to send the trigger
