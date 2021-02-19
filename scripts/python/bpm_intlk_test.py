@@ -107,6 +107,18 @@ def timing_evg_clenup_test_parameters(evg):
     evg.rx_enbl = TimingEVGResetParams.RX_ENBL
     evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
 
+def timing_fout_test_comma_position(fout, channel, tryouts=2, seconds_after_tryout=1):
+    fout_rx_frame_pos = fout.rx_frame_pos[channel]
+    # print("            Frame pos baseline: {}".format(fout_rx_frame_pos))
+    for frame_pos_iter in range(tryouts):
+        sleep(seconds_after_tryout)
+        fout_rx_frame_pos_iter = fout.rx_frame_pos[channel]
+        # print("            Frame pos iteration #{}: {}".format(frame_pos_iter, fout_rx_frame_pos_iter))
+        if fout_rx_frame_pos_iter != fout_rx_frame_pos:
+            print(" Frame pos iteration #{}: {}, differs from baseline {}".format(
+                frame_pos_iter, fout_rx_frame_pos_iter,fout_rx_frame_pos))
+            sys.exit(1)
+
 ss_names_by_sector = {
     "1":  {"ss_name": "SA"},
     "2":  {"ss_name": "SB"},
@@ -333,18 +345,7 @@ for i, bpm_sector in enumerate(bpms):
     timing_fout_channel = timing_evr_fout_mapping[sector]["channel"]
     print("        Checking if Fout ({}) RX enable channel {} is not changing \"comma position\"...".format(
         timing_fout.prefix, timing_fout_channel), end='')
-
-    timing_fout_rx_frame_pos = timing_fout.rx_frame_pos[timing_fout_channel]
-    # print("            Frame pos baseline: {}".format(timing_fout_rx_frame_pos))
-    for frame_pos_iter in range(2):
-        sleep(1)
-        timing_fout_rx_frame_pos_iter = timing_fout.rx_frame_pos[timing_fout_channel]
-        # print("            Frame pos iteration #{}: {}".format(frame_pos_iter, timing_fout_rx_frame_pos_iter))
-        if timing_fout_rx_frame_pos_iter != timing_fout_rx_frame_pos:
-            print(" Frame pos iteration #{}: {}, differs from baseline {}".format(
-                frame_pos_iter, timing_fout_rx_frame_pos_iter,timing_fout_rx_frame_pos))
-            sys.exit(1)
-
+    timing_fout_test_comma_position(timing_fout, timing_fout_channel)
     print(" Ok")
 
     for j, bpm in enumerate(bpm_sector):
