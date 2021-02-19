@@ -366,8 +366,8 @@ for i, bpm_sector in enumerate(bpms):
         timing_fout_clenup_test_parameters(timing_fout)
         print(" Ok")
 
-        print("        Resetting test parameters for EVG ({})...".format(timing_evg.prefix), end='')
-        timing_evg_clenup_test_parameters(timing_evg)
+        print("        Resetting interlock status for EVG ({})...".format(timing_evg.prefix), end='')
+        timing_evg_clenup_intlk_status(timing_evg)
         print(" Ok")
 
         # Wait some time to check and set things
