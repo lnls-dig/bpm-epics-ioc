@@ -103,9 +103,15 @@ def bpm_cleanup_test_parameters(bpms):
 def timing_fout_clenup_test_parameters(fout):
     fout.rx_enbl = TimingFOUTResetParams.RX_ENBL
 
-def timing_evg_clenup_test_parameters(evg):
-    evg.rx_enbl = TimingEVGResetParams.RX_ENBL
+def timing_evg_clenup_intlk_status(evg):
     evg.intlk_ctrl_rst = TimingEVGResetParams.INTLK_CTRL_RST
+
+def timing_evg_clenup_rx_enbl(evg):
+    evg.rx_enbl = TimingEVGResetParams.RX_ENBL
+
+def timing_evg_clenup_test_parameters(evg):
+    timing_evg_clenup_rx_enbl(evg)
+    timing_evg_clenup_intlk_status(evg)
 
 def timing_fout_test_comma_position(fout, channel, tryouts=2, seconds_after_tryout=1):
     fout_rx_frame_pos = fout.rx_frame_pos[channel]
