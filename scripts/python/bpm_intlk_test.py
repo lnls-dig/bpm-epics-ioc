@@ -35,6 +35,7 @@ sys.stdout = Unbuffered(sys.stdout)
 # bpm
 class BPMResetParams(IntEnum):
     INTLK_LMT_TRANS_MAX_X = 0
+    INTLK_LMT_TRANS_MIN_X = 0
     INTLK_TRANS_EN = 1
     INTLK_EN = 0
     TRIGGER4_TRN_SRC = 1       # internal
@@ -44,6 +45,7 @@ class BPMResetParams(IntEnum):
 
 class BPMParams(IntEnum):
     INTLK_LMT_TRANS_MAX_X = 0
+    INTLK_LMT_TRANS_MIN_X = 0
     INTLK_TRANS_EN = 1
     INTLK_EN = 1
     TRIGGER4_TRN_SRC = 1             # internal
@@ -275,6 +277,7 @@ print("Resetting BPM test parameters... ", end='')
 for i, bpm_sector in enumerate(bpms):
     for j, bpm in enumerate(bpm_sector):
         bpms[i][j].intlk_lmt_trans_max_x = BPMResetParams.INTLK_LMT_TRANS_MAX_X
+        bpms[i][j].intlk_lmt_trans_min_x = BPMResetParams.INTLK_LMT_TRANS_MIN_X
         bpms[i][j].intlk_trans_en = BPMResetParams.INTLK_TRANS_EN
         bpms[i][j].intlk_en = BPMResetParams.INTLK_EN
         bpms[i][j].trigger4_trn_src = BPMResetParams.TRIGGER4_TRN_SRC
