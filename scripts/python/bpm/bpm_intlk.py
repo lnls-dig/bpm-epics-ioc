@@ -14,6 +14,7 @@ class BPMIntlk:
         pvs = {
             'asyn.ENBL': 'asyn.ENBL',
             'IntlkLmtTransMaxX': 'IntlkLmtTransMaxX-SP',
+            'IntlkLmtTransMinX': 'IntlkLmtTransMinX-SP',
             'IntlkTransEn': 'IntlkTransEn-Sel',
             'IntlkEn': 'IntlkEn-Sel',
             'TRIGGER4TrnSrc': 'TRIGGER4TrnSrc-Sel',
@@ -34,6 +35,7 @@ class BPMIntlk:
             'asyn.ENBL': 'asyn.ENBL',
             'asyn.CNCT': 'asyn.CNCT',
             'IntlkLmtTransMaxX': 'IntlkLmtTransMaxX-RB',
+            'IntlkLmtTransMinX': 'IntlkLmtTransMinX-RB',
             'IntlkTransEn': 'IntlkTransEn-Sts',
             'IntlkEn': 'IntlkEn-Sts',
             'TRIGGER4TrnSrc': 'TRIGGER4TrnSrc-Sts',
@@ -79,6 +81,17 @@ class BPMIntlk:
     @intlk_lmt_trans_max_x.setter
     def intlk_lmt_trans_max_x(self, val):
         pvobj = self._config_pvs_sp['IntlkLmtTransMaxX']
+        if pvobj.connected:
+            pvobj.put(val, wait=False)
+
+    @property
+    def intlk_lmt_trans_min_x(self):
+        pvobj = self._config_pvs_rb['IntlkLmtTransMinX']
+        return pvobj.value if pvobj.connected else None
+
+    @intlk_lmt_trans_min_x.setter
+    def intlk_lmt_trans_min_x(self, val):
+        pvobj = self._config_pvs_sp['IntlkLmtTransMinX']
         if pvobj.connected:
             pvobj.put(val, wait=False)
 
