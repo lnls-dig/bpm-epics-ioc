@@ -71,10 +71,10 @@ void ABCDtoXYQSStd(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         XYQS_ROW & xyqs = XYQS[i];
 
         /* First compute the total intensity S */
-        double A = abs(abcd.A);
-        double B = abs(abcd.B);
-        double C = abs(abcd.C);
-        double D = abs(abcd.D);
+        double A = abcd.A;
+        double B = abcd.B;
+        double C = abcd.C;
+        double D = abcd.D;
         double S = A + B + C + D;
 
         /* Now compute the positions according to the model.
@@ -107,10 +107,10 @@ void ABCDtoXYQSPartial(const ABCD_ROW *ABCD, XYQS_ROW *XYQS,
         XYQS_ROW & xyqs = XYQS[i];
 
         /* First compute the total intensity S */
-        double A = abs(abcd.A);
-        double B = abs(abcd.B);
-        double C = abs(abcd.C);
-        double D = abs(abcd.D);
+        double A = abcd.A;
+        double B = abcd.B;
+        double C = abcd.C;
+        double D = abcd.D;
 
         double S_AC = A + C;
         double S_BD = B + D;
