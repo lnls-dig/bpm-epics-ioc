@@ -6,6 +6,8 @@ After=halcs-fe@%i.service
 PartOf=halcs-ioc@%i.target
 
 [Service]
+User=<BPM_USER>
+Group=<BPM_USER>
 # Source environment
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc
 EnvironmentFile=/etc/sysconfig/bpm-epics-ioc-slot-mapping
@@ -14,6 +16,7 @@ Environment=BPM_TRY_READ=3
 # Execute pre with root
 PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
+ExecStartPre=/bin/chown -R <BPM_USER>:<BPM_USER> /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 ExecStartPre=/bin/sh -c " \
     INSTANCE_IDX=$$(echo ${BPM_NUMBER} | sed 's|.*-||g'); \
@@ -22,7 +25,7 @@ ExecStartPre=/bin/sh -c " \
     /opt/epics/startup/ioc/bpm-epics-ioc/iocBoot/iocBPMRFFE/BPMRFFECheckInitTries.sh ipc:///tmp/malamute $${BOARD_IDX} $${HALCS_IDX} $${BPM_TRY_READ} \
 "
 WorkingDirectory=<INSTALL_PREFIX>/<IOC_NAME>/iocBoot/iocBPMRFFE
-# Run procServ with user ioc
+# Run procServ with user <BPM_USER>
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_FE_PORT_PREFIX}%i ./run.sh ${BPM_ENDPOINT} ${BPM_NUMBER}
 
 [Install]

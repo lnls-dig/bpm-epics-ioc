@@ -10,6 +10,7 @@ SED = sed
 # Prefixes
 IOC_NAME ?=
 INSTALL_PREFIX ?=
+BPM_USER ?= bpm-epics-ioc
 
 # OS information
 SERVICE_NAME = bpm-epics-ioc
@@ -42,6 +43,7 @@ scripts_in_gen:
 		sed -e "\
 			s#<INSTALL_PREFIX>#$(INSTALL_PREFIX)#g; \
 			s#<IOC_NAME>#$(IOC_NAME)#g; \
+			s#<BPM_USER>#$(BPM_USER)#g; \
 			" $(PWD)/$(INIT_SYSTEM)/$(script) > $(PWD)/$(INIT_SYSTEM)/$(script:%.in=%) \
 		$(CMDSEP) \
 	)
