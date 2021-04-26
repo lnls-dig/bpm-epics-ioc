@@ -416,7 +416,7 @@ record(bi,"$(P)$(R)IntlkLtc-Mon"){
 
 # Interlock limits
 
-record(longout, "$(P)$(R)IntlkLmtMinSum-SP"){
+record(ao, "$(P)$(R)IntlkLmtMinSum-SP"){
     field(DESC, "Set interlock minimum sum threshold")
     field(PINI, "YES")
     field(SCAN, "Passive")
@@ -425,7 +425,7 @@ record(longout, "$(P)$(R)IntlkLmtMinSum-SP"){
 
 # The Sum calculation in the FPGA is done with fixed-point
 # arithmetic with 32-bit Sum * 25-bit KSum and we truncate the result
-# by taking the 32 MSB. The IOC calculates the same with double-precision 
+# by taking the 32 MSB. The IOC calculates the same with double-precision
 # with 32-bit Sum * 25-bit KSum. This implies a gain different of
 # 2^24 between the IOC and FPGA. So, convert the minimum sum limit
 # to a number FPGA will understand.
@@ -461,7 +461,7 @@ record(longin,  "$(P)$(R)IntlkLmtMinSumHw-RB"){
 
 # The Sum calculation in the FPGA is done with fixed-point
 # arithmetic with 32-bit Sum * 25-bit KSum and we truncate the result
-# by taking the 32 MSB. The IOC calculates the same with double-precision 
+# by taking the 32 MSB. The IOC calculates the same with double-precision
 # with 32-bit Sum * 25-bit KSum. This implies a gain different og
 # 2^24 between the IOC and FPGA. So, convert the minimum sum limit
 # to a number FPGA will understand.
@@ -474,7 +474,7 @@ record(calc, "$(P)$(R)IntlkLmtMinSumCalc-RB"){
     field(FLNK, "$(P)$(R)IntlkLmtMinSum-RB")
 }
 
-record(longin, "$(P)$(R)IntlkLmtMinSum-RB"){
+record(ai, "$(P)$(R)IntlkLmtMinSum-RB"){
     field(DESC, "Get interlock minimum sum threshold")
     field(SCAN, "Passive")
     field(INP,  "$(P)$(R)IntlkLmtMinSumCalc-RB")
