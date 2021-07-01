@@ -722,8 +722,10 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
     int addrMod = 0;
 
     /* Static mapping. FIXME? */
-    /* For these services there's only a single core per FPGA, so serviceID is always 0 */
-    if (streq(serviceName, "TRIGGER_IFACE") || streq(serviceName, "ORBIT_INTLK")) {
+    /* For these services there's only a single core per FPGA, so serviceID is always 0.
+     * INIT service is always 0 per HALCS instance */
+    if (streq(serviceName, "TRIGGER_IFACE") || streq(serviceName, "ORBIT_INTLK") ||
+            streq(serviceName, "INIT")) {
         *serviceIDArg = 0;
         return status;
     }
@@ -2506,6 +2508,7 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 DataTrigChan;
     bpm_sample_t bpm_sample = {0};
     char service[SERVICE_NAME_SIZE];
+    char service_board[SERVICE_NAME_SIZE];
     int hwAmpChannel = 0;
     int acqCompleted = 0;
     int bpmStatus = 0;
@@ -2707,6 +2710,15 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
             continue;
         }
 
+        status = getFullServiceName (this->bpmNumber, coreID, "INIT", service_board, 
+            sizeof(service_board));
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName for INIT service, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
         /* Reconfigure acquisition */
         status = epicsEventTryWait(this->reconfSPassAcqEventId[coreID]);
         if (status == epicsEventWaitOK) {
@@ -2717,7 +2729,8 @@ void drvBPM::acqSPTask(int coreID, double pollTime, bool autoStart)
 
         if (bpm_single_pass == NULL) {
             bpm_single_pass = bpm_single_pass_new (this->endpoint,
-                    this->verbose, NULL, service, &bpm_parameters, num_samples_pre, num_samples_post,
+                    this->verbose, NULL, service, service_board,
+                    &bpm_parameters, num_samples_pre, num_samples_post,
                     num_shots);
             if (bpm_single_pass == NULL) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
