@@ -860,7 +860,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntlkClr-Sel</pv_name>
+    <pv_name>$(P)$(R)IntlkClr-Cmd</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -1123,7 +1123,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransEn-Sts</pv_name>
+    <pv_name>$(P)$(R)IntlkPosEn-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1181,7 +1181,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntlkTransEn-Sel</pv_name>
+    <pv_name>$(P)$(R)IntlkPosEn-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -1283,7 +1283,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntlkTransClr-Sel</pv_name>
+    <pv_name>$(P)$(R)IntlkPosClr-Cmd</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -1345,7 +1345,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpperX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1443,7 +1443,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpperY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1541,7 +1541,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerLtcX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpperLtcX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1599,7 +1599,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerLtcY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpperLtcY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1648,104 +1648,6 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>20</height>
-    <name>Text Update_152</name>
-    <off_color>
-      <color red="100" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerAny-Mon</pv_name>
-    <pv_value />
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <square_led>false</square_led>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>LED</widget_type>
-    <width>20</width>
-    <wuid>-5ef6a66e:173e382b85f:-5f59</wuid>
-    <x>342</x>
-    <y>453</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_113</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Trip Any</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>69</width>
-    <wrap_words>false</wrap_words>
-    <wuid>-5ef6a66e:173e382b85f:-5f58</wuid>
-    <x>275</x>
-    <y>452</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <bulb_border>3</bulb_border>
-    <bulb_border_color>
-      <color red="150" green="150" blue="150" />
-    </bulb_border_color>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
     <name>Text Update_153</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -1755,7 +1657,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBigger-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpper-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1853,7 +1755,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransBiggerLtc-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosUpperLtc-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2103,7 +2005,7 @@ $(pv_value)</tooltip>
     <name>Text Update_157</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMaxX-SP</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMaxX-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2155,7 +2057,7 @@ $(pv_value)</tooltip>
     <name>Text Update_158</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMaxX-RB</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMaxX-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2253,7 +2155,7 @@ $(pv_value)</tooltip>
     <name>Text Update_159</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMinX-SP</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMinX-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2305,7 +2207,7 @@ $(pv_value)</tooltip>
     <name>Text Update_160</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMinX-RB</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMinX-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2810,7 +2712,7 @@ $(pv_value)</tooltip>
     <name>Text Update_173</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMaxY-SP</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMaxY-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2862,7 +2764,7 @@ $(pv_value)</tooltip>
     <name>Text Update_174</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMaxY-RB</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMaxY-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2960,7 +2862,7 @@ $(pv_value)</tooltip>
     <name>Text Update_175</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMinY-SP</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMinY-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3012,7 +2914,7 @@ $(pv_value)</tooltip>
     <name>Text Update_176</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntlkLmtTransMinY-RB</pv_name>
+    <pv_name>$(P)$(R)IntlkLmtPosMinY-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3106,7 +3008,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <scripts />
     <show_scrollbar>false</show_scrollbar>
-    <text>Over 
+    <text>Over
 Max</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
@@ -3157,7 +3059,7 @@ Max</text>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLowerX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3215,7 +3117,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLowerY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3273,7 +3175,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerLtcX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLowerLtcX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3331,7 +3233,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerLtcY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLowerLtcY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3380,64 +3282,6 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>20</height>
-    <name>Text Update_181</name>
-    <off_color>
-      <color red="100" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerAny-Mon</pv_name>
-    <pv_value />
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <square_led>false</square_led>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>LED</widget_type>
-    <width>20</width>
-    <wuid>-154db201:174305e9bda:-74d5</wuid>
-    <x>416</x>
-    <y>453</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <bulb_border>3</bulb_border>
-    <bulb_border_color>
-      <color red="150" green="150" blue="150" />
-    </bulb_border_color>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
     <name>Text Update_182</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -3447,7 +3291,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmaller-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLower-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3505,7 +3349,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkTransSmallerLtc-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkPosLowerLtc-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3919,7 +3763,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntlkAngClr-Sel</pv_name>
+    <pv_name>$(P)$(R)IntlkAngClr-Cmd</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -3981,7 +3825,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpperX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4079,7 +3923,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpperY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4177,7 +4021,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerLtcX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpperLtcX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4235,7 +4079,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerLtcY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpperLtcY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4284,104 +4128,6 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>20</height>
-    <name>Text Update_189</name>
-    <off_color>
-      <color red="100" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerAny-Mon</pv_name>
-    <pv_value />
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <square_led>false</square_led>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>LED</widget_type>
-    <width>20</width>
-    <wuid>-154db201:174305e9bda:-73da</wuid>
-    <x>342</x>
-    <y>711</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_138</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Trip Any</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>69</width>
-    <wrap_words>false</wrap_words>
-    <wuid>-154db201:174305e9bda:-73d9</wuid>
-    <x>275</x>
-    <y>710</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <bulb_border>3</bulb_border>
-    <bulb_border_color>
-      <color red="150" green="150" blue="150" />
-    </bulb_border_color>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
     <name>Text Update_190</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -4391,7 +4137,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBigger-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpper-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4489,7 +4235,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngBiggerLtc-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngUpperLtc-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5147,7 +4893,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLowerX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5205,7 +4951,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLowerY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5263,7 +5009,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerLtcX-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLowerLtcX-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5321,7 +5067,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerLtcY-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLowerLtcY-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5370,64 +5116,6 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>20</height>
-    <name>Text Update_204</name>
-    <off_color>
-      <color red="100" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerAny-Mon</pv_name>
-    <pv_value />
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <square_led>false</square_led>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>LED</widget_type>
-    <width>20</width>
-    <wuid>-154db201:174305e9bda:-73c4</wuid>
-    <x>416</x>
-    <y>711</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <bulb_border>3</bulb_border>
-    <bulb_border_color>
-      <color red="150" green="150" blue="150" />
-    </bulb_border_color>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Sans" height="10" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
     <name>Text Update_205</name>
     <off_color>
       <color red="100" green="0" blue="0" />
@@ -5437,7 +5125,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmaller-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLower-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5495,7 +5183,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntlkAngSmallerLtc-Mon</pv_name>
+    <pv_name>$(P)$(R)IntlkAngLowerLtc-Mon</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5757,7 +5445,7 @@ Under Min</text>
     </scale_options>
     <scripts />
     <show_scrollbar>false</show_scrollbar>
-    <text>Over 
+    <text>Over
 Max</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
