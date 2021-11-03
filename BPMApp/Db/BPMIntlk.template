@@ -23,23 +23,15 @@ record(bi,"$(P)$(R)IntlkEn-Sts"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_EN")
 }
 
-record(bo,"$(P)$(R)IntlkClr-Sel"){
+record(bo,"$(P)$(R)IntlkClr-Cmd"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set interlock clear")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(ZNAM, "Off")
     field(ONAM, "On")
+    field(HIGH, "1")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_CLR")
-}
-
-record(bi,"$(P)$(R)IntlkClr-Sts"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock clear")
-    field(SCAN, "I/O Intr")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_CLR")
 }
 
 record(bo,"$(P)$(R)IntlkMinSumEn-Sel"){
@@ -80,23 +72,15 @@ record(bi,"$(P)$(R)IntlkTransEn-Sts"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_EN")
 }
 
-record(bo,"$(P)$(R)IntlkTransClr-Sel"){
+record(bo,"$(P)$(R)IntlkTransClr-Cmd"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set interlock trans. clear")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(ZNAM, "Off")
     field(ONAM, "On")
+    field(HIGH, "1")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_CLR")
-}
-
-record(bi,"$(P)$(R)IntlkTransClr-Sts"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock trans. clear")
-    field(SCAN, "I/O Intr")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_CLR")
 }
 
 record(bo,"$(P)$(R)IntlkAngEn-Sel"){
@@ -118,23 +102,15 @@ record(bi,"$(P)$(R)IntlkAngEn-Sts"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_EN")
 }
 
-record(bo,"$(P)$(R)IntlkAngClr-Sel"){
+record(bo,"$(P)$(R)IntlkAngClr-Cmd"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Set interlock ang. clear")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(ZNAM, "Off")
     field(ONAM, "On")
+    field(HIGH, "1")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_CLR")
-}
-
-record(bi,"$(P)$(R)IntlkAngClr-Sts"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock ang. clear")
-    field(SCAN, "I/O Intr")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_CLR")
 }
 
 # Interlock bigger status
