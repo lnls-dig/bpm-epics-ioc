@@ -151,15 +151,6 @@ record(bi,"$(P)$(R)IntlkTransBiggerLtcY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_LTC_Y")
 }
 
-record(bi,"$(P)$(R)IntlkTransBiggerAny-Mon"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock trip max. trans. any")
-    field(SCAN, "2 second")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_ANY")
-}
-
 record(bi,"$(P)$(R)IntlkTransBigger-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. trans.")
@@ -212,15 +203,6 @@ record(bi,"$(P)$(R)IntlkAngBiggerLtcY-Mon"){
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_LTC_Y")
-}
-
-record(bi,"$(P)$(R)IntlkAngBiggerAny-Mon"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock trip max. ang. any")
-    field(SCAN, "2 second")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_ANY")
 }
 
 record(bi,"$(P)$(R)IntlkAngBigger-Mon"){
@@ -277,15 +259,6 @@ record(bi,"$(P)$(R)IntlkTransSmallerLtcY-Mon"){
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_LTC_Y")
-}
-
-record(bi,"$(P)$(R)IntlkTransSmallerAny-Mon"){
-    field(DTYP, "asynUInt32Digital")
-    field(DESC, "Get interlock trip min. trans. any")
-    field(SCAN, "2 second")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_ANY")
 }
 
 record(bi,"$(P)$(R)IntlkTransSmaller-Mon"){
