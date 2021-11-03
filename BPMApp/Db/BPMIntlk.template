@@ -115,7 +115,7 @@ record(bo,"$(P)$(R)IntlkAngClr-Cmd"){
 
 # Interlock bigger status
 
-record(bi,"$(P)$(R)IntlkPosBiggerX-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpperX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos. X")
     field(SCAN, "2 second")
@@ -124,7 +124,7 @@ record(bi,"$(P)$(R)IntlkPosBiggerX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_X")
 }
 
-record(bi,"$(P)$(R)IntlkPosBiggerY-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpperY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos. Y")
     field(SCAN, "2 second")
@@ -133,7 +133,7 @@ record(bi,"$(P)$(R)IntlkPosBiggerY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_Y")
 }
 
-record(bi,"$(P)$(R)IntlkPosBiggerLtcX-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpperLtcX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos. latched X")
     field(SCAN, "2 second")
@@ -142,7 +142,7 @@ record(bi,"$(P)$(R)IntlkPosBiggerLtcX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_LTC_X")
 }
 
-record(bi,"$(P)$(R)IntlkPosBiggerLtcY-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpperLtcY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos. latched Y")
     field(SCAN, "2 second")
@@ -151,7 +151,7 @@ record(bi,"$(P)$(R)IntlkPosBiggerLtcY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_LTC_Y")
 }
 
-record(bi,"$(P)$(R)IntlkPosBigger-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpper-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos.")
     field(SCAN, "2 second")
@@ -160,7 +160,7 @@ record(bi,"$(P)$(R)IntlkPosBigger-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER")
 }
 
-record(bi,"$(P)$(R)IntlkPosBiggerLtc-Mon"){
+record(bi,"$(P)$(R)IntlkPosUpperLtc-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. pos. latched")
     field(SCAN, "2 second")
@@ -169,7 +169,7 @@ record(bi,"$(P)$(R)IntlkPosBiggerLtc-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_BIGGER_LTC")
 }
 
-record(bi,"$(P)$(R)IntlkAngBiggerX-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpperX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang. X")
     field(SCAN, "2 second")
@@ -178,7 +178,7 @@ record(bi,"$(P)$(R)IntlkAngBiggerX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_X")
 }
 
-record(bi,"$(P)$(R)IntlkAngBiggerY-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpperY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang. Y")
     field(SCAN, "2 second")
@@ -187,7 +187,7 @@ record(bi,"$(P)$(R)IntlkAngBiggerY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_Y")
 }
 
-record(bi,"$(P)$(R)IntlkAngBiggerLtcX-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpperLtcX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang. latched X")
     field(SCAN, "2 second")
@@ -196,7 +196,7 @@ record(bi,"$(P)$(R)IntlkAngBiggerLtcX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_LTC_X")
 }
 
-record(bi,"$(P)$(R)IntlkAngBiggerLtcY-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpperLtcY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang. latched Y")
     field(SCAN, "2 second")
@@ -205,7 +205,7 @@ record(bi,"$(P)$(R)IntlkAngBiggerLtcY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER_LTC_Y")
 }
 
-record(bi,"$(P)$(R)IntlkAngBigger-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpper-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang.")
     field(SCAN, "2 second")
@@ -214,7 +214,7 @@ record(bi,"$(P)$(R)IntlkAngBigger-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_BIGGER")
 }
 
-record(bi,"$(P)$(R)IntlkAngBiggerLtc-Mon"){
+record(bi,"$(P)$(R)IntlkAngUpperLtc-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip max. ang. latched")
     field(SCAN, "2 second")
@@ -225,7 +225,7 @@ record(bi,"$(P)$(R)IntlkAngBiggerLtc-Mon"){
 
 # Interlock smaller status
 
-record(bi,"$(P)$(R)IntlkPosSmallerX-Mon"){
+record(bi,"$(P)$(R)IntlkPosLowerX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos. X")
     field(SCAN, "2 second")
@@ -234,7 +234,7 @@ record(bi,"$(P)$(R)IntlkPosSmallerX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_X")
 }
 
-record(bi,"$(P)$(R)IntlkPosSmallerY-Mon"){
+record(bi,"$(P)$(R)IntlkPosLowerY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos. Y")
     field(SCAN, "2 second")
@@ -243,7 +243,7 @@ record(bi,"$(P)$(R)IntlkPosSmallerY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_Y")
 }
 
-record(bi,"$(P)$(R)IntlkPosSmallerLtcX-Mon"){
+record(bi,"$(P)$(R)IntlkPosLowerLtcX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos. latched X")
     field(SCAN, "2 second")
@@ -252,7 +252,7 @@ record(bi,"$(P)$(R)IntlkPosSmallerLtcX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_LTC_X")
 }
 
-record(bi,"$(P)$(R)IntlkPosSmallerLtcY-Mon"){
+record(bi,"$(P)$(R)IntlkPosLowerLtcY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos. latched Y")
     field(SCAN, "2 second")
@@ -261,7 +261,7 @@ record(bi,"$(P)$(R)IntlkPosSmallerLtcY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_LTC_Y")
 }
 
-record(bi,"$(P)$(R)IntlkPosSmaller-Mon"){
+record(bi,"$(P)$(R)IntlkPosLower-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos.")
     field(SCAN, "2 second")
@@ -270,7 +270,7 @@ record(bi,"$(P)$(R)IntlkPosSmaller-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER")
 }
 
-record(bi,"$(P)$(R)IntlkPosSmallerLtc-Mon"){
+record(bi,"$(P)$(R)IntlkPosLowerLtc-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. pos. latched")
     field(SCAN, "2 second")
@@ -279,7 +279,7 @@ record(bi,"$(P)$(R)IntlkPosSmallerLtc-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_SMALLER_LTC")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerX-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. X")
     field(SCAN, "2 second")
@@ -288,7 +288,7 @@ record(bi,"$(P)$(R)IntlkAngSmallerX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER_X")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerY-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. Y")
     field(SCAN, "2 second")
@@ -297,7 +297,7 @@ record(bi,"$(P)$(R)IntlkAngSmallerY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER_Y")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerLtcX-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerLtcX-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. latched X")
     field(SCAN, "2 second")
@@ -306,7 +306,7 @@ record(bi,"$(P)$(R)IntlkAngSmallerLtcX-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER_LTC_X")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerLtcY-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerLtcY-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. latched Y")
     field(SCAN, "2 second")
@@ -315,7 +315,7 @@ record(bi,"$(P)$(R)IntlkAngSmallerLtcY-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER_LTC_Y")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerAny-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerAny-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. any")
     field(SCAN, "2 second")
@@ -324,7 +324,7 @@ record(bi,"$(P)$(R)IntlkAngSmallerAny-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER_ANY")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmaller-Mon"){
+record(bi,"$(P)$(R)IntlkAngLower-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang.")
     field(SCAN, "2 second")
@@ -333,7 +333,7 @@ record(bi,"$(P)$(R)IntlkAngSmaller-Mon"){
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_SMALLER")
 }
 
-record(bi,"$(P)$(R)IntlkAngSmallerLtc-Mon"){
+record(bi,"$(P)$(R)IntlkAngLowerLtc-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip min. ang. latched")
     field(SCAN, "2 second")
