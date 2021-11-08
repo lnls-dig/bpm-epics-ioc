@@ -471,6 +471,10 @@ private:
 #define P_FmcPicoRngR3String        "FMCPICO_RNG_R3"        /* asynUInt32Digital,      r/w */
 #define P_KxString                  "DSP_KX"                /* asynUInt32Digital,      r/w */
 #define P_KyString                  "DSP_KY"                /* asynUInt32Digital,      r/w */
+#define P_AmpGainCh0String          "DSP_AMPGAINCH0"        /* asynInt32,              r/w */
+#define P_AmpGainCh1String          "DSP_AMPGAINCH1"        /* asynInt32,              r/w */
+#define P_AmpGainCh2String          "DSP_AMPGAINCH2"        /* asynInt32,              r/w */
+#define P_AmpGainCh3String          "DSP_AMPGAINCH3"        /* asynInt32,              r/w */
 #define P_KqString                  "DSP_KQ"                /* asynUInt32Digital,      r/w */
 #define P_KsumString                "DSP_KSUM"              /* asynUInt32Digital,      r/w */
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
@@ -910,7 +914,11 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkTransMinY;
         int P_IntlkAngMinX;
         int P_IntlkAngMinY;
-#define LAST_COMMAND P_IntlkAngMinY
+        int P_AmpGainCh0;
+        int P_AmpGainCh1;
+        int P_AmpGainCh2;
+        int P_AmpGainCh3;
+#define LAST_COMMAND P_AmpGainCh3
 
     private:
         /* Our data */

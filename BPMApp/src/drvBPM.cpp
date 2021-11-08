@@ -525,6 +525,10 @@ static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUIn
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
 static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
+static const functionsAny_t bpmSetGetAmpGainCh0Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch0_data, halcs_get_amp_gain_ch0_data}};
+static const functionsAny_t bpmSetGetAmpGainCh1Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch1_data, halcs_get_amp_gain_ch1_data}};
+static const functionsAny_t bpmSetGetAmpGainCh2Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch2_data, halcs_get_amp_gain_ch2_data}};
+static const functionsAny_t bpmSetGetAmpGainCh3Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch3_data, halcs_get_amp_gain_ch3_data}};
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -1039,7 +1043,12 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_XOffsetString,    asynParamInt32,                 &P_XOffset);
     createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
     createParam(P_QOffsetString,    asynParamInt32,                 &P_QOffset);
-
+    
+    createParam(P_AmpGainCh0String, asynParamUInt32Digital,         &P_AmpGainCh0);
+    createParam(P_AmpGainCh1String, asynParamUInt32Digital,         &P_AmpGainCh1);
+    createParam(P_AmpGainCh2String, asynParamUInt32Digital,         &P_AmpGainCh2);
+    createParam(P_AmpGainCh3String, asynParamUInt32Digital,         &P_AmpGainCh3);
+    
     /* Timing parameters */
     createParam(P_TimRcvPhaseMeasNavgString,
                                     asynParamUInt32Digital,         &P_TimRcvPhaseMeasNavg);
@@ -1206,6 +1215,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
     bpmHwFunc.emplace(P_XOffset, bpmSetGetXOffsetFunc);
     bpmHwFunc.emplace(P_YOffset, bpmSetGetYOffsetFunc);
+    bpmHwFunc.emplace(P_AmpGainCh0, bpmSetGetAmpGainCh0Func);
+    bpmHwFunc.emplace(P_AmpGainCh1, bpmSetGetAmpGainCh1Func);
+    bpmHwFunc.emplace(P_AmpGainCh2, bpmSetGetAmpGainCh2Func);
+    bpmHwFunc.emplace(P_AmpGainCh3, bpmSetGetAmpGainCh3Func);
     bpmHwFunc.emplace(P_Monit1TagEn, bpmSetGetMonit1TagEnFunc);
     bpmHwFunc.emplace(P_Monit1TagDly, bpmSetGetMonit1TagDlyFunc);
     bpmHwFunc.emplace(P_Monit1DataMaskEn, bpmSetGetMonit1DataMaskEnFunc);
@@ -1485,6 +1498,11 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_XOffset,                              0);
     setIntegerParam(P_YOffset,                              0);
     setIntegerParam(P_QOffset,                              0);
+
+    setUIntDigitalParam(P_AmpGainCh0,   16777215,           0xFFFFFFFF); /* 2^24-1 */
+    setUIntDigitalParam(P_AmpGainCh1,   16777215,           0xFFFFFFFF); /* 2^24-1 */
+    setUIntDigitalParam(P_AmpGainCh2,   16777215,           0xFFFFFFFF); /* 2^24-1 */
+    setUIntDigitalParam(P_AmpGainCh3,   16777215,           0xFFFFFFFF); /* 2^24-1 */
 
     setUIntDigitalParam(P_TimRcvPhaseMeasNavg,
                                         TIMRCV_DFLT_PHASE_MEAS_NAVG,
