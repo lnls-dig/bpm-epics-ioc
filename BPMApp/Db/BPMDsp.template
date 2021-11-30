@@ -129,7 +129,7 @@ record(longin,"$(P)$(R)PosQOffset-RB"){
 }
 
 record(longout,"$(P)$(R)AmpGainCh0-SP"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"set Amplitude Gain Ch0")
     field(PINI,"YES")
     field(SCAN,"Passive")
@@ -137,14 +137,14 @@ record(longout,"$(P)$(R)AmpGainCh0-SP"){
 }
 
 record(longin,"$(P)$(R)AmpGainCh0-RB"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"get Amplitude Gain Ch0")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_AMPGAINCH0")
 }
 
 record(longout,"$(P)$(R)AmpGainCh1-SP"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"set Amplitude Gain Ch1")
     field(PINI,"YES")
     field(SCAN,"Passive")
@@ -152,14 +152,14 @@ record(longout,"$(P)$(R)AmpGainCh1-SP"){
 }
 
 record(longin,"$(P)$(R)AmpGainCh1-RB"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"get Amplitude Gain Ch1")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_AMPGAINCH1")
 }
 
 record(longout,"$(P)$(R)AmpGainCh2-SP"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"set Amplitude Gain Ch2")
     field(PINI,"YES")
     field(SCAN,"Passive")
@@ -167,14 +167,14 @@ record(longout,"$(P)$(R)AmpGainCh2-SP"){
 }
 
 record(longin,"$(P)$(R)AmpGainCh2-RB"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"get Amplitude Gain Ch2")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_AMPGAINCH2")
 }
 
 record(longout,"$(P)$(R)AmpGainCh3-SP"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"set Amplitude Gain Ch3")
     field(PINI,"YES")
     field(SCAN,"Passive")
@@ -182,7 +182,7 @@ record(longout,"$(P)$(R)AmpGainCh3-SP"){
 }
 
 record(longin,"$(P)$(R)AmpGainCh3-RB"){
-    field(DTYP,"asynInt32")
+    field(DTYP,"asynUInt32Digital")
     field(DESC,"get Amplitude Gain Ch3")
     field(SCAN,"I/O Intr")
     field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_AMPGAINCH3")
