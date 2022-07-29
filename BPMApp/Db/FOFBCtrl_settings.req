@@ -1,0 +1,15 @@
+$(P)$(R)$(FOFB_CC)CcEnable-SP
+$(P)$(R)$(FOFB_CC)TfsOverride-SP
+$(P)$(R)$(FOFB_CC)BpmId-SP
+$(P)$(R)$(FOFB_CC)TimeFrameLen-SP
+$(P)$(R)$(FOFB_CC)MgtPowerdown-SP
+$(P)$(R)$(FOFB_CC)MgtLoopback-SP
+$(P)$(R)$(FOFB_CC)TimeFrameDly-SP
+$(P)$(R)$(FOFB_CC)GoldenOrbX-SP
+$(P)$(R)$(FOFB_CC)GoldenOrbY-SP
+$(P)$(R)$(FOFB_CC)CustFeature-SP
+$(P)$(R)$(FOFB_CC)RxPolarity-SP
+$(P)$(R)$(FOFB_CC)Payloadsel-SP
+$(P)$(R)$(FOFB_CC)Fofbdatasel-SP
+$(P)$(R)$(FOFB_CC)ToaRdEn-SP
+$(P)$(R)$(FOFB_CC)RcbRdEn-SP

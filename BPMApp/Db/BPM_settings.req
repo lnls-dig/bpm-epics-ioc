@@ -79,3 +79,5 @@ file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAM
 file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER_PM
 file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER_PM
 file "BPMTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
+
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=P2P:
