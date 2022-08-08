@@ -61,10 +61,25 @@ echo "FMC 0 name: "${FPGA_FMC0_NAME}
 echo "FMC 1 name: "${FPGA_FMC1_NAME}
 
 case ${FPGA_SYNTHESIS_NAME} in
-    bpm-gw*)
+    bpm-gw-bo*)
         case ${FPGA_FMC_NAME} in
             LNLS_FMC250M*)
-                ST_CMD_FILE=stBPM250M.cmd
+                ST_CMD_FILE=stBPM250M_bo.cmd
+                ;;
+            LNLS_FMC130M*)
+                ST_CMD_FILE=stBPM130M.cmd
+                ;;
+            *)
+                echo "Unsupported Gateware Module: "${FPGA_FMC_NAME} >&2
+                exit 1
+                ;;
+        esac
+        ;;
+
+    bpm-gw-sr*)
+        case ${FPGA_FMC_NAME} in
+            LNLS_FMC250M*)
+                ST_CMD_FILE=stBPM250M_sr.cmd
                 ;;
             LNLS_FMC130M*)
                 ST_CMD_FILE=stBPM130M.cmd
