@@ -11,6 +11,9 @@ epicsEnvSet("LOCATION","$(LOCATION=DIGS)")
 epicsEnvSet("STARTUP","$(TOP)")
 epicsEnvSet("ST_CMD","stBPM250.cmd")
 
+epicsEnvSet("EPICS_IOC_CAPUTLOG_INET", "10.0.38.59")
+epicsEnvSet("EPICS_IOC_CAPUTLOG_PORT", "7012")
+
 < BPM.config
 
 ## Register all support components
@@ -33,6 +36,8 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0
 # devIOCStats records
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}Stats")
+
+asSetFilename("${TOP}/BPMApp/Db/accessSecurityFile.acf")
 
 < triggerBPM.cmd
 < fmc250m_4ch.cmd
@@ -57,6 +62,7 @@ var dbThreadRealtimeLock 0
 iocInit()
 
 < initBPMCommands
+caPutLogInit "$(EPICS_IOC_CAPUTLOG_INET):$(EPICS_IOC_CAPUTLOG_PORT)" 2
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=${P}, R=${R}")

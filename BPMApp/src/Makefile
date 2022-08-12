@@ -28,6 +28,7 @@ BPM_DBD += base.dbd
 BPM_DBD += asyn.dbd
 BPM_DBD += devIocStats.dbd
 BPM_DBD += FFTRecords.dbd
+BPM_DBD += caPutLog.dbd
 
 # BPM_registerRecordDeviceDriver.cpp derives from BPM.dbd
 BPM_SRCS += BPM_registerRecordDeviceDriver.cpp
@@ -43,6 +44,7 @@ BPM_LIBS += asyn
 BPM_LIBS += autosave
 BPM_LIBS += FFTRecords
 BPM_LIBS += devIocStats
+BPM_LIBS += caPutLog
 
 # Link to the EPICS Base libraries
 BPM_LIBS += $(EPICS_BASE_IOC_LIBS)
