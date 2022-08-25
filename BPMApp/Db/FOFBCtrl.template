@@ -1,0 +1,317 @@
+# # # # # # # # # # # # # # #
+#                           #
+# FOFB database file        #
+#                           #
+# Author: Melissa Aguiar    #
+#                           #
+# Copyright (c) 2022 CNPEM  #
+#                           #
+# Created Jan. 25, 2022     #
+#                           #
+# # # # # # # # # # # # # # #
+
+############################
+# FOFB CTRL parameters
+############################
+
+record(bo,"$(P)$(R)$(FOFB_CC)ErrClr-Cmd"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"clears gigabit transceiver errors")
+    field(SCAN,"Passive")
+    field(PINI,"YES")
+    field(MASK, "1")
+    field(HIGH, "1")
+    field(ZNAM, "nothing")
+    field(ONAM, "clear error")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_ERR_CLR")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)CCEnable-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set enables CC module")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_CC_ENABLE")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)CCEnable-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get enables CC module")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_CC_ENABLE")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)TFSOverride-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set timeframe start override")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_TFS_OVERRIDE")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)TFSOverride-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get timeframe start override")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_TFS_OVERRIDE")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)BPMId-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set FOFB CC BPM ID")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_BPM_ID")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)BPMId-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get FOFB CC BPM ID")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_BPM_ID")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)TimeFrameLen-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set time frame length")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_LEN")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameLen-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get time frame length")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_LEN")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)MgtPowerdown-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set mgt powerdown")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_POWERDOWN")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)MgtPowerdown-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get mgt powerdown")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_POWERDOWN")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)MgtLoopback-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set mgt loopback")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_LOOPBACK")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)MgtLoopback-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get mgt loopback")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_LOOPBACK")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)TimeFrameDly-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set time frame delay")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_DLY")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameDly-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get time frame delay")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_DLY")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)GoldenOrbX-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set golden orbit x")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_X")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)GoldenOrbX-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get golden orbit x")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_X")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)GoldenOrbY-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set golden orbit y")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_Y")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)GoldenOrbY-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get golden orbit y")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_Y")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)CustFeature-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set cust feature")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CUST_FEATURE")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)CustFeature-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get cust feature")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CUST_FEATURE")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)RxPolarity-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set rx polarity")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RXPOLARITY")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)RxPolarity-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get rx polarity")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RXPOLARITY")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)PayloadSel-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set payload sel")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_PAYLOADSEL")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)PayloadSel-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get payload sel")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_PAYLOADSEL")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)DataSel-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set fofb data sel")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FOFBDATASEL")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)DataSel-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get fofb data sel")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FOFBDATASEL")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)FirmwareVer-Cte"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get firmware version")
+    field(PINI,"YES")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FIRMWARE_VER")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)SysStatus-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get system status")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_SYS_STATUS")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)LinkUp-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get link up")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_LINK_UP")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameCount-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get time frame count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_COUNT")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)FODProcessTime-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"process time in clock cycle")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FOD_PROCESS_TIME")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)BPMCnt-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get connected bpm count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_BPM_COUNT")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)TOARdEn-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ToA read enable")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TOA_CTL_RD_EN")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)TOARdEn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ToA read enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TOA_CTL_RD_EN")
+}
+
+record(bo,"$(P)$(R)$(FOFB_CC)TOARdStr-Cmd"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"read next ToA address")
+    field(SCAN,"Passive")
+    field(PINI,"YES")
+    field(MASK, "1")
+    field(HIGH, "1")
+    field(ZNAM, "nothing")
+    field(ONAM, "read next address")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TOA_CTL_RD_STR")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)TOAData-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ToA data")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TOA_DATA_VAL")
+}
+
+record(longout,"$(P)$(R)$(FOFB_CC)RCBRdEn-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set RCB read enable")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RCB_CTL_RD_EN")
+    field(PINI,"YES")
+}
+record(longin,"$(P)$(R)$(FOFB_CC)RCBRdEn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get RCB read enable")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RCB_CTL_RD_EN")
+}
+
+record(bo,"$(P)$(R)$(FOFB_CC)RCBRdStr-Cmd"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"read next RCB address")
+    field(SCAN,"Passive")
+    field(PINI,"YES")
+    field(MASK, "1")
+    field(HIGH, "1")
+    field(ZNAM, "nothing")
+    field(ONAM, "read next address")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RCB_CTL_RD_STR")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)RCBData-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get RCB data")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RCB_DATA_VAL")
+}

@@ -647,6 +647,71 @@ static const functionsAny_t bpmSetGetTrigTrnSrcFunc =            {functionsUInt3
 static const functionsAny_t bpmSetGetTrigRcvSelFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_rcv_in_sel, halcs_get_trigger_rcv_in_sel}};
 static const functionsAny_t bpmSetGetTrigTrnSelFunc =            {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel, halcs_get_trigger_transm_out_sel}};
 
+static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
+                                                                          halcs_get_fofb_ctrl_err_clr}};
+static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
+                                                                          halcs_get_fofb_ctrl_cc_enable}};
+static const functionsAny_t fofbCtrlSetGetTfsOverrideFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_tfs_override,
+                                                                          halcs_get_fofb_ctrl_tfs_override}};
+static const functionsAny_t fofbCtrlSetGetBpmIdFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_bpm_id,
+                                                                          halcs_get_fofb_ctrl_bpm_id}};
+static const functionsAny_t fofbCtrlSetGetTimeFrameLenFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_time_frame_len,
+                                                                          halcs_get_fofb_ctrl_time_frame_len}};
+static const functionsAny_t fofbCtrlSetGetMgtPowerdownFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_mgt_powerdown,
+                                                                          halcs_get_fofb_ctrl_mgt_powerdown}};
+static const functionsAny_t fofbCtrlSetGetMgtLoopbackFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_mgt_loopback,
+                                                                          halcs_get_fofb_ctrl_mgt_loopback}};
+static const functionsAny_t fofbCtrlSetGetTimeFrameDlyFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_time_frame_dly,
+                                                                          halcs_get_fofb_ctrl_time_frame_dly}};
+static const functionsAny_t fofbCtrlSetGetGoldenOrbXFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_x,
+                                                                          halcs_get_fofb_ctrl_golden_orb_x}};
+static const functionsAny_t fofbCtrlSetGetGoldenOrbYFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_y,
+                                                                          halcs_get_fofb_ctrl_golden_orb_y}};
+static const functionsAny_t fofbCtrlSetGetCustFeatureFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cust_feature,
+                                                                          halcs_get_fofb_ctrl_cust_feature}};
+static const functionsAny_t fofbCtrlSetGetRxPolarityFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rx_polarity,
+                                                                          halcs_get_fofb_ctrl_rx_polarity}};
+static const functionsAny_t fofbCtrlSetGetPayloadselFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_payloadsel,
+                                                                          halcs_get_fofb_ctrl_payloadsel}};
+static const functionsAny_t fofbCtrlSetGetFofbdataselFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_fofbdatasel,
+                                                                          halcs_get_fofb_ctrl_fofbdatasel}};
+static const functionsAny_t fofbCtrlSetGetFirmwareVerFunc             = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_firmware_ver}};
+static const functionsAny_t fofbCtrlSetGetSysStatusFunc               = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_sys_status}};
+static const functionsAny_t fofbCtrlSetGetLinkPartnerFunc             = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_link_partner}};
+static const functionsAny_t fofbCtrlSetGetLinkUpFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_link_up}};
+static const functionsAny_t fofbCtrlSetGetTimeFrameCountFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_time_frame_count}};
+static const functionsAny_t fofbCtrlSetGetHardErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_hard_err_cnt}};
+static const functionsAny_t fofbCtrlSetGetSoftErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_soft_err_cnt}};
+static const functionsAny_t fofbCtrlSetGetFrameErrCntFunc             = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_frame_err_cnt}};
+static const functionsAny_t fofbCtrlSetGetRxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_rx_pck_cnt}};
+static const functionsAny_t fofbCtrlSetGetTxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_tx_pck_cnt}};
+static const functionsAny_t fofbCtrlSetGetFodProcessTimeFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_fod_process_time}};
+static const functionsAny_t fofbCtrlSetGetBpmCntFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_bpm_count}};
+static const functionsAny_t fofbCtrlSetGetToaRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_en,
+                                                                          halcs_get_fofb_ctrl_toa_rd_en}};
+static const functionsAny_t fofbCtrlSetGetToaRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_str,
+                                                                          halcs_get_fofb_ctrl_toa_rd_str}};
+static const functionsAny_t fofbCtrlSetGetToaDataFunc                 = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_toa_data}};
+static const functionsAny_t fofbCtrlSetGetRcbRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rcb_rd_en,
+                                                                          halcs_get_fofb_ctrl_rcb_rd_en}};
+static const functionsAny_t fofbCtrlSetGetRcbRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rcb_rd_str,
+                                                                          halcs_get_fofb_ctrl_rcb_rd_str}};
+static const functionsAny_t fofbCtrlSetGetRcbDataFunc                 = {functionsUInt32_t{"FOFB_CTRL", NULL,
+                                                                          halcs_get_fofb_ctrl_rcb_data}};
+
 static const char *driverName="drvBPM";
 static taskParams_t taskParams[NUM_ACQ_CORES_PER_BPM] = {
     /* Regular Core */
@@ -709,6 +774,9 @@ asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceN
     if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         chan = addr % MAX_TRIGGERS;
     }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        chan = addr % NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+    }
     else {
         chan = addr;
     }
@@ -738,6 +806,10 @@ asynStatus drvBPM::getServiceID (int bpmNumber, int addr, const char *serviceNam
     }
     else if (streq(serviceName, "TRIGGER_MUX")) {
         addrMod = addr/MAX_TRIGGERS;
+    }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        *serviceIDArg = addr / NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+        return asynSuccess;
     }
     else {
         addrMod = 0;
@@ -1196,6 +1268,40 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkAngMinXString,          asynParamInt32,         &P_IntlkAngMinX);
     createParam(P_IntlkAngMinYString,          asynParamInt32,         &P_IntlkAngMinY);
 
+    /* Create fofb_ctrl parameters */
+    createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
+    createParam(P_FofbCtrlCcEnableString,            asynParamUInt32Digital,        &P_FofbCtrlCcEnable);
+    createParam(P_FofbCtrlTfsOverrideString,         asynParamUInt32Digital,        &P_FofbCtrlTfsOverride);
+    createParam(P_FofbCtrlBpmIdString,               asynParamUInt32Digital,        &P_FofbCtrlBpmId);
+    createParam(P_FofbCtrlTimeFrameLenString,        asynParamUInt32Digital,        &P_FofbCtrlTimeFrameLen);
+    createParam(P_FofbCtrlMgtPowerdownString,        asynParamUInt32Digital,        &P_FofbCtrlMgtPowerdown);
+    createParam(P_FofbCtrlMgtLoopbackString,         asynParamUInt32Digital,        &P_FofbCtrlMgtLoopback);
+    createParam(P_FofbCtrlTimeFrameDlyString,        asynParamUInt32Digital,        &P_FofbCtrlTimeFrameDly);
+    createParam(P_FofbCtrlGoldenOrbXString,          asynParamUInt32Digital,        &P_FofbCtrlGoldenOrbX);
+    createParam(P_FofbCtrlGoldenOrbYString,          asynParamUInt32Digital,        &P_FofbCtrlGoldenOrbY);
+    createParam(P_FofbCtrlCustFeatureString,         asynParamUInt32Digital,        &P_FofbCtrlCustFeature);
+    createParam(P_FofbCtrlRxPolarityString,          asynParamUInt32Digital,        &P_FofbCtrlRxPolarity);
+    createParam(P_FofbCtrlPayloadselString,          asynParamUInt32Digital,        &P_FofbCtrlPayloadsel);
+    createParam(P_FofbCtrlFofbdataselString,         asynParamUInt32Digital,        &P_FofbCtrlFofbdatasel);
+    createParam(P_FofbCtrlFirmwareVerString,         asynParamUInt32Digital,        &P_FofbCtrlFirmwareVer);
+    createParam(P_FofbCtrlSysStatusString,           asynParamUInt32Digital,        &P_FofbCtrlSysStatus);
+    createParam(P_FofbCtrlLinkPartnerString,         asynParamUInt32Digital,        &P_FofbCtrlLinkPartner);
+    createParam(P_FofbCtrlLinkUpString,              asynParamUInt32Digital,        &P_FofbCtrlLinkUp);
+    createParam(P_FofbCtrlTimeFrameCountString,      asynParamUInt32Digital,        &P_FofbCtrlTimeFrameCount);
+    createParam(P_FofbCtrlHardErrCntString,          asynParamUInt32Digital,        &P_FofbCtrlHardErrCnt);
+    createParam(P_FofbCtrlSoftErrCntString,          asynParamUInt32Digital,        &P_FofbCtrlSoftErrCnt);
+    createParam(P_FofbCtrlFrameErrCntString,         asynParamUInt32Digital,        &P_FofbCtrlFrameErrCnt);
+    createParam(P_FofbCtrlRxPckCntString,            asynParamUInt32Digital,        &P_FofbCtrlRxPckCnt);
+    createParam(P_FofbCtrlTxPckCntString,            asynParamUInt32Digital,        &P_FofbCtrlTxPckCnt);
+    createParam(P_FofbCtrlFodProcessTimeString,      asynParamUInt32Digital,        &P_FofbCtrlFodProcessTime);
+    createParam(P_FofbCtrlBpmCntString,              asynParamUInt32Digital,        &P_FofbCtrlBpmCnt);
+    createParam(P_FofbCtrlToaRdEnString,             asynParamUInt32Digital,        &P_FofbCtrlToaRdEn);
+    createParam(P_FofbCtrlToaRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlToaRdStr);
+    createParam(P_FofbCtrlToaDataString,             asynParamUInt32Digital,        &P_FofbCtrlToaData);
+    createParam(P_FofbCtrlRcbRdEnString,             asynParamUInt32Digital,        &P_FofbCtrlRcbRdEn);
+    createParam(P_FofbCtrlRcbRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlRcbRdStr);
+    createParam(P_FofbCtrlRcbDataString,             asynParamUInt32Digital,        &P_FofbCtrlRcbData);
+
     /* BPM HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
     bpmHwFunc.emplace(P_Kx, bpmSetGetKxFunc);
@@ -1358,6 +1464,39 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkTransMinY, bpmSetGetIntlkTransMinYFunc);
     bpmHwFunc.emplace(P_IntlkAngMinX, bpmSetGetIntlkAngMinXFunc);
     bpmHwFunc.emplace(P_IntlkAngMinY, bpmSetGetIntlkAngMinYFunc);
+
+    bpmHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
+    bpmHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
+    bpmHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
+    bpmHwFunc.emplace(P_FofbCtrlBpmId,               fofbCtrlSetGetBpmIdFunc);
+    bpmHwFunc.emplace(P_FofbCtrlTimeFrameLen,        fofbCtrlSetGetTimeFrameLenFunc);
+    bpmHwFunc.emplace(P_FofbCtrlMgtPowerdown,        fofbCtrlSetGetMgtPowerdownFunc);
+    bpmHwFunc.emplace(P_FofbCtrlMgtLoopback,         fofbCtrlSetGetMgtLoopbackFunc);
+    bpmHwFunc.emplace(P_FofbCtrlTimeFrameDly,        fofbCtrlSetGetTimeFrameDlyFunc);
+    bpmHwFunc.emplace(P_FofbCtrlGoldenOrbX,          fofbCtrlSetGetGoldenOrbXFunc);
+    bpmHwFunc.emplace(P_FofbCtrlGoldenOrbY,          fofbCtrlSetGetGoldenOrbYFunc);
+    bpmHwFunc.emplace(P_FofbCtrlCustFeature,         fofbCtrlSetGetCustFeatureFunc);
+    bpmHwFunc.emplace(P_FofbCtrlRxPolarity,          fofbCtrlSetGetRxPolarityFunc);
+    bpmHwFunc.emplace(P_FofbCtrlPayloadsel,          fofbCtrlSetGetPayloadselFunc);
+    bpmHwFunc.emplace(P_FofbCtrlFofbdatasel,         fofbCtrlSetGetFofbdataselFunc);
+    bpmHwFunc.emplace(P_FofbCtrlFirmwareVer,         fofbCtrlSetGetFirmwareVerFunc);
+    bpmHwFunc.emplace(P_FofbCtrlSysStatus,           fofbCtrlSetGetSysStatusFunc);
+    bpmHwFunc.emplace(P_FofbCtrlLinkPartner,         fofbCtrlSetGetLinkPartnerFunc);
+    bpmHwFunc.emplace(P_FofbCtrlLinkUp,              fofbCtrlSetGetLinkUpFunc);
+    bpmHwFunc.emplace(P_FofbCtrlTimeFrameCount,      fofbCtrlSetGetTimeFrameCountFunc);
+    bpmHwFunc.emplace(P_FofbCtrlHardErrCnt,          fofbCtrlSetGetHardErrCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlSoftErrCnt,          fofbCtrlSetGetSoftErrCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlFrameErrCnt,         fofbCtrlSetGetFrameErrCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlRxPckCnt,            fofbCtrlSetGetRxPckCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlTxPckCnt,            fofbCtrlSetGetTxPckCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlFodProcessTime,      fofbCtrlSetGetFodProcessTimeFunc);
+    bpmHwFunc.emplace(P_FofbCtrlBpmCnt,              fofbCtrlSetGetBpmCntFunc);
+    bpmHwFunc.emplace(P_FofbCtrlToaRdEn,             fofbCtrlSetGetToaRdEnFunc);
+    bpmHwFunc.emplace(P_FofbCtrlToaRdStr,            fofbCtrlSetGetToaRdStrFunc);
+    bpmHwFunc.emplace(P_FofbCtrlToaData,             fofbCtrlSetGetToaDataFunc);
+    bpmHwFunc.emplace(P_FofbCtrlRcbRdEn,             fofbCtrlSetGetRcbRdEnFunc);
+    bpmHwFunc.emplace(P_FofbCtrlRcbRdStr,            fofbCtrlSetGetRcbRdStrFunc);
+    bpmHwFunc.emplace(P_FofbCtrlRcbData,             fofbCtrlSetGetRcbDataFunc);
 
     lock();
     status = bpmClientConnect(this->pasynUserSelf);
@@ -1723,6 +1862,43 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_IntlkTransMinY,                                   0);
     setIntegerParam(P_IntlkAngMinX,                                     0);
     setIntegerParam(P_IntlkAngMinY,                                     0);
+
+    for (int addr: {0, 8}) {
+        setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmId,                      0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameLen,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFirmwareVer,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSysStatus,                  0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlLinkUp,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameCount,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaData,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
+    }
+    for (int addr = 0; addr < NUM_FOFB_CC_CORES_PER_FOFB * NUM_FOFB_CC_CHANNELS_PER_FOFB_CC; addr++) {
+        setUIntDigitalParam(addr, P_FofbCtrlLinkPartner,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlHardErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSoftErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFrameErrCnt,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPckCnt,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
+    }
 
 #if 0
     /* Read values from HW */
@@ -4329,6 +4505,11 @@ asynStatus drvBPM::executeHwWriteFunction(int functionId, int addr,
     /* Execute overloaded function for each function type we know of */
     status = func->second.executeHwWrite(*this, service, addr, functionParam);
 
+    if (status == asynSuccess && streq(funcService, "FOFB_CTRL")) {
+        /* Force hardware to read and apply parameter change */
+        halcs_set_fofb_ctrl_act_part(bpmClient, service, 1);
+    }
+
 get_reg_func_err:
 get_service_err:
         return (asynStatus)status;
@@ -4624,6 +4805,9 @@ asynStatus drvBPM::setParam32(int functionId, epicsUInt32 mask, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+    if (functionId >= P_FofbCtrlErrClr && functionId <= P_FofbCtrlRcbData)
+        updateUInt32Params(0xFFFFFFFF, addr, functionId, functionId, false);
 
 get_param_err:
     return (asynStatus)status;

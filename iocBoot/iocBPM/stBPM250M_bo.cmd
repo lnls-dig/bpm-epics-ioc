@@ -34,8 +34,6 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=${P}, R=${R}asyn,PORT=$(PORT),ADDR=0
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}Stats")
 
-< fofb_cc.cmd
-
 < triggerBPM.cmd
 < fmc250m_4ch.cmd
 < waveformPlugins.cmd
