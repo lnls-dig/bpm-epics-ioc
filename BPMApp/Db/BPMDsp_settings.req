@@ -5,6 +5,14 @@ $(P)$(R)PosKsum-SP
 $(P)$(R)PosXOffset-SP
 $(P)$(R)PosYOffset-SP
 $(P)$(R)PosQOffset-SP
+$(P)$(R)SwDirGainA-SP
+$(P)$(R)SwDirGainB-SP
+$(P)$(R)SwDirGainC-SP
+$(P)$(R)SwDirGainD-SP
+$(P)$(R)SwInvGainA-SP
+$(P)$(R)SwInvGainB-SP
+$(P)$(R)SwInvGainC-SP
+$(P)$(R)SwInvGainD-SP
 $(P)$(R)MONITUpdtTime-SP
 $(P)$(R)SwTagEn-Sel
 $(P)$(R)SwDataMaskEn-Sel

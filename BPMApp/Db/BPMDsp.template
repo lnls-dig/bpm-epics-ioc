@@ -128,6 +128,126 @@ record(longin,"$(P)$(R)PosQOffset-RB"){
     field(EGU, "nm")
 }
 
+record(longin,"$(P)$(R)ADCGainFixedPointPos-Cte"){
+    field(DTYP,"asynInt32")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT))DSP_ADC_GAIN_FP_POS")
+}
+
+record(ao,"$(P)$(R)SwDirGainA-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWDIR")
+}
+record(ai,"$(P)$(R)SwDirGainA-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH0_SWDIR")
+}
+record(ao,"$(P)$(R)SwDirGainB-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWDIR")
+}
+record(ai,"$(P)$(R)SwDirGainB-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH1_SWDIR")
+}
+record(ao,"$(P)$(R)SwDirGainC-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWDIR")
+}
+record(ai,"$(P)$(R)SwDirGainC-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH2_SWDIR")
+}
+record(ao,"$(P)$(R)SwDirGainD-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWDIR")
+}
+record(ai,"$(P)$(R)SwDirGainD-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH3_SWDIR")
+}
+record(ao,"$(P)$(R)SwInvGainA-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainA-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH0_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainB-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainB-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH1_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainC-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainC-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH2_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainD-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainD-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH3_SWINV")
+}
+
 # Only for compatibility
 record(longout,"$(P)$(R)PosSumOffset-SP"){
     field(DESC,"set Sum offset")
