@@ -5,10 +5,6 @@ $(P)$(R)PosKsum-SP
 $(P)$(R)PosXOffset-SP
 $(P)$(R)PosYOffset-SP
 $(P)$(R)PosQOffset-SP
-$(P)$(R)AmpGainCh0-SP
-$(P)$(R)AmpGainCh1-SP
-$(P)$(R)AmpGainCh2-SP
-$(P)$(R)AmpGainCh3-SP
 $(P)$(R)MONITUpdtTime-SP
 $(P)$(R)SwTagEn-Sel
 $(P)$(R)SwDataMaskEn-Sel
