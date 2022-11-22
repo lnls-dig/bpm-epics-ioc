@@ -478,10 +478,6 @@ private:
 #define P_FmcPicoRngR3String        "FMCPICO_RNG_R3"        /* asynUInt32Digital,      r/w */
 #define P_KxString                  "DSP_KX"                /* asynUInt32Digital,      r/w */
 #define P_KyString                  "DSP_KY"                /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh0String          "DSP_AMPGAINCH0"        /* asynUInt32Digital,       r/w */
-#define P_AmpGainCh1String          "DSP_AMPGAINCH1"        /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh2String          "DSP_AMPGAINCH2"        /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh3String          "DSP_AMPGAINCH3"        /* asynUInt32Digital,      r/w */
 #define P_KqString                  "DSP_KQ"                /* asynUInt32Digital,      r/w */
 #define P_KsumString                "DSP_KSUM"              /* asynUInt32Digital,      r/w */
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
@@ -954,10 +950,15 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkTransMinY;
         int P_IntlkAngMinX;
         int P_IntlkAngMinY;
-        int P_AmpGainCh0;
-        int P_AmpGainCh1;
-        int P_AmpGainCh2;
-        int P_AmpGainCh3;
+        int P_AdcGainFixedPointPos;
+        int P_AdcCh0SwDir;
+        int P_AdcCh1SwDir;
+        int P_AdcCh2SwDir;
+        int P_AdcCh3SwDir;
+        int P_AdcCh0SwInv;
+        int P_AdcCh1SwInv;
+        int P_AdcCh2SwInv;
+        int P_AdcCh3SwInv;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;
         int P_FofbCtrlTfsOverride;
@@ -1015,6 +1016,8 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> bpmHwFunc;
+
+        epicsInt32 adc_gain_fixed_point_pos;
 
         /* Our private methods */
 
