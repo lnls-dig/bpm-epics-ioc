@@ -144,7 +144,7 @@ bpmEnums = BPMEnums
 class BPM:
     """BPM Acquistiion class"""
 
-    def __init__(self, prefix, wait_for_connection=False, connection_timeout=5):
+    def __init__(self, prefix, wait_for_connection=False, connection_timeout=5, fmc_pico=False):
         self._prefix = prefix
 
         # Options for epics PV
@@ -192,11 +192,13 @@ class BPM:
             'TbtDataMaskSamplesEnd': 'TbtDataMaskSamplesEnd-SP',
             'XYPosCal': 'XYPosCal-Sel',
             'SUMPosCal': 'SUMPosCal-Sel',
-            'FMCPICORngR0' : 'FMCPICORngR0-Sel',
-            'FMCPICORngR1' : 'FMCPICORngR1-Sel',
-            'FMCPICORngR2' : 'FMCPICORngR2-Sel',
-            'FMCPICORngR3' : 'FMCPICORngR3-Sel'
         }
+        if fmc_pico:
+            pvs['FMCPICORngR0'] = 'FMCPICORngR0-Sel'
+            pvs['FMCPICORngR1'] = 'FMCPICORngR1-Sel'
+            pvs['FMCPICORngR2'] = 'FMCPICORngR2-Sel'
+            pvs['FMCPICORngR3'] = 'FMCPICORngR3-Sel'
+
         self._config_pvs_sp = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
         }
@@ -238,11 +240,13 @@ class BPM:
             'TbtDataMaskSamplesEnd': 'TbtDataMaskSamplesEnd-RB',
             'XYPosCal': 'XYPosCal-Sts',
             'SUMPosCal': 'SUMPosCal-Sts',
-            'FMCPICORngR0' : 'FMCPICORngR0-Sts',
-            'FMCPICORngR1' : 'FMCPICORngR1-Sts',
-            'FMCPICORngR2' : 'FMCPICORngR2-Sts',
-            'FMCPICORngR3' : 'FMCPICORngR3-Sts'
         }
+        if fmc_pico:
+            pvs['FMCPICORngR0'] = 'FMCPICORngR0-Sts'
+            pvs['FMCPICORngR1'] = 'FMCPICORngR1-Sts'
+            pvs['FMCPICORngR2'] = 'FMCPICORngR2-Sts'
+            pvs['FMCPICORngR3'] = 'FMCPICORngR3-Sts'
+
         self._config_pvs_rb = {
             k: PV(self._prefix + v, **opt) for k, v in pvs.items()
         }
