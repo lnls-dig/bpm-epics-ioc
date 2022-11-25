@@ -25,8 +25,10 @@ parser.add_argument('--fmcpico_conv', action='store_true', help='FMC PICO conver
 
 args = parser.parse_args()
 
+use_fmc_pico = args.fmcpico_range is not None or args.fmcpico_conv
+
 # Setup acquistiion parameters
-bpm = BPM(args.prefix, wait_for_connection=True)
+bpm = BPM(args.prefix, wait_for_connection=True, fmc_pico=use_fmc_pico)
 
 bpm.nr_samples_pre = args.nr_samples
 bpm.nr_samples_post = args.nr_post_samples
