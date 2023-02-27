@@ -124,7 +124,7 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf")
     field(NELM,"$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
     field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq")
 }
 
 record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
@@ -134,7 +134,6 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
     field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq")
 }
 
 # Adjust NELM of subarray so clients get correct monitors when
