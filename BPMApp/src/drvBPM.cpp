@@ -633,6 +633,10 @@ static const functionsAny_t bpmSetGetIntlkTransMinXFunc =         {functionsInt3
 static const functionsAny_t bpmSetGetIntlkTransMinYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_y, halcs_get_orbit_intlk_trans_min_y}};
 static const functionsAny_t bpmSetGetIntlkAngMinXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_x, halcs_get_orbit_intlk_ang_min_x}};
 static const functionsAny_t bpmSetGetIntlkAngMinYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_y, halcs_get_orbit_intlk_ang_min_y}};
+static const functionsAny_t bpmSetGetIntlkTransDiffXFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_x_diff}};
+static const functionsAny_t bpmSetGetIntlkTransDiffYFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_y_diff}};
+static const functionsAny_t bpmSetGetIntlkAngDiffXFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_x_diff}};
+static const functionsAny_t bpmSetGetIntlkAngDiffYFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_y_diff}};
 
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
@@ -1289,6 +1293,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkTransMinYString,        asynParamInt32,         &P_IntlkTransMinY);
     createParam(P_IntlkAngMinXString,          asynParamInt32,         &P_IntlkAngMinX);
     createParam(P_IntlkAngMinYString,          asynParamInt32,         &P_IntlkAngMinY);
+    createParam("TRANS_X_DIFF", asynParamInt32, &P_IntlkTransDiffX);
+    createParam("TRANS_Y_DIFF", asynParamInt32, &P_IntlkTransDiffY);
+    createParam("ANG_X_DIFF", asynParamInt32, &P_IntlkAngDiffX);
+    createParam("ANG_Y_DIFF", asynParamInt32, &P_IntlkAngDiffY);
 
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -1494,6 +1502,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkTransMinY, bpmSetGetIntlkTransMinYFunc);
     bpmHwFunc.emplace(P_IntlkAngMinX, bpmSetGetIntlkAngMinXFunc);
     bpmHwFunc.emplace(P_IntlkAngMinY, bpmSetGetIntlkAngMinYFunc);
+    bpmHwFunc.emplace(P_IntlkTransDiffX, bpmSetGetIntlkTransDiffXFunc);
+    bpmHwFunc.emplace(P_IntlkTransDiffY, bpmSetGetIntlkTransDiffYFunc);
+    bpmHwFunc.emplace(P_IntlkAngDiffX, bpmSetGetIntlkAngDiffXFunc);
+    bpmHwFunc.emplace(P_IntlkAngDiffY, bpmSetGetIntlkAngDiffYFunc);
 
     bpmHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     bpmHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
@@ -1899,6 +1911,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_IntlkTransMinY,                                   0);
     setIntegerParam(P_IntlkAngMinX,                                     0);
     setIntegerParam(P_IntlkAngMinY,                                     0);
+    setIntegerParam(P_IntlkTransDiffX, 0);
+    setIntegerParam(P_IntlkTransDiffY, 0);
+    setIntegerParam(P_IntlkAngDiffX, 0);
+    setIntegerParam(P_IntlkAngDiffY, 0);
 
     for (int addr: {0, 8}) {
         setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);

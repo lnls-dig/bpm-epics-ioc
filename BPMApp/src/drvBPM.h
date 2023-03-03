@@ -950,6 +950,10 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkTransMinY;
         int P_IntlkAngMinX;
         int P_IntlkAngMinY;
+        int P_IntlkAngDiffX;
+        int P_IntlkAngDiffY;
+        int P_IntlkTransDiffX;
+        int P_IntlkTransDiffY;
         int P_AdcGainFixedPointPos;
         int P_AdcCh0SwDir;
         int P_AdcCh1SwDir;
