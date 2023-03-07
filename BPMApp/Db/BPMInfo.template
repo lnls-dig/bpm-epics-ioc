@@ -108,17 +108,17 @@ record(longin,"$(P)$(R)INFOADCRate-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCRATE")
 }
 
-record(longout,"$(P)$(R)INFOTBTRate-SP"){
+record(longout,"$(P)$(R)INFOTbTRate-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set TBT rate factor")
+    field(DESC,"set TbT rate factor")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
 }
 
-record(longin,"$(P)$(R)INFOTBTRate-RB"){
+record(longin,"$(P)$(R)INFOTbTRate-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get TBT rate factor")
+    field(DESC,"get TbT rate factor")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
 }

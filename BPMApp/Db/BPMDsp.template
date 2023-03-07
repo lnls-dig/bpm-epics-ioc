@@ -574,9 +574,9 @@ record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
 }
 
-record(mbbo,"$(P)$(R)TbtTagEn-Sel"){
+record(mbbo,"$(P)$(R)TbTTagEn-Sel"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set Tbt Tag Enable")
+    field(DESC,"Set TbT Tag Enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
@@ -587,9 +587,9 @@ record(mbbo,"$(P)$(R)TbtTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
+record(mbbi,"$(P)$(R)TbTTagEn-Sts"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Tag Enable")
+    field(DESC,"Get TbT Tag Enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
     field(NOBT,"1")
@@ -599,22 +599,22 @@ record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)TbtTagDly-SP"){
+record(longout,"$(P)$(R)TbTTagDly-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set Tbt Tag Delay")
+    field(DESC,"Set TbT Tag Delay")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
 }
 
-record(longin,"$(P)$(R)TbtTagDly-RB"){
+record(longin,"$(P)$(R)TbTTagDly-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Tag Delay")
+    field(DESC,"Get TbT Tag Delay")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
 }
 
-record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
+record(mbbo,"$(P)$(R)TbTDataMaskEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set TBT Data Mask Enable")
     field(PINI,"YES")
@@ -627,7 +627,7 @@ record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbtDataMaskEn-Sts"){
+record(mbbi,"$(P)$(R)TbTDataMaskEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get TBT Data Mask Enable")
     field(SCAN,"I/O Intr")
@@ -639,7 +639,7 @@ record(mbbi,"$(P)$(R)TbtDataMaskEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)TbtDataMaskSamplesBeg-SP"){
+record(longout,"$(P)$(R)TbTDataMaskSamplesBeg-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Samples Beg.")
     field(PINI,"YES")
@@ -647,14 +647,14 @@ record(longout,"$(P)$(R)TbtDataMaskSamplesBeg-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
 }
 
-record(longin,"$(P)$(R)TbtDataMaskSamplesBeg-RB"){
+record(longin,"$(P)$(R)TbTDataMaskSamplesBeg-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Samples Beg.")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
 }
 
-record(longout,"$(P)$(R)TbtDataMaskSamplesEnd-SP"){
+record(longout,"$(P)$(R)TbTDataMaskSamplesEnd-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Samples End.")
     field(PINI,"YES")
@@ -662,7 +662,7 @@ record(longout,"$(P)$(R)TbtDataMaskSamplesEnd-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_END")
 }
 
-record(longin,"$(P)$(R)TbtDataMaskSamplesEnd-RB"){
+record(longin,"$(P)$(R)TbTDataMaskSamplesEnd-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Samples End.")
     field(SCAN,"I/O Intr")
@@ -701,9 +701,9 @@ record(longin,"$(P)$(R)SwTagDesyncCnt-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT")
 }
 
-record(mbbo,"$(P)$(R)TbtTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)TbTTagDesyncCntRst-Sel") {
     field(DTYP,"asynUInt32Digital")
-    field(DESC, "Set Tbt Counter Reset")
+    field(DESC, "Set TbT Counter Reset")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(NOBT, "1")
@@ -714,9 +714,9 @@ record(mbbo,"$(P)$(R)TbtTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)TbtTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)TbTTagDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
-    field(DESC, "Get Tbt Counter Reset")
+    field(DESC, "Get TbT Counter Reset")
     field(SCAN, "I/O Intr")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -726,9 +726,9 @@ record(mbbi,"$(P)$(R)TbtTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)TbtTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)TbTTagDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Desync Counter")
+    field(DESC,"Get TbT Desync Counter")
     field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT")
 }
