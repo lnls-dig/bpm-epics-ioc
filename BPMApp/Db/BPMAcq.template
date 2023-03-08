@@ -400,6 +400,13 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Status-Sts"){
     field(ELST,"Acq. Overflow")
 }
 
+record(longin, "$(P)$(R)$(ACQ_NAME)Count-Mon"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Count how many acquisitions have been completed")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))ACQ_COUNT")
+    field(SCAN, "I/O Intr")
+}
+
 record(ao, "$(P)$(R)$(ACQ_NAME)UpdateTime-SP"){
     field(DTYP, "asynFloat64")
     field(DESC, "Set repetitive mode update time")

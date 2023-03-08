@@ -1004,6 +1004,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create BPM Status parameters */
     createParam(P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
     createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
+    createParam("ACQ_COUNT",  asynParamInt32,                 &P_BPMCount);
 
     /* Create general parameters */
     createParam(P_HarmonicNumberString,
@@ -1559,6 +1560,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         setIntegerParam(addr, P_BPMMode,                   BPMModeMultiBunch);
         setIntegerParam(addr, P_BPMStatus,                 BPMStatusIdle);
+        setIntegerParam(addr, P_BPMCount, 0);
     }
 
     setUIntDigitalParam(P_HarmonicNumber,
@@ -2704,6 +2706,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                         driverName, functionName);
                 continue;
             }
+
+            epicsInt32 count;
+            getIntegerParam(channel, P_BPMCount, &count);
+            epicsUInt32 ucount = count;
+            ucount++; /* so overflow is well defined */
+            count = ucount;
+            setIntegerParam(channel, P_BPMCount, count);
         }
 
         /* Release buffers */

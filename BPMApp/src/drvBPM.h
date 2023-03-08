@@ -763,6 +763,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_BPMMode;
 #define FIRST_COMMAND P_BPMMode
         int P_BPMStatus;
+        int P_BPMCount;
         int P_HarmonicNumber;
         int P_ClkFreq;
         int P_AdcRate;
