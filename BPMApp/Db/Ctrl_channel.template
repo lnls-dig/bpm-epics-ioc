@@ -1,0 +1,46 @@
+# Author: Érico Nogueira
+# Copyright (c) 2022 CNPEM
+
+# Channel specific FOFB CTRL values
+
+record(longin,"$(P)$(R)$(FOFB_CC)LinkPartner$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get link partner")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_LINK_PARTNER_1")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)HardErrCnt$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get hard errors count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_HARD_ERR_CNT_1")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)SoftErrCnt$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get soft errors count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_SOFT_ERR_CNT_1")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)FrameErrCnt$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get frame errors count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FRAME_ERR_CNT_1")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)RxPckCnt$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get rx packet count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RX_PCK_CNT_1")
+}
+
+record(longin,"$(P)$(R)$(FOFB_CC)TxPckCnt$(FOFB_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get tx packet count")
+    field(SCAN,".5 second")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TX_PCK_CNT_1")
+}

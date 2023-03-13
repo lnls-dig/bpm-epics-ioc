@@ -30,6 +30,13 @@ using linb::bad_any_cast;
 #define MAX_ARRAY_POINTS            200000
 #define BPM_TIMEOUT                 1.0
 
+/* We have two DCC cores, and therefore two FOFB_CC cores to control them:
+ * - FMC core (0)
+ * - P2P core (1) */
+#define NUM_FOFB_CC_CORES_PER_FOFB 2
+/* We have 8 channels on each FOFB_CC register set */
+#define NUM_FOFB_CC_CHANNELS_PER_FOFB_CC 8
+
 typedef enum {
     BPMIDReg = 0,
     BPMIDPM = 1,
@@ -471,10 +478,6 @@ private:
 #define P_FmcPicoRngR3String        "FMCPICO_RNG_R3"        /* asynUInt32Digital,      r/w */
 #define P_KxString                  "DSP_KX"                /* asynUInt32Digital,      r/w */
 #define P_KyString                  "DSP_KY"                /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh0String          "DSP_AMPGAINCH0"        /* asynUInt32Digital,       r/w */
-#define P_AmpGainCh1String          "DSP_AMPGAINCH1"        /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh2String          "DSP_AMPGAINCH2"        /* asynUInt32Digital,      r/w */
-#define P_AmpGainCh3String          "DSP_AMPGAINCH3"        /* asynUInt32Digital,      r/w */
 #define P_KqString                  "DSP_KQ"                /* asynUInt32Digital,      r/w */
 #define P_KsumString                "DSP_KSUM"              /* asynUInt32Digital,      r/w */
 #define P_XOffsetString             "DSP_XOFFSET"           /* asynUInt32Digital,      r/w */
@@ -620,6 +623,39 @@ private:
 #define P_IntlkAngMinXString          "INTLK_ANG_MIN_X"           /* asynInt32,      r/w */
 #define P_IntlkAngMinYString          "INTLK_ANG_MIN_Y"           /* asynInt32,      r/w */
 
+#define P_FofbCtrlErrClrString                  "FOFB_CC_CFG_VAL_ERR_CLR"                   /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlCcEnableString                "FOFB_CC_CFG_VAL_CC_ENABLE"                 /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlTfsOverrideString             "FOFB_CC_CFG_VAL_TFS_OVERRIDE"              /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlBpmIdString                   "FOFB_CC_BPM_ID"                            /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlTimeFrameLenString            "FOFB_CC_TIME_FRAME_LEN"                    /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlMgtPowerdownString            "FOFB_CC_MGT_POWERDOWN"                     /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlMgtLoopbackString             "FOFB_CC_MGT_LOOPBACK"                      /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlTimeFrameDlyString            "FOFB_CC_TIME_FRAME_DLY"                    /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlGoldenOrbXString              "FOFB_CC_GOLDEN_ORB_X"                      /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlGoldenOrbYString              "FOFB_CC_GOLDEN_ORB_Y"                      /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlCustFeatureString             "FOFB_CC_CUST_FEATURE"                      /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlRxPolarityString              "FOFB_CC_RXPOLARITY"                        /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlPayloadselString              "FOFB_CC_PAYLOADSEL"                        /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlFofbdataselString             "FOFB_CC_FOFBDATASEL"                       /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlFirmwareVerString             "FOFB_CC_FIRMWARE_VER"                      /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlSysStatusString               "FOFB_CC_SYS_STATUS"                        /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlLinkPartnerString             "FOFB_CC_LINK_PARTNER_1"                    /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlLinkUpString                  "FOFB_CC_LINK_UP"                           /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlTimeFrameCountString          "FOFB_CC_TIME_FRAME_COUNT"                  /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlHardErrCntString              "FOFB_CC_HARD_ERR_CNT_1"                    /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlSoftErrCntString              "FOFB_CC_SOFT_ERR_CNT_1"                    /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlFrameErrCntString             "FOFB_CC_FRAME_ERR_CNT_1"                   /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlRxPckCntString                "FOFB_CC_RX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlTxPckCntString                "FOFB_CC_TX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlFodProcessTimeString          "FOFB_CC_FOD_PROCESS_TIME"                  /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlBpmCntString                  "FOFB_CC_BPM_COUNT"                         /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlToaRdEnString                 "FOFB_CC_TOA_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlToaRdStrString                "FOFB_CC_TOA_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlToaDataString                 "FOFB_CC_TOA_DATA_VAL"                      /* asynUInt32Digital,      r/o */
+#define P_FofbCtrlRcbRdEnString                 "FOFB_CC_RCB_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlRcbRdStrString                "FOFB_CC_RCB_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
+#define P_FofbCtrlRcbDataString                 "FOFB_CC_RCB_DATA_VAL"                      /* asynUInt32Digital,      r/o */
+
 typedef enum {
     TRIG_ACQ_START,
     TRIG_ACQ_STOP,
@@ -727,6 +763,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_BPMMode;
 #define FIRST_COMMAND P_BPMMode
         int P_BPMStatus;
+        int P_BPMCount;
         int P_HarmonicNumber;
         int P_ClkFreq;
         int P_AdcRate;
@@ -914,11 +951,52 @@ class drvBPM : public asynNDArrayDriver {
         int P_IntlkTransMinY;
         int P_IntlkAngMinX;
         int P_IntlkAngMinY;
-        int P_AmpGainCh0;
-        int P_AmpGainCh1;
-        int P_AmpGainCh2;
-        int P_AmpGainCh3;
-#define LAST_COMMAND P_AmpGainCh3
+        int P_IntlkAngDiffX;
+        int P_IntlkAngDiffY;
+        int P_IntlkTransDiffX;
+        int P_IntlkTransDiffY;
+        int P_AdcGainFixedPointPos;
+        int P_AdcCh0SwDir;
+        int P_AdcCh1SwDir;
+        int P_AdcCh2SwDir;
+        int P_AdcCh3SwDir;
+        int P_AdcCh0SwInv;
+        int P_AdcCh1SwInv;
+        int P_AdcCh2SwInv;
+        int P_AdcCh3SwInv;
+        int P_FofbCtrlErrClr;
+        int P_FofbCtrlCcEnable;
+        int P_FofbCtrlTfsOverride;
+        int P_FofbCtrlBpmId;
+        int P_FofbCtrlTimeFrameLen;
+        int P_FofbCtrlMgtPowerdown;
+        int P_FofbCtrlMgtLoopback;
+        int P_FofbCtrlTimeFrameDly;
+        int P_FofbCtrlGoldenOrbX;
+        int P_FofbCtrlGoldenOrbY;
+        int P_FofbCtrlCustFeature;
+        int P_FofbCtrlRxPolarity;
+        int P_FofbCtrlPayloadsel;
+        int P_FofbCtrlFofbdatasel;
+        int P_FofbCtrlFirmwareVer;
+        int P_FofbCtrlSysStatus;
+        int P_FofbCtrlLinkPartner;
+        int P_FofbCtrlLinkUp;
+        int P_FofbCtrlTimeFrameCount;
+        int P_FofbCtrlHardErrCnt;
+        int P_FofbCtrlSoftErrCnt;
+        int P_FofbCtrlFrameErrCnt;
+        int P_FofbCtrlRxPckCnt;
+        int P_FofbCtrlTxPckCnt;
+        int P_FofbCtrlFodProcessTime;
+        int P_FofbCtrlBpmCnt;
+        int P_FofbCtrlToaRdEn;
+        int P_FofbCtrlToaRdStr;
+        int P_FofbCtrlToaData;
+        int P_FofbCtrlRcbRdEn;
+        int P_FofbCtrlRcbRdStr;
+        int P_FofbCtrlRcbData;
+#define LAST_COMMAND P_FofbCtrlRcbData
 
     private:
         /* Our data */
@@ -943,6 +1021,8 @@ class drvBPM : public asynNDArrayDriver {
         epicsEventId activeAcqEventId[NUM_BPM_MODES][NUM_ACQ_CORES_PER_BPM];
         epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> bpmHwFunc;
+
+        epicsInt32 adc_gain_fixed_point_pos;
 
         /* Our private methods */
 

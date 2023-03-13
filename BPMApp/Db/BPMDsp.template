@@ -128,64 +128,124 @@ record(longin,"$(P)$(R)PosQOffset-RB"){
     field(EGU, "nm")
 }
 
-record(longout,"$(P)$(R)AmpGainCh0-SP"){
-    field(DTYP,"asynUInt32Digital")
+record(longin,"$(P)$(R)ADCGainFixedPointPos-Cte"){
+    field(DTYP,"asynInt32")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(INP,"@asyn($(PORT))DSP_ADC_GAIN_FP_POS")
+}
+
+record(ao,"$(P)$(R)SwDirGainA-SP"){
+    field(DTYP,"asynFloat64")
     field(DESC,"set Amplitude Gain Ch0")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH0")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWDIR")
 }
-
-record(longin,"$(P)$(R)AmpGainCh0-RB"){
-    field(DTYP,"asynUInt32Digital")
+record(ai,"$(P)$(R)SwDirGainA-RB"){
+    field(DTYP,"asynFloat64")
     field(DESC,"get Amplitude Gain Ch0")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH0")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH0_SWDIR")
 }
-
-record(longout,"$(P)$(R)AmpGainCh1-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set Amplitude Gain Ch1")
+record(ao,"$(P)$(R)SwDirGainB-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH1")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWDIR")
 }
-
-record(longin,"$(P)$(R)AmpGainCh1-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get Amplitude Gain Ch1")
+record(ai,"$(P)$(R)SwDirGainB-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
     field(SCAN,"I/O Intr")
-    field(INP,"@asyn($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH1")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH1_SWDIR")
 }
-
-record(longout,"$(P)$(R)AmpGainCh2-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set Amplitude Gain Ch2")
+record(ao,"$(P)$(R)SwDirGainC-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH2")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWDIR")
 }
-
-record(longin,"$(P)$(R)AmpGainCh2-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get Amplitude Gain Ch2")
+record(ai,"$(P)$(R)SwDirGainC-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH2")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH2_SWDIR")
 }
-
-record(longout,"$(P)$(R)AmpGainCh3-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set Amplitude Gain Ch3")
+record(ao,"$(P)$(R)SwDirGainD-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
     field(PINI,"YES")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH3")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWDIR")
 }
-
-record(longin,"$(P)$(R)AmpGainCh3-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get Amplitude Gain Ch3")
+record(ai,"$(P)$(R)SwDirGainD-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_AMPGAINCH3")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH3_SWDIR")
+}
+record(ao,"$(P)$(R)SwInvGainA-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainA-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH0_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainB-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainB-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH1_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainC-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainC-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH2_SWINV")
+}
+record(ao,"$(P)$(R)SwInvGainD-SP"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"set Amplitude Gain Ch0")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(DRVH,"0.9999999403953552")
+    field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWINV")
+}
+record(ai,"$(P)$(R)SwInvGainD-RB"){
+    field(DTYP,"asynFloat64")
+    field(DESC,"get Amplitude Gain Ch0")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT))DSP_ADC_CH3_SWINV")
 }
 
 # Only for compatibility
@@ -514,9 +574,9 @@ record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
 }
 
-record(mbbo,"$(P)$(R)TbtTagEn-Sel"){
+record(mbbo,"$(P)$(R)TbTTagEn-Sel"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set Tbt Tag Enable")
+    field(DESC,"Set TbT Tag Enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
@@ -527,9 +587,9 @@ record(mbbo,"$(P)$(R)TbtTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
+record(mbbi,"$(P)$(R)TbTTagEn-Sts"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Tag Enable")
+    field(DESC,"Get TbT Tag Enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_EN")
     field(NOBT,"1")
@@ -539,22 +599,22 @@ record(mbbi,"$(P)$(R)TbtTagEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)TbtTagDly-SP"){
+record(longout,"$(P)$(R)TbTTagDly-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Set Tbt Tag Delay")
+    field(DESC,"Set TbT Tag Delay")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
 }
 
-record(longin,"$(P)$(R)TbtTagDly-RB"){
+record(longin,"$(P)$(R)TbTTagDly-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Tag Delay")
+    field(DESC,"Get TbT Tag Delay")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
 }
 
-record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
+record(mbbo,"$(P)$(R)TbTDataMaskEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set TBT Data Mask Enable")
     field(PINI,"YES")
@@ -567,7 +627,7 @@ record(mbbo,"$(P)$(R)TbtDataMaskEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbtDataMaskEn-Sts"){
+record(mbbi,"$(P)$(R)TbTDataMaskEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get TBT Data Mask Enable")
     field(SCAN,"I/O Intr")
@@ -579,7 +639,7 @@ record(mbbi,"$(P)$(R)TbtDataMaskEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)TbtDataMaskSamplesBeg-SP"){
+record(longout,"$(P)$(R)TbTDataMaskSamplesBeg-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Samples Beg.")
     field(PINI,"YES")
@@ -587,14 +647,14 @@ record(longout,"$(P)$(R)TbtDataMaskSamplesBeg-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
 }
 
-record(longin,"$(P)$(R)TbtDataMaskSamplesBeg-RB"){
+record(longin,"$(P)$(R)TbTDataMaskSamplesBeg-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Samples Beg.")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_BEG")
 }
 
-record(longout,"$(P)$(R)TbtDataMaskSamplesEnd-SP"){
+record(longout,"$(P)$(R)TbTDataMaskSamplesEnd-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Samples End.")
     field(PINI,"YES")
@@ -602,7 +662,7 @@ record(longout,"$(P)$(R)TbtDataMaskSamplesEnd-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_END")
 }
 
-record(longin,"$(P)$(R)TbtDataMaskSamplesEnd-RB"){
+record(longin,"$(P)$(R)TbTDataMaskSamplesEnd-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Samples End.")
     field(SCAN,"I/O Intr")
@@ -641,9 +701,9 @@ record(longin,"$(P)$(R)SwTagDesyncCnt-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT")
 }
 
-record(mbbo,"$(P)$(R)TbtTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)TbTTagDesyncCntRst-Sel") {
     field(DTYP,"asynUInt32Digital")
-    field(DESC, "Set Tbt Counter Reset")
+    field(DESC, "Set TbT Counter Reset")
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(NOBT, "1")
@@ -654,9 +714,9 @@ record(mbbo,"$(P)$(R)TbtTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)TbtTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)TbTTagDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
-    field(DESC, "Get Tbt Counter Reset")
+    field(DESC, "Get TbT Counter Reset")
     field(SCAN, "I/O Intr")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -666,9 +726,9 @@ record(mbbi,"$(P)$(R)TbtTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)TbtTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)TbTTagDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"Get Tbt Desync Counter")
+    field(DESC,"Get TbT Desync Counter")
     field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT")
 }
