@@ -548,3 +548,29 @@ record(longin,  "$(P)$(R)IntlkLmtAngMinY-RB"){
     field(SCAN, "I/O Intr")
     field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_Y")
 }
+
+record(longin,"$(P)$(R)IntlkPosX-Mon"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock X position")
+    field(SCAN, ".1 second")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))TRANS_X_DIFF")
+}
+record(longin,"$(P)$(R)IntlkPosY-Mon"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock Y position")
+    field(SCAN, ".1 second")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))TRANS_Y_DIFF")
+}
+
+record(longin,"$(P)$(R)IntlkAngX-Mon"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock X angle")
+    field(SCAN, ".1 second")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))ANG_X_DIFF")
+}
+record(longin,"$(P)$(R)IntlkAngY-Mon"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Get interlock Y angle")
+    field(SCAN, ".1 second")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))ANG_Y_DIFF")
+}

@@ -113,7 +113,7 @@ record(acalcout,"$(P)$(R)$(ACQ)$(ARRAY_NAME)SelCalc")
     field(INAA, "$(P)$(R)$(ACQ)$(ARRAY_NAME_GOFF)ArrayData.VAL CPP NMS")
     field(INBB, "$(P)$(R)$(ACQ)$(ARRAY_NAME_POLY)ArrayData.VAL CPP NMS")
     field(WAIT, "Wait")
-    field(OOPT, "Every Time")
+    field(OOPT, "On Change")
     field(CALC, "(A)==(0)?AA:BB")
     field(OUT, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf CA NMS")
 }
@@ -124,7 +124,7 @@ record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf")
     field(NELM,"$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
     field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq")
 }
 
 record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
@@ -134,7 +134,6 @@ record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData")
     field(TSEL, "$(P)$(R)$(ACQ)$(ARRAY_NAME_RAW)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "$(FTVL)")
-    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq")
 }
 
 # Adjust NELM of subarray so clients get correct monitors when

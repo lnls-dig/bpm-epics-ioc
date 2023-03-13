@@ -525,10 +525,18 @@ static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUIn
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
 static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
-static const functionsAny_t bpmSetGetAmpGainCh0Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch0_data, halcs_get_amp_gain_ch0_data}};
-static const functionsAny_t bpmSetGetAmpGainCh1Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch1_data, halcs_get_amp_gain_ch1_data}};
-static const functionsAny_t bpmSetGetAmpGainCh2Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch2_data, halcs_get_amp_gain_ch2_data}};
-static const functionsAny_t bpmSetGetAmpGainCh3Func =            {functionsUInt32_t{"DSP", halcs_set_amp_gain_ch3_data, halcs_get_amp_gain_ch3_data}};
+
+static const functionsAny_t bpmSetGetAdcGainFixedPointPos =            {functionsUInt32_t{"DSP", NULL, halcs_get_adc_gain_fixed_point_pos}};
+
+static const functionsAny_t bpmSetGetAmpGainCh0SwInv =            {functionsUInt32_t{"DSP", halcs_set_adc_ch0_swclk_0_gain, halcs_get_adc_ch0_swclk_0_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh1SwInv =            {functionsUInt32_t{"DSP", halcs_set_adc_ch1_swclk_0_gain, halcs_get_adc_ch1_swclk_0_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh2SwInv =            {functionsUInt32_t{"DSP", halcs_set_adc_ch2_swclk_0_gain, halcs_get_adc_ch2_swclk_0_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh3SwInv =            {functionsUInt32_t{"DSP", halcs_set_adc_ch3_swclk_0_gain, halcs_get_adc_ch3_swclk_0_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh0SwDir =            {functionsUInt32_t{"DSP", halcs_set_adc_ch0_swclk_1_gain, halcs_get_adc_ch0_swclk_1_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh1SwDir =            {functionsUInt32_t{"DSP", halcs_set_adc_ch1_swclk_1_gain, halcs_get_adc_ch1_swclk_1_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh2SwDir =            {functionsUInt32_t{"DSP", halcs_set_adc_ch2_swclk_1_gain, halcs_get_adc_ch2_swclk_1_gain}};
+static const functionsAny_t bpmSetGetAmpGainCh3SwDir =            {functionsUInt32_t{"DSP", halcs_set_adc_ch3_swclk_1_gain, halcs_get_adc_ch3_swclk_1_gain}};
+
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
@@ -625,6 +633,10 @@ static const functionsAny_t bpmSetGetIntlkTransMinXFunc =         {functionsInt3
 static const functionsAny_t bpmSetGetIntlkTransMinYFunc =         {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_trans_min_y, halcs_get_orbit_intlk_trans_min_y}};
 static const functionsAny_t bpmSetGetIntlkAngMinXFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_x, halcs_get_orbit_intlk_ang_min_x}};
 static const functionsAny_t bpmSetGetIntlkAngMinYFunc =           {functionsInt32_t{"ORBIT_INTLK", halcs_set_orbit_intlk_ang_min_y, halcs_get_orbit_intlk_ang_min_y}};
+static const functionsAny_t bpmSetGetIntlkTransDiffXFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_x_diff}};
+static const functionsAny_t bpmSetGetIntlkTransDiffYFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_trans_y_diff}};
+static const functionsAny_t bpmSetGetIntlkAngDiffXFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_x_diff}};
+static const functionsAny_t bpmSetGetIntlkAngDiffYFunc = {functionsInt32_t{"ORBIT_INTLK", NULL, halcs_get_orbit_intlk_ang_y_diff}};
 
 /* Double funfunctionsAny_t ctions mapping */
 static const functionsAny_t bpmSetGetAdcSi57xFreqFunc =          {functionsFloat64_t{"FMC_ACTIVE_CLK", halcs_set_si571_freq, halcs_get_si571_freq}};
@@ -756,6 +768,15 @@ static taskParams_t taskMonitParams = {
 void acqTask(void *drvPvt);
 void acqSPTask(void *drvPvt);
 void acqMonitTask(void *drvPvt);
+
+static uint32_t float2fixed(double v, unsigned point_pos)
+{
+    return v * ((uint64_t)1 << point_pos);
+}
+static double fixed2float(uint32_t v, unsigned point_pos)
+{
+    return (double)(int32_t)v / ((uint64_t)1 << point_pos);
+}
 
 static void exitHandlerC(void *pPvt)
 {
@@ -983,6 +1004,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     /* Create BPM Status parameters */
     createParam(P_BPMModeString,    asynParamInt32,                 &P_BPMMode);
     createParam(P_BPMStatusString,  asynParamInt32,                 &P_BPMStatus);
+    createParam("ACQ_COUNT",  asynParamInt32,                 &P_BPMCount);
 
     /* Create general parameters */
     createParam(P_HarmonicNumberString,
@@ -1116,10 +1138,15 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
     createParam(P_QOffsetString,    asynParamInt32,                 &P_QOffset);
     
-    createParam(P_AmpGainCh0String, asynParamUInt32Digital,         &P_AmpGainCh0);
-    createParam(P_AmpGainCh1String, asynParamUInt32Digital,         &P_AmpGainCh1);
-    createParam(P_AmpGainCh2String, asynParamUInt32Digital,         &P_AmpGainCh2);
-    createParam(P_AmpGainCh3String, asynParamUInt32Digital,         &P_AmpGainCh3);
+    createParam("DSP_ADC_GAIN_FP_POS", asynParamInt32,             &P_AdcGainFixedPointPos);
+    createParam("DSP_ADC_CH0_SWDIR", asynParamFloat64,        &P_AdcCh0SwDir);
+    createParam("DSP_ADC_CH1_SWDIR", asynParamFloat64,        &P_AdcCh1SwDir);
+    createParam("DSP_ADC_CH2_SWDIR", asynParamFloat64,        &P_AdcCh2SwDir);
+    createParam("DSP_ADC_CH3_SWDIR", asynParamFloat64,        &P_AdcCh3SwDir);
+    createParam("DSP_ADC_CH0_SWINV", asynParamFloat64,        &P_AdcCh0SwInv);
+    createParam("DSP_ADC_CH1_SWINV", asynParamFloat64,        &P_AdcCh1SwInv);
+    createParam("DSP_ADC_CH2_SWINV", asynParamFloat64,        &P_AdcCh2SwInv);
+    createParam("DSP_ADC_CH3_SWINV", asynParamFloat64,        &P_AdcCh3SwInv);
     
     /* Timing parameters */
     createParam(P_TimRcvPhaseMeasNavgString,
@@ -1267,6 +1294,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_IntlkTransMinYString,        asynParamInt32,         &P_IntlkTransMinY);
     createParam(P_IntlkAngMinXString,          asynParamInt32,         &P_IntlkAngMinX);
     createParam(P_IntlkAngMinYString,          asynParamInt32,         &P_IntlkAngMinY);
+    createParam("TRANS_X_DIFF", asynParamInt32, &P_IntlkTransDiffX);
+    createParam("TRANS_Y_DIFF", asynParamInt32, &P_IntlkTransDiffY);
+    createParam("ANG_X_DIFF", asynParamInt32, &P_IntlkAngDiffX);
+    createParam("ANG_Y_DIFF", asynParamInt32, &P_IntlkAngDiffY);
 
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -1321,10 +1352,18 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_TbtTagDesyncCnt, bpmSetGetTbtTagDesyncCntFunc);
     bpmHwFunc.emplace(P_XOffset, bpmSetGetXOffsetFunc);
     bpmHwFunc.emplace(P_YOffset, bpmSetGetYOffsetFunc);
-    bpmHwFunc.emplace(P_AmpGainCh0, bpmSetGetAmpGainCh0Func);
-    bpmHwFunc.emplace(P_AmpGainCh1, bpmSetGetAmpGainCh1Func);
-    bpmHwFunc.emplace(P_AmpGainCh2, bpmSetGetAmpGainCh2Func);
-    bpmHwFunc.emplace(P_AmpGainCh3, bpmSetGetAmpGainCh3Func);
+
+    bpmHwFunc.emplace(P_AdcGainFixedPointPos, bpmSetGetAdcGainFixedPointPos);
+
+    bpmHwFunc.emplace(P_AdcCh0SwDir, bpmSetGetAmpGainCh0SwDir);
+    bpmHwFunc.emplace(P_AdcCh1SwDir, bpmSetGetAmpGainCh1SwDir);
+    bpmHwFunc.emplace(P_AdcCh2SwDir, bpmSetGetAmpGainCh2SwDir);
+    bpmHwFunc.emplace(P_AdcCh3SwDir, bpmSetGetAmpGainCh3SwDir);
+    bpmHwFunc.emplace(P_AdcCh0SwInv, bpmSetGetAmpGainCh0SwInv);
+    bpmHwFunc.emplace(P_AdcCh1SwInv, bpmSetGetAmpGainCh1SwInv);
+    bpmHwFunc.emplace(P_AdcCh2SwInv, bpmSetGetAmpGainCh2SwInv);
+    bpmHwFunc.emplace(P_AdcCh3SwInv, bpmSetGetAmpGainCh3SwInv);
+
     bpmHwFunc.emplace(P_Monit1TagEn, bpmSetGetMonit1TagEnFunc);
     bpmHwFunc.emplace(P_Monit1TagDly, bpmSetGetMonit1TagDlyFunc);
     bpmHwFunc.emplace(P_Monit1DataMaskEn, bpmSetGetMonit1DataMaskEnFunc);
@@ -1464,6 +1503,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_IntlkTransMinY, bpmSetGetIntlkTransMinYFunc);
     bpmHwFunc.emplace(P_IntlkAngMinX, bpmSetGetIntlkAngMinXFunc);
     bpmHwFunc.emplace(P_IntlkAngMinY, bpmSetGetIntlkAngMinYFunc);
+    bpmHwFunc.emplace(P_IntlkTransDiffX, bpmSetGetIntlkTransDiffXFunc);
+    bpmHwFunc.emplace(P_IntlkTransDiffY, bpmSetGetIntlkTransDiffYFunc);
+    bpmHwFunc.emplace(P_IntlkAngDiffX, bpmSetGetIntlkAngDiffXFunc);
+    bpmHwFunc.emplace(P_IntlkAngDiffY, bpmSetGetIntlkAngDiffYFunc);
 
     bpmHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     bpmHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
@@ -1517,6 +1560,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_BPM; ++addr) {
         setIntegerParam(addr, P_BPMMode,                   BPMModeMultiBunch);
         setIntegerParam(addr, P_BPMStatus,                 BPMStatusIdle);
+        setIntegerParam(addr, P_BPMCount, 0);
     }
 
     setUIntDigitalParam(P_HarmonicNumber,
@@ -1638,10 +1682,17 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_YOffset,                              0);
     setIntegerParam(P_QOffset,                              0);
 
-    setUIntDigitalParam(P_AmpGainCh0,   16777215,           0xFFFFFFFF); /* 2^24-1 */
-    setUIntDigitalParam(P_AmpGainCh1,   16777215,           0xFFFFFFFF); /* 2^24-1 */
-    setUIntDigitalParam(P_AmpGainCh2,   16777215,           0xFFFFFFFF); /* 2^24-1 */
-    setUIntDigitalParam(P_AmpGainCh3,   16777215,           0xFFFFFFFF); /* 2^24-1 */
+    setIntegerParam(P_AdcGainFixedPointPos, 0);
+    getParamInteger(P_AdcGainFixedPointPos, &adc_gain_fixed_point_pos, 0);
+
+    setDoubleParam(P_AdcCh0SwDir, 0);
+    setDoubleParam(P_AdcCh1SwDir, 0);
+    setDoubleParam(P_AdcCh2SwDir, 0);
+    setDoubleParam(P_AdcCh3SwDir, 0);
+    setDoubleParam(P_AdcCh0SwInv, 0);
+    setDoubleParam(P_AdcCh1SwInv, 0);
+    setDoubleParam(P_AdcCh2SwInv, 0);
+    setDoubleParam(P_AdcCh3SwInv, 0);
 
     setUIntDigitalParam(P_TimRcvPhaseMeasNavg,
                                         TIMRCV_DFLT_PHASE_MEAS_NAVG,
@@ -1862,6 +1913,10 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     setIntegerParam(P_IntlkTransMinY,                                   0);
     setIntegerParam(P_IntlkAngMinX,                                     0);
     setIntegerParam(P_IntlkAngMinY,                                     0);
+    setIntegerParam(P_IntlkTransDiffX, 0);
+    setIntegerParam(P_IntlkTransDiffY, 0);
+    setIntegerParam(P_IntlkAngDiffX, 0);
+    setIntegerParam(P_IntlkAngDiffY, 0);
 
     for (int addr: {0, 8}) {
         setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
@@ -2651,6 +2706,13 @@ void drvBPM::acqTask(int coreID, double pollTime, bool autoStart)
                         driverName, functionName);
                 continue;
             }
+
+            epicsInt32 count;
+            getIntegerParam(channel, P_BPMCount, &count);
+            epicsUInt32 ucount = count;
+            ucount++; /* so overflow is well defined */
+            count = ucount;
+            setIntegerParam(channel, P_BPMCount, count);
         }
 
         /* Release buffers */
@@ -4917,7 +4979,16 @@ asynStatus drvBPM::setParamDouble(int functionId, int addr)
         goto get_param_err;
     }
 
+    /* Convert floating point value to fixed point for the hw write function */
+    if (functionId >= P_AdcCh0SwDir && functionId <= P_AdcCh3SwInv) {
+        functionArgs.argUInt32 = float2fixed(functionArgs.argFloat64, adc_gain_fixed_point_pos);
+    }
+
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+    if (functionId >= P_AdcCh0SwDir && functionId <= P_AdcCh3SwInv) {
+        updateDoubleParams(addr, functionId, functionId, true);
+    }
 
 get_param_err:
     return status;
@@ -4943,6 +5014,12 @@ asynStatus drvBPM::getParamDouble(int functionId, epicsFloat64 *param, int addr)
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
+
+    /* Convert fixed point from hw to float */
+    if (functionId >= P_AdcCh0SwDir && functionId <= P_AdcCh3SwInv) {
+        functionArgs.argFloat64 = fixed2float(functionArgs.argUInt32, adc_gain_fixed_point_pos);
+    }
+
     if (status == asynSuccess) {
         *param = functionArgs.argFloat64;
     }

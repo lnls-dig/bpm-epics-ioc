@@ -1,7 +1,7 @@
 $(P)$(R)INFOHarmonicNumber-SP
 $(P)$(R)INFOClkFreq-SP
 $(P)$(R)INFOClkProp-Sel
-$(P)$(R)INFOTBTRate-SP
+$(P)$(R)INFOTbTRate-SP
 $(P)$(R)INFOFOFBRate-SP
 $(P)$(R)INFOMONITRate-SP
 $(P)$(R)INFOMONIT1Rate-SP
