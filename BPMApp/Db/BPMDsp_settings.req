@@ -22,11 +22,11 @@ $(P)$(R)TbTTagDly-SP
 $(P)$(R)TbTDataMaskEn-Sel
 $(P)$(R)TbTDataMaskSamplesBeg-SP
 $(P)$(R)TbTDataMaskSamplesEnd-SP
-$(P)$(R)Monit1TagEn-Sel
-$(P)$(R)Monit1TagDly-SP
-$(P)$(R)Monit1DataMaskEn-Sel
-$(P)$(R)Monit1DataMaskSamplesBeg-SP
-$(P)$(R)Monit1DataMaskSamplesEnd-SP
+$(P)$(R)FAcqTagEn-Sel
+$(P)$(R)FAcqTagDly-SP
+$(P)$(R)FAcqDataMaskEn-Sel
+$(P)$(R)FAcqDataMaskSamplesBeg-SP
+$(P)$(R)FAcqDataMaskSamplesEnd-SP
 $(P)$(R)MonitTagEn-Sel
 $(P)$(R)MonitTagDly-SP
 $(P)$(R)MonitDataMaskEn-Sel

@@ -4,4 +4,4 @@ $(P)$(R)INFOClkProp-Sel
 $(P)$(R)INFOTbTRate-SP
 $(P)$(R)INFOFOFBRate-SP
 $(P)$(R)INFOMONITRate-SP
-$(P)$(R)INFOMONIT1Rate-SP
+$(P)$(R)INFOFAcqRate-SP
