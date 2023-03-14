@@ -153,17 +153,17 @@ record(longin,"$(P)$(R)INFOMONITRate-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
 }
 
-record(longout,"$(P)$(R)INFOMONIT1Rate-SP"){
+record(longout,"$(P)$(R)INFOFAcqRate-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set MONIT1 rate factor")
+    field(DESC,"set FAcq rate factor")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONIT1RATE")
 }
 
-record(longin,"$(P)$(R)INFOMONIT1Rate-RB"){
+record(longin,"$(P)$(R)INFOFAcqRate-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get MONIT1 rate factor")
+    field(DESC,"get FAcq rate factor")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONIT1RATE")
 }

@@ -35,7 +35,7 @@ record(seq, "$(P)$(R)$(ARRAY_NAME)AllRates-RB"){
     field(DOL4, "$(P)$(R)INFOFOFBRate-RB PP NMS")
     field(DOL5, "$(P)$(R)INFOTbTRate-RB PP NMS")
     field(DOL6, "$(P)$(R)INFOFOFBRate-RB PP NMS")
-    field(DOL7, "$(P)$(R)INFOMONIT1Rate-RB PP NMS")
+    field(DOL7, "$(P)$(R)INFOFAcqRate-RB PP NMS")
     field(LNK1, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
     field(LNK2, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")
     field(LNK3, "$(P)$(R)$(ARRAY_NAME)CurrentRate-RB PP NMS")

@@ -103,7 +103,7 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Channel-Sel"){
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
-    field(SXST,"monit1")
+    field(SXST,"facq")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
@@ -125,7 +125,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
-    field(SXST,"monit1")
+    field(SXST,"facq")
 }
 
 # For use with rate seq record defined in FFTRecords.template
@@ -342,7 +342,7 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel"){
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
-    field(SXST,"monit1")
+    field(SXST,"facq")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
@@ -364,7 +364,7 @@ record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
     field(THST,"fofb")
     field(FRST,"tbtpha")
     field(FVST,"fofbpha")
-    field(SXST,"monit1")
+    field(SXST,"facq")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
 
