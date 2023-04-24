@@ -26,14 +26,14 @@ record(bo,"$(P)$(R)$(FOFB_CC)ErrClr-Cmd"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_ERR_CLR")
 }
 
-record(longout,"$(P)$(R)$(FOFB_CC)CCEnable-SP"){
+record(longout,"$(P)$(R)$(FOFB_CC)CCEnable-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set enables CC module")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_CC_ENABLE")
     field(PINI,"YES")
 }
-record(longin,"$(P)$(R)$(FOFB_CC)CCEnable-RB"){
+record(longin,"$(P)$(R)$(FOFB_CC)CCEnable-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get enables CC module")
     field(SCAN,"I/O Intr")
