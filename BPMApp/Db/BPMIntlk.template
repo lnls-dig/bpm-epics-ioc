@@ -419,7 +419,7 @@ record(calc, "$(P)$(R)IntlkLmtMinSumCalc-RB"){
     field(SCAN, "Passive")
     field(INPA, "$(P)$(R)IntlkLmtMinSumHw-RB")
     field(INPB, "24")
-    field(CALC, "A<<B")
+    field(CALC, "A*(2^B)")
     field(FLNK, "$(P)$(R)IntlkLmtMinSum-RB")
 }
 
