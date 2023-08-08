@@ -443,6 +443,7 @@ private:
 #define P_SwModeString              "SW_MODE"               /* asynUInt32Digital,      r/w */
 #define P_SwDlyString               "SW_DLY"                /* asynUInt32Digital,      r/w */
 #define P_SwDivClkString            "SW_DIVCLK"             /* asynUInt32Digital,      r/w */
+#define P_SwDivFCntEnString         "SW_DIV_F_CNT_EN"       /* asynInt32,              r/w */
 #define P_WdwString                 "ADC_WDW"               /* asynUInt32Digital,      r/w */
 #define P_WdwDlyString              "ADC_WDWDLY"            /* asynfloat64             r/w */
 #define P_AdcTrigDirString          "ADC_TRIGDIR"           /* asynUInt32Digital,      r/w */
@@ -774,6 +775,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_SwMode;
         int P_SwDly;
         int P_SwDivClk;
+        int P_SwDivFCntEn;
         int P_AdcTrigDir;
         int P_AdcTrigTerm;
         int P_AdcRand;

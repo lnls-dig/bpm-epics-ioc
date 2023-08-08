@@ -540,6 +540,7 @@ static const functionsAny_t bpmSetGetAmpGainCh3SwDir =            {functionsUInt
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
+static const functionsAny_t bpmSetGetAdcSwDivFCntEnFunc =        {functionsUInt32_t{"SWAP", halcs_set_div_f_cnt_en, halcs_get_div_f_cnt_en}};
 static const functionsAny_t bpmSetGetAdcTrigDirFunc =            {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir}};
 static const functionsAny_t bpmSetGetAdcTrigTermFunc =           {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term}};
 static const functionsAny_t bpmSetGetAdcRandFunc =               {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand}};
@@ -1018,6 +1019,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
     createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+    createParam(P_SwDivFCntEnString,asynParamInt32,                 &P_SwDivFCntEn);
 
     createParam(P_ClkFreqString,    asynParamFloat64,               &P_ClkFreq);
 
@@ -1387,6 +1389,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwMode, bpmSetGetAdcSwFunc);
     bpmHwFunc.emplace(P_SwDly, bpmSetGetAdcSwDlyFunc);
     bpmHwFunc.emplace(P_SwDivClk, bpmSetGetAdcSwDivClkFunc);
+    bpmHwFunc.emplace(P_SwDivFCntEn, bpmSetGetAdcSwDivFCntEnFunc);
     bpmHwFunc.emplace(P_AdcTrigDir, bpmSetGetAdcTrigDirFunc);
     bpmHwFunc.emplace(P_AdcTrigTerm, bpmSetGetAdcTrigTermFunc);
     bpmHwFunc.emplace(P_AdcRand, bpmSetGetAdcRandFunc);
@@ -5744,7 +5747,9 @@ asynStatus drvBPM::readFMCPicoParams(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_SwMode, P_SwDivClk, true);
+    updateUInt32Params(mask, addr, P_SwMode, P_SwDivClk, true);
+    updateIntegerParams(addr, P_SwDivFCntEn, P_SwDivFCntEn, true);
+    return asynSuccess;
 }
 
 /* Some DSP parameters are only available in software. Som, only update
