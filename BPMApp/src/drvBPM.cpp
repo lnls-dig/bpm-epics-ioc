@@ -522,6 +522,8 @@ static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsUIn
                                                                                            halcs_get_monit_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_monit_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetTestDataFunc =              {functionsUInt32_t{"DSP", halcs_set_dsp_cfg_test_data,
+                                                                                            halcs_get_dsp_cfg_test_data}};
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
 static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
@@ -1135,6 +1137,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCntRst);
     createParam(P_MonitTagDesyncCntString,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCnt);
+    createParam(P_TestDataString, asynParamInt32, &P_TestData);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamInt32,                 &P_XOffset);
     createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
@@ -1380,6 +1383,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_MonitDataMaskSamplesEnd, bpmSetGetMonitDataMaskSamplesEndFunc);
     bpmHwFunc.emplace(P_MonitTagDesyncCntRst, bpmSetGetMonitTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_MonitTagDesyncCnt, bpmSetGetMonitTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_TestData, bpmSetGetTestDataFunc);
     bpmHwFunc.emplace(P_MonitPollTime, bpmSetGetMonitPollTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
