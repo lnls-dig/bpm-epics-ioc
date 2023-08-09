@@ -510,6 +510,7 @@ private:
 #define P_MonitDataMaskSamplesEndString  "DSP_MONIT_DATA_MASK_SAMPLES_END"  /* asynUInt32Digital,      r/w */
 #define P_MonitTagDesyncCntRstString   "DSP_MONIT_TAG_DESYNC_CNT_RST" /* asynUInt32Digital,      r/w */
 #define P_MonitTagDesyncCntString      "DSP_MONIT_TAG_DESYNC_CNT"     /* asynUInt32Digital,      r/w */
+#define P_TestDataString               "DSP_TEST_DATA"                /* asynInt32,             r/w */
 #define P_TimRcvPhaseMeasNavgString "TIM_RCV_PHASE_MEAS_NAVG"        /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDADeglitchThresString "TIM_RCV_DMTD_A_DEGLITCH"   /* asynUInt32Digital,      r/w */
 #define P_TimRcvDMTDBDeglitchThresString "TIM_RCV_DMTD_B_DEGLITCH"   /* asynUInt32Digital,      r/w */
@@ -840,6 +841,7 @@ class drvBPM : public asynNDArrayDriver {
         int P_MonitDataMaskSamplesEnd;
         int P_MonitTagDesyncCntRst;
         int P_MonitTagDesyncCnt;
+        int P_TestData;
         int P_TimRcvPhaseMeasNavg;
         int P_TimRcvDMTDADeglitchThres;
         int P_TimRcvDMTDBDeglitchThres;

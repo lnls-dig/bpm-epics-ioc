@@ -986,3 +986,21 @@ record(longin,"$(P)$(R)MonitTagDesyncCnt-Mon"){
     field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT_TAG_DESYNC_CNT")
 }
+
+record(bo, "$(P)$(R)TestDataEn-Sel"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Output measurements or counter data")
+    field(PINI, YES)
+    field(VAL, 0)
+    field(ZNAM, "disable")
+    field(ONAM, "enable")
+    field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_TEST_DATA")
+}
+record(bi, "$(P)$(R)TestDataEn-Sts"){
+    field(DTYP, "asynInt32")
+    field(DESC, "Output measurements or counter data")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "disable")
+    field(ONAM, "enable")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_TEST_DATA")
+}
