@@ -509,7 +509,7 @@ record(calc,"$(P)$(R)Sum-Mon"){
     field(EGU, "au")
 }
 
-record(mbbo,"$(P)$(R)SwTagEn-Sel"){
+record(mbbo,"$(P)$(R)FOFBPhaseSyncEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Switching Tag Enable")
     field(PINI,"YES")
@@ -522,7 +522,7 @@ record(mbbo,"$(P)$(R)SwTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)SwTagEn-Sts"){
+record(mbbi,"$(P)$(R)FOFBPhaseSyncEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Switching Tag Enable")
     field(SCAN,"I/O Intr")
@@ -574,7 +574,7 @@ record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
 }
 
-record(mbbo,"$(P)$(R)TbTTagEn-Sel"){
+record(mbbo,"$(P)$(R)TbTPhaseSyncEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set TbT Tag Enable")
     field(PINI,"YES")
@@ -587,7 +587,7 @@ record(mbbo,"$(P)$(R)TbTTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)TbTTagEn-Sts"){
+record(mbbi,"$(P)$(R)TbTPhaseSyncEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get TbT Tag Enable")
     field(SCAN,"I/O Intr")
@@ -733,7 +733,7 @@ record(longin,"$(P)$(R)TbTTagDesyncCnt-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT")
 }
 
-record(mbbo,"$(P)$(R)FAcqTagEn-Sel"){
+record(mbbo,"$(P)$(R)FAcqPhaseSyncEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set FAcq Tag Enable")
     field(PINI,"YES")
@@ -746,7 +746,7 @@ record(mbbo,"$(P)$(R)FAcqTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)FAcqTagEn-Sts"){
+record(mbbi,"$(P)$(R)FAcqPhaseSyncEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get FAcq Tag Enable")
     field(SCAN,"I/O Intr")
@@ -860,7 +860,7 @@ record(longin,"$(P)$(R)FAcqTagDesyncCnt-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT1_TAG_DESYNC_CNT")
 }
 
-record(mbbo,"$(P)$(R)MonitTagEn-Sel"){
+record(mbbo,"$(P)$(R)MonitPhaseSyncEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Monit Tag Enable")
     field(PINI,"YES")
@@ -873,7 +873,7 @@ record(mbbo,"$(P)$(R)MonitTagEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)MonitTagEn-Sts"){
+record(mbbi,"$(P)$(R)MonitPhaseSyncEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Monit Tag Enable")
     field(SCAN,"I/O Intr")
