@@ -44,7 +44,7 @@ record(mbbi,"$(P)$(R)SwMode-Sts"){
     field(THST,"switching")
 }
 
-record(longout,"$(P)$(R)SwDly-SP"){
+record(longout,"$(P)$(R)SwDeswapDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set ADC switching delay")
     field(PINI,"YES")
@@ -53,7 +53,7 @@ record(longout,"$(P)$(R)SwDly-SP"){
     field(EGU, "clks")
 }
 
-record(longin,"$(P)$(R)SwDly-RB"){
+record(longin,"$(P)$(R)SwDeswapDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ADC switching delay")
     field(SCAN,"I/O Intr")
