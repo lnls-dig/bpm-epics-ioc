@@ -599,7 +599,7 @@ record(mbbi,"$(P)$(R)TbTPhaseSyncEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)TbTTagDly-SP"){
+record(longout,"$(P)$(R)TbTPhaseSyncDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set TbT Tag Delay")
     field(PINI,"YES")
@@ -607,7 +607,7 @@ record(longout,"$(P)$(R)TbTTagDly-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DLY")
 }
 
-record(longin,"$(P)$(R)TbTTagDly-RB"){
+record(longin,"$(P)$(R)TbTPhaseSyncDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get TbT Tag Delay")
     field(SCAN,"I/O Intr")
@@ -758,7 +758,7 @@ record(mbbi,"$(P)$(R)FAcqPhaseSyncEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)FAcqTagDly-SP"){
+record(longout,"$(P)$(R)FAcqPhaseSyncDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set FAcq Tag Delay")
     field(PINI,"YES")
@@ -766,7 +766,7 @@ record(longout,"$(P)$(R)FAcqTagDly-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT1_TAG_DLY")
 }
 
-record(longin,"$(P)$(R)FAcqTagDly-RB"){
+record(longin,"$(P)$(R)FAcqPhaseSyncDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get FAcq Tag Delay")
     field(SCAN,"I/O Intr")
@@ -885,7 +885,7 @@ record(mbbi,"$(P)$(R)MonitPhaseSyncEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)MonitTagDly-SP"){
+record(longout,"$(P)$(R)MonitPhaseSyncDly-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Monit Tag Delay")
     field(PINI,"YES")
@@ -893,7 +893,7 @@ record(longout,"$(P)$(R)MonitTagDly-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT_TAG_DLY")
 }
 
-record(longin,"$(P)$(R)MonitTagDly-RB"){
+record(longin,"$(P)$(R)MonitPhaseSyncDly-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Monit Tag Delay")
     field(SCAN,"I/O Intr")
