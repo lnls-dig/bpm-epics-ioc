@@ -669,7 +669,7 @@ record(longin,"$(P)$(R)TbTDataMaskSamplesEnd-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_DATA_MASK_SAMPLES_END")
 }
 
-record(mbbo,"$(P)$(R)SwTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)FOFBPhaseDesyncCntRst-Cmd") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Set Sw Counter Reset")
     field(PINI, "YES")
@@ -682,7 +682,7 @@ record(mbbo,"$(P)$(R)SwTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)SwTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)FOFBPhaseDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get Sw Counter Reset")
     field(SCAN, "I/O Intr")
@@ -694,14 +694,14 @@ record(mbbi,"$(P)$(R)SwTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)SwTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)FOFBPhaseDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Sw Desync Counter")
     field(SCAN,"2 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_TAG_DESYNC_CNT")
 }
 
-record(mbbo,"$(P)$(R)TbTTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)TbTPhaseDesyncCntRst-Cmd") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Set TbT Counter Reset")
     field(PINI, "YES")
@@ -714,7 +714,7 @@ record(mbbo,"$(P)$(R)TbTTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)TbTTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)TbTPhaseDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get TbT Counter Reset")
     field(SCAN, "I/O Intr")
@@ -726,7 +726,7 @@ record(mbbi,"$(P)$(R)TbTTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_TBT_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)TbTTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)TbTPhaseDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get TbT Desync Counter")
     field(SCAN,"2 second")
@@ -828,7 +828,7 @@ record(longin,"$(P)$(R)FAcqDataMaskSamplesEnd-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT1_DATA_MASK_SAMPLES_END")
 }
 
-record(mbbo,"$(P)$(R)FAcqTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)FAcqPhaseDesyncCntRst-Cmd") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Set FAcq Counter Reset")
     field(PINI, "YES")
@@ -841,7 +841,7 @@ record(mbbo,"$(P)$(R)FAcqTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT1_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)FAcqTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)FAcqPhaseDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get FAcq Counter Reset")
     field(SCAN, "I/O Intr")
@@ -853,7 +853,7 @@ record(mbbi,"$(P)$(R)FAcqTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT1_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)FAcqTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)FAcqPhaseDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get FAcq Desync Counter")
     field(SCAN,"2 second")
@@ -955,7 +955,7 @@ record(longin,"$(P)$(R)MonitDataMaskSamplesEnd-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT_DATA_MASK_SAMPLES_END")
 }
 
-record(mbbo,"$(P)$(R)MonitTagDesyncCntRst-Sel") {
+record(mbbo,"$(P)$(R)MonitPhaseDesyncCntRst-Cmd") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Set Monit Counter Reset")
     field(PINI, "YES")
@@ -968,7 +968,7 @@ record(mbbo,"$(P)$(R)MonitTagDesyncCntRst-Sel") {
     field(OUT,  "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT_TAG_DESYNC_CNT_RST")
 }
 
-record(mbbi,"$(P)$(R)MonitTagDesyncCntRst-Sts") {
+record(mbbi,"$(P)$(R)MonitPhaseDesyncCntRst-Sts") {
     field(DTYP,"asynUInt32Digital")
     field(DESC, "Get Monit Counter Reset")
     field(SCAN, "I/O Intr")
@@ -980,7 +980,7 @@ record(mbbi,"$(P)$(R)MonitTagDesyncCntRst-Sts") {
     field(INP, "@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_MONIT_TAG_DESYNC_CNT_RST")
 }
 
-record(longin,"$(P)$(R)MonitTagDesyncCnt-Mon"){
+record(longin,"$(P)$(R)MonitPhaseDesyncCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Monit Desync Counter")
     field(SCAN,"2 second")
