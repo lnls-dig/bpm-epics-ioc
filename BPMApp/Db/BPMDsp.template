@@ -534,7 +534,7 @@ record(mbbi,"$(P)$(R)FOFBPhaseSyncEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(mbbo,"$(P)$(R)SwDataMaskEn-Sel"){
+record(mbbo,"$(P)$(R)FOFBDataMaskEn-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Enable")
     field(PINI,"YES")
@@ -547,7 +547,7 @@ record(mbbo,"$(P)$(R)SwDataMaskEn-Sel"){
     field(ONST,"enabled")
 }
 
-record(mbbi,"$(P)$(R)SwDataMaskEn-Sts"){
+record(mbbi,"$(P)$(R)FOFBDataMaskEn-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Enable")
     field(SCAN,"I/O Intr")
@@ -559,7 +559,7 @@ record(mbbi,"$(P)$(R)SwDataMaskEn-Sts"){
     field(ONST,"enabled")
 }
 
-record(longout,"$(P)$(R)SwDataMaskSamples-SP"){
+record(longout,"$(P)$(R)FOFBDataMaskSamples-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set Data Mask Samples")
     field(PINI,"YES")
@@ -567,7 +567,7 @@ record(longout,"$(P)$(R)SwDataMaskSamples-SP"){
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_SW_DATA_MASK_SAMPLES")
 }
 
-record(longin,"$(P)$(R)SwDataMaskSamples-RB"){
+record(longin,"$(P)$(R)FOFBDataMaskSamples-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get Data Mask Samples")
     field(SCAN,"I/O Intr")

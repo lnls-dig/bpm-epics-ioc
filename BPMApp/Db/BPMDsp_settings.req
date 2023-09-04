@@ -15,8 +15,8 @@ $(P)$(R)SwInvGainC-SP
 $(P)$(R)SwInvGainD-SP
 $(P)$(R)MONITUpdtTime-SP
 $(P)$(R)FOFBPhaseSyncEn-Sel
-$(P)$(R)SwDataMaskEn-Sel
-$(P)$(R)SwDataMaskSamples-SP
+$(P)$(R)FOFBDataMaskEn-Sel
+$(P)$(R)FOFBDataMaskSamples-SP
 $(P)$(R)TbTPhaseSyncEn-Sel
 $(P)$(R)TbTTagDly-SP
 $(P)$(R)TbTDataMaskEn-Sel
