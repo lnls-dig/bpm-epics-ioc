@@ -356,7 +356,7 @@ record(bi,"$(P)$(R)Intlk-Mon"){
 record(bi,"$(P)$(R)IntlkLtc-Mon"){
     field(DTYP, "asynUInt32Digital")
     field(DESC, "Get interlock trip latched")
-    field(SCAN, "2 second")
+    field(SCAN, ".1 second")
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(INP,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_LTC")

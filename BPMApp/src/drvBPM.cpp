@@ -360,11 +360,11 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_GENAMP_C,
                             WVF_GENAMP_D,
                             WVF_GENAMP_ALL},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+                           {WVF_AMP_PM_A,
+                            WVF_AMP_PM_B,
+                            WVF_AMP_PM_C,
+                            WVF_AMP_PM_D,
+                            WVF_AMP_PM_ALL},
                           },
                           {{-1,                                 // NDArrayPhase
                             -1,
@@ -382,11 +382,11 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_GENPOS_C,
                             WVF_GENPOS_D,
                             WVF_GENPOS_ALL},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+                           {WVF_POS_PM_A,
+                            WVF_POS_PM_B,
+                            WVF_POS_PM_C,
+                            WVF_POS_PM_D,
+                            WVF_POS_PM_ALL},
                           },
                           },
     /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
@@ -522,6 +522,8 @@ static const functionsAny_t bpmSetGetMonitTagDesyncCntRstFunc =    {functionsUIn
                                                                                            halcs_get_monit_tag_desync_cnt_rst}};
 static const functionsAny_t bpmSetGetMonitTagDesyncCntFunc =       {functionsUInt32_t{"DSP", NULL,
                                                                                             halcs_get_monit_tag_desync_cnt}};
+static const functionsAny_t bpmSetGetTestDataFunc =              {functionsUInt32_t{"DSP", halcs_set_dsp_cfg_test_data,
+                                                                                            halcs_get_dsp_cfg_test_data}};
 static const functionsAny_t bpmSetGetMonitPollTimeFunc =         {functionsUInt32_t{"DSP", halcs_set_monit_poll_time, halcs_get_monit_poll_time}};
 static const functionsAny_t bpmSetGetXOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_x, halcs_get_offset_x}};
 static const functionsAny_t bpmSetGetYOffsetFunc =               {functionsInt32_t{"DSP", halcs_set_offset_y, halcs_get_offset_y}};
@@ -540,6 +542,7 @@ static const functionsAny_t bpmSetGetAmpGainCh3SwDir =            {functionsUInt
 static const functionsAny_t bpmSetGetAdcSwFunc =                 {functionsUInt32_t{"SWAP", halcs_set_sw, halcs_get_sw}};
 static const functionsAny_t bpmSetGetAdcSwDlyFunc =              {functionsUInt32_t{"SWAP", halcs_set_sw_dly, halcs_get_sw_dly}};
 static const functionsAny_t bpmSetGetAdcSwDivClkFunc =           {functionsUInt32_t{"SWAP", halcs_set_div_clk, halcs_get_div_clk}};
+static const functionsAny_t bpmSetGetAdcSwDivFCntEnFunc =        {functionsUInt32_t{"SWAP", halcs_set_div_f_cnt_en, halcs_get_div_f_cnt_en}};
 static const functionsAny_t bpmSetGetAdcTrigDirFunc =            {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_dir, halcs_get_trig_dir}};
 static const functionsAny_t bpmSetGetAdcTrigTermFunc =           {functionsUInt32_t{"FMC_ADC_COMMON", halcs_set_trig_term, halcs_get_trig_term}};
 static const functionsAny_t bpmSetGetAdcRandFunc =               {functionsUInt32_t{"FMC130M_4CH", halcs_set_adc_rand, halcs_get_adc_rand}};
@@ -1018,6 +1021,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     createParam(P_SwModeString,     asynParamUInt32Digital,         &P_SwMode);
     createParam(P_SwDlyString,      asynParamUInt32Digital,         &P_SwDly);
     createParam(P_SwDivClkString,   asynParamUInt32Digital,         &P_SwDivClk);
+    createParam(P_SwDivFCntEnString,asynParamInt32,                 &P_SwDivFCntEn);
 
     createParam(P_ClkFreqString,    asynParamFloat64,               &P_ClkFreq);
 
@@ -1133,6 +1137,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCntRst);
     createParam(P_MonitTagDesyncCntString,
                                     asynParamUInt32Digital,         &P_MonitTagDesyncCnt);
+    createParam(P_TestDataString, asynParamInt32, &P_TestData);
     createParam(P_KqString,         asynParamUInt32Digital,         &P_Kq);
     createParam(P_XOffsetString,    asynParamInt32,                 &P_XOffset);
     createParam(P_YOffsetString,    asynParamInt32,                 &P_YOffset);
@@ -1378,6 +1383,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_MonitDataMaskSamplesEnd, bpmSetGetMonitDataMaskSamplesEndFunc);
     bpmHwFunc.emplace(P_MonitTagDesyncCntRst, bpmSetGetMonitTagDesyncCntRstFunc);
     bpmHwFunc.emplace(P_MonitTagDesyncCnt, bpmSetGetMonitTagDesyncCntFunc);
+    bpmHwFunc.emplace(P_TestData, bpmSetGetTestDataFunc);
     bpmHwFunc.emplace(P_MonitPollTime, bpmSetGetMonitPollTimeFunc);
     /* FIXME: There is no BPM function to do that. Add funcionality to
      * FPGA firmware */
@@ -1387,6 +1393,7 @@ drvBPM::drvBPM(const char *portName, const char *endpoint, int bpmNumber,
     bpmHwFunc.emplace(P_SwMode, bpmSetGetAdcSwFunc);
     bpmHwFunc.emplace(P_SwDly, bpmSetGetAdcSwDlyFunc);
     bpmHwFunc.emplace(P_SwDivClk, bpmSetGetAdcSwDivClkFunc);
+    bpmHwFunc.emplace(P_SwDivFCntEn, bpmSetGetAdcSwDivFCntEnFunc);
     bpmHwFunc.emplace(P_AdcTrigDir, bpmSetGetAdcTrigDirFunc);
     bpmHwFunc.emplace(P_AdcTrigTerm, bpmSetGetAdcTrigTermFunc);
     bpmHwFunc.emplace(P_AdcRand, bpmSetGetAdcRandFunc);
@@ -5744,7 +5751,9 @@ asynStatus drvBPM::readFMCPicoParams(epicsUInt32 mask, int addr)
 
 asynStatus drvBPM::readGenParams(epicsUInt32 mask, int addr)
 {
-    return updateUInt32Params(mask, addr, P_SwMode, P_SwDivClk, true);
+    updateUInt32Params(mask, addr, P_SwMode, P_SwDivClk, true);
+    updateIntegerParams(addr, P_SwDivFCntEn, P_SwDivFCntEn, true);
+    return asynSuccess;
 }
 
 /* Some DSP parameters are only available in software. Som, only update
