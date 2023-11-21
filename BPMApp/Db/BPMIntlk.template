@@ -42,6 +42,7 @@ record(bo,"$(P)$(R)IntlkMinSumEn-Sel"){
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_MIN_SUM_EN")
+    field(ASG, "Interlock")
 }
 
 record(bi,"$(P)$(R)IntlkMinSumEn-Sts"){
@@ -61,6 +62,7 @@ record(bo,"$(P)$(R)IntlkPosEn-Sel"){
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_TRANS_EN")
+    field(ASG, "Interlock")
 }
 
 record(bi,"$(P)$(R)IntlkPosEn-Sts"){
@@ -91,6 +93,7 @@ record(bo,"$(P)$(R)IntlkAngEn-Sel"){
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(OUT,  "@asynMask($(PORT),$(ADDR),0x1,$(TIMEOUT))INTLK_ANG_EN")
+    field(ASG, "Interlock")
 }
 
 record(bi,"$(P)$(R)IntlkAngEn-Sts"){
@@ -370,6 +373,7 @@ record(ao, "$(P)$(R)IntlkLmtMinSum-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(FLNK, "$(P)$(R)IntlkLmtMinSumCalc-SP")
+    field(ASG, "Interlock")
 }
 
 # The Sum calculation in the FPGA is done with fixed-point
@@ -389,6 +393,7 @@ record(calc, "$(P)$(R)IntlkLmtMinSumCalc-SP"){
     field(INPB, "24")
     field(CALC, "CEIL(A/2^B)")
     field(FLNK, "$(P)$(R)IntlkLmtMinSumHw-SP")
+    field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkLmtMinSumHw-SP"){
@@ -398,6 +403,7 @@ record(longout, "$(P)$(R)IntlkLmtMinSumHw-SP"){
     field(OMSL, "closed_loop")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_MIN_SUM")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtMinSumHw-RB"){
@@ -435,6 +441,7 @@ record(longout, "$(P)$(R)IntlkLmtPosMaxX-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MAX_X")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtPosMaxX-RB"){
@@ -450,6 +457,7 @@ record(longout, "$(P)$(R)IntlkLmtPosMaxY-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MAX_Y")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtPosMaxY-RB"){
@@ -465,6 +473,7 @@ record(longout, "$(P)$(R)IntlkLmtAngMaxX-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MAX_X")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtAngMaxX-RB"){
@@ -480,6 +489,7 @@ record(longout, "$(P)$(R)IntlkLmtAngMaxY-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MAX_Y")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtAngMaxY-RB"){
@@ -495,6 +505,7 @@ record(longout, "$(P)$(R)IntlkLmtPosMinX-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_X")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtPosMinX-RB"){
@@ -510,6 +521,7 @@ record(longout, "$(P)$(R)IntlkLmtPosMinY-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_TRANS_MIN_Y")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtPosMinY-RB"){
@@ -525,6 +537,7 @@ record(longout, "$(P)$(R)IntlkLmtAngMinX-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_X")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtAngMinX-RB"){
@@ -540,6 +553,7 @@ record(longout, "$(P)$(R)IntlkLmtAngMinY-SP"){
     field(PINI, "YES")
     field(SCAN, "Passive")
     field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))INTLK_ANG_MIN_Y")
+    field(ASG, "Interlock")
 }
 
 record(longin,  "$(P)$(R)IntlkLmtAngMinY-RB"){
