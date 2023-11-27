@@ -1,0 +1,12 @@
+ASG(DEFAULT){
+	RULE(1,READ)
+	RULE(1,WRITE)
+}
+
+ASG(Interlock){
+	INPA($(P)$(R)IntlkEn-Sel)
+	RULE(1,READ)
+	RULE(1,WRITE){
+		CALC("A=0")
+	}
+}

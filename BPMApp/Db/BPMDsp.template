@@ -18,6 +18,7 @@ record(longout,"$(P)$(R)PosKx-SP"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KX")
     field(EGU, "nm")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)PosKx-RB"){
@@ -35,6 +36,7 @@ record(longout,"$(P)$(R)PosKy-SP"){
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KY")
     field(EGU, "nm")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)PosKy-RB"){
@@ -68,6 +70,7 @@ record(longout,"$(P)$(R)PosKsum-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))DSP_KSUM")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)PosKsum-RB"){
@@ -84,6 +87,7 @@ record(longout,"$(P)$(R)PosXOffset-SP"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_XOFFSET")
     field(EGU, "nm")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)PosXOffset-RB"){
@@ -101,6 +105,7 @@ record(longout,"$(P)$(R)PosYOffset-SP"){
     field(SCAN,"Passive")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))DSP_YOFFSET")
     field(EGU, "nm")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)PosYOffset-RB"){
@@ -142,6 +147,7 @@ record(ao,"$(P)$(R)SwDirGainA-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWDIR")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwDirGainA-RB"){
     field(DTYP,"asynFloat64")
@@ -156,6 +162,7 @@ record(ao,"$(P)$(R)SwDirGainB-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWDIR")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwDirGainB-RB"){
     field(DTYP,"asynFloat64")
@@ -170,6 +177,7 @@ record(ao,"$(P)$(R)SwDirGainC-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWDIR")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwDirGainC-RB"){
     field(DTYP,"asynFloat64")
@@ -184,6 +192,7 @@ record(ao,"$(P)$(R)SwDirGainD-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWDIR")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwDirGainD-RB"){
     field(DTYP,"asynFloat64")
@@ -198,6 +207,7 @@ record(ao,"$(P)$(R)SwInvGainA-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH0_SWINV")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwInvGainA-RB"){
     field(DTYP,"asynFloat64")
@@ -212,6 +222,7 @@ record(ao,"$(P)$(R)SwInvGainB-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH1_SWINV")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwInvGainB-RB"){
     field(DTYP,"asynFloat64")
@@ -226,6 +237,7 @@ record(ao,"$(P)$(R)SwInvGainC-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH2_SWINV")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwInvGainC-RB"){
     field(DTYP,"asynFloat64")
@@ -240,6 +252,7 @@ record(ao,"$(P)$(R)SwInvGainD-SP"){
     field(SCAN,"Passive")
     field(DRVH,"0.9999999403953552")
     field(OUT,"@asyn($(PORT))DSP_ADC_CH3_SWINV")
+    field(ASG, "Interlock")
 }
 record(ai,"$(P)$(R)SwInvGainD-RB"){
     field(DTYP,"asynFloat64")
