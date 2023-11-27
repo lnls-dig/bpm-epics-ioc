@@ -13,6 +13,9 @@ epicsEnvSet("ST_CMD","stBPM250.cmd")
 
 < BPM.config
 
+asSetFilename("$(TOP)/BPMApp/Db/accessSecurityFile.acf")
+asSetSubstitutions("P=$(P),R=$(R)")
+
 ## Register all support components
 dbLoadDatabase("${TOP}/dbd/BPM.dbd")
 BPM_registerRecordDeviceDriver (pdbbase)

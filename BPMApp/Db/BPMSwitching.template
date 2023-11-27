@@ -67,6 +67,7 @@ record(longout,"$(P)$(R)SwDivClk-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))SW_DIVCLK")
+    field(ASG, "Interlock")
 }
 
 record(longin,"$(P)$(R)SwDivClk-RB"){
