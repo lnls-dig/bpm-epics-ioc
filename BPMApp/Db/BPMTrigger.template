@@ -26,12 +26,13 @@ record(mbbo,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-Sel"){
     field(ZRST,"trn")
     field(ONST,"rcv")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_DIR")
+    field(FLNK, "$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-Sts.PROC CA")
 }
 
 record(mbbi,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Dir-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger direction")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"1 second")
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
@@ -118,12 +119,13 @@ record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_LEN")
+    field(FLNK, "$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB.PROC CA")
 }
 
 record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)TrnLen-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Get trigger transmit extension length")
-    field(SCAN,"I/O Intr")
+    field(SCAN,"1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))TRIGGER_TRN_LEN")
 }
 
